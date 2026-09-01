@@ -12,9 +12,9 @@ import {
 } from "@/components/lesson";
 
 export const meta: LessonMeta = {
-  title: "Les Puissances — Cours & Exercices corrigés | 1AC",
+  title: "Les Puissances · Cours et exercices corrigés | 1AC",
   description:
-    "Cours détaillé sur les puissances (définitions, signe, puissances de 10, propriétés) et 5 exercices corrigés en détail (calculs, équations d'exposants, écritures littérales, démonstrations) — 1ère année collège, semestre 1.",
+    "Cours détaillé sur les puissances (définitions, signe, puissances de 10, propriétés) et 5 exercices corrigés en détail (calculs, équations d'exposants, écritures littérales, démonstrations), 1ère année collège, semestre 1.",
   kicker: "1ʳᵉ Année Collège · Chapitre 8",
   heroTitle: "Les Puissances",
   heroSubtitle:
@@ -45,7 +45,7 @@ function Pill({ children, tone = "neutral" }: { children: ReactNode; tone?: "neu
 
 function Item({ n, children }: { n: number; children: ReactNode }) {
   return (
-    <div className="flex items-center gap-2 rounded-lg border border-border p-3">
+    <div className="flex items-center gap-3 rounded-lg border border-border p-4">
       <Pill>{n}</Pill>
       <span className="text-sm">{children}</span>
     </div>
@@ -54,7 +54,7 @@ function Item({ n, children }: { n: number; children: ReactNode }) {
 
 function CorrectionCard({ n, children }: { n: number | string; children: ReactNode }) {
   return (
-    <div className="rounded-lg border border-green-500/20 bg-surface p-3 text-sm">
+    <div className="rounded-lg border border-green-500/20 bg-surface p-4 text-sm">
       <span className="font-bold text-green-700">{n}.</span> {children}
     </div>
   );
@@ -99,7 +99,7 @@ export default function Lesson() {
       />
 
       {/* ===================== COURS ===================== */}
-      <LessonSection id="cours" kicker="01 — La définition" title="C'est quoi, une puissance ?" tone="light"
+      <LessonSection id="cours" kicker="01 · La définition" title="C'est quoi, une puissance ?" tone="light"
         description={
           <>
             Une façon rapide d&apos;écrire « je multiplie <Math tex="a" /> par lui-même, <Math tex="n" /> fois ».
@@ -111,22 +111,22 @@ export default function Lesson() {
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           <div className="rounded-xl border border-border p-4">
             <p className="mb-1 font-mono text-xs text-foreground-muted">la base</p>
-            <p className="text-lg"><Math tex="a^n" /> — <Math tex="a" /> est le nombre qu&apos;on multiplie</p>
+            <p className="text-lg"><Math tex="a^n" /> · <Math tex="a" /> est le nombre qu&apos;on multiplie</p>
           </div>
           <div className="rounded-xl border border-border p-4">
             <p className="mb-1 font-mono text-xs text-foreground-muted">l&apos;exposant</p>
-            <p className="text-lg"><Math tex="a^n" /> — <Math tex="n" /> dit combien de fois</p>
+            <p className="text-lg"><Math tex="a^n" /> · <Math tex="n" /> dit combien de fois</p>
           </div>
         </div>
 
-        <div className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
-          <div className="rounded-xl border border-border bg-surface-muted p-3 text-center font-semibold">
+        <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <div className="rounded-xl border border-border bg-surface-muted p-4 text-center font-semibold">
             <Math tex="a^0 = 1" />
           </div>
-          <div className="rounded-xl border border-border bg-surface-muted p-3 text-center font-semibold">
+          <div className="rounded-xl border border-border bg-surface-muted p-4 text-center font-semibold">
             <Math tex="a^1 = a" />
           </div>
-          <div className="col-span-2 rounded-xl border border-rose-500/30 bg-rose-100/60 p-3 text-center font-semibold text-rose-700 sm:col-span-2">
+          <div className="col-span-2 rounded-xl border border-rose-500/30 bg-rose-100/60 p-4 text-center font-semibold text-rose-700 sm:col-span-2">
             <Math tex="0^0" /> n&apos;existe pas
           </div>
         </div>
@@ -140,7 +140,7 @@ export default function Lesson() {
         </div>
       </LessonSection>
 
-      <LessonSection kicker="02 — Le piège classique" title="Positif ou négatif ?" tone="light"
+      <LessonSection kicker="02 · Le piège classique" title="Positif ou négatif ?" tone="light"
         description="Pour une base négative, un seul réflexe à avoir : compter pair ou impair."
       >
         <div className="grid gap-3 sm:grid-cols-2">
@@ -158,14 +158,14 @@ export default function Lesson() {
 
         <Callout variant="warning" title="⚠ Attention à ne pas confondre" >
           <p><Math tex="(-a)^n \neq -a^n" /> en général</p>
-          <div className="mt-3 grid gap-2 text-sm sm:grid-cols-2">
-            <p className="rounded-lg bg-surface p-3"><Math tex="(-3{,}5)^2 = +3{,}5 \times 3{,}5 = \mathbf{12{,}25}" /></p>
-            <p className="rounded-lg bg-surface p-3"><Math tex="(-3)^5 = -3 \times 3 \times 3 \times 3 \times 3 = \mathbf{-729}" /></p>
+          <div className="mt-3 grid gap-3 text-sm sm:grid-cols-2">
+            <p className="rounded-lg bg-surface p-4"><Math tex="(-3{,}5)^2 = +3{,}5 \times 3{,}5 = \mathbf{12{,}25}" /></p>
+            <p className="rounded-lg bg-surface p-4"><Math tex="(-3)^5 = -3 \times 3 \times 3 \times 3 \times 3 = \mathbf{-729}" /></p>
           </div>
         </Callout>
       </LessonSection>
 
-      <LessonSection kicker="03 — Le raccourci le plus utile" title="Les puissances de 10" tone="light"
+      <LessonSection kicker="03 · Le raccourci le plus utile" title="Les puissances de 10" tone="light"
         description="L'exposant compte directement les zéros. Rien à calculer."
       >
         <FormulaBlock tex="10^n = 1\,000\ldots0" caption={<><Math tex="n" /> zéros</>} />
@@ -176,7 +176,7 @@ export default function Lesson() {
         </div>
       </LessonSection>
 
-      <LessonSection kicker="04 — Les 5 règles à connaître" title="Propriétés des puissances" tone="light"
+      <LessonSection kicker="04 · Les 5 règles à connaître" title="Propriétés des puissances" tone="light"
         description="Toujours la même idée : on additionne ou on multiplie les exposants selon le cas."
       >
         <div className="grid gap-3 sm:grid-cols-2">
@@ -221,7 +221,7 @@ export default function Lesson() {
             title="Calculer"
             itemsLabel="11 expressions"
             items={
-              <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-4">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 <Item n={1}><Math tex="3^2 \times 5^2" /></Item>
                 <Item n={2}><Math tex="(-0{,}25)^4" /></Item>
                 <Item n={3}><Math tex="[(-3{,}5)^2]^3" /></Item>
@@ -232,14 +232,11 @@ export default function Lesson() {
                 <Item n={8}><Math tex="(-2254{,}326)^1" /></Item>
                 <Item n={9}><Math tex="(-2{,}5^2)^3" /></Item>
                 <Item n={10}><Math tex="[-(-3{,}2)^3]^2" /></Item>
-                <div className="col-span-2 flex items-center gap-2 rounded-lg border border-border p-3 sm:col-span-1">
-                  <Pill>11</Pill>
-                  <span className="text-sm"><Math tex="-(-(-(-2)^2)^2)^2" /></span>
-                </div>
+                <Item n={11}><Math tex="-(-(-(-2)^2)^2)^2" /></Item>
               </div>
             }
             correction={
-              <div className="grid grid-cols-2 gap-2.5 text-sm sm:grid-cols-3 lg:grid-cols-4">
+              <div className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2 lg:grid-cols-3">
                 <CorrectionCard n={1}><Math tex="3^2 \times 5^2 = 9 \times 25 = \mathbf{225}" /></CorrectionCard>
                 <CorrectionCard n={2}><Math tex="0{,}25^4 = \mathbf{0{,}00390625}" /></CorrectionCard>
                 <CorrectionCard n={3}><Math tex="(-3{,}5)^6 = \mathbf{1838{,}265625}" /></CorrectionCard>
@@ -250,8 +247,8 @@ export default function Lesson() {
                 <CorrectionCard n={8}><Math tex="\mathbf{-2254{,}326}" /></CorrectionCard>
                 <CorrectionCard n={9}><Math tex="(-6{,}25)^3 = \mathbf{-244{,}140625}" /></CorrectionCard>
                 <CorrectionCard n={10}><Math tex="[32{,}768]^2 = \mathbf{1073{,}741824}" /></CorrectionCard>
-                <div className="col-span-2 rounded-lg border border-green-500/20 bg-surface p-3 sm:col-span-3 lg:col-span-4">
-                  <span className="font-bold text-green-700">11.</span> <Math tex="-(-(-(-2)^2)^2)^2" /> — de l&apos;intérieur vers l&apos;extérieur :
+                <div className="rounded-lg border border-green-500/20 bg-surface p-4 sm:col-span-2 lg:col-span-3">
+                  <span className="font-bold text-green-700">11.</span> <Math tex="-(-(-(-2)^2)^2)^2" />, de l&apos;intérieur vers l&apos;extérieur :
                   <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-foreground-muted">
                     <Math tex="(-2)^2=4" /><span>→</span><Math tex="-4" /><span>→</span>
                     <Math tex="(-4)^2=16" /><span>→</span><Math tex="-16" /><span>→</span>
@@ -268,7 +265,7 @@ export default function Lesson() {
             index={2}
             title={<>Trouve <Math tex="n" /></>}
             items={
-              <div className="grid gap-2.5 sm:grid-cols-2">
+              <div className="grid gap-3 sm:grid-cols-2">
                 <Item n={1}><Math tex="(7^2)^n = 7^{12}" /></Item>
                 <Item n={2}><Math tex="(-5)^n \times (-5)^3 = (-5)^{11}" /></Item>
                 <Item n={3}><Math tex="(-11)^5 \times [(-11)^2]^n = (-11)^5 \times (-11)^6" /></Item>
@@ -276,7 +273,7 @@ export default function Lesson() {
               </div>
             }
             correction={
-              <div className="grid gap-2.5 text-sm sm:grid-cols-2">
+              <div className="grid gap-3 text-sm sm:grid-cols-2">
                 <CorrectionCard n={1}><Math tex="7^{2n}=7^{12} \implies 2n=12 \implies \mathbf{n=6}" /></CorrectionCard>
                 <CorrectionCard n={2}><Math tex="n+3=11 \implies \mathbf{n=8}" /></CorrectionCard>
                 <CorrectionCard n={3}><Math tex="5+2n=11 \implies 2n=6 \implies \mathbf{n=3}" /></CorrectionCard>
@@ -340,7 +337,7 @@ export default function Lesson() {
                   <span className="shrink-0 rounded-md bg-neutral-950 px-2.5 py-1 text-xs font-bold text-white">Donnée</span>
                   <p className="pt-0.5 text-sm">On pose : <Math tex="a \times b \times c = -1" /></p>
                 </div>
-                <div className="grid gap-2.5 sm:grid-cols-2">
+                <div className="grid gap-3 sm:grid-cols-2">
                   <Item n={1}><Math tex="a^2 \times b \times c = -a" /></Item>
                   <Item n={2}><Math tex="a^2 \times b^2 \times c^2 = 1" /></Item>
                   <Item n={3}><Math tex="a^3 \times b \times c = -a^2" /></Item>
@@ -353,7 +350,7 @@ export default function Lesson() {
                 <p className="mb-3 text-xs text-foreground-muted">
                   Méthode : faire apparaître <Math tex="a \times b \times c" /> (ou sa puissance) pour le remplacer par −1.
                 </p>
-                <div className="grid gap-2.5 text-sm sm:grid-cols-2">
+                <div className="grid gap-3 text-sm sm:grid-cols-2">
                   <CorrectionCard n={1}><Math tex="a^2bc = a \times (abc) = a \times (-1) = \mathbf{-a}" /> ✓</CorrectionCard>
                   <CorrectionCard n={2}><Math tex="a^2b^2c^2 = (abc)^2 = (-1)^2 = \mathbf{1}" /> ✓</CorrectionCard>
                   <CorrectionCard n={3}><Math tex="a^3bc = a^2 \times (abc) = a^2 \times (-1) = \mathbf{-a^2}" /> ✓</CorrectionCard>
@@ -368,7 +365,7 @@ export default function Lesson() {
             index={5}
             title="Exprime en une seule puissance"
             items={
-              <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <Item n={1}><Math tex="(10^4)^5" /></Item>
                 <Item n={2}><Math tex="2^7 \times 5^7" /></Item>
                 <Item n={3}><Math tex="(5^2)^4 \times 4^8 \times 5^3" /></Item>
@@ -379,7 +376,7 @@ export default function Lesson() {
             }
             correction={
               <div>
-                <div className="grid grid-cols-1 gap-2.5 text-sm sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
                   <CorrectionCard n={1}><Math tex="10^{4 \times 5} = \mathbf{10^{20}}" /></CorrectionCard>
                   <CorrectionCard n={2}><Math tex="(2 \times 5)^7 = \mathbf{10^7}" /></CorrectionCard>
                   <CorrectionCard n={3}><Math tex="5^8 \times 4^8 \times 5^3 = \mathbf{5^{11} \times 4^8}" /></CorrectionCard>
