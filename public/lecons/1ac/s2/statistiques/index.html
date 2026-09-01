@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Statistiques — Cours & Exercices | 1AC Mathématiques</title>
 <meta name="description" content="Cours complet et interactif sur les statistiques (1ère année collège) : effectif, effectif total, fréquence, tableaux, diagramme en bâtons, histogramme, diagrammes circulaires — accompagné de 27 exercices corrigés et d'un QCM.">
-<meta name="theme-color" content="#0b1f3a">
+<meta name="theme-color" content="#141414">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%8A%3C/text%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,8 +32,8 @@
         colors: {
           teal: {
             50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
-            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
-            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#2a2a2a',
+            800: '#1f1f1f', 900: '#141414', 950: '#0a0a0a',
           },
         },
         boxShadow: {
@@ -59,17 +59,17 @@
   .qcm-pill { transition: all .2s ease; }
 
   /* ===== Mode nuit (retrofit générique — filet de sécurité) ===== */
-  .dark body { background-color: #071528; }
-  .dark .bg-slate-50 { background-color: #071528; }
-  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
-  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark body { background-color: #0a0a0a; }
+  .dark .bg-slate-50 { background-color: #0a0a0a; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #141414; }
+  .dark .bg-slate-100 { background-color: #1f1f1f; }
   .dark .text-slate-900 { color: #f1f5f9; }
   .dark .text-slate-800 { color: #e2e8f0; }
   .dark .text-slate-700 { color: #cbd5e1; }
   .dark .text-slate-600 { color: #a7b6cf; }
   .dark .text-slate-500 { color: #93a4c3; }
   .dark .text-slate-400 { color: #7c8db0; }
-  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #2a2a2a; }
   .dark .bg-emerald-50 { background-color: #0d2818; }
   .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
   .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
@@ -121,9 +121,9 @@
 
 <main>
 <!-- ===================== HERO ===================== -->
-<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-teal-700 via-teal-600 to-cyan-700">
+<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900">
   <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=60')"></div>
-  <div class="absolute inset-0 bg-gradient-to-t from-teal-950/70 via-teal-800/40 to-transparent"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-neutral-900/40 to-transparent"></div>
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
     <h1 class="mt-6 font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
       Les <span class="text-amber-400">Statistiques</span>
@@ -168,15 +168,15 @@
     </div>
 
     <div class="grid md:grid-cols-3 gap-5 mb-8">
-      <div class="reveal rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-5">
+      <div class="reveal rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-neutral-900/30 p-5">
         <p class="text-xs font-bold uppercase tracking-wide text-rose-500 mb-2">1. Effectif</p>
         <p class="text-sm text-slate-700 dark:text-rose-100 leading-relaxed">L'<b>effectif</b> d'une donnée est le <b>nombre de fois</b> que cette donnée apparaît.</p>
       </div>
-      <div class="reveal rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-5">
+      <div class="reveal rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-neutral-900/30 p-5">
         <p class="text-xs font-bold uppercase tracking-wide text-rose-500 mb-2">2. Effectif total</p>
         <p class="text-sm text-slate-700 dark:text-rose-100 leading-relaxed">L'<b>effectif total</b> est la somme des effectifs des données, noté <b>N</b>.</p>
       </div>
-      <div class="reveal rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-5">
+      <div class="reveal rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-neutral-900/30 p-5">
         <p class="text-xs font-bold uppercase tracking-wide text-rose-500 mb-2">3. Fréquence</p>
         <p class="text-sm text-slate-700 dark:text-rose-100 leading-relaxed">La <b>fréquence</b> d'une donnée est le <b>quotient de son effectif par l'effectif total</b>.</p>
       </div>
@@ -185,7 +185,7 @@
     <div class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7 mb-6">
       <p class="text-xs font-bold uppercase tracking-wide text-teal-500 mb-3">4. Exemple</p>
       <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Après avoir corrigé un contrôle, le professeur a présenté les notes suivantes de sa classe :</p>
-      <div class="rounded-xl bg-teal-50 dark:bg-teal-950/30 border border-teal-200 dark:border-teal-900 p-4 font-mono text-sm text-teal-800 dark:text-teal-200 text-center mb-4">
+      <div class="rounded-xl bg-teal-50 dark:bg-neutral-900/30 border border-teal-200 dark:border-teal-900 p-4 font-mono text-sm text-teal-800 dark:text-teal-200 text-center mb-4">
         10 ; 12 ; 12 ; 10 ; 16 ; 8 ; 9 ; 8 ; 9 ; 10 &nbsp;·&nbsp; 8 ; 10 ; 8 ; 10 ; 16 ; 12 ; 10 ; 12 ; 12 ; 16
       </div>
       <div class="grid sm:grid-cols-2 gap-4">
@@ -215,7 +215,7 @@
           <tbody>
             <tr><td class="p-2 font-semibold bg-slate-100 dark:bg-slate-800">Données (notes)</td><td class="p-2">8</td><td class="p-2">9</td><td class="p-2">10</td><td class="p-2">12</td><td class="p-2">16</td></tr>
             <tr><td class="p-2 font-semibold bg-slate-100 dark:bg-slate-800">Effectifs</td><td class="p-2">4</td><td class="p-2">2</td><td class="p-2">6</td><td class="p-2">5</td><td class="p-2">3</td></tr>
-            <tr class="bg-teal-50 dark:bg-teal-950/30"><td class="p-2 font-semibold bg-slate-100 dark:bg-slate-800">Fréquences</td><td class="p-2">0,2</td><td class="p-2">0,1</td><td class="p-2">0,3</td><td class="p-2">0,25</td><td class="p-2">0,15</td></tr>
+            <tr class="bg-teal-50 dark:bg-neutral-900/30"><td class="p-2 font-semibold bg-slate-100 dark:bg-slate-800">Fréquences</td><td class="p-2">0,2</td><td class="p-2">0,1</td><td class="p-2">0,3</td><td class="p-2">0,25</td><td class="p-2">0,15</td></tr>
           </tbody>
         </table>
       </div>
@@ -279,7 +279,7 @@
       </div>
     </div>
 
-    <div class="reveal rounded-2xl border-2 border-dashed border-violet-300 dark:border-violet-800 bg-violet-50 dark:bg-violet-950/20 p-5 md:p-6">
+    <div class="reveal rounded-2xl border-2 border-dashed border-violet-300 dark:border-violet-800 bg-violet-50 dark:bg-neutral-900/20 p-5 md:p-6">
       <p class="text-xs font-bold uppercase tracking-wide text-violet-600 mb-2">💡 Complément utile pour les exercices — diagrammes circulaires</p>
       <p class="text-sm text-slate-700 dark:text-violet-100 leading-relaxed mb-3">De nombreux exercices utilisent aussi le <b>diagramme circulaire</b> (camembert) et le <b>diagramme semi-circulaire</b> : chaque catégorie y est représentée par une portion d'angle proportionnel à sa fréquence.</p>
       <div class="grid sm:grid-cols-2 gap-4">
@@ -502,7 +502,7 @@
         <div id="wrap-5" class="accordion-wrap">
           <div class="accordion-inner">
             <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-sky-900 dark:text-sky-100">
-              <div class="bg-sky-50 dark:bg-sky-950/30 rounded-lg p-3.5">📎 <b>Activité pratique (tableur)</b> : cet exercice nécessite un fichier de données réelles et n'a pas une réponse numérique unique. <b>Méthode :</b> b. utilise la fonction « Trier » du tableur sur la colonne population. c. Compte, avec la fonction NB.SI, le nombre de départements dans chaque intervalle de 200 000 habitants. d. Filtre ou trie pour compter les départements dont la population dépasse 1 000 000.</div>
+              <div class="bg-sky-50 dark:bg-neutral-900/30 rounded-lg p-3.5">📎 <b>Activité pratique (tableur)</b> : cet exercice nécessite un fichier de données réelles et n'a pas une réponse numérique unique. <b>Méthode :</b> b. utilise la fonction « Trier » du tableur sur la colonne population. c. Compte, avec la fonction NB.SI, le nombre de départements dans chaque intervalle de 200 000 habitants. d. Filtre ou trie pour compter les départements dont la population dépasse 1 000 000.</div>
             </div>
           </div>
         </div>
@@ -548,7 +548,7 @@
         <div id="wrap-7" class="accordion-wrap">
           <div class="accordion-inner">
             <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-sky-900 dark:text-sky-100">
-              <div class="bg-sky-50 dark:bg-sky-950/30 rounded-lg p-3.5">📎 <b>Activité pratique (lecture de partition)</b> : sans la partition en main, on ne peut pas donner un résultat numérique unique. <b>Méthode :</b> compte le nombre total de notes N, puis pour chaque note (do, ré, mi…) compte son effectif ; la fréquence de chaque note = son effectif ÷ N, arrondie au dixième. Vérifie que la somme des fréquences fait environ 1.</div>
+              <div class="bg-sky-50 dark:bg-neutral-900/30 rounded-lg p-3.5">📎 <b>Activité pratique (lecture de partition)</b> : sans la partition en main, on ne peut pas donner un résultat numérique unique. <b>Méthode :</b> compte le nombre total de notes N, puis pour chaque note (do, ré, mi…) compte son effectif ; la fréquence de chaque note = son effectif ÷ N, arrondie au dixième. Vérifie que la somme des fréquences fait environ 1.</div>
             </div>
           </div>
         </div>
@@ -1286,7 +1286,7 @@
         </button>
       </div>
       <p class="text-sm text-slate-600 dark:text-slate-300 mb-2">Voici les 60 premières décimales de 22/7 et de π :</p>
-      <div class="rounded-xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-900 p-4 font-mono text-xs text-violet-800 dark:text-violet-200 space-y-1 mb-3 break-all">
+      <div class="rounded-xl bg-violet-50 dark:bg-neutral-900/30 border border-violet-200 dark:border-violet-900 p-4 font-mono text-xs text-violet-800 dark:text-violet-200 space-y-1 mb-3 break-all">
         <p>22/7 ≈ 3,142857 142857 142857 142857 142857 142857 142857 142857 142857 142857</p>
         <p>π ≈ 3,141592 653589 793238 462643 383279 502884 197169 399375 105820 974944</p>
       </div>

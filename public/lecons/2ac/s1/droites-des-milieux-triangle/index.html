@@ -30,8 +30,8 @@
         colors: {
           brand: {
             50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
-            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
-            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#2a2a2a',
+            800: '#1f1f1f', 900: '#141414', 950: '#0a0a0a',
           },
           sun: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
           leaf: { 50: '#ecfdf5', 100: '#d1fae5', 500: '#10b981', 600: '#059669', 700: '#047857' }
@@ -50,32 +50,32 @@
   .diagram text { font-family: 'Inter', sans-serif; }
 
   /* Dark mode retrofit */
-  .dark body { background-color: #071528; }
-  .dark .bg-slate-50 { background-color: #071528; }
-  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
-  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark body { background-color: #0a0a0a; }
+  .dark .bg-slate-50 { background-color: #0a0a0a; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #141414; }
+  .dark .bg-slate-100 { background-color: #1f1f1f; }
   .dark .text-slate-900 { color: #f1f5f9; }
   .dark .text-slate-800 { color: #e2e8f0; }
   .dark .text-slate-700 { color: #cbd5e1; }
   .dark .text-slate-600 { color: #a7b6cf; }
   .dark .text-slate-500 { color: #93a4c3; }
-  .dark .border-slate-200 { border-color: #1c3a63; }
-  .dark .border-slate-100 { border-color: #1c3a63; }
-  .dark .ring-slate-200 { --tw-ring-color: #1c3a63; }
+  .dark .border-slate-200 { border-color: #2a2a2a; }
+  .dark .border-slate-100 { border-color: #2a2a2a; }
+  .dark .ring-slate-200 { --tw-ring-color: #2a2a2a; }
   .dark .bg-emerald-50 { background-color: #0d2818; }
   .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
   .dark .text-emerald-800, .dark .text-emerald-700 { color: #6ee7a3; }
   .dark .bg-brand-50 { background-color: #0f2847; }
-  .dark .bg-brand-100 { background-color: #1c3a63; }
+  .dark .bg-brand-100 { background-color: #2a2a2a; }
   .dark .text-brand-700 { color: #8fb0da; }
   .dark .text-brand-600 { color: #8fb0da; }
   .dark .text-brand-800 { color: #b8cfec; }
-  .dark .ring-brand-200 { --tw-ring-color: #1c3a63; }
+  .dark .ring-brand-200 { --tw-ring-color: #2a2a2a; }
   .dark .bg-leaf-100 { background-color: #0d2818; }
   .dark .text-leaf-700 { color: #6ee7a3; }
 </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased dark:bg-[#071528] dark:text-slate-100">
+<body class="bg-slate-50 text-slate-800 antialiased dark:bg-[#0a0a0a] dark:text-slate-100">
 
 <!-- Shared SVG defs -->
 <svg width="0" height="0" class="absolute">
@@ -90,7 +90,7 @@
 </svg>
 
 <!-- ===================== HEADER / NAV ===================== -->
-<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200 dark:bg-[#0b1f3ad9] dark:border-[#1c3a63]">
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200 dark:bg-[#141414d9] dark:border-[#2a2a2a]">
   <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <a href="#accueil" class="flex items-center gap-2 font-display font-bold text-brand-700 dark:text-brand-300 text-lg">
@@ -129,7 +129,7 @@
 </header>
 
 <!-- ===================== HERO ===================== -->
-<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-brand-700 via-brand-600 to-brand-800 text-white">
+<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 text-white">
   <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_20%,white,transparent_35%),radial-gradient(circle_at_80%_60%,white,transparent_30%)]"></div>
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 grid md:grid-cols-2 gap-10 items-center">
     <div>

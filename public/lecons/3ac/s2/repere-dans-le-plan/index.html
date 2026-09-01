@@ -27,8 +27,8 @@
         colors: {
           blue: {
             50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
-            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
-            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#2a2a2a',
+            800: '#1f1f1f', 900: '#141414', 950: '#0a0a0a',
           },
         },
         boxShadow: {
@@ -94,7 +94,7 @@
   ::-webkit-scrollbar-thumb:hover { background: #7dd3fc; }
 
   .hero-bg {
-    background-image: linear-gradient(135deg, rgba(12,44,74,0.92), rgba(3,105,161,0.85), rgba(8,51,68,0.92)), url('https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1600&q=80');
+    background-image: linear-gradient(135deg, rgba(10,10,10,0.92), rgba(23,23,23,0.85), rgba(10,10,10,0.92)), url('https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1600&q=80');
     background-size: cover;
     background-position: center;
   }
@@ -105,17 +105,17 @@
   .active-link { color: #0369a1 !important; font-weight: 700; }
 
   /* ===== Mode nuit (retrofit générique) ===== */
-  .dark body { background-color: #071528; }
-  .dark .bg-slate-50 { background-color: #071528; }
-  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
-  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark body { background-color: #0a0a0a; }
+  .dark .bg-slate-50 { background-color: #0a0a0a; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #141414; }
+  .dark .bg-slate-100 { background-color: #1f1f1f; }
   .dark .text-slate-900 { color: #f1f5f9; }
   .dark .text-slate-800 { color: #e2e8f0; }
   .dark .text-slate-700 { color: #cbd5e1; }
   .dark .text-slate-600 { color: #a7b6cf; }
   .dark .text-slate-500 { color: #93a4c3; }
   .dark .text-slate-400 { color: #7c8db0; }
-  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #2a2a2a; }
   .dark .bg-emerald-50, .dark .bg-emerald-50\/70, .dark .bg-emerald-50\/60 { background-color: #0d2818; }
   .dark .bg-emerald-100 { background-color: #0d2818; }
   .dark .border-emerald-200 { border-color: #1e5631; }
@@ -124,8 +124,8 @@
   .dark .bg-amber-100 { background-color: #3a2a0a; }
   .dark .border-amber-200, .dark .border-amber-400 { border-color: #92400e; }
   .dark .text-amber-700, .dark .text-amber-800 { color: #fbbf24; }
-  .dark .bg-blue-50, .dark .bg-blue-50\/70, .dark .bg-blue-100 { background-color: #12294c; }
-  .dark .border-blue-200 { border-color: #1c3a63; }
+  .dark .bg-blue-50, .dark .bg-blue-50\/70, .dark .bg-blue-100 { background-color: #1f1f1f; }
+  .dark .border-blue-200 { border-color: #2a2a2a; }
   .dark .text-blue-600, .dark .text-blue-700 { color: #8fb0da; }
   .dark .bg-cyan-50, .dark .bg-cyan-100 { background-color: #082f36; }
   .dark .border-cyan-200 { border-color: #155e63; }
@@ -135,7 +135,7 @@
   .dark .katex { color: #e2e8f0; }
 </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased dark:bg-[#071528] dark:text-slate-200">
+<body class="bg-slate-50 text-slate-800 antialiased dark:bg-[#0a0a0a] dark:text-slate-200">
 
 <!-- ============ GLOBAL SVG MARKERS (shared arrowheads) ============ -->
 <svg width="0" height="0" class="absolute">
@@ -151,7 +151,7 @@
 </svg>
 
 <!-- ============ HEADER ============ -->
-<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] dark:border-slate-800 backdrop-blur border-b border-slate-200">
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#141414d9] dark:border-slate-800 backdrop-blur border-b border-slate-200">
   <div class="container-custom flex items-center justify-between h-16">
     <a href="#accueil" class="flex items-center gap-2.5">
       <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-10 h-10 shrink-0 rounded-full">
@@ -188,7 +188,7 @@
     </div>
   </div>
 
-  <div id="mobile-menu" class="md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0b1f3a]">
+  <div id="mobile-menu" class="md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#141414]">
     <div class="container-custom py-3 flex flex-col gap-1">
       <a href="/" class="nav-link py-2" data-nav>← Portail</a>
       <a href="#accueil" class="nav-link py-2" data-nav>Accueil</a>

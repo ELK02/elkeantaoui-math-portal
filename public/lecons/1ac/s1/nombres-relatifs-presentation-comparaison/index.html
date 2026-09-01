@@ -28,8 +28,8 @@
         colors: {
           violet: {
             50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
-            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
-            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#2a2a2a',
+            800: '#1f1f1f', 900: '#141414', 950: '#0a0a0a',
           },
         },
       }
@@ -38,17 +38,17 @@
 </script>
 <style>
   /* ===== Mode nuit (retrofit générique) ===== */
-  .dark body { background-color: #071528; }
-  .dark .bg-slate-50 { background-color: #071528; }
-  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
-  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark body { background-color: #0a0a0a; }
+  .dark .bg-slate-50 { background-color: #0a0a0a; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #141414; }
+  .dark .bg-slate-100 { background-color: #1f1f1f; }
   .dark .text-slate-900 { color: #f1f5f9; }
   .dark .text-slate-800 { color: #e2e8f0; }
   .dark .text-slate-700 { color: #cbd5e1; }
   .dark .text-slate-600 { color: #a7b6cf; }
   .dark .text-slate-500 { color: #93a4c3; }
   .dark .text-slate-400 { color: #7c8db0; }
-  .dark .border-slate-100, .dark .border-slate-200, .dark .border-slate-300 { border-color: #1c3a63; }
+  .dark .border-slate-100, .dark .border-slate-200, .dark .border-slate-300 { border-color: #2a2a2a; }
   .dark .bg-emerald-50, .dark .bg-emerald-50\/60 { background-color: #0d2818; }
   .dark .border-emerald-200 { border-color: #1e5631; }
   .dark .text-emerald-700 { color: #6ee7a3; }
@@ -65,7 +65,7 @@
 <a href="#contenu" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow-lg">Aller au contenu</a>
 
 <!-- ===================== HEADER ===================== -->
-<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur border-b border-slate-200 dark:border-slate-800">
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#141414d9] backdrop-blur border-b border-slate-200 dark:border-slate-800">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <a href="#accueil" class="flex items-center gap-2 font-display font-bold text-lg text-violet-700 dark:text-white">
@@ -101,13 +101,13 @@
     </nav>
   </div>
   <!-- Sommaire pills -->
-  <nav aria-label="Sommaire du cours" class="border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-violet-950">
+  <nav aria-label="Sommaire du cours" class="border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-neutral-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto">
       <ul class="flex gap-2 py-3 text-xs sm:text-sm font-medium whitespace-nowrap">
-        <li><a href="#definitions" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-violet-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-violet-300 hover:text-violet-700 dark:hover:text-white transition">01 · Définitions</a></li>
-        <li><a href="#droite-graduee" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-violet-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-violet-300 hover:text-violet-700 dark:hover:text-white transition">02 · Droite graduée</a></li>
-        <li><a href="#comparaison" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-violet-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-violet-300 hover:text-violet-700 dark:hover:text-white transition">03 · Comparaison</a></li>
-        <li><a href="#exercices" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-violet-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-violet-300 hover:text-violet-700 dark:hover:text-white transition">04 · Exercices corrigés</a></li>
+        <li><a href="#definitions" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-neutral-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-violet-300 hover:text-violet-700 dark:hover:text-white transition">01 · Définitions</a></li>
+        <li><a href="#droite-graduee" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-neutral-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-violet-300 hover:text-violet-700 dark:hover:text-white transition">02 · Droite graduée</a></li>
+        <li><a href="#comparaison" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-neutral-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-violet-300 hover:text-violet-700 dark:hover:text-white transition">03 · Comparaison</a></li>
+        <li><a href="#exercices" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-neutral-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-violet-300 hover:text-violet-700 dark:hover:text-white transition">04 · Exercices corrigés</a></li>
       </ul>
     </div>
   </nav>
@@ -116,7 +116,7 @@
 <main id="contenu">
 
   <!-- ===================== HERO ===================== -->
-  <section id="accueil" aria-label="Présentation" class="relative overflow-hidden bg-gradient-to-br from-violet-950 via-violet-800 to-violet-600 text-white scroll-mt-28">
+  <section id="accueil" aria-label="Présentation" class="relative overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-800 text-white scroll-mt-28">
     <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1920&q=80" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-20 mix-blend-overlay" />
     <div class="absolute inset-0 opacity-[0.15] [background-image:radial-gradient(white_1px,transparent_1px)] [background-size:22px_22px]" aria-hidden="true"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">

@@ -35,8 +35,8 @@
         colors: {
           blue: {
             50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
-            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
-            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#2a2a2a',
+            800: '#1f1f1f', 900: '#141414', 950: '#0a0a0a',
           },
         },
       }
@@ -56,17 +56,17 @@
   .dark ::-webkit-scrollbar-thumb { background: #075985; }
 
   /* ===== Mode nuit (retrofit générique) ===== */
-  .dark body { background-color: #071528; }
-  .dark .bg-slate-50 { background-color: #071528; }
-  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
-  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark body { background-color: #0a0a0a; }
+  .dark .bg-slate-50 { background-color: #0a0a0a; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #141414; }
+  .dark .bg-slate-100 { background-color: #1f1f1f; }
   .dark .text-slate-900 { color: #f1f5f9; }
   .dark .text-slate-800 { color: #e2e8f0; }
   .dark .text-slate-700 { color: #cbd5e1; }
   .dark .text-slate-600 { color: #a7b6cf; }
   .dark .text-slate-500 { color: #93a4c3; }
   .dark .text-slate-400 { color: #7c8db0; }
-  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #2a2a2a; }
   .dark .bg-emerald-50 { background-color: #0d2818; }
   .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
   .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
@@ -120,9 +120,9 @@
 
 <main>
 <!-- ===================== HERO ===================== -->
-<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-blue-700 via-sky-600 to-cyan-700">
+<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900">
   <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1600&q=60')"></div>
-  <div class="absolute inset-0 bg-gradient-to-t from-blue-950/70 via-blue-800/40 to-transparent"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-neutral-900/40 to-transparent"></div>
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
     <h1 class="mt-6 font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
       Droite graduée <span class="text-amber-400">&</span> Repère dans le plan
@@ -167,7 +167,7 @@
     </div>
 
     <!-- Définition -->
-    <div class="reveal mb-6 rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-5 md:p-6">
+    <div class="reveal mb-6 rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-neutral-900/30 p-5 md:p-6">
       <p class="text-xs font-bold uppercase tracking-wide text-rose-500 mb-2">Définition</p>
       <p class="text-lg md:text-xl text-slate-700 dark:text-rose-100 font-medium leading-relaxed mb-4">
         Une <span class="font-bold text-rose-600 dark:text-rose-300">droite graduée</span> (axe gradué) est une droite sur laquelle on choisit :
@@ -237,7 +237,7 @@
     </div>
 
     <!-- Définition -->
-    <div class="reveal mb-8 rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-5 md:p-6">
+    <div class="reveal mb-8 rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-neutral-900/30 p-5 md:p-6">
       <p class="text-xs font-bold uppercase tracking-wide text-rose-500 mb-2">Définition</p>
       <p class="text-base md:text-lg text-slate-700 dark:text-rose-100 font-medium leading-relaxed">
         Chaque point d'une droite graduée est repéré par un nombre appelé <span class="font-bold text-rose-600 dark:text-rose-300">abscisse du point</span>.
@@ -293,7 +293,7 @@
         <text x="469" y="70" font-size="17" class="fill-sky-700 dark:fill-sky-300 font-bold">C</text>
         <text x="497" y="70" font-size="17" class="fill-sky-700 dark:fill-sky-300 font-bold">E</text>
       </svg>
-      <div class="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm text-slate-700 dark:text-slate-200 bg-sky-50 dark:bg-sky-950/30 rounded-xl p-4 md:p-5">
+      <div class="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm text-slate-700 dark:text-slate-200 bg-sky-50 dark:bg-neutral-900/30 rounded-xl p-4 md:p-5">
         <p>L'abscisse de <b>O</b> est 0, on note O(0) ou x<sub>O</sub> = 0</p>
         <p>L'abscisse de <b>I</b> est +1, on note I(+1) ou x<sub>I</sub> = 1</p>
         <p>L'abscisse de <b>A</b> est +2, on note A(+2) ou x<sub>A</sub> = 2</p>
@@ -320,7 +320,7 @@
     </div>
 
     <!-- Définition -->
-    <div class="reveal mb-8 rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-5 md:p-6">
+    <div class="reveal mb-8 rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-neutral-900/30 p-5 md:p-6">
       <p class="text-xs font-bold uppercase tracking-wide text-rose-500 mb-2">Définition</p>
       <p class="text-base md:text-lg text-slate-700 dark:text-rose-100 font-medium leading-relaxed mb-3">
         La distance entre deux points A et B sur une droite graduée est la longueur du segment [AB].
@@ -375,7 +375,7 @@
         <text x="333" y="180" font-size="15" class="fill-emerald-700 dark:fill-emerald-300 font-bold">AC = 2</text>
       </svg>
       <div class="grid sm:grid-cols-2 gap-4">
-        <div class="rounded-xl bg-cyan-50 dark:bg-cyan-950/30 p-4 text-sm text-cyan-900 dark:text-cyan-100">
+        <div class="rounded-xl bg-cyan-50 dark:bg-neutral-900/30 p-4 text-sm text-cyan-900 dark:text-cyan-100">
           <p>Puisque x<sub>B</sub> &lt; x<sub>A</sub>, alors :</p>
           <p class="mt-1 font-semibold">AB = x<sub>A</sub> − x<sub>B</sub> = 2 − (−3) = 2 + 3 = <b>5</b></p>
         </div>
@@ -407,7 +407,7 @@
     </div>
 
     <!-- Définition -->
-    <div class="reveal mb-8 rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-5 md:p-6">
+    <div class="reveal mb-8 rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-neutral-900/30 p-5 md:p-6">
       <p class="text-xs font-bold uppercase tracking-wide text-rose-500 mb-2">Définition</p>
       <p class="text-base md:text-lg text-slate-700 dark:text-rose-100 font-medium leading-relaxed">
         Un <span class="font-bold text-rose-600 dark:text-rose-300">repère du plan</span> est un repère orthogonal constitué de
@@ -453,7 +453,7 @@
     </div>
 
     <!-- Définition -->
-    <div class="reveal mb-8 rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-5 md:p-6">
+    <div class="reveal mb-8 rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-neutral-900/30 p-5 md:p-6">
       <p class="text-xs font-bold uppercase tracking-wide text-rose-500 mb-2">Définition</p>
       <p class="text-base md:text-lg text-slate-700 dark:text-rose-100 font-medium leading-relaxed mb-3">
         Dans le plan muni d'un repère orthogonal, on peut repérer un point par deux nombres appelés les <span class="font-bold text-rose-600 dark:text-rose-300">coordonnées du point</span> :
@@ -507,7 +507,7 @@
         <circle cx="118" cy="52" r="4.5" class="fill-violet-600 dark:fill-violet-400"/><text x="90" y="48" font-size="13" class="fill-violet-700 dark:fill-violet-300 font-bold">G</text>
       </svg>
 
-      <div class="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm text-slate-700 dark:text-slate-200 bg-violet-50 dark:bg-violet-950/30 rounded-xl p-4 md:p-5">
+      <div class="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm text-slate-700 dark:text-slate-200 bg-violet-50 dark:bg-neutral-900/30 rounded-xl p-4 md:p-5">
         <p>L'origine a pour abscisse et ordonnée zéro : <b>O(0 ; 0)</b></p>
         <p>Le point A a pour coordonnées : <b>A(1 ; 2)</b></p>
         <p>Le point B a pour coordonnées : <b>B(−1 ; −1)</b></p>

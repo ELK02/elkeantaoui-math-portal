@@ -32,8 +32,8 @@
         colors: {
           indigo: {
             50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
-            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
-            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#2a2a2a',
+            800: '#1f1f1f', 900: '#141414', 950: '#0a0a0a',
           },
         },
       }
@@ -72,10 +72,10 @@
   .anchor-offset { scroll-margin-top: 96px; }
 
   /* ===== Mode nuit (retrofit générique) ===== */
-  .dark body { background-color: #071528; }
-  .dark .bg-slate-50 { background-color: #071528; }
-  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
-  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark body { background-color: #0a0a0a; }
+  .dark .bg-slate-50 { background-color: #0a0a0a; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #141414; }
+  .dark .bg-slate-100 { background-color: #1f1f1f; }
   .dark .text-slate-900 { color: #f1f5f9; }
   .dark .text-slate-800 { color: #e2e8f0; }
   .dark .text-slate-700 { color: #cbd5e1; }
@@ -83,8 +83,8 @@
   .dark .text-slate-500 { color: #93a4c3; }
   .dark .text-slate-400 { color: #7c8db0; }
   .dark .text-slate-300 { color: #cbd5e1; }
-  .dark .border-slate-100, .dark .border-slate-200, .dark .border-slate-300 { border-color: #1c3a63; }
-  .dark .card-row { background: #0d2145; border-color: #1c3a63; }
+  .dark .border-slate-100, .dark .border-slate-200, .dark .border-slate-300 { border-color: #2a2a2a; }
+  .dark .card-row { background: #0d2145; border-color: #2a2a2a; }
   .dark .bg-emerald-50 { background-color: #0d2818; }
   .dark .bg-emerald-100\/60 { background-color: rgb(16 59 38 / 0.6); }
   .dark .border-emerald-200, .dark .border-emerald-400 { border-color: #1e5631; }
@@ -105,7 +105,7 @@
 <body class="bg-slate-50 text-slate-800 antialiased transition-colors">
 
 <!-- ===================== HEADER ===================== -->
-<header class="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur">
+<header class="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-[#141414d9] backdrop-blur">
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
     <a href="#accueil" class="flex items-center gap-2.5">
       <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
@@ -140,7 +140,7 @@
     </button>
   </div>
 
-  <div id="mobile-menu" class="hidden border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-indigo-900 px-4 py-3 md:hidden">
+  <div id="mobile-menu" class="hidden border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-neutral-900 px-4 py-3 md:hidden">
     <nav aria-label="Navigation mobile" class="flex flex-col gap-1">
       <a href="/" class="rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5">← Portail</a>
       <a href="#accueil" class="rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5">Accueil</a>
@@ -153,7 +153,7 @@
 <main>
 
 <!-- ===================== HERO ===================== -->
-<section id="accueil" class="anchor-offset relative overflow-hidden bg-gradient-to-b from-indigo-50 via-white to-white">
+<section id="accueil" class="anchor-offset relative overflow-hidden bg-gradient-to-b from-neutral-50 via-white to-white">
   <div class="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:py-20 lg:px-8">
     <div>
       <h1 class="mt-5 font-display text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl lg:text-5xl">

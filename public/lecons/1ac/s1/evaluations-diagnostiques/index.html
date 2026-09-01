@@ -29,8 +29,8 @@
         colors: {
           blue: {
             50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
-            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
-            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#2a2a2a',
+            800: '#1f1f1f', 900: '#141414', 950: '#0a0a0a',
           },
         },
       }
@@ -58,7 +58,7 @@
   .qcm-option { position:relative; display:flex; align-items:center; justify-content:center; text-align:center; cursor:pointer; user-select:none; border-radius:.75rem; border:2px solid #e2e8f0; background:#f8fafc; padding:.6rem .75rem; font-size:.92rem; font-weight:600; color:#334155; transition:all .15s ease; line-height:1.3; }
   .qcm-option:hover { border-color:#8fb0da; background:#eef3fb; }
   .qcm-option:focus-within { outline:2px solid #2c5089; outline-offset:2px; }
-  .qcm-option.is-selected { border-color:#2c5089; background:#eef3fb; color:#1c3a63; box-shadow:0 0 0 2px #b8cfec; }
+  .qcm-option.is-selected { border-color:#2c5089; background:#eef3fb; color:#2a2a2a; box-shadow:0 0 0 2px #b8cfec; }
   .qcm-option.correct-answer { border-color:#10b981 !important; background:#ecfdf5 !important; color:#047857 !important; box-shadow:0 0 0 2px #6ee7b7 !important; }
   .qcm-option.correct-answer::after { content:"✓"; position:absolute; top:-9px; right:-9px; width:20px; height:20px; border-radius:9999px; background:#10b981; color:#fff; font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; box-shadow:0 1px 3px rgb(0 0 0 / .25); }
   .qcm-option.wrong-answer { border-color:#f43f5e !important; background:#fff1f2 !important; color:#be123c !important; box-shadow:0 0 0 2px #fda4af !important; }
@@ -86,17 +86,17 @@
   #score-ring { transition: background 1s ease; }
 
   /* ===== Mode nuit (retrofit générique) ===== */
-  .dark body { background-color: #071528; }
-  .dark .bg-slate-50 { background-color: #071528; }
-  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
-  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark body { background-color: #0a0a0a; }
+  .dark .bg-slate-50 { background-color: #0a0a0a; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #141414; }
+  .dark .bg-slate-100 { background-color: #1f1f1f; }
   .dark .text-slate-900 { color: #f1f5f9; }
   .dark .text-slate-800 { color: #e2e8f0; }
   .dark .text-slate-700 { color: #cbd5e1; }
   .dark .text-slate-600 { color: #a7b6cf; }
   .dark .text-slate-500 { color: #93a4c3; }
   .dark .text-slate-400 { color: #7c8db0; }
-  .dark .border-slate-100, .dark .border-slate-200, .dark .border-slate-300 { border-color: #1c3a63; }
+  .dark .border-slate-100, .dark .border-slate-200, .dark .border-slate-300 { border-color: #2a2a2a; }
   .dark .bg-emerald-50 { background-color: #0d2818; }
   .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
   .dark .text-emerald-700 { color: #6ee7a3; }
@@ -107,17 +107,17 @@
   .dark .border-rose-200 { border-color: #7a2138; }
   .dark .text-rose-700 { color: #fb7185; }
   .dark .bg-blue-50 { background-color: #0d2145; }
-  .dark .bg-blue-100 { background-color: #12294c; }
+  .dark .bg-blue-100 { background-color: #1f1f1f; }
   .dark .text-blue-700 { color: #b8cfec; }
-  .dark .qcm-option { background: #0b1f3a; border-color: #1c3a63; color: #cbd5e1; }
+  .dark .qcm-option { background: #141414; border-color: #2a2a2a; color: #cbd5e1; }
   .dark .qcm-option:hover { border-color: #3f6a9c; background: #0d2145; }
   .dark .qcm-option.is-selected { border-color: #3f6a9c; background: #0d2145; }
-  .dark .blank-input { background: #0b1f3a; border-color: #1c3a63; color: #f1f5f9; }
-  .dark .cmp-btn { background: #0b1f3a; color: #cbd5e1; }
+  .dark .blank-input { background: #141414; border-color: #2a2a2a; color: #f1f5f9; }
+  .dark .cmp-btn { background: #141414; color: #cbd5e1; }
   .dark .cmp-btn:hover { background: #0d2145; }
   .dark .cmp-btn.is-selected { background: #3f6a9c; }
-  .dark .self-btn { background: #0b1f3a; border-color: #1c3a63; color: #cbd5e1; }
-  .dark #results-modal > div.bg-white { background: #0b1f3a; }
+  .dark .self-btn { background: #141414; border-color: #2a2a2a; color: #cbd5e1; }
+  .dark #results-modal > div.bg-white { background: #141414; }
   .dark #modal-sections .bg-slate-50 { background: #0d2145; }
 </style>
 </head>
@@ -131,7 +131,7 @@
 </div>
 
 <!-- ===================== HEADER ===================== -->
-<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur border-b border-slate-200 dark:border-slate-800">
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#141414d9] backdrop-blur border-b border-slate-200 dark:border-slate-800">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <a href="#accueil" class="flex items-center gap-2 font-display font-bold text-lg text-blue-700 dark:text-white">
@@ -168,20 +168,20 @@
     </nav>
   </div>
   <!-- Sommaire pills : accès rapide aux questions -->
-  <nav aria-label="Accès rapide aux questions" class="border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-blue-950">
+  <nav aria-label="Accès rapide aux questions" class="border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-neutral-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto">
       <ul class="flex gap-2 py-3 text-xs sm:text-sm font-medium whitespace-nowrap">
-        <li><a href="#q1" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-blue-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">01</a></li>
-        <li><a href="#q2" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-blue-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">02</a></li>
-        <li><a href="#q3" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-blue-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">03</a></li>
-        <li><a href="#q4" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-blue-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">04</a></li>
-        <li><a href="#q5" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-blue-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">05</a></li>
-        <li><a href="#q6" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-blue-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">06</a></li>
-        <li><a href="#q7" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-blue-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">07</a></li>
-        <li><a href="#q8" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-blue-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">08</a></li>
-        <li><a href="#q9" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-blue-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">09</a></li>
-        <li><a href="#q10" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-blue-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">10</a></li>
-        <li><a href="#q11" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-blue-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">11</a></li>
+        <li><a href="#q1" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-neutral-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">01</a></li>
+        <li><a href="#q2" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-neutral-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">02</a></li>
+        <li><a href="#q3" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-neutral-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">03</a></li>
+        <li><a href="#q4" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-neutral-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">04</a></li>
+        <li><a href="#q5" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-neutral-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">05</a></li>
+        <li><a href="#q6" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-neutral-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">06</a></li>
+        <li><a href="#q7" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-neutral-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">07</a></li>
+        <li><a href="#q8" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-neutral-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">08</a></li>
+        <li><a href="#q9" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-neutral-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">09</a></li>
+        <li><a href="#q10" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-neutral-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">10</a></li>
+        <li><a href="#q11" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-neutral-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">11</a></li>
       </ul>
     </div>
   </nav>
@@ -190,7 +190,7 @@
 <main id="contenu">
 
   <!-- ===================== HERO ===================== -->
-  <section id="accueil" aria-label="Présentation" class="relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-800 to-blue-600 text-white scroll-mt-28">
+  <section id="accueil" aria-label="Présentation" class="relative overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-800 text-white scroll-mt-28">
     <div class="absolute inset-0 opacity-[0.15] [background-image:radial-gradient(white_1px,transparent_1px)] [background-size:22px_22px]" aria-hidden="true"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
       <h1 class="font-display text-3xl sm:text-5xl font-extrabold leading-tight max-w-3xl">Évaluation diagnostique</h1>
@@ -545,10 +545,10 @@
             <div class="flex flex-col sm:flex-row items-center gap-6">
               <svg viewBox="0 0 210 130" class="w-52 h-auto shrink-0">
                 <rect x="20" y="20" width="140" height="90" fill="#eef3fb" stroke="#2c5089" stroke-width="2"/>
-                <text x="12" y="16" class="fig-label" font-size="13" fill="#1c3a63">A</text>
-                <text x="156" y="16" class="fig-label" font-size="13" fill="#1c3a63">B</text>
-                <text x="156" y="122" class="fig-label" font-size="13" fill="#1c3a63">C</text>
-                <text x="12" y="122" class="fig-label" font-size="13" fill="#1c3a63">D</text>
+                <text x="12" y="16" class="fig-label" font-size="13" fill="#2a2a2a">A</text>
+                <text x="156" y="16" class="fig-label" font-size="13" fill="#2a2a2a">B</text>
+                <text x="156" y="122" class="fig-label" font-size="13" fill="#2a2a2a">C</text>
+                <text x="12" y="122" class="fig-label" font-size="13" fill="#2a2a2a">D</text>
                 <text x="82" y="14" font-size="11" fill="#475569">3 cm</text>
                 <text x="167" y="70" font-size="11" fill="#475569">2 cm</text>
               </svg>

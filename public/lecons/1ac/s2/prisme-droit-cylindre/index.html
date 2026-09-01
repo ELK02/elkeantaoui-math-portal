@@ -32,8 +32,8 @@
         colors: {
           indigo: {
             50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
-            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
-            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#2a2a2a',
+            800: '#1f1f1f', 900: '#141414', 950: '#0a0a0a',
           },
         },
         boxShadow: {
@@ -57,17 +57,17 @@
   table.geo th, table.geo td { border: 1px solid; }
 
   /* ===== Mode nuit (retrofit générique — filet de sécurité) ===== */
-  .dark body { background-color: #071528; }
-  .dark .bg-slate-50 { background-color: #071528; }
-  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
-  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark body { background-color: #0a0a0a; }
+  .dark .bg-slate-50 { background-color: #0a0a0a; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #141414; }
+  .dark .bg-slate-100 { background-color: #1f1f1f; }
   .dark .text-slate-900 { color: #f1f5f9; }
   .dark .text-slate-800 { color: #e2e8f0; }
   .dark .text-slate-700 { color: #cbd5e1; }
   .dark .text-slate-600 { color: #a7b6cf; }
   .dark .text-slate-500 { color: #93a4c3; }
   .dark .text-slate-400 { color: #7c8db0; }
-  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #2a2a2a; }
   .dark .bg-emerald-50 { background-color: #0d2818; }
   .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
   .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
@@ -122,9 +122,9 @@
 
 <main>
 <!-- ===================== HERO ===================== -->
-<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-indigo-700 via-indigo-600 to-violet-700">
+<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900">
   <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1600&q=60')"></div>
-  <div class="absolute inset-0 bg-gradient-to-t from-indigo-950/70 via-indigo-800/40 to-transparent"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-neutral-900/40 to-transparent"></div>
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
     <h1 class="mt-6 font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
       Prisme droit <span class="text-amber-400">&amp;</span> Cylindre de révolution
@@ -169,7 +169,7 @@
     </div>
 
     <!-- Définition -->
-    <div class="reveal mb-6 rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-5 md:p-6">
+    <div class="reveal mb-6 rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-neutral-900/30 p-5 md:p-6">
       <p class="text-xs font-bold uppercase tracking-wide text-rose-500 mb-2">1. Définition</p>
       <p class="text-base md:text-lg text-slate-700 dark:text-rose-100 font-medium leading-relaxed mb-3">
         Un <b>prisme droit</b> est un solide qui possède :
@@ -222,7 +222,7 @@
     <!-- Patron -->
     <div class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
       <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-1">2. Patron d'un prisme droit</h3>
-      <div class="rounded-xl bg-indigo-50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-900 p-4 my-4">
+      <div class="rounded-xl bg-indigo-50 dark:bg-neutral-900/30 border border-indigo-200 dark:border-indigo-900 p-4 my-4">
         <p class="text-sm text-indigo-800 dark:text-indigo-200 text-center font-medium">Le patron d'un prisme droit est formé de ses <b>deux bases</b> et de ses <b>faces latérales</b>.</p>
       </div>
       <div class="grid sm:grid-cols-2 gap-6">
@@ -275,7 +275,7 @@
     <div class="reveal mb-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
       <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-1">1. Aire latérale d'un prisme droit</h3>
       <p class="text-sm text-slate-600 dark:text-slate-300 mt-2">La <b>surface latérale</b> d'un prisme droit correspond à l'ensemble des faces latérales. L'<b>aire latérale</b> est égale à l'aire de cette surface latérale.</p>
-      <div class="my-4 rounded-xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-900 p-4 text-center">
+      <div class="my-4 rounded-xl bg-violet-50 dark:bg-neutral-900/30 border border-violet-200 dark:border-violet-900 p-4 text-center">
         <p class="font-display font-bold text-violet-700 dark:text-violet-300">Aire latérale = Périmètre d'une base × hauteur</p>
       </div>
       <p class="text-xs font-bold uppercase tracking-wide text-violet-500 mb-3">Exemple</p>
@@ -298,7 +298,7 @@
           <text x="78" y="88" font-size="10" class="fill-slate-500 dark:fill-slate-400">6 cm</text>
           <text x="0" y="135" font-size="10" class="fill-slate-500 dark:fill-slate-400">8 cm</text>
         </svg>
-        <div class="rounded-xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-900 p-4 font-mono text-sm text-violet-800 dark:text-violet-200 space-y-1">
+        <div class="rounded-xl bg-violet-50 dark:bg-neutral-900/30 border border-violet-200 dark:border-violet-900 p-4 font-mono text-sm text-violet-800 dark:text-violet-200 space-y-1">
           <p>Périmètre d'une base = 6 + 5 + 2 = 13 cm</p>
           <p>Hauteur = 8 cm</p>
           <p class="font-bold">Aire latérale = 13 × 8 = 104 cm²</p>
@@ -310,7 +310,7 @@
     <div class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
       <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-1">2. Volume d'un prisme droit</h3>
       <p class="text-sm text-slate-600 dark:text-slate-300 mt-2">Le <b>volume</b> d'un prisme droit est égal au produit de l'aire d'une base par la hauteur.</p>
-      <div class="my-4 rounded-xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-900 p-4 text-center">
+      <div class="my-4 rounded-xl bg-violet-50 dark:bg-neutral-900/30 border border-violet-200 dark:border-violet-900 p-4 text-center">
         <p class="font-display font-bold text-violet-700 dark:text-violet-300">Volume = Aire d'une base × hauteur</p>
       </div>
       <p class="text-xs font-bold uppercase tracking-wide text-violet-500 mb-3">Exemple</p>
@@ -333,7 +333,7 @@
           <text x="8" y="108" font-size="10" class="fill-slate-500 dark:fill-slate-400">4 cm</text>
           <text x="45" y="185" font-size="10" class="fill-slate-500 dark:fill-slate-400">6 cm</text>
         </svg>
-        <div class="rounded-xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-900 p-4 text-sm text-violet-800 dark:text-violet-200 space-y-2">
+        <div class="rounded-xl bg-violet-50 dark:bg-neutral-900/30 border border-violet-200 dark:border-violet-900 p-4 text-sm text-violet-800 dark:text-violet-200 space-y-2">
           <p>Les bases du prisme ABCDEF sont les triangles rectangles ABC et DEF.</p>
           <p class="font-mono">Aire (ABC) = (AB × AC) / 2 = (3 × 4) / 2 = 6 cm²</p>
           <p>La hauteur du prisme est égale à 6 cm.</p>
@@ -357,7 +357,7 @@
       </div>
     </div>
 
-    <div class="reveal mb-8 rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-5 md:p-6">
+    <div class="reveal mb-8 rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-neutral-900/30 p-5 md:p-6">
       <p class="text-xs font-bold uppercase tracking-wide text-rose-500 mb-2">Définition</p>
       <p class="text-base md:text-lg text-slate-700 dark:text-rose-100 font-medium leading-relaxed mb-3">Un <b>cylindre de révolution</b> est un solide qui possède :</p>
       <ul class="space-y-2 text-sm md:text-base text-slate-700 dark:text-rose-100">

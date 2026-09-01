@@ -30,7 +30,7 @@
         colors: {
           brand: {
             50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da', 400: '#6089bd',
-            500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63', 800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+            500: '#3f6a9c', 600: '#2c5089', 700: '#2a2a2a', 800: '#1f1f1f', 900: '#141414', 950: '#0a0a0a',
           },
         },
         boxShadow: {
@@ -91,17 +91,17 @@
   }
 
   /* ===== Mode nuit (retrofit générique) ===== */
-  .dark body { background-color: #071528; }
-  .dark .bg-slate-50 { background-color: #071528; }
-  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
-  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark body { background-color: #0a0a0a; }
+  .dark .bg-slate-50 { background-color: #0a0a0a; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #141414; }
+  .dark .bg-slate-100 { background-color: #1f1f1f; }
   .dark .text-slate-900 { color: #f1f5f9; }
   .dark .text-slate-800 { color: #e2e8f0; }
   .dark .text-slate-700 { color: #cbd5e1; }
   .dark .text-slate-600 { color: #a7b6cf; }
   .dark .text-slate-500 { color: #93a4c3; }
   .dark .text-slate-400 { color: #7c8db0; }
-  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #2a2a2a; }
   .dark .bg-emerald-50 { background-color: #0d2818; }
   .dark .border-emerald-100, .dark .border-emerald-200 { border-color: #1e5631; }
   .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
@@ -110,12 +110,12 @@
   .dark .bg-rose-50 { background-color: #3a0d18; }
   .dark .border-rose-100 { border-color: #7a2138; }
   .dark .text-rose-600, .dark .text-rose-700 { color: #fb7185; }
-  .dark .bg-brand-50 { background-color: #12294c; }
+  .dark .bg-brand-50 { background-color: #1f1f1f; }
 </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased">
 
-<header id="topnav" class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur border-b border-slate-100 dark:border-slate-800 transition-shadow">
+<header id="topnav" class="sticky top-0 z-50 bg-white/90 dark:bg-[#141414d9] backdrop-blur border-b border-slate-100 dark:border-slate-800 transition-shadow">
   <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
     <a href="#top" class="flex items-center gap-2.5 font-heading font-extrabold text-brand-700 dark:text-white">
       <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-9 w-9 shrink-0 rounded-full">
@@ -147,7 +147,7 @@
     </button>
   </nav>
 
-  <div id="mobileMenu" class="hidden md:hidden border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-[#0b1f3a] px-4 py-3 space-y-1">
+  <div id="mobileMenu" class="hidden md:hidden border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-[#141414] px-4 py-3 space-y-1">
     <a href="/" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-500 dark:text-slate-400 hover:bg-brand-50 dark:hover:bg-white/5">← Portail</a>
     <a href="#cours" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-white/5">I · Situations de proportionnalité</a>
     <a href="#graphique" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-white/5">II · Représentation graphique</a>

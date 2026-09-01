@@ -35,8 +35,8 @@
         colors: {
           indigo: {
             50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
-            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
-            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#2a2a2a',
+            800: '#1f1f1f', 900: '#141414', 950: '#0a0a0a',
           },
         },
       }
@@ -56,17 +56,17 @@
   .dark ::-webkit-scrollbar-thumb { background: #0f766e; }
 
   /* ===== Mode nuit (retrofit générique) ===== */
-  .dark body { background-color: #071528; }
-  .dark .bg-slate-50 { background-color: #071528; }
-  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
-  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark body { background-color: #0a0a0a; }
+  .dark .bg-slate-50 { background-color: #0a0a0a; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #141414; }
+  .dark .bg-slate-100 { background-color: #1f1f1f; }
   .dark .text-slate-900 { color: #f1f5f9; }
   .dark .text-slate-800 { color: #e2e8f0; }
   .dark .text-slate-700 { color: #cbd5e1; }
   .dark .text-slate-600 { color: #a7b6cf; }
   .dark .text-slate-500 { color: #93a4c3; }
   .dark .text-slate-400 { color: #7c8db0; }
-  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #2a2a2a; }
   .dark .bg-emerald-50 { background-color: #0d2818; }
   .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
   .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
@@ -116,9 +116,9 @@
 
 <main>
 <!-- ===================== HERO ===================== -->
-<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-teal-700 via-cyan-700 to-fuchsia-700">
+<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-900 to-neutral-900">
   <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1600&q=60')"></div>
-  <div class="absolute inset-0 bg-gradient-to-t from-fuchsia-950/70 via-slate-900/40 to-transparent"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-slate-900/40 to-transparent"></div>
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
     <h1 class="mt-6 font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
       Angles Alternes-Internes <span class="text-amber-400">&</span> Angles Correspondants
@@ -191,7 +191,7 @@
       </svg>
 
       <div class="grid sm:grid-cols-2 gap-3">
-        <div class="rounded-xl bg-teal-50 dark:bg-teal-950/30 border border-teal-200 dark:border-teal-900 p-4">
+        <div class="rounded-xl bg-teal-50 dark:bg-neutral-900/30 border border-teal-200 dark:border-teal-900 p-4">
           <p class="text-sm text-teal-900 dark:text-teal-100 text-center">Les angles <b>EÂB</b> et <b>AB̂H</b> sont des angles <b>alternes-internes</b> <span class="text-xs text-teal-600 dark:text-teal-400">(zone teintée)</span>.</p>
         </div>
         <div class="rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 p-4">
@@ -205,7 +205,7 @@
     <div class="reveal mb-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
       <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-1">2. Propriétés</h3>
       <p class="text-xs font-bold uppercase tracking-wide text-teal-500 mb-2 mt-4">a) Propriété directe</p>
-      <div class="rounded-xl bg-teal-50 dark:bg-teal-950/30 border border-teal-200 dark:border-teal-900 p-4">
+      <div class="rounded-xl bg-teal-50 dark:bg-neutral-900/30 border border-teal-200 dark:border-teal-900 p-4">
         <p class="text-sm text-teal-900 dark:text-teal-100 text-center font-medium">Si deux droites sont <b>parallèles</b>, alors elles déterminent avec toute sécante des angles alternes-internes <b>isométriques</b> (égaux).</p>
       </div>
 
@@ -246,7 +246,7 @@
     <!-- 2b. Propriété réciproque -->
     <div class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
       <p class="text-xs font-bold uppercase tracking-wide text-teal-500 mb-2">b) Propriété réciproque</p>
-      <div class="rounded-xl bg-teal-50 dark:bg-teal-950/30 border border-teal-200 dark:border-teal-900 p-4">
+      <div class="rounded-xl bg-teal-50 dark:bg-neutral-900/30 border border-teal-200 dark:border-teal-900 p-4">
         <p class="text-sm text-teal-900 dark:text-teal-100 text-center font-medium">Si deux droites déterminent avec une sécante deux angles alternes-internes <b>isométriques</b> (égaux), alors elles sont <b>parallèles</b>.</p>
       </div>
 
@@ -329,7 +329,7 @@
       </svg>
 
       <div class="grid sm:grid-cols-2 gap-3">
-        <div class="rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/30 border border-fuchsia-200 dark:border-fuchsia-900 p-4">
+        <div class="rounded-xl bg-fuchsia-50 dark:bg-neutral-900/30 border border-fuchsia-200 dark:border-fuchsia-900 p-4">
           <p class="text-sm text-fuchsia-900 dark:text-fuchsia-100 text-center">Les angles <b>EÂB</b> et <b>GB̂N</b> sont des angles <b>correspondants</b> <span class="text-xs text-fuchsia-600 dark:text-fuchsia-400">(zone teintée)</span>.</p>
         </div>
         <div class="rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 p-4">
@@ -343,7 +343,7 @@
     <div class="reveal mb-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
       <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-1">2. Propriétés</h3>
       <p class="text-xs font-bold uppercase tracking-wide text-fuchsia-500 mb-2 mt-4">a) Propriété directe</p>
-      <div class="rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/30 border border-fuchsia-200 dark:border-fuchsia-900 p-4">
+      <div class="rounded-xl bg-fuchsia-50 dark:bg-neutral-900/30 border border-fuchsia-200 dark:border-fuchsia-900 p-4">
         <p class="text-sm text-fuchsia-900 dark:text-fuchsia-100 text-center font-medium">Si deux droites sont <b>parallèles</b>, alors elles déterminent avec toute sécante des angles correspondants <b>isométriques</b> (égaux).</p>
       </div>
 
@@ -382,7 +382,7 @@
     <!-- 2b. Propriété réciproque -->
     <div class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
       <p class="text-xs font-bold uppercase tracking-wide text-fuchsia-500 mb-2">b) Propriété réciproque</p>
-      <div class="rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/30 border border-fuchsia-200 dark:border-fuchsia-900 p-4">
+      <div class="rounded-xl bg-fuchsia-50 dark:bg-neutral-900/30 border border-fuchsia-200 dark:border-fuchsia-900 p-4">
         <p class="text-sm text-fuchsia-900 dark:text-fuchsia-100 text-center font-medium">Si deux droites déterminent avec une sécante deux angles correspondants <b>isométriques</b> (égaux), alors elles sont <b>parallèles</b>.</p>
       </div>
 
@@ -439,7 +439,7 @@
     <div class="reveal grid sm:grid-cols-2 gap-4">
       <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5">
         <div class="flex items-center gap-3 mb-3">
-          <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-teal-100 dark:bg-teal-950/40 text-teal-600 dark:text-teal-400 text-lg font-bold shrink-0">Z</span>
+          <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-teal-100 dark:bg-neutral-900/40 text-teal-600 dark:text-teal-400 text-lg font-bold shrink-0">Z</span>
           <h3 class="font-display font-bold text-slate-800 dark:text-white">Alternes-internes</h3>
         </div>
         <p class="text-sm text-slate-600 dark:text-slate-300"><b>Position :</b> entre les deux droites, de part et d'autre de la sécante.</p>
@@ -449,7 +449,7 @@
 
       <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5">
         <div class="flex items-center gap-3 mb-3">
-          <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-fuchsia-100 dark:bg-fuchsia-950/40 text-fuchsia-600 dark:text-fuchsia-400 text-lg font-bold shrink-0">F</span>
+          <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-fuchsia-100 dark:bg-neutral-900/40 text-fuchsia-600 dark:text-fuchsia-400 text-lg font-bold shrink-0">F</span>
           <h3 class="font-display font-bold text-slate-800 dark:text-white">Correspondants</h3>
         </div>
         <p class="text-sm text-slate-600 dark:text-slate-300"><b>Position :</b> même position relative aux deux points d'intersection.</p>
@@ -457,7 +457,7 @@
         <p class="text-sm text-slate-600 dark:text-slate-300 mt-1"><b>Réciproque :</b> angles égaux ⟹ droites ∥.</p>
       </div>
 
-      <div class="rounded-2xl bg-gradient-to-r from-teal-50 via-indigo-50 to-fuchsia-50 dark:from-teal-950/30 dark:via-[#07152833] dark:to-fuchsia-950/30 border border-indigo-200 dark:border-indigo-900 shadow-sm p-5 sm:col-span-2">
+      <div class="rounded-2xl bg-gradient-to-r from-teal-50 via-indigo-50 to-fuchsia-50 dark:from-teal-950/30 dark:via-[#0a0a0a33] dark:to-fuchsia-950/30 border border-indigo-200 dark:border-indigo-900 shadow-sm p-5 sm:col-span-2">
         <div class="flex items-center gap-3 mb-2">
           <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-indigo-600 text-white text-lg font-bold shrink-0">💡</span>
           <h3 class="font-display font-bold text-slate-800 dark:text-white">Méthode pour une démonstration</h3>
@@ -508,7 +508,7 @@
           <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
             <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">1</span>
             Exercice n°1
-            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-teal-100 text-teal-700 dark:bg-teal-950/40 dark:text-teal-300">Réciproque</span>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-teal-100 text-teal-700 dark:bg-neutral-900/40 dark:text-teal-300">Réciproque</span>
           </h3>
           <button onclick="toggleCorrection(1)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
             <span id="label-1">Voir la correction</span>
@@ -561,7 +561,7 @@
           <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
             <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">2</span>
             Exercice n°2
-            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-teal-100 text-teal-700 dark:bg-teal-950/40 dark:text-teal-300">Directe</span>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-teal-100 text-teal-700 dark:bg-neutral-900/40 dark:text-teal-300">Directe</span>
           </h3>
           <button onclick="toggleCorrection(2)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
             <span id="label-2">Voir la correction</span>
@@ -607,7 +607,7 @@
           <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
             <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">3</span>
             Exercice n°3
-            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-fuchsia-100 text-fuchsia-700 dark:bg-fuchsia-950/40 dark:text-fuchsia-300">Directe</span>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-fuchsia-100 text-fuchsia-700 dark:bg-neutral-900/40 dark:text-fuchsia-300">Directe</span>
           </h3>
           <button onclick="toggleCorrection(3)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
             <span id="label-3">Voir la correction</span>
@@ -659,7 +659,7 @@
           <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
             <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">4</span>
             Exercice n°4
-            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-teal-100 text-teal-700 dark:bg-teal-950/40 dark:text-teal-300">Réciproque</span>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-teal-100 text-teal-700 dark:bg-neutral-900/40 dark:text-teal-300">Réciproque</span>
           </h3>
           <button onclick="toggleCorrection(4)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
             <span id="label-4">Voir la correction</span>
@@ -705,7 +705,7 @@
           <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
             <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">5</span>
             Exercice n°5
-            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-700 dark:bg-[#07152866] dark:text-indigo-300">Grand classique</span>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-700 dark:bg-[#0a0a0a66] dark:text-indigo-300">Grand classique</span>
           </h3>
           <button onclick="toggleCorrection(5)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
             <span id="label-5">Voir la correction</span>
@@ -717,7 +717,7 @@
         <div class="rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 p-4 mb-3">
           <svg viewBox="0 0 340 240" class="w-full h-auto max-w-xs mx-auto">
             <line x1="40" y1="50" x2="310" y2="50" class="stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.25"/>
-            <polygon points="175,50 80,210 270,210" class="fill-indigo-50 dark:fill-[#0715284d] stroke-slate-600 dark:stroke-slate-300" stroke-width="2.25"/>
+            <polygon points="175,50 80,210 270,210" class="fill-indigo-50 dark:fill-[#0a0a0a4d] stroke-slate-600 dark:stroke-slate-300" stroke-width="2.25"/>
             <circle cx="175" cy="50" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
             <circle cx="80" cy="210" r="5" class="fill-slate-600 dark:fill-slate-300"/>
             <circle cx="270" cy="210" r="5" class="fill-slate-600 dark:fill-slate-300"/>
@@ -756,7 +756,7 @@
           <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
             <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">6</span>
             Exercice n°6
-            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-teal-100 text-teal-700 dark:bg-teal-950/40 dark:text-teal-300">Directe</span>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-teal-100 text-teal-700 dark:bg-neutral-900/40 dark:text-teal-300">Directe</span>
           </h3>
           <button onclick="toggleCorrection(6)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
             <span id="label-6">Voir la correction</span>

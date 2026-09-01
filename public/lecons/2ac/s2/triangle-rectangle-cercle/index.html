@@ -26,7 +26,7 @@
         colors: {
           brand: {
             50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da', 400: '#6089bd',
-            500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63', 800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+            500: '#3f6a9c', 600: '#2c5089', 700: '#2a2a2a', 800: '#1f1f1f', 900: '#141414', 950: '#0a0a0a',
           },
           accent: {
             50: '#fffbeb',
@@ -98,34 +98,34 @@
   .nav-link:hover::after { width: 100%; }
 
   /* ===== Mode nuit (retrofit générique) ===== */
-  .dark body { background-color: #071528; }
-  .dark .bg-slate-50 { background-color: #071528; }
-  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
-  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark body { background-color: #0a0a0a; }
+  .dark .bg-slate-50 { background-color: #0a0a0a; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #141414; }
+  .dark .bg-slate-100 { background-color: #1f1f1f; }
   .dark .text-slate-900 { color: #f1f5f9; }
   .dark .text-slate-800 { color: #e2e8f0; }
   .dark .text-slate-700 { color: #cbd5e1; }
   .dark .text-slate-600 { color: #a7b6cf; }
   .dark .text-slate-500 { color: #93a4c3; }
   .dark .text-slate-400 { color: #7c8db0; }
-  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #2a2a2a; }
   .dark .bg-emerald-50 { background-color: #0d2818; }
   .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
   .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
   .dark .bg-amber-50, .dark .bg-accent-50 { background-color: #3a2a0a; }
   .dark .border-amber-400, .dark .border-accent-200 { border-color: #92400e; }
-  .dark .prop-box { background-color: #12294c; border-left-color: #3f6a9c; }
+  .dark .prop-box { background-color: #1f1f1f; border-left-color: #3f6a9c; }
   .dark .def-box { background-color: #3a2a0a; border-left-color: #b45309; }
   .dark .thm-box { background-color: #0d2818; border-left-color: #16a34a; }
-  .dark ::-webkit-scrollbar-track { background: #0b1f3a; }
-  .dark ::-webkit-scrollbar-thumb { background: #1c3a63; }
+  .dark ::-webkit-scrollbar-track { background: #141414; }
+  .dark ::-webkit-scrollbar-thumb { background: #2a2a2a; }
 </style>
 </head>
 
-<body class="bg-slate-50 dark:bg-[#071528] text-slate-800 antialiased">
+<body class="bg-slate-50 dark:bg-[#0a0a0a] text-slate-800 antialiased">
 
 <!-- ============ HEADER / NAV ============ -->
-<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#141414d9] backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <a href="#accueil" class="flex items-center gap-2 font-bold text-brand-700 dark:text-white text-lg">
@@ -166,7 +166,7 @@
 </header>
 
 <!-- ============ HERO ============ -->
-<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-brand-700 via-brand-600 to-accent-500 text-white">
+<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-800 text-white">
   <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_20%,white,transparent_35%),radial-gradient(circle_at_80%_60%,white,transparent_30%)]"></div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 grid md:grid-cols-2 gap-10 items-center relative">
     <div>

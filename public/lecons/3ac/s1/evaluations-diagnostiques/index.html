@@ -38,8 +38,8 @@
         colors: {
           brand: {
             50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
-            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
-            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#2a2a2a',
+            800: '#1f1f1f', 900: '#141414', 950: '#0a0a0a',
           },
           accent: {
             50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74',
@@ -112,17 +112,17 @@
   #score-ring { transition: background 1s ease; }
 
   /* ===== Mode nuit (retrofit générique) ===== */
-  .dark body { background-color: #071528; }
-  .dark .bg-slate-50 { background-color: #071528; }
-  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
-  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark body { background-color: #0a0a0a; }
+  .dark .bg-slate-50 { background-color: #0a0a0a; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #141414; }
+  .dark .bg-slate-100 { background-color: #1f1f1f; }
   .dark .text-slate-900 { color: #f1f5f9; }
   .dark .text-slate-800 { color: #e2e8f0; }
   .dark .text-slate-700 { color: #cbd5e1; }
   .dark .text-slate-600 { color: #a7b6cf; }
   .dark .text-slate-500 { color: #93a4c3; }
   .dark .text-slate-400 { color: #7c8db0; }
-  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #2a2a2a; }
   .dark .bg-emerald-50 { background-color: #0d2818; }
   .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
   .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
@@ -135,13 +135,13 @@
   .dark .text-orange-700 { color: #fdba74; }
   .dark .bg-accent-100 { background-color: #4a2a0a; }
   .dark .text-accent-700 { color: #fdba74; }
-  .dark .bg-brand-100 { background-color: #12294c; }
+  .dark .bg-brand-100 { background-color: #1f1f1f; }
   .dark .text-brand-700 { color: #b8cfec; }
   .dark .bg-brand-50 { background-color: #0d2145; }
-  .dark .border-brand-200 { border-color: #1c3a63; }
+  .dark .border-brand-200 { border-color: #2a2a2a; }
   .dark .text-brand-800 { color: #dbe7f6; }
-  .dark .qcm-option { background: #0b1f3a; border-color: #1c3a63; color: #cbd5e1; }
-  .dark .blank-input { background: #0b1f3a; border-color: #1c3a63; color: #f1f5f9; }
+  .dark .qcm-option { background: #141414; border-color: #2a2a2a; color: #cbd5e1; }
+  .dark .blank-input { background: #141414; border-color: #2a2a2a; color: #f1f5f9; }
 </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased font-sans transition-colors">
@@ -154,7 +154,7 @@
 </div>
 
 <!-- ============ HEADER / NAV ============ -->
-<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#141414d9] backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
   <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
     <a href="#accueil" class="flex items-center gap-2.5 group">
       <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-9 h-9 shrink-0 rounded-full">
@@ -189,7 +189,7 @@
     </div>
   </nav>
 
-  <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0b1f3a] px-4 py-3 space-y-1">
+  <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-[#141414] px-4 py-3 space-y-1">
     <a href="/" class="block px-3 py-2.5 rounded-lg text-slate-500 dark:text-slate-400 font-semibold hover:bg-brand-50 dark:hover:bg-white/5">← Portail</a>
     <a href="#section-nombres" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 dark:text-slate-200 font-semibold hover:bg-brand-50 dark:hover:bg-white/5">1. Nombres & fractions</a>
     <a href="#section-comparaisons" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 font-semibold hover:bg-brand-50">2. Comparaisons</a>
@@ -211,7 +211,7 @@
   <div class="absolute inset-0">
     <img src="https://images.unsplash.com/photo-1635372722656-389f87a941b7?auto=format&fit=crop&w=1740&q=80"
          alt="Tableau noir recouvert de formules mathématiques" class="w-full h-full object-cover" loading="eager">
-    <div class="absolute inset-0 bg-gradient-to-br from-brand-950/95 via-brand-900/90 to-teal-800/85"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-neutral-950/95 via-neutral-950/90 to-neutral-900/85"></div>
   </div>
 
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-20 md:pt-24 md:pb-28">
