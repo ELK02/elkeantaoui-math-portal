@@ -22,13 +22,9 @@ export default function Home() {
             maskImage: "radial-gradient(ellipse 80% 60% at 30% 20%, black, transparent)",
           }}
         />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 pb-20 pt-16 sm:px-6 sm:pb-28 sm:pt-24 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
+        <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 pb-20 pt-14 sm:px-6 sm:pb-28 sm:pt-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
           <div>
-            <span className="inline-flex items-center gap-2 rounded border border-white/15 bg-white/5 px-2.5 py-1 font-mono text-xs font-medium text-orange-300">
-              Mathématiques · Cycle Collège
-            </span>
-
-            <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="font-display text-4xl font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
               Des cours de maths <span className="text-orange-400">clairs</span>,
               illustrés et corrigés
             </h1>
@@ -53,7 +49,20 @@ export default function Home() {
               </Link>
             </div>
 
-            <dl className="mt-14 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8">
+            <div className="mt-6 flex flex-wrap items-center gap-2">
+              <span className="text-xs text-navy-300">Accès rapide :</span>
+              {LEVELS.map((level) => (
+                <Link
+                  key={level.id}
+                  href={`/college/${level.id}`}
+                  className="rounded-md border border-white/15 px-2.5 py-1 font-mono text-xs font-medium text-white transition-colors hover:bg-white/10"
+                >
+                  {level.short}
+                </Link>
+              ))}
+            </div>
+
+            <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8">
               <div>
                 <dt className="sr-only">Chapitres</dt>
                 <dd className="font-mono text-2xl font-semibold text-white sm:text-3xl">56</dd>

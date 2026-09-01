@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { FileText } from "lucide-react";
 import { ExamGallery } from "@/components/ExamGallery";
 
-export const metadata: Metadata = { title: "Examens — 3ème Année Collège" };
+export const metadata: Metadata = { title: "Examens 3ème Année Collège" };
 
 function listLocalExams() {
   const dir = path.join(process.cwd(), "public", "examens", "3ac", "locale");
@@ -72,10 +72,10 @@ export default function ExamensPage() {
 
       <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 lg:px-8">
         <h2 className="font-display text-xl font-semibold text-foreground">
-          Annales — Examen régional
+          Annales : Examen régional
         </h2>
         <p className="mt-1.5 text-sm text-foreground-muted">
-          {regionalPages.length} pages scannées — cliquez pour agrandir.
+          {regionalPages.length} pages scannées. Cliquez pour agrandir.
         </p>
         <ExamGallery pages={regionalPages} />
       </section>

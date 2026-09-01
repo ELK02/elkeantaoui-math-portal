@@ -49,7 +49,7 @@ export function Footer() {
 
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-5 font-mono text-xs text-foreground-muted sm:flex-row sm:px-6 lg:px-8">
-          <p>© {year} Prof. Lahbib Elkeantaoui — Tous droits réservés.</p>
+          <p>© {year} Prof. Lahbib Elkeantaoui. Tous droits réservés.</p>
           <p>Site pédagogique</p>
         </div>
       </div>
