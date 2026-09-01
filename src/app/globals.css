@@ -131,3 +131,18 @@ html {
     animation: none;
   }
 }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+}
+.katex-formula-block .katex-display {
+  padding: 0;
+}
+
