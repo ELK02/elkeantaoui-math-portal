@@ -1,0 +1,2270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examens Régionaux — 3ème Année Collège | 6 sujets corrigés</title>
+<meta name="description" content="6 examens régionaux corrigés de mathématiques pour la 3ème année collège (2019-2022, régions Souss-Massa, Casablanca-Settat, Drâa-Tafilalet, Oriental) : sujets complets et corrections détaillées, un clic pour chaque examen.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='24'%20fill='%234f46e5'/%3E%3Cpath%20d='M28%2032h44v10H28z'%20fill='white'/%3E%3Cpath%20d='M28%2048h44v8H28z'%20fill='white'%20fill-opacity='0.7'/%3E%3Cpath%20d='M28%2060h30v8H28z'%20fill='white'%20fill-opacity='0.55'/%3E%3Ccircle%20cx='74'%20cy='72'%20r='10'%20fill='%2334d399'/%3E%3Cpath%20d='M69%2072l3.5%203.5L79%2068'%20stroke='white'%20stroke-width='2.4'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lexend:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS (CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          display: ['Lexend', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          indigo: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+        },
+      },
+    },
+  };
+</script>
+
+<!-- KaTeX (rendu des formules mathématiques) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+
+<style type="text/tailwindcss">
+  @layer base {
+    html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+    body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+    h1, h2, h3, h4, .font-display { font-family: 'Lexend', ui-sans-serif, system-ui, sans-serif; }
+  }
+  @layer components {
+    .nav-link { @apply rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-indigo-700 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white; }
+    .mobile-nav-link { @apply block rounded-xl px-4 py-3 text-base font-semibold text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-white/5; }
+    .section-eyebrow { @apply inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-wider; }
+    .card { @apply rounded-2xl border border-slate-200 bg-white p-6 shadow-sm shadow-slate-200/50; }
+    .definition-box { @apply relative rounded-2xl border-2 border-rose-200 bg-rose-50/70 p-5 sm:p-6; }
+    .rule-box { @apply relative rounded-2xl border-2 border-sky-200 bg-sky-50/70 p-5 sm:p-6; }
+    .tip-box { @apply relative rounded-2xl border-2 border-amber-200 bg-amber-50/70 p-5 sm:p-6; }
+    .katex-block { @apply overflow-x-auto rounded-xl bg-slate-50 px-4 py-4 text-slate-800; }
+    .chip { @apply inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm shadow-sm; }
+    .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-full bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-600/25 transition hover:bg-indigo-700 active:scale-95; }
+    .btn-secondary { @apply inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-800 shadow-lg shadow-slate-900/10 ring-1 ring-slate-200 transition hover:bg-slate-50 active:scale-95; }
+    .correction-toggle { @apply inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-amber-500 px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-amber-500/30 transition hover:bg-amber-600 active:scale-95; }
+    .correction-panel { @apply mt-4 rounded-2xl border-2 border-emerald-200 bg-emerald-50/70 p-5 sm:p-6; }
+    .exercise-badge { @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-base font-extrabold text-white shadow-sm; }
+    .category-tag { @apply inline-flex items-center rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wide; }
+    .step-title { @apply flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wide text-slate-500; }
+    .graph-card { @apply rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm; }
+    .meta-chip { @apply inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold text-white ring-1 ring-inset ring-white/25; }
+    .qcm-option { @apply flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm font-medium text-slate-700; }
+    .qcm-option-correct { @apply flex items-center gap-2 rounded-xl border-2 border-emerald-400 bg-emerald-50 px-3.5 py-2.5 text-sm font-bold text-emerald-800; }
+    .exam-pill { @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-bold; }
+  }
+  .acc-wrapper { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 350ms ease; }
+  .acc-wrapper.is-open { grid-template-rows: 1fr; }
+  .acc-inner { overflow: hidden; }
+  .katex-display { margin: 0 !important; }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50, .dark .bg-emerald-50\/70, .dark .bg-emerald-50\/50, .dark .bg-emerald-100 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
+  .dark .text-emerald-600, .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
+  .dark .bg-amber-50, .dark .bg-amber-50\/70, .dark .bg-amber-100 { background-color: #3a2a0a; }
+  .dark .border-amber-200, .dark .border-amber-300, .dark .border-amber-400 { border-color: #92400e; }
+  .dark .text-amber-600, .dark .text-amber-700, .dark .text-amber-800 { color: #fbbf24; }
+  .dark .bg-indigo-50, .dark .bg-indigo-100 { background-color: #12294c; }
+  .dark .text-indigo-600, .dark .text-indigo-700 { color: #8fb0da; }
+  .dark .bg-rose-50, .dark .bg-rose-50\/70, .dark .bg-rose-50\/50, .dark .bg-rose-100 { background-color: #3a0d18; }
+  .dark .border-rose-200 { border-color: #7a2138; }
+  .dark .text-rose-600, .dark .text-rose-700 { color: #fb7185; }
+  .dark .bg-sky-50, .dark .bg-sky-50\/70, .dark .bg-sky-50\/50, .dark .bg-sky-100 { background-color: #0a2333; }
+  .dark .border-sky-200 { border-color: #1e5a7a; }
+  .dark .text-sky-600, .dark .text-sky-700 { color: #7dd3fc; }
+  .dark .bg-violet-100 { background-color: #1e1b3a; }
+  .dark .text-violet-600, .dark .text-violet-700 { color: #c4b5fd; }
+  .dark .bg-teal-50, .dark .bg-teal-100 { background-color: #0a2e2c; }
+  .dark .text-teal-600, .dark .text-teal-700 { color: #5eead4; }
+  .dark .katex { color: #e2e8f0; }
+  .dark .btn-secondary { color: #1c3a63 !important; background-color: #ffffff !important; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased dark:bg-[#071528] dark:text-slate-200">
+
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-indigo-600 focus:px-5 focus:py-3 focus:text-white">Aller au contenu principal</a>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 dark:bg-[#0b1f3ad9] dark:border-slate-800 backdrop-blur">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between sm:h-20">
+      <a href="#accueil" class="flex items-center gap-2.5">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-9 w-9 shrink-0 rounded-full sm:h-10 sm:w-10">
+        <span class="font-display text-base font-bold text-slate-900 dark:text-white sm:text-lg">Examens<span class="text-indigo-600 dark:text-amber-400">·3AC</span></span>
+      </a>
+
+      <nav class="hidden md:flex md:items-center md:gap-1" aria-label="Navigation principale">
+        <a href="/" class="nav-link">← Portail</a>
+        <a href="#examen-1" class="nav-link">N°1</a>
+        <a href="#examen-2" class="nav-link">N°2</a>
+        <a href="#examen-3" class="nav-link">N°3</a>
+        <a href="#examen-4" class="nav-link">N°4</a>
+        <a href="#examen-5" class="nav-link">N°5</a>
+        <a href="#examen-6" class="nav-link">N°6</a>
+        <a href="#sommaire" class="ml-2 inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-md shadow-indigo-600/25 transition hover:bg-indigo-700">
+          Sommaire
+          <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" /></svg>
+        </a>
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 transition-colors">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </nav>
+
+      <div class="flex items-center gap-1 md:hidden">
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+        <button id="mobile-menu-btn" type="button" class="inline-flex items-center justify-center rounded-lg p-2 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="sr-only">Ouvrir le menu</span>
+          <svg id="icon-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" /></svg>
+          <svg id="icon-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobile-menu" class="hidden border-t border-slate-100 dark:border-slate-800 py-3 md:hidden" aria-label="Navigation mobile">
+      <a href="/" class="mobile-nav-link">← Portail</a>
+      <a href="#accueil" class="mobile-nav-link">🏠 Accueil</a>
+      <a href="#examen-1" class="mobile-nav-link">1️⃣ Examen N°1 — 2019 · Souss-Massa</a>
+      <a href="#examen-2" class="mobile-nav-link">2️⃣ Examen N°2 — 2021 · Souss-Massa</a>
+      <a href="#examen-3" class="mobile-nav-link">3️⃣ Examen N°3 — 2022 · Souss-Massa</a>
+      <a href="#examen-4" class="mobile-nav-link">4️⃣ Examen N°4 — 2022 · Casablanca-Settat</a>
+      <a href="#examen-5" class="mobile-nav-link">5️⃣ Examen N°5 — 2022 · Drâa-Tafilalet</a>
+      <a href="#examen-6" class="mobile-nav-link">6️⃣ Examen N°6 — 2022 · Oriental</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ===================== HERO ===================== -->
+  <section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-indigo-950 via-indigo-900 to-violet-900">
+    <div class="pointer-events-none absolute inset-0 opacity-20" style="background-image:radial-gradient(circle at 20% 20%, white 1px, transparent 1px), radial-gradient(circle at 80% 60%, white 1px, transparent 1px); background-size: 34px 34px;"></div>
+    <div class="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
+      <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <p class="section-eyebrow bg-white/10 text-indigo-200 ring-1 ring-inset ring-white/20">3ème Année Collège · Examen Régional</p>
+          <h1 class="mt-5 font-display text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+            6 examens régionaux, sujets &amp; corrections
+          </h1>
+          <p class="mt-2 font-display text-lg font-medium text-indigo-200 sm:text-xl">Mathématiques — Sessions 2019 à 2022</p>
+          <p class="mt-5 max-w-xl text-base leading-relaxed text-indigo-100/90 sm:text-lg">
+            Six sujets officiels de l'<strong class="text-white">Examen Régional Unifié</strong> (Souss-Massa, Casablanca-Settat, Drâa-Tafilalet, Oriental), avec tous les exercices reproduits fidèlement. Pour chaque examen, un seul clic sur <strong class="text-white">« Voir la correction »</strong> affiche la correction complète et détaillée.
+          </p>
+
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a href="#sommaire" class="btn-primary">
+              Choisir un examen
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+            </a>
+            <a href="#examen-1" class="btn-secondary">
+              Commencer par l'examen N°1
+            </a>
+          </div>
+
+          <dl class="mt-10 grid grid-cols-3 gap-4 border-t border-white/10 pt-6">
+            <div>
+              <dt class="text-2xl font-bold text-white sm:text-3xl">6</dt>
+              <dd class="text-xs text-indigo-200 sm:text-sm">examens complets</dd>
+            </div>
+            <div>
+              <dt class="text-2xl font-bold text-white sm:text-3xl">4</dt>
+              <dd class="text-xs text-indigo-200 sm:text-sm">régions du Maroc</dd>
+            </div>
+            <div>
+              <dt class="text-2xl font-bold text-white sm:text-3xl">100%</dt>
+              <dd class="text-xs text-indigo-200 sm:text-sm">corrections détaillées</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="relative mx-auto w-full max-w-md lg:max-w-none">
+          <div class="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-amber-400/30 to-fuchsia-400/20 blur-2xl"></div>
+          <figure class="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl shadow-black/40">
+            <img
+              src="https://images.unsplash.com/photo-1509228468518-180dd4864904?w=1200&q=80&auto=format&fit=crop"
+              alt="Salle d'examen avec copies et calculatrice, illustration des épreuves régionales"
+              class="h-64 w-full object-cover sm:h-80 lg:h-[26rem]"
+              loading="eager">
+            <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-xs text-white/90 sm:p-5 sm:text-sm">
+              Photo d'illustration — Unsplash
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MODE D'EMPLOI ===================== -->
+  <section class="mx-auto max-w-7xl px-4 pt-10 sm:px-6 lg:px-8">
+    <div class="card flex flex-col items-start gap-4 border-2 border-indigo-100 bg-indigo-50/50 sm:flex-row sm:items-center">
+      <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-indigo-600 text-2xl shadow-md shadow-indigo-600/30">💡</span>
+      <p class="text-sm leading-relaxed text-slate-700 sm:text-base">
+        <strong class="text-slate-900">Comment travailler avec cette page :</strong> traitez d'abord un examen complet comme le jour J (au brouillon), puis cliquez sur le bouton <span class="qcm-option !inline-flex !px-2.5 !py-1 align-middle text-amber-700 !border-amber-300 !bg-amber-50">Voir la correction ✅</span> en bas de l'examen pour vérifier vos réponses exercice par exercice.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== SOMMAIRE / QUICK NAV ===================== -->
+  <section id="sommaire" class="mx-auto max-w-7xl scroll-mt-24 px-4 py-14 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="section-eyebrow bg-indigo-100 text-indigo-700">Sommaire</p>
+      <h2 class="mt-4 font-display text-2xl font-bold text-slate-900 sm:text-3xl">Choisissez votre examen</h2>
+      <p class="mt-3 text-slate-600">Chaque carte indique l'année, la région et le nombre d'exercices de l'examen.</p>
+    </div>
+
+    <div class="mx-auto mt-8 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <a href="#examen-1" class="card flex items-center gap-4 transition hover:-translate-y-1 hover:shadow-lg">
+        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-indigo-600 font-display text-lg font-bold text-white shadow-md shadow-indigo-600/30">1</span>
+        <span>
+          <span class="block font-display font-bold text-slate-900">Examen N°1</span>
+          <span class="block text-sm text-slate-500">Juin 2019 · Souss-Massa</span>
+        </span>
+      </a>
+      <a href="#examen-2" class="card flex items-center gap-4 transition hover:-translate-y-1 hover:shadow-lg">
+        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-sky-600 font-display text-lg font-bold text-white shadow-md shadow-sky-600/30">2</span>
+        <span>
+          <span class="block font-display font-bold text-slate-900">Examen N°2</span>
+          <span class="block text-sm text-slate-500">Juin 2021 · Souss-Massa</span>
+        </span>
+      </a>
+      <a href="#examen-3" class="card flex items-center gap-4 transition hover:-translate-y-1 hover:shadow-lg">
+        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-teal-600 font-display text-lg font-bold text-white shadow-md shadow-teal-600/30">3</span>
+        <span>
+          <span class="block font-display font-bold text-slate-900">Examen N°3</span>
+          <span class="block text-sm text-slate-500">Juin 2022 · Souss-Massa</span>
+        </span>
+      </a>
+      <a href="#examen-4" class="card flex items-center gap-4 transition hover:-translate-y-1 hover:shadow-lg">
+        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-violet-600 font-display text-lg font-bold text-white shadow-md shadow-violet-600/30">4</span>
+        <span>
+          <span class="block font-display font-bold text-slate-900">Examen N°4</span>
+          <span class="block text-sm text-slate-500">Juin 2022 · Casablanca-Settat</span>
+        </span>
+      </a>
+      <a href="#examen-5" class="card flex items-center gap-4 transition hover:-translate-y-1 hover:shadow-lg">
+        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-rose-600 font-display text-lg font-bold text-white shadow-md shadow-rose-600/30">5</span>
+        <span>
+          <span class="block font-display font-bold text-slate-900">Examen N°5</span>
+          <span class="block text-sm text-slate-500">Juin 2022 · Drâa-Tafilalet</span>
+        </span>
+      </a>
+      <a href="#examen-6" class="card flex items-center gap-4 transition hover:-translate-y-1 hover:shadow-lg">
+        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-600 font-display text-lg font-bold text-white shadow-md shadow-amber-600/30">6</span>
+        <span>
+          <span class="block font-display font-bold text-slate-900">Examen N°6</span>
+          <span class="block text-sm text-slate-500">Juin 2022 · Oriental</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== EXAMEN N°1 ===================== -->
+  <article id="examen-1" class="scroll-mt-24">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div class="overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-950 via-indigo-900 to-indigo-800 p-6 sm:p-10">
+        <div class="flex flex-wrap items-center gap-4">
+          <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/15 font-display text-2xl font-bold text-white ring-1 ring-inset ring-white/25">1</span>
+          <div>
+            <h2 class="font-display text-2xl font-bold text-white sm:text-3xl">Examen Régional N°1</h2>
+            <p class="text-indigo-200">Session Juin 2019 · Région Souss-Massa</p>
+          </div>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="meta-chip">📅 Juin 2019</span>
+          <span class="meta-chip">📍 Souss-Massa</span>
+          <span class="meta-chip">⏱️ 2 heures</span>
+          <span class="meta-chip">✖️ Coefficient 3</span>
+          <span class="meta-chip">📝 Note sur 20</span>
+          <span class="meta-chip">🚫 Calculatrice non autorisée</span>
+        </div>
+      </div>
+
+      <!-- Exercices -->
+      <div class="mt-8 space-y-6">
+
+        <!-- EXERCICE 1 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-indigo-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-indigo-600">1</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 1</p>
+                <span class="category-tag bg-indigo-100 text-indigo-700">QCM · 4 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">Cet exercice est constitué de questions à choix multiples. Pour chaque question, trois réponses (a), (b) et (c) sont proposées dont une seule est correcte. Recopier sur la copie le numéro de la question et la bonne réponse — aucune justification n'est demandée.</p>
+
+            <div class="mt-5 rounded-xl border border-slate-200 p-4">
+              <p class="text-sm font-semibold text-slate-800">1) Soit \(EFGH\) un parallélogramme :</p>
+              <div class="graph-card mt-3 max-w-xs mx-auto">
+                <svg viewBox="0 0 300 190" class="w-full h-auto mx-auto" xmlns="http://www.w3.org/2000/svg"><rect width="300" height="190" fill="white" rx="12"/><polygon points="90.0,140.0 260.0,110.0 230.0,30.0 60.0,60.0" fill="#eef2ff" stroke="#334155" stroke-width="2"/><circle cx="60.0" cy="60.0" r="3.6" fill="#1e293b"/><text x="40.0" y="56.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">H</text><circle cx="230.0" cy="30.0" r="3.6" fill="#1e293b"/><text x="238.0" y="24.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">G</text><circle cx="260.0" cy="110.0" r="3.6" fill="#1e293b"/><text x="270.0" y="114.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">F</text><circle cx="90.0" cy="140.0" r="3.6" fill="#1e293b"/><text x="82.0" y="162.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">E</text></svg>
+              </div>
+              <div class="mt-4 space-y-4">
+                <div>
+                  <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">a)</span> L'image du point \(F\) par la translation qui transforme \(G\) en \(H\) est :</p>
+                  <div class="mt-2 grid grid-cols-3 gap-2">
+                    <span class="qcm-option justify-center">(a) \(G\)</span>
+                    <span class="qcm-option justify-center">(b) \(H\)</span>
+                    <span class="qcm-option justify-center">(c) \(E\)</span>
+                  </div>
+                </div>
+                <div>
+                  <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">b)</span> L'image de la droite \((EH)\) par la translation qui transforme \(H\) en \(F\) est :</p>
+                  <div class="mt-2 grid grid-cols-3 gap-2">
+                    <span class="qcm-option justify-center">(a) \((FG)\)</span>
+                    <span class="qcm-option justify-center">(b) \((EG)\)</span>
+                    <span class="qcm-option justify-center">(c) \((HG)\)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-5 rounded-xl border border-slate-200 p-4">
+              <p class="text-sm font-semibold text-slate-800">2) On considère la fonction linéaire \(f\) telle que : \(f(2)=3\)</p>
+              <div class="mt-4 space-y-5">
+                <div>
+                  <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">a)</span> \(f(x)\) est égale à :</p>
+                  <div class="mt-2 grid grid-cols-3 gap-2">
+                    <span class="qcm-option justify-center">(a) \(2x+3\)</span>
+                    <span class="qcm-option justify-center">(b) \(\dfrac32 x\)</span>
+                    <span class="qcm-option justify-center">(c) \(\dfrac23 x\)</span>
+                  </div>
+                </div>
+                <div>
+                  <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">b)</span> Dans la figure ci-dessous, la représentation de \(f\) est la droite :</p>
+                  <div class="graph-card mt-3 max-w-xs mx-auto">
+                    <svg viewBox="0 0 338 308" class="w-full h-auto mx-auto" xmlns="http://www.w3.org/2000/svg">
+<rect width="338" height="308" fill="white" rx="12"/>
+<defs>
+<marker id="arq1x" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+<marker id="arq1y" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+<marker id="arlnq10" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e11d48"/></marker>
+<marker id="arlnq11" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+<marker id="arlnq12" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0d9488"/></marker>
+</defs>
+<line x1="34.0" y1="34.0" x2="34.0" y2="274.0" stroke="#e2e8f0" stroke-width="1"/><line x1="64.0" y1="34.0" x2="64.0" y2="274.0" stroke="#e2e8f0" stroke-width="1"/><line x1="94.0" y1="34.0" x2="94.0" y2="274.0" stroke="#e2e8f0" stroke-width="1"/><line x1="124.0" y1="34.0" x2="124.0" y2="274.0" stroke="#e2e8f0" stroke-width="1"/><line x1="154.0" y1="34.0" x2="154.0" y2="274.0" stroke="#e2e8f0" stroke-width="1"/><line x1="184.0" y1="34.0" x2="184.0" y2="274.0" stroke="#e2e8f0" stroke-width="1"/><line x1="214.0" y1="34.0" x2="214.0" y2="274.0" stroke="#e2e8f0" stroke-width="1"/><line x1="244.0" y1="34.0" x2="244.0" y2="274.0" stroke="#e2e8f0" stroke-width="1"/><line x1="274.0" y1="34.0" x2="274.0" y2="274.0" stroke="#e2e8f0" stroke-width="1"/><line x1="304.0" y1="34.0" x2="304.0" y2="274.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="274.0" x2="304.0" y2="274.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="244.0" x2="304.0" y2="244.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="214.0" x2="304.0" y2="214.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="184.0" x2="304.0" y2="184.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="154.0" x2="304.0" y2="154.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="124.0" x2="304.0" y2="124.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="94.0" x2="304.0" y2="94.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="64.0" x2="304.0" y2="64.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="34.0" x2="304.0" y2="34.0" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="36.0" y1="214.0" x2="302.0" y2="214.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arq1x)"/><line x1="124.0" y1="276.0" x2="124.0" y2="32.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arq1y)"/>
+<text x="110.0" y="230.0" font-size="12" font-weight="700" font-style="italic" fill="#1e293b">O</text><text x="150.0" y="230.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">I</text><text x="110.0" y="188.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">J</text>
+<line x1="84.0" y1="274.0" x2="244.0" y2="34.0" stroke="#e11d48" stroke-width="2.6" marker-end="url(#arlnq10)"/><text x="208.0" y="91.0" font-size="13" font-weight="700" font-style="italic" fill="#e11d48">(Δ)</text>
+<line x1="64.0" y1="274.0" x2="304.0" y2="34.0" stroke="#2563eb" stroke-width="2.4" marker-end="url(#arlnq11)"/><text x="256.0" y="82.0" font-size="13" font-weight="700" font-style="italic" fill="#2563eb">(L)</text>
+<line x1="34.0" y1="259.0" x2="304.0" y2="124.0" stroke="#0d9488" stroke-width="2.4" marker-end="url(#arlnq12)"/><text x="286.0" y="130.0" font-size="13" font-weight="700" font-style="italic" fill="#0d9488">(D)</text>
+</svg>
+                  </div>
+                  <div class="mt-2 grid grid-cols-3 gap-2">
+                    <span class="qcm-option justify-center">(a) \((D)\)</span>
+                    <span class="qcm-option justify-center">(b) \((L)\)</span>
+                    <span class="qcm-option justify-center">(c) \((\Delta)\)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- EXERCICE 2 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-sky-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-sky-600">2</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 2</p>
+                <span class="category-tag bg-sky-100 text-sky-700">Équations · Inéquation · Système · 5 points</span>
+              </div>
+            </div>
+            <ol class="mt-4 list-decimal space-y-3 pl-5 text-sm text-slate-700">
+              <li>Résoudre les deux équations suivantes : <span class="mx-1">\(-3x-5=9x+6\)</span> et <span class="mx-1">\((3x-12)(10-5x)=0\)</span></li>
+              <li>Résoudre l'inéquation suivante : \(5x-1>1-7x\)</li>
+              <li>Résoudre le système suivant : \(\begin{cases}x-y=3\\-3x+y=-7\end{cases}\)</li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 3 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-emerald-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-emerald-600">3</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 3</p>
+                <span class="category-tag bg-emerald-100 text-emerald-700">Statistiques · 2 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">On a demandé aux élèves de 3ème année collège le nombre de livres qu'ils ont lus depuis la rentrée. Le diagramme suivant représente les résultats obtenus :</p>
+            <div class="graph-card mt-4 max-w-sm mx-auto">
+              <svg viewBox="0 0 420 300" class="w-full h-auto mx-auto" xmlns="http://www.w3.org/2000/svg"><rect width="420" height="300" fill="white" rx="12"/><line x1="50" y1="254.0" x2="400" y2="254.0" stroke="#f1f5f9" stroke-width="1"/><text x="42" y="258.0" font-size="10.5" fill="#94a3b8" text-anchor="end">0</text><line x1="50" y1="220.6" x2="400" y2="220.6" stroke="#f1f5f9" stroke-width="1"/><text x="42" y="224.6" font-size="10.5" fill="#94a3b8" text-anchor="end">2</text><line x1="50" y1="187.1" x2="400" y2="187.1" stroke="#f1f5f9" stroke-width="1"/><text x="42" y="191.1" font-size="10.5" fill="#94a3b8" text-anchor="end">4</text><line x1="50" y1="153.7" x2="400" y2="153.7" stroke="#f1f5f9" stroke-width="1"/><text x="42" y="157.7" font-size="10.5" fill="#94a3b8" text-anchor="end">6</text><line x1="50" y1="120.3" x2="400" y2="120.3" stroke="#f1f5f9" stroke-width="1"/><text x="42" y="124.3" font-size="10.5" fill="#94a3b8" text-anchor="end">8</text><line x1="50" y1="86.9" x2="400" y2="86.9" stroke="#f1f5f9" stroke-width="1"/><text x="42" y="90.9" font-size="10.5" fill="#94a3b8" text-anchor="end">10</text><line x1="50" y1="53.4" x2="400" y2="53.4" stroke="#f1f5f9" stroke-width="1"/><text x="42" y="57.4" font-size="10.5" fill="#94a3b8" text-anchor="end">12</text><line x1="50" y1="20.0" x2="400" y2="20.0" stroke="#f1f5f9" stroke-width="1"/><text x="42" y="24.0" font-size="10.5" fill="#94a3b8" text-anchor="end">14</text><line x1="50" y1="20" x2="50" y2="254" stroke="#1e293b" stroke-width="1.6"/><line x1="50" y1="254" x2="400" y2="254" stroke="#1e293b" stroke-width="1.6"/><rect x="78.9" y="70.1" width="29.8" height="183.9" rx="4" fill="#4f46e5"/><text x="93.8" y="62.1" font-size="12" font-weight="700" fill="#4f46e5" text-anchor="middle">11</text><text x="93.8" y="274.0" font-size="12" fill="#334155" text-anchor="middle">1</text><rect x="166.4" y="20.0" width="29.8" height="234.0" rx="4" fill="#4f46e5"/><text x="181.2" y="12.0" font-size="12" font-weight="700" fill="#4f46e5" text-anchor="middle">14</text><text x="181.2" y="274.0" font-size="12" fill="#334155" text-anchor="middle">2</text><rect x="253.9" y="103.6" width="29.8" height="150.4" rx="4" fill="#4f46e5"/><text x="268.8" y="95.6" font-size="12" font-weight="700" fill="#4f46e5" text-anchor="middle">9</text><text x="268.8" y="274.0" font-size="12" fill="#334155" text-anchor="middle">3</text><rect x="341.4" y="153.7" width="29.8" height="100.3" rx="4" fill="#4f46e5"/><text x="356.2" y="145.7" font-size="12" font-weight="700" fill="#4f46e5" text-anchor="middle">6</text><text x="356.2" y="274.0" font-size="12" fill="#334155" text-anchor="middle">4</text><text x="210.0" y="294.0" font-size="11.5" fill="#64748b" text-anchor="middle">Nombre de livres lus</text><text x="14" y="30" font-size="11.5" fill="#64748b">Effectif</text></svg>
+            </div>
+            <ol class="mt-4 list-decimal space-y-3 pl-5 text-sm text-slate-700">
+              <li>Compléter le tableau suivant :
+                <div class="mt-2 overflow-x-auto rounded-xl border border-slate-200">
+                  <table class="w-full min-w-[360px] text-center text-sm">
+                    <tbody>
+                      <tr class="border-b border-slate-200 bg-slate-50"><td class="p-2 font-semibold text-slate-700">Nombre de livres lus</td><td class="p-2">1</td><td class="p-2">…</td><td class="p-2">…</td><td class="p-2">…</td></tr>
+                      <tr><td class="p-2 font-semibold text-slate-700">Effectif</td><td class="p-2">11</td><td class="p-2">…</td><td class="p-2">…</td><td class="p-2">…</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+              <li>Quel est le mode de cette série statistique ?</li>
+              <li>Calculer la moyenne arithmétique.</li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 4 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-violet-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-violet-600">4</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 4</p>
+                <span class="category-tag bg-violet-100 text-violet-700">Fonction affine · 2 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">Soit \(g\) une fonction affine telle que : \(g(1)=6\) et \(g(-1)=-4\)</p>
+            <ol class="mt-3 list-decimal space-y-2 pl-5 text-sm text-slate-700">
+              <li>Déterminer le coefficient de \(g\).</li>
+              <li>Exprimer \(g(x)\) en fonction de \(x\).</li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 5 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-rose-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-rose-600">5</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 5</p>
+                <span class="category-tag bg-rose-100 text-rose-700">Repère · 4 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">Dans un repère orthonormé \((O;I;J)\) on considère les points \(A(1;5)\) ;; \(B(7;2)\) et \(C(3;0)\)</p>
+            <ol class="mt-3 list-decimal space-y-2 pl-5 text-sm text-slate-700">
+              <li>Déterminer les coordonnées du vecteur \(\overrightarrow{AB}\).</li>
+              <li>Déterminer les coordonnées de \(M\) le milieu du segment \([BC]\).</li>
+              <li>
+                <ol class="list-[lower-alpha] space-y-2 pl-5">
+                  <li>Déterminer l'équation réduite de la droite \((BC)\).</li>
+                  <li>On considère la droite \((\Delta)\) d'équation réduite : \(y=\dfrac12 x+3\). Les droites \((\Delta)\) et \((BC)\) sont-elles parallèles ? Justifier ta réponse.</li>
+                </ol>
+              </li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 6 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-amber-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-amber-600">6</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 6</p>
+                <span class="category-tag bg-amber-100 text-amber-700">Géométrie dans l'espace · 3 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">Soit \(SABCD\) une pyramide de base le rectangle \(ABCD\) de centre \(O\) et de hauteur \([SO]\) telles que : \(SA=SB=SC=SD=6{,}5\text{ cm}\) ;; \(AB=4\text{ cm}\) et \(AD=3\text{ cm}\)</p>
+            <div class="graph-card mt-4 max-w-md mx-auto">
+              <svg viewBox="0 0 560 320" class="w-full h-auto mx-auto" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="320" fill="white" rx="12"/><line x1="230.0" y1="230.0" x2="500.0" y2="230.0" stroke="#1e293b" stroke-width="1.8" stroke-dasharray="5 4"/><line x1="150.0" y1="290.0" x2="230.0" y2="230.0" stroke="#1e293b" stroke-width="1.8" stroke-dasharray="5 4"/><line x1="150.0" y1="290.0" x2="420.0" y2="290.0" stroke="#1e293b" stroke-width="1.8"/><line x1="420.0" y1="290.0" x2="500.0" y2="230.0" stroke="#1e293b" stroke-width="1.8"/><line x1="150.0" y1="290.0" x2="325.0" y2="260.0" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="5 4"/><line x1="500.0" y1="230.0" x2="325.0" y2="260.0" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="5 4"/><line x1="420.0" y1="290.0" x2="325.0" y2="260.0" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="5 4"/><line x1="230.0" y1="230.0" x2="325.0" y2="260.0" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="5 4"/><line x1="325.0" y1="55.0" x2="325.0" y2="260.0" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="5 4"/><line x1="325.0" y1="55.0" x2="230.0" y2="230.0" stroke="#1e293b" stroke-width="1.8" stroke-dasharray="5 4"/><line x1="325.0" y1="55.0" x2="150.0" y2="290.0" stroke="#1e293b" stroke-width="1.8"/><line x1="325.0" y1="55.0" x2="420.0" y2="290.0" stroke="#1e293b" stroke-width="1.8"/><line x1="325.0" y1="55.0" x2="500.0" y2="230.0" stroke="#1e293b" stroke-width="1.8"/><text x="317.0" y="43.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">S</text><text x="130.0" y="308.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">A</text><text x="428.0" y="308.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">B</text><text x="510.0" y="226.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">C</text><text x="212.0" y="224.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">D</text><text x="331.0" y="276.0" font-size="12" font-weight="700" font-style="italic" fill="#64748b">O</text></svg>
+            </div>
+            <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm text-slate-700">
+              <li>Calculer \(OA\).</li>
+              <li>Vérifier que : \(SO=6\text{ cm}\)</li>
+              <li>Calculer le volume de la pyramide \(SABCD\).</li>
+            </ol>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Bouton correction -->
+      <div class="mt-8 rounded-3xl border-2 border-dashed border-amber-300 bg-amber-50/50 p-6 text-center sm:p-8">
+        <p class="font-display text-lg font-bold text-slate-900">Vous avez terminé l'examen N°1 ?</p>
+        <p class="mt-1 text-sm text-slate-600">Cliquez ci-dessous pour afficher la correction complète, exercice par exercice.</p>
+        <button type="button" class="correction-toggle mt-4 !px-8 !py-3.5 !text-base" data-acc-trigger aria-expanded="false" data-open-label="Masquer la correction de l'Examen N°1" data-closed-label="Voir la correction de l'Examen N°1">
+          <svg data-chevron class="h-4 w-4 shrink-0 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+          <span data-label>Voir la correction de l'Examen N°1</span>
+        </button>
+        <div class="acc-wrapper mt-2 text-left" data-acc-wrapper>
+          <div class="acc-inner">
+            <div class="correction-panel !bg-white space-y-8 sm:p-8">
+              <div class="flex items-center gap-3 border-b border-emerald-200 pb-4">
+                <span class="text-3xl">✅</span>
+                <div>
+                  <p class="font-display text-xl font-bold text-slate-900">Correction — Examen Régional N°1</p>
+                  <p class="text-sm text-slate-500">Session Juin 2019 · Région Souss-Massa</p>
+                </div>
+              </div>
+
+              <!-- Correction Ex1 -->
+              <div>
+                <p class="step-title text-indigo-700">Exercice 1 — QCM</p>
+                <div class="mt-3 overflow-x-auto rounded-xl border border-slate-200">
+                  <table class="w-full min-w-[320px] text-center text-sm">
+                    <thead><tr class="bg-slate-100 text-slate-600"><th class="p-2 font-semibold">Question</th><th class="p-2 font-semibold">Réponse</th></tr></thead>
+                    <tbody class="divide-y divide-slate-200">
+                      <tr><td class="p-2">1 - a</td><td class="p-2 font-bold text-emerald-700">(c) \(E\)</td></tr>
+                      <tr><td class="p-2">1 - b</td><td class="p-2 font-bold text-emerald-700">(a) \((FG)\)</td></tr>
+                      <tr><td class="p-2">2 - a</td><td class="p-2 font-bold text-emerald-700">(b) \(\dfrac32 x\)</td></tr>
+                      <tr><td class="p-2">2 - b</td><td class="p-2 font-bold text-emerald-700">(c) \((\Delta)\)</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Correction Ex2 -->
+              <div>
+                <p class="step-title text-sky-700">Exercice 2</p>
+                <div class="mt-3 grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <p class="text-sm font-semibold text-slate-700">1) \(-3x-5=9x+6\)</p>
+                    <div class="katex-block mt-1 text-sm">\[-3x-9x=6+5 \;\Rightarrow\; -12x=11 \;\Rightarrow\; x=-\dfrac{11}{12}\]</div>
+                    <p class="mt-1 text-sm text-emerald-800 font-semibold">D'où : \(-\dfrac{11}{12}\) est la solution de cette équation.</p>
+                  </div>
+                  <div>
+                    <p class="text-sm font-semibold text-slate-700">\((3x-12)(10-5x)=0\)</p>
+                    <div class="katex-block mt-1 text-sm">\[3x-12=0 \;\text{ou}\; 10-5x=0 \;\Rightarrow\; x=4 \;\text{ou}\; x=2\]</div>
+                    <p class="mt-1 text-sm text-emerald-800 font-semibold">D'où : 4 et 2 sont les solutions de cette équation.</p>
+                  </div>
+                  <div>
+                    <p class="text-sm font-semibold text-slate-700">2) \(5x-1>1-7x\)</p>
+                    <div class="katex-block mt-1 text-sm">\[5x+7x>1+1 \;\Rightarrow\; 12x>2 \;\Rightarrow\; x>\dfrac16\]</div>
+                    <p class="mt-1 text-sm text-emerald-800 font-semibold">Les solutions sont tous les nombres strictement supérieurs à \(\dfrac16\).</p>
+                  </div>
+                  <div>
+                    <p class="text-sm font-semibold text-slate-700">3) \(\begin{cases}x-y=3\\-3x+y=-7\end{cases}\)</p>
+                    <div class="katex-block mt-1 text-sm">\[x=3+y \;\Rightarrow\; -3(3+y)+y=-7 \;\Rightarrow\; -2y=2 \;\Rightarrow\; y=-1,\; x=2\]</div>
+                    <p class="mt-1 text-sm text-emerald-800 font-semibold">D'où le couple \((2;-1)\) est la solution de ce système.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Correction Ex3 -->
+              <div>
+                <p class="step-title text-emerald-700">Exercice 3 — Statistiques</p>
+                <div class="mt-3 overflow-x-auto rounded-xl border border-slate-200">
+                  <table class="w-full min-w-[360px] text-center text-sm">
+                    <tbody>
+                      <tr class="border-b border-slate-200 bg-slate-50"><td class="p-2 font-semibold text-slate-700">Nombre de livres lus</td><td class="p-2">1</td><td class="p-2">2</td><td class="p-2">3</td><td class="p-2">4</td></tr>
+                      <tr><td class="p-2 font-semibold text-slate-700">Effectif</td><td class="p-2 font-bold text-emerald-700">11</td><td class="p-2 font-bold text-emerald-700">14</td><td class="p-2 font-bold text-emerald-700">9</td><td class="p-2 font-bold text-emerald-700">6</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="mt-3 text-sm text-slate-700">2) Le mode de cette série statistique est la valeur <strong>2</strong> (car elle a le plus grand effectif, 14).</p>
+                <p class="mt-2 text-sm text-slate-700">3) Calculons la moyenne arithmétique :</p>
+                <div class="katex-block mt-1 text-sm">\[m=\dfrac{1\times11+2\times14+3\times9+4\times6}{40}=\dfrac{90}{40}=2{,}25\]</div>
+              </div>
+
+              <!-- Correction Ex4 -->
+              <div>
+                <p class="step-title text-violet-700">Exercice 4</p>
+                <p class="mt-2 text-sm text-slate-700">1) Coefficient de \(g\) :</p>
+                <div class="katex-block mt-1 text-sm">\[a=\dfrac{g(1)-g(-1)}{1-(-1)}=\dfrac{6-(-4)}{2}=\dfrac{10}{2}=5\]</div>
+                <p class="mt-2 text-sm text-slate-700">2) \(g\) est affine donc \(g(x)=ax+b\) avec \(a=5\) : \(g(1)=6 \Rightarrow 5+b=6 \Rightarrow b=1\)</p>
+                <p class="mt-1 text-sm font-semibold text-emerald-800">D'où : \(g(x)=5x+1\)</p>
+              </div>
+
+              <!-- Correction Ex5 -->
+              <div>
+                <p class="step-title text-rose-700">Exercice 5 — Repère</p>
+                <div class="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:items-center">
+                  <div class="space-y-2 text-sm text-slate-700">
+                    <p>1) \(\overrightarrow{AB}(x_B-x_A;y_B-y_A) \Rightarrow \overrightarrow{AB}(7-1;2-5)\) d'où \(\overrightarrow{AB}(6;-3)\)</p>
+                    <p>2) \(M\left(\dfrac{x_C+x_B}{2};\dfrac{y_C+y_B}{2}\right) \Rightarrow M\left(\dfrac{10}{2};\dfrac{2}{2}\right)\) d'où \(M(5;1)\)</p>
+                    <p>3a) Pente : \(a=\dfrac{y_B-y_C}{x_B-x_C}=\dfrac{2-0}{7-3}=\dfrac12\), et \(C(3;0)\in(BC)\) donne \(b=-\dfrac32\)</p>
+                    <p class="font-semibold text-emerald-800">D'où : \((BC): y=\dfrac12 x-\dfrac32\)</p>
+                    <p>3b) \((\Delta): y=\dfrac12 x+3\) a la même pente \(\dfrac12\) que \((BC)\).</p>
+                    <p class="font-semibold text-emerald-800">D'où : \((\Delta)\) et \((BC)\) sont parallèles.</p>
+                  </div>
+                  <div class="graph-card max-w-xs mx-auto">
+                    <svg viewBox="0 0 320 320" class="w-full h-auto mx-auto" xmlns="http://www.w3.org/2000/svg">
+<rect width="320" height="320" fill="white" rx="12"/>
+<defs>
+<marker id="arg9x" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+<marker id="arg9y" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+<marker id="arlng90" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+<marker id="arlng91" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#059669"/></marker>
+</defs>
+<line x1="34.0" y1="34.0" x2="34.0" y2="286.0" stroke="#e2e8f0" stroke-width="1"/><line x1="62.0" y1="34.0" x2="62.0" y2="286.0" stroke="#e2e8f0" stroke-width="1"/><line x1="90.0" y1="34.0" x2="90.0" y2="286.0" stroke="#e2e8f0" stroke-width="1"/><line x1="118.0" y1="34.0" x2="118.0" y2="286.0" stroke="#e2e8f0" stroke-width="1"/><line x1="146.0" y1="34.0" x2="146.0" y2="286.0" stroke="#e2e8f0" stroke-width="1"/><line x1="174.0" y1="34.0" x2="174.0" y2="286.0" stroke="#e2e8f0" stroke-width="1"/><line x1="202.0" y1="34.0" x2="202.0" y2="286.0" stroke="#e2e8f0" stroke-width="1"/><line x1="230.0" y1="34.0" x2="230.0" y2="286.0" stroke="#e2e8f0" stroke-width="1"/><line x1="258.0" y1="34.0" x2="258.0" y2="286.0" stroke="#e2e8f0" stroke-width="1"/><line x1="286.0" y1="34.0" x2="286.0" y2="286.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="286.0" x2="286.0" y2="286.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="258.0" x2="286.0" y2="258.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="230.0" x2="286.0" y2="230.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="202.0" x2="286.0" y2="202.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="174.0" x2="286.0" y2="174.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="146.0" x2="286.0" y2="146.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="118.0" x2="286.0" y2="118.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="90.0" x2="286.0" y2="90.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="62.0" x2="286.0" y2="62.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="34.0" x2="286.0" y2="34.0" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="36.0" y1="230.0" x2="284.0" y2="230.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arg9x)"/><line x1="62.0" y1="288.0" x2="62.0" y2="32.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arg9y)"/>
+<text x="48.0" y="246.0" font-size="12" font-weight="700" font-style="italic" fill="#1e293b">O</text><text x="86.0" y="246.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">I</text><text x="48.0" y="206.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">J</text>
+<line x1="34.0" y1="286.0" x2="286.0" y2="160.0" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arlng90)"/><text x="244.4" y="177.8" font-size="13" font-weight="700" font-style="italic" fill="#2563eb">(BC)</text>
+<line x1="34.0" y1="160.0" x2="286.0" y2="34.0" stroke="#059669" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#arlng91)"/><text x="107.2" y="120.4" font-size="13" font-weight="700" font-style="italic" fill="#059669">(Δ)</text>
+<circle cx="90.0" cy="90.0" r="4.2" fill="#1e293b" stroke="#1e293b" stroke-width="2"/><text x="74.0" y="82.0" font-size="13.5" font-weight="700" font-style="italic" fill="#1e293b">A</text>
+<circle cx="258.0" cy="174.0" r="4.2" fill="#1e293b" stroke="#1e293b" stroke-width="2"/><text x="266.0" y="166.0" font-size="13.5" font-weight="700" font-style="italic" fill="#1e293b">B</text>
+<circle cx="146.0" cy="230.0" r="4.2" fill="#1e293b" stroke="#1e293b" stroke-width="2"/><text x="152.0" y="248.0" font-size="13.5" font-weight="700" font-style="italic" fill="#1e293b">C</text>
+<circle cx="202.0" cy="202.0" r="4.2" fill="#e11d48" stroke="#e11d48" stroke-width="2"/><text x="210.0" y="218.0" font-size="13.5" font-weight="700" font-style="italic" fill="#e11d48">M</text>
+</svg>
+                    <p class="mt-2 text-center text-xs text-slate-500">\((BC)\) en <span class="font-semibold text-blue-600">bleu</span>, \((\Delta)\) en <span class="font-semibold text-emerald-600">vert pointillé</span> — même pente \(\tfrac12\)</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Correction Ex6 -->
+              <div>
+                <p class="step-title text-amber-700">Exercice 6 — Pyramide</p>
+                <div class="mt-2 space-y-2 text-sm text-slate-700">
+                  <p>1) \(ABC\) rectangle en \(B\), Pythagore : \(AC^2=AB^2+BC^2=4^2+3^2=25 \Rightarrow AC=5\text{ cm}\). \(O\) centre du rectangle donc \(OA=\dfrac{AC}{2}=2{,}5\text{ cm}\)</p>
+                  <p>2) \([SO]\perp(ABCD)\) donc \(SOA\) rectangle en \(O\) : \(SO^2=SA^2-OA^2=6{,}5^2-2{,}5^2=42{,}25-6{,}25=36 \Rightarrow SO=\sqrt{36}=6\text{ cm}\) ✓</p>
+                  <p>3) Volume : \(V_{SABCD}=\dfrac13\times A_{ABCD}\times SO=\dfrac13\times4\times3\times6=24\text{ cm}^3\)</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ===================== EXAMEN N°2 ===================== -->
+  <article id="examen-2" class="scroll-mt-24 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div class="overflow-hidden rounded-3xl bg-gradient-to-br from-sky-950 via-sky-900 to-sky-800 p-6 sm:p-10">
+        <div class="flex flex-wrap items-center gap-4">
+          <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/15 font-display text-2xl font-bold text-white ring-1 ring-inset ring-white/25">2</span>
+          <div>
+            <h2 class="font-display text-2xl font-bold text-white sm:text-3xl">Examen Régional N°2</h2>
+            <p class="text-sky-200">Session Juin 2021 · Région Souss-Massa</p>
+          </div>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="meta-chip">📅 Juin 2021</span>
+          <span class="meta-chip">📍 Souss-Massa</span>
+          <span class="meta-chip">⏱️ 2 heures</span>
+          <span class="meta-chip">✖️ Coefficient 3</span>
+          <span class="meta-chip">📝 Note sur 20</span>
+          <span class="meta-chip">🚫 Calculatrice non autorisée</span>
+        </div>
+      </div>
+
+      <div class="mt-8 space-y-6">
+
+        <!-- EXERCICE 1 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-sky-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-sky-600">1</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 1</p>
+                <span class="category-tag bg-sky-100 text-sky-700">QCM · 4 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">Cet exercice est constitué de questions à choix multiples. Pour chaque question, trois réponses (a), (b) et (c) sont proposées dont une seule est correcte.</p>
+            <div class="mt-4 space-y-4">
+              <div class="rounded-xl border border-slate-200 p-4">
+                <p class="text-sm font-semibold text-slate-800">1) La solution de l'équation \(2(x+1)=4\) est :</p>
+                <div class="mt-2 grid grid-cols-3 gap-2"><span class="qcm-option justify-center">(a) \(-3\)</span><span class="qcm-option justify-center">(b) \(1\)</span><span class="qcm-option justify-center">(c) \(\dfrac32\)</span></div>
+              </div>
+              <div class="rounded-xl border border-slate-200 p-4">
+                <p class="text-sm font-semibold text-slate-800">2) Les solutions de l'inéquation \(x-3\geq2x\) sont tous les nombres réels \(x\) qui vérifient :</p>
+                <div class="mt-2 grid grid-cols-3 gap-2"><span class="qcm-option justify-center">(a) \(x\geq3\)</span><span class="qcm-option justify-center">(b) \(x>-3\)</span><span class="qcm-option justify-center">(c) \(x\leq-3\)</span></div>
+              </div>
+              <div class="rounded-xl border border-slate-200 p-4">
+                <p class="text-sm font-semibold text-slate-800">3) Le système \(\begin{cases}x-3y=1\\-2x+6y=5\end{cases}\) :</p>
+                <div class="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3"><span class="qcm-option justify-center text-center">(a) Admet une seule solution</span><span class="qcm-option justify-center text-center">(b) N'admet aucune solution</span><span class="qcm-option justify-center text-center">(c) Admet une infinité de solutions</span></div>
+              </div>
+              <div class="rounded-xl border border-slate-200 p-4">
+                <p class="text-sm font-semibold text-slate-800">4) Dans un repère orthonormé, le point \(M(2;3)\) appartient à une droite dont l'équation réduite est :</p>
+                <div class="mt-2 grid grid-cols-3 gap-2"><span class="qcm-option justify-center">(a) \(y=2x+3\)</span><span class="qcm-option justify-center">(b) \(y=2x-1\)</span><span class="qcm-option justify-center">(c) \(y=2x-3\)</span></div>
+              </div>
+              <div class="rounded-xl border border-slate-200 p-4">
+                <p class="text-sm font-semibold text-slate-800">5) Si \(\overrightarrow{AB}=\overrightarrow{EF}\) alors :</p>
+                <div class="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3">
+                  <span class="qcm-option justify-center text-center">(a) \(F\) est l'image de \(E\) par la translation de vecteur \(\overrightarrow{AB}\)</span>
+                  <span class="qcm-option justify-center text-center">(b) \(E\) est l'image de \(F\) par la translation de vecteur \(\overrightarrow{AB}\)</span>
+                  <span class="qcm-option justify-center text-center">(c) \(A\) est l'image de \(B\) par la translation de vecteur \(\overrightarrow{EF}\)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- EXERCICE 2 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-teal-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-teal-600">2</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 2</p>
+                <span class="category-tag bg-teal-100 text-teal-700">Équations · Problème · 4 points</span>
+              </div>
+            </div>
+            <ol class="mt-4 list-decimal space-y-3 pl-5 text-sm text-slate-700">
+              <li>Résoudre l'équation \(2-3x=11-6x\)</li>
+              <li>Résoudre l'équation \(2x(x-5)+4(x-5)=0\)</li>
+              <li>Le prix de 50 cahiers de deux formats différents est 455 DH. Le prix d'un cahier de grand format est 10 DH chacun et celui d'un cahier de petit format est 7 DH chacun. Quel est le nombre de cahiers de petit format ?</li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 3 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-violet-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-violet-600">3</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 3</p>
+                <span class="category-tag bg-violet-100 text-violet-700">Système · Problème · 4 points</span>
+              </div>
+            </div>
+            <ol class="mt-4 list-decimal space-y-3 pl-5 text-sm text-slate-700">
+              <li>On considère le système : \((S):\begin{cases}4x+y=7\\x+3y=10\end{cases}\)
+                <ol class="mt-2 list-[lower-alpha] space-y-2 pl-5">
+                  <li>Le couple \((2;-1)\) est-il solution du système \((S)\) ?</li>
+                  <li>En utilisant la méthode de substitution, résoudre le système \((S)\).</li>
+                </ol>
+              </li>
+              <li>
+                <ol class="list-[lower-alpha] space-y-2 pl-5">
+                  <li>En utilisant la méthode de la combinaison linéaire, résoudre le système : \(\begin{cases}x+y=14\\x+2y=20\end{cases}\)</li>
+                  <li>La masse de 14 boules est 1000 g. Parmi ces boules il y en a qui pèsent 50 g et d'autres qui pèsent 100 g. Quel est le nombre de boules de chaque catégorie ?</li>
+                </ol>
+              </li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 4 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-rose-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-rose-600">4</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 4</p>
+                <span class="category-tag bg-rose-100 text-rose-700">Translation · 2,5 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">On considère la figure ci-contre telle que : \(ABCD\) est un parallélogramme de centre \(O\) ; les droites \((AC)\) et \((BE)\) sont parallèles ; les droites \((DB)\) et \((AE)\) sont parallèles.</p>
+            <div class="graph-card mt-4 max-w-sm mx-auto">
+              <svg viewBox="0 0 400 320" class="w-full h-auto mx-auto" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="320" fill="white" rx="12"/><defs><marker id="s2ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker></defs><polygon points="70.0,150.0 345.0,100.0 330.0,230.0 55.0,280.0" fill="none" stroke="#334155" stroke-width="2"/><line x1="70.0" y1="150.0" x2="330.0" y2="230.0" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 4"/><line x1="345.0" y1="100.0" x2="55.0" y2="280.0" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 4"/><line x1="345.0" y1="100.0" x2="215.0" y2="60.0" stroke="#0d9488" stroke-width="2"/><line x1="70.0" y1="150.0" x2="215.0" y2="60.0" stroke="#e11d48" stroke-width="2"/><circle cx="70.0" cy="150.0" r="3.6" fill="#1e293b"/><text x="50.0" y="154.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">A</text><circle cx="345.0" cy="100.0" r="3.6" fill="#1e293b"/><text x="355.0" y="100.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">B</text><circle cx="330.0" cy="230.0" r="3.6" fill="#1e293b"/><text x="338.0" y="248.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">C</text><circle cx="55.0" cy="280.0" r="3.6" fill="#1e293b"/><text x="35.0" y="298.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">D</text><circle cx="200.0" cy="190.0" r="3.6" fill="#64748b"/><text x="206.0" y="206.0" font-size="15" font-weight="700" font-style="italic" fill="#64748b">O</text><circle cx="215.0" cy="60.0" r="3.6" fill="#7c3aed"/><text x="221.0" y="52.0" font-size="15" font-weight="700" font-style="italic" fill="#7c3aed">E</text></svg>
+            </div>
+            <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm text-slate-700">
+              <li>Donner le vecteur de la translation qui transforme \(O\) en \(C\).</li>
+              <li>Montrer que le point \(B\) est l'image du point \(O\) par la translation qui transforme \(D\) en \(O\).</li>
+              <li>Déterminer l'image de la droite \((AC)\) par la translation qui transforme \(D\) en \(O\). Justifier ta réponse.</li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 5 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-amber-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-amber-600">5</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 5</p>
+                <span class="category-tag bg-amber-100 text-amber-700">Repère · 5,5 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">Dans un repère orthonormé \((O;I;J)\) on considère les points \(A(1;2)\) ;; \(B(2;0)\) et \(C(-2;-2)\)</p>
+            <ol class="mt-3 list-decimal space-y-2 pl-5 text-sm text-slate-700">
+              <li>Déterminer les coordonnées du vecteur \(\overrightarrow{AB}\) puis calculer la distance \(AB\).</li>
+              <li>
+                <ol class="list-[lower-alpha] space-y-2 pl-5">
+                  <li>Montrer que l'équation réduite de la droite \((AB)\) est : \(y=-2x+4\)</li>
+                  <li>Montrer que la pente de la droite \((BC)\) est \(\dfrac12\). En déduire que les droites \((AB)\) et \((BC)\) sont perpendiculaires.</li>
+                  <li>En déduire la résolution graphique du système : \(\begin{cases}2x+y=4\\x-2y=2\end{cases}\)</li>
+                </ol>
+              </li>
+              <li>On considère la droite \((\Delta)\) d'équation réduite : \(y=-2x-1\)
+                <ol class="mt-2 list-[lower-alpha] space-y-2 pl-5">
+                  <li>Vérifier que \((0;-1)\) est le couple de coordonnées de \(H\) le milieu du segment \([BC]\).</li>
+                  <li>Montrer que \((\Delta)\) est la médiatrice du segment \([BC]\).</li>
+                </ol>
+              </li>
+            </ol>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="mt-8 rounded-3xl border-2 border-dashed border-amber-300 bg-amber-50/50 p-6 text-center sm:p-8">
+        <p class="font-display text-lg font-bold text-slate-900">Vous avez terminé l'examen N°2 ?</p>
+        <p class="mt-1 text-sm text-slate-600">Cliquez ci-dessous pour afficher la correction complète, exercice par exercice.</p>
+        <button type="button" class="correction-toggle mt-4 !px-8 !py-3.5 !text-base" data-acc-trigger aria-expanded="false" data-open-label="Masquer la correction de l'Examen N°2" data-closed-label="Voir la correction de l'Examen N°2">
+          <svg data-chevron class="h-4 w-4 shrink-0 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+          <span data-label>Voir la correction de l'Examen N°2</span>
+        </button>
+        <div class="acc-wrapper mt-2 text-left" data-acc-wrapper>
+          <div class="acc-inner">
+            <div class="correction-panel !bg-white space-y-8 sm:p-8">
+              <div class="flex items-center gap-3 border-b border-emerald-200 pb-4">
+                <span class="text-3xl">✅</span>
+                <div>
+                  <p class="font-display text-xl font-bold text-slate-900">Correction — Examen Régional N°2</p>
+                  <p class="text-sm text-slate-500">Session Juin 2021 · Région Souss-Massa</p>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-sky-700">Exercice 1 — QCM</p>
+                <div class="mt-3 overflow-x-auto rounded-xl border border-slate-200">
+                  <table class="w-full min-w-[280px] text-center text-sm">
+                    <thead><tr class="bg-slate-100 text-slate-600"><th class="p-2 font-semibold">Question</th><th class="p-2 font-semibold">Réponse</th></tr></thead>
+                    <tbody class="divide-y divide-slate-200">
+                      <tr><td class="p-2">1)</td><td class="p-2 font-bold text-emerald-700">(b) \(1\)</td></tr>
+                      <tr><td class="p-2">2)</td><td class="p-2 font-bold text-emerald-700">(c) \(x\leq-3\)</td></tr>
+                      <tr><td class="p-2">3)</td><td class="p-2 font-bold text-emerald-700">(b) N'admet aucune solution</td></tr>
+                      <tr><td class="p-2">4)</td><td class="p-2 font-bold text-emerald-700">(b) \(y=2x-1\)</td></tr>
+                      <tr><td class="p-2">5)</td><td class="p-2 font-bold text-emerald-700">(a) \(F\) est l'image de \(E\) par la translation de vecteur \(\overrightarrow{AB}\)</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-teal-700">Exercice 2</p>
+                <div class="mt-3 space-y-3 text-sm text-slate-700">
+                  <div><p class="font-semibold">1) \(2-3x=11-6x\)</p><div class="katex-block mt-1">\[-3x+6x=11-2 \;\Rightarrow\; 3x=9 \;\Rightarrow\; x=3\]</div></div>
+                  <div><p class="font-semibold">2) \(2x(x-5)+4(x-5)=0\)</p><div class="katex-block mt-1">\[(x-5)(2x+4)=0 \;\Rightarrow\; x=5 \;\text{ou}\; x=-2\]</div></div>
+                  <div>
+                    <p class="font-semibold">3) Problème — cahiers :</p>
+                    <p class="mt-1">Soit \(x\) le nombre de cahiers de petit format ; alors \(50-x\) est le nombre de cahiers de grand format.</p>
+                    <div class="katex-block mt-1">\[7x+10(50-x)=455 \;\Rightarrow\; 7x+500-10x=455 \;\Rightarrow\; -3x=-45 \;\Rightarrow\; x=15\]</div>
+                    <p class="mt-1 font-semibold text-emerald-800">D'où : le nombre de cahiers de petit format est 15.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-violet-700">Exercice 3</p>
+                <div class="mt-3 space-y-3 text-sm text-slate-700">
+                  <div><p class="font-semibold">1a) \(4\times2+(-1)=7\) et \(2+3\times(-1)=-1\neq10\)</p><p class="mt-1 font-semibold text-rose-700">Donc \((2;-1)\) n'est pas solution de \((S)\).</p></div>
+                  <div><p class="font-semibold">1b) Substitution :</p><div class="katex-block mt-1">\[y=7-4x \;\Rightarrow\; x+3(7-4x)=10 \;\Rightarrow\; -11x=-11 \;\Rightarrow\; x=1,\;y=3\]</div><p class="mt-1 font-semibold text-emerald-800">D'où le couple \((1;3)\) est la solution.</p></div>
+                  <div><p class="font-semibold">2a) Combinaison linéaire :</p><div class="katex-block mt-1">\[\begin{cases}x+y=14\\-(x+2y)=-20\end{cases} \Rightarrow -y=-6 \Rightarrow y=6,\;x=8\]</div><p class="mt-1 font-semibold text-emerald-800">D'où le couple \((8;6)\) est la solution.</p></div>
+                  <div>
+                    <p class="font-semibold">2b) Problème — boules :</p>
+                    <p class="mt-1">Soit \(x\) le nombre de boules de 50 g et \(y\) le nombre de boules de 100 g.</p>
+                    <div class="katex-block mt-1">\[\begin{cases}x+y=14\\50x+100y=1000\end{cases} \;\Longleftrightarrow\; \begin{cases}x+y=14\\x+2y=20\end{cases} \Rightarrow (x;y)=(8;6)\]</div>
+                    <p class="mt-1 font-semibold text-emerald-800">D'où : 8 boules pèsent 50 g et 6 boules pèsent 100 g.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-rose-700">Exercice 4</p>
+                <div class="mt-2 space-y-2 text-sm text-slate-700">
+                  <p>1) Le vecteur de la translation qui transforme \(O\) en \(C\) est le vecteur \(\overrightarrow{OC}\).</p>
+                  <p>2) \(O\) est le centre du parallélogramme \(ABCD\) donc \(O\) est le milieu de \([DB]\), donc \(\overrightarrow{OB}=\overrightarrow{DO}\) : \(B\) est bien l'image de \(O\) par la translation qui transforme \(D\) en \(O\).</p>
+                  <p>3) \((AC)\parallel(BE)\) donne \((AO)\parallel(BE)\), et \((DB)\parallel(AE)\) donne \((OB)\parallel(AE)\) : donc \(AOBE\) est un parallélogramme, d'où \(\overrightarrow{AE}=\overrightarrow{OB}=\overrightarrow{DO}\).</p>
+                  <p class="font-semibold text-emerald-800">Donc \(E\) est l'image de \(A\), et \(B\) l'image de \(O\), par la translation \(D\to O\) : l'image de la droite \((AC)\) est donc la droite \((EB)\).</p>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-amber-700">Exercice 5 — Repère</p>
+                <div class="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:items-center">
+                  <div class="space-y-2 text-sm text-slate-700">
+                    <p>1) \(\overrightarrow{AB}(1;-2)\), \(AB=\sqrt{1^2+(-2)^2}=\sqrt5\)</p>
+                    <p>2a) pente \(=\dfrac{0-2}{2-1}=-2\), et \(B(2;0)\in(AB)\) donne \(b=4\) : \((AB):y=-2x+4\)</p>
+                    <p>2b) pente\((BC)=\dfrac{0-(-2)}{2-(-2)}=\dfrac12\). \(-2\times\dfrac12=-1\) donc \((AB)\perp(BC)\).</p>
+                    <p>2c) \((AB)\) et \((BC)\) sont sécantes en \(B(2;0)\) : \((2;0)\) est la solution du système.</p>
+                    <p>3a) \(H\left(\dfrac{2+(-2)}{2};\dfrac{0+(-2)}{2}\right)=(0;-1)\) ✓</p>
+                    <p>3b) \(a_{(\Delta)}\times a_{(BC)}=-2\times\dfrac12=-1\) donc \((\Delta)\perp(BC)\), et \(H(0;-1)\in(\Delta)\).</p>
+                    <p class="font-semibold text-emerald-800">D'où : \((\Delta)\) est la médiatrice du segment \([BC]\).</p>
+                  </div>
+                  <div class="graph-card max-w-xs mx-auto">
+                    <svg viewBox="0 0 268 336" class="w-full h-auto mx-auto" xmlns="http://www.w3.org/2000/svg">
+<rect width="268" height="336" fill="white" rx="12"/>
+<defs>
+<marker id="arg10x" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+<marker id="arg10y" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+<marker id="arlng100" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+<marker id="arlng101" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0d9488"/></marker>
+<marker id="arlng102" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#059669"/></marker>
+</defs>
+<line x1="32.0" y1="32.0" x2="32.0" y2="304.0" stroke="#e2e8f0" stroke-width="1"/><line x1="66.0" y1="32.0" x2="66.0" y2="304.0" stroke="#e2e8f0" stroke-width="1"/><line x1="100.0" y1="32.0" x2="100.0" y2="304.0" stroke="#e2e8f0" stroke-width="1"/><line x1="134.0" y1="32.0" x2="134.0" y2="304.0" stroke="#e2e8f0" stroke-width="1"/><line x1="168.0" y1="32.0" x2="168.0" y2="304.0" stroke="#e2e8f0" stroke-width="1"/><line x1="202.0" y1="32.0" x2="202.0" y2="304.0" stroke="#e2e8f0" stroke-width="1"/><line x1="236.0" y1="32.0" x2="236.0" y2="304.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="304.0" x2="236.0" y2="304.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="270.0" x2="236.0" y2="270.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="236.0" x2="236.0" y2="236.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="202.0" x2="236.0" y2="202.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="168.0" x2="236.0" y2="168.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="134.0" x2="236.0" y2="134.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="100.0" x2="236.0" y2="100.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="66.0" x2="236.0" y2="66.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="32.0" x2="236.0" y2="32.0" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="34.0" y1="202.0" x2="234.0" y2="202.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arg10x)"/><line x1="134.0" y1="306.0" x2="134.0" y2="30.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arg10y)"/>
+<text x="120.0" y="218.0" font-size="12" font-weight="700" font-style="italic" fill="#1e293b">O</text><text x="164.0" y="218.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">I</text><text x="120.0" y="172.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">J</text>
+<line x1="117.0" y1="32.0" x2="236.0" y2="270.0" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arlng100)"/><text x="146.8" y="73.6" font-size="13" font-weight="700" font-style="italic" fill="#2563eb">(AB)</text>
+<line x1="32.0" y1="287.0" x2="236.0" y2="185.0" stroke="#0d9488" stroke-width="2.2" marker-end="url(#arlng101)"/><text x="82.2" y="258.9" font-size="13" font-weight="700" font-style="italic" fill="#0d9488">(BC)</text>
+<line x1="32.0" y1="32.0" x2="168.0" y2="304.0" stroke="#059669" stroke-width="2.0" stroke-dasharray="7 5" marker-end="url(#arlng102)"/><text x="92.4" y="134.8" font-size="13" font-weight="700" font-style="italic" fill="#059669">(Δ)</text>
+<circle cx="168.0" cy="134.0" r="4.2" fill="#1e293b" stroke="#1e293b" stroke-width="2"/><text x="152.0" y="126.0" font-size="13.5" font-weight="700" font-style="italic" fill="#1e293b">A</text>
+<circle cx="202.0" cy="202.0" r="4.2" fill="#1e293b" stroke="#1e293b" stroke-width="2"/><text x="212.0" y="208.0" font-size="13.5" font-weight="700" font-style="italic" fill="#1e293b">B</text>
+<circle cx="66.0" cy="270.0" r="4.2" fill="#1e293b" stroke="#1e293b" stroke-width="2"/><text x="48.0" y="284.0" font-size="13.5" font-weight="700" font-style="italic" fill="#1e293b">C</text>
+<circle cx="134.0" cy="236.0" r="4.2" fill="#e11d48" stroke="#e11d48" stroke-width="2"/><text x="118.0" y="250.0" font-size="13.5" font-weight="700" font-style="italic" fill="#e11d48">H</text>
+</svg>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ===================== EXAMEN N°3 ===================== -->
+  <article id="examen-3" class="scroll-mt-24">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div class="overflow-hidden rounded-3xl bg-gradient-to-br from-teal-950 via-teal-900 to-teal-800 p-6 sm:p-10">
+        <div class="flex flex-wrap items-center gap-4">
+          <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/15 font-display text-2xl font-bold text-white ring-1 ring-inset ring-white/25">3</span>
+          <div>
+            <h2 class="font-display text-2xl font-bold text-white sm:text-3xl">Examen Régional N°3</h2>
+            <p class="text-teal-200">Session Juin 2022 · Région Souss-Massa</p>
+          </div>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="meta-chip">📅 Juin 2022</span>
+          <span class="meta-chip">📍 Souss-Massa</span>
+          <span class="meta-chip">⏱️ 2 heures</span>
+          <span class="meta-chip">✖️ Coefficient 3</span>
+          <span class="meta-chip">📝 Note sur 20</span>
+          <span class="meta-chip">🚫 Calculatrice non autorisée</span>
+        </div>
+      </div>
+
+      <div class="mt-8 space-y-6">
+
+        <!-- EXERCICE 1 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-teal-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-teal-600">1</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 1</p>
+                <span class="category-tag bg-teal-100 text-teal-700">QCM · 2 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">Cet exercice est constitué de questions à choix multiples. Pour chaque question, trois réponses (I), (II) et (III) sont proposées dont une seule est correcte.</p>
+            <div class="mt-4 space-y-4">
+              <div class="rounded-xl border border-slate-200 p-4">
+                <p class="text-sm font-semibold text-slate-800">1) On considère les points \(M(5;2)\) et \(N(1;0)\) dans un repère orthonormé :</p>
+                <div class="mt-3 space-y-3">
+                  <div>
+                    <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">a)</span> Le couple de coordonnées du vecteur \(\overrightarrow{MN}\) est :</p>
+                    <div class="mt-2 grid grid-cols-3 gap-2"><span class="qcm-option justify-center">(I) \((4;2)\)</span><span class="qcm-option justify-center">(II) \((-4;-2)\)</span><span class="qcm-option justify-center">(III) \((6;2)\)</span></div>
+                  </div>
+                  <div>
+                    <p class="text-sm text-slate-700"><span class="font-bold text-slate-900">b)</span> Le couple de coordonnées du milieu du segment \([MN]\) est :</p>
+                    <div class="mt-2 grid grid-cols-3 gap-2"><span class="qcm-option justify-center">(I) \((3;1)\)</span><span class="qcm-option justify-center">(II) \((-2;-1)\)</span><span class="qcm-option justify-center">(III) \((2;1)\)</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="rounded-xl border border-slate-200 p-4">
+                <p class="text-sm font-semibold text-slate-800">2) Les solutions de l'inéquation \(3x-5<7-x\) sont les nombres réels \(x\) qui vérifient :</p>
+                <div class="mt-2 grid grid-cols-3 gap-2"><span class="qcm-option justify-center">(I) \(x>3\)</span><span class="qcm-option justify-center">(II) \(x>4\)</span><span class="qcm-option justify-center">(III) \(x<3\)</span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- EXERCICE 2 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-sky-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-sky-600">2</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 2</p>
+                <span class="category-tag bg-sky-100 text-sky-700">Équations · Système · 4 points</span>
+              </div>
+            </div>
+            <ol class="mt-4 list-decimal space-y-3 pl-5 text-sm text-slate-700">
+              <li>Résoudre l'équation \(4x-5=2x+3\)</li>
+              <li>Résoudre l'équation \((x-11)(6-2x)=0\)</li>
+              <li>Résoudre algébriquement le système suivant : \(\begin{cases}5x-y=8\\2x+y=13\end{cases}\)</li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 3 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-violet-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-violet-600">3</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 3</p>
+                <span class="category-tag bg-violet-100 text-violet-700">Fonctions · 4 points</span>
+              </div>
+            </div>
+            <ol class="mt-4 list-decimal space-y-3 pl-5 text-sm text-slate-700">
+              <li>On considère la fonction linéaire \(f\) définie par : \(f(x)=5x\)
+                <ol class="mt-2 list-[lower-alpha] space-y-2 pl-5">
+                  <li>Calculer \(f(2)\).</li>
+                  <li>Déterminer le nombre dont l'image par \(f\) est \(1\).</li>
+                </ol>
+              </li>
+              <li>On considère la fonction affine \(g\) telle que : \(g(2)=1\) et \(g(3)=3\)
+                <ol class="mt-2 list-[lower-alpha] space-y-2 pl-5">
+                  <li>Montrer que le coefficient de la fonction \(g\) est \(a=2\).</li>
+                  <li>Vérifier que : \(g(x)=2x-3\)</li>
+                  <li>Construire la représentation graphique de la fonction \(g\) dans un repère orthonormé.</li>
+                </ol>
+              </li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 4 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-emerald-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-emerald-600">4</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 4</p>
+                <span class="category-tag bg-emerald-100 text-emerald-700">Statistiques · 2 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">Les données suivantes représentent les consommations d'eau en m³ de 25 familles :</p>
+            <p class="mt-2 rounded-xl bg-slate-50 p-3 text-center text-sm font-mono text-slate-700">5 – 7 – 6 – 5 – 8 – 8 – 7 – 6 – 7 – 4 – 7 – 6 – 7 – 5 – 7 – 5 – 6 – 5 – 7 – 6 – 4 – 7 – 5 – 5 – 7</p>
+            <ol class="mt-4 list-decimal space-y-3 pl-5 text-sm text-slate-700">
+              <li>Compléter le tableau des effectifs suivant :
+                <div class="mt-2 overflow-x-auto rounded-xl border border-slate-200">
+                  <table class="w-full min-w-[360px] text-center text-sm">
+                    <tbody>
+                      <tr class="border-b border-slate-200 bg-slate-50"><td class="p-2 font-semibold text-slate-700">Consommation d'eau (m³)</td><td class="p-2">…</td><td class="p-2">…</td><td class="p-2">6</td><td class="p-2">7</td><td class="p-2">8</td></tr>
+                      <tr><td class="p-2 font-semibold text-slate-700">Nombre de familles</td><td class="p-2">2</td><td class="p-2">7</td><td class="p-2">…</td><td class="p-2">9</td><td class="p-2">…</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+              <li>Déterminer le mode de cette série statistique.</li>
+              <li>Calculer la moyenne arithmétique de cette série statistique.</li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 5 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-rose-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-rose-600">5</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 5</p>
+                <span class="category-tag bg-rose-100 text-rose-700">Repère · 5,5 points</span>
+              </div>
+            </div>
+            <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm text-slate-700">
+              <li>Construire dans le même repère \((O;I;J)\) les points suivants : \(A(-2;-1)\) ; \(B(2;3)\)</li>
+              <li>Construire le point \(C(-1;-2)\)</li>
+              <li>Calculer la distance \(AB\).</li>
+              <li>Montrer que : \(y=x+1\) est l'équation réduite de la droite \((AB)\)</li>
+              <li>On considère la droite \((\Delta)\) d'équation réduite \(y=-x-3\)
+                <ol class="mt-2 list-[lower-alpha] space-y-2 pl-5">
+                  <li>Vérifier que les deux points \(A\) et \(C\) appartiennent à la droite \((\Delta)\).</li>
+                  <li>En déduire que les droites \((AB)\) et \((AC)\) sont perpendiculaires.</li>
+                </ol>
+              </li>
+              <li>
+                <ol class="list-[lower-alpha] space-y-2 pl-5">
+                  <li>Construire (dans le même repère) le point \(D\) image du point \(C\) par la translation qui transforme \(A\) en \(B\).</li>
+                  <li>Déterminer l'image du segment \([AC]\) par la translation qui transforme \(A\) en \(B\).</li>
+                </ol>
+              </li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 6 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-amber-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-amber-600">6</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 6</p>
+                <span class="category-tag bg-amber-100 text-amber-700">Géométrie dans l'espace · 3 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">\(ABCDEFGH\) est un parallélépipède tel que : \(AE=6\text{ cm}\) ;; \(FH=5\text{ cm}\) et \(EF=4\text{ cm}\)</p>
+            <div class="graph-card mt-4 max-w-xs mx-auto">
+              <svg viewBox="0 0 350 330" class="w-full h-auto mx-auto" xmlns="http://www.w3.org/2000/svg"><rect width="350" height="330" fill="white" rx="12"/><line x1="150.0" y1="300.0" x2="195.0" y2="270.0" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 4"/><line x1="195.0" y1="270.0" x2="295.0" y2="270.0" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 4"/><line x1="195.0" y1="270.0" x2="195.0" y2="150.0" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 4"/><line x1="195.0" y1="150.0" x2="150.0" y2="180.0" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 4"/><line x1="195.0" y1="150.0" x2="295.0" y2="150.0" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 4"/><line x1="150.0" y1="300.0" x2="250.0" y2="300.0" stroke="#64748b" stroke-width="1.6"/><line x1="250.0" y1="300.0" x2="295.0" y2="270.0" stroke="#64748b" stroke-width="1.6"/><line x1="150.0" y1="300.0" x2="150.0" y2="180.0" stroke="#64748b" stroke-width="1.6"/><line x1="250.0" y1="300.0" x2="250.0" y2="180.0" stroke="#64748b" stroke-width="1.6"/><line x1="295.0" y1="270.0" x2="295.0" y2="150.0" stroke="#64748b" stroke-width="1.6"/><line x1="150.0" y1="180.0" x2="250.0" y2="180.0" stroke="#64748b" stroke-width="1.6"/><line x1="250.0" y1="180.0" x2="295.0" y2="150.0" stroke="#64748b" stroke-width="1.6"/><polygon points="150.0,180.0 250.0,180.0 195.0,150.0" fill="#0d9488" fill-opacity="0.12" stroke="none" stroke-width="1.8"/><line x1="150.0" y1="300.0" x2="250.0" y2="180.0" stroke="#0d9488" stroke-width="2.4"/><line x1="150.0" y1="300.0" x2="195.0" y2="150.0" stroke="#0d9488" stroke-width="2.4" stroke-dasharray="5 4"/><line x1="250.0" y1="180.0" x2="195.0" y2="150.0" stroke="#0d9488" stroke-width="2.4"/><line x1="150.0" y1="300.0" x2="150.0" y2="180.0" stroke="#0d9488" stroke-width="2.4"/><line x1="195.0" y1="150.0" x2="150.0" y2="180.0" stroke="#0d9488" stroke-width="2.4" stroke-dasharray="5 4"/><text x="142.0" y="320.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">A</text><text x="258.0" y="320.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">B</text><text x="179.0" y="272.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">D</text><text x="303.0" y="272.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">C</text><text x="132.0" y="178.0" font-size="15" font-weight="700" font-style="italic" fill="#0d9488">E</text><text x="258.0" y="178.0" font-size="15" font-weight="700" font-style="italic" fill="#0d9488">F</text><text x="189.0" y="140.0" font-size="15" font-weight="700" font-style="italic" fill="#0d9488">H</text><text x="303.0" y="140.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">G</text></svg>
+              <p class="mt-2 text-center text-xs text-slate-500">Pyramide \(AEFH\) mise en évidence en <span class="font-semibold text-teal-600">teal</span></p>
+            </div>
+            <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm text-slate-700">
+              <li>Montrer que : \(EH=3\text{ cm}\)</li>
+              <li>Montrer que le volume de la pyramide \(AEFH\) est : \(V=12\text{ cm}^3\)</li>
+              <li>Si \(2\) est le coefficient (rapport) de l'agrandissement de la pyramide \(AEFH\) ; que sera le volume \(V'\) de cette pyramide agrandie ?</li>
+            </ol>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="mt-8 rounded-3xl border-2 border-dashed border-amber-300 bg-amber-50/50 p-6 text-center sm:p-8">
+        <p class="font-display text-lg font-bold text-slate-900">Vous avez terminé l'examen N°3 ?</p>
+        <p class="mt-1 text-sm text-slate-600">Cliquez ci-dessous pour afficher la correction complète, exercice par exercice.</p>
+        <button type="button" class="correction-toggle mt-4 !px-8 !py-3.5 !text-base" data-acc-trigger aria-expanded="false" data-open-label="Masquer la correction de l'Examen N°3" data-closed-label="Voir la correction de l'Examen N°3">
+          <svg data-chevron class="h-4 w-4 shrink-0 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+          <span data-label>Voir la correction de l'Examen N°3</span>
+        </button>
+        <div class="acc-wrapper mt-2 text-left" data-acc-wrapper>
+          <div class="acc-inner">
+            <div class="correction-panel !bg-white space-y-8 sm:p-8">
+              <div class="flex items-center gap-3 border-b border-emerald-200 pb-4">
+                <span class="text-3xl">✅</span>
+                <div>
+                  <p class="font-display text-xl font-bold text-slate-900">Correction — Examen Régional N°3</p>
+                  <p class="text-sm text-slate-500">Session Juin 2022 · Région Souss-Massa</p>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-teal-700">Exercice 1 — QCM</p>
+                <div class="mt-3 overflow-x-auto rounded-xl border border-slate-200">
+                  <table class="w-full min-w-[280px] text-center text-sm">
+                    <thead><tr class="bg-slate-100 text-slate-600"><th class="p-2 font-semibold">Question</th><th class="p-2 font-semibold">Réponse</th></tr></thead>
+                    <tbody class="divide-y divide-slate-200">
+                      <tr><td class="p-2">1 - a</td><td class="p-2 font-bold text-emerald-700">(II) \((-4;-2)\)</td></tr>
+                      <tr><td class="p-2">1 - b</td><td class="p-2 font-bold text-emerald-700">(I) \((3;1)\)</td></tr>
+                      <tr><td class="p-2">2)</td><td class="p-2 font-bold text-emerald-700">(III) \(x<3\)</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-sky-700">Exercice 2</p>
+                <div class="mt-3 space-y-3 text-sm text-slate-700">
+                  <div><p class="font-semibold">1) \(4x-5=2x+3\)</p><div class="katex-block mt-1">\[4x-2x=3+5 \;\Rightarrow\; 2x=8 \;\Rightarrow\; x=4\]</div></div>
+                  <div><p class="font-semibold">2) \((x-11)(6-2x)=0\)</p><div class="katex-block mt-1">\[x-11=0 \;\text{ou}\; 6-2x=0 \;\Rightarrow\; x=11 \;\text{ou}\; x=3\]</div></div>
+                  <div><p class="font-semibold">3) \(\begin{cases}5x-y=8\\2x+y=13\end{cases}\)</p><div class="katex-block mt-1">\[\text{On additionne : } 7x=21 \;\Rightarrow\; x=3,\; 2(3)+y=13 \;\Rightarrow\; y=7\]</div><p class="font-semibold text-emerald-800">D'où le couple \((3;7)\) est la solution du système.</p></div>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-violet-700">Exercice 3</p>
+                <div class="mt-3 grid gap-4 sm:grid-cols-2 sm:items-start">
+                  <div class="space-y-2 text-sm text-slate-700">
+                    <p>1a) \(f(2)=5\times2=10\)</p>
+                    <p>1b) Soit \(c\) tel que \(f(c)=1\) : \(5c=1 \Rightarrow c=\dfrac15\)</p>
+                    <p>2a) \(a=\dfrac{g(3)-g(2)}{3-2}=\dfrac{3-1}{1}=2\)</p>
+                    <p>2b) \(g(x)=2x+b\), \(g(2)=1 \Rightarrow 4+b=1 \Rightarrow b=-3\)</p>
+                    <p class="font-semibold text-emerald-800">D'où : \(g(x)=2x-3\)</p>
+                  </div>
+                  <div class="graph-card max-w-[220px] mx-auto">
+                    <svg viewBox="0 0 224 344" class="w-full h-auto mx-auto" xmlns="http://www.w3.org/2000/svg">
+<rect width="224" height="344" fill="white" rx="12"/>
+<defs>
+<marker id="arg6x" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+<marker id="arg6y" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+<marker id="arlng60" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e11d48"/></marker>
+</defs>
+<line x1="32.0" y1="32.0" x2="32.0" y2="312.0" stroke="#e2e8f0" stroke-width="1"/><line x1="72.0" y1="32.0" x2="72.0" y2="312.0" stroke="#e2e8f0" stroke-width="1"/><line x1="112.0" y1="32.0" x2="112.0" y2="312.0" stroke="#e2e8f0" stroke-width="1"/><line x1="152.0" y1="32.0" x2="152.0" y2="312.0" stroke="#e2e8f0" stroke-width="1"/><line x1="192.0" y1="32.0" x2="192.0" y2="312.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="312.0" x2="192.0" y2="312.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="272.0" x2="192.0" y2="272.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="232.0" x2="192.0" y2="232.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="192.0" x2="192.0" y2="192.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="152.0" x2="192.0" y2="152.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="112.0" x2="192.0" y2="112.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="72.0" x2="192.0" y2="72.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="32.0" x2="192.0" y2="32.0" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="34.0" y1="152.0" x2="190.0" y2="152.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arg6x)"/><line x1="72.0" y1="314.0" x2="72.0" y2="30.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arg6y)"/>
+<text x="58.0" y="168.0" font-size="12" font-weight="700" font-style="italic" fill="#1e293b">O</text><text x="108.0" y="168.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">I</text><text x="58.0" y="116.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">J</text>
+<line x1="52.0" y1="312.0" x2="192.0" y2="32.0" stroke="#e11d48" stroke-width="2.6" marker-end="url(#arlng60)"/>
+<line x1="152.0" y1="152.0" x2="152.0" y2="112.0" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="4 3"/><line x1="72.0" y1="112.0" x2="152.0" y2="112.0" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="4 3"/>
+<circle cx="152.0" cy="112.0" r="4.2" fill="#e11d48" stroke="#e11d48" stroke-width="2"/>
+</svg>
+                    <p class="mt-1 text-center text-xs text-slate-500">\(g(x)=2x-3\) — point \((2;1)\) marqué</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-emerald-700">Exercice 4 — Statistiques</p>
+                <div class="mt-3 overflow-x-auto rounded-xl border border-slate-200">
+                  <table class="w-full min-w-[360px] text-center text-sm">
+                    <tbody>
+                      <tr class="border-b border-slate-200 bg-slate-50"><td class="p-2 font-semibold text-slate-700">Consommation (m³)</td><td class="p-2 font-bold text-emerald-700">4</td><td class="p-2 font-bold text-emerald-700">5</td><td class="p-2">6</td><td class="p-2">7</td><td class="p-2">8</td></tr>
+                      <tr><td class="p-2 font-semibold text-slate-700">Familles</td><td class="p-2">2</td><td class="p-2">7</td><td class="p-2 font-bold text-emerald-700">5</td><td class="p-2">9</td><td class="p-2 font-bold text-emerald-700">2</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="mt-3 text-sm text-slate-700">2) Mode = <strong>7</strong> (effectif le plus grand : 9).</p>
+                <p class="mt-2 text-sm text-slate-700">3) Moyenne :</p>
+                <div class="katex-block mt-1 text-sm">\[m=\dfrac{4\times2+5\times7+6\times5+7\times9+8\times2}{25}=\dfrac{152}{25}=6{,}08\]</div>
+              </div>
+
+              <div>
+                <p class="step-title text-rose-700">Exercice 5 — Repère</p>
+                <div class="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:items-center">
+                  <div class="space-y-2 text-sm text-slate-700">
+                    <p>3) \(AB=\sqrt{(2-(-2))^2+(3-(-1))^2}=\sqrt{16+16}=4\sqrt2\)</p>
+                    <p>4) pente \(=\dfrac{3-(-1)}{2-(-2)}=1\), \(B(2;3)\in(AB)\Rightarrow b=1\) : \((AB):y=x+1\)</p>
+                    <p>5a) \(A(-2;-1)\) : \(-(-2)-3=-1\) ✓ ; \(C(-1;-2)\) : \(-(-1)-3=-2\) ✓</p>
+                    <p>5b) \((AC)\) et \((\Delta)\) confondues, pente \(-1\) ; \(1\times(-1)=-1\) donc \((AB)\perp(AC)\)</p>
+                    <p>6a-b) \(D\) image de \(C\) par la translation \(A\to B\) : \(\overrightarrow{CD}=\overrightarrow{AB}\), d'où \(D(3;2)\). L'image de \([AC]\) est le segment \([BD]\).</p>
+                  </div>
+                  <div class="graph-card max-w-[240px] mx-auto">
+                    <svg viewBox="0 0 340 340" class="w-full h-auto mx-auto" xmlns="http://www.w3.org/2000/svg">
+<rect width="340" height="340" fill="white" rx="12"/>
+<defs>
+<marker id="arg3x" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+<marker id="arg3y" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+<marker id="arlng30" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+<marker id="arlng31" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#059669"/></marker>
+<marker id="arvg30" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker>
+</defs>
+<line x1="34.0" y1="34.0" x2="34.0" y2="306.0" stroke="#e2e8f0" stroke-width="1"/><line x1="68.0" y1="34.0" x2="68.0" y2="306.0" stroke="#e2e8f0" stroke-width="1"/><line x1="102.0" y1="34.0" x2="102.0" y2="306.0" stroke="#e2e8f0" stroke-width="1"/><line x1="136.0" y1="34.0" x2="136.0" y2="306.0" stroke="#e2e8f0" stroke-width="1"/><line x1="170.0" y1="34.0" x2="170.0" y2="306.0" stroke="#e2e8f0" stroke-width="1"/><line x1="204.0" y1="34.0" x2="204.0" y2="306.0" stroke="#e2e8f0" stroke-width="1"/><line x1="238.0" y1="34.0" x2="238.0" y2="306.0" stroke="#e2e8f0" stroke-width="1"/><line x1="272.0" y1="34.0" x2="272.0" y2="306.0" stroke="#e2e8f0" stroke-width="1"/><line x1="306.0" y1="34.0" x2="306.0" y2="306.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="306.0" x2="306.0" y2="306.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="272.0" x2="306.0" y2="272.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="238.0" x2="306.0" y2="238.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="204.0" x2="306.0" y2="204.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="170.0" x2="306.0" y2="170.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="136.0" x2="306.0" y2="136.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="102.0" x2="306.0" y2="102.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="68.0" x2="306.0" y2="68.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="34.0" x2="306.0" y2="34.0" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="36.0" y1="170.0" x2="304.0" y2="170.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arg3x)"/><line x1="170.0" y1="308.0" x2="170.0" y2="32.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arg3y)"/>
+<text x="156.0" y="186.0" font-size="12" font-weight="700" font-style="italic" fill="#1e293b">O</text><text x="200.0" y="186.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">I</text><text x="156.0" y="140.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">J</text>
+<line x1="34.0" y1="272.0" x2="272.0" y2="34.0" stroke="#2563eb" stroke-width="2.4" marker-end="url(#arlng30)"/><text x="288.2" y="17.8" font-size="13" font-weight="700" font-style="italic" fill="#2563eb">(AB)</text>
+<line x1="34.0" y1="136.0" x2="204.0" y2="306.0" stroke="#059669" stroke-width="2.4" stroke-dasharray="7 5" marker-end="url(#arlng31)"/><text x="87.6" y="177.6" font-size="13" font-weight="700" font-style="italic" fill="#059669">(Δ)</text>
+<line x1="102.0" y1="204.0" x2="238.0" y2="68.0" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#arvg30)"/>
+<circle cx="102.0" cy="204.0" r="4.2" fill="#1e293b" stroke="#1e293b" stroke-width="2"/><text x="84.0" y="218.0" font-size="13.5" font-weight="700" font-style="italic" fill="#1e293b">A</text>
+<circle cx="238.0" cy="68.0" r="4.2" fill="#1e293b" stroke="#1e293b" stroke-width="2"/><text x="246.0" y="60.0" font-size="13.5" font-weight="700" font-style="italic" fill="#1e293b">B</text>
+<circle cx="136.0" cy="238.0" r="4.2" fill="#e11d48" stroke="#e11d48" stroke-width="2"/><text x="130.0" y="256.0" font-size="13.5" font-weight="700" font-style="italic" fill="#e11d48">C</text>
+<circle cx="272.0" cy="102.0" r="4.2" fill="#7c3aed" stroke="#7c3aed" stroke-width="2"/><text x="280.0" y="94.0" font-size="13.5" font-weight="700" font-style="italic" fill="#7c3aed">D</text>
+</svg>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-amber-700">Exercice 6 — Parallélépipède</p>
+                <div class="mt-2 space-y-2 text-sm text-slate-700">
+                  <p>1) \(EFGH\) est un rectangle donc \(EFH\) est rectangle en \(E\) : \(FH^2=EF^2+EH^2 \Rightarrow EH^2=5^2-4^2=9 \Rightarrow EH=3\text{ cm}\)</p>
+                  <p>2) \(V=\dfrac13\times S_{EFH}\times AE=\dfrac13\times\dfrac{4\times3}{2}\times6=12\text{ cm}^3\)</p>
+                  <p>3) Rapport \(k=2\) : \(V'=k^3\times V=2^3\times12=8\times12=96\text{ cm}^3\)</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ===================== EXAMEN N°4 ===================== -->
+  <article id="examen-4" class="scroll-mt-24 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div class="overflow-hidden rounded-3xl bg-gradient-to-br from-violet-950 via-violet-900 to-violet-800 p-6 sm:p-10">
+        <div class="flex flex-wrap items-center gap-4">
+          <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/15 font-display text-2xl font-bold text-white ring-1 ring-inset ring-white/25">4</span>
+          <div>
+            <h2 class="font-display text-2xl font-bold text-white sm:text-3xl">Examen Régional N°4</h2>
+            <p class="text-violet-200">Session Juin 2022 · Région Casablanca-Settat</p>
+          </div>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="meta-chip">📅 Juin 2022</span>
+          <span class="meta-chip">📍 Casablanca-Settat</span>
+          <span class="meta-chip">⏱️ 2 heures</span>
+          <span class="meta-chip">✖️ Coefficient 3</span>
+          <span class="meta-chip">📝 Note sur 20</span>
+          <span class="meta-chip">🚫 Calculatrice non autorisée</span>
+        </div>
+      </div>
+
+      <div class="mt-8 space-y-6">
+
+        <!-- EXERCICE 1 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-violet-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-violet-600">1</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 1</p>
+                <span class="category-tag bg-violet-100 text-violet-700">Équations · Système · Problème · 5 points</span>
+              </div>
+            </div>
+            <ol class="mt-4 list-decimal space-y-3 pl-5 text-sm text-slate-700">
+              <li>Résoudre les deux équations : \(5x+8=6\) et \((2x-1)(2x+3)=0\)</li>
+              <li>Résoudre l'inéquation : \(3x-1\leq-x+7\)</li>
+              <li>
+                <ol class="list-[lower-alpha] space-y-2 pl-5">
+                  <li>Résoudre algébriquement le système suivant : \(\begin{cases}3x+2y=23\\2x+y=14\end{cases}\)</li>
+                  <li>Chez un marchand de légumes, Omar achète 3 kg de pommes de terre et 2 kg de tomates avec un montant de 23 DH. Chez le même marchand, Amina achète 6 kg de pommes de terre et 3 kg de tomates avec un montant de 42 DH. Déterminer le prix d'un kilogramme de pommes de terre et le prix d'un kilogramme de tomates.</li>
+                </ol>
+              </li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 2 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-emerald-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-emerald-600">2</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 2</p>
+                <span class="category-tag bg-emerald-100 text-emerald-700">Statistiques · 2 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">Le tableau suivant représente la répartition des notes de mathématiques de quarante élèves :</p>
+            <div class="mt-3 overflow-x-auto rounded-xl border border-slate-200">
+              <table class="w-full min-w-[380px] text-center text-sm">
+                <tbody>
+                  <tr class="border-b border-slate-200 bg-slate-50"><td class="p-2 font-semibold text-slate-700">Notes</td><td class="p-2">8</td><td class="p-2">10</td><td class="p-2">11</td><td class="p-2">15</td><td class="p-2">17</td><td class="p-2">18</td></tr>
+                  <tr><td class="p-2 font-semibold text-slate-700">Effectifs</td><td class="p-2">3</td><td class="p-2">7</td><td class="p-2">12</td><td class="p-2">13</td><td class="p-2">3</td><td class="p-2">2</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm text-slate-700">
+              <li>Déterminer le mode de cette série statistique.</li>
+              <li>Déterminer la médiane de cette série statistique.</li>
+              <li>Calculer la moyenne arithmétique de cette série statistique.</li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 3 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-sky-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-sky-600">3</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 3</p>
+                <span class="category-tag bg-sky-100 text-sky-700">Fonctions · 4 points</span>
+              </div>
+            </div>
+            <ol class="mt-4 list-decimal space-y-3 pl-5 text-sm text-slate-700">
+              <li>Soit \(f\) la fonction affine telle que : \(f(0)=-3\) et \(f(1)=-1\)
+                <ol class="mt-2 list-[lower-alpha] space-y-2 pl-5">
+                  <li>Vérifier que : \(f(x)=2x-3\)</li>
+                  <li>Déterminer l'image de \(5\) par la fonction \(f\)</li>
+                  <li>Déterminer le nombre qui a pour image le nombre \(8\) par la fonction \(f\).</li>
+                </ol>
+              </li>
+              <li>On considère la fonction linéaire \(g\) telle que : \(g(4)=-2\)
+                <ol class="mt-2 list-[lower-alpha] space-y-2 pl-5">
+                  <li>Déterminer le coefficient de la fonction linéaire \(g\).</li>
+                  <li>Écrire \(g(x)\) en fonction de \(x\).</li>
+                  <li>Tracer la représentation graphique de la fonction \(g\) dans un repère orthonormé.</li>
+                </ol>
+              </li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 4 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-rose-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-rose-600">4</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 4</p>
+                <span class="category-tag bg-rose-100 text-rose-700">Repère · Translation · 6 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">Dans le plan muni d'un repère orthonormé \((O;I;J)\) on considère les points : \(A(1;3)\) ; \(B(2;0)\) et \(C(3;1)\)</p>
+            <ol class="mt-3 list-decimal space-y-2 pl-5 text-sm text-slate-700">
+              <li>Représenter les points \(A\), \(B\) et \(C\)</li>
+              <li>
+                <ol class="list-[lower-alpha] space-y-2 pl-5">
+                  <li>Déterminer les coordonnées du vecteur \(\overrightarrow{AB}\).</li>
+                  <li>Calculer la distance \(AB\)</li>
+                </ol>
+              </li>
+              <li>Montrer que : \(y=-3x+6\) est l'équation réduite de la droite \((AB)\).</li>
+              <li>Déterminer l'équation réduite de la droite \((\Delta)\) passant par le point \(C\) et parallèle à la droite \((AB)\).</li>
+              <li>Soit \(t\) la translation qui transforme \(A\) en \(C\)
+                <ol class="mt-2 list-[lower-alpha] space-y-2 pl-5">
+                  <li>Construire le point \(E\) image du point \(B\) par la translation \(t\).</li>
+                  <li>Déterminer les coordonnées du point \(E\).</li>
+                  <li>Montrer que la droite \((\Delta)\) est l'image de la droite \((AB)\) par la translation \(t\).</li>
+                  <li>Montrer que le point \(E\) appartient à la droite \((\Delta)\).</li>
+                </ol>
+              </li>
+              <li>Soit \(F\) le point du plan tel que : \(\overrightarrow{BF}=\overrightarrow{BC}+\overrightarrow{BA}\). Montrer que \(C\) est le milieu du segment \([EF]\)</li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 5 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-amber-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-amber-600">5</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 5</p>
+                <span class="category-tag bg-amber-100 text-amber-700">Géométrie dans l'espace · 3 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">Dans la figure ci-contre, \(SABCD\) est une pyramide de base le rectangle \(ABCD\) et de hauteur \([SA]\) telle que : \(AB=3\text{ cm}\) ;; \(AD=8\text{ cm}\) et \(SA=6\text{ cm}\)</p>
+            <div class="graph-card mt-4 max-w-[220px] mx-auto">
+              <svg viewBox="0 0 260 350" class="w-full h-auto mx-auto" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="350" fill="white" rx="12"/><line x1="88.0" y1="273.0" x2="163.0" y2="273.0" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 4"/><line x1="150.0" y1="320.0" x2="88.0" y2="273.0" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 4"/><line x1="150.0" y1="188.0" x2="88.0" y2="273.0" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 4"/><line x1="150.0" y1="188.0" x2="163.0" y2="273.0" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 4"/><line x1="150.0" y1="320.0" x2="225.0" y2="320.0" stroke="#334155" stroke-width="1.8"/><line x1="225.0" y1="320.0" x2="163.0" y2="273.0" stroke="#334155" stroke-width="1.6" stroke-dasharray="5 4"/><line x1="150.0" y1="188.0" x2="150.0" y2="320.0" stroke="#334155" stroke-width="1.8"/><line x1="150.0" y1="188.0" x2="225.0" y2="320.0" stroke="#334155" stroke-width="1.8"/><polygon points="150.0,254.0 187.5,254.0 156.5,230.5 119.0,230.5" fill="#0d9488" fill-opacity="0.14" stroke="#0d9488" stroke-width="2.4"/><text x="142.0" y="178.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">S</text><text x="142.0" y="340.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">A</text><text x="233.0" y="338.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">B</text><text x="173.0" y="271.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">C</text><text x="70.0" y="269.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">D</text><text x="134.0" y="258.0" font-size="13" font-weight="700" font-style="italic" fill="#0d9488">I</text><text x="193.5" y="258.0" font-size="13" font-weight="700" font-style="italic" fill="#0d9488">J</text><text x="162.5" y="226.5" font-size="13" font-weight="700" font-style="italic" fill="#0d9488">K</text><text x="103.0" y="226.5" font-size="13" font-weight="700" font-style="italic" fill="#0d9488">L</text></svg>
+              <p class="mt-2 text-center text-xs text-slate-500">Section \(IJKL\) parallèle à la base, en <span class="font-semibold text-teal-600">teal</span></p>
+            </div>
+            <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm text-slate-700">
+              <li>Montrer que : \(SD=10\text{ cm}\)</li>
+              <li>Montrer que le volume de la pyramide \(SABCD\) est : \(V_1=48\text{ cm}^3\)</li>
+              <li>La pyramide \(SIJKL\) est une réduction de la pyramide \(SABCD\) de rapport \(\dfrac12\).
+                <ol class="mt-2 list-[lower-alpha] space-y-2 pl-5">
+                  <li>Calculer \(V_2\) le volume de la pyramide \(SIJKL\).</li>
+                  <li>Calculer l'aire du rectangle \(IJKL\).</li>
+                </ol>
+              </li>
+            </ol>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="mt-8 rounded-3xl border-2 border-dashed border-amber-300 bg-amber-50/50 p-6 text-center sm:p-8">
+        <p class="font-display text-lg font-bold text-slate-900">Vous avez terminé l'examen N°4 ?</p>
+        <p class="mt-1 text-sm text-slate-600">Cliquez ci-dessous pour afficher la correction complète, exercice par exercice.</p>
+        <button type="button" class="correction-toggle mt-4 !px-8 !py-3.5 !text-base" data-acc-trigger aria-expanded="false" data-open-label="Masquer la correction de l'Examen N°4" data-closed-label="Voir la correction de l'Examen N°4">
+          <svg data-chevron class="h-4 w-4 shrink-0 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+          <span data-label>Voir la correction de l'Examen N°4</span>
+        </button>
+        <div class="acc-wrapper mt-2 text-left" data-acc-wrapper>
+          <div class="acc-inner">
+            <div class="correction-panel !bg-white space-y-8 sm:p-8">
+              <div class="flex items-center gap-3 border-b border-emerald-200 pb-4">
+                <span class="text-3xl">✅</span>
+                <div>
+                  <p class="font-display text-xl font-bold text-slate-900">Correction — Examen Régional N°4</p>
+                  <p class="text-sm text-slate-500">Session Juin 2022 · Région Casablanca-Settat</p>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-violet-700">Exercice 1</p>
+                <div class="mt-3 space-y-3 text-sm text-slate-700">
+                  <div><p class="font-semibold">1) \(5x+8=6 \Rightarrow x=\dfrac{-2}{5}\) &nbsp;·&nbsp; \((2x-1)(2x+3)=0 \Rightarrow x=\dfrac12 \text{ ou } x=\dfrac{-3}{2}\)</p></div>
+                  <div><p class="font-semibold">2) \(3x-1\leq-x+7 \Rightarrow 4x\leq8 \Rightarrow x\leq2\)</p></div>
+                  <div><p class="font-semibold">3a) \(\begin{cases}3x+2y=23\\2x+y=14\end{cases}\)</p><div class="katex-block mt-1">\[y=14-2x \;\Rightarrow\; 3x+2(14-2x)=23 \;\Rightarrow\; -x=-5 \;\Rightarrow\; x=5,\;y=4\]</div><p class="font-semibold text-emerald-800">D'où le couple \((5;4)\) est la solution.</p></div>
+                  <div>
+                    <p class="font-semibold">3b) Problème :</p>
+                    <p class="mt-1">Soit \(x\) le prix d'un kg de pommes et \(y\) celui d'un kg de tomates :</p>
+                    <div class="katex-block mt-1">\[\begin{cases}3x+2y=23\ \text{(Omar)}\\6x+3y=42\ \text{(Amina)}\end{cases} \Longleftrightarrow \begin{cases}3x+2y=23\\2x+y=14\end{cases}\]</div>
+                    <p class="mt-1 font-semibold text-emerald-800">D'après 3a) : le kg de pommes de terre coûte 5 DH et le kg de tomates coûte 4 DH.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-emerald-700">Exercice 2 — Statistiques</p>
+                <div class="mt-2 space-y-2 text-sm text-slate-700">
+                  <p>1) Mode = <strong>15</strong> (effectif le plus grand : 13).</p>
+                  <p>2) Effectifs cumulés : 3, 10, 22, 35, 38, 40. \(N/2=20\) ; le premier effectif cumulé \(\geq20\) est 22, donc médiane \(=\) <strong>11</strong>.</p>
+                  <p>3) Moyenne :</p>
+                  <div class="katex-block mt-1">\[m=\dfrac{8\times3+10\times7+11\times12+15\times13+17\times3+18\times2}{40}=\dfrac{508}{40}=12{,}7\]</div>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-sky-700">Exercice 3</p>
+                <div class="mt-3 grid gap-4 sm:grid-cols-2 sm:items-start">
+                  <div class="space-y-2 text-sm text-slate-700">
+                    <p>1a) \(a=\dfrac{f(1)-f(0)}{1-0}=\dfrac{-1-(-3)}{1}=2\), \(f(0)=b=-3\) donc \(f(x)=2x-3\)</p>
+                    <p>1b) \(f(5)=2\times5-3=7\)</p>
+                    <p>1c) \(2c-3=8 \Rightarrow c=\dfrac{11}{2}\)</p>
+                    <p>2a) \(a=\dfrac{g(4)}{4}=\dfrac{-2}{4}=-\dfrac12\)</p>
+                    <p>2b) \(g(x)=-\dfrac12 x\)</p>
+                  </div>
+                  <div class="graph-card max-w-[220px] mx-auto">
+                    <svg viewBox="0 0 280 280" class="w-full h-auto mx-auto" xmlns="http://www.w3.org/2000/svg">
+<rect width="280" height="280" fill="white" rx="12"/>
+<defs>
+<marker id="arg7x" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+<marker id="arg7y" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+<marker id="arlng70" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e11d48"/></marker>
+</defs>
+<line x1="32.0" y1="32.0" x2="32.0" y2="248.0" stroke="#e2e8f0" stroke-width="1"/><line x1="68.0" y1="32.0" x2="68.0" y2="248.0" stroke="#e2e8f0" stroke-width="1"/><line x1="104.0" y1="32.0" x2="104.0" y2="248.0" stroke="#e2e8f0" stroke-width="1"/><line x1="140.0" y1="32.0" x2="140.0" y2="248.0" stroke="#e2e8f0" stroke-width="1"/><line x1="176.0" y1="32.0" x2="176.0" y2="248.0" stroke="#e2e8f0" stroke-width="1"/><line x1="212.0" y1="32.0" x2="212.0" y2="248.0" stroke="#e2e8f0" stroke-width="1"/><line x1="248.0" y1="32.0" x2="248.0" y2="248.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="248.0" x2="248.0" y2="248.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="212.0" x2="248.0" y2="212.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="176.0" x2="248.0" y2="176.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="140.0" x2="248.0" y2="140.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="104.0" x2="248.0" y2="104.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="68.0" x2="248.0" y2="68.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="32.0" x2="248.0" y2="32.0" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="34.0" y1="140.0" x2="246.0" y2="140.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arg7x)"/><line x1="68.0" y1="250.0" x2="68.0" y2="30.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arg7y)"/>
+<text x="54.0" y="156.0" font-size="12" font-weight="700" font-style="italic" fill="#1e293b">O</text><text x="100.0" y="156.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">I</text><text x="54.0" y="108.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">J</text>
+<line x1="32.0" y1="122.0" x2="248.0" y2="230.0" stroke="#e11d48" stroke-width="2.6" marker-end="url(#arlng70)"/>
+<line x1="212.0" y1="140.0" x2="212.0" y2="212.0" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="4 3"/><line x1="68.0" y1="212.0" x2="212.0" y2="212.0" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="4 3"/>
+<circle cx="212.0" cy="212.0" r="4.2" fill="#e11d48" stroke="#e11d48" stroke-width="2"/>
+</svg>
+                    <p class="mt-1 text-center text-xs text-slate-500">\(g(x)=-\tfrac12 x\) — point \((4;-2)\) marqué</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-rose-700">Exercice 4 — Repère &amp; translation</p>
+                <div class="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:items-center">
+                  <div class="space-y-2 text-sm text-slate-700">
+                    <p>2) \(\overrightarrow{AB}(1;-3)\), \(AB=\sqrt{1^2+(-3)^2}=\sqrt{10}\)</p>
+                    <p>3) pente \(=\dfrac{0-3}{2-1}=-3\), \(B(2;0)\in(AB)\Rightarrow b=6\) : \((AB):y=-3x+6\)</p>
+                    <p>4) \((\Delta)\parallel(AB)\Rightarrow a=-3\) ; \(C(3;1)\in(\Delta)\Rightarrow b=10\) : \((\Delta):y=-3x+10\)</p>
+                    <p>5b) \(\overrightarrow{BE}=\overrightarrow{AC}=(2;-2)\Rightarrow E(4;-2)\)</p>
+                    <p>5c-d) \(C\in(\Delta)\) est l'image de \(A\in(AB)\) par \(t\), donc \((\Delta)\) est l'image de \((AB)\) ; et \(-3\times4+10=-2\) donc \(E\in(\Delta)\).</p>
+                    <p>6) \(\overrightarrow{BF}=\overrightarrow{BC}+\overrightarrow{BA}\Rightarrow F(2;4)\). Milieu de \([EF]\) : \(\left(\dfrac{4+2}{2};\dfrac{-2+4}{2}\right)=(3;1)=C\) ✓</p>
+                  </div>
+                  <div class="graph-card max-w-[220px] mx-auto">
+                    <svg viewBox="0 0 260 324" class="w-full h-auto mx-auto" xmlns="http://www.w3.org/2000/svg">
+<rect width="260" height="324" fill="white" rx="12"/>
+<defs>
+<marker id="arg4x" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+<marker id="arg4y" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+<marker id="arlng40" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+<marker id="arlng41" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#059669"/></marker>
+<marker id="arvg40" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker>
+</defs>
+<line x1="34.0" y1="34.0" x2="34.0" y2="290.0" stroke="#e2e8f0" stroke-width="1"/><line x1="66.0" y1="34.0" x2="66.0" y2="290.0" stroke="#e2e8f0" stroke-width="1"/><line x1="98.0" y1="34.0" x2="98.0" y2="290.0" stroke="#e2e8f0" stroke-width="1"/><line x1="130.0" y1="34.0" x2="130.0" y2="290.0" stroke="#e2e8f0" stroke-width="1"/><line x1="162.0" y1="34.0" x2="162.0" y2="290.0" stroke="#e2e8f0" stroke-width="1"/><line x1="194.0" y1="34.0" x2="194.0" y2="290.0" stroke="#e2e8f0" stroke-width="1"/><line x1="226.0" y1="34.0" x2="226.0" y2="290.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="290.0" x2="226.0" y2="290.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="258.0" x2="226.0" y2="258.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="226.0" x2="226.0" y2="226.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="194.0" x2="226.0" y2="194.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="162.0" x2="226.0" y2="162.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="130.0" x2="226.0" y2="130.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="98.0" x2="226.0" y2="98.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="66.0" x2="226.0" y2="66.0" stroke="#e2e8f0" stroke-width="1"/><line x1="34.0" y1="34.0" x2="226.0" y2="34.0" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="36.0" y1="194.0" x2="224.0" y2="194.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arg4x)"/><line x1="66.0" y1="292.0" x2="66.0" y2="32.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arg4y)"/>
+<text x="52.0" y="210.0" font-size="12" font-weight="700" font-style="italic" fill="#1e293b">O</text><text x="94.0" y="210.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">I</text><text x="52.0" y="166.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">J</text>
+<line x1="76.7" y1="34.0" x2="162.0" y2="290.0" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arlng40)"/><text x="123.2" y="149.6" font-size="13" font-weight="700" font-style="italic" fill="#2563eb">(AB)</text>
+<line x1="119.3" y1="34.0" x2="204.7" y2="290.0" stroke="#059669" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#arlng41)"/><text x="147.2" y="93.6" font-size="13" font-weight="700" font-style="italic" fill="#059669">(Δ)</text>
+<line x1="130.0" y1="194.0" x2="194.0" y2="258.0" stroke="#7c3aed" stroke-width="2.4" marker-end="url(#arvg40)"/><text x="170.0" y="226.0" font-size="12" font-weight="700" font-style="italic" fill="#7c3aed">t</text>
+<circle cx="98.0" cy="98.0" r="4.2" fill="#1e293b" stroke="#1e293b" stroke-width="2"/><text x="82.0" y="88.0" font-size="13.5" font-weight="700" font-style="italic" fill="#1e293b">A</text>
+<circle cx="130.0" cy="194.0" r="4.2" fill="#1e293b" stroke="#1e293b" stroke-width="2"/><text x="138.0" y="210.0" font-size="13.5" font-weight="700" font-style="italic" fill="#1e293b">B</text>
+<circle cx="162.0" cy="162.0" r="4.2" fill="#e11d48" stroke="#e11d48" stroke-width="2"/><text x="170.0" y="154.0" font-size="13.5" font-weight="700" font-style="italic" fill="#e11d48">C</text>
+<circle cx="194.0" cy="258.0" r="4.2" fill="#7c3aed" stroke="#7c3aed" stroke-width="2"/><text x="202.0" y="274.0" font-size="13.5" font-weight="700" font-style="italic" fill="#7c3aed">E</text>
+<circle cx="130.0" cy="66.0" r="4.2" fill="#0d9488" stroke="#0d9488" stroke-width="2"/><text x="138.0" y="58.0" font-size="13.5" font-weight="700" font-style="italic" fill="#0d9488">F</text>
+</svg>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-amber-700">Exercice 5 — Pyramide</p>
+                <div class="mt-2 space-y-2 text-sm text-slate-700">
+                  <p>1) \([SA]\perp(ABCD)\) donc \(SAD\) rectangle en \(A\) : \(SD^2=SA^2+AD^2=36+64=100 \Rightarrow SD=10\text{ cm}\)</p>
+                  <p>2) \(V_1=\dfrac13\times S_{ABCD}\times SA=\dfrac13\times3\times8\times6=48\text{ cm}^3\)</p>
+                  <p>3a) \(V_2=k^3\times V_1=\left(\dfrac12\right)^3\times48=\dfrac{48}{8}=6\text{ cm}^3\)</p>
+                  <p>3b) \(A_{IJKL}=k^2\times A_{ABCD}=\left(\dfrac12\right)^2\times(3\times8)=\dfrac{24}{4}=6\text{ cm}^2\)</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ===================== EXAMEN N°5 ===================== -->
+  <article id="examen-5" class="scroll-mt-24">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div class="overflow-hidden rounded-3xl bg-gradient-to-br from-rose-950 via-rose-900 to-rose-800 p-6 sm:p-10">
+        <div class="flex flex-wrap items-center gap-4">
+          <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/15 font-display text-2xl font-bold text-white ring-1 ring-inset ring-white/25">5</span>
+          <div>
+            <h2 class="font-display text-2xl font-bold text-white sm:text-3xl">Examen Régional N°5</h2>
+            <p class="text-rose-200">Session Juin 2022 · Région Drâa-Tafilalet</p>
+          </div>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="meta-chip">📅 Juin 2022</span>
+          <span class="meta-chip">📍 Drâa-Tafilalet</span>
+          <span class="meta-chip">⏱️ 2 heures</span>
+          <span class="meta-chip">✖️ Coefficient 3</span>
+          <span class="meta-chip">📝 Note sur 20</span>
+          <span class="meta-chip">🚫 Calculatrice non autorisée</span>
+        </div>
+      </div>
+
+      <div class="mt-8 space-y-6">
+
+        <!-- EXERCICE 1 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-rose-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-rose-600">1</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 1</p>
+                <span class="category-tag bg-rose-100 text-rose-700">Équations · Système · Problème · 5 points</span>
+              </div>
+            </div>
+            <ol class="mt-4 list-decimal space-y-3 pl-5 text-sm text-slate-700">
+              <li>
+                <ol class="list-[lower-alpha] space-y-2 pl-5">
+                  <li>Soit \(x\) un nombre réel, résoudre l'équation suivante : \(3x+11=2(x+11)\)</li>
+                  <li>L'âge d'un père est égal à trois fois l'âge de son fils ; après 11 ans l'âge du père sera égal à deux fois l'âge du fils. Quel est l'âge du père ? et quel est l'âge du fils ?</li>
+                </ol>
+              </li>
+              <li>Soit \(x\) un nombre réel, résoudre l'équation suivante : \(x(x-4)=0\)</li>
+              <li>Soit \(x\) un nombre réel, résoudre l'inéquation suivante : \(3(x-4)>5x-(x+2)\)</li>
+              <li>Soit \(x\) et \(y\) deux nombres réels, résoudre le système suivant : \(\begin{cases}3x+y=7\\2x-y=3\end{cases}\)</li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 2 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-amber-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-amber-600">2</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 2</p>
+                <span class="category-tag bg-amber-100 text-amber-700">Translation · 2 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">On considère un parallélogramme \(ABCD\) ; \(M\) est le milieu du segment \([AB]\) et \(T\) la translation qui transforme \(D\) en \(M\).</p>
+            <ol class="mt-3 list-decimal space-y-2 pl-5 text-sm text-slate-700">
+              <li>Construire le point \(E\) image du point \(M\) par la translation \(T\).</li>
+              <li>Soit \((C)\) le cercle de centre \(M\) passant par le point \(A\). Déterminer l'image du cercle \((C)\) par la translation \(T\).</li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 3 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-sky-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-sky-600">3</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 3</p>
+                <span class="category-tag bg-sky-100 text-sky-700">Repère · 4 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">Le plan est rapporté à un repère orthonormé \((O;I;J)\).</p>
+            <ol class="mt-3 list-decimal space-y-2 pl-5 text-sm text-slate-700">
+              <li>Construire dans le même repère \((O;I;J)\) les points suivants : \(A(-2;3)\) ; \(B(2;1)\) et \(M(0;2)\)</li>
+              <li>Calculer la distance \(AB\) puis montrer que \(M(0;2)\) est le milieu du segment \([AB]\).</li>
+              <li>
+                <ol class="list-[lower-alpha] space-y-2 pl-5">
+                  <li>Montrer que le coefficient directeur (la pente) de la droite \((AB)\) est \(-\dfrac12\).</li>
+                  <li>Montrer que l'équation réduite de la médiatrice du segment \([AB]\) est \(y=2x+2\)</li>
+                </ol>
+              </li>
+              <li>Considérons le point \(C(3;4)\) ; déterminer les coordonnées du point \(D\) pour que le quadrilatère \(ABCD\) soit un parallélogramme.</li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 4 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-violet-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-violet-600">4</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 4</p>
+                <span class="category-tag bg-violet-100 text-violet-700">Fonctions · 4 points</span>
+              </div>
+            </div>
+            <ol class="mt-4 list-decimal space-y-3 pl-5 text-sm text-slate-700">
+              <li>Soit \(f\) la fonction linéaire telle que : \(f(2)=3\)
+                <ol class="mt-2 list-[lower-alpha] space-y-2 pl-5">
+                  <li>Déterminer le coefficient de la fonction linéaire \(f\) et en déduire que \(f(x)=\dfrac32 x\)</li>
+                  <li>Déterminer \(f(-2)\)</li>
+                </ol>
+              </li>
+              <li>Soit \(g\) la fonction affine telle que : \(g(x)=-2x+1\). Déterminer \(g(0)\) et le coefficient de \(g\).</li>
+              <li>
+                <ol class="list-[lower-alpha] space-y-2 pl-5">
+                  <li>Les représentations graphiques de \(f\) et \(g\) sont-elles parallèles ? Justifier votre réponse.</li>
+                  <li>Tracer les représentations graphiques de \(f\) et \(g\) dans un repère orthonormé.</li>
+                </ol>
+              </li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 5 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-teal-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-teal-600">5</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 5</p>
+                <span class="category-tag bg-teal-100 text-teal-700">Géométrie dans l'espace · 3 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">\(ABCDEFGH\) est un cube d'arête \(AB=18\text{ cm}\).</p>
+            <div class="graph-card mt-4 max-w-xs mx-auto">
+              <svg viewBox="0 0 400 330" class="w-full h-auto mx-auto" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="330" fill="white" rx="12"/><line x1="294.0" y1="156.0" x2="344.0" y2="121.0" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 4"/><line x1="344.0" y1="121.0" x2="200.0" y2="121.0" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 4"/><line x1="200.0" y1="121.0" x2="150.0" y2="156.0" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 4"/><line x1="344.0" y1="265.0" x2="344.0" y2="121.0" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 4"/><line x1="150.0" y1="156.0" x2="294.0" y2="156.0" stroke="#334155" stroke-width="1.5"/><line x1="294.0" y1="300.0" x2="294.0" y2="156.0" stroke="#334155" stroke-width="1.5"/><polygon points="150.0,300.0 294.0,300.0 344.0,265.0 200.0,265.0" fill="#7c3aed" fill-opacity="0.08" stroke="none" stroke-width="1.8"/><line x1="150.0" y1="300.0" x2="294.0" y2="300.0" stroke="#7c3aed" stroke-width="2.4"/><line x1="294.0" y1="300.0" x2="344.0" y2="265.0" stroke="#7c3aed" stroke-width="2.2" stroke-dasharray="5 4"/><line x1="344.0" y1="265.0" x2="200.0" y2="265.0" stroke="#7c3aed" stroke-width="2.2" stroke-dasharray="5 4"/><line x1="200.0" y1="265.0" x2="150.0" y2="300.0" stroke="#7c3aed" stroke-width="2.2" stroke-dasharray="5 4"/><line x1="150.0" y1="156.0" x2="150.0" y2="300.0" stroke="#7c3aed" stroke-width="2.4"/><line x1="150.0" y1="156.0" x2="294.0" y2="300.0" stroke="#7c3aed" stroke-width="2.4"/><line x1="150.0" y1="156.0" x2="344.0" y2="265.0" stroke="#7c3aed" stroke-width="2.0" stroke-dasharray="5 4"/><line x1="150.0" y1="156.0" x2="200.0" y2="265.0" stroke="#7c3aed" stroke-width="2.0" stroke-dasharray="5 4"/><text x="142.0" y="320.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">A</text><text x="302.0" y="320.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">B</text><text x="184.0" y="269.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">D</text><text x="352.0" y="269.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">C</text><text x="132.0" y="154.0" font-size="15" font-weight="700" font-style="italic" fill="#7c3aed">E</text><text x="302.0" y="154.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">F</text><text x="194.0" y="111.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">H</text><text x="352.0" y="111.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">G</text></svg>
+              <p class="mt-2 text-center text-xs text-slate-500">Pyramide \(EBCDA\) (sommet \(E\), base \(ABCD\)) en <span class="font-semibold text-violet-600">violet</span></p>
+            </div>
+            <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm text-slate-700">
+              <li>Montrer que le volume de la pyramide \(EBCDA\) (de sommet \(E\) et de base \(BCDA\)) est : \(V=1944\text{ cm}^3\)</li>
+              <li>Si on réduit la pyramide \(EBCDA\) de rapport \(\dfrac13\). Quel est alors le volume de la nouvelle pyramide obtenue ?</li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 6 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-emerald-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-emerald-600">6</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 6</p>
+                <span class="category-tag bg-emerald-100 text-emerald-700">Statistiques · 2 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">Le tableau suivant présente une série statistique des notes de 25 élèves d'un devoir surveillé dans une classe de 3ème année collégiale.</p>
+            <div class="mt-3 overflow-x-auto rounded-xl border border-slate-200">
+              <table class="w-full min-w-[460px] text-center text-sm">
+                <tbody>
+                  <tr class="border-b border-slate-200 bg-slate-50"><td class="p-2 font-semibold text-slate-700">Notes</td><td class="p-1.5">7</td><td class="p-1.5">8</td><td class="p-1.5">9</td><td class="p-1.5">10</td><td class="p-1.5">11</td><td class="p-1.5">12</td><td class="p-1.5">13</td><td class="p-1.5">14</td><td class="p-1.5">15</td></tr>
+                  <tr><td class="p-2 font-semibold text-slate-700">Effectifs</td><td class="p-1.5">1</td><td class="p-1.5">1</td><td class="p-1.5">3</td><td class="p-1.5">5</td><td class="p-1.5">7</td><td class="p-1.5">2</td><td class="p-1.5">3</td><td class="p-1.5">2</td><td class="p-1.5">1</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm text-slate-700">
+              <li>Déterminer le mode de cette série statistique.</li>
+              <li>Déterminer la médiane de cette série statistique.</li>
+              <li>Calculer la moyenne arithmétique de cette série statistique.</li>
+            </ol>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="mt-8 rounded-3xl border-2 border-dashed border-amber-300 bg-amber-50/50 p-6 text-center sm:p-8">
+        <p class="font-display text-lg font-bold text-slate-900">Vous avez terminé l'examen N°5 ?</p>
+        <p class="mt-1 text-sm text-slate-600">Cliquez ci-dessous pour afficher la correction complète, exercice par exercice.</p>
+        <button type="button" class="correction-toggle mt-4 !px-8 !py-3.5 !text-base" data-acc-trigger aria-expanded="false" data-open-label="Masquer la correction de l'Examen N°5" data-closed-label="Voir la correction de l'Examen N°5">
+          <svg data-chevron class="h-4 w-4 shrink-0 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+          <span data-label>Voir la correction de l'Examen N°5</span>
+        </button>
+        <div class="acc-wrapper mt-2 text-left" data-acc-wrapper>
+          <div class="acc-inner">
+            <div class="correction-panel !bg-white space-y-8 sm:p-8">
+              <div class="flex items-center gap-3 border-b border-emerald-200 pb-4">
+                <span class="text-3xl">✅</span>
+                <div>
+                  <p class="font-display text-xl font-bold text-slate-900">Correction — Examen Régional N°5</p>
+                  <p class="text-sm text-slate-500">Session Juin 2022 · Région Drâa-Tafilalet</p>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-rose-700">Exercice 1</p>
+                <div class="mt-3 space-y-3 text-sm text-slate-700">
+                  <div>
+                    <p class="font-semibold">1a) \(3x+11=2(x+11)\)</p>
+                    <div class="katex-block mt-1">\[3x+11=2x+22 \;\Rightarrow\; x=11\]</div>
+                  </div>
+                  <div>
+                    <p class="font-semibold">1b) Problème — âges :</p>
+                    <p class="mt-1">Soit \(x\) l'âge du fils, alors l'âge du père est \(3x\). Après 11 ans : \(3x+11=2(x+11)\), donc d'après 1a) \(x=11\).</p>
+                    <p class="mt-1 font-semibold text-emerald-800">D'où : l'âge du père est 33 ans, l'âge du fils est 11 ans.</p>
+                  </div>
+                  <div><p class="font-semibold">2) \(x(x-4)=0 \Rightarrow x=0 \text{ ou } x=4\)</p></div>
+                  <div><p class="font-semibold">3) \(3(x-4)>5x-(x+2)\)</p><div class="katex-block mt-1">\[3x-12>4x-2 \;\Rightarrow\; -x>10 \;\Rightarrow\; x<-10\]</div></div>
+                  <div><p class="font-semibold">4) \(\begin{cases}3x+y=7\\2x-y=3\end{cases}\)</p><div class="katex-block mt-1">\[\text{On additionne : } 5x=10 \Rightarrow x=2,\; y=1\]</div><p class="font-semibold text-emerald-800">D'où le couple \((2;1)\) est la solution.</p></div>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-amber-700">Exercice 2 — Translation</p>
+                <div class="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:items-center">
+                  <p class="text-sm text-slate-700">\(E\) est l'image de \(M\), centre du cercle \((C)\), par la translation \(T\). Donc \(E\) est le centre du cercle \((C')\), image de \((C)\) par \(T\), de même rayon \(R=MA\).</p>
+                  <div class="graph-card max-w-xs mx-auto">
+                    <svg viewBox="0 0 560 460" class="w-full h-auto mx-auto" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="460" fill="white" rx="12"/><defs><marker id="s3ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker></defs><circle cx="280.0" cy="195.0" r="130.9" fill="#6366f1" fill-opacity="0.06" stroke="#6366f1" stroke-width="1.6"/><circle cx="420.0" cy="50.0" r="130.9" fill="#e11d48" fill-opacity="0.05" stroke="#e11d48" stroke-width="1.6"/><polygon points="150.0,210.0 410.0,180.0 400.0,310.0 140.0,340.0" fill="white" stroke="#334155" stroke-width="2"/><line x1="140.0" y1="340.0" x2="274.0" y2="200.0" stroke="#7c3aed" stroke-width="2.2" marker-end="url(#s3ar)"/><text x="200.0" y="261.5" font-size="14" font-weight="700" font-style="italic" fill="#7c3aed">T</text><line x1="280.0" y1="195.0" x2="420.0" y2="50.0" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="5 4"/><circle cx="150.0" cy="210.0" r="3.6" fill="#1e293b"/><text x="132.0" y="204.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">A</text><circle cx="410.0" cy="180.0" r="3.6" fill="#1e293b"/><text x="420.0" y="176.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">B</text><circle cx="400.0" cy="310.0" r="3.6" fill="#1e293b"/><text x="410.0" y="320.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">C</text><circle cx="140.0" cy="340.0" r="3.6" fill="#1e293b"/><text x="122.0" y="354.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">D</text><circle cx="280.0" cy="195.0" r="3.6" fill="#1e293b"/><text x="286.0" y="185.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">M</text><circle cx="420.0" cy="50.0" r="3.6" fill="#e11d48"/><text x="428.0" y="42.0" font-size="15" font-weight="700" font-style="italic" fill="#e11d48">E</text><text x="325.8" y="123.0" font-size="13" font-weight="700" font-style="italic" fill="#6366f1">(C)</text><text x="446.2" y="148.1" font-size="13" font-weight="700" font-style="italic" fill="#e11d48">(C')</text></svg>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-sky-700">Exercice 3 — Repère</p>
+                <div class="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:items-center">
+                  <div class="space-y-2 text-sm text-slate-700">
+                    <p>2) \(AB=\sqrt{(2-(-2))^2+(1-3)^2}=\sqrt{16+4}=\sqrt{20}=2\sqrt5\). Milieu \(=\left(\dfrac{-2+2}{2};\dfrac{3+1}{2}\right)=(0;2)=M\) ✓</p>
+                    <p>3a) pente \(=\dfrac{3-1}{-2-2}=\dfrac{2}{-4}=-\dfrac12\)</p>
+                    <p>3b) médiatrice \(\perp(AB)\) donc pente \(=2\), et passe par \(M(0;2)\) : \(y=2x+2\)</p>
+                    <p>4) \(ABCD\) parallélogramme \(\Rightarrow \overrightarrow{CD}=\overrightarrow{BA}\) : \(D=A+C-B=(-2+3-2;3+4-1)=(-1;6)\)</p>
+                  </div>
+                  <div class="graph-card max-w-[220px] mx-auto">
+                    <svg viewBox="0 0 292 254" class="w-full h-auto mx-auto" xmlns="http://www.w3.org/2000/svg">
+<rect width="292" height="254" fill="white" rx="12"/>
+<defs>
+<marker id="arg5x" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+<marker id="arg5y" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+</defs>
+<line x1="32.0" y1="32.0" x2="32.0" y2="222.0" stroke="#e2e8f0" stroke-width="1"/><line x1="70.0" y1="32.0" x2="70.0" y2="222.0" stroke="#e2e8f0" stroke-width="1"/><line x1="108.0" y1="32.0" x2="108.0" y2="222.0" stroke="#e2e8f0" stroke-width="1"/><line x1="146.0" y1="32.0" x2="146.0" y2="222.0" stroke="#e2e8f0" stroke-width="1"/><line x1="184.0" y1="32.0" x2="184.0" y2="222.0" stroke="#e2e8f0" stroke-width="1"/><line x1="222.0" y1="32.0" x2="222.0" y2="222.0" stroke="#e2e8f0" stroke-width="1"/><line x1="260.0" y1="32.0" x2="260.0" y2="222.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="222.0" x2="260.0" y2="222.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="184.0" x2="260.0" y2="184.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="146.0" x2="260.0" y2="146.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="108.0" x2="260.0" y2="108.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="70.0" x2="260.0" y2="70.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="32.0" x2="260.0" y2="32.0" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="34.0" y1="184.0" x2="258.0" y2="184.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arg5x)"/><line x1="146.0" y1="224.0" x2="146.0" y2="30.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arg5y)"/>
+<text x="132.0" y="200.0" font-size="12" font-weight="700" font-style="italic" fill="#1e293b">O</text><text x="180.0" y="200.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">I</text><text x="132.0" y="150.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">J</text>
+<line x1="70.0" y1="184.0" x2="70.0" y2="70.0" stroke="#cbd5e1" stroke-width="1.3" stroke-dasharray="4 3"/><line x1="146.0" y1="70.0" x2="70.0" y2="70.0" stroke="#cbd5e1" stroke-width="1.3" stroke-dasharray="4 3"/><line x1="222.0" y1="184.0" x2="222.0" y2="146.0" stroke="#cbd5e1" stroke-width="1.3" stroke-dasharray="4 3"/><line x1="146.0" y1="146.0" x2="222.0" y2="146.0" stroke="#cbd5e1" stroke-width="1.3" stroke-dasharray="4 3"/>
+<line x1="70.0" y1="70.0" x2="222.0" y2="146.0" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="6 4"/>
+<circle cx="70.0" cy="70.0" r="4.2" fill="#1e293b" stroke="#1e293b" stroke-width="2"/><text x="52.0" y="62.0" font-size="13.5" font-weight="700" font-style="italic" fill="#1e293b">A</text>
+<circle cx="222.0" cy="146.0" r="4.2" fill="#1e293b" stroke="#1e293b" stroke-width="2"/><text x="230.0" y="138.0" font-size="13.5" font-weight="700" font-style="italic" fill="#1e293b">B</text>
+<circle cx="146.0" cy="108.0" r="4.2" fill="#e11d48" stroke="#e11d48" stroke-width="2"/><text x="154.0" y="100.0" font-size="13.5" font-weight="700" font-style="italic" fill="#e11d48">M</text>
+</svg>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-violet-700">Exercice 4</p>
+                <div class="mt-3 grid gap-4 sm:grid-cols-2 sm:items-start">
+                  <div class="space-y-2 text-sm text-slate-700">
+                    <p>1a) \(a=\dfrac{f(2)}{2}=\dfrac32\) donc \(f(x)=\dfrac32 x\)</p>
+                    <p>1b) \(f(-2)=\dfrac32\times(-2)=-3\)</p>
+                    <p>2) \(g(0)=-2\times0+1=1\) ; coefficient de \(g\) : \(a=-2\)</p>
+                    <p>3a) \(f\) et \(g\) ont des coefficients différents (\(\tfrac32\neq-2\)), donc leurs représentations <strong>ne sont pas parallèles</strong>.</p>
+                  </div>
+                  <div class="graph-card max-w-[220px] mx-auto">
+                    <svg viewBox="0 0 254 330" class="w-full h-auto mx-auto" xmlns="http://www.w3.org/2000/svg">
+<rect width="254" height="330" fill="white" rx="12"/>
+<defs>
+<marker id="arg8x" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+<marker id="arg8y" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+<marker id="arlng80" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker>
+<marker id="arlng81" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e11d48"/></marker>
+</defs>
+<line x1="32.0" y1="32.0" x2="32.0" y2="298.0" stroke="#e2e8f0" stroke-width="1"/><line x1="70.0" y1="32.0" x2="70.0" y2="298.0" stroke="#e2e8f0" stroke-width="1"/><line x1="108.0" y1="32.0" x2="108.0" y2="298.0" stroke="#e2e8f0" stroke-width="1"/><line x1="146.0" y1="32.0" x2="146.0" y2="298.0" stroke="#e2e8f0" stroke-width="1"/><line x1="184.0" y1="32.0" x2="184.0" y2="298.0" stroke="#e2e8f0" stroke-width="1"/><line x1="222.0" y1="32.0" x2="222.0" y2="298.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="298.0" x2="222.0" y2="298.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="260.0" x2="222.0" y2="260.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="222.0" x2="222.0" y2="222.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="184.0" x2="222.0" y2="184.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="146.0" x2="222.0" y2="146.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="108.0" x2="222.0" y2="108.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="70.0" x2="222.0" y2="70.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="32.0" x2="222.0" y2="32.0" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="34.0" y1="184.0" x2="220.0" y2="184.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arg8x)"/><line x1="108.0" y1="300.0" x2="108.0" y2="30.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arg8y)"/>
+<text x="94.0" y="200.0" font-size="12" font-weight="700" font-style="italic" fill="#1e293b">O</text><text x="142.0" y="200.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">I</text><text x="94.0" y="150.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">J</text>
+<line x1="32.0" y1="298.0" x2="209.3" y2="32.0" stroke="#7c3aed" stroke-width="2.4" marker-end="url(#arlng80)"/><text x="178.6" y="81.1" font-size="13" font-weight="700" font-style="italic" fill="#7c3aed">Cf</text>
+<line x1="51.0" y1="32.0" x2="184.0" y2="298.0" stroke="#e11d48" stroke-width="2.4" marker-end="url(#arlng81)"/><text x="72.2" y="56.4" font-size="13" font-weight="700" font-style="italic" fill="#e11d48">Cg</text>
+</svg>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-teal-700">Exercice 5 — Cube</p>
+                <div class="mt-2 space-y-2 text-sm text-slate-700">
+                  <p>1) \(V=\dfrac13\times S_{ABCD}\times AE=\dfrac13\times18\times18\times18=\dfrac{5832}{3}=1944\text{ cm}^3\)</p>
+                  <p>2) Rapport \(k=\dfrac13\) : \(V'=k^3\times V=\left(\dfrac13\right)^3\times1944=\dfrac{1944}{27}=72\text{ cm}^3\)</p>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-emerald-700">Exercice 6 — Statistiques</p>
+                <div class="mt-3 overflow-x-auto rounded-xl border border-slate-200">
+                  <table class="w-full min-w-[460px] text-center text-sm">
+                    <tbody>
+                      <tr class="border-b border-slate-200 bg-slate-50"><td class="p-2 font-semibold text-slate-700">Notes</td><td class="p-1.5">7</td><td class="p-1.5">8</td><td class="p-1.5">9</td><td class="p-1.5">10</td><td class="p-1.5 font-bold text-emerald-700">11</td><td class="p-1.5">12</td><td class="p-1.5">13</td><td class="p-1.5">14</td><td class="p-1.5">15</td></tr>
+                      <tr><td class="p-2 font-semibold text-slate-700">Effectifs</td><td class="p-1.5">1</td><td class="p-1.5">1</td><td class="p-1.5">3</td><td class="p-1.5">5</td><td class="p-1.5 font-bold text-emerald-700">7</td><td class="p-1.5">2</td><td class="p-1.5">3</td><td class="p-1.5">2</td><td class="p-1.5">1</td></tr>
+                      <tr class="bg-slate-50"><td class="p-2 font-semibold text-slate-700">Effectif cumulé</td><td class="p-1.5">1</td><td class="p-1.5">2</td><td class="p-1.5">5</td><td class="p-1.5">10</td><td class="p-1.5 font-bold text-emerald-700">17</td><td class="p-1.5">19</td><td class="p-1.5">22</td><td class="p-1.5">24</td><td class="p-1.5">25</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="mt-3 space-y-2 text-sm text-slate-700">
+                  <p>1) Mode = <strong>11</strong> (effectif le plus grand : 7).</p>
+                  <p>2) \(N=25\), \(\dfrac{N}{2}=12{,}5\). Le premier effectif cumulé \(\geq12{,}5\) est 17, atteint à la valeur 11.</p>
+                  <p class="font-semibold text-emerald-800">D'où : la médiane est \(M=11\).</p>
+                  <p>3) Moyenne :</p>
+                  <div class="katex-block mt-1">\[m=\dfrac{7\times1+8\times1+9\times3+10\times5+11\times7+12\times2+13\times3+14\times2+15\times1}{25}=\dfrac{275}{25}=11\]</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ===================== EXAMEN N°6 ===================== -->
+  <article id="examen-6" class="scroll-mt-24 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div class="overflow-hidden rounded-3xl bg-gradient-to-br from-amber-950 via-amber-900 to-amber-800 p-6 sm:p-10">
+        <div class="flex flex-wrap items-center gap-4">
+          <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/15 font-display text-2xl font-bold text-white ring-1 ring-inset ring-white/25">6</span>
+          <div>
+            <h2 class="font-display text-2xl font-bold text-white sm:text-3xl">Examen Régional N°6</h2>
+            <p class="text-amber-200">Session Juin 2022 · Région Oriental</p>
+          </div>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="meta-chip">📅 Juin 2022</span>
+          <span class="meta-chip">📍 Oriental</span>
+          <span class="meta-chip">⏱️ 2 heures</span>
+          <span class="meta-chip">✖️ Coefficient 3</span>
+          <span class="meta-chip">📝 Note sur 20</span>
+          <span class="meta-chip">🚫 Calculatrice non autorisée</span>
+        </div>
+      </div>
+
+      <div class="mt-8 space-y-6">
+
+        <!-- EXERCICE 1 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-amber-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-amber-600">1</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 1</p>
+                <span class="category-tag bg-amber-100 text-amber-700">Équations · Inéquations · Système · 5 points</span>
+              </div>
+            </div>
+            <ol class="mt-4 list-decimal space-y-3 pl-5 text-sm text-slate-700">
+              <li>Résoudre l'équation suivante : \(4x+1=-3\)</li>
+              <li>
+                <ol class="list-[lower-alpha] space-y-2 pl-5">
+                  <li>Vérifier que : \((x+3)(2-x)=-x^2-x+6\)</li>
+                  <li>Résoudre l'équation : \(-x^2-x+6=0\)</li>
+                </ol>
+              </li>
+              <li>Résoudre les inéquations suivantes : \(7x-5\leq0\) et \(3x-1\leq5x+7\)</li>
+              <li>Considérons le système suivant : \((S):\begin{cases}3x+y=7\\2x-y=3\end{cases}\)
+                <ol class="mt-2 list-[lower-alpha] space-y-2 pl-5">
+                  <li>Le couple \((2;-1)\) est-il une solution du système \((S)\) ?</li>
+                  <li>Résoudre le système \((S)\).</li>
+                </ol>
+              </li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 2 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-emerald-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-emerald-600">2</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 2</p>
+                <span class="category-tag bg-emerald-100 text-emerald-700">Statistiques · 2 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">Le tableau suivant présente le nombre d'enfants par famille dans un quartier.</p>
+            <div class="mt-3 overflow-x-auto rounded-xl border border-slate-200">
+              <table class="w-full min-w-[360px] text-center text-sm">
+                <tbody>
+                  <tr class="border-b border-slate-200 bg-slate-50"><td class="p-2 font-semibold text-slate-700">Nombre d'enfants</td><td class="p-2">0</td><td class="p-2">1</td><td class="p-2">2</td><td class="p-2">3</td><td class="p-2">4</td></tr>
+                  <tr><td class="p-2 font-semibold text-slate-700">Nombre de familles</td><td class="p-2">5</td><td class="p-2">3</td><td class="p-2">2</td><td class="p-2">7</td><td class="p-2">3</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm text-slate-700">
+              <li>Donner le nombre total des familles du quartier.</li>
+              <li>Déterminer le mode de cette série statistique.</li>
+              <li>Calculer la moyenne arithmétique.</li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 3 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-sky-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-sky-600">3</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 3</p>
+                <span class="category-tag bg-sky-100 text-sky-700">Repère · 6 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">Le plan est muni d'un repère orthonormé \((O;I;J)\). Considérons les points \(A(0;1)\) ; \(B(1;4)\) et \(C(3;4)\)</p>
+            <ol class="mt-3 list-decimal space-y-2 pl-5 text-sm text-slate-700">
+              <li>Déterminer les coordonnées du vecteur \(\overrightarrow{AB}\)</li>
+              <li>Calculer la distance \(AB\).</li>
+              <li>Calculer les coordonnées du point \(K\) le milieu du segment \([AB]\).</li>
+              <li>Montrer que l'équation réduite de la droite \((AB)\) est \(y=3x+1\)</li>
+              <li>
+                <ol class="list-[lower-alpha] space-y-2 pl-5">
+                  <li>Déterminer l'équation réduite de la droite parallèle à \((AB)\) et passant par \(C\).</li>
+                  <li>Montrer que la droite d'équation \(y=\dfrac{-1}3 x+4\) est perpendiculaire à \((AB)\).</li>
+                </ol>
+              </li>
+              <li>Déterminer les coordonnées du point \(D\) l'image de \(C\) par la translation de vecteur \(\overrightarrow{AB}\)</li>
+              <li>Déterminer l'image de la droite \((AC)\) par la translation de vecteur \(\overrightarrow{AB}\).</li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 4 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-violet-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-violet-600">4</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 4</p>
+                <span class="category-tag bg-violet-100 text-violet-700">Fonctions · 4 points</span>
+              </div>
+            </div>
+            <ol class="mt-4 list-decimal space-y-3 pl-5 text-sm text-slate-700">
+              <li>Soit \(f\) la fonction linéaire définie par : \(f(x)=3x\)
+                <ol class="mt-2 list-[lower-alpha] space-y-2 pl-5">
+                  <li>Déterminer le coefficient de la fonction linéaire \(f\)</li>
+                  <li>Calculer \(f(1)\) et \(f(-2)\).</li>
+                  <li>Le point \(E(10;30)\) appartient-il à la représentation graphique de la fonction \(f\) ?</li>
+                </ol>
+              </li>
+              <li>Soit la fonction \(g\) définie par : \(g(x)=-5x+1\)
+                <ol class="mt-2 list-[lower-alpha] space-y-2 pl-5">
+                  <li>Déterminer la nature de la fonction \(g\) et préciser son coefficient.</li>
+                  <li>Déterminer le nombre dont l'image par la fonction \(g\) est \(-9\).</li>
+                </ol>
+              </li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- EXERCICE 5 -->
+        <article class="card !p-0 overflow-hidden">
+          <div class="border-l-4 border-rose-600 p-6">
+            <div class="flex items-center gap-3">
+              <span class="exercise-badge bg-rose-600">5</span>
+              <div>
+                <p class="font-display font-bold text-slate-900">Exercice 5</p>
+                <span class="category-tag bg-rose-100 text-rose-700">Géométrie dans l'espace · 3 points</span>
+              </div>
+            </div>
+            <p class="mt-4 text-sm text-slate-700">\(ABCDEFGH\) est un parallélépipède rectangle tel que : \(AB=8\text{ cm}\) ; \(BC=6\text{ cm}\) et \(AE=4\text{ cm}\).</p>
+            <div class="graph-card mt-4 max-w-[260px] mx-auto">
+              <svg viewBox="128 188 214 150" class="w-full h-auto mx-auto" xmlns="http://www.w3.org/2000/svg"><rect x="128" y="188" width="214" height="150" fill="white" rx="12"/><line x1="160.0" y1="300.0" x2="200.0" y2="272.0" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="5 4"/><line x1="200.0" y1="272.0" x2="304.0" y2="272.0" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="5 4"/><line x1="200.0" y1="272.0" x2="200.0" y2="220.0" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="5 4"/><line x1="264.0" y1="248.0" x2="304.0" y2="220.0" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="5 4"/><line x1="304.0" y1="220.0" x2="200.0" y2="220.0" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="5 4"/><line x1="304.0" y1="272.0" x2="304.0" y2="220.0" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="5 4"/><line x1="160.0" y1="300.0" x2="264.0" y2="300.0" stroke="#64748b" stroke-width="1.6"/><line x1="264.0" y1="300.0" x2="304.0" y2="272.0" stroke="#64748b" stroke-width="1.4" stroke-dasharray="5 4"/><line x1="160.0" y1="300.0" x2="160.0" y2="248.0" stroke="#64748b" stroke-width="1.6"/><line x1="264.0" y1="300.0" x2="264.0" y2="248.0" stroke="#64748b" stroke-width="1.6"/><line x1="160.0" y1="248.0" x2="264.0" y2="248.0" stroke="#64748b" stroke-width="1.6"/><line x1="160.0" y1="248.0" x2="200.0" y2="220.0" stroke="#64748b" stroke-width="1.4" stroke-dasharray="5 4"/><polygon points="180.0,260.0 232.0,260.0 252.0,246.0 200.0,246.0" fill="#7c3aed" fill-opacity="0.14" stroke="none" stroke-width="1.8"/><line x1="180.0" y1="286.0" x2="232.0" y2="286.0" stroke="#7c3aed" stroke-width="2.2"/><line x1="232.0" y1="286.0" x2="252.0" y2="272.0" stroke="#7c3aed" stroke-width="2.2"/><line x1="252.0" y1="272.0" x2="200.0" y2="272.0" stroke="#7c3aed" stroke-width="2.0" stroke-dasharray="5 4"/><line x1="200.0" y1="272.0" x2="180.0" y2="286.0" stroke="#7c3aed" stroke-width="2.0" stroke-dasharray="5 4"/><line x1="180.0" y1="260.0" x2="232.0" y2="260.0" stroke="#7c3aed" stroke-width="2.2"/><line x1="232.0" y1="260.0" x2="252.0" y2="246.0" stroke="#7c3aed" stroke-width="2.2"/><line x1="252.0" y1="246.0" x2="200.0" y2="246.0" stroke="#7c3aed" stroke-width="2.0" stroke-dasharray="5 4"/><line x1="200.0" y1="246.0" x2="180.0" y2="260.0" stroke="#7c3aed" stroke-width="2.0" stroke-dasharray="5 4"/><line x1="180.0" y1="286.0" x2="180.0" y2="260.0" stroke="#7c3aed" stroke-width="2.2"/><line x1="232.0" y1="286.0" x2="232.0" y2="260.0" stroke="#7c3aed" stroke-width="2.2"/><line x1="252.0" y1="272.0" x2="252.0" y2="246.0" stroke="#7c3aed" stroke-width="2.0" stroke-dasharray="5 4"/><line x1="200.0" y1="272.0" x2="200.0" y2="246.0" stroke="#7c3aed" stroke-width="2.0" stroke-dasharray="5 4"/><text x="152.0" y="318.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">A</text><text x="272.0" y="318.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">B</text><text x="312.0" y="274.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">C</text><text x="196.0" y="290.0" font-size="15" font-weight="700" font-style="italic" fill="#7c3aed">D</text><text x="144.0" y="246.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">E</text><text x="272.0" y="246.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">F</text><text x="312.0" y="212.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">G</text><text x="184.0" y="212.0" font-size="15" font-weight="700" font-style="italic" fill="#1e293b">H</text><text x="176.0" y="302.0" font-size="12" font-weight="700" font-style="italic" fill="#7c3aed">I</text><text x="236.0" y="302.0" font-size="12" font-weight="700" font-style="italic" fill="#7c3aed">J</text><text x="258.0" y="274.0" font-size="12" font-weight="700" font-style="italic" fill="#7c3aed">K</text><text x="166.0" y="258.0" font-size="12" font-weight="700" font-style="italic" fill="#7c3aed">M</text><text x="236.0" y="254.0" font-size="12" font-weight="700" font-style="italic" fill="#7c3aed">N</text><text x="258.0" y="242.0" font-size="12" font-weight="700" font-style="italic" fill="#7c3aed">O</text><text x="196.0" y="238.0" font-size="12" font-weight="700" font-style="italic" fill="#7c3aed">P</text></svg>
+              <p class="mt-2 text-center text-xs text-slate-500">Réduction \(IJKDMNOP\) (rapport \(\tfrac12\), centre \(D\)) en <span class="font-semibold text-violet-600">violet</span></p>
+            </div>
+            <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm text-slate-700">
+              <li>Calculer la distance \(AC\).</li>
+              <li>Calculer \(V\) le volume du parallélépipède \(ABCDEFGH\)</li>
+              <li>Après une réduction de rapport \(k=\dfrac12\) du parallélépipède \(ABCDEFGH\), on obtient le parallélépipède \(IJKDMNOP\) (voir le schéma ci-dessus). Calculer \(V'\) le volume du parallélépipède \(IJKDMNOP\)</li>
+            </ol>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="mt-8 rounded-3xl border-2 border-dashed border-amber-300 bg-amber-50/50 p-6 text-center sm:p-8">
+        <p class="font-display text-lg font-bold text-slate-900">Vous avez terminé l'examen N°6 ?</p>
+        <p class="mt-1 text-sm text-slate-600">Cliquez ci-dessous pour afficher la correction complète, exercice par exercice.</p>
+        <button type="button" class="correction-toggle mt-4 !px-8 !py-3.5 !text-base" data-acc-trigger aria-expanded="false" data-open-label="Masquer la correction de l'Examen N°6" data-closed-label="Voir la correction de l'Examen N°6">
+          <svg data-chevron class="h-4 w-4 shrink-0 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+          <span data-label>Voir la correction de l'Examen N°6</span>
+        </button>
+        <div class="acc-wrapper mt-2 text-left" data-acc-wrapper>
+          <div class="acc-inner">
+            <div class="correction-panel !bg-white space-y-8 sm:p-8">
+              <div class="flex items-center gap-3 border-b border-emerald-200 pb-4">
+                <span class="text-3xl">✅</span>
+                <div>
+                  <p class="font-display text-xl font-bold text-slate-900">Correction — Examen Régional N°6</p>
+                  <p class="text-sm text-slate-500">Session Juin 2022 · Région Oriental</p>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-amber-700">Exercice 1</p>
+                <div class="mt-3 space-y-3 text-sm text-slate-700">
+                  <div><p class="font-semibold">1) \(4x+1=-3 \Rightarrow 4x=-4 \Rightarrow x=-1\)</p></div>
+                  <div>
+                    <p class="font-semibold">2a) \((x+3)(2-x)=2x-x^2+6-3x=-x^2-x+6\) ✓</p>
+                    <p class="mt-1 font-semibold">2b) \((x+3)(2-x)=0 \Rightarrow x=-3 \text{ ou } x=2\)</p>
+                  </div>
+                  <div><p class="font-semibold">3) \(7x-5\leq0 \Rightarrow x\leq\dfrac57\) &nbsp;·&nbsp; \(3x-1\leq5x+7 \Rightarrow -2x\leq8 \Rightarrow x\geq-4\)</p></div>
+                  <div>
+                    <p class="font-semibold">4a) \(3(2)+(-1)=5\neq7\)</p>
+                    <p class="mt-1 font-semibold text-rose-700">Donc \((2;-1)\) n'est pas solution de \((S)\).</p>
+                    <p class="mt-2 font-semibold">4b) On additionne : \(5x=10 \Rightarrow x=2,\; y=1\)</p>
+                    <p class="mt-1 font-semibold text-emerald-800">D'où le couple \((2;1)\) est la solution de \((S)\).</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-emerald-700">Exercice 2 — Statistiques</p>
+                <div class="mt-2 space-y-2 text-sm text-slate-700">
+                  <p>1) Total \(=5+3+2+7+3=20\) familles.</p>
+                  <p>2) Mode = <strong>3</strong> (effectif le plus grand : 7).</p>
+                  <p>3) Moyenne : \(m=\dfrac{0\times5+1\times3+2\times2+3\times7+4\times3}{20}=\dfrac{40}{20}=2\)</p>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-sky-700">Exercice 3 — Repère</p>
+                <div class="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:items-center">
+                  <div class="space-y-2 text-sm text-slate-700">
+                    <p>1) \(\overrightarrow{AB}(1;3)\) &nbsp;·&nbsp; 2) \(AB=\sqrt{1^2+3^2}=\sqrt{10}\)</p>
+                    <p>3) \(K\left(\dfrac{0+1}{2};\dfrac{1+4}{2}\right)=\left(\dfrac12;\dfrac52\right)\)</p>
+                    <p>4) pente \(=\dfrac{4-1}{1-0}=3\), \(A(0;1)\in(AB)\Rightarrow b=1\) : \((AB):y=3x+1\)</p>
+                    <p>5a) \((L)\parallel(AB)\Rightarrow a=3\) ; \(C(3;4)\in(L)\Rightarrow b=-5\) : \((L):y=3x-5\)</p>
+                    <p>5b) \(3\times\left(-\dfrac13\right)=-1\) donc cette droite est perpendiculaire à \((AB)\).</p>
+                    <p>6) \(\overrightarrow{CD}=\overrightarrow{AB}(1;3)\Rightarrow D(4;7)\)</p>
+                    <p>7) \(A\to B\) et \(C\to D\) : l'image de la droite \((AC)\) par cette translation est la droite \((BD)\).</p>
+                  </div>
+                  <div class="graph-card max-w-[220px] mx-auto">
+                    <svg viewBox="0 0 244 334" class="w-full h-auto mx-auto" xmlns="http://www.w3.org/2000/svg">
+<rect width="244" height="334" fill="white" rx="12"/>
+<defs>
+<marker id="arg11x" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+<marker id="arg11y" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1e293b"/></marker>
+<marker id="arlng110" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+<marker id="arlng111" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0d9488"/></marker>
+<marker id="arvg110" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker>
+</defs>
+<line x1="32.0" y1="32.0" x2="32.0" y2="302.0" stroke="#e2e8f0" stroke-width="1"/><line x1="62.0" y1="32.0" x2="62.0" y2="302.0" stroke="#e2e8f0" stroke-width="1"/><line x1="92.0" y1="32.0" x2="92.0" y2="302.0" stroke="#e2e8f0" stroke-width="1"/><line x1="122.0" y1="32.0" x2="122.0" y2="302.0" stroke="#e2e8f0" stroke-width="1"/><line x1="152.0" y1="32.0" x2="152.0" y2="302.0" stroke="#e2e8f0" stroke-width="1"/><line x1="182.0" y1="32.0" x2="182.0" y2="302.0" stroke="#e2e8f0" stroke-width="1"/><line x1="212.0" y1="32.0" x2="212.0" y2="302.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="302.0" x2="212.0" y2="302.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="272.0" x2="212.0" y2="272.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="242.0" x2="212.0" y2="242.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="212.0" x2="212.0" y2="212.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="182.0" x2="212.0" y2="182.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="152.0" x2="212.0" y2="152.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="122.0" x2="212.0" y2="122.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="92.0" x2="212.0" y2="92.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="62.0" x2="212.0" y2="62.0" stroke="#e2e8f0" stroke-width="1"/><line x1="32.0" y1="32.0" x2="212.0" y2="32.0" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="34.0" y1="272.0" x2="210.0" y2="272.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arg11x)"/><line x1="62.0" y1="304.0" x2="62.0" y2="30.0" stroke="#1e293b" stroke-width="1.8" marker-end="url(#arg11y)"/>
+<text x="48.0" y="288.0" font-size="12" font-weight="700" font-style="italic" fill="#1e293b">O</text><text x="88.0" y="288.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">I</text><text x="48.0" y="246.0" font-size="11" font-weight="700" font-style="italic" fill="#475569">J</text>
+<line x1="42.0" y1="302.0" x2="132.0" y2="32.0" stroke="#2563eb" stroke-width="2.2" marker-end="url(#arlng110)"/><text x="113.0" y="101.0" font-size="13" font-weight="700" font-style="italic" fill="#2563eb">(AB)</text>
+<line x1="102.0" y1="302.0" x2="192.0" y2="32.0" stroke="#0d9488" stroke-width="2.0" stroke-dasharray="7 5" marker-end="url(#arlng111)"/><text x="144.5" y="186.5" font-size="13" font-weight="700" font-style="italic" fill="#0d9488">(L)</text>
+<line x1="152.0" y1="152.0" x2="182.0" y2="62.0" stroke="#7c3aed" stroke-width="2.2" marker-end="url(#arvg110)"/>
+<circle cx="62.0" cy="242.0" r="4.2" fill="#1e293b" stroke="#1e293b" stroke-width="2"/><text x="46.0" y="256.0" font-size="13.5" font-weight="700" font-style="italic" fill="#1e293b">A</text>
+<circle cx="92.0" cy="152.0" r="4.2" fill="#1e293b" stroke="#1e293b" stroke-width="2"/><text x="100.0" y="144.0" font-size="13.5" font-weight="700" font-style="italic" fill="#1e293b">B</text>
+<circle cx="152.0" cy="152.0" r="4.2" fill="#e11d48" stroke="#e11d48" stroke-width="2"/><text x="160.0" y="144.0" font-size="13.5" font-weight="700" font-style="italic" fill="#e11d48">C</text>
+<circle cx="182.0" cy="62.0" r="4.2" fill="#7c3aed" stroke="#7c3aed" stroke-width="2"/><text x="190.0" y="54.0" font-size="13.5" font-weight="700" font-style="italic" fill="#7c3aed">D</text>
+</svg>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-violet-700">Exercice 4</p>
+                <div class="mt-2 space-y-2 text-sm text-slate-700">
+                  <p>1a) Coefficient de \(f\) : \(3\)</p>
+                  <p>1b) \(f(1)=3\times1=3\) et \(f(-2)=3\times(-2)=-6\)</p>
+                  <p>1c) \(f(10)=3\times10=30\), donc \(E(10;30)\) appartient à la représentation graphique de \(f\).</p>
+                  <p>2a) \(g\) est une fonction affine (\(g(x)=ax+b\)) de coefficient \(a=-5\).</p>
+                  <p>2b) Soit \(y\) tel que \(g(y)=-9\) : \(-5y+1=-9 \Rightarrow -5y=-10 \Rightarrow y=2\)</p>
+                </div>
+              </div>
+
+              <div>
+                <p class="step-title text-rose-700">Exercice 5 — Parallélépipède</p>
+                <div class="mt-2 space-y-2 text-sm text-slate-700">
+                  <p>1) \(ABCD\) rectangle donc \(ABC\) rectangle en \(B\) : \(AC^2=AB^2+BC^2=8^2+6^2=100 \Rightarrow AC=10\text{ cm}\)</p>
+                  <p>2) \(V=AB\times BC\times AE=8\times6\times4=192\text{ cm}^3\)</p>
+                  <p>3) Rapport \(k=\dfrac12\) : \(V'=k^3\times V=\left(\dfrac12\right)^3\times192=\dfrac{192}{8}=24\text{ cm}^3\)</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-slate-950 text-slate-300">
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="sm:col-span-2 lg:col-span-2">
+        <a href="/" class="flex items-center gap-2.5">
+          <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+          <span class="font-display font-bold text-white leading-tight">
+            <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+          </span>
+        </a>
+        <p class="mt-4 max-w-sm text-sm leading-relaxed text-slate-400">Six sujets de l'Examen Régional Unifié de mathématiques (3ème année collège), avec leurs corrections complètes, pour s'entraîner dans les conditions du jour de l'examen.</p>
+        <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+      </div>
+      <div>
+        <h3 class="font-display text-sm font-bold uppercase tracking-wide text-white">Examens</h3>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="#examen-1" class="text-slate-400 transition hover:text-white">N°1 — 2019 · Souss-Massa</a></li>
+          <li><a href="#examen-2" class="text-slate-400 transition hover:text-white">N°2 — 2021 · Souss-Massa</a></li>
+          <li><a href="#examen-3" class="text-slate-400 transition hover:text-white">N°3 — 2022 · Souss-Massa</a></li>
+          <li><a href="#examen-4" class="text-slate-400 transition hover:text-white">N°4 — 2022 · Casablanca-Settat</a></li>
+          <li><a href="#examen-5" class="text-slate-400 transition hover:text-white">N°5 — 2022 · Drâa-Tafilalet</a></li>
+          <li><a href="#examen-6" class="text-slate-400 transition hover:text-white">N°6 — 2022 · Oriental</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-display text-sm font-bold uppercase tracking-wide text-white">Établissement</h3>
+        <ul class="mt-4 space-y-2 text-sm text-slate-400">
+          <li>Royaume du Maroc — Ministère de l'Éducation Nationale</li>
+          <li>Examen Régional Unifié · 3ème Année Collège</li>
+          <li>Matière : Mathématiques · Coefficient 3</li>
+          <li>Sujets &amp; corrections — Prof. Abdo Bahous</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-10 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-slate-500 sm:flex-row">
+      <p>© <span id="year"></span> Examens·3AC — Page réalisée à partir des sujets et corrigés officiels des examens régionaux.</p>
+      <p>Rendu mathématique par KaTeX · Mise en page Tailwind CSS</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Bouton retour en haut -->
+<button id="back-to-top" type="button" aria-label="Retour en haut de la page" class="fixed bottom-6 right-6 z-40 flex h-12 w-12 translate-y-20 items-center justify-center rounded-full bg-indigo-600 text-white opacity-0 shadow-lg shadow-indigo-600/40 transition-all duration-300 hover:bg-indigo-700">
+  <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" /></svg>
+</button>
+
+<script>
+function toggleThemeMode() {
+  var isDark = document.documentElement.classList.toggle('dark');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  // --- Rendu KaTeX ---
+  if (window.renderMathInElement) {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '\\[', right: '\\]', display: true },
+        { left: '\\(', right: '\\)', display: false }
+      ],
+      throwOnError: false
+    });
+  }
+
+  // --- Année dans le footer ---
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // --- Menu mobile ---
+  var menuBtn = document.getElementById('mobile-menu-btn');
+  var mobileMenu = document.getElementById('mobile-menu');
+  var iconOpen = document.getElementById('icon-open');
+  var iconClose = document.getElementById('icon-close');
+
+  function closeMobileMenu() {
+    mobileMenu.classList.add('hidden');
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  menuBtn.addEventListener('click', function () {
+    var isHidden = mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', String(isHidden));
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', closeMobileMenu);
+  });
+
+  // --- Accordéons de correction (un bouton par examen) ---
+  document.querySelectorAll('[data-acc-trigger]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var wrapper = btn.nextElementSibling;
+      var willOpen = !wrapper.classList.contains('is-open');
+      wrapper.classList.toggle('is-open', willOpen);
+      btn.setAttribute('aria-expanded', String(willOpen));
+      var labelEl = btn.querySelector('[data-label]');
+      var openText = btn.getAttribute('data-open-label') || 'Masquer la correction';
+      var closedText = btn.getAttribute('data-closed-label') || 'Voir la correction';
+      labelEl.textContent = willOpen ? openText : closedText;
+      btn.querySelector('[data-chevron]').style.transform = willOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+      btn.classList.toggle('bg-amber-500', !willOpen);
+      btn.classList.toggle('hover:bg-amber-600', !willOpen);
+      btn.classList.toggle('bg-slate-800', willOpen);
+      btn.classList.toggle('hover:bg-slate-900', willOpen);
+      if (willOpen) {
+        setTimeout(function () { wrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 200);
+      }
+    });
+  });
+
+  // --- Bouton retour en haut ---
+  var backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 500) {
+      backToTop.classList.remove('opacity-0', 'translate-y-20');
+    } else {
+      backToTop.classList.add('opacity-0', 'translate-y-20');
+    }
+  });
+  backToTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+});
+</script>
+</body>
+</html>

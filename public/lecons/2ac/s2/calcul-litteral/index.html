@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Calcul Littéral — 2ème Année Collège</title>
+<meta name="description" content="Cours complet et exercices corrigés sur le calcul littéral pour la 2ème année collège (APIC).">
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          brand: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da', 400: '#6089bd',
+            500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63', 800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+          accent: {
+            50: '#fff7ed',
+            100: '#ffedd5',
+            200: '#fed7aa',
+            300: '#fdba74',
+            400: '#fb923c',
+            500: '#f97316',
+            600: '#ea580c',
+            700: '#c2410c',
+          }
+        }
+      }
+    }
+  }
+</script>
+
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- MathJax for clean math rendering -->
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Poppins', sans-serif; }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .chevron { transform: rotate(180deg); }
+  .chevron { transition: transform 0.3s ease; }
+  details .correction-panel {
+    animation: fadeSlide 0.35s ease;
+  }
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .def-box {
+    border-left: 4px solid #f97316;
+    background: #fff7ed;
+  }
+  .prop-box {
+    border-left: 4px solid #2c5089;
+    background: #eef3fb;
+  }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #f1f5f9; }
+  ::-webkit-scrollbar-thumb { background: #8fb0da; border-radius: 10px; }
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -4px;
+    width: 0; height: 2px;
+    background: #f97316;
+    transition: width 0.25s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
+  .dark .bg-amber-50, .dark .bg-accent-50 { background-color: #3a2a0a; }
+  .dark .border-amber-400, .dark .border-accent-200 { border-color: #92400e; }
+  .dark .prop-box { background-color: #12294c; border-left-color: #3f6a9c; }
+  .dark .def-box { background-color: #3a2a0a; border-left-color: #c2410c; }
+  .dark ::-webkit-scrollbar-track { background: #0b1f3a; }
+  .dark ::-webkit-scrollbar-thumb { background: #1c3a63; }
+</style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#accueil" class="flex items-center gap-2 font-bold text-brand-700 dark:text-white text-lg">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-9 w-9 shrink-0 rounded-full">
+        Calcul&nbsp;Littéral
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="nav-link hover:text-brand-700 dark:hover:text-white">← Portail</a>
+        <a href="#accueil" class="nav-link hover:text-brand-700 dark:hover:text-white">Accueil</a>
+        <a href="#cours" class="nav-link hover:text-brand-700 dark:hover:text-white">Cours</a>
+        <a href="#exercices" class="nav-link hover:text-brand-700 dark:hover:text-white">Exercices</a>
+        <a href="#exercices" class="ml-2 px-4 py-2 rounded-full bg-brand-600 text-white hover:bg-brand-700 transition">Commencer</a>
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-brand-700 dark:hover:text-accent-400 transition-colors">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </div>
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="md:hidden mr-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+      <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5" aria-label="Ouvrir le menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-slate-700 dark:text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden pb-4 flex flex-col gap-3 text-sm font-medium text-slate-600 dark:text-slate-300">
+      <a href="/" class="hover:text-brand-700 dark:hover:text-white">← Portail</a>
+      <a href="#accueil" class="hover:text-brand-700 dark:hover:text-white">Accueil</a>
+      <a href="#cours" class="hover:text-brand-700 dark:hover:text-white">Cours</a>
+      <a href="#exercices" class="hover:text-brand-700 dark:hover:text-white">Exercices</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-brand-700 via-brand-600 to-accent-500 text-white">
+  <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_20%,white,transparent_35%),radial-gradient(circle_at_80%_60%,white,transparent_30%)]"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 grid md:grid-cols-2 gap-10 items-center relative">
+    <div>
+      <span class="inline-block px-4 py-1.5 rounded-full bg-white/15 text-xs sm:text-sm font-semibold tracking-wide backdrop-blur-sm mb-5">
+        Collège Mhamed 9 · 2ème année APIC
+      </span>
+      <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight mb-4">
+        Le Calcul Littéral
+      </h1>
+      <p class="text-brand-100 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
+        Développer, factoriser, réduire et simplifier des expressions littérales : le cours complet, illustré d'exemples, suivi d'exercices entièrement corrigés.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#cours" class="px-6 py-3 rounded-full bg-white text-brand-700 font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition">
+          Consulter le cours
+        </a>
+        <a href="#exercices" class="px-6 py-3 rounded-full bg-accent-500 hover:bg-accent-600 font-semibold shadow-lg hover:-translate-y-0.5 transition">
+          S'entraîner — Exercice 1
+        </a>
+      </div>
+    </div>
+    <div class="relative">
+      <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80"
+           alt="Tableau noir couvert de formules mathématiques"
+           class="rounded-3xl shadow-2xl ring-4 ring-white/20 w-full h-72 sm:h-96 object-cover">
+      <div class="absolute -bottom-6 -left-6 bg-white text-slate-800 rounded-2xl shadow-xl px-5 py-4 hidden sm:block">
+        <p class="text-xs text-slate-500 font-medium">Identité remarquable</p>
+        <p class="font-semibold text-brand-700">\((a+b)^2 = a^2+2ab+b^2\)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+
+<!-- ============ COURS ============ -->
+<section id="cours" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+  <div class="text-center max-w-2xl mx-auto mb-14">
+    <span class="text-accent-600 font-semibold tracking-wide text-sm uppercase">Cours</span>
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Calcul Littéral</h2>
+    <p class="text-slate-500 mt-4">Trois grandes parties : la distributivité simple, la double distributivité, et la simplification des expressions.</p>
+  </div>
+
+  <!-- I. DISTRIBUTIVITE SIMPLE -->
+  <article id="partie1" class="mb-16">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-brand-600 text-white font-bold">I</span>
+      <h3 class="text-2xl font-bold text-slate-900">La distributivité simple</h3>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-6">
+      <!-- Developpement -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8">
+        <h4 class="text-lg font-semibold text-brand-700 mb-4 flex items-center gap-2"><span>1.</span> Développement</h4>
+
+        <div class="def-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+          <p class="font-semibold text-accent-700 mb-1">Définition</p>
+          <p>Développer une expression, c'est l'écrire sous la forme d'une somme algébrique.</p>
+        </div>
+
+        <div class="prop-box rounded-r-xl p-4 mb-4">
+          <p class="font-semibold text-brand-700 mb-2">Propriété — la distributivité simple</p>
+          <p class="text-sm text-slate-600 mb-2">Pour tous nombres relatifs \(k, a\) et \(b\) :</p>
+          <p class="text-center py-1">\[k \times (a+b) = k \times a + k \times b\]</p>
+          <p class="text-center py-1">\[k \times (a-b) = k \times a - k \times b\]</p>
+        </div>
+
+        <div class="text-sm sm:text-base space-y-3">
+          <p class="font-semibold text-slate-700">Exemple 1 :</p>
+          <p>\(3 \times (5+7) = 3 \times 12 = 36\)</p>
+          <p>\(3 \times (5+7) = 3\times5 + 3\times7 = 15+21 = 36\)</p>
+          <p>\(-6 \times (4-8) = -6 \times (-4) = 24\)</p>
+          <p>\(-6 \times (4-8) = -6\times4 -(-6)\times8 = -24+48 = 24\)</p>
+          <p class="font-semibold text-slate-700 pt-2">Exemple 2 — Développe :</p>
+          <p>\(A = 3(x+7)\) &nbsp;;&nbsp; \(B = -3{,}5(x-2)\)</p>
+        </div>
+      </div>
+
+      <!-- Factorisation -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8">
+        <h4 class="text-lg font-semibold text-brand-700 mb-4 flex items-center gap-2"><span>2.</span> Factorisation</h4>
+
+        <div class="def-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+          <p class="font-semibold text-accent-700 mb-1">Définition</p>
+          <p>Factoriser une expression, c'est l'écrire sous la forme d'un produit.</p>
+        </div>
+
+        <div class="prop-box rounded-r-xl p-4 mb-4">
+          <p class="font-semibold text-brand-700 mb-2">Propriété</p>
+          <p class="text-sm text-slate-600 mb-2">Pour tous nombres relatifs \(k, a\) et \(b\) :</p>
+          <p class="text-center py-1">\[k \times a + k \times b = k \times (a+b)\]</p>
+          <p class="text-center py-1">\[k \times a - k \times b = k \times (a-b)\]</p>
+        </div>
+
+        <div class="text-sm sm:text-base space-y-3">
+          <p class="font-semibold text-slate-700">Exemple 1 — Factoriser :</p>
+          <p>\(C = 14x-12 = 7\times2x - 7\times3 = 7(2x-3)\)</p>
+          <p>\(D = -6y+15y^2 = 3y\times(-2)+3y\times5y = 3y(-2+5y)\)</p>
+          <p class="font-semibold text-slate-700 pt-2">Exemple 2 — Factorise :</p>
+          <p>\(E = 14a-7b\) &nbsp;;&nbsp; \(F = -x^2+3x\)</p>
+          <p>\(G = (9x-4)(5x+6)+(9x-4)(3x+11)\)</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- II. DOUBLE DISTRIBUTIVITE -->
+  <article id="partie2" class="mb-16">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-brand-600 text-white font-bold">II</span>
+      <h3 class="text-2xl font-bold text-slate-900">La double distributivité</h3>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-6">
+      <!-- Produit de deux sommes -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8">
+        <h4 class="text-lg font-semibold text-brand-700 mb-4 flex items-center gap-2"><span>1.</span> Produit de deux sommes</h4>
+
+        <div class="prop-box rounded-r-xl p-4 mb-4">
+          <p class="font-semibold text-brand-700 mb-2">Propriété — la double distributivité</p>
+          <p class="text-sm text-slate-600 mb-2">Pour tous nombres relatifs \(a,b,c,d\) :</p>
+          <p class="text-center py-1">\[(a+b)(c+d) = a(c+d)+b(c+d)\]</p>
+          <p class="text-center py-1">\[= ac+ad+bc+bd\]</p>
+        </div>
+
+        <div class="text-sm sm:text-base space-y-3">
+          <p class="font-semibold text-slate-700">Exemple 1 — Développe et réduit :</p>
+          <p>\(A=(3x+1)(y+4)\) &nbsp;;&nbsp; \(B=(3x+1)(y-4)\)</p>
+          <p>\(C=(3x-1)(y+4)\) &nbsp;;&nbsp; \(D=(3x-1)(y-4)\)</p>
+          <p class="font-semibold text-slate-700 pt-2">Exemple 2 — Factorise :</p>
+          <p>\(A=(2x-3)(x+2)-5(2x-3)\)</p>
+          <p>\(B=(5x+1)(3x-5)-(x-3)(5x+1)\)</p>
+          <p>\(C=(3x+2)(-5x-7)-(3x+2)(x+7)\)</p>
+        </div>
+      </div>
+
+      <!-- Identites remarquables -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8">
+        <h4 class="text-lg font-semibold text-brand-700 mb-4 flex items-center gap-2"><span>2.</span> Les identités remarquables</h4>
+
+        <div class="prop-box rounded-r-xl p-4 mb-4">
+          <p class="font-semibold text-brand-700 mb-2">Propriété</p>
+          <p class="text-sm text-slate-600 mb-3">\(a\) et \(b\) sont deux nombres relatifs. On a :</p>
+          <ol class="space-y-2 text-sm sm:text-base">
+            <li><span class="font-medium">1) Carré d'une somme :</span><br>\[(a+b)^2 = a^2+2ab+b^2\]</li>
+            <li><span class="font-medium">2) Carré d'une différence :</span><br>\[(a-b)^2 = a^2-2ab+b^2\]</li>
+            <li><span class="font-medium">3) Produit d'une somme par une différence :</span><br>\[(a-b)(a+b)=a^2-b^2\]</li>
+          </ol>
+        </div>
+
+        <div class="text-sm sm:text-base space-y-3">
+          <p class="font-semibold text-slate-700">Exemple 1 — Développe et réduis :</p>
+          <p>\(A=(x+1)^2\) &nbsp;;&nbsp; \(B=(x-4)^2\) &nbsp;;&nbsp; \(C=(3x-5)^2\) &nbsp;;&nbsp; \(D=(7x+2)(7x-2)\)</p>
+          <p class="font-semibold text-slate-700 pt-2">Exemple 2 — Factorise :</p>
+          <p>\(A=x^2+6x+9\) &nbsp;;&nbsp; \(B=25x^2-20x+4\) &nbsp;;&nbsp; \(C=64x^2-49\)</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- III. SIMPLIFIER -->
+  <article id="partie3">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-brand-600 text-white font-bold">III</span>
+      <h3 class="text-2xl font-bold text-slate-900">Simplifier une expression</h3>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-6">
+      <!-- Reduire -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8">
+        <h4 class="text-lg font-semibold text-brand-700 mb-4 flex items-center gap-2"><span>1.</span> Réduire une expression littérale</h4>
+
+        <div class="def-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+          <p class="font-semibold text-accent-700 mb-1">Définition</p>
+          <p>Réduire une expression littérale, c'est l'écrire sous la forme d'une somme comportant le moins de termes possibles.</p>
+        </div>
+
+        <div class="text-sm sm:text-base space-y-2">
+          <p class="font-semibold text-slate-700">Exemple :</p>
+          <p>\(F=3x-8+2x = 3x+2x-8 = (3+2)x-8\)</p>
+          <p>\(G=5x^2+7x-4-2x^2+3+4x\)</p>
+          <p>\(G=5x^2-2x^2+7x+4x-4+3\)</p>
+          <p>\(G=(5-2)x^2+(7+4)x-1 = 3x^2+11x-1\)</p>
+        </div>
+      </div>
+
+      <!-- Supprimer parentheses -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8">
+        <h4 class="text-lg font-semibold text-brand-700 mb-4 flex items-center gap-2"><span>2.</span> Supprimer les parenthèses</h4>
+
+        <div class="prop-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+          <p class="font-semibold text-brand-700 mb-1">Propriété</p>
+          <p>L'opposé d'une somme algébrique est égal à la somme des opposés de chacun de ses termes.</p>
+        </div>
+
+        <div class="text-sm sm:text-base space-y-2 mb-4">
+          <p>\(H=3x-(-2x^2-5x+4)\)</p>
+          <p>\(H=3x+(+2x^2)+(+5x)+(-4)\)</p>
+          <p>\(H=3x+2x^2+5x-4 = 2x^2+8x-4\)</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-3">
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+            <p class="font-semibold text-slate-700 text-sm mb-1">Règle 1 — Addition</p>
+            <p class="text-sm text-slate-600">Quand les parenthèses sont précédées du signe « + », on peut supprimer ce « + » et les parenthèses.</p>
+          </div>
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+            <p class="font-semibold text-slate-700 text-sm mb-1">Règle 2 — Soustraction</p>
+            <p class="text-sm text-slate-600 mb-1">Quand les parenthèses sont précédées du signe « - », on les supprime à condition de multiplier l'expression par \(-1\) :</p>
+            <p class="text-center text-sm">\[-(a+b) = -1\times(a+b) = -a-b\]</p>
+          </div>
+        </div>
+
+        <p class="font-semibold text-slate-700 text-sm mt-4 mb-1">Exemple — Simplifier :</p>
+        <p class="text-sm sm:text-base">\(2x+(3x+5)\) &nbsp;;&nbsp; \(4x+(-5+3x)\) &nbsp;;&nbsp; \(3x-(5-8x)\) &nbsp;;&nbsp; \(8-(5x-6+2x)\)</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ EXERCICES ============ -->
+<section id="exercices" class="bg-gradient-to-b from-slate-100 to-slate-50 border-t border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="text-accent-600 font-semibold tracking-wide text-sm uppercase">S'entraîner</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Exercice 1 — Calcul Littéral</h2>
+      <p class="text-slate-500 mt-4">Auteur : Khalid El Amach. Cliquez sur « Voir la correction » pour vérifier chaque exercice.</p>
+    </div>
+
+    <div class="space-y-8">
+
+      <!-- EXERCICE 1 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">1</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 1 — Réduire les expressions</h3>
+          </div>
+
+          <p class="text-slate-600 text-sm mb-3">Réduire les expressions suivantes :</p>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 text-sm mb-4">
+            <p>\(2x+23x=\)</p><p>\(-8x+2x=\)</p><p>\(-2x-9x=\)</p>
+            <p>\(7x+x=\)</p><p>\(3x-7x=\)</p><p>\(-x+9x=\)</p>
+            <p>\(12x-7x=\)</p><p>\(-x-x=\)</p><p>\(x+x=\)</p>
+            <p>\(-\dfrac{9}{5}x+\dfrac{3}{4}x=\)</p><p>\(x \times x=\)</p><p>\(-4x\times9x=\)</p>
+            <p>\(-8x^2\times(-5x^3)=\)</p><p>\(12x\times x^2=\)</p><p>\(3x^2\times(-7x^2)=\)</p>
+          </div>
+          <div class="space-y-1 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>\(A=-5a+7b+2a-4b\)</p>
+            <p>\(B=3x^2+5x-2x^2+4x+7\)</p>
+            <p>\(C=x^2-7x+5x^2-2x+7x-x^2\)</p>
+            <p>\(D=7x^3+x-13-2x^2-3x-7\) &nbsp;;&nbsp; \(E=-x+21+x^2-12-x+\dfrac{2}{3}x^2\)</p>
+          </div>
+        </div>
+
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base space-y-4 bg-white">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
+              <p>\(2x+23x=25x\)</p><p>\(-8x+2x=-6x\)</p><p>\(-2x-9x=-11x\)</p>
+              <p>\(7x+x=8x\)</p><p>\(3x-7x=-4x\)</p><p>\(-x+9x=8x\)</p>
+              <p>\(12x-7x=5x\)</p><p>\(-x-x=-2x\)</p><p>\(x+x=2x\)</p>
+              <p>\(-\dfrac{9}{5}x+\dfrac{3}{4}x=-\dfrac{21}{20}x\)</p><p>\(x\times x=x^2\)</p><p>\(-4x\times9x=-36x^2\)</p>
+              <p>\(-8x^2\times(-5x^3)=40x^5\)</p><p>\(12x\times x^2=12x^3\)</p><p>\(3x^2\times(-7x^2)=-21x^4\)</p>
+            </div>
+            <div class="space-y-2 pt-2 border-t border-slate-100">
+              <p>\(A=-3a+3b\)</p>
+              <p>\(B=x^2+9x+7\)</p>
+              <p>\(C=5x^2-2x\)</p>
+              <p>\(D=7x^3-2x^2-2x-20\)</p>
+              <p>\(E=\dfrac{5}{3}x^2-2x+9\)</p>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 2 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">2</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 2 — Développer et réduire</h3>
+          </div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>\(A=7(2x+5+4x)\)</p>
+            <p>\(B=5x(x-10)\)</p>
+            <p>\(C=-8(-3x+10-7x)\)</p>
+            <p>\(D=-2x(x^2-8+6x)\)</p>
+            <p>\(E=\dfrac{2}{3}\left(6x-\dfrac{8}{5}\right)\)</p>
+            <p>\(F=\dfrac{5}{4}x(-3x+5)\)</p>
+            <p>\(G=(x+7)(x+6)\)</p>
+            <p>\(H=(x-4)(x-8)\)</p>
+            <p>\(I=(3x+2)(5x+1)\)</p>
+            <p>\(J=(x-4)(3x-5)\)</p>
+            <p>\(K=(-2x+3)(2x-6)\)</p>
+            <p>\(L=(-6x-1)(-7x-2)\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <p>\(A=42x+35\)</p>
+            <p>\(B=5x^2-50x\)</p>
+            <p>\(C=80x-80\)</p>
+            <p>\(D=-2x^3-12x^2+16x\)</p>
+            <p>\(E=4x-\dfrac{16}{15}\)</p>
+            <p>\(F=-\dfrac{15}{4}x^2+\dfrac{25}{4}x\)</p>
+            <p>\(G=x^2+13x+42\)</p>
+            <p>\(H=x^2-12x+32\)</p>
+            <p>\(I=15x^2+13x+2\)</p>
+            <p>\(J=3x^2-17x+20\)</p>
+            <p>\(K=-4x^2+18x-18\)</p>
+            <p>\(L=42x^2+19x+2\)</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 3 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">3</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 3 — Développer et réduire</h3>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-3 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>\(A=2x(1-4x)+3x(2x+2)\)</p>
+            <p>\(B=-4x(-2x-3)-5x(3x-1)\)</p>
+            <p>\(C=-3x(x-2)-(-2x+4)(-1-x)\)</p>
+            <p>\(D=5(7x+3)+(x+2)(5-2x)\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white grid sm:grid-cols-2 gap-3">
+            <p>\(A=-2x^2+8x\)</p>
+            <p>\(B=-7x^2+17x\)</p>
+            <p>\(C=-5x^2+8x+4\)</p>
+            <p>\(D=-2x^2+36x+25\)</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 4 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">4</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 4 — Développer et réduire (identités remarquables)</h3>
+          </div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>\(A=(x+10)^2\)</p>
+            <p>\(B=(3x+5)^2\)</p>
+            <p>\(C=\left(x-\dfrac{5}{2}\right)^2\)</p>
+            <p>\(D=\left(\dfrac{4}{7}x-\dfrac{7}{8}\right)^2\)</p>
+            <p>\(E=(x-5)(x+5)\)</p>
+            <p>\(F=(7x-9)(7x+9)\)</p>
+            <p>\(G=(5x+2)^2-(x^2+7-3x)\)</p>
+            <p>\(H=(2x+5)(2x-5)+3x(x-2)\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <p>\(A=x^2+20x+100\)</p>
+            <p>\(B=9x^2+30x+25\)</p>
+            <p>\(C=x^2-5x+\dfrac{25}{4}\)</p>
+            <p>\(D=\dfrac{16}{49}x^2-x+\dfrac{49}{64}\)</p>
+            <p>\(E=x^2-25\)</p>
+            <p>\(F=49x^2-81\)</p>
+            <p>\(G=24x^2+23x-3\)</p>
+            <p>\(H=7x^2-6x-25\)</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 5 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">5</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 5 — Factoriser</h3>
+          </div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>\(A=2a^2+6a\)</p>
+            <p>\(B=-25ab-5abc\)</p>
+            <p>\(C=24ab^2+12a^2b-4abc\)</p>
+            <p>\(a=5x(3x-2)+5x(-2x+1)\)</p>
+            <p>\(b=3x^2+3x(2x-5)-3x\)</p>
+            <p>\(c=12x^3+4x^2(x+3)-4x^2\)</p>
+            <p>\(d=3x(2x+1)-(2x+1)\)</p>
+            <p>\(e=5x(3-x)+(3-x)^2\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <p>\(A=2a(a+3)\)</p>
+            <p>\(B=-5ab(5+c)\)</p>
+            <p>\(C=4ab(6b+3a-c)\)</p>
+            <p>\(a=5x(x-1)\)</p>
+            <p>\(b=9x(x-2)\)</p>
+            <p>\(c=8x^2(2x+1)\)</p>
+            <p>\(d=(2x+1)(3x-1)\)</p>
+            <p>\(e=(3-x)(4x+3)\)</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 6 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">6</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 6 — Factoriser (identités remarquables)</h3>
+          </div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>\(A=x^2+10x+25\)</p>
+            <p>\(D=x^2-14x+49\)</p>
+            <p>\(G=x^2-81\)</p>
+            <p>\(B=x^2+18x+81\)</p>
+            <p>\(E=x^2-16x+64\)</p>
+            <p>\(H=121-x^2\)</p>
+            <p>\(C=9x^2+24x+16\)</p>
+            <p>\(F=25x^2-30x+9\)</p>
+            <p>\(I=64x^2-144\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <p>\(A=(x+5)^2\)</p>
+              <p>\(D=(x-7)^2\)</p>
+              <p>\(G=(x-9)(x+9)\)</p>
+              <p>\(B=(x+9)^2\)</p>
+              <p>\(E=(x-8)^2\)</p>
+              <p>\(H=(11-x)(11+x)\)</p>
+              <p>\(C=(3x+4)^2\)</p>
+              <p>\(F=(5x-3)^2\)</p>
+              <p>\(I=16(2x-3)(2x+3)\)</p>
+            </div>
+          </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-slate-900 text-slate-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid sm:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="flex items-center gap-2.5">
+          <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+          <span class="font-bold text-white leading-tight">
+            <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-accent-400">Mathématiques</span>
+          </span>
+        </a>
+        <a href="/" class="mt-3 inline-block text-sm font-semibold text-accent-400 hover:text-accent-300">← Retour au portail</a>
+        <p class="text-sm text-slate-400 mt-3">Cours et exercices corrigés — 2ème année collège (APIC), Collège Mhamed 9.</p>
+      </div>
+      <div>
+        <p class="font-semibold text-white mb-3 text-sm">Navigation</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#accueil" class="hover:text-white transition">Accueil</a></li>
+          <li><a href="#cours" class="hover:text-white transition">Cours</a></li>
+          <li><a href="#exercices" class="hover:text-white transition">Exercices</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white mb-3 text-sm">Au programme</p>
+        <ul class="space-y-2 text-sm text-slate-400">
+          <li>Distributivité simple</li>
+          <li>Double distributivité</li>
+          <li>Identités remarquables</li>
+          <li>Réduction &amp; parenthèses</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-slate-800 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-400">
+      <p>&copy; 2026 Calcul Littéral — Tous droits réservés.</p>
+      <p class="font-semibold text-white">Prof : LAHBIB ELKEANTAOUI</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+  });
+
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+</script>
+
+</body>
+</html>

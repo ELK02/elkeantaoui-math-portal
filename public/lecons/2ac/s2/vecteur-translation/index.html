@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vecteurs et Translation — 2ème Année Collège</title>
+<meta name="description" content="Cours complet et exercices corrigés sur les vecteurs et la translation pour la 2ème année collège (APIC).">
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          brand: {
+            50: '#eef3fb',
+            100: '#dbe7f6',
+            200: '#b8cfec',
+            300: '#8fb0da',
+            400: '#6089bd',
+            500: '#3f6a9c',
+            600: '#2c5089',
+            700: '#1c3a63',
+            800: '#12294c',
+            900: '#0b1f3a',
+            950: '#071528',
+          },
+          accent: {
+            50: '#fffbeb',
+            100: '#fef3c7',
+            200: '#fde68a',
+            300: '#fcd34d',
+            400: '#fbbf24',
+            500: '#f59e0b',
+            600: '#d97706',
+            700: '#b45309',
+          }
+        }
+      }
+    },
+    darkMode: 'class',
+  }
+</script>
+
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- MathJax for clean vector / math rendering -->
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Poppins', sans-serif; }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .chevron { transform: rotate(180deg); }
+  .chevron { transition: transform 0.3s ease; }
+  details .correction-panel { animation: fadeSlide 0.35s ease; }
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .def-box { border-left: 4px solid #d97706; background: #fffbeb; }
+  .thm-box { border-left: 4px solid #2c5089; background: #eef3fb; }
+  .remark-box { border-left: 4px solid #0ea5e9; background: #f0f9ff; }
+  .example-box { border-left: 4px solid #10b981; background: #ecfdf5; }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #f1f5f9; }
+  ::-webkit-scrollbar-thumb { background: #8fb0da; border-radius: 10px; }
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -4px;
+    width: 0; height: 2px;
+    background: #f59e0b;
+    transition: width 0.25s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+  .fig-card svg { max-width: 100%; height: auto; color: #2c5089; }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
+  .dark .bg-amber-50, .dark .bg-accent-50 { background-color: #3a2a0a; }
+  .dark .border-amber-400, .dark .border-accent-200 { border-color: #92400e; }
+  .dark .def-box { background-color: #3a2a0a; border-left-color: #b45309; }
+  .dark .thm-box { background-color: #12294c; border-left-color: #3f6a9c; }
+  .dark .remark-box { background-color: #082433; border-left-color: #0ea5e9; }
+  .dark .example-box { background-color: #0d2818; border-left-color: #10b981; }
+  .dark ::-webkit-scrollbar-track { background: #0b1f3a; }
+  .dark ::-webkit-scrollbar-thumb { background: #1c3a63; }
+</style>
+</head>
+
+<body class="bg-slate-50 dark:bg-[#071528] text-slate-800 antialiased">
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#accueil" class="flex items-center gap-2 font-bold text-brand-700 dark:text-white text-lg">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-9 h-9 shrink-0 rounded-full">
+        Vecteurs&nbsp;&amp;&nbsp;Translation
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="nav-link hover:text-brand-700 dark:hover:text-white">← Portail</a>
+        <a href="#accueil" class="nav-link hover:text-brand-700 dark:hover:text-white">Accueil</a>
+        <a href="#cours" class="nav-link hover:text-brand-700 dark:hover:text-white">Cours</a>
+        <a href="#exercices" class="nav-link hover:text-brand-700 dark:hover:text-white">Exercices</a>
+        <a href="#exercices" class="ml-2 px-4 py-2 rounded-full bg-brand-600 text-white hover:bg-brand-700 transition">Commencer</a>
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-brand-700 dark:hover:text-accent-400 transition-colors">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </div>
+      <div class="flex items-center gap-1 md:hidden">
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+        <button id="menuBtn" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5" aria-label="Ouvrir le menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-slate-700 dark:text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden pb-4 flex flex-col gap-3 text-sm font-medium text-slate-600 dark:text-slate-300">
+      <a href="/" class="hover:text-brand-700 dark:hover:text-white">← Portail</a>
+      <a href="#accueil" class="hover:text-brand-700 dark:hover:text-white">Accueil</a>
+      <a href="#cours" class="hover:text-brand-700 dark:hover:text-white">Cours</a>
+      <a href="#exercices" class="hover:text-brand-700 dark:hover:text-white">Exercices</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-brand-700 via-brand-600 to-accent-500 text-white">
+  <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_20%,white,transparent_35%),radial-gradient(circle_at_80%_60%,white,transparent_30%)]"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 grid md:grid-cols-2 gap-10 items-center relative">
+    <div>
+      <span class="inline-block px-4 py-1.5 rounded-full bg-white/15 text-xs sm:text-sm font-semibold tracking-wide backdrop-blur-sm mb-5">
+        Collège Mhamed 9 · 2ème année APIC
+      </span>
+      <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight mb-4">
+        Vecteurs et Translation
+      </h1>
+      <p class="text-brand-100 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
+        Direction, sens et translation, vecteurs égaux, opérations sur les vecteurs (Chasles, addition, soustraction, multiplication par un réel), colinéarité, alignement et milieu d'un segment — le cours complet, illustré et suivi d'exercices entièrement corrigés.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#cours" class="px-6 py-3 rounded-full bg-white text-brand-700 font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition">
+          Consulter le cours
+        </a>
+        <a href="#exercices" class="px-6 py-3 rounded-full bg-accent-500 hover:bg-accent-600 font-semibold shadow-lg hover:-translate-y-0.5 transition">
+          S'entraîner — Exercices
+        </a>
+      </div>
+    </div>
+    <div class="relative">
+      <img src="https://images.unsplash.com/photo-1635372722656-389f87a941b7?auto=format&fit=crop&w=1200&q=80"
+           alt="Tableau noir couvert de figures et de calculs mathématiques"
+           class="rounded-3xl shadow-2xl ring-4 ring-white/20 w-full h-72 sm:h-96 object-cover">
+      <div class="absolute -bottom-6 -left-6 bg-white text-slate-800 rounded-2xl shadow-xl px-5 py-4 hidden sm:block">
+        <p class="text-xs text-slate-500 font-medium">Notation</p>
+        <p class="font-semibold text-brand-700">\(\vec{u}=\overrightarrow{AA'}\) : direction, sens, longueur</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+
+<!-- ============ COURS ============ -->
+<section id="cours" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+  <div class="text-center max-w-2xl mx-auto mb-14">
+    <span class="text-accent-600 font-semibold tracking-wide text-sm uppercase">Cours</span>
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Vecteurs et Translation</h2>
+    <p class="text-slate-500 mt-4">Trois grandes parties : vecteur et translation, opérations sur les vecteurs, et les conséquences (parallélisme, alignement, milieu).</p>
+  </div>
+
+  <!-- I. VECTEUR ET TRANSLATION -->
+  <article id="partie1" class="mb-16">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-brand-600 text-white font-bold">I</span>
+      <h3 class="text-2xl font-bold text-slate-900">Vecteur et translation</h3>
+    </div>
+
+    <!-- 1.1 -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 mb-6">
+      <h4 class="text-lg font-bold text-brand-700 mb-4">1.1) Direction et sens</h4>
+
+      <div class="def-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+        <p class="font-semibold text-accent-700 mb-1">Définition 1</p>
+        <p>Une droite définit une direction. On dit que deux droites \(d\) et \(d'\) <strong>ont la même direction</strong> lorsque \(d\) et \(d'\) sont parallèles ou confondues. Par conséquent, si <strong>deux droites sont sécantes</strong>, alors elles n'ont pas la même direction.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-6 items-center mb-4">
+        <div class="fig-card bg-slate-50 rounded-xl p-4 border border-slate-100 flex items-center justify-center">
+          <svg viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor"/></marker>
+            </defs>
+            <line x1="60" y1="8" x2="205" y2="140" stroke="currentColor" stroke-width="1.5" marker-end="url(#a1)"/>
+            <line x1="200" y1="145" x2="65" y2="13" stroke="currentColor" stroke-width="1.5" marker-end="url(#a1)"/>
+            <text x="45" y="12" font-size="14" fill="currentColor" font-style="italic">Δ</text>
+            <line x1="10" y1="115" x2="250" y2="35" stroke="#e11d48" stroke-width="1.5" marker-end="url(#a1)"/>
+            <text x="230" y="30" font-size="14" fill="#e11d48" font-style="italic">d</text>
+            <line x1="10" y1="70" x2="250" y2="-10" stroke="#e11d48" stroke-width="1.5" marker-end="url(#a1)"/>
+            <text x="230" y="0" font-size="14" fill="#e11d48" font-style="italic">d'</text>
+          </svg>
+        </div>
+        <p class="text-sm sm:text-base text-slate-600">Les droites \(d\) et \(d'\) sont parallèles donc elles ont la même direction. \(\Delta\) et \(d\) sont sécantes, donc elles n'ont pas la même direction.</p>
+      </div>
+
+      <div class="def-box rounded-r-xl p-4 text-sm sm:text-base">
+        <p class="font-semibold text-accent-700 mb-2">Définition 2</p>
+        <p class="mb-3">Soit \(d\) une droite donnée. On peut définir deux sens possibles sur cette droite.</p>
+        <div class="fig-card bg-white rounded-xl p-3 mb-3">
+          <svg viewBox="0 0 300 70" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="a2s" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor"/></marker>
+              <marker id="a2e" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor"/></marker>
+            </defs>
+            <line x1="25" y1="35" x2="275" y2="35" stroke="currentColor" stroke-width="1.5" marker-start="url(#a2s)" marker-end="url(#a2e)" transform="rotate(180 150 35)"/>
+            <line x1="25" y1="35" x2="275" y2="35" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="270" y1="30" x2="278" y2="35" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="270" y1="40" x2="278" y2="35" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="30" y1="30" x2="22" y2="35" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="30" y1="40" x2="22" y2="35" stroke="currentColor" stroke-width="1.5"/>
+            <text x="10" y="20" font-size="14" fill="currentColor" font-style="italic">d</text>
+            <line x1="120" y1="28" x2="120" y2="42" stroke="currentColor" stroke-width="1.5"/>
+            <text x="115" y="20" font-size="14" fill="currentColor" font-style="italic">A</text>
+            <line x1="180" y1="28" x2="180" y2="42" stroke="currentColor" stroke-width="1.5"/>
+            <text x="175" y="20" font-size="14" fill="currentColor" font-style="italic">B</text>
+          </svg>
+        </div>
+        <p>Sens 1 : <em>de A vers B</em>. &nbsp;&nbsp; Sens 2 : <em>de B vers A</em>.</p>
+      </div>
+    </div>
+
+    <!-- 1.2 -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 mb-6">
+      <h4 class="text-lg font-bold text-brand-700 mb-4">1.2) Translation — déplacement rectiligne</h4>
+
+      <div class="remark-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+        <p class="font-semibold text-sky-700 mb-1">☠ Attention — Remarque</p>
+        <p>Le mot « <strong>direction</strong> » dans le langage courant se confond avec le mot « <strong>sens</strong> ». En mathématiques, on choisit d'abord une direction (une droite) puis on choisit un des deux sens sur cette droite.</p>
+      </div>
+
+      <div class="def-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+        <p class="font-semibold text-accent-700 mb-1">Définition 1</p>
+        <p><strong>Lorsqu'on fait glisser</strong> une figure \(F\) d'un point \(A\) à un point \(A'\) sur une ligne droite sans la tourner, on déplace tous ses points sur des droites parallèles : <em>dans la même direction, dans le même sens et de la même longueur.</em> On dit que la figure \(F'\) est l'image de la figure \(F\) par la translation qui transforme le point \(A\) en \(A'\). De même, le point \(B'\) est l'image de \(B\) par la translation qui transforme \(A\) en \(A'\).</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-6 items-center mb-4">
+        <div class="fig-card bg-slate-50 rounded-xl p-4 border border-slate-100 flex items-center justify-center">
+          <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="a3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor"/></marker>
+            </defs>
+            <line x1="40" y1="170" x2="130" y2="55" stroke="currentColor" stroke-width="2" marker-end="url(#a3)"/>
+            <line x1="80" y1="160" x2="170" y2="45" stroke="#f43f5e" stroke-width="2" marker-end="url(#a3)"/>
+            <line x1="120" y1="150" x2="210" y2="35" stroke="#0ea5e9" stroke-width="2" marker-end="url(#a3)"/>
+            <circle cx="40" cy="170" r="2.5" fill="currentColor"/><text x="26" y="185" font-size="14" fill="currentColor">A</text>
+            <circle cx="80" cy="160" r="2.5" fill="#f43f5e"/><text x="70" y="178" font-size="14" fill="#f43f5e">B</text>
+            <circle cx="120" cy="150" r="2.5" fill="#0ea5e9"/><text x="112" y="168" font-size="14" fill="#0ea5e9">C</text>
+            <circle cx="130" cy="55" r="2.5" fill="currentColor"/><text x="132" y="48" font-size="14" fill="currentColor">A'</text>
+            <circle cx="170" cy="45" r="2.5" fill="#f43f5e"/><text x="172" y="38" font-size="14" fill="#f43f5e">B'</text>
+            <circle cx="210" cy="35" r="2.5" fill="#0ea5e9"/><text x="212" y="28" font-size="14" fill="#0ea5e9">C'</text>
+            <text x="55" y="105" font-size="14" fill="currentColor" font-style="italic">u</text>
+          </svg>
+        </div>
+        <div class="text-sm sm:text-base text-slate-600 space-y-2">
+          <p>Les couples formés des points et de leurs images par cette translation : \((A;A')\), \((B;B')\), \((C;C')\)… définissent un vecteur par la donnée :</p>
+          <ul class="list-disc list-inside space-y-1">
+            <li><em>d'une direction</em> : la droite \((AA')\)</li>
+            <li><em>d'un sens</em> : de \(A\) vers \(A'\)</li>
+            <li><em>d'une longueur</em> \(=AA'\)</li>
+          </ul>
+          <p>On note \(\vec u\) ce vecteur associé à la translation et on écrit : \(\vec u=\overrightarrow{AA'}\)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1.3 -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 mb-6">
+      <h4 class="text-lg font-bold text-brand-700 mb-4">1.3) Vecteurs égaux</h4>
+
+      <div class="def-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+        <p class="font-semibold text-accent-700 mb-1">Définition 1</p>
+        <p>Deux vecteurs \(\overrightarrow{AB}\) et \(\overrightarrow{CD}\) sont égaux lorsqu'ils ont la <em>même direction, le même sens et la même longueur</em>. On écrit : \(\overrightarrow{AB}=\overrightarrow{CD}\)</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-6 items-center mb-4">
+        <div class="fig-card bg-slate-50 rounded-xl p-4 border border-slate-100 flex items-center justify-center">
+          <svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="a4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor"/></marker>
+            </defs>
+            <line x1="40" y1="160" x2="90" y2="50" stroke="currentColor" stroke-width="2" marker-end="url(#a4)"/>
+            <line x1="150" y1="160" x2="200" y2="50" stroke="currentColor" stroke-width="2" marker-end="url(#a4)" stroke-dasharray="1 0"/>
+            <line x1="90" y1="50" x2="200" y2="50" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4 4"/>
+            <line x1="40" y1="160" x2="150" y2="160" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4 4"/>
+            <text x="20" y="175" font-size="14" fill="currentColor">A</text>
+            <text x="90" y="42" font-size="14" fill="currentColor">B</text>
+            <text x="150" y="178" font-size="14" fill="currentColor">C</text>
+            <text x="202" y="42" font-size="14" fill="currentColor">D</text>
+          </svg>
+        </div>
+        <p class="text-sm sm:text-base text-slate-600">\(ABDC\) est un parallélogramme : \(\overrightarrow{AB}=\overrightarrow{CD}\).</p>
+      </div>
+
+      <div class="thm-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+        <p class="font-semibold text-brand-700 mb-2">Théorème 1</p>
+        <p class="mb-2">Soient \(A\), \(B\), \(C\) et \(D\) quatre points deux à deux distincts. Les trois conditions suivantes sont équivalentes :</p>
+        <p>1) Le point \(D\) est l'image de \(C\) par la translation de vecteur \(\overrightarrow{AB}\)</p>
+        <p>2) Les vecteurs \(\overrightarrow{AB}\) et \(\overrightarrow{CD}\) sont égaux</p>
+        <p>3) Le quadrilatère \(ABDC\) est un parallélogramme (éventuellement aplati)</p>
+      </div>
+
+      <div class="remark-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+        <p class="font-semibold text-sky-700 mb-1">☠ Attention</p>
+        <p>\(ABDC\) et non \(ABCD\) : il faut faire le tour du quadrilatère, dans un sens ou dans l'autre.</p>
+        <p class="mt-2">Conséquence : si on a une égalité vectorielle, on peut écrire trois autres égalités vectorielles (les deux autres s'obtiennent en changeant de sens).</p>
+      </div>
+
+      <div class="thm-box rounded-r-xl p-4 text-sm sm:text-base">
+        <p class="font-semibold text-brand-700 mb-2">Théorème 2</p>
+        <p>\(\big[\overrightarrow{AB}=\overrightarrow{CD}\big]\) ssi \(\big[ABDC\text{ est un parallélogramme}\big]\) ssi \(\big[[AC]\text{ et }[BD]\text{ ont le même milieu}\big]\)</p>
+        <p class="mt-2 text-slate-500">On peut en déduire toutes les propriétés du parallélogramme, sur les diagonales, le centre de symétrie, l'égalité des longueurs des côtés opposés.</p>
+      </div>
+    </div>
+
+    <!-- 1.4 / 1.5 -->
+    <div class="grid lg:grid-cols-2 gap-6">
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8">
+        <h4 class="text-lg font-bold text-brand-700 mb-4">1.4) Vecteur nul</h4>
+        <div class="def-box rounded-r-xl p-4 text-sm sm:text-base">
+          <p class="font-semibold text-accent-700 mb-1">Définition</p>
+          <p>Un vecteur \(\overrightarrow{AB}\) est nul si et seulement si \(A=B\). On a alors : \(\overrightarrow{AA}=\vec 0\)</p>
+          <p class="mt-2">Donc : \(\big[\overrightarrow{AB}=\vec 0\big]\) ssi \([A=B]\)</p>
+        </div>
+        <p class="text-sm text-slate-500 mt-3">Remarque : le vecteur nul est le seul vecteur qui n'a pas de direction ni de sens.</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8">
+        <h4 class="text-lg font-bold text-brand-700 mb-4">1.5) Vecteurs opposés</h4>
+        <div class="def-box rounded-r-xl p-4 text-sm sm:text-base">
+          <p class="font-semibold text-accent-700 mb-1">Définition</p>
+          <p>Deux vecteurs sont dits opposés lorsqu'ils ont <em>la même direction, la même norme et des sens opposés</em>.</p>
+          <p class="mt-2">Les vecteurs \(\overrightarrow{AB}\) et \(\overrightarrow{BA}\) sont des vecteurs opposés. On écrit : \(\overrightarrow{AB}=-\overrightarrow{BA}\)</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- II. OPERATIONS SUR LES VECTEURS -->
+  <article id="partie2" class="mb-16">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-brand-600 text-white font-bold">II</span>
+      <h3 class="text-2xl font-bold text-slate-900">Opérations sur les vecteurs</h3>
+    </div>
+
+    <!-- 2.1 -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 mb-6">
+      <h4 class="text-lg font-bold text-brand-700 mb-4">2.1) Enchaînement de deux translations</h4>
+      <p class="text-sm sm:text-base text-slate-600 mb-4">Soit \(t_1\) la translation de vecteur \(\vec u=\overrightarrow{AB}\) et \(t_2\) la translation de vecteur \(\vec v=\overrightarrow{BC}\). Se déplacer de \(A\) en \(B\), puis de \(B\) en \(C\), revient à se déplacer de \(A\) en \(C\). Donc, appliquer la translation \(t_1\) puis la translation \(t_2\) revient à se déplacer de \(A\) en \(C\) : on obtient une nouvelle translation. Le vecteur associé à cette translation est \(\vec w=\overrightarrow{AC}\).</p>
+
+      <div class="grid sm:grid-cols-2 gap-6 items-center">
+        <div class="fig-card bg-slate-50 rounded-xl p-4 border border-slate-100 flex items-center justify-center">
+          <svg viewBox="0 0 260 190" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="a5" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor"/></marker>
+            </defs>
+            <line x1="30" y1="170" x2="110" y2="40" stroke="#10b981" stroke-width="2" marker-end="url(#a5)"/>
+            <line x1="110" y1="40" x2="230" y2="70" stroke="#0ea5e9" stroke-width="2" marker-end="url(#a5)"/>
+            <line x1="30" y1="170" x2="230" y2="70" stroke="#f43f5e" stroke-width="2" marker-end="url(#a5)"/>
+            <text x="10" y="185" font-size="14" fill="currentColor">A</text>
+            <text x="110" y="30" font-size="14" fill="currentColor">B</text>
+            <text x="235" y="65" font-size="14" fill="currentColor">C</text>
+            <text x="55" y="95" font-size="14" fill="#10b981" font-style="italic">u</text>
+            <text x="175" y="45" font-size="14" fill="#0ea5e9" font-style="italic">v</text>
+            <text x="115" y="150" font-size="14" fill="#f43f5e" font-style="italic">w = u+v</text>
+          </svg>
+        </div>
+        <div class="thm-box rounded-r-xl p-4 text-sm sm:text-base">
+          <p class="font-semibold text-brand-700 mb-1">Définition 1</p>
+          <p>Soient \(\vec u\) et \(\vec v\) deux vecteurs quelconques. Le vecteur associé à la translation résultant de l'enchaînement des translations de vecteurs \(\vec u\) et \(\vec v\) s'appelle la <strong>somme des vecteurs</strong> \(\vec u\) et \(\vec v\). On écrit : \(\vec w=\vec u+\vec v\)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.2 -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 mb-6">
+      <h4 class="text-lg font-bold text-brand-700 mb-4">2.2) Addition de vecteurs — Relation de Chasles</h4>
+
+      <div class="thm-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+        <p class="font-semibold text-brand-700 mb-1">Relation de Chasles</p>
+        <p>Quels que soient les points \(A\), \(B\) et \(C\) du plan, on a : \(\overrightarrow{AC}=\overrightarrow{AB}+\overrightarrow{BC}\)</p>
+      </div>
+
+      <p class="text-sm sm:text-base text-slate-600 mb-4">En utilisant cette propriété, on peut trouver le quatrième sommet d'un parallélogramme : c'est la <strong>règle du parallélogramme</strong> (recherche du 4ᵉ point, à partir de deux vecteurs de même origine).</p>
+
+      <div class="grid sm:grid-cols-2 gap-6 items-center mb-4">
+        <div class="thm-box rounded-r-xl p-4 text-sm sm:text-base">
+          <p class="font-semibold text-brand-700 mb-1">Règle du parallélogramme</p>
+          <p>Quels que soient les points \(A\), \(B\) et \(C\) du plan, il existe un point \(D\) tel que : \(\big[ABDC\text{ est un parallélogramme}\big]\) ssi \(\big[\overrightarrow{AD}=\overrightarrow{AB}+\overrightarrow{AC}\big]\)</p>
+        </div>
+        <div class="fig-card bg-slate-50 rounded-xl p-4 border border-slate-100 flex items-center justify-center">
+          <svg viewBox="0 0 260 190" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="a6" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor"/></marker>
+            </defs>
+            <line x1="30" y1="170" x2="80" y2="55" stroke="currentColor" stroke-width="2" marker-end="url(#a6)"/>
+            <line x1="30" y1="170" x2="180" y2="185" stroke="#10b981" stroke-width="2" marker-end="url(#a6)"/>
+            <line x1="80" y1="55" x2="230" y2="70" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#a6)"/>
+            <line x1="180" y1="185" x2="230" y2="70" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#a6)"/>
+            <line x1="30" y1="170" x2="230" y2="70" stroke="#f43f5e" stroke-width="2" marker-end="url(#a6)"/>
+            <text x="8" y="185" font-size="14" fill="currentColor">A</text>
+            <text x="82" y="46" font-size="14" fill="currentColor">B</text>
+            <text x="235" y="65" font-size="14" fill="currentColor">D</text>
+            <text x="182" y="205" font-size="14" fill="#10b981">C</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="remark-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+        <p><strong>Remarque :</strong> d'après la règle du parallélogramme, dans une addition, on peut changer l'ordre des vecteurs, la somme ne change pas.</p>
+      </div>
+
+      <div class="thm-box rounded-r-xl p-4 text-sm sm:text-base">
+        <p class="font-semibold text-brand-700 mb-1">Théorème (commutativité)</p>
+        <p>Pour tous vecteurs \(\vec u\) et \(\vec v\) : \(\vec u+\vec v=\vec v+\vec u\)</p>
+      </div>
+    </div>
+
+    <!-- 2.3 -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 mb-6">
+      <h4 class="text-lg font-bold text-brand-700 mb-4">2.3) Soustraction de vecteurs</h4>
+      <div class="def-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+        <p class="font-semibold text-accent-700 mb-1">Définition</p>
+        <p>Pour soustraire un vecteur on ajoute son opposé. Si \(\vec u\) et \(\vec v\) sont deux vecteurs quelconques, alors : \(\vec u-\vec v=\vec u+(-\vec v)\). \(\vec u-\vec v\) s'appelle la <strong>différence</strong> des vecteurs \(\vec u\) et \(\vec v\).</p>
+      </div>
+      <div class="example-box rounded-r-xl p-4 text-sm sm:text-base">
+        <p class="font-semibold text-emerald-700 mb-2">Exemple</p>
+        <p class="mb-2">Soient \(A\), \(B\) et \(C\) trois points du plan. Calculer \(\overrightarrow{AB}-\overrightarrow{AC}\)</p>
+        <p>\(\overrightarrow{AB}-\overrightarrow{AC}=\overrightarrow{AB}+(-\overrightarrow{AC})\) &nbsp;→ par définition de la soustraction</p>
+        <p>\(=\overrightarrow{AB}+\overrightarrow{CA}\) &nbsp;→ par définition d'un vecteur opposé</p>
+        <p>\(=\overrightarrow{CA}+\overrightarrow{AB}\) &nbsp;→ on peut changer l'ordre des vecteurs</p>
+        <p>\(=\overrightarrow{CB}\) &nbsp;→ d'après la relation de Chasles</p>
+      </div>
+    </div>
+
+    <!-- 2.4 -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 mb-6">
+      <h4 class="text-lg font-bold text-brand-700 mb-4">2.4) Multiplication d'un vecteur par un nombre réel</h4>
+      <div class="def-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+        <p class="font-semibold text-accent-700 mb-1">Définition</p>
+        <p class="mb-2">Soit \(\vec v\) un vecteur quelconque (non nul) et \(k\) un nombre réel non nul. On appelle produit du vecteur \(\vec v\) par le nombre réel \(k\), le vecteur noté \(k\vec v\) ayant :</p>
+        <ul class="list-disc list-inside space-y-1">
+          <li>la même direction que \(\vec v\)</li>
+          <li>le même sens si \(k>0\) ; et de sens contraire si \(k<0\)</li>
+          <li>une norme égale à \(k\) fois la norme de \(\vec v\) si \(k>0\) ; et à \((-k)\) fois la norme de \(\vec v\) si \(k<0\)</li>
+        </ul>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-6 items-center">
+        <div class="fig-card bg-slate-50 rounded-xl p-4 border border-slate-100 flex items-center justify-center">
+          <svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="a7" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor"/></marker>
+            </defs>
+            <line x1="20" y1="45" x2="80" y2="25" stroke="currentColor" stroke-width="2" marker-end="url(#a7)"/>
+            <text x="15" y="20" font-size="14" fill="currentColor" font-style="italic">u</text>
+            <line x1="20" y1="90" x2="180" y2="55" stroke="#e11d48" stroke-width="2" marker-end="url(#a7)"/>
+            <text x="185" y="52" font-size="13" fill="#e11d48" font-style="italic">k·u (k&gt;0)</text>
+            <line x1="230" y1="120" x2="40" y2="160" stroke="#10b981" stroke-width="2" marker-end="url(#a7)"/>
+            <text x="15" y="176" font-size="13" fill="#10b981" font-style="italic">k·u (k&lt;0)</text>
+          </svg>
+        </div>
+        <div class="remark-box rounded-r-xl p-4 text-sm sm:text-base">
+          <p><strong>Remarque :</strong> si \(k=0\) ou si \(\vec u=\vec 0\), alors : \(0\cdot\vec u=\vec 0\) &nbsp;et&nbsp; \(k\cdot\vec 0=\vec 0\)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.5 -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8">
+      <h4 class="text-lg font-bold text-brand-700 mb-4">2.5) Vecteurs colinéaires</h4>
+      <div class="def-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+        <p class="font-semibold text-accent-700 mb-1">Définition</p>
+        <p>On dit que deux vecteurs \(\vec u\) et \(\vec v\) sont <strong>colinéaires</strong> lorsqu'ils ont la même direction.</p>
+      </div>
+      <div class="thm-box rounded-r-xl p-4 text-sm sm:text-base">
+        <p class="font-semibold text-brand-700 mb-1">Théorème</p>
+        <p>Deux vecteurs \(\vec u\) et \(\vec v\) sont colinéaires si et seulement si il existe un nombre réel \(k\) tel que \(\vec v=k\vec u\), si et seulement si il existe un nombre réel \(k'\) tel que \(\vec u=k'\vec v\).</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- III. CONSEQUENCES -->
+  <article id="partie3">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-brand-600 text-white font-bold">III</span>
+      <h3 class="text-2xl font-bold text-slate-900">Conséquences</h3>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-6">
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8">
+        <h4 class="text-lg font-bold text-brand-700 mb-4">3.1) Parallélisme et alignement</h4>
+        <div class="thm-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+          <p class="font-semibold text-brand-700 mb-1">Théorème</p>
+          <p>Soient \(A\), \(B\), \(C\) et \(D\) quatre points du plan. Les deux vecteurs \(\overrightarrow{AB}\) et \(\overrightarrow{CD}\) sont colinéaires si et seulement si les droites \((AB)\) et \((CD)\) sont parallèles.</p>
+        </div>
+        <div class="remark-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+          <p class="font-semibold text-sky-700 mb-1">Rappel — Propriété</p>
+          <p>Si deux droites sont parallèles et ont un point commun, alors elles sont confondues. D'où la propriété importante suivante qui permet de démontrer que trois points sont alignés.</p>
+        </div>
+        <div class="thm-box rounded-r-xl p-4 text-sm sm:text-base">
+          <p class="font-semibold text-brand-700 mb-1">Théorème</p>
+          <p>Soient \(A\), \(B\) et \(C\) trois points du plan. Les trois points \(A\), \(B\) et \(C\) sont alignés si et seulement si les vecteurs \(\overrightarrow{AB}\) et \(\overrightarrow{AC}\) sont colinéaires.</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8">
+        <h4 class="text-lg font-bold text-brand-700 mb-4">3.2) Milieu d'un segment</h4>
+        <div class="thm-box rounded-r-xl p-4 text-sm sm:text-base">
+          <p class="font-semibold text-brand-700 mb-2">Théorème</p>
+          <p class="mb-2">Soit \(A\), \(B\) et \(I\) trois points du plan. Le point \(I\) est le milieu du segment \([AB]\) si et seulement si l'une des conditions suivantes est réalisée :</p>
+          <div class="grid grid-cols-2 gap-3 mt-3">
+            <p class="bg-white rounded-lg p-2 text-center border border-slate-100">1) \(\overrightarrow{AI}=\overrightarrow{IB}\)</p>
+            <p class="bg-white rounded-lg p-2 text-center border border-slate-100">2) \(\overrightarrow{AI}=\dfrac12\overrightarrow{AB}\)</p>
+            <p class="bg-white rounded-lg p-2 text-center border border-slate-100">3) \(\overrightarrow{IB}=\dfrac12\overrightarrow{AB}\)</p>
+            <p class="bg-white rounded-lg p-2 text-center border border-slate-100">4) \(\overrightarrow{IA}+\overrightarrow{IB}=\vec 0\)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ EXERCICES ============ -->
+<section id="exercices" class="bg-gradient-to-b from-slate-100 to-slate-50 border-t border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <span class="text-accent-600 font-semibold tracking-wide text-sm uppercase">S'entraîner</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Exercice N°1 — Vecteurs et translation</h2>
+      <p class="text-slate-500 mt-4">Niveau 2AC · Année scolaire 2020/2021 · Cliquez sur « Voir la correction » pour vérifier chaque exercice.</p>
+    </div>
+
+    <!-- Figures de référence -->
+    <div class="grid sm:grid-cols-2 gap-6 mb-12">
+      <div class="fig-card bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex items-center justify-center">
+        <svg viewBox="0 0 260 170" xmlns="http://www.w3.org/2000/svg">
+          <defs><marker id="a8" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor"/></marker></defs>
+          <polygon points="40,140 210,140 180,30 70,30" fill="none" stroke="currentColor" stroke-width="2"/>
+          <line x1="40" y1="140" x2="180" y2="30" stroke="#cbd5e1" stroke-width="1.2" stroke-dasharray="3 3"/>
+          <line x1="210" y1="140" x2="70" y2="30" stroke="#cbd5e1" stroke-width="1.2" stroke-dasharray="3 3"/>
+          <circle cx="125" cy="85" r="2.5" fill="#e11d48"/>
+          <text x="20" y="155" font-size="14" fill="currentColor">A</text>
+          <text x="212" y="155" font-size="14" fill="currentColor">B</text>
+          <text x="182" y="24" font-size="14" fill="currentColor">C</text>
+          <text x="55" y="24" font-size="14" fill="currentColor">D</text>
+          <text x="132" y="82" font-size="13" fill="#e11d48">O</text>
+        </svg>
+      </div>
+      <div class="fig-card bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex items-center justify-center">
+        <svg viewBox="0 0 260 170" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="40,150 220,140 120,25" fill="none" stroke="currentColor" stroke-width="2"/>
+          <text x="18" y="165" font-size="14" fill="currentColor">A</text>
+          <text x="225" y="150" font-size="14" fill="currentColor">B</text>
+          <text x="118" y="18" font-size="14" fill="currentColor">C</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="space-y-8">
+
+      <!-- EXERCICE 1 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">1</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 1</h3>
+          </div>
+          <p class="text-sm sm:text-base mb-3">\(ABCD\) est un parallélogramme de centre \(O\). Compléter par un vecteur égal :</p>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>\(\overrightarrow{DC}=\ldots\)</p>
+            <p>\(\overrightarrow{AD}=\ldots\)</p>
+            <p>\(\overrightarrow{CB}=\ldots\)</p>
+            <p>\(\overrightarrow{OC}=\ldots\)</p>
+            <p>\(\overrightarrow{BA}=\ldots\)</p>
+            <p>\(\overrightarrow{DO}=\ldots\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <p>\(\overrightarrow{DC}=\overrightarrow{AB}\)</p>
+            <p>\(\overrightarrow{AD}=\overrightarrow{BC}\)</p>
+            <p>\(\overrightarrow{CB}=\overrightarrow{DA}\)</p>
+            <p>\(\overrightarrow{OC}=\overrightarrow{AO}\)</p>
+            <p>\(\overrightarrow{BA}=\overrightarrow{CD}\)</p>
+            <p>\(\overrightarrow{DO}=\overrightarrow{OB}\)</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 2 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">2</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 2</h3>
+          </div>
+          <p class="text-sm sm:text-base mb-3">\(EFG\) est un triangle quelconque :</p>
+          <div class="space-y-1 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>1. Construire le point \(A\) tel que : \(\overrightarrow{EA}=\overrightarrow{FG}\)</p>
+            <p>2. Construire le point \(B\) tel que : \(\overrightarrow{FB}=\overrightarrow{EG}\)</p>
+            <p>3. Construire le point \(C\) tel que : \(\overrightarrow{GC}=\overrightarrow{EG}\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-3">
+            <p>1. On trace, à partir de \(E\), un représentant du vecteur \(\overrightarrow{FG}\) (même direction, même sens, même longueur) : son extrémité est le point \(A\). Comme \(\overrightarrow{EA}=\overrightarrow{FG}\), le quadrilatère \(EFGA\) est un parallélogramme.</p>
+            <p>2. On trace, à partir de \(F\), un représentant du vecteur \(\overrightarrow{EG}\) : son extrémité est le point \(B\).</p>
+            <p>3. On trace, à partir de \(G\), un représentant du vecteur \(\overrightarrow{EG}\) : son extrémité est le point \(C\).</p>
+            <p class="text-slate-500">Remarque : comme \(\overrightarrow{FB}=\overrightarrow{EG}=\overrightarrow{GC}\), on a \(\overrightarrow{FB}=\overrightarrow{GC}\), donc \(FGCB\) est un parallélogramme.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 3 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">3</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 3</h3>
+          </div>
+          <p class="text-sm sm:text-base mb-3">\(ABC\) est un triangle quelconque, \(M\) le milieu de \([BC]\) et \(D\) le symétrique de \(A\) par rapport à \(M\).</p>
+          <div class="space-y-1 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>1. Faire une figure</p>
+            <p>2. Montrer que : \(\overrightarrow{AB}=\overrightarrow{CD}\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-2">
+            <p>\(D\) symétrique de \(A\) par rapport à \(M\) signifie que \(M\) est le milieu de \([AD]\), donc \(\overrightarrow{AM}=\overrightarrow{MD}\).</p>
+            <p>\(M\) est le milieu de \([BC]\), donc \(\overrightarrow{BM}=\overrightarrow{MC}\), c'est-à-dire \(\overrightarrow{MB}=\overrightarrow{CM}\).</p>
+            <p>D'après la relation de Chasles : \(\overrightarrow{AB}=\overrightarrow{AM}+\overrightarrow{MB}=\overrightarrow{AM}+\overrightarrow{CM}\)</p>
+            <p>Et : \(\overrightarrow{CD}=\overrightarrow{CM}+\overrightarrow{MD}=\overrightarrow{CM}+\overrightarrow{AM}\)</p>
+            <p>Donc \(\overrightarrow{AB}=\overrightarrow{CD}\) (on peut changer l'ordre des vecteurs dans une somme). <strong>CQFD.</strong></p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 4 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">4</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 4</h3>
+          </div>
+          <p class="text-sm sm:text-base mb-3">\(ABCD\) est un trapèze de bases \([AB]\) et \([CD]\) tel que : \(AB=3\,cm\) et \(CD=7\,cm\)</p>
+          <div class="space-y-1 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>1. Placer le point \(E\) tel que : \(\overrightarrow{BE}=\overrightarrow{AD}\)</p>
+            <p>2. Placer le point \(F\) tel que : \(\overrightarrow{AF}=\overrightarrow{BC}\)</p>
+            <p>3. Montrer que : \(\overrightarrow{FC}=\overrightarrow{DE}\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-2">
+            <p>D'après la relation de Chasles : \(\overrightarrow{DE}=\overrightarrow{DA}+\overrightarrow{AB}+\overrightarrow{BE}\)</p>
+            <p>Or \(\overrightarrow{BE}=\overrightarrow{AD}\) (donné), donc : \(\overrightarrow{DE}=\overrightarrow{DA}+\overrightarrow{AB}+\overrightarrow{AD}=\overrightarrow{AB}\) &nbsp;(car \(\overrightarrow{DA}+\overrightarrow{AD}=\vec 0\))</p>
+            <p>De même : \(\overrightarrow{FC}=\overrightarrow{FA}+\overrightarrow{AB}+\overrightarrow{BC}\)</p>
+            <p>Or \(\overrightarrow{FA}=-\overrightarrow{AF}=-\overrightarrow{BC}\) (donné), donc : \(\overrightarrow{FC}=-\overrightarrow{BC}+\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AB}\)</p>
+            <p>Donc \(\overrightarrow{DE}=\overrightarrow{AB}=\overrightarrow{FC}\), c'est-à-dire \(\overrightarrow{FC}=\overrightarrow{DE}\). <strong>CQFD.</strong></p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 5 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">5</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 5</h3>
+          </div>
+          <p class="text-sm sm:text-base mb-3">\(ABCD\) est un parallélogramme.</p>
+          <div class="space-y-1 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>1. Placer le point \(E\) tel que : \(\overrightarrow{AB}=\overrightarrow{CE}\)</p>
+            <p>2. Montrer que \(C\) est le milieu de \([DE]\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-2">
+            <p>Comme \(ABCD\) est un parallélogramme, on a \(\overrightarrow{AB}=\overrightarrow{DC}\) (côtés opposés).</p>
+            <p>Or, par construction, \(\overrightarrow{AB}=\overrightarrow{CE}\).</p>
+            <p>Donc \(\overrightarrow{DC}=\overrightarrow{CE}\).</p>
+            <p>Or \(\overrightarrow{DC}=\overrightarrow{CE}\) ssi \(C\) est le milieu de \([DE]\) (propriété du milieu).</p>
+            <p>Donc \(C\) est le milieu de \([DE]\). <strong>CQFD.</strong></p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 6 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">6</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 6</h3>
+          </div>
+          <p class="text-sm sm:text-base mb-3">Soit \(ABC\) un triangle quelconque :</p>
+          <div class="space-y-1 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>1. Construire le point \(D\) tel que : \(\overrightarrow{AD}=\overrightarrow{AB}+\overrightarrow{AC}\)</p>
+            <p>2. Construire le point \(E\) tel que : \(\overrightarrow{CE}=\overrightarrow{CB}+\overrightarrow{CA}\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-2">
+            <p>1. D'après la règle du parallélogramme, \(\overrightarrow{AD}=\overrightarrow{AB}+\overrightarrow{AC}\) ssi \(ABDC\) est un parallélogramme. On construit donc \(D\) comme le 4ᵉ sommet du parallélogramme \(ABDC\) (par exemple : symétrique de \(A\) par rapport au milieu de \([BC]\)).</p>
+            <p>2. De même, \(\overrightarrow{CE}=\overrightarrow{CB}+\overrightarrow{CA}\) ssi \(CBEA\) est un parallélogramme. On construit donc \(E\) comme le 4ᵉ sommet du parallélogramme \(CBEA\).</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 7 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">7</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 7</h3>
+          </div>
+          <p class="text-sm sm:text-base mb-3">\(ABC\) est un triangle quelconque :</p>
+          <div class="space-y-1 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>1. Placer le point \(D\) tel que : \(\overrightarrow{AD}=\overrightarrow{AB}+\overrightarrow{AC}\)</p>
+            <p>2. Placer le point \(E\) tel que : \(\overrightarrow{AB}=\overrightarrow{DE}\)</p>
+            <p>3. Montrer que \(D\) est le milieu de \([CE]\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-2">
+            <p>D'après (1) : \(\overrightarrow{AD}=\overrightarrow{AB}+\overrightarrow{AC}\), donc \(\overrightarrow{AB}=\overrightarrow{AD}-\overrightarrow{AC}\).</p>
+            <p>Or, d'après la relation de Chasles, \(\overrightarrow{AD}=\overrightarrow{AC}+\overrightarrow{CD}\), donc \(\overrightarrow{AD}-\overrightarrow{AC}=\overrightarrow{CD}\).</p>
+            <p>D'où \(\overrightarrow{AB}=\overrightarrow{CD}\).</p>
+            <p>Or, par construction (2), \(\overrightarrow{AB}=\overrightarrow{DE}\).</p>
+            <p>Donc \(\overrightarrow{CD}=\overrightarrow{DE}\) (les deux sont égaux à \(\overrightarrow{AB}\)).</p>
+            <p>Or \(\overrightarrow{CD}=\overrightarrow{DE}\) ssi \(D\) est le milieu de \([CE]\) (propriété du milieu).</p>
+            <p>Donc \(D\) est le milieu de \([CE]\). <strong>CQFD.</strong></p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 8 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">8</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 8 — Relation de Chasles</h3>
+          </div>
+          <p class="text-sm sm:text-base mb-3">Utiliser la relation de Chasles pour compléter les égalités suivantes :</p>
+          <div class="grid sm:grid-cols-2 gap-3 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>\(\overrightarrow{AB}+\overrightarrow{BC}=\ldots\)</p>
+            <p>\(\overrightarrow{FG}+\overrightarrow{GE}+\overrightarrow{EH}=\ldots\)</p>
+            <p>\(\overrightarrow{AM}+\overrightarrow{MI}+\overrightarrow{IH}+\overrightarrow{HA}=\ldots\)</p>
+            <p>\(\overrightarrow{MA}+\overrightarrow{AN}+\overrightarrow{NP}=\ldots\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white grid sm:grid-cols-2 gap-3">
+            <p>\(\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AC}\)</p>
+            <p>\(\overrightarrow{FG}+\overrightarrow{GE}+\overrightarrow{EH}=\overrightarrow{FH}\)</p>
+            <p>\(\overrightarrow{AM}+\overrightarrow{MI}+\overrightarrow{IH}+\overrightarrow{HA}=\vec 0\)</p>
+            <p>\(\overrightarrow{MA}+\overrightarrow{AN}+\overrightarrow{NP}=\overrightarrow{MP}\)</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 9 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">9</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 9</h3>
+          </div>
+          <p class="text-sm sm:text-base mb-3">\(ABCD\) est un parallélogramme de centre \(O\). Compléter les égalités suivantes :</p>
+          <div class="grid sm:grid-cols-2 gap-3 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>\(\overrightarrow{AB}+\overrightarrow{AD}=\ldots\)</p>
+            <p>\(\overrightarrow{AC}+\overrightarrow{CD}=\ldots\)</p>
+            <p>\(\overrightarrow{OA}+\overrightarrow{OC}=\ldots\)</p>
+            <p>\(\overrightarrow{BO}+\overrightarrow{DO}=\ldots\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white grid sm:grid-cols-2 gap-3">
+            <p>\(\overrightarrow{AB}+\overrightarrow{AD}=\overrightarrow{AC}\) (règle du parallélogramme)</p>
+            <p>\(\overrightarrow{AC}+\overrightarrow{CD}=\overrightarrow{AD}\) (Chasles)</p>
+            <p>\(\overrightarrow{OA}+\overrightarrow{OC}=\vec 0\) (\(O\) milieu de \([AC]\))</p>
+            <p>\(\overrightarrow{BO}+\overrightarrow{DO}=\vec 0\) (\(O\) milieu de \([BD]\))</p>
+          </div>
+        </details>
+      </div>
+
+    </div>
+
+    <p class="text-center text-xs text-slate-400 mt-10">D'après les exercices originaux — Prof : BAKHIRA Noureddine, Niveau 2AC, Année scolaire 2020/2021.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-slate-900 text-slate-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid sm:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="flex items-center gap-2.5">
+          <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-10 h-10 shrink-0 rounded-full">
+          <span class="font-bold text-white leading-tight">
+            <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-accent-400">Mathématiques</span>
+          </span>
+        </a>
+        <p class="text-sm text-slate-400 mt-3">Cours et exercices corrigés — 2ème année collège (APIC), Collège Mhamed 9.</p>
+        <a href="/" class="mt-3 inline-block text-sm font-semibold text-accent-400 hover:text-accent-300">← Retour au portail</a>
+      </div>
+      <div>
+        <p class="font-semibold text-white mb-3 text-sm">Navigation</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#accueil" class="hover:text-white transition">Accueil</a></li>
+          <li><a href="#cours" class="hover:text-white transition">Cours</a></li>
+          <li><a href="#exercices" class="hover:text-white transition">Exercices</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white mb-3 text-sm">Au programme</p>
+        <ul class="space-y-2 text-sm text-slate-400">
+          <li>Direction, sens et translation</li>
+          <li>Vecteurs égaux, nul, opposés</li>
+          <li>Addition, soustraction, multiplication (Chasles)</li>
+          <li>Colinéarité, alignement et milieu d'un segment</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-slate-800 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-400">
+      <p>&copy; 2026 Vecteurs et Translation — Tous droits réservés.</p>
+      <p class="font-semibold text-white">Prof : LAHBIB ELKEANTAOUI</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+  });
+
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+</script>
+
+</body>
+</html>

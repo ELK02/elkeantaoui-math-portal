@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Ordre et Opérations — 2ème Année Collège</title>
+<meta name="description" content="Cours complet et exercices corrigés sur l'ordre et les opérations (comparaison, inéquations) pour la 2ème année collège (APIC).">
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          brand: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da', 400: '#6089bd',
+            500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63', 800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+          accent: {
+            50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d', 400: '#fbbf24',
+            500: '#f59e0b', 600: '#d97706', 700: '#b45309',
+          }
+        }
+      }
+    }
+  }
+</script>
+
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- MathJax for clean math rendering -->
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Poppins', sans-serif; }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .chevron { transform: rotate(180deg); }
+  .chevron { transition: transform 0.3s ease; }
+  details .correction-panel {
+    animation: fadeSlide 0.35s ease;
+  }
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .def-box {
+    border-left: 4px solid #f59e0b;
+    background: #fffbeb;
+  }
+  .prop-box {
+    border-left: 4px solid #2c5089;
+    background: #eef3fb;
+  }
+  .remark-box {
+    border-left: 4px solid #f59e0b;
+    background: #fffbeb;
+  }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #f1f5f9; }
+  ::-webkit-scrollbar-thumb { background: #8fb0da; border-radius: 10px; }
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -4px;
+    width: 0; height: 2px;
+    background: #f59e0b;
+    transition: width 0.25s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
+  .dark .bg-amber-50, .dark .bg-accent-50 { background-color: #3a2a0a; }
+  .dark .border-amber-400, .dark .border-accent-200 { border-color: #92400e; }
+  .dark .prop-box { background-color: #12294c; border-left-color: #3f6a9c; }
+  .dark .def-box, .dark .remark-box { background-color: #3a2a0a; border-left-color: #92400e; }
+  .dark ::-webkit-scrollbar-track { background: #0b1f3a; }
+  .dark ::-webkit-scrollbar-thumb { background: #1c3a63; }
+</style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#accueil" class="flex items-center gap-2 font-bold text-brand-700 dark:text-white text-lg">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-9 w-9 shrink-0 rounded-full">
+        Ordre&nbsp;et&nbsp;Opérations
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="nav-link hover:text-brand-700 dark:hover:text-white">← Portail</a>
+        <a href="#accueil" class="nav-link hover:text-brand-700 dark:hover:text-white">Accueil</a>
+        <a href="#cours" class="nav-link hover:text-brand-700 dark:hover:text-white">Cours</a>
+        <a href="#exercices" class="nav-link hover:text-brand-700 dark:hover:text-white">Exercices</a>
+        <a href="#exercices" class="ml-2 px-4 py-2 rounded-full bg-brand-600 text-white hover:bg-brand-700 transition">Commencer</a>
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-brand-700 dark:hover:text-accent-400 transition-colors">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </div>
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="md:hidden mr-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+      <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5" aria-label="Ouvrir le menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-slate-700 dark:text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden pb-4 flex flex-col gap-3 text-sm font-medium text-slate-600 dark:text-slate-300">
+      <a href="/" class="hover:text-brand-700 dark:hover:text-white">← Portail</a>
+      <a href="#accueil" class="hover:text-brand-700 dark:hover:text-white">Accueil</a>
+      <a href="#cours" class="hover:text-brand-700 dark:hover:text-white">Cours</a>
+      <a href="#exercices" class="hover:text-brand-700 dark:hover:text-white">Exercices</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-brand-700 via-brand-600 to-accent-500 text-white">
+  <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_20%,white,transparent_35%),radial-gradient(circle_at_80%_60%,white,transparent_30%)]"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 grid md:grid-cols-2 gap-10 items-center relative">
+    <div>
+      <span class="inline-block px-4 py-1.5 rounded-full bg-white/15 text-xs sm:text-sm font-semibold tracking-wide backdrop-blur-sm mb-5">
+        Collège Mhamed 9 · 2ème année APIC
+      </span>
+      <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight mb-4">
+        Ordre et Opérations
+      </h1>
+      <p class="text-brand-100 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
+        Comparaison des nombres rationnels, effet des opérations sur les inégalités, encadrements et inéquations du premier degré : le cours complet, illustré d'exemples, suivi de 17 exercices entièrement corrigés.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#cours" class="px-6 py-3 rounded-full bg-white text-brand-700 font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition">
+          Consulter le cours
+        </a>
+        <a href="#exercices" class="px-6 py-3 rounded-full bg-accent-500 hover:bg-accent-600 font-semibold shadow-lg hover:-translate-y-0.5 transition">
+          S'entraîner — Exercices
+        </a>
+      </div>
+    </div>
+    <div class="relative">
+      <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80"
+           alt="Tableau noir couvert de formules mathématiques"
+           class="rounded-3xl shadow-2xl ring-4 ring-white/20 w-full h-72 sm:h-96 object-cover">
+      <div class="absolute -bottom-6 -left-6 bg-white text-slate-800 rounded-2xl shadow-xl px-5 py-4 hidden sm:block">
+        <p class="text-xs text-slate-500 font-medium">Propriété clé</p>
+        <p class="font-semibold text-brand-700">\(a-b&lt;0 \iff a&lt;b\)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+
+<!-- ============ COURS ============ -->
+<section id="cours" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+  <div class="text-center max-w-2xl mx-auto mb-14">
+    <span class="text-accent-600 font-semibold tracking-wide text-sm uppercase">Cours</span>
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Ordre et Opérations</h2>
+    <p class="text-slate-500 mt-4">Trois grandes parties : comparaison de deux nombres rationnels, effet des opérations (addition, soustraction, multiplication) sur l'ordre, et résolution des inéquations du premier degré.</p>
+  </div>
+
+  <!-- I. COMPARAISON -->
+  <article id="partie1" class="mb-16">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-brand-600 text-white font-bold">I</span>
+      <h3 class="text-2xl font-bold text-slate-900">Comparaison de deux nombres rationnels</h3>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8">
+      <p class="font-semibold text-slate-700 mb-3">1) Notation</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+        <div class="bg-slate-50 rounded-xl p-4 border border-slate-100 text-center">
+          <p class="text-2xl font-bold text-brand-700 mb-1">\(a&lt;b\)</p>
+          <p class="text-xs sm:text-sm text-slate-600">\(a\) est strictement inférieur à \(b\)</p>
+        </div>
+        <div class="bg-slate-50 rounded-xl p-4 border border-slate-100 text-center">
+          <p class="text-2xl font-bold text-brand-700 mb-1">\(a>b\)</p>
+          <p class="text-xs sm:text-sm text-slate-600">\(a\) est strictement supérieur à \(b\)</p>
+        </div>
+        <div class="bg-slate-50 rounded-xl p-4 border border-slate-100 text-center">
+          <p class="text-2xl font-bold text-brand-700 mb-1">\(a\le b\)</p>
+          <p class="text-xs sm:text-sm text-slate-600">\(a\) est inférieur ou égal à \(b\)</p>
+        </div>
+        <div class="bg-slate-50 rounded-xl p-4 border border-slate-100 text-center">
+          <p class="text-2xl font-bold text-brand-700 mb-1">\(a\ge b\)</p>
+          <p class="text-xs sm:text-sm text-slate-600">\(a\) est supérieur ou égal à \(b\)</p>
+        </div>
+      </div>
+
+      <p class="font-semibold text-slate-700 mb-3">2) Propriété</p>
+      <div class="prop-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+        <p class="font-semibold text-brand-700 mb-2">Propriété</p>
+        <p class="mb-1">Soient \(a\) et \(b\) deux nombres rationnels :</p>
+        <ul class="space-y-1 list-disc list-inside">
+          <li>Si \(a-b&lt;0\) alors \(a&lt;b\)</li>
+          <li>Si \(a-b>0\) alors \(a>b\)</li>
+          <li>Si \(a-b=0\) alors \(a=b\)</li>
+        </ul>
+      </div>
+
+      <div class="text-sm sm:text-base space-y-2">
+        <p class="font-semibold text-slate-700">Exemple :</p>
+        <p>On compare \(\dfrac{3}{5}\) et \(\dfrac{6}{7}\).</p>
+        <p>On a : \(\dfrac{3}{5}-\dfrac{6}{7}=\dfrac{21}{35}-\dfrac{30}{35}=\dfrac{-9}{35}\)</p>
+        <p>Puisque \(\dfrac{-9}{35}&lt;0\), alors \(\dfrac{3}{5}&lt;\dfrac{6}{7}\).</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- II. ORDRE ET OPERATIONS -->
+  <article id="partie2" class="mb-16">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-brand-600 text-white font-bold">II</span>
+      <h3 class="text-2xl font-bold text-slate-900">Ordre et opérations</h3>
+    </div>
+
+    <!-- II.1 -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 mb-6">
+      <p class="font-semibold text-brand-700 mb-4">1) Ordre et addition — ordre et soustraction</p>
+
+      <div class="prop-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+        <p class="font-semibold text-brand-700 mb-2">Propriété</p>
+        <p class="mb-1">Soient \(a\), \(b\) et \(c\) trois nombres rationnels :</p>
+        <ul class="space-y-1 list-disc list-inside">
+          <li>Si \(a&lt;b\) alors \(a+c&lt;b+c\)</li>
+          <li>Si \(a&lt;b\) alors \(a-c&lt;b-c\)</li>
+        </ul>
+      </div>
+      <div class="text-sm sm:text-base space-y-1 mb-6">
+        <p class="font-semibold text-slate-700">Exemple :</p>
+        <p>Soit \(x\) un nombre rationnel tel que \(x\le5\). Comparer \(x+4\) et \(9\).</p>
+        <p>On a \(x\le5\), alors \(x+4\le5+4\), donc \(x+4\le9\).</p>
+      </div>
+
+      <div class="prop-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+        <p class="font-semibold text-brand-700 mb-2">Propriété</p>
+        <p>Soient \(a\), \(b\), \(c\) et \(d\) des nombres rationnels : si \(\begin{cases}a&lt;b\\c&lt;d\end{cases}\) alors \(a+c&lt;b+d\)</p>
+      </div>
+      <div class="text-sm sm:text-base space-y-1">
+        <p class="font-semibold text-slate-700">Exemple :</p>
+        <p>\(a\) et \(b\) deux nombres rationnels tels que \(a&lt;4\) et \(3>b\). Montrer que \(a+b&lt;7\).</p>
+        <p>On a \(\begin{cases}a&lt;4\\b&lt;3\end{cases}\) alors \(a+b&lt;4+3\) donc \(a+b&lt;7\).</p>
+      </div>
+    </div>
+
+    <!-- II.2 -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8">
+      <p class="font-semibold text-brand-700 mb-4">2) Ordre et multiplication</p>
+
+      <div class="prop-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+        <p class="font-semibold text-brand-700 mb-2">Propriété</p>
+        <p class="mb-1">Soient \(a\), \(b\) et \(c\) des nombres rationnels :</p>
+        <ul class="space-y-1 list-disc list-inside">
+          <li>Si \(\begin{cases}a&lt;b\\c>0\end{cases}\) alors \(a\times c&lt;b\times c\)</li>
+          <li>Si \(\begin{cases}a&lt;b\\c&lt;0\end{cases}\) alors \(a\times c>b\times c\)</li>
+        </ul>
+      </div>
+      <div class="text-sm sm:text-base space-y-1 mb-6">
+        <p class="font-semibold text-slate-700">Exemple :</p>
+        <p>\(a\) et \(b\) deux nombres rationnels tels que \(a&lt;3\) et \(b>-5\). Comparer \(-2a\) et \(-6\), puis \(3b\) et \(-15\).</p>
+        <p>On a \(a&lt;3\), alors \(-2\times a>-2\times3\), donc \(-2a>-6\).</p>
+        <p>On a \(b>-5\), alors \(3\times b>3\times(-5)\), donc \(3b>-15\).</p>
+      </div>
+
+      <div class="remark-box rounded-r-xl p-4 mb-6 text-sm sm:text-base">
+        <p class="font-semibold text-amber-700 mb-2">Remarque</p>
+        <p>Soient \(a\) et \(b\) deux nombres rationnels : si \(a&lt;b\) alors \(-a>-b\)</p>
+      </div>
+
+      <div class="prop-box rounded-r-xl p-4 mb-4 text-sm sm:text-base">
+        <p class="font-semibold text-brand-700 mb-2">Propriété</p>
+        <p>Soient \(a\), \(b\), \(c\) et \(d\) des nombres rationnels positifs : si \(\begin{cases}a&lt;b\\c&lt;d\end{cases}\) alors \(a\times c&lt;b\times d\)</p>
+      </div>
+      <div class="text-sm sm:text-base space-y-1">
+        <p class="font-semibold text-slate-700">Exemple :</p>
+        <p>\(a\) et \(b\) deux nombres rationnels tels que \(a&lt;2\) et \(b&lt;6\). Montrer que \(ab&lt;12\).</p>
+        <p>On a \(\begin{cases}a&lt;2\\b&lt;6\end{cases}\) alors \(a\times b&lt;2\times6\), donc \(ab&lt;12\).</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- III. INEQUATIONS -->
+  <article id="partie3">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-brand-600 text-white font-bold">III</span>
+      <h3 class="text-2xl font-bold text-slate-900">Inéquations du premier degré à une inconnue</h3>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8">
+      <p class="font-semibold text-slate-700 mb-3">1) Vocabulaire</p>
+      <div class="def-box rounded-r-xl p-4 mb-8 text-sm sm:text-base">
+        <p class="font-semibold text-accent-700 mb-1">Définition</p>
+        <p>Une inéquation à une inconnue \(x\) est une inégalité entre deux expressions algébriques.</p>
+        <p class="mt-2">La valeur de \(x\) pour laquelle l'inégalité est vraie est <strong>la solution</strong> de l'inéquation.</p>
+      </div>
+
+      <p class="font-semibold text-slate-700 mb-3">2) Résoudre des inéquations du premier degré à une inconnue</p>
+      <div class="def-box rounded-r-xl p-4 mb-6 text-sm sm:text-base">
+        <p class="font-semibold text-accent-700 mb-1">Définition</p>
+        <p>Résoudre une inéquation, c'est trouver tous les nombres qui vérifient l'inégalité.</p>
+      </div>
+
+      <p class="font-semibold text-slate-700 mb-3">Exemples : Résoudre les inéquations suivantes :</p>
+      <div class="grid sm:grid-cols-2 gap-6 text-sm sm:text-base">
+        <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+          <p class="font-semibold text-brand-700 mb-2">1) \(2x+1\ge-7\)</p>
+          <p>\(2x\ge-7-1\)</p>
+          <p>\(2x\ge-8\)</p>
+          <p>\(x\ge\dfrac{-8}{2}\)</p>
+          <p class="font-semibold">\(x\ge-4\)</p>
+          <p class="mt-2 text-slate-600">Les solutions sont tous les nombres supérieurs ou égaux à \(-4\).</p>
+        </div>
+        <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+          <p class="font-semibold text-brand-700 mb-2">2) \(-2x+1>9\)</p>
+          <p>\(-2x>9-1\)</p>
+          <p>\(-2x>8\)</p>
+          <p>\(x&lt;\dfrac{8}{-2}\) <span class="text-accent-600 text-xs">(on divise par un négatif : le sens change)</span></p>
+          <p class="font-semibold">\(x&lt;-4\)</p>
+          <p class="mt-2 text-slate-600">Les solutions sont tous les nombres strictement inférieurs à \(-4\).</p>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ EXERCICES ============ -->
+<section id="exercices" class="bg-gradient-to-b from-slate-100 to-slate-50 border-t border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="text-accent-600 font-semibold tracking-wide text-sm uppercase">S'entraîner</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Exercices — Ordre et Opérations</h2>
+      <p class="text-slate-500 mt-4">17 exercices. Cliquez sur « Voir la correction » pour vérifier chaque réponse.</p>
+    </div>
+
+    <div class="space-y-8">
+
+      <!-- EXERCICE 1 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">1</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 1 — Compléter en mettant \(>\) ou \(&lt;\)</h3>
+          </div>
+          <div class="grid sm:grid-cols-3 gap-3 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>\((-11)\ \ldots\ (-8)\)</p>
+            <p>\(\dfrac{-7}{3}\ \ldots\ \dfrac{1}{2}\)</p>
+            <p>\(\dfrac{320}{321}\ \ldots\ 1\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white grid sm:grid-cols-3 gap-3">
+            <p>\((-11)&lt;(-8)\) car \(-11\) est plus loin à gauche sur la droite graduée.</p>
+            <p>\(\dfrac{-7}{3}&lt;\dfrac{1}{2}\) car un négatif est toujours inférieur à un positif.</p>
+            <p>\(\dfrac{320}{321}&lt;1\) car \(\dfrac{320}{321}=1-\dfrac{1}{321}\).</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 2 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">2</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 2 — Comparer \(a\) et \(b\) dans chaque cas</h3>
+          </div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>\(a-b=13\)</p>
+            <p>\(a-b=\dfrac{-5}{3}\)</p>
+            <p>\(a-b=(-7)^{2022}\)</p>
+            <p>\(a-b=(-2)^{2021}\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <p>\(a-b=13>0\) donc \(a>b\)</p>
+            <p>\(a-b=\dfrac{-5}{3}&lt;0\) donc \(a&lt;b\)</p>
+            <p>\(2022\) est pair, donc \((-7)^{2022}>0\) : \(a>b\)</p>
+            <p>\(2021\) est impair, donc \((-2)^{2021}&lt;0\) : \(a&lt;b\)</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 3 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">3</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 3 — Comparer</h3>
+          </div>
+          <div class="grid sm:grid-cols-3 gap-3 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>1. \(\dfrac{3}{2}\) et \(\dfrac{5}{3}\)</p>
+            <p>2. \(x+\dfrac12\) et \(x-\dfrac14\)</p>
+            <p>3. \((x+y)^2\) et \(4xy\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-2">
+            <p>1. \(\dfrac{3}{2}-\dfrac{5}{3}=\dfrac{9}{6}-\dfrac{10}{6}=\dfrac{-1}{6}&lt;0\) donc \(\dfrac{3}{2}&lt;\dfrac{5}{3}\)</p>
+            <p>2. \(\left(x+\dfrac12\right)-\left(x-\dfrac14\right)=\dfrac12+\dfrac14=\dfrac34>0\) donc \(x+\dfrac12>x-\dfrac14\)</p>
+            <p>3. \((x+y)^2-4xy=x^2+2xy+y^2-4xy=x^2-2xy+y^2=(x-y)^2\ge0\) donc \((x+y)^2\ge4xy\) (toujours, quels que soient \(x\) et \(y\))</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 4 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">4</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 4 — Comparer</h3>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-3 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>\(\dfrac{14}{5}+\dfrac{7}{6}\) et \(\dfrac{5}{14}+\dfrac{7}{6}\)</p>
+            <p>\(15^{16}+\dfrac{15}{16}\) et \(16^{16}+\dfrac{15}{16}\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-2">
+            <p>\(\dfrac{7}{6}\) est commun. Or \(\dfrac{14}{5}>\dfrac{5}{14}\), donc \(\dfrac{14}{5}+\dfrac{7}{6}>\dfrac{5}{14}+\dfrac{7}{6}\)</p>
+            <p>\(\dfrac{15}{16}\) est commun. Or \(15^{16}&lt;16^{16}\), donc \(15^{16}+\dfrac{15}{16}&lt;16^{16}+\dfrac{15}{16}\)</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 5 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">5</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 5 — Compléter</h3>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-3 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>Si \(x>3\), alors \(x+4>\ldots\)</p>
+            <p>Si \(x\le-5\), alors \(x+3\le\ldots\)</p>
+            <p>Si \(x&lt;3\), alors \(x-5&lt;\ldots\)</p>
+            <p>Si \(x\ge8\), alors \(x-12\ge\ldots\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white grid sm:grid-cols-2 gap-3">
+            <p>Si \(x>3\), alors \(x+4>\mathbf{7}\)</p>
+            <p>Si \(x\le-5\), alors \(x+3\le\mathbf{-2}\)</p>
+            <p>Si \(x&lt;3\), alors \(x-5&lt;\mathbf{-2}\)</p>
+            <p>Si \(x\ge8\), alors \(x-12\ge\mathbf{-4}\)</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 6 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">6</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 6 — Montrer une inégalité</h3>
+          </div>
+          <div class="space-y-2 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>1. \(x\) est un nombre rationnel tel que \(x+3\ge7\). Montrer que \(x\ge4\)</p>
+            <p>2. \(y\) est un nombre rationnel tel que \(y-3>2\). Montrer que \(y>5\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-2">
+            <p>1. On a \(x+3\ge7\), en ajoutant \(-3\) aux deux membres : \(x\ge7-3\), donc \(x\ge4\)</p>
+            <p>2. On a \(y-3>2\), en ajoutant \(3\) aux deux membres : \(y>2+3\), donc \(y>5\)</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 7 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">7</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 7 — Comparer</h3>
+          </div>
+          <div class="text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>\(\dfrac{-12}{13}+9^{2021}\) et \(\dfrac{-11}{13}+9^{2022}\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-2">
+            <p>On a \(\dfrac{-12}{13}&lt;\dfrac{-11}{13}\) et \(9^{2021}&lt;9^{2022}\)</p>
+            <p>D'après la propriété de l'addition des inégalités : \(\dfrac{-12}{13}+9^{2021}&lt;\dfrac{-11}{13}+9^{2022}\)</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 8 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">8</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 8 — Comparer \(x\) et \(y\)</h3>
+          </div>
+          <div class="text-sm sm:text-base bg-slate-50 rounded-xl p-4 space-y-1">
+            <p>\(x\) et \(y\) sont deux nombres rationnels tels que :</p>
+            <p>\(x=\dfrac{-2345}{135}\times\dfrac{2021}{2022}\) et \(y=\dfrac{-2346}{135}\times\dfrac{2021}{2022}\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-2">
+            <p>On a \(-2345>-2346\), et \(135>0\), donc \(\dfrac{-2345}{135}>\dfrac{-2346}{135}\)</p>
+            <p>Or \(\dfrac{2021}{2022}>0\), donc en multipliant les deux membres par \(\dfrac{2021}{2022}\) : \(x>y\)</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 9 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">9</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 9 — Compléter</h3>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-3 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>Si \(x>3\), alors \(3x>\ldots\)</p>
+            <p>Si \(x\le7\), alors \(-5x\le\ldots\)</p>
+            <p>Si \(x&lt;4\), alors \(7x\ \ldots\)</p>
+            <p>Si \(x\ge-8\), alors \(-2x\ \ldots\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white grid sm:grid-cols-2 gap-3">
+            <p>Si \(x>3\), alors \(3x>\mathbf{9}\) (on multiplie par \(3>0\) : le sens ne change pas)</p>
+            <p>Si \(x\le7\), alors \(-5x\ge\mathbf{-35}\) (on multiplie par \(-5&lt;0\) : le sens change)</p>
+            <p>Si \(x&lt;4\), alors \(7x&lt;\mathbf{28}\)</p>
+            <p>Si \(x\ge-8\), alors \(-2x\le\mathbf{16}\)</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 10 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">10</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 10 — Montrer une inégalité</h3>
+          </div>
+          <div class="space-y-2 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>1. \(a\) est un nombre rationnel tel que \(a-3\le\dfrac{a}{2}-4\). Montrer que \(a\le-2\)</p>
+            <p>2. \(b\) est un nombre rationnel tel que \(b-3(2b-4)\ge4b-2\). Montrer que \(b\le\dfrac{14}{9}\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-3">
+            <div>
+              <p>1. On a \(a-3\le\dfrac{a}{2}-4\)</p>
+              <p>\(a-\dfrac{a}{2}\le-4+3\)</p>
+              <p>\(\dfrac{a}{2}\le-1\)</p>
+              <p>donc \(a\le-2\)</p>
+            </div>
+            <div class="pt-2 border-t border-slate-100">
+              <p>2. On a \(b-3(2b-4)\ge4b-2\)</p>
+              <p>\(b-6b+12\ge4b-2\)</p>
+              <p>\(-5b+12\ge4b-2\)</p>
+              <p>\(-9b\ge-14\)</p>
+              <p>donc \(b\le\dfrac{14}{9}\) (on divise par \(-9&lt;0\) : le sens change)</p>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 11 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">11</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 11 — Montrer une inégalité</h3>
+          </div>
+          <div class="space-y-2 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>1. \(x\) et \(y\) rationnels tels que \(x\ge3\) et \(y\ge8\). Montrer que \(xy+7\ge31\)</p>
+            <p>2. \(x\) et \(y\) rationnels tels que \(x>4\) et \(y&lt;\dfrac{-5}{4}\). Montrer que \(xy&lt;-5\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-3">
+            <div>
+              <p>1. On a \(x\ge3>0\) et \(y\ge8>0\), donc \(xy\ge3\times8=24\)</p>
+              <p>d'où \(xy+7\ge24+7\), donc \(xy+7\ge31\)</p>
+            </div>
+            <div class="pt-2 border-t border-slate-100">
+              <p>2. On a \(x>4>0\), donc en multipliant \(y&lt;\dfrac{-5}{4}\) par \(x\) (positif) : \(xy&lt;\dfrac{-5}{4}x\)</p>
+              <p>Or \(x>4\), donc en multipliant par \(\dfrac{-5}{4}&lt;0\) (le sens change) : \(\dfrac{-5}{4}x&lt;\dfrac{-5}{4}\times4=-5\)</p>
+              <p>Donc \(xy&lt;\dfrac{-5}{4}x&lt;-5\), c'est-à-dire \(xy&lt;-5\)</p>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 12 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">12</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 12 — Encadrer</h3>
+          </div>
+          <div class="text-sm sm:text-base bg-slate-50 rounded-xl p-4 space-y-2">
+            <p>\(a\) et \(b\) sont deux nombres rationnels tels que : \(4&lt;a&lt;5\) et \(3&lt;b&lt;7\)</p>
+            <p>Encadrer : \(a+b\ \ ;\ \ a-b\ \ ;\ \ 2a+3b\ \ ;\ \ ab\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white grid sm:grid-cols-2 gap-3">
+            <p>\(a+b\) : \(4+3&lt;a+b&lt;5+7\) donc \(7&lt;a+b&lt;12\)</p>
+            <p>\(a-b\) : \(4-7&lt;a-b&lt;5-3\) donc \(-3&lt;a-b&lt;2\)</p>
+            <p>\(2a+3b\) : \(8&lt;2a&lt;10\) et \(9&lt;3b&lt;21\) donc \(17&lt;2a+3b&lt;31\)</p>
+            <p>\(ab\) : \(a,b>0\) donc \(4\times3&lt;ab&lt;5\times7\) c'est-à-dire \(12&lt;ab&lt;35\)</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 13 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">13</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 13 — Encadrer</h3>
+          </div>
+          <div class="text-sm sm:text-base bg-slate-50 rounded-xl p-4 space-y-2">
+            <p>\(x\) et \(y\) sont deux nombres rationnels tels que : \(-3&lt;x&lt;-2\) et \(1&lt;y&lt;3\)</p>
+            <p>Encadrer : \(x+y\ \ ;\ \ x-y\ \ ;\ \ 2x-y\ \ ;\ \ xy\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white grid sm:grid-cols-2 gap-3">
+            <p>\(x+y\) : \(-3+1&lt;x+y&lt;-2+3\) donc \(-2&lt;x+y&lt;1\)</p>
+            <p>\(x-y\) : \(-3-3&lt;x-y&lt;-2-1\) donc \(-6&lt;x-y&lt;-3\)</p>
+            <p>\(2x-y\) : \(-6&lt;2x&lt;-4\) et \(-3&lt;-y&lt;-1\) donc \(-9&lt;2x-y&lt;-5\)</p>
+            <p>\(xy\) : \(x\) négatif, \(y\) positif — valeurs extrêmes \((-3)\times3=-9\) et \((-2)\times1=-2\), donc \(-9&lt;xy&lt;-2\)</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 14 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">14</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 14 — Encadrer</h3>
+          </div>
+          <div class="text-sm sm:text-base bg-slate-50 rounded-xl p-4 space-y-2">
+            <p>\(x\), \(y\) et \(z\) sont des nombres rationnels tels que :</p>
+            <p>\(-3\le x\le-1\ \ ;\ \ 2\le y\le6\ \ \) et \(\ \ \dfrac{-2}{3}\le\dfrac{2z+1}{3}\le1\)</p>
+            <p>Encadrer : \(x-2y\ \ ;\ \ 3x+y+8\ \ ;\ \ z\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-2">
+            <p>\(x-2y\) : \(y\in[2,6]\Rightarrow-2y\in[-12,-4]\) ; avec \(x\in[-3,-1]\) : \(-15\le x-2y\le-5\)</p>
+            <p>\(3x+y+8\) : \(3x\in[-9,-3]\), \(y\in[2,6]\) donc \(3x+y\in[-7,3]\), d'où \(1\le3x+y+8\le11\)</p>
+            <p>\(z\) : de \(\dfrac{-2}{3}\le\dfrac{2z+1}{3}\le1\), on multiplie par \(3\) : \(-2\le2z+1\le3\), on soustrait \(1\) : \(-3\le2z\le2\), on divise par \(2\) : \(\dfrac{-3}{2}\le z\le1\)</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 15 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">15</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 15 — Résoudre les inéquations suivantes</h3>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-3 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>1. \(x+5\ge7\)</p>
+            <p>2. \(3x-2\le1\)</p>
+            <p>3. \(2x-5>2(x-1)-3\)</p>
+            <p>4. \(4x+2(x-1)\ge5x+8\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white grid sm:grid-cols-2 gap-3">
+            <p>1. \(x\ge7-5\Rightarrow x\ge2\)</p>
+            <p>2. \(3x\le3\Rightarrow x\le1\)</p>
+            <p>3. \(2x-5>2x-2-3\Rightarrow2x-5>2x-5\Rightarrow0>0\) : impossible, donc \(S=\varnothing\)</p>
+            <p>4. \(6x-2\ge5x+8\Rightarrow x\ge10\)</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 16 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">16</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 16 — Résoudre les inéquations suivantes</h3>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-3 text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>1. \(x+3\le6\)</p>
+            <p>2. \(2x+5\ge0\)</p>
+            <p>3. \(5x+3>2x-1\)</p>
+            <p>4. \(-4x-8\ge2(x-4)\)</p>
+            <p>5. \(\dfrac{3x}{4}+\dfrac{1}{2}&lt;1\)</p>
+            <p>6. \(\dfrac{3x-5}{4}\le\dfrac{2x-1}{8}\)</p>
+            <p>7. \(7x+8+2(3-x)>3(x+4)-(x-2)\)</p>
+            <p>8. \(\dfrac{x}{2}+\dfrac{x-1}{3}>\dfrac{x+2}{6}-1\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white grid sm:grid-cols-2 gap-3">
+            <p>1. \(x\le6-3\Rightarrow x\le3\)</p>
+            <p>2. \(2x\ge-5\Rightarrow x\ge\dfrac{-5}{2}\)</p>
+            <p>3. \(3x>-4\Rightarrow x>\dfrac{-4}{3}\)</p>
+            <p>4. \(-4x-8\ge2x-8\Rightarrow-6x\ge0\Rightarrow x\le0\)</p>
+            <p>5. \(3x+2&lt;4\Rightarrow3x&lt;2\Rightarrow x&lt;\dfrac{2}{3}\)</p>
+            <p>6. \(6x-10\le2x-1\Rightarrow4x\le9\Rightarrow x\le\dfrac{9}{4}\)</p>
+            <p>7. \(5x+14>2x+14\Rightarrow3x>0\Rightarrow x>0\)</p>
+            <p>8. \(3x+2(x-1)>(x+2)-6\Rightarrow5x-2>x-4\Rightarrow4x>-2\Rightarrow x>\dfrac{-1}{2}\)</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 17 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">17</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 17 — Ranger par ordre décroissant</h3>
+          </div>
+          <div class="text-sm sm:text-base bg-slate-50 rounded-xl p-4">
+            <p>\(4{,}7\times10^{-3}\ \ ;\ \ -4{,}7\times10^{-2}\ \ ;\ \ 7{,}4\times10^{-3}\ \ ;\ \ -7\times10^{-2}\)</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-2">
+            <p>On écrit les valeurs décimales : \(4{,}7\times10^{-3}=0{,}0047\ ;\ -4{,}7\times10^{-2}=-0{,}047\ ;\ 7{,}4\times10^{-3}=0{,}0074\ ;\ -7\times10^{-2}=-0{,}07\)</p>
+            <p class="font-semibold">Ordre décroissant : \(7{,}4\times10^{-3}\ >\ 4{,}7\times10^{-3}\ >\ -4{,}7\times10^{-2}\ >\ -7\times10^{-2}\)</p>
+          </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-slate-900 text-slate-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid sm:grid-cols-3 gap-8">
+      <div>
+        <div class="flex items-center gap-2 font-bold text-white text-lg mb-3">
+          <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-brand-600 to-accent-500 text-white text-sm">&lt;&gt;</span>
+          Ordre&nbsp;et&nbsp;Opérations
+        </div>
+        <p class="text-sm text-slate-400">Cours et exercices corrigés — 2ème année collège (APIC), Collège Mhamed 9.</p>
+      </div>
+      <div>
+        <p class="font-semibold text-white mb-3 text-sm">Navigation</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#accueil" class="hover:text-white transition">Accueil</a></li>
+          <li><a href="#cours" class="hover:text-white transition">Cours</a></li>
+          <li><a href="#exercices" class="hover:text-white transition">Exercices</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white mb-3 text-sm">Au programme</p>
+        <ul class="space-y-2 text-sm text-slate-400">
+          <li>Comparaison de deux nombres rationnels</li>
+          <li>Ordre et addition / soustraction</li>
+          <li>Ordre et multiplication</li>
+          <li>Inéquations du premier degré</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-slate-800 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-400">
+      <p>&copy; 2026 Ordre et Opérations — Tous droits réservés.</p>
+      <p class="font-semibold text-white">Prof : LAHBIB ELKEANTAOUI</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+  });
+</script>
+
+</body>
+</html>

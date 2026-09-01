@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Le Parallélogramme — Cours & Exercices | 1AC Mathématiques</title>
+<meta name="description" content="Cours complet et interactif sur le parallélogramme (1ère année collège) : définition, propriété des diagonales, des côtés opposés, des angles opposés et consécutifs, réciproques et applications, avec 7 exercices corrigés en détail.">
+<meta name="theme-color" content="#2c5089">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%96%B0%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Poppins', 'ui-sans-serif', 'sans-serif'],
+          body: ['Inter', 'ui-sans-serif', 'sans-serif'],
+        },
+        boxShadow: {
+          soft: '0 10px 30px -10px rgba(79, 70, 229, 0.25)',
+        },
+        colors: {
+          indigo: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+        },
+      }
+    }
+  }
+</script>
+<style>
+  section[id] { scroll-margin-top: 5.5rem; }
+  .accordion-wrap { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s ease; }
+  .accordion-wrap.open { grid-template-rows: 1fr; }
+  .accordion-inner { overflow: hidden; }
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #c7d2fe; border-radius: 9999px; }
+  .dark ::-webkit-scrollbar-thumb { background: #4338ca; }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
+  .dark .bg-amber-50 { background-color: #3a2a0a; }
+  .dark .border-amber-400 { border-color: #92400e; }
+</style>
+</head>
+<body class="font-body antialiased bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
+
+<!-- Global SVG defs -->
+<svg width="0" height="0" class="absolute">
+  <defs>
+    <marker id="arrow-gray" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" class="fill-slate-400 dark:fill-slate-500"/>
+    </marker>
+  </defs>
+</svg>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#accueil" class="flex items-center gap-2 font-display font-bold text-lg text-indigo-700 dark:text-indigo-400 shrink-0">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-9 w-9 shrink-0 rounded-full">
+        <span>Maths<span class="text-amber-500">·1AC</span></span>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-0.5">
+        <a href="/" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-indigo-700 hover:bg-indigo-50 dark:hover:bg-slate-800 dark:hover:text-indigo-400 transition">← Portail</a>
+        <a href="#definition" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-700 hover:bg-indigo-50 dark:hover:bg-slate-800 dark:hover:text-indigo-400 transition">Définition</a>
+        <a href="#proprietes" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-violet-700 hover:bg-violet-50 dark:hover:bg-slate-800 dark:hover:text-violet-400 transition">Propriétés</a>
+        <a href="#memo" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-sky-700 hover:bg-sky-50 dark:hover:bg-slate-800 dark:hover:text-sky-400 transition">Fiche mémo</a>
+        <a href="#exercices" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-amber-700 hover:bg-amber-50 dark:hover:bg-slate-800 dark:hover:text-amber-400 transition">Exercices</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="theme-toggle" aria-label="Basculer le mode sombre" class="p-2.5 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 transition">
+          <svg class="w-5 h-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m14.14-6.66l-.7.7M6.56 17.44l-.7.7m12.02 0l-.7-.7M6.56 6.56l-.7-.7M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+          <svg class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" /></svg>
+        </button>
+        <button id="menu-btn" aria-label="Ouvrir le menu" class="lg:hidden p-2.5 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 transition">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden pb-4 flex flex-col gap-1">
+      <a href="/" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-500 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-slate-800">← Portail</a>
+      <a href="#definition" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-slate-800">I. Définition</a>
+      <a href="#proprietes" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-violet-50 dark:hover:bg-slate-800">II. Propriétés</a>
+      <a href="#memo" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-sky-50 dark:hover:bg-slate-800">III. Fiche mémo</a>
+      <a href="#exercices" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-amber-50 dark:hover:bg-slate-800">Exercices</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<!-- ===================== HERO ===================== -->
+<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-indigo-700 via-indigo-600 to-violet-700">
+  <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1600&q=60')"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-indigo-950/70 via-indigo-800/40 to-transparent"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
+    <span class="inline-flex items-center gap-2 bg-white/10 text-indigo-100 text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full ring-1 ring-white/20">
+      Mathématiques · 1ère Année Collège
+    </span>
+    <h1 class="mt-6 font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
+      Le <span class="text-amber-400">Parallélogramme</span>
+    </h1>
+    <p class="mt-5 max-w-2xl mx-auto text-base sm:text-lg text-indigo-100">
+      Le cours complet — définition, propriété des diagonales, des côtés opposés et des angles —
+      accompagné de 7 exercices avec leur <span class="font-semibold text-white">correction détaillée</span> à un clic.
+    </p>
+    <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+      <a href="#definition" class="px-5 py-3 rounded-full bg-white text-indigo-700 font-semibold text-sm shadow-soft hover:bg-indigo-50 transition">▰ Découvrir le cours</a>
+      <a href="#memo" class="px-5 py-3 rounded-full bg-white/10 text-white font-semibold text-sm ring-1 ring-white/30 hover:bg-white/20 transition">🗂️ Fiche mémo</a>
+      <a href="#exercices" class="px-5 py-3 rounded-full bg-amber-500 text-white font-semibold text-sm shadow-soft hover:bg-amber-600 transition">📝 Exercices corrigés</a>
+    </div>
+    <div class="mt-14 grid grid-cols-3 max-w-lg mx-auto gap-4 text-white">
+      <div>
+        <p class="font-display text-3xl font-extrabold">4</p>
+        <p class="text-xs text-indigo-200 mt-1">propriétés</p>
+      </div>
+      <div class="border-x border-white/20">
+        <p class="font-display text-3xl font-extrabold">7</p>
+        <p class="text-xs text-indigo-200 mt-1">exercices</p>
+      </div>
+      <div>
+        <p class="font-display text-3xl font-extrabold">100%</p>
+        <p class="text-xs text-indigo-200 mt-1">corrigés</p>
+      </div>
+    </div>
+  </div>
+  <svg class="relative block w-full text-slate-50 dark:text-slate-950" viewBox="0 0 1440 60" fill="currentColor"><path d="M0,32L1440,0L1440,60L0,60Z"></path></svg>
+</section>
+
+<!-- ===================== I. DEFINITION ===================== -->
+<section id="definition" class="py-16 md:py-24">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal flex items-center gap-4 mb-8">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-indigo-600 text-white font-display font-bold text-xl shadow-soft shrink-0">I</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Le parallélogramme</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">La figure de base de toute cette leçon</p>
+      </div>
+    </div>
+
+    <div class="reveal grid md:grid-cols-2 gap-6 items-center mb-8">
+      <div class="rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-5 md:p-6 order-2 md:order-1">
+        <p class="text-xs font-bold uppercase tracking-wide text-rose-500 mb-2">1. Définition</p>
+        <p class="text-slate-800 dark:text-rose-100 leading-relaxed">
+          Le <b>parallélogramme</b> est un quadrilatère dont les <b>supports des côtés opposés sont parallèles</b>.
+        </p>
+      </div>
+      <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-6 order-1 md:order-2">
+        <p class="text-xs font-bold uppercase tracking-wide text-indigo-500 mb-3">2. Exemple</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">Soit <b>ABCD</b> un parallélogramme : les droites (AB) et (DC) sont parallèles, tout comme les droites (AD) et (BC).</p>
+        <svg viewBox="0 0 320 210" class="w-full h-auto max-w-sm mx-auto">
+          <g class="stroke-slate-300 dark:stroke-slate-600" stroke-width="1.5" marker-start="url(#arrow-gray)" marker-end="url(#arrow-gray)">
+            <line x1="68" y1="63" x2="292" y2="47"/>
+            <line x1="18" y1="163" x2="242" y2="147"/>
+            <line x1="125" y1="30" x2="45" y2="190"/>
+            <line x1="265" y1="20" x2="185" y2="180"/>
+          </g>
+          <polygon points="110,60 250,50 200,150 60,160" class="fill-indigo-50 dark:fill-[#0715284d] stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.5"/>
+          <circle cx="110" cy="60" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <circle cx="250" cy="50" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <circle cx="200" cy="150" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <circle cx="60" cy="160" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <text x="94" y="46" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+          <text x="257" y="40" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+          <text x="206" y="173" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+          <text x="34" y="172" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">D</text>
+        </svg>
+        <p class="text-xs text-slate-400 dark:text-slate-500 text-center mt-2">Les droites en gris sont les <i>supports</i> (elles prolongent les côtés à l'infini).</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== II. PROPRIETES ===================== -->
+<section id="proprietes" class="py-16 md:py-24 bg-violet-50/50 dark:bg-slate-900/40">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal flex items-center gap-4 mb-8">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-violet-600 text-white font-display font-bold text-xl shadow-soft shrink-0">II</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Propriétés</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Quatre propriétés, chacune avec sa réciproque</p>
+      </div>
+    </div>
+
+    <!-- 1. Diagonales -->
+    <div class="reveal mb-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+      <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-1">1. Propriété des diagonales</h3>
+      <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Ce que l'on peut dire du point où se croisent les diagonales</p>
+
+      <p class="text-xs font-bold uppercase tracking-wide text-violet-500 mb-2">a) Propriété directe</p>
+      <div class="rounded-xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-900 p-4 mb-5">
+        <p class="text-sm text-violet-800 dark:text-violet-200 text-center font-medium">Dans un parallélogramme, les diagonales se coupent en leur milieu, appelé <b>centre du parallélogramme</b>.</p>
+      </div>
+      <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Exemple : soit <b>ABCD</b> un parallélogramme de centre <b>O</b>.</p>
+      <svg viewBox="0 0 340 220" class="w-full h-auto max-w-sm mx-auto mb-6">
+        <polygon points="90,50 290,50 250,190 50,190" class="fill-indigo-50 dark:fill-[#0715284d] stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.5"/>
+        <line x1="90" y1="50" x2="250" y2="190" class="stroke-rose-500 dark:stroke-rose-400" stroke-width="1.75" stroke-dasharray="5,4"/>
+        <line x1="290" y1="50" x2="50" y2="190" class="stroke-rose-500 dark:stroke-rose-400" stroke-width="1.75" stroke-dasharray="5,4"/>
+        <line x1="124.7" y1="79" x2="135.3" y2="91" class="stroke-slate-600 dark:stroke-slate-300" stroke-width="2"/>
+        <line x1="204.7" y1="149" x2="215.3" y2="161" class="stroke-slate-600 dark:stroke-slate-300" stroke-width="2"/>
+        <line x1="222" y1="80.5" x2="230" y2="89.5" class="stroke-slate-600 dark:stroke-slate-300" stroke-width="2"/>
+        <line x1="230" y1="80.5" x2="238" y2="89.5" class="stroke-slate-600 dark:stroke-slate-300" stroke-width="2"/>
+        <line x1="102" y1="150.5" x2="110" y2="159.5" class="stroke-slate-600 dark:stroke-slate-300" stroke-width="2"/>
+        <line x1="110" y1="150.5" x2="118" y2="159.5" class="stroke-slate-600 dark:stroke-slate-300" stroke-width="2"/>
+        <circle cx="90" cy="50" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+        <circle cx="290" cy="50" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+        <circle cx="250" cy="190" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+        <circle cx="50" cy="190" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+        <circle cx="170" cy="120" r="5" class="fill-slate-800 dark:fill-slate-200"/>
+        <text x="74" y="38" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+        <text x="297" y="38" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+        <text x="256" y="210" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+        <text x="30" y="210" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">D</text>
+        <text x="176" y="112" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">O</text>
+      </svg>
+
+      <p class="text-xs font-bold uppercase tracking-wide text-violet-500 mb-2">b) Propriété réciproque</p>
+      <div class="rounded-xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-900 p-4 mb-5">
+        <p class="text-sm text-violet-800 dark:text-violet-200 text-center font-medium">Si dans un quadrilatère les diagonales se coupent en leur milieu, alors <b>c'est un parallélogramme</b>.</p>
+      </div>
+
+      <p class="text-xs font-bold uppercase tracking-wide text-emerald-600 mb-3">✍️ Application</p>
+      <div class="rounded-xl bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900 p-4 md:p-5">
+        <p class="text-sm text-emerald-900 dark:text-emerald-100 mb-4">Soit <b>ABC</b> un triangle. <b>E</b> et <b>F</b> sont les symétriques respectifs des points <b>B</b> et <b>C</b> par rapport à <b>A</b>. 1) Tracer la figure. 2) Montrer que <b>BCEF</b> est un parallélogramme en déterminant son centre.</p>
+        <svg viewBox="0 0 300 250" class="w-full h-auto max-w-xs mx-auto mb-4">
+          <line x1="80" y1="70" x2="220" y2="190" class="stroke-slate-300 dark:stroke-slate-600" stroke-width="1.5" stroke-dasharray="4,4"/>
+          <line x1="210" y1="60" x2="90" y2="200" class="stroke-slate-300 dark:stroke-slate-600" stroke-width="1.5" stroke-dasharray="4,4"/>
+          <polygon points="90,200 220,190 210,60 80,70" class="fill-indigo-50 dark:fill-[#0715284d] stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.5"/>
+          <circle cx="150" cy="130" r="5" class="fill-slate-800 dark:fill-slate-200"/>
+          <circle cx="90" cy="200" r="5" class="fill-rose-600 dark:fill-rose-400"/>
+          <circle cx="220" cy="190" r="5" class="fill-rose-600 dark:fill-rose-400"/>
+          <circle cx="210" cy="60" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <circle cx="80" cy="70" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <text x="158" y="122" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+          <text x="70" y="222" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+          <text x="228" y="204" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+          <text x="216" y="48" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">E</text>
+          <text x="55" y="62" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">F</text>
+        </svg>
+        <div class="text-sm text-emerald-900 dark:text-emerald-100 space-y-1.5 border-t border-dashed border-emerald-300 dark:border-emerald-800 pt-4">
+          <p><b>Solution :</b> E est le symétrique de B par rapport à A, donc A est le milieu de [EB].</p>
+          <p>F est le symétrique de C par rapport à A, donc A est le milieu de [FC].</p>
+          <p>D'où : A est le milieu de [EB] et de [FC], qui sont les diagonales de BCEF.</p>
+          <p class="font-bold">Conclusion : BCEF est un parallélogramme de centre A.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Cotes opposes -->
+    <div class="reveal mb-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+      <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-1">2. Propriété des côtés opposés</h3>
+      <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Ce que l'on peut dire des longueurs des côtés</p>
+
+      <p class="text-xs font-bold uppercase tracking-wide text-violet-500 mb-2">a) Propriété directe</p>
+      <div class="rounded-xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-900 p-4 mb-5">
+        <p class="text-sm text-violet-800 dark:text-violet-200 text-center font-medium">Dans un parallélogramme, les côtés opposés sont <b>isométriques (égaux)</b>.</p>
+      </div>
+      <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Exemple : soit <b>ABCD</b> un parallélogramme.</p>
+      <svg viewBox="0 0 340 220" class="w-full h-auto max-w-sm mx-auto mb-6">
+        <polygon points="90,50 290,50 250,190 50,190" class="fill-indigo-50 dark:fill-[#0715284d] stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.5"/>
+        <g class="stroke-slate-600 dark:stroke-slate-300" stroke-width="2">
+          <line x1="186" y1="46" x2="194" y2="54"/>
+          <line x1="146" y1="166" x2="154" y2="174"/>
+        </g>
+        <g class="stroke-slate-600 dark:stroke-slate-300" stroke-width="2">
+          <line x1="62.5" y1="108.2" x2="72.5" y2="112.2"/>
+          <line x1="70.5" y1="115.8" x2="80.5" y2="119.8"/>
+          <line x1="262.5" y1="108.2" x2="272.5" y2="112.2"/>
+          <line x1="270.5" y1="115.8" x2="280.5" y2="119.8"/>
+        </g>
+        <circle cx="90" cy="50" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+        <circle cx="290" cy="50" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+        <circle cx="250" cy="190" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+        <circle cx="50" cy="190" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+        <text x="74" y="38" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+        <text x="297" y="38" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+        <text x="256" y="210" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+        <text x="30" y="210" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">D</text>
+      </svg>
+      <p class="text-sm text-slate-600 dark:text-slate-300 text-center mb-6">On a : <b>AB = DC</b> et <b>AD = BC</b>.</p>
+
+      <p class="text-xs font-bold uppercase tracking-wide text-violet-500 mb-2">b) Propriété réciproque</p>
+      <div class="rounded-xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-900 p-4 mb-5">
+        <p class="text-sm text-violet-800 dark:text-violet-200 text-center font-medium">Si dans un quadrilatère les côtés opposés sont isométriques (égaux), alors <b>c'est un parallélogramme</b>.</p>
+      </div>
+
+      <p class="text-xs font-bold uppercase tracking-wide text-emerald-600 mb-3">✍️ Application</p>
+      <div class="rounded-xl bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900 p-4 md:p-5 mb-6">
+        <p class="text-sm text-emerald-900 dark:text-emerald-100 mb-4">Soit <b>ABCD</b> un rectangle. 1) Tracer la figure. 2) Montrer que ABCD est un parallélogramme.</p>
+        <svg viewBox="0 0 340 220" class="w-full h-auto max-w-xs mx-auto mb-4">
+          <rect x="70" y="50" width="200" height="120" class="fill-indigo-50 dark:fill-[#0715284d] stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.5"/>
+          <path d="M70,66 L86,66 L86,50" class="stroke-slate-600 dark:stroke-slate-300" fill="none" stroke-width="2"/>
+          <circle cx="70" cy="50" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <circle cx="270" cy="50" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <circle cx="270" cy="170" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <circle cx="70" cy="170" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <text x="54" y="40" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+          <text x="277" y="40" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+          <text x="277" y="192" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+          <text x="54" y="192" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">D</text>
+        </svg>
+        <div class="text-sm text-emerald-900 dark:text-emerald-100 space-y-1.5 border-t border-dashed border-emerald-300 dark:border-emerald-800 pt-4">
+          <p><b>Solution :</b> puisque ABCD est un rectangle, alors : AB = DC et AD = BC (propriété du rectangle).</p>
+          <p class="font-bold">D'où : ABCD est un parallélogramme.</p>
+        </div>
+      </div>
+
+      <p class="text-xs font-bold uppercase tracking-wide text-violet-500 mb-2">c) Propriété réciproque (particulière)</p>
+      <div class="rounded-xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-900 p-4 mb-5">
+        <p class="text-sm text-violet-800 dark:text-violet-200 text-center font-medium">Si dans un quadrilatère, <b>deux côtés opposés</b> sont isométriques (égaux) <b>et</b> leurs supports sont parallèles, alors c'est un parallélogramme.</p>
+      </div>
+
+      <p class="text-xs font-bold uppercase tracking-wide text-emerald-600 mb-3">✍️ Application</p>
+      <div class="rounded-xl bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900 p-4 md:p-5">
+        <p class="text-sm text-emerald-900 dark:text-emerald-100 mb-4">Soit [AB] un segment et C un point n'appartenant pas à la droite (AB). 1) Tracer une droite passant par C et parallèle à (AB), puis choisir un point D sur cette droite tel que CD = AB et ABCD soit un quadrilatère. 2) Montrer que ABCD est un parallélogramme.</p>
+        <svg viewBox="0 0 340 220" class="w-full h-auto max-w-xs mx-auto mb-4">
+          <g class="stroke-slate-400 dark:stroke-slate-500" stroke-width="1.5" marker-end="url(#arrow-gray)">
+            <line x1="70" y1="60" x2="300" y2="60"/>
+          </g>
+          <line x1="70" y1="180" x2="300" y2="180" class="stroke-slate-300 dark:stroke-slate-600" stroke-width="1.5" stroke-dasharray="5,4"/>
+          <polygon points="70,60 230,60 270,180 110,180" class="fill-indigo-50 dark:fill-[#0715284d] stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.5"/>
+          <g class="stroke-slate-600 dark:stroke-slate-300" stroke-width="2">
+            <line x1="146" y1="56" x2="154" y2="64"/>
+            <line x1="186" y1="176" x2="194" y2="184"/>
+          </g>
+          <circle cx="70" cy="60" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <circle cx="230" cy="60" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <circle cx="270" cy="180" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <circle cx="110" cy="180" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <text x="54" y="48" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+          <text x="237" y="48" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+          <text x="277" y="202" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+          <text x="94" y="202" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">D</text>
+        </svg>
+        <div class="text-sm text-emerald-900 dark:text-emerald-100 space-y-1.5 border-t border-dashed border-emerald-300 dark:border-emerald-800 pt-4">
+          <p><b>Solution :</b> on a (AB) // (CD) par construction.</p>
+          <p>Et puisque AB = CD (construction), alors : <span class="font-bold">ABCD est un parallélogramme</span>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Angles opposes -->
+    <div class="reveal mb-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+      <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-1">3. Propriété des angles opposés</h3>
+      <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Ce que l'on peut dire des angles opposés deux à deux</p>
+
+      <p class="text-xs font-bold uppercase tracking-wide text-violet-500 mb-2">a) Propriété directe</p>
+      <div class="rounded-xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-900 p-4 mb-5">
+        <p class="text-sm text-violet-800 dark:text-violet-200 text-center font-medium">Dans un parallélogramme, les angles opposés sont <b>isométriques (égaux)</b>.</p>
+      </div>
+      <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Exemple : soit <b>ABCD</b> un parallélogramme.</p>
+      <svg viewBox="0 0 340 220" class="w-full h-auto max-w-sm mx-auto mb-4">
+        <polygon points="90,50 290,50 250,190 50,190" class="fill-indigo-50 dark:fill-[#0715284d] stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.5"/>
+        <path d="M116,50 A26,26 0 0,1 82.86,75.0" class="fill-none stroke-rose-500 dark:stroke-rose-400" stroke-width="2.5"/>
+        <path d="M257.14,165.0 A26,26 0 0,1 224,190" class="fill-none stroke-rose-500 dark:stroke-rose-400" stroke-width="2.5"/>
+        <path d="M264,50 A26,26 0 0,0 282.86,75.0" class="fill-none stroke-indigo-500 dark:stroke-indigo-300" stroke-width="2.5"/>
+        <path d="M57.14,165.0 A26,26 0 0,0 76,190" class="fill-none stroke-indigo-500 dark:stroke-indigo-300" stroke-width="2.5"/>
+        <circle cx="90" cy="50" r="5" class="fill-slate-700 dark:fill-slate-200"/>
+        <circle cx="290" cy="50" r="5" class="fill-slate-700 dark:fill-slate-200"/>
+        <circle cx="250" cy="190" r="5" class="fill-slate-700 dark:fill-slate-200"/>
+        <circle cx="50" cy="190" r="5" class="fill-slate-700 dark:fill-slate-200"/>
+        <text x="74" y="38" font-size="16" class="fill-rose-600 dark:fill-rose-400 font-bold">A</text>
+        <text x="297" y="38" font-size="16" class="fill-indigo-600 dark:fill-indigo-300 font-bold">B</text>
+        <text x="256" y="210" font-size="16" class="fill-rose-600 dark:fill-rose-400 font-bold">C</text>
+        <text x="30" y="210" font-size="16" class="fill-indigo-600 dark:fill-indigo-300 font-bold">D</text>
+      </svg>
+      <p class="text-sm text-slate-600 dark:text-slate-300 text-center mb-6">On a : <span class="text-rose-600 dark:text-rose-400 font-semibold">DÂB = DĈB</span> &nbsp;et&nbsp; <span class="text-indigo-600 dark:text-indigo-300 font-semibold">AB̂C = AD̂C</span>.</p>
+
+      <p class="text-xs font-bold uppercase tracking-wide text-violet-500 mb-2">b) Propriété réciproque</p>
+      <div class="rounded-xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-900 p-4">
+        <p class="text-sm text-violet-800 dark:text-violet-200 text-center font-medium">Si dans un quadrilatère les angles opposés sont isométriques (égaux), alors <b>c'est un parallélogramme</b>.</p>
+      </div>
+    </div>
+
+    <!-- 4. Angles consecutifs -->
+    <div class="reveal mb-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+      <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-1">4. Propriété des angles consécutifs</h3>
+      <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Ce que l'on peut dire de deux angles côte à côte</p>
+
+      <p class="text-xs font-bold uppercase tracking-wide text-violet-500 mb-2">a) Propriété directe</p>
+      <div class="rounded-xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-900 p-4 mb-5">
+        <p class="text-sm text-violet-800 dark:text-violet-200 text-center font-medium">Dans un parallélogramme, les angles consécutifs sont <b>supplémentaires</b> (la somme de leurs mesures égale 180°).</p>
+      </div>
+      <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Exemple : soit <b>ABCD</b> un parallélogramme.</p>
+      <div class="grid sm:grid-cols-2 gap-6 items-center">
+        <svg viewBox="0 0 340 220" class="w-full h-auto max-w-xs mx-auto">
+          <polygon points="90,50 290,50 250,190 50,190" class="fill-indigo-50 dark:fill-[#0715284d] stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.5"/>
+          <path d="M116,50 A26,26 0 0,1 82.86,75.0" class="fill-none stroke-slate-500 dark:stroke-slate-400" stroke-width="2"/>
+          <path d="M264,50 A26,26 0 0,0 282.86,75.0" class="fill-none stroke-slate-500 dark:stroke-slate-400" stroke-width="2"/>
+          <path d="M257.14,165.0 A26,26 0 0,1 224,190" class="fill-none stroke-slate-500 dark:stroke-slate-400" stroke-width="2"/>
+          <path d="M57.14,165.0 A26,26 0 0,0 76,190" class="fill-none stroke-slate-500 dark:stroke-slate-400" stroke-width="2"/>
+          <circle cx="90" cy="50" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <circle cx="290" cy="50" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <circle cx="250" cy="190" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <circle cx="50" cy="190" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <text x="74" y="38" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+          <text x="297" y="38" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+          <text x="256" y="210" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+          <text x="30" y="210" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">D</text>
+        </svg>
+        <div class="grid grid-cols-2 gap-2.5">
+          <div class="rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 px-3 py-2.5 text-center text-sm font-semibold text-slate-700 dark:text-slate-200">AB̂C + BĈD = 180°</div>
+          <div class="rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 px-3 py-2.5 text-center text-sm font-semibold text-slate-700 dark:text-slate-200">BĈD + CD̂A = 180°</div>
+          <div class="rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 px-3 py-2.5 text-center text-sm font-semibold text-slate-700 dark:text-slate-200">CD̂A + DÂB = 180°</div>
+          <div class="rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 px-3 py-2.5 text-center text-sm font-semibold text-slate-700 dark:text-slate-200">DÂB + AB̂C = 180°</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== III. FICHE MEMO ===================== -->
+<section id="memo" class="py-16 md:py-24">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal flex items-center gap-4 mb-8">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-sky-600 text-white font-display font-bold text-xl shadow-soft shrink-0">III</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Fiche mémo</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Tout le cours en un coup d'œil, pour réviser vite</p>
+      </div>
+    </div>
+
+    <div class="reveal grid sm:grid-cols-2 gap-4">
+      <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-rose-100 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 text-lg font-bold shrink-0">▱</span>
+          <h3 class="font-display font-bold text-slate-800 dark:text-white">Définition</h3>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300">Quadrilatère dont les supports des côtés opposés sont parallèles.</p>
+      </div>
+
+      <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-violet-100 dark:bg-violet-950/40 text-violet-600 dark:text-violet-400 text-lg font-bold shrink-0">✕</span>
+          <h3 class="font-display font-bold text-slate-800 dark:text-white">Diagonales</h3>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300"><b>Directe :</b> elles se coupent en leur milieu (centre).</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1"><b>Réciproque :</b> si elles se coupent en leur milieu ⟹ parallélogramme.</p>
+      </div>
+
+      <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-indigo-100 dark:bg-[#07152866] text-indigo-600 dark:text-indigo-400 text-lg font-bold shrink-0">=</span>
+          <h3 class="font-display font-bold text-slate-800 dark:text-white">Côtés opposés</h3>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300"><b>Directe :</b> isométriques (égaux) deux à deux.</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1"><b>Réciproque :</b> si isométriques ⟹ parallélogramme. Cas particulier : si <i>deux</i> côtés opposés sont isométriques <i>et</i> parallèles ⟹ parallélogramme.</p>
+      </div>
+
+      <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 text-lg font-bold shrink-0">∠</span>
+          <h3 class="font-display font-bold text-slate-800 dark:text-white">Angles opposés</h3>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300"><b>Directe :</b> isométriques (égaux) deux à deux.</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1"><b>Réciproque :</b> si isométriques ⟹ parallélogramme.</p>
+      </div>
+
+      <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 sm:col-span-2">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-amber-100 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 text-lg font-bold shrink-0">⌒</span>
+          <h3 class="font-display font-bold text-slate-800 dark:text-white">Angles consécutifs</h3>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300"><b>Directe :</b> supplémentaires — la somme de deux angles consécutifs vaut toujours <b>180°</b>.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== EXERCICES ===================== -->
+<section id="exercices" class="py-16 md:py-24 bg-amber-50/40 dark:bg-slate-900/40">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal flex items-center gap-4 mb-3">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-amber-500 text-white font-display font-bold text-xl shadow-soft shrink-0">✎</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Exercices</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Le parallélogramme — cliquez sur « Voir la correction » pour vérifier vos réponses</p>
+      </div>
+    </div>
+
+    <p class="reveal text-xs text-slate-400 dark:text-slate-500 mb-6">Exercice N°3 · Niveau 1AC · Prof. AZZI Mustapha · École Jules Ferry</p>
+
+    <div class="reveal mb-10 flex flex-wrap gap-2">
+      <span class="text-xs font-semibold text-slate-400 mr-1 mt-1.5">Accès rapide :</span>
+      <a href="#ex-1" class="w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">1</a>
+      <a href="#ex-2" class="w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">2</a>
+      <a href="#ex-3" class="w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">3</a>
+      <a href="#ex-4" class="w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">4</a>
+      <a href="#ex-5" class="w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">5</a>
+      <a href="#ex-6" class="w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">6</a>
+      <a href="#ex-7" class="w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">7</a>
+    </div>
+
+    <div class="space-y-6">
+
+      <!-- EXERCICE 1 -->
+      <article id="ex-1" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">1</span>
+            Exercice n°1
+          </h3>
+          <button onclick="toggleCorrection(1)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-1">Voir la correction</span>
+            <svg id="chevron-1" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Dans la figure ci-dessous, le quadrilatère <b>LMNK</b> est un parallélogramme. Donne les longueurs ou les angles demandés, en <b>justifiant</b> à chaque fois par la propriété utilisée :</p>
+        <p class="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-4">LM ; MN ; LK̂N ; KL̂M ; KN̂M</p>
+
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 p-4 mb-2">
+          <svg viewBox="0 0 330 220" class="w-full h-auto max-w-xs mx-auto">
+            <polygon points="70,190 100,50 260,50 230,190" class="fill-indigo-50 dark:fill-[#0715284d] stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.5"/>
+            <path d="M94.6,75.4 A26,26 0 0,1 126,50" class="fill-none stroke-rose-500 dark:stroke-rose-400" stroke-width="2.25"/>
+            <text x="103" y="76" font-size="13" class="fill-rose-600 dark:fill-rose-400 font-bold">120°</text>
+            <circle cx="70" cy="190" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+            <circle cx="100" cy="50" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+            <circle cx="260" cy="50" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+            <circle cx="230" cy="190" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+            <text x="52" y="208" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">L</text>
+            <text x="84" y="40" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">M</text>
+            <text x="266" y="40" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">N</text>
+            <text x="236" y="208" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">K</text>
+            <text x="140" y="207" font-size="13" class="fill-slate-500 dark:fill-slate-400 font-semibold">3 cm</text>
+            <text x="253" y="122" font-size="13" class="fill-slate-500 dark:fill-slate-400 font-semibold">4 cm</text>
+          </svg>
+        </div>
+
+        <div id="wrap-1" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>LM = NK = 4 cm</b> — les côtés opposés d'un parallélogramme sont isométriques.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>MN = LK = 3 cm</b> — les côtés opposés d'un parallélogramme sont isométriques.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>LK̂N = M̂ = 120°</b> — les angles opposés d'un parallélogramme sont isométriques (K est opposé à M).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>KL̂M = 180° − 120° = 60°</b> — les angles consécutifs d'un parallélogramme sont supplémentaires (L et M sont consécutifs).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>KN̂M = 180° − 120° = 60°</b> — les angles consécutifs d'un parallélogramme sont supplémentaires (N et M sont consécutifs).</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 2 -->
+      <article id="ex-2" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">2</span>
+            Exercice n°2
+          </h3>
+          <button onclick="toggleCorrection(2)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-2">Voir la correction</span>
+            <svg id="chevron-2" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-2"><b>ABC</b> est un triangle quelconque. <b>I</b> est le milieu du segment [AB], <b>J</b> est le milieu du segment [AC].</p>
+        <ol class="space-y-1.5 text-sm text-slate-700 dark:text-slate-200 list-decimal list-inside mb-4">
+          <li>Reproduire cette figure puis tracer le point <b>K</b>, symétrique du point I par rapport au point J. Coder la figure.</li>
+          <li>On veut démontrer que le quadrilatère <b>AKCI</b> est un parallélogramme. Recopier et compléter :
+            <div class="mt-2 ml-1 rounded-lg bg-sky-50 dark:bg-sky-950/20 border border-sky-200 dark:border-sky-900 p-3 text-slate-700 dark:text-slate-200 text-sm italic space-y-1">
+              <p>J est le milieu de …………………</p>
+              <p>K est le symétrique du point I par rapport au point J, donc J est le milieu de ……………</p>
+              <p>Or si un quadrilatère a …………………………………………………, alors c'est un parallélogramme.</p>
+              <p>Donc ……………………………………… et son centre est ………………………</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 p-4 mb-2">
+          <p class="text-xs font-bold uppercase tracking-wide text-indigo-500 dark:text-indigo-400 mb-2">Figure de départ</p>
+          <svg viewBox="0 0 300 220" class="w-full h-auto max-w-xs mx-auto">
+            <polygon points="150,50 60,190 250,170" class="fill-indigo-50 dark:fill-[#0715284d] stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.5"/>
+            <line x1="97" y1="113" x2="113" y2="127" class="stroke-slate-600 dark:stroke-slate-300" stroke-width="2"/>
+            <line x1="192" y1="103" x2="208" y2="117" class="stroke-slate-600 dark:stroke-slate-300" stroke-width="2"/>
+            <circle cx="150" cy="50" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+            <circle cx="60" cy="190" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+            <circle cx="250" cy="170" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+            <circle cx="105" cy="120" r="4.5" class="fill-slate-800 dark:fill-slate-200"/>
+            <circle cx="200" cy="110" r="4.5" class="fill-slate-800 dark:fill-slate-200"/>
+            <text x="140" y="38" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+            <text x="40" y="212" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+            <text x="258" y="168" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+            <text x="78" y="115" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">I</text>
+            <text x="210" y="108" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">J</text>
+          </svg>
+        </div>
+
+        <div id="wrap-2" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>1)</b> On place K sur la demi-droite [IJ) tel que JK = JI (J devient le milieu de [IK]).</div>
+              <div class="rounded-xl bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 p-4">
+                <svg viewBox="0 0 340 220" class="w-full h-auto max-w-xs mx-auto">
+                  <polygon points="150,50 60,190 250,170" class="fill-indigo-50 dark:fill-[#07152833] stroke-slate-400 dark:stroke-slate-500" stroke-width="1.5" stroke-dasharray="4,4"/>
+                  <polygon points="150,50 295,100 250,170 105,120" class="fill-none stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.5"/>
+                  <line x1="150" y1="50" x2="250" y2="170" class="stroke-rose-500 dark:stroke-rose-400" stroke-width="1.5" stroke-dasharray="5,3"/>
+                  <line x1="295" y1="100" x2="105" y2="120" class="stroke-rose-500 dark:stroke-rose-400" stroke-width="1.5" stroke-dasharray="5,3"/>
+                  <circle cx="150" cy="50" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+                  <circle cx="60" cy="190" r="5" class="fill-slate-400 dark:fill-slate-500"/>
+                  <circle cx="250" cy="170" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+                  <circle cx="105" cy="120" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+                  <circle cx="295" cy="100" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+                  <circle cx="200" cy="110" r="5" class="fill-slate-800 dark:fill-slate-200"/>
+                  <text x="140" y="38" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+                  <text x="40" y="212" font-size="15" class="fill-slate-500 dark:fill-slate-400 font-bold">B</text>
+                  <text x="258" y="188" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+                  <text x="78" y="133" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">I</text>
+                  <text x="303" y="98" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">K</text>
+                  <text x="207" y="103" font-size="14" class="fill-slate-700 dark:fill-slate-200 font-bold">J</text>
+                </svg>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 space-y-1">
+                <p><b>2)</b> J est le milieu de <b>[AC]</b> (donné).</p>
+                <p>K est le symétrique du point I par rapport au point J, donc <b>J</b> est le milieu de <b>[IK]</b>.</p>
+                <p>Or si un quadrilatère a <b>ses diagonales qui se coupent en leur milieu</b>, alors c'est un parallélogramme.</p>
+                <p>Donc <b>AKCI est un parallélogramme</b> et son centre est <b>J</b>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 3 -->
+      <article id="ex-3" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">3</span>
+            Exercice n°3
+          </h3>
+          <button onclick="toggleCorrection(3)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-3">Voir la correction</span>
+            <svg id="chevron-3" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-4"><b>ABCD</b> et <b>DBEC</b> sont des parallélogrammes. Montrer que le point <b>B</b> est le milieu de <b>[AE]</b>.</p>
+
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 p-4 mb-2">
+          <svg viewBox="0 0 360 220" class="w-full h-auto max-w-sm mx-auto">
+            <polygon points="70,70 180,70 220,170 110,170" class="fill-indigo-100/70 dark:fill-[#0715284d] stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.5"/>
+            <polygon points="110,170 180,70 290,70 220,170" class="fill-rose-100/70 dark:fill-rose-950/20 stroke-rose-500 dark:stroke-rose-400" stroke-width="2.5"/>
+            <circle cx="70" cy="70" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+            <circle cx="180" cy="70" r="5" class="fill-slate-800 dark:fill-slate-200"/>
+            <circle cx="290" cy="70" r="5" class="fill-rose-600 dark:fill-rose-400"/>
+            <circle cx="110" cy="170" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+            <circle cx="220" cy="170" r="5" class="fill-slate-700 dark:fill-slate-300"/>
+            <text x="52" y="60" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+            <text x="176" y="55" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+            <text x="296" y="60" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">E</text>
+            <text x="90" y="196" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">D</text>
+            <text x="224" y="196" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+          </svg>
+        </div>
+
+        <div id="wrap-3" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">ABCD est un parallélogramme, donc <b>(AB) // (DC)</b> et <b>AB = DC</b> (côtés opposés).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">DBEC est un parallélogramme, donc <b>(BE) // (DC)</b> et <b>BE = DC</b> (côtés opposés).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">(AB) et (BE) sont toutes deux parallèles à (DC) et passent par le point B, donc elles sont confondues : les points <b>A, B, E sont alignés</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Or AB = DC et BE = DC, donc <b>AB = BE</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 font-bold">Puisque A, B, E sont alignés et AB = BE, le point B est le milieu de [AE].</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 4 -->
+      <article id="ex-4" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">4</span>
+            Exercice n°4
+          </h3>
+          <button onclick="toggleCorrection(4)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-4">Voir la correction</span>
+            <svg id="chevron-4" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">Calculer la mesure de chaque angle du parallélogramme <b>ABCD</b>. Justifier.</p>
+
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 p-4 mb-2">
+          <svg viewBox="0 0 380 220" class="w-full h-auto max-w-sm mx-auto">
+            <polygon points="110,60 250,60 210,180 70,180" class="fill-indigo-50 dark:fill-[#0715284d] stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.5"/>
+            <line x1="70" y1="180" x2="330" y2="180" class="stroke-slate-400 dark:stroke-slate-500" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+            <path d="M218.2,155.3 A26,26 0 0,1 236,180" class="fill-none stroke-rose-500 dark:stroke-rose-400" stroke-width="2.25"/>
+            <text x="222" y="150" font-size="13" class="fill-rose-600 dark:fill-rose-400 font-bold">124°</text>
+            <circle cx="110" cy="60" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+            <circle cx="250" cy="60" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+            <circle cx="210" cy="180" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+            <circle cx="70" cy="180" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+            <text x="94" y="48" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+            <text x="257" y="48" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+            <text x="216" y="202" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+            <text x="52" y="202" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">D</text>
+            <text x="336" y="196" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">E</text>
+          </svg>
+        </div>
+
+        <div id="wrap-4" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">D, C, E sont alignés, donc BĈD et BĈE sont supplémentaires (angles adjacents et de côtés opposés) : <b>BĈD = 180° − 124° = 56°</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">ABCD est un parallélogramme : les angles opposés sont isométriques, donc <b>DÂB = BĈD = 56°</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Les angles consécutifs sont supplémentaires : AB̂C = 180° − BĈD = 180° − 56° = <b>124°</b>. De même <b>CD̂A = 124°</b> (opposé à AB̂C).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 font-bold">Résumé : DÂB = 56° ; AB̂C = 124° ; BĈD = 56° ; CD̂A = 124°.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 5 -->
+      <article id="ex-5" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">5</span>
+            Exercice n°5
+          </h3>
+          <button onclick="toggleCorrection(5)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-5">Voir la correction</span>
+            <svg id="chevron-5" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <ol class="space-y-1.5 text-sm text-slate-700 dark:text-slate-200 list-decimal list-inside">
+          <li>Construire un triangle ABC tel que : AB = 5 cm ; mes Â = 30° et mes B̂ = 50°.</li>
+          <li>a) Placer le point I milieu du segment [BC]. &nbsp; b) Placer le point K symétrique de A par rapport au point I.</li>
+          <li>Quelle est la nature du quadrilatère ABKC ? Justifier la réponse.</li>
+          <li>Calculer : mes BK̂C ; mes AB̂K et mes CB̂K.</li>
+        </ol>
+
+        <div id="wrap-5" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>1)</b> Tracer [AB] = 5 cm ; en A, tracer une demi-droite formant 30° avec (AB) ; en B, tracer une demi-droite formant 50° avec (BA) du même côté ; leur point d'intersection est C.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>2)</b> I est le milieu de [BC] (mesurer BC et reporter la moitié). K est placé sur la demi-droite [AI) tel que IK = IA.</div>
+              <div class="rounded-xl bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 p-4">
+                <svg viewBox="0 0 320 290" class="w-full h-auto max-w-xs mx-auto">
+                  <polygon points="150,40 60,160 170,270 260,150" class="fill-indigo-50 dark:fill-[#0715284d] stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.5"/>
+                  <line x1="150" y1="40" x2="170" y2="270" class="stroke-rose-500 dark:stroke-rose-400" stroke-width="1.5" stroke-dasharray="5,3"/>
+                  <line x1="60" y1="160" x2="260" y2="150" class="stroke-rose-500 dark:stroke-rose-400" stroke-width="1.5" stroke-dasharray="5,3"/>
+                  <circle cx="150" cy="40" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+                  <circle cx="60" cy="160" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+                  <circle cx="170" cy="270" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+                  <circle cx="260" cy="150" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+                  <circle cx="160" cy="155" r="4.5" class="fill-slate-800 dark:fill-slate-200"/>
+                  <text x="135" y="28" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+                  <text x="34" y="155" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+                  <text x="176" y="284" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">K</text>
+                  <text x="268" y="145" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+                  <text x="167" y="148" font-size="14" class="fill-slate-700 dark:fill-slate-200 font-bold">I</text>
+                </svg>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>3)</b> Dans le quadrilatère ABKC, les diagonales sont [AK] et [BC]. I est le milieu de [BC] (construction) et le milieu de [AK] (K symétrique de A par rapport à I). Les diagonales se coupent en leur milieu, donc <b>ABKC est un parallélogramme</b> (propriété réciproque des diagonales), de centre I.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 space-y-1">
+                <p><b>4)</b> Dans le triangle ABC : Â + B̂ + Ĉ = 180°, donc AĈB = 180° − 30° − 50° = 100°.</p>
+                <p><b>BK̂C = BÂC = 30°</b> (angles opposés du parallélogramme ABKC : sommets A et K opposés).</p>
+                <p><b>AB̂K = 180° − 30° = 150°</b> (angles consécutifs du parallélogramme, sommets A et B).</p>
+                <p>La diagonale [BC] partage l'angle AB̂K, donc AB̂K = AB̂C + CB̂K, d'où <b>CB̂K = 150° − 50° = 100°</b>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 6 -->
+      <article id="ex-6" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">6</span>
+            Exercice n°6
+          </h3>
+          <button onclick="toggleCorrection(6)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-6">Voir la correction</span>
+            <svg id="chevron-6" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <ol class="space-y-1.5 text-sm text-slate-700 dark:text-slate-200 list-decimal list-inside">
+          <li>Construis le parallélogramme ABCD de centre O tel que : AB = 8 cm, BÂC = 40° et AB̂D = 30°.</li>
+          <li>Place le point I milieu de [AB] et le point J milieu de [BC].</li>
+          <li>Construis E symétrique de D par rapport à I et le point F symétrique de D par rapport à J.</li>
+          <li>Quelle est la nature des quadrilatères AEBD et DBFC ? Justifie ta réponse.</li>
+          <li>Les points A, B et F sont-ils alignés ? Justifie ta réponse.</li>
+        </ol>
+
+        <div id="wrap-6" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>1)</b> Tracer [AB] = 8 cm. En A, tracer la demi-droite [Ax) telle que BÂx = 40° : c'est le support de la diagonale (AC). En B, tracer la demi-droite [By) telle que AB̂y = 30°, du même côté : c'est le support de la diagonale (BD). Ces deux demi-droites se coupent en <b>O</b>, le centre. Placer C symétrique de A par rapport à O, et D symétrique de B par rapport à O, puis tracer le parallélogramme.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>2)</b> I = milieu de [AB], J = milieu de [BC] (mesurer et reporter la moitié).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>3)</b> E est placé tel que I soit le milieu de [DE]. F est placé tel que J soit le milieu de [DF].</div>
+              <div class="rounded-xl bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 p-4">
+                <svg viewBox="0 0 500 270" class="w-full h-auto max-w-md mx-auto">
+                  <polygon points="60,150 260,150 320,60 120,60" class="fill-indigo-50 dark:fill-[#0715284d] stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.5"/>
+                  <polygon points="60,150 200,240 260,150 120,60" class="fill-none stroke-rose-500 dark:stroke-rose-400" stroke-width="2"/>
+                  <polygon points="120,60 260,150 460,150 320,60" class="fill-none stroke-sky-500 dark:stroke-sky-400" stroke-width="2"/>
+                  <line x1="40" y1="150" x2="480" y2="150" class="stroke-slate-400 dark:stroke-slate-500" stroke-width="1.5" stroke-dasharray="5,4"/>
+                  <line x1="60" y1="150" x2="320" y2="60" class="stroke-slate-300 dark:stroke-slate-600" stroke-width="1.25" stroke-dasharray="4,4"/>
+                  <line x1="260" y1="150" x2="120" y2="60" class="stroke-slate-300 dark:stroke-slate-600" stroke-width="1.25" stroke-dasharray="4,4"/>
+                  <circle cx="60" cy="150" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+                  <circle cx="260" cy="150" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+                  <circle cx="320" cy="60" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+                  <circle cx="120" cy="60" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+                  <circle cx="190" cy="105" r="4" class="fill-slate-700 dark:fill-slate-300"/>
+                  <circle cx="160" cy="150" r="4" class="fill-slate-700 dark:fill-slate-300"/>
+                  <circle cx="290" cy="105" r="4" class="fill-slate-700 dark:fill-slate-300"/>
+                  <circle cx="200" cy="240" r="5" class="fill-rose-600 dark:fill-rose-400"/>
+                  <circle cx="460" cy="150" r="5" class="fill-sky-600 dark:fill-sky-400"/>
+                  <text x="42" y="168" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+                  <text x="266" y="145" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+                  <text x="326" y="52" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+                  <text x="102" y="52" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">D</text>
+                  <text x="196" y="98" font-size="13" class="fill-slate-700 dark:fill-slate-200 font-bold">O</text>
+                  <text x="150" y="172" font-size="13" class="fill-slate-700 dark:fill-slate-200 font-bold">I</text>
+                  <text x="296" y="98" font-size="13" class="fill-slate-700 dark:fill-slate-200 font-bold">J</text>
+                  <text x="197" y="260" font-size="15" class="fill-rose-600 dark:fill-rose-400 font-bold">E</text>
+                  <text x="468" y="145" font-size="15" class="fill-sky-600 dark:fill-sky-400 font-bold">F</text>
+                </svg>
+                <p class="text-xs text-slate-400 dark:text-slate-500 text-center mt-1">En rose : AEBD. En bleu : DBFC. La ligne pointillée montre l'alignement A, B, F.</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 space-y-1">
+                <p><b>4)</b> Dans <b>AEBD</b>, les diagonales sont [AB] et [ED]. I est le milieu de [AB] (construction) et le milieu de [ED] (E symétrique de D par rapport à I) ⟹ <b>AEBD est un parallélogramme</b> de centre I.</p>
+                <p>Dans <b>DBFC</b>, les diagonales sont [DF] et [BC]. J est le milieu de [BC] (construction) et le milieu de [DF] (F symétrique de D par rapport à J) ⟹ <b>DBFC est un parallélogramme</b> de centre J.</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 space-y-1">
+                <p><b>5)</b> DBFC est un parallélogramme, donc (BF) // (DC) et BF = DC (côtés opposés). ABCD est un parallélogramme, donc (AB) // (DC) et AB = DC (côtés opposés).</p>
+                <p>(AB) et (BF) sont toutes deux parallèles à (DC) et passent par B, donc elles sont confondues : <b>les points A, B et F sont alignés</b>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 7 -->
+      <article id="ex-7" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">7</span>
+            Exercice n°7
+          </h3>
+          <button onclick="toggleCorrection(7)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-7">Voir la correction</span>
+            <svg id="chevron-7" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">On considère la figure ci-dessous où <b>ABCD</b> et <b>BEFC</b> sont des parallélogrammes.</p>
+        <ol class="space-y-1.5 text-sm text-slate-700 dark:text-slate-200 list-decimal list-inside mb-4">
+          <li>Donne, en justifiant, deux droites parallèles à la droite (BC).</li>
+          <li>Démontre que AEFD est un parallélogramme.</li>
+          <li>Démontre que les segments [AF] et [ED] se coupent en leur milieu.</li>
+        </ol>
+
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 p-4 mb-2">
+          <svg viewBox="0 0 400 260" class="w-full h-auto max-w-sm mx-auto">
+            <polygon points="90,60 230,60 200,180 60,180" class="fill-indigo-50 dark:fill-[#0715284d] stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.5"/>
+            <polygon points="230,60 340,110 310,230 200,180" class="fill-rose-50 dark:fill-rose-950/20 stroke-rose-500 dark:stroke-rose-400" stroke-width="2.5"/>
+            <circle cx="90" cy="60" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+            <circle cx="230" cy="60" r="5" class="fill-slate-800 dark:fill-slate-200"/>
+            <circle cx="200" cy="180" r="5" class="fill-slate-700 dark:fill-slate-300"/>
+            <circle cx="60" cy="180" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+            <circle cx="340" cy="110" r="5" class="fill-rose-600 dark:fill-rose-400"/>
+            <circle cx="310" cy="230" r="5" class="fill-rose-600 dark:fill-rose-400"/>
+            <text x="74" y="48" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+            <text x="236" y="48" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+            <text x="206" y="200" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+            <text x="40" y="200" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">D</text>
+            <text x="348" y="104" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">E</text>
+            <text x="314" y="252" font-size="16" class="fill-slate-700 dark:fill-slate-200 font-bold">F</text>
+          </svg>
+        </div>
+
+        <div id="wrap-7" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>1)</b> ABCD est un parallélogramme, donc <b>(AD) // (BC)</b> (côtés opposés). BEFC est un parallélogramme, donc <b>(EF) // (BC)</b> (côtés opposés). Les deux droites cherchées sont donc (AD) et (EF).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">
+                <p><b>2)</b> (AD) // (BC) et (EF) // (BC), donc <b>(AD) // (EF)</b> (même direction).</p>
+                <p>Or AD = BC (ABCD parallélogramme) et BC = EF (BEFC parallélogramme), donc <b>AD = EF</b>.</p>
+                <p>Le quadrilatère AEFD a donc deux côtés opposés [AD] et [EF] isométriques et de supports parallèles, donc <b>AEFD est un parallélogramme</b> (propriété réciproque particulière).</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>3)</b> AEFD étant un parallélogramme (question 2), ses diagonales sont justement <b>[AF] et [ED]</b> (sommets opposés). Or dans un parallélogramme, les diagonales se coupent en leur milieu (propriété directe). Donc <b>[AF] et [ED] se coupent en leur milieu</b>.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-slate-900 dark:bg-black text-slate-300 mt-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid sm:grid-cols-2 gap-8">
+    <div>
+      <a href="/" class="flex items-center gap-2.5">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+        <span class="font-display font-bold text-white leading-tight">
+          <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+          <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+        </span>
+      </a>
+      <p class="text-sm text-slate-400 mt-3 leading-relaxed">Le parallélogramme — cours et exercices corrigés, pensés pour réviser efficacement sur mobile comme sur ordinateur.</p>
+      <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+    </div>
+    <div>
+      <p class="text-white font-semibold text-sm mb-3">Sommaire</p>
+      <ul class="space-y-2 text-sm text-slate-400">
+        <li><a href="#definition" class="hover:text-white transition">I. Le parallélogramme</a></li>
+        <li><a href="#proprietes" class="hover:text-white transition">II. Propriétés</a></li>
+        <li><a href="#memo" class="hover:text-white transition">III. Fiche mémo</a></li>
+        <li><a href="#exercices" class="hover:text-white transition">Exercices (7)</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-slate-800 py-5 text-center text-xs text-slate-500">
+    © 2026 — Le Parallélogramme · Mathématiques 1AC
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Retour en haut" class="hidden fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white shadow-soft flex items-center justify-center transition">
+  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" /></svg>
+</button>
+
+<script>
+  // Mobile menu
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+  });
+
+  // Dark mode toggle
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+  });
+
+  // Correction accordion toggle
+  function toggleCorrection(id) {
+    const wrap = document.getElementById('wrap-' + id);
+    const chevron = document.getElementById('chevron-' + id);
+    const label = document.getElementById('label-' + id);
+    const isOpen = wrap.classList.toggle('open');
+    chevron.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+    label.textContent = isOpen ? 'Masquer la correction' : 'Voir la correction';
+  }
+
+  // Back to top button
+  const backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('hidden', window.scrollY < 500);
+  });
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

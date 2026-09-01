@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Les Nombres Rationnels — Introduction et Ordre | 2APIC</title>
+<meta name="description" content="Cours complet sur les nombres rationnels (définition, signe, simplification, égalité) et l'Exercice N°2 corrigé — Niveau 2APIC.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+          display: ['Poppins', 'ui-sans-serif', 'system-ui'],
+        },
+        colors: {
+          brand: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+          sun: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' }
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; }
+  h1, h2, h3, .font-display { font-family: 'Poppins', sans-serif; }
+
+  /* ---- Fraction rendering (pure CSS, no external math library) ---- */
+  .frac {
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 1.15;
+    margin: 0 3px;
+    font-weight: 600;
+    font-size: 0.95em;
+    position: relative;
+    top: 0.1em;
+  }
+  .frac .num, .frac .den {
+    display: block;
+    padding: 0 5px;
+  }
+  .frac .num { border-bottom: 2px solid currentColor; padding-bottom: 1px; }
+  .frac .den { padding-top: 1px; }
+  .rat-op { margin: 0 6px; font-weight: 500; }
+  .paren-open, .paren-close {
+    display: inline-block;
+    font-size: 1.7em;
+    font-weight: 300;
+    vertical-align: middle;
+    transform: scaleY(1.05);
+    line-height: 0;
+  }
+  .expr { white-space: nowrap; display: inline-flex; align-items: center; }
+  .expr-wrap { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+
+  .exo-hidden { display: none; }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
+  .dark .bg-rose-50 { background-color: #3a0d18; }
+  .dark .border-rose-200 { border-color: #7a2138; }
+  .dark .text-rose-700 { color: #fb7185; }
+  .dark .bg-brand-50 { background-color: #12294c; }
+  .dark .ring-brand-200 { --tw-ring-color: #1c3a63; }
+  .dark .text-brand-700, .dark .text-brand-800 { color: #8fb0da; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased transition-colors dark:bg-[#071528] dark:text-slate-100">
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur border-b border-slate-200 dark:border-slate-800">
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#accueil" class="flex items-center gap-2 font-display font-bold text-brand-700 dark:text-white text-lg">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-9 w-9 shrink-0 rounded-full">
+        <span class="hidden sm:inline">Nombres Rationnels</span>
+      </a>
+      <div class="hidden md:flex items-center gap-1">
+        <a href="/" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-brand-700 hover:bg-brand-50 dark:hover:bg-white/5 dark:hover:text-white transition">← Portail</a>
+        <a href="#cours" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-brand-700 hover:bg-brand-50 dark:hover:bg-white/5 dark:hover:text-white transition">Cours</a>
+        <a href="#application" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-brand-700 hover:bg-brand-50 dark:hover:bg-white/5 dark:hover:text-white transition">Exercice d'application</a>
+        <a href="#serie" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-brand-700 hover:bg-brand-50 dark:hover:bg-white/5 dark:hover:text-white transition">Exercice N°2</a>
+        <a href="#serie" class="ml-2 px-4 py-2 rounded-lg text-sm font-semibold bg-brand-600 text-white hover:bg-brand-700 transition shadow-sm">Voir les corrections</a>
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 transition-colors">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </div>
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="md:hidden mr-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+      <button id="menuBtn" class="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5" aria-label="Ouvrir le menu" aria-expanded="false">
+        <svg id="iconOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="iconClose" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden pb-4 flex flex-col gap-1">
+      <a href="/" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-brand-50 dark:hover:bg-white/5">← Portail</a>
+      <a href="#cours" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-white/5">Cours</a>
+      <a href="#application" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-white/5">Exercice d'application</a>
+      <a href="#serie" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-white/5">Exercice N°2</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-brand-700 via-brand-600 to-brand-800 text-white">
+  <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_20%,white,transparent_35%),radial-gradient(circle_at_80%_60%,white,transparent_30%)]"></div>
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <p class="inline-block px-3 py-1 rounded-full bg-white/15 text-sm font-semibold tracking-wide mb-4">Niveau : 2APIC · Mathématiques</p>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold leading-tight mb-4">Les nombres rationnels</h1>
+      <h2 class="text-xl sm:text-2xl font-display font-semibold text-brand-100 mb-6">Introduction et ordre</h2>
+      <p class="text-brand-50/90 text-base sm:text-lg leading-relaxed mb-8">
+        Découvrez la définition d'un nombre rationnel, son signe, sa simplification et l'égalité des rationnels
+        grâce au produit en croix — puis entraînez-vous avec l'Exercice N°2, corrigé pas à pas.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="#cours" class="px-5 py-3 rounded-xl bg-white text-brand-700 font-semibold shadow-lg hover:bg-brand-50 transition">Commencer le cours</a>
+        <a href="#serie" class="px-5 py-3 rounded-xl bg-brand-800/60 border border-white/30 font-semibold hover:bg-brand-800 transition">Aller aux exercices</a>
+      </div>
+    </div>
+    <div class="relative hidden md:block">
+      <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=1200&auto=format&fit=crop"
+           alt="Illustration mathématique : équations et nombres sur un tableau"
+           class="rounded-2xl shadow-2xl ring-1 ring-white/20 object-cover w-full h-80 lg:h-96">
+      <div class="absolute -bottom-6 -left-6 bg-white text-slate-800 rounded-xl shadow-xl p-4 w-48">
+        <p class="text-xs text-slate-500 font-medium">Définition clé</p>
+        <p class="font-display font-bold text-brand-700 text-lg">a / b, b ≠ 0</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+<!-- ===================== COURS ===================== -->
+<section id="cours" class="py-14 sm:py-20">
+  <div class="mb-10">
+    <p class="text-brand-600 font-semibold text-sm uppercase tracking-wider mb-2">Cours</p>
+    <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900">Ce que vous allez apprendre</h2>
+    <p class="text-slate-500 mt-2 max-w-2xl">Quatre notions essentielles pour comprendre et manipuler les nombres rationnels.</p>
+  </div>
+
+  <!-- I. Définition -->
+  <article id="definition" class="scroll-mt-20 mb-8 bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+    <div class="p-6 sm:p-8">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 font-display font-bold flex items-center justify-center">I</span>
+        <h3 class="text-xl sm:text-2xl font-display font-bold text-slate-900">Le nombre rationnel</h3>
+      </div>
+
+      <div class="bg-brand-50 border-l-4 border-brand-500 rounded-r-xl p-4 sm:p-5 mb-5">
+        <p class="font-semibold text-brand-800 mb-1">Définition</p>
+        <p class="text-slate-700 leading-relaxed">
+          Un nombre rationnel est le quotient d'un nombre entier relatif <em>a</em> sur un nombre entier relatif
+          non nul <em>b</em> (<span class="font-semibold">b ≠ 0</span>).
+          Le nombre
+          <span class="expr"><span class="frac"><span class="num">a</span><span class="den">b</span></span></span>
+          est appelé nombre rationnel.
+        </p>
+      </div>
+
+      <p class="font-semibold text-slate-700 mb-2">Exemples</p>
+      <ul class="grid sm:grid-cols-2 gap-3 mb-2">
+        <li class="flex items-start gap-2 bg-emerald-50 ring-1 ring-emerald-200 rounded-xl p-3">
+          <span class="text-emerald-600 font-bold">✓</span>
+          <span>Les nombres
+            <span class="expr"><span class="frac"><span class="num">2</span><span class="den">3</span></span></span> ;
+            <span class="expr"><span class="frac"><span class="num">5</span><span class="den">7</span></span></span> ;
+            <span class="expr">−<span class="frac"><span class="num">11</span><span class="den">8</span></span></span>
+            sont des nombres rationnels.</span>
+        </li>
+        <li class="flex items-start gap-2 bg-rose-50 ring-1 ring-rose-200 rounded-xl p-3">
+          <span class="text-rose-600 font-bold">✗</span>
+          <span>Le nombre
+            <span class="expr"><span class="frac"><span class="num">4</span><span class="den">0</span></span></span>
+            n'est pas un nombre rationnel : le dénominateur est nul.</span>
+        </li>
+      </ul>
+
+      <div class="mt-5 bg-slate-50 rounded-xl p-4 sm:p-5 ring-1 ring-slate-200">
+        <p class="font-semibold text-slate-700 mb-1">Propriété</p>
+        <p class="text-slate-700 mb-2">Tout nombre décimal relatif est un nombre rationnel.</p>
+        <p class="text-slate-600 text-sm">
+          Exemples : 4 =
+          <span class="expr"><span class="frac"><span class="num">4</span><span class="den">1</span></span></span> ;
+          2,35 = <span class="expr"><span class="frac"><span class="num">235</span><span class="den">100</span></span></span> ;
+          −0,9 = <span class="expr">−<span class="frac"><span class="num">9</span><span class="den">10</span></span></span>
+        </p>
+        <p class="text-slate-600 text-sm mt-3">
+          <span class="font-semibold">Remarque :</span> il existe des nombres rationnels qui ne sont pas décimaux.
+          Exemple : <span class="expr"><span class="frac"><span class="num">2</span><span class="den">3</span></span></span>
+          n'est pas décimal, car
+          <span class="expr"><span class="frac"><span class="num">2</span><span class="den">3</span></span></span> ≈ 1,333…
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <!-- II. Signe -->
+  <article id="signe" class="scroll-mt-20 mb-8 bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+    <div class="p-6 sm:p-8">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 font-display font-bold flex items-center justify-center">II</span>
+        <h3 class="text-xl sm:text-2xl font-display font-bold text-slate-900">Signe d'un nombre rationnel</h3>
+      </div>
+
+      <div class="bg-brand-50 border-l-4 border-brand-500 rounded-r-xl p-4 sm:p-5 mb-5">
+        <p class="font-semibold text-brand-800 mb-2">Règle</p>
+        <p class="text-slate-700 leading-relaxed mb-1">
+          Le nombre rationnel <span class="expr"><span class="frac"><span class="num">a</span><span class="den">b</span></span></span>
+          est <span class="font-semibold text-emerald-700">positif</span> si <em>a</em> et <em>b</em> ont le même signe.
+        </p>
+        <p class="text-slate-700 leading-relaxed">
+          Le nombre rationnel <span class="expr"><span class="frac"><span class="num">a</span><span class="den">b</span></span></span>
+          est <span class="font-semibold text-rose-700">négatif</span> si <em>a</em> et <em>b</em> ont des signes contraires.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-3 mb-5">
+        <div class="rounded-xl p-4 bg-emerald-50 ring-1 ring-emerald-200">
+          <p class="text-sm text-emerald-700 font-semibold mb-1">Positif</p>
+          <p><span class="expr"><span class="frac"><span class="num">−2</span><span class="den">−7</span></span></span>
+          est positif : numérateur et dénominateur ont le même signe.</p>
+        </div>
+        <div class="rounded-xl p-4 bg-rose-50 ring-1 ring-rose-200">
+          <p class="text-sm text-rose-700 font-semibold mb-1">Négatif</p>
+          <p><span class="expr"><span class="frac"><span class="num">−3</span><span class="den">5</span></span></span>
+          est négatif : numérateur et dénominateur ont des signes contraires.</p>
+        </div>
+      </div>
+
+      <div class="bg-slate-50 rounded-xl p-4 sm:p-5 ring-1 ring-slate-200">
+        <p class="font-semibold text-slate-700 mb-2">Remarque</p>
+        <p class="text-slate-700">
+          Si <span class="expr"><span class="frac"><span class="num">a</span><span class="den">b</span></span></span>
+          est un nombre rationnel, alors :
+        </p>
+        <p class="mt-2 text-center text-lg">
+          <span class="expr"><span class="frac"><span class="num">−a</span><span class="den">b</span></span></span>
+          =
+          <span class="expr"><span class="frac"><span class="num">a</span><span class="den">−b</span></span></span>
+          =
+          <span class="expr">−<span class="frac"><span class="num">a</span><span class="den">b</span></span></span>
+          &nbsp;;&nbsp;
+          <span class="expr"><span class="frac"><span class="num">a</span><span class="den">b</span></span></span>
+          =
+          <span class="expr"><span class="frac"><span class="num">−a</span><span class="den">−b</span></span></span>
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <!-- III. Simplification -->
+  <article id="simplification" class="scroll-mt-20 mb-8 bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+    <div class="p-6 sm:p-8">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 font-display font-bold flex items-center justify-center">III</span>
+        <h3 class="text-xl sm:text-2xl font-display font-bold text-slate-900">Simplification d'un nombre rationnel</h3>
+      </div>
+
+      <div class="bg-brand-50 border-l-4 border-brand-500 rounded-r-xl p-4 sm:p-5 mb-5">
+        <p class="font-semibold text-brand-800 mb-2">Propriété</p>
+        <p class="text-slate-700 leading-relaxed">
+          Si <span class="expr"><span class="frac"><span class="num">a</span><span class="den">b</span></span></span>
+          est un nombre rationnel et <em>k</em> un nombre entier relatif non nul, alors :
+        </p>
+        <p class="mt-3 text-center text-lg">
+          <span class="expr"><span class="frac"><span class="num">a × k</span><span class="den">b × k</span></span></span>
+          =
+          <span class="expr"><span class="frac"><span class="num">a</span><span class="den">b</span></span></span>
+          &nbsp;;&nbsp;
+          <span class="expr"><span class="frac"><span class="num">a ÷ k</span><span class="den">b ÷ k</span></span></span>
+          =
+          <span class="expr"><span class="frac"><span class="num">a</span><span class="den">b</span></span></span>
+        </p>
+      </div>
+
+      <p class="font-semibold text-slate-700 mb-2">Exemples</p>
+      <div class="grid sm:grid-cols-2 gap-3">
+        <div class="rounded-xl p-4 bg-slate-50 ring-1 ring-slate-200 text-center">
+          <span class="expr"><span class="frac"><span class="num">2</span><span class="den">3</span></span> =
+          <span class="frac"><span class="num">2 × 4</span><span class="den">3 × 4</span></span> =
+          <span class="frac"><span class="num">8</span><span class="den">12</span></span></span>
+        </div>
+        <div class="rounded-xl p-4 bg-slate-50 ring-1 ring-slate-200 text-center">
+          <span class="expr"><span class="frac"><span class="num">−21</span><span class="den">35</span></span> =
+          <span class="frac"><span class="num">−21 ÷ 7</span><span class="den">35 ÷ 7</span></span> =
+          <span class="frac"><span class="num">−3</span><span class="den">5</span></span></span>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- IV. Egalité et produit en croix -->
+  <article id="egalite" class="scroll-mt-20 mb-4 bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+    <div class="p-6 sm:p-8">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 font-display font-bold flex items-center justify-center">IV</span>
+        <h3 class="text-xl sm:text-2xl font-display font-bold text-slate-900">Égalité des nombres rationnels et produit en croix</h3>
+      </div>
+
+      <div class="bg-brand-50 border-l-4 border-brand-500 rounded-r-xl p-4 sm:p-5 mb-5">
+        <p class="font-semibold text-brand-800 mb-2">Propriété</p>
+        <p class="text-slate-700 leading-relaxed mb-2">
+          <span class="expr"><span class="frac"><span class="num">a</span><span class="den">b</span></span></span> et
+          <span class="expr"><span class="frac"><span class="num">c</span><span class="den">d</span></span></span>
+          désignent des nombres rationnels.
+        </p>
+        <p class="text-center text-lg">
+          si
+          <span class="expr"><span class="frac"><span class="num">a</span><span class="den">b</span></span> =
+          <span class="frac"><span class="num">c</span><span class="den">d</span></span></span>
+          alors : a × d = b × c
+        </p>
+      </div>
+
+      <p class="font-semibold text-slate-700 mb-2">Exemple</p>
+      <div class="rounded-xl p-4 sm:p-5 bg-slate-50 ring-1 ring-slate-200">
+        <p class="mb-2">Les nombres
+          <span class="expr"><span class="frac"><span class="num">−2</span><span class="den">5</span></span></span> et
+          <span class="expr">−<span class="frac"><span class="num">3</span><span class="den">7</span></span></span>
+          sont-ils égaux ?</p>
+        <p class="text-slate-600 text-sm mb-1">on a : −2 × 7 = −14 et 5 × (−3) = −15</p>
+        <p class="text-slate-600 text-sm mb-2">on constate que : −2 × 7 ≠ 5 × (−3)</p>
+        <p class="font-semibold text-rose-700">
+          Donc
+          <span class="expr"><span class="frac"><span class="num">−2</span><span class="den">5</span></span></span> ≠
+          <span class="expr">−<span class="frac"><span class="num">3</span><span class="den">7</span></span></span>
+        </p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ===================== EXERCICE D'APPLICATION (cours) ===================== -->
+<section id="application" class="scroll-mt-20 py-10 sm:py-14">
+  <div class="bg-gradient-to-br from-sun-500 to-sun-600 rounded-2xl shadow-lg overflow-hidden">
+    <div class="p-6 sm:p-8">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+        <h2 class="text-xl sm:text-2xl font-display font-bold text-white">Exercice d'application (fin de cours)</h2>
+        <button onclick="toggleCorr('corr-appli', this)" aria-expanded="false"
+          class="px-4 py-2 rounded-xl bg-white text-sun-700 font-semibold text-sm shadow hover:bg-sun-50 transition flex items-center gap-2">
+          <span>Afficher la correction</span>
+        </button>
+      </div>
+
+      <div class="grid gap-4">
+        <div class="bg-white/95 rounded-xl p-4 sm:p-5">
+          <p class="font-semibold text-slate-800 mb-2">1) Simplifier les nombres rationnels suivants :</p>
+          <p class="text-center text-lg text-slate-700">
+            <span class="expr-wrap">
+              <span class="frac"><span class="num">10</span><span class="den">20</span></span> ;
+              <span class="frac"><span class="num">−30</span><span class="den">15</span></span> ;
+              <span class="frac"><span class="num">27</span><span class="den">63</span></span> ;
+              <span class="frac"><span class="num">4 × 7 × 5</span><span class="den">5 × 11 × 4</span></span> ;
+              <span class="frac"><span class="num">4 × 9 × 5 × 7</span><span class="den">3 × (−25) × 3 × 13</span></span>
+            </span>
+          </p>
+        </div>
+        <div class="bg-white/95 rounded-xl p-4 sm:p-5">
+          <p class="font-semibold text-slate-800 mb-2">2) Comparer les nombres suivants :</p>
+          <p class="text-center text-lg text-slate-700">
+            <span class="expr-wrap">
+              <span class="frac"><span class="num">6</span><span class="den">10</span></span> et
+              <span class="frac"><span class="num">−2</span><span class="den">3</span></span> ;
+              <span class="frac"><span class="num">−8</span><span class="den">−5</span></span> et
+              <span class="frac"><span class="num">56</span><span class="den">35</span></span> ;
+              <span class="frac"><span class="num">7</span><span class="den">−2</span></span> et −3,5
+            </span>
+          </p>
+        </div>
+        <div class="bg-white/95 rounded-xl p-4 sm:p-5">
+          <p class="font-semibold text-slate-800 mb-2">3) Trouver x et y :</p>
+          <p class="text-center text-lg text-slate-700">
+            <span class="expr-wrap">
+              <span class="frac"><span class="num">6</span><span class="den">x</span></span> =
+              <span class="frac"><span class="num">10</span><span class="den">15</span></span> ;
+              0,7 = <span class="frac"><span class="num">14</span><span class="den">x</span></span> ;
+              <span class="frac"><span class="num">x</span><span class="den">5</span></span> =
+              <span class="frac"><span class="num">4</span><span class="den">10</span></span> =
+              <span class="frac"><span class="num">10</span><span class="den">y</span></span>
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Correction -->
+      <div id="corr-appli" class="exo-hidden mt-5 bg-white rounded-xl p-5 sm:p-6 ring-2 ring-white">
+        <p class="font-display font-bold text-brand-700 mb-3">✔ Correction</p>
+        <div class="space-y-4 text-slate-700 text-sm sm:text-base">
+          <div>
+            <p class="font-semibold mb-1">1) Simplification</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li><span class="frac"><span class="num">10</span><span class="den">20</span></span> = <span class="frac"><span class="num">1</span><span class="den">2</span></span></li>
+              <li><span class="frac"><span class="num">−30</span><span class="den">15</span></span> = −2</li>
+              <li><span class="frac"><span class="num">27</span><span class="den">63</span></span> = <span class="frac"><span class="num">3</span><span class="den">7</span></span> (en divisant par 9)</li>
+              <li><span class="frac"><span class="num">4×7×5</span><span class="den">5×11×4</span></span> = <span class="frac"><span class="num">7</span><span class="den">11</span></span> (on simplifie par 4 et par 5)</li>
+              <li><span class="frac"><span class="num">4×9×5×7</span><span class="den">3×(−25)×3×13</span></span> = <span class="frac"><span class="num">−28</span><span class="den">65</span></span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="font-semibold mb-1">2) Comparaison</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li><span class="frac"><span class="num">6</span><span class="den">10</span></span> = 0,6 et <span class="frac"><span class="num">−2</span><span class="den">3</span></span> ≈ −0,667 donc <span class="frac"><span class="num">6</span><span class="den">10</span></span> &gt; <span class="frac"><span class="num">−2</span><span class="den">3</span></span></li>
+              <li><span class="frac"><span class="num">−8</span><span class="den">−5</span></span> = 1,6 et <span class="frac"><span class="num">56</span><span class="den">35</span></span> = 1,6 donc les deux nombres sont <span class="font-semibold">égaux</span></li>
+              <li><span class="frac"><span class="num">7</span><span class="den">−2</span></span> = −3,5 donc les deux nombres sont <span class="font-semibold">égaux</span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="font-semibold mb-1">3) Valeurs de x et y</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li><span class="frac"><span class="num">6</span><span class="den">x</span></span> = <span class="frac"><span class="num">10</span><span class="den">15</span></span> ⟹ produit en croix : 6 × 15 = 10 × x ⟹ 90 = 10x ⟹ <span class="font-semibold">x = 9</span></li>
+              <li>0,7 = <span class="frac"><span class="num">14</span><span class="den">x</span></span> ⟹ 0,7 × x = 14 ⟹ <span class="font-semibold">x = 20</span></li>
+              <li><span class="frac"><span class="num">x</span><span class="den">5</span></span> = <span class="frac"><span class="num">4</span><span class="den">10</span></span> : comme <span class="frac"><span class="num">4</span><span class="den">10</span></span> = <span class="frac"><span class="num">2</span><span class="den">5</span></span>, on a <span class="font-semibold">x = 2</span></li>
+              <li><span class="frac"><span class="num">4</span><span class="den">10</span></span> = <span class="frac"><span class="num">10</span><span class="den">y</span></span> ⟹ produit en croix : 4 × y = 10 × 10 ⟹ 4y = 100 ⟹ <span class="font-semibold">y = 25</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SERIE N°2 ===================== -->
+<section id="serie" class="scroll-mt-20 py-10 sm:py-16">
+  <div class="mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+    <div>
+      <p class="text-brand-600 font-semibold text-sm uppercase tracking-wider mb-2">S'entraîner</p>
+      <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900">Exercice N°2 — Nombres rationnels</h2>
+      <p class="text-slate-500 mt-2">9 exercices corrigés, cliquez sur « Voir la correction » pour révéler la solution détaillée.</p>
+    </div>
+    <div class="flex flex-wrap gap-2 text-sm">
+      <span class="px-3 py-1.5 rounded-full bg-brand-100 text-brand-700 font-medium">Niveau : 2APIC</span>
+      <span class="px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 font-medium">Prof : lahbib Elkeantaoui</span>
+    </div>
+  </div>
+
+  <div class="grid gap-6">
+
+    <!-- Exercice 1 -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+      <div class="p-5 sm:p-7">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 shrink-0 rounded-lg bg-brand-600 text-white font-display font-bold flex items-center justify-center">1</span>
+            <h3 class="font-display font-bold text-lg text-slate-900">Signe des nombres rationnels</h3>
+          </div>
+          <button onclick="toggleCorr('c1', this)" aria-expanded="false"
+            class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 transition shadow-sm">Voir la correction</button>
+        </div>
+        <p class="text-slate-600 mb-3">Donner le signe des nombres suivants :</p>
+        <p class="text-center text-lg text-slate-700">
+          <span class="expr-wrap">
+            <span class="frac"><span class="num">3</span><span class="den">−7</span></span> ;
+            <span class="frac"><span class="num">−2</span><span class="den">−5</span></span> ;
+            −<span class="frac"><span class="num">1</span><span class="den">9</span></span> ;
+            −<span class="paren-open">(</span><span class="frac"><span class="num">5</span><span class="den">−9</span></span><span class="paren-close">)</span> ;
+            −<span class="paren-open">(</span><span class="frac"><span class="num">−68</span><span class="den">−55</span></span><span class="paren-close">)</span> ;
+            −<span class="paren-open">(</span>−<span class="paren-open">(</span>−<span class="paren-open">(</span>−<span class="frac"><span class="num">1</span><span class="den">−3</span></span><span class="paren-close">)</span><span class="paren-close">)</span><span class="paren-close">)</span>
+          </span>
+        </p>
+
+        <div id="c1" class="exo-hidden mt-5 bg-brand-50 rounded-xl p-4 sm:p-5 ring-1 ring-brand-200">
+          <p class="font-display font-bold text-brand-700 mb-3">✔ Correction</p>
+          <ul class="space-y-2 text-slate-700">
+            <li><span class="frac"><span class="num">3</span><span class="den">−7</span></span> : signes contraires → <span class="font-semibold text-rose-700">négatif</span></li>
+            <li><span class="frac"><span class="num">−2</span><span class="den">−5</span></span> : même signe → <span class="font-semibold text-emerald-700">positif</span></li>
+            <li>−<span class="frac"><span class="num">1</span><span class="den">9</span></span> : <span class="frac"><span class="num">1</span><span class="den">9</span></span> est positif, son opposé est <span class="font-semibold text-rose-700">négatif</span></li>
+            <li>−<span class="paren-open">(</span><span class="frac"><span class="num">5</span><span class="den">−9</span></span><span class="paren-close">)</span> : <span class="frac"><span class="num">5</span><span class="den">−9</span></span> est négatif, son opposé est <span class="font-semibold text-emerald-700">positif</span></li>
+            <li>−<span class="paren-open">(</span><span class="frac"><span class="num">−68</span><span class="den">−55</span></span><span class="paren-close">)</span> : <span class="frac"><span class="num">−68</span><span class="den">−55</span></span> est positif, son opposé est <span class="font-semibold text-rose-700">négatif</span></li>
+            <li>
+              −<span class="paren-open">(</span>−<span class="paren-open">(</span>−<span class="paren-open">(</span>−<span class="frac"><span class="num">1</span><span class="den">−3</span></span><span class="paren-close">)</span><span class="paren-close">)</span><span class="paren-close">)</span> :
+              on simplifie de l'intérieur — <span class="frac"><span class="num">−1</span><span class="den">−3</span></span> est positif (1/3) ;
+              son opposé est négatif ; l'opposé de ce négatif est positif ; l'opposé de ce positif est
+              <span class="font-semibold text-rose-700">négatif</span>.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- Exercice 2 -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+      <div class="p-5 sm:p-7">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 shrink-0 rounded-lg bg-brand-600 text-white font-display font-bold flex items-center justify-center">2</span>
+            <h3 class="font-display font-bold text-lg text-slate-900">Nombres décimaux relatifs</h3>
+          </div>
+          <button onclick="toggleCorr('c2', this)" aria-expanded="false"
+            class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 transition shadow-sm">Voir la correction</button>
+        </div>
+        <p class="text-slate-600 mb-3">Citer parmi ces nombres rationnels ceux qui sont des nombres décimaux relatifs :</p>
+        <p class="text-center text-lg text-slate-700">
+          <span class="expr-wrap">
+            <span class="frac"><span class="num">11</span><span class="den">−6</span></span> ;
+            <span class="frac"><span class="num">51</span><span class="den">17</span></span> ;
+            −<span class="frac"><span class="num">9</span><span class="den">8</span></span> ;
+            <span class="frac"><span class="num">−78</span><span class="den">−54</span></span> ;
+            <span class="frac"><span class="num">−37</span><span class="den">−20</span></span>
+          </span>
+        </p>
+
+        <div id="c2" class="exo-hidden mt-5 bg-brand-50 rounded-xl p-4 sm:p-5 ring-1 ring-brand-200">
+          <p class="font-display font-bold text-brand-700 mb-3">✔ Correction</p>
+          <p class="text-slate-700 mb-2">Un rationnel est décimal si, une fois réduit, son dénominateur ne contient que des facteurs 2 et/ou 5.</p>
+          <ul class="space-y-2 text-slate-700">
+            <li><span class="frac"><span class="num">11</span><span class="den">−6</span></span> : dénominateur 6 = 2×3 → <span class="font-semibold text-rose-700">non décimal</span></li>
+            <li><span class="frac"><span class="num">51</span><span class="den">17</span></span> : 17 est premier → <span class="font-semibold text-rose-700">non décimal</span></li>
+            <li>−<span class="frac"><span class="num">9</span><span class="den">8</span></span> = −1,125 : 8 = 2³ → <span class="font-semibold text-emerald-700">décimal</span></li>
+            <li><span class="frac"><span class="num">−78</span><span class="den">−54</span></span> = <span class="frac"><span class="num">13</span><span class="den">9</span></span> : dénominateur 9 = 3² → <span class="font-semibold text-rose-700">non décimal</span></li>
+            <li><span class="frac"><span class="num">−37</span><span class="den">−20</span></span> = 1,85 : 20 = 2²×5 → <span class="font-semibold text-emerald-700">décimal</span></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- Exercice 3 -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+      <div class="p-5 sm:p-7">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 shrink-0 rounded-lg bg-brand-600 text-white font-display font-bold flex items-center justify-center">3</span>
+            <h3 class="font-display font-bold text-lg text-slate-900">Compléter des égalités</h3>
+          </div>
+          <button onclick="toggleCorr('c3', this)" aria-expanded="false"
+            class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 transition shadow-sm">Voir la correction</button>
+        </div>
+        <p class="text-slate-600 mb-3">Compléter les égalités suivantes :</p>
+        <div class="space-y-3 text-center text-lg text-slate-700 overflow-x-auto">
+          <p class="expr-wrap justify-center">
+            <span class="frac"><span class="num">−3</span><span class="den">7</span></span> =
+            <span class="frac"><span class="num">−12</span><span class="den">….</span></span> =
+            <span class="frac"><span class="num">….</span><span class="den">−0,7</span></span> =
+            <span class="frac"><span class="num">24</span><span class="den">….</span></span> =
+            <span class="frac"><span class="num">….</span><span class="den">−2,1</span></span> =
+            <span class="frac"><span class="num">−33</span><span class="den">….</span></span>
+          </p>
+          <p class="expr-wrap justify-center">
+            <span class="frac"><span class="num">−45</span><span class="den">27</span></span> =
+            <span class="frac"><span class="num">−5</span><span class="den">….</span></span> =
+            <span class="frac"><span class="num">….</span><span class="den">−300</span></span> =
+            <span class="frac"><span class="num">20</span><span class="den">….</span></span> =
+            <span class="frac"><span class="num">0,2</span><span class="den">….</span></span> =
+            <span class="frac"><span class="num">….</span><span class="den">−42</span></span>
+          </p>
+        </div>
+
+        <div id="c3" class="exo-hidden mt-5 bg-brand-50 rounded-xl p-4 sm:p-5 ring-1 ring-brand-200 overflow-x-auto">
+          <p class="font-display font-bold text-brand-700 mb-3">✔ Correction</p>
+          <p class="text-center text-lg text-slate-700 mb-3 expr-wrap justify-center">
+            <span class="frac"><span class="num">−3</span><span class="den">7</span></span> =
+            <span class="frac"><span class="num">−12</span><span class="den">28</span></span> =
+            <span class="frac"><span class="num">0,3</span><span class="den">−0,7</span></span> =
+            <span class="frac"><span class="num">24</span><span class="den">−56</span></span> =
+            <span class="frac"><span class="num">0,9</span><span class="den">−2,1</span></span> =
+            <span class="frac"><span class="num">−33</span><span class="den">77</span></span>
+          </p>
+          <p class="text-center text-lg text-slate-700 expr-wrap justify-center">
+            <span class="frac"><span class="num">−45</span><span class="den">27</span></span> =
+            <span class="frac"><span class="num">−5</span><span class="den">3</span></span> =
+            <span class="frac"><span class="num">500</span><span class="den">−300</span></span> =
+            <span class="frac"><span class="num">20</span><span class="den">−12</span></span> =
+            <span class="frac"><span class="num">0,2</span><span class="den">−0,12</span></span> =
+            <span class="frac"><span class="num">70</span><span class="den">−42</span></span>
+          </p>
+          <p class="text-slate-600 text-sm mt-3">Méthode : on multiplie (ou divise) le numérateur et le dénominateur par le même nombre non nul, en partant de la fraction simplifiée <span class="font-semibold">−3/7</span> (resp. <span class="font-semibold">−5/3</span>) pour retrouver chaque coefficient.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Exercice 4 -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+      <div class="p-5 sm:p-7">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 shrink-0 rounded-lg bg-brand-600 text-white font-display font-bold flex items-center justify-center">4</span>
+            <h3 class="font-display font-bold text-lg text-slate-900">Produit en croix : égaux ou différents ?</h3>
+          </div>
+          <button onclick="toggleCorr('c4', this)" aria-expanded="false"
+            class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 transition shadow-sm">Voir la correction</button>
+        </div>
+        <p class="text-slate-600 mb-3">En utilisant le produit en croix, indiquer si les nombres suivants sont égaux ou différents :</p>
+        <p class="text-center text-lg text-slate-700 expr-wrap justify-center">
+          <span class="frac"><span class="num">45</span><span class="den">60</span></span> et
+          <span class="frac"><span class="num">75</span><span class="den">100</span></span> ;
+          <span class="frac"><span class="num">−87</span><span class="den">−42</span></span> et
+          <span class="frac"><span class="num">−5,8</span><span class="den">−2,8</span></span> ;
+          <span class="frac"><span class="num">−12,15</span><span class="den">35,1</span></span> et
+          <span class="frac"><span class="num">5,8</span><span class="den">−16,75</span></span>
+        </p>
+
+        <div id="c4" class="exo-hidden mt-5 bg-brand-50 rounded-xl p-4 sm:p-5 ring-1 ring-brand-200">
+          <p class="font-display font-bold text-brand-700 mb-3">✔ Correction</p>
+          <ul class="space-y-2 text-slate-700">
+            <li>45 × 100 = 4500 et 60 × 75 = 4500 → <span class="font-semibold text-emerald-700">égaux</span></li>
+            <li>(−87) × (−2,8) = 243,6 et (−42) × (−5,8) = 243,6 → <span class="font-semibold text-emerald-700">égaux</span></li>
+            <li>(−12,15) × (−16,75) = 203,5125 et 35,1 × 5,8 = 203,58 → <span class="font-semibold text-rose-700">différents</span></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- Exercice 5 -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+      <div class="p-5 sm:p-7">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 shrink-0 rounded-lg bg-brand-600 text-white font-display font-bold flex items-center justify-center">5</span>
+            <h3 class="font-display font-bold text-lg text-slate-900">Rendre irréductible</h3>
+          </div>
+          <button onclick="toggleCorr('c5', this)" aria-expanded="false"
+            class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 transition shadow-sm">Voir la correction</button>
+        </div>
+        <p class="text-slate-600 mb-3">Rendre irréductibles les nombres suivants :</p>
+        <p class="text-center text-lg text-slate-700 expr-wrap justify-center">
+          <span class="frac"><span class="num">65</span><span class="den">−39</span></span> ;
+          <span class="frac"><span class="num">−144</span><span class="den">−69</span></span> ;
+          <span class="frac"><span class="num">−702</span><span class="den">1014</span></span> ;
+          <span class="frac"><span class="num">(−32) × (−7)</span><span class="den">21 × (−6)</span></span> ;
+          <span class="frac"><span class="num">(−125) × 49 × (−21)</span><span class="den">15 × (−98)</span></span> ;
+          <span class="frac"><span class="num">2³ × 5³ × 11</span><span class="den">11² × 2⁵ × 5²</span></span>
+        </p>
+
+        <div id="c5" class="exo-hidden mt-5 bg-brand-50 rounded-xl p-4 sm:p-5 ring-1 ring-brand-200">
+          <p class="font-display font-bold text-brand-700 mb-3">✔ Correction</p>
+          <ul class="space-y-2 text-slate-700">
+            <li><span class="frac"><span class="num">65</span><span class="den">−39</span></span> : PGCD(65,39) = 13 → <span class="font-semibold">−5/3</span></li>
+            <li><span class="frac"><span class="num">−144</span><span class="den">−69</span></span> : PGCD(144,69) = 3 → <span class="font-semibold">48/23</span></li>
+            <li><span class="frac"><span class="num">−702</span><span class="den">1014</span></span> : PGCD(702,1014) = 78 → <span class="font-semibold">−9/13</span></li>
+            <li><span class="frac"><span class="num">(−32)×(−7)</span><span class="den">21×(−6)</span></span> = 224/−126 → <span class="font-semibold">−16/9</span></li>
+            <li><span class="frac"><span class="num">(−125)×49×(−21)</span><span class="den">15×(−98)</span></span> = 128625/−1470 → <span class="font-semibold">−175/2</span></li>
+            <li><span class="frac"><span class="num">2³×5³×11</span><span class="den">11²×2⁵×5²</span></span> : on simplifie par 2³, 5² et 11 → <span class="font-semibold">5/44</span></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- Exercice 6 -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+      <div class="p-5 sm:p-7">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 shrink-0 rounded-lg bg-brand-600 text-white font-display font-bold flex items-center justify-center">6</span>
+            <h3 class="font-display font-bold text-lg text-slate-900">Même dénominateur et comparaison</h3>
+          </div>
+          <button onclick="toggleCorr('c6', this)" aria-expanded="false"
+            class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 transition shadow-sm">Voir la correction</button>
+        </div>
+        <p class="text-slate-600 mb-3">Dans chaque cas, réécrire les nombres rationnels avec le même dénominateur et les comparer :</p>
+        <p class="text-center text-lg text-slate-700 expr-wrap justify-center">
+          <span class="frac"><span class="num">−5</span><span class="den">4</span></span> et
+          <span class="frac"><span class="num">−9</span><span class="den">8</span></span> ;
+          <span class="frac"><span class="num">2,7</span><span class="den">−9</span></span> et
+          <span class="frac"><span class="num">−1</span><span class="den">3</span></span> ;
+          3 et <span class="frac"><span class="num">20</span><span class="den">−7</span></span> ;
+          <span class="frac"><span class="num">−7</span><span class="den">12</span></span> et
+          <span class="frac"><span class="num">11</span><span class="den">−18</span></span> et
+          −<span class="frac"><span class="num">5</span><span class="den">6</span></span>
+        </p>
+
+        <div id="c6" class="exo-hidden mt-5 bg-brand-50 rounded-xl p-4 sm:p-5 ring-1 ring-brand-200">
+          <p class="font-display font-bold text-brand-700 mb-3">✔ Correction</p>
+          <ul class="space-y-2 text-slate-700">
+            <li><span class="frac"><span class="num">−5</span><span class="den">4</span></span> = <span class="frac"><span class="num">−10</span><span class="den">8</span></span> et <span class="frac"><span class="num">−9</span><span class="den">8</span></span> : −10 &lt; −9 donc <span class="font-semibold">−5/4 &lt; −9/8</span></li>
+            <li><span class="frac"><span class="num">2,7</span><span class="den">−9</span></span> = −0,3 et <span class="frac"><span class="num">−1</span><span class="den">3</span></span> ≈ −0,333 : −0,3 &gt; −0,333 donc <span class="font-semibold">2,7/−9 &gt; −1/3</span></li>
+            <li>3 = <span class="frac"><span class="num">21</span><span class="den">7</span></span> et <span class="frac"><span class="num">20</span><span class="den">−7</span></span> = <span class="frac"><span class="num">−20</span><span class="den">7</span></span> : 21 &gt; −20 donc <span class="font-semibold">3 &gt; 20/−7</span></li>
+            <li>Dénominateur commun 36 : <span class="frac"><span class="num">−7</span><span class="den">12</span></span> = <span class="frac"><span class="num">−21</span><span class="den">36</span></span>, <span class="frac"><span class="num">11</span><span class="den">−18</span></span> = <span class="frac"><span class="num">−22</span><span class="den">36</span></span>, −<span class="frac"><span class="num">5</span><span class="den">6</span></span> = <span class="frac"><span class="num">−30</span><span class="den">36</span></span> : donc <span class="font-semibold">−5/6 &lt; 11/−18 &lt; −7/12</span></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- Exercice 7 -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+      <div class="p-5 sm:p-7">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 shrink-0 rounded-lg bg-brand-600 text-white font-display font-bold flex items-center justify-center">7</span>
+            <h3 class="font-display font-bold text-lg text-slate-900">Trouver la valeur de <em>a</em></h3>
+          </div>
+          <button onclick="toggleCorr('c7', this)" aria-expanded="false"
+            class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 transition shadow-sm">Voir la correction</button>
+        </div>
+        <p class="text-slate-600 mb-3">Trouver la valeur du nombre rationnel <em>a</em> dans chaque cas :</p>
+        <p class="text-center text-lg text-slate-700 expr-wrap justify-center">
+          <span class="frac"><span class="num">4</span><span class="den">−6</span></span> =
+          <span class="frac"><span class="num">−18</span><span class="den">2a</span></span> ;
+          12a = <span class="frac"><span class="num">−3</span><span class="den">11</span></span> ;
+          <span class="frac"><span class="num">−2</span><span class="den">3a</span></span> =
+          <span class="frac"><span class="num">1</span><span class="den">4</span></span> ;
+          <span class="frac"><span class="num">3</span><span class="den">−4</span></span> =
+          <span class="frac"><span class="num">−5</span><span class="den">2a−1</span></span>
+        </p>
+
+        <div id="c7" class="exo-hidden mt-5 bg-brand-50 rounded-xl p-4 sm:p-5 ring-1 ring-brand-200">
+          <p class="font-display font-bold text-brand-700 mb-3">✔ Correction</p>
+          <ul class="space-y-2 text-slate-700">
+            <li><span class="frac"><span class="num">4</span><span class="den">−6</span></span> = <span class="frac"><span class="num">−18</span><span class="den">2a</span></span> ⟹ 4×2a = −6×(−18) ⟹ 8a = 108 ⟹ <span class="font-semibold">a = 13,5</span></li>
+            <li>12a = <span class="frac"><span class="num">−3</span><span class="den">11</span></span> ⟹ <span class="font-semibold">a = −3/132 = −1/44</span></li>
+            <li><span class="frac"><span class="num">−2</span><span class="den">3a</span></span> = <span class="frac"><span class="num">1</span><span class="den">4</span></span> ⟹ −2×4 = 1×3a ⟹ −8 = 3a ⟹ <span class="font-semibold">a = −8/3</span></li>
+            <li><span class="frac"><span class="num">3</span><span class="den">−4</span></span> = <span class="frac"><span class="num">−5</span><span class="den">2a−1</span></span> ⟹ 3×(2a−1) = −4×(−5) ⟹ 6a−3 = 20 ⟹ 6a = 23 ⟹ <span class="font-semibold">a = 23/6</span></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- Exercice 8 -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+      <div class="p-5 sm:p-7">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 shrink-0 rounded-lg bg-brand-600 text-white font-display font-bold flex items-center justify-center">8</span>
+            <h3 class="font-display font-bold text-lg text-slate-900">Trouver la valeur de <em>x</em></h3>
+          </div>
+          <button onclick="toggleCorr('c8', this)" aria-expanded="false"
+            class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 transition shadow-sm">Voir la correction</button>
+        </div>
+        <p class="text-slate-600 mb-3">Déterminer la valeur du nombre rationnel <em>x</em> sachant que :</p>
+        <p class="text-center text-lg text-slate-700 expr-wrap justify-center">
+          <span class="frac"><span class="num">1</span><span class="den">2</span></span> +
+          <span class="frac"><span class="num">1</span><span class="den">3</span></span> +
+          <span class="frac"><span class="num">1</span><span class="den">4</span></span> +
+          <span class="frac"><span class="num">1</span><span class="den">x</span></span> =
+          <span class="frac"><span class="num">77</span><span class="den">60</span></span>
+        </p>
+
+        <div id="c8" class="exo-hidden mt-5 bg-brand-50 rounded-xl p-4 sm:p-5 ring-1 ring-brand-200">
+          <p class="font-display font-bold text-brand-700 mb-3">✔ Correction</p>
+          <p class="text-slate-700 mb-2">On met les trois premières fractions au dénominateur commun 60 :</p>
+          <p class="text-center text-lg text-slate-700 mb-2 expr-wrap justify-center">
+            <span class="frac"><span class="num">1</span><span class="den">2</span></span> +
+            <span class="frac"><span class="num">1</span><span class="den">3</span></span> +
+            <span class="frac"><span class="num">1</span><span class="den">4</span></span> =
+            <span class="frac"><span class="num">30</span><span class="den">60</span></span> +
+            <span class="frac"><span class="num">20</span><span class="den">60</span></span> +
+            <span class="frac"><span class="num">15</span><span class="den">60</span></span> =
+            <span class="frac"><span class="num">65</span><span class="den">60</span></span>
+          </p>
+          <p class="text-slate-700 mb-2">Donc <span class="frac"><span class="num">1</span><span class="den">x</span></span> = <span class="frac"><span class="num">77</span><span class="den">60</span></span> − <span class="frac"><span class="num">65</span><span class="den">60</span></span> = <span class="frac"><span class="num">12</span><span class="den">60</span></span> = <span class="frac"><span class="num">1</span><span class="den">5</span></span></p>
+          <p class="font-semibold text-emerald-700">x = 5</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Exercice 9 -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+      <div class="p-5 sm:p-7">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 shrink-0 rounded-lg bg-brand-600 text-white font-display font-bold flex items-center justify-center">9</span>
+            <h3 class="font-display font-bold text-lg text-slate-900">Problème : proportionnalité</h3>
+          </div>
+          <button onclick="toggleCorr('c9', this)" aria-expanded="false"
+            class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 transition shadow-sm">Voir la correction</button>
+        </div>
+        <p class="text-slate-700">Le volume de 180 gouttes d'un liquide est 9 cm³. Quel est le volume de 150 gouttes de ce même liquide ?</p>
+
+        <div id="c9" class="exo-hidden mt-5 bg-brand-50 rounded-xl p-4 sm:p-5 ring-1 ring-brand-200">
+          <p class="font-display font-bold text-brand-700 mb-3">✔ Correction</p>
+          <p class="text-slate-700 mb-2">Le volume est proportionnel au nombre de gouttes. Une goutte a un volume de :</p>
+          <p class="text-center text-lg text-slate-700 mb-2">
+            <span class="frac"><span class="num">9</span><span class="den">180</span></span> = 0,05 cm³
+          </p>
+          <p class="text-slate-700 mb-2">Pour 150 gouttes :</p>
+          <p class="text-center text-lg text-slate-700 mb-2">
+            <span class="frac"><span class="num">150</span><span class="den">180</span></span> × 9 =
+            <span class="frac"><span class="num">5</span><span class="den">6</span></span> × 9 = 7,5
+          </p>
+          <p class="font-semibold text-emerald-700">Le volume de 150 gouttes est de 7,5 cm³.</p>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-slate-900 text-slate-300 mt-10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid sm:grid-cols-3 gap-8">
+    <div>
+      <a href="/" class="flex items-center gap-2.5 mb-3">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+        <span class="font-display font-bold text-white leading-tight">
+          <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+          <span class="block text-xs font-semibold uppercase tracking-wider text-sun-400">Mathématiques</span>
+        </span>
+      </a>
+      <p class="text-sm text-slate-400">Cours et exercices — Introduction et ordre des nombres rationnels, niveau 2APIC.</p>
+      <a href="/" class="mt-3 inline-block text-sm font-semibold text-sun-400 hover:text-sun-500">← Retour au portail</a>
+    </div>
+    <div>
+      <p class="font-semibold text-white mb-3 text-sm uppercase tracking-wide">Contenu</p>
+      <ul class="space-y-2 text-sm">
+        <li><a href="#cours" class="hover:text-white transition">Cours complet</a></li>
+        <li><a href="#application" class="hover:text-white transition">Exercice d'application</a></li>
+        <li><a href="#serie" class="hover:text-white transition">Exercice N°2 corrigé</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-white mb-3 text-sm uppercase tracking-wide">Informations</p>
+      <ul class="space-y-2 text-sm text-slate-400">
+        <li>Niveau : 2APIC</li>
+        <li>Prof : lahbib Elkeantaoui</li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-slate-800 py-5 text-center text-xs text-slate-500">
+    © 2026 — Page pédagogique générée pour l'apprentissage des nombres rationnels.
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const iconOpen = document.getElementById('iconOpen');
+  const iconClose = document.getElementById('iconClose');
+  menuBtn.addEventListener('click', () => {
+    const isHidden = mobileMenu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden', !isHidden);
+    iconClose.classList.toggle('hidden', isHidden);
+    menuBtn.setAttribute('aria-expanded', String(!isHidden));
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  // Correction toggle
+  function toggleCorr(id, btn) {
+    const el = document.getElementById(id);
+    el.classList.toggle('exo-hidden');
+    const isHidden = el.classList.contains('exo-hidden');
+    const base = btn.dataset.labelShow || 'Voir la correction';
+    btn.innerHTML = isHidden
+      ? '<span>' + base + '</span>'
+      : '<span>✓ Masquer la correction</span>';
+    btn.setAttribute('aria-expanded', String(!isHidden));
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les Équations — Cours & Exercices | 1AC Mathématiques</title>
+<meta name="description" content="Cours complet et interactif sur les équations du premier degré à une inconnue (1ère année collège) : définition, résolution de x+a=b et ax=b, propriétés d'équivalence, méthode de résolution de problèmes, et 66 exercices et problèmes avec correction détaillée au clic.">
+<meta name="theme-color" content="#0b1f3a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%96%EF%B8%8F%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Poppins', 'ui-sans-serif', 'sans-serif'],
+          body: ['Inter', 'ui-sans-serif', 'sans-serif'],
+          mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+        },
+        colors: {
+          indigo: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+        },
+        boxShadow: {
+          soft: '0 10px 30px -10px rgba(44, 80, 137, 0.25)',
+        },
+      }
+    }
+  }
+</script>
+<style>
+  section[id], div[id] { scroll-margin-top: 5.5rem; }
+  .accordion-wrap { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s ease; }
+  .accordion-wrap.open { grid-template-rows: 1fr; }
+  .accordion-inner { overflow: hidden; }
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #c7d2fe; border-radius: 9999px; }
+  .dark ::-webkit-scrollbar-thumb { background: #4338ca; }
+  .eq-card { transition: box-shadow .2s ease, border-color .2s ease; }
+  .eq-card.is-open { border-color: #6ee7b7; }
+  .dark .eq-card.is-open { border-color: #065f46; }
+
+  /* ===== Mode nuit (retrofit générique — filet de sécurité) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
+  .dark .bg-amber-50 { background-color: #3a2a0a; }
+  .dark .border-amber-400 { border-color: #92400e; }
+</style>
+</head>
+<body class="font-body antialiased bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
+
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#accueil" class="flex items-center gap-2 font-display font-bold text-lg text-indigo-700 dark:text-indigo-400 shrink-0">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-9 h-9 shrink-0 rounded-full">
+        <span>Maths<span class="text-amber-500">·1AC</span></span>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-0.5">
+        <a href="/" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-indigo-700 hover:bg-indigo-50 dark:hover:bg-slate-800 dark:hover:text-indigo-400 transition">← Portail</a>
+        <a href="#definition" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-700 hover:bg-indigo-50 dark:hover:bg-slate-800 dark:hover:text-indigo-400 transition">Définition</a>
+        <a href="#resoudre" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-violet-700 hover:bg-violet-50 dark:hover:bg-slate-800 dark:hover:text-violet-400 transition">Résoudre</a>
+        <a href="#methodes" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-emerald-700 hover:bg-emerald-50 dark:hover:bg-slate-800 dark:hover:text-emerald-400 transition">Méthodes</a>
+        <a href="#problemes" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-sky-700 hover:bg-sky-50 dark:hover:bg-slate-800 dark:hover:text-sky-400 transition">Problèmes</a>
+        <a href="#exercices" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-amber-700 hover:bg-amber-50 dark:hover:bg-slate-800 dark:hover:text-amber-400 transition">Exercices</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="p-2.5 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 transition">
+          <svg class="w-5 h-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m14.14-6.66l-.7.7M6.56 17.44l-.7.7m12.02 0l-.7-.7M6.56 6.56l-.7-.7M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+          <svg class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" /></svg>
+        </button>
+        <button id="menu-btn" aria-label="Ouvrir le menu" class="lg:hidden p-2.5 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 transition">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden pb-4 flex flex-col gap-1">
+      <a href="/" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-500 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-slate-800">← Portail</a>
+      <a href="#definition" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-slate-800">I. Définition &amp; vocabulaire</a>
+      <a href="#resoudre" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-violet-50 dark:hover:bg-slate-800">II. Résoudre une équation</a>
+      <a href="#methodes" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800">III. Méthodes et techniques</a>
+      <a href="#problemes" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-sky-50 dark:hover:bg-slate-800">IV. Résolution de problèmes</a>
+      <a href="#exercices" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-amber-50 dark:hover:bg-slate-800">Exercices (66)</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-indigo-700 via-indigo-600 to-violet-700">
+  <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1600&q=60')"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-indigo-950/70 via-indigo-800/40 to-transparent"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
+    <span class="inline-flex items-center gap-2 bg-white/10 text-indigo-100 text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full ring-1 ring-white/20">
+      Mathématiques · 1ère Année Collège
+    </span>
+    <h1 class="mt-6 font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
+      Les <span class="text-amber-400">Équations</span>
+    </h1>
+    <p class="mt-2 text-indigo-100 text-lg sm:text-xl font-display">du premier degré à une inconnue</p>
+    <p class="mt-5 max-w-2xl mx-auto text-base sm:text-lg text-indigo-100">
+      Le cours complet — définition, règles de résolution, propriétés d'équivalence et méthode de résolution de problèmes —
+      accompagné de l'exercice N°4 avec <span class="font-semibold text-white">correction détaillée</span> à un clic.
+    </p>
+    <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+      <a href="#definition" class="px-5 py-3 rounded-full bg-white text-indigo-700 font-semibold text-sm shadow-soft hover:bg-indigo-50 transition">⚖️ Découvrir le cours</a>
+      <a href="#methodes" class="px-5 py-3 rounded-full bg-white/10 text-white font-semibold text-sm ring-1 ring-white/30 hover:bg-white/20 transition">🧮 Méthodes</a>
+      <a href="#exercices" class="px-5 py-3 rounded-full bg-amber-500 text-white font-semibold text-sm shadow-soft hover:bg-amber-600 transition">📝 Exercices corrigés</a>
+    </div>
+    <div class="mt-14 grid grid-cols-3 max-w-lg mx-auto gap-4 text-white">
+      <div>
+        <p class="font-display text-3xl font-extrabold">4</p>
+        <p class="text-xs text-indigo-200 mt-1">parties de cours</p>
+      </div>
+      <div class="border-x border-white/20">
+        <p class="font-display text-3xl font-extrabold">66</p>
+        <p class="text-xs text-indigo-200 mt-1">exercices &amp; problèmes</p>
+      </div>
+      <div>
+        <p class="font-display text-3xl font-extrabold">100%</p>
+        <p class="text-xs text-indigo-200 mt-1">corrigés</p>
+      </div>
+    </div>
+  </div>
+  <svg class="relative block w-full text-slate-50 dark:text-slate-950" viewBox="0 0 1440 60" fill="currentColor"><path d="M0,32L1440,0L1440,60L0,60Z"></path></svg>
+</section>
+
+<section id="definition" class="py-16 md:py-24">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal flex items-center gap-4 mb-8">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-indigo-600 text-white font-display font-bold text-xl shadow-soft shrink-0">I</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Définition &amp; vocabulaire</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">L'équation du premier degré à une inconnue</p>
+      </div>
+    </div>
+
+    <!-- Definition -->
+    <div class="reveal mb-6 rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-5 md:p-6">
+      <p class="text-xs font-bold uppercase tracking-wide text-rose-500 mb-2">1. Définition</p>
+      <p class="text-lg md:text-xl text-slate-700 dark:text-rose-100 font-medium leading-relaxed">
+        Soient <b>a</b>, <b>b</b> et <b>x</b> des nombres relatifs. Toute égalité de la forme
+        <span class="font-mono font-bold text-rose-600 dark:text-rose-300">x + a = b</span> ou
+        <span class="font-mono font-bold text-rose-600 dark:text-rose-300">a × x = b</span> (avec a ≠ 0)
+        est appelée <span class="font-bold text-rose-600 dark:text-rose-300">équation du premier degré à une inconnue x</span>.
+      </p>
+    </div>
+
+    <!-- Vocabulaire -->
+    <div class="reveal mb-8 flex items-start gap-3 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900 p-4 md:p-5">
+      <span class="text-amber-500 text-lg">💡</span>
+      <p class="text-sm text-amber-700 dark:text-amber-200"><span class="font-bold">Résoudre</span> une équation du premier degré à une inconnue x, c'est <span class="font-semibold">trouver la valeur de l'inconnue x</span>, qui s'appelle <span class="font-semibold">la solution de l'équation</span>.</p>
+    </div>
+
+    <!-- Exemples -->
+    <div class="reveal">
+      <p class="text-xs font-bold uppercase tracking-wide text-indigo-500 mb-3">2. Exemples d'équations</p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-center font-mono text-sm font-semibold text-slate-700 dark:text-slate-200 shadow-sm">x + 1,5 = 3,5</div>
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-center font-mono text-sm font-semibold text-slate-700 dark:text-slate-200 shadow-sm">-x - 7 = -4</div>
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-center font-mono text-sm font-semibold text-slate-700 dark:text-slate-200 shadow-sm">x - 2,5 = 12</div>
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-center font-mono text-sm font-semibold text-slate-700 dark:text-slate-200 shadow-sm">-x + 2 = 0</div>
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-center font-mono text-sm font-semibold text-slate-700 dark:text-slate-200 shadow-sm">3x = 15</div>
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-center font-mono text-sm font-semibold text-slate-700 dark:text-slate-200 shadow-sm">-2x = -11</div>
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-center font-mono text-sm font-semibold text-slate-700 dark:text-slate-200 shadow-sm">-7x = 21</div>
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-center font-mono text-sm font-semibold text-slate-700 dark:text-slate-200 shadow-sm">2,5x = 0</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="resoudre" class="py-16 md:py-24 bg-violet-50/50 dark:bg-slate-900/40">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal flex items-center gap-4 mb-8">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-violet-600 text-white font-display font-bold text-xl shadow-soft shrink-0">II</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Résoudre une équation</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Les deux formes de base et leur règle de résolution</p>
+      </div>
+    </div>
+
+    <!-- a. x + a = b -->
+    <div class="reveal mb-12">
+      <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-1">a) Résolution de l'équation x + a = b</h3>
+      <div class="rounded-xl bg-violet-100 dark:bg-violet-950/40 border border-violet-200 dark:border-violet-900 p-4 my-4">
+        <p class="text-sm text-violet-800 dark:text-violet-200 text-center font-medium">Pour résoudre l'équation <b>x + a = b</b>, on ajoute à <b>b</b> l'opposé de <b>a</b>. On écrit : <span class="font-mono font-bold">x = b - a</span>.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-4"><div class="flex items-center gap-2 mb-2"><span class="w-6 h-6 shrink-0 rounded-full bg-violet-500 text-white text-[11px] font-bold flex items-center justify-center">1</span><p class="font-mono text-sm font-semibold text-slate-800 dark:text-slate-100">2,5 + x = 5</p></div><div class="text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1 border-t border-dashed border-slate-200 dark:border-slate-700 pt-2 pl-8"><p>x = 5 - 2,5</p><p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm pt-0.5">x = 2,5</p></div></div>
+        <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-4"><div class="flex items-center gap-2 mb-2"><span class="w-6 h-6 shrink-0 rounded-full bg-violet-500 text-white text-[11px] font-bold flex items-center justify-center">2</span><p class="font-mono text-sm font-semibold text-slate-800 dark:text-slate-100">x - 11 = -2</p></div><div class="text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1 border-t border-dashed border-slate-200 dark:border-slate-700 pt-2 pl-8"><p>x = -2 + 11</p><p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm pt-0.5">x = 9</p></div></div>
+        <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-4"><div class="flex items-center gap-2 mb-2"><span class="w-6 h-6 shrink-0 rounded-full bg-violet-500 text-white text-[11px] font-bold flex items-center justify-center">3</span><p class="font-mono text-sm font-semibold text-slate-800 dark:text-slate-100">7 - x = 14,6</p></div><div class="text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1 border-t border-dashed border-slate-200 dark:border-slate-700 pt-2 pl-8"><p>-x = 14,6 - 7 = 7,6</p><p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm pt-0.5">x = -7,6</p></div></div>
+        <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-4"><div class="flex items-center gap-2 mb-2"><span class="w-6 h-6 shrink-0 rounded-full bg-violet-500 text-white text-[11px] font-bold flex items-center justify-center">4</span><p class="font-mono text-sm font-semibold text-slate-800 dark:text-slate-100">-x - 9 = -12</p></div><div class="text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1 border-t border-dashed border-slate-200 dark:border-slate-700 pt-2 pl-8"><p>-x = -12 + 9 = -3</p><p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm pt-0.5">x = 3</p></div></div>
+        <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-4"><div class="flex items-center gap-2 mb-2"><span class="w-6 h-6 shrink-0 rounded-full bg-violet-500 text-white text-[11px] font-bold flex items-center justify-center">5</span><p class="font-mono text-sm font-semibold text-slate-800 dark:text-slate-100">x + 5 = 0</p></div><div class="text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1 border-t border-dashed border-slate-200 dark:border-slate-700 pt-2 pl-8"><p>x = 0 - 5</p><p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm pt-0.5">x = -5</p></div></div>
+        <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-4"><div class="flex items-center gap-2 mb-2"><span class="w-6 h-6 shrink-0 rounded-full bg-violet-500 text-white text-[11px] font-bold flex items-center justify-center">6</span><p class="font-mono text-sm font-semibold text-slate-800 dark:text-slate-100">-11 - x = 0</p></div><div class="text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1 border-t border-dashed border-slate-200 dark:border-slate-700 pt-2 pl-8"><p>-x = 0 + 11 = 11</p><p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm pt-0.5">x = -11</p></div></div>
+      </div>
+    </div>
+
+    <!-- b. ax = b -->
+    <div class="reveal">
+      <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-1">b) Résolution de l'équation a × x = b (a ≠ 0)</h3>
+      <div class="rounded-xl bg-sky-100 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-900 p-4 my-4">
+        <p class="text-sm text-sky-800 dark:text-sky-200 text-center font-medium">Pour résoudre l'équation <b>ax = b</b> (a ≠ 0), on divise <b>b</b> par <b>a</b>. On écrit : <span class="font-mono font-bold">x = b/a</span>.</p>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-4"><div class="flex items-center gap-2 mb-2"><span class="w-6 h-6 shrink-0 rounded-full bg-sky-500 text-white text-[11px] font-bold flex items-center justify-center">1</span><p class="font-mono text-sm font-semibold text-slate-800 dark:text-slate-100">2x = 4</p></div><div class="text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1 border-t border-dashed border-slate-200 dark:border-slate-700 pt-2 pl-8"><p>x = 4 ÷ 2</p><p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm pt-0.5">x = 2</p></div></div>
+        <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-4"><div class="flex items-center gap-2 mb-2"><span class="w-6 h-6 shrink-0 rounded-full bg-sky-500 text-white text-[11px] font-bold flex items-center justify-center">2</span><p class="font-mono text-sm font-semibold text-slate-800 dark:text-slate-100">-5x = 12</p></div><div class="text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1 border-t border-dashed border-slate-200 dark:border-slate-700 pt-2 pl-8"><p>x = 12 ÷ (-5)</p><p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm pt-0.5">x = -2,4</p></div></div>
+        <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-4"><div class="flex items-center gap-2 mb-2"><span class="w-6 h-6 shrink-0 rounded-full bg-sky-500 text-white text-[11px] font-bold flex items-center justify-center">3</span><p class="font-mono text-sm font-semibold text-slate-800 dark:text-slate-100">-6x = -9</p></div><div class="text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1 border-t border-dashed border-slate-200 dark:border-slate-700 pt-2 pl-8"><p>x = -9 ÷ (-6)</p><p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm pt-0.5">x = 1,5</p></div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="methodes" class="py-16 md:py-24">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal flex items-center gap-4 mb-8">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-emerald-600 text-white font-display font-bold text-xl shadow-soft shrink-0">III</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Méthodes et techniques</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Deux propriétés pour transformer une équation en une équation équivalente</p>
+      </div>
+    </div>
+
+    <!-- Propriete 1 -->
+    <div class="reveal mb-12">
+      <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-1">a) Propriété 1</h3>
+      <div class="rounded-xl bg-emerald-100 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900 p-4 my-4">
+        <p class="text-sm text-emerald-800 dark:text-emerald-200 text-center font-medium">Si on <b>ajoute</b> ou on <b>retranche</b> le même nombre aux deux membres d'une équation, on obtient une <b>nouvelle équation équivalente</b>.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-4"><div class="flex items-center gap-2 mb-2"><span class="w-6 h-6 shrink-0 rounded-full bg-emerald-500 text-white text-[11px] font-bold flex items-center justify-center">1</span><p class="font-mono text-sm font-semibold text-slate-800 dark:text-slate-100">2x + 1 = x - 6</p></div><div class="text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1 border-t border-dashed border-slate-200 dark:border-slate-700 pt-2 pl-8"><p>2x - x = -6 - 1</p><p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm pt-0.5">x = -7</p></div></div>
+        <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-4"><div class="flex items-center gap-2 mb-2"><span class="w-6 h-6 shrink-0 rounded-full bg-emerald-500 text-white text-[11px] font-bold flex items-center justify-center">2</span><p class="font-mono text-sm font-semibold text-slate-800 dark:text-slate-100">5x - 5 = 2x - 20</p></div><div class="text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1 border-t border-dashed border-slate-200 dark:border-slate-700 pt-2 pl-8"><p>5x - 2x = -20 + 5</p>
+            <p>3x = -15</p><p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm pt-0.5">x = -5</p></div></div>
+        <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-4"><div class="flex items-center gap-2 mb-2"><span class="w-6 h-6 shrink-0 rounded-full bg-emerald-500 text-white text-[11px] font-bold flex items-center justify-center">3</span><p class="font-mono text-sm font-semibold text-slate-800 dark:text-slate-100">2(2x + 1) = 5(x - 5)</p></div><div class="text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1 border-t border-dashed border-slate-200 dark:border-slate-700 pt-2 pl-8"><p>4x + 2 = 5x - 25</p>
+            <p>4x - 5x = -25 - 2</p>
+            <p>-x = -27</p><p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm pt-0.5">x = 27</p></div></div>
+        <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-4"><div class="flex items-center gap-2 mb-2"><span class="w-6 h-6 shrink-0 rounded-full bg-emerald-500 text-white text-[11px] font-bold flex items-center justify-center">4</span><p class="font-mono text-sm font-semibold text-slate-800 dark:text-slate-100">2x - 3(x - 4) + 5(x + 3) = 0</p></div><div class="text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1 border-t border-dashed border-slate-200 dark:border-slate-700 pt-2 pl-8"><p>2x - 3x + 12 + 5x + 15 = 0</p>
+            <p>2x - 3x + 5x = -12 - 15</p>
+            <p>4x = -27</p><p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm pt-0.5">x = -6,75</p></div></div>
+      </div>
+    </div>
+
+    <!-- Propriete 2 -->
+    <div class="reveal">
+      <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-1">b) Propriété 2</h3>
+      <div class="rounded-xl bg-teal-100 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-900 p-4 my-4">
+        <p class="text-sm text-teal-800 dark:text-teal-200 text-center font-medium">Si on <b>multiplie</b> ou on <b>divise</b> les deux membres d'une équation par le même nombre relatif non nul, on obtient une <b>nouvelle équation équivalente</b>.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-4"><div class="flex items-center gap-2 mb-2"><span class="w-6 h-6 shrink-0 rounded-full bg-teal-500 text-white text-[11px] font-bold flex items-center justify-center">1</span><p class="font-mono text-sm font-semibold text-slate-800 dark:text-slate-100">(2x + 1)/3 = x - 5</p></div><div class="text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1 border-t border-dashed border-slate-200 dark:border-slate-700 pt-2 pl-8"><p>3 × (2x+1)/3 = 3 × (x-5)</p>
+            <p>2x + 1 = 3x - 15</p>
+            <p>2x - 3x = -15 - 1</p><p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm pt-0.5">x = 16</p></div></div>
+        <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-4"><div class="flex items-center gap-2 mb-2"><span class="w-6 h-6 shrink-0 rounded-full bg-teal-500 text-white text-[11px] font-bold flex items-center justify-center">2</span><p class="font-mono text-sm font-semibold text-slate-800 dark:text-slate-100">(2x - 1)/2 = (x + 1)/3</p></div><div class="text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1 border-t border-dashed border-slate-200 dark:border-slate-700 pt-2 pl-8"><p>3(2x-1) = 2(x+1)</p>
+            <p>6x - 3 = 2x + 2</p>
+            <p>6x - 2x = 2 + 3</p><p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm pt-0.5">x = 5/4 = 1,25</p></div></div>
+        <div class="reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-4"><div class="flex items-center gap-2 mb-2"><span class="w-6 h-6 shrink-0 rounded-full bg-teal-500 text-white text-[11px] font-bold flex items-center justify-center">3</span><p class="font-mono text-sm font-semibold text-slate-800 dark:text-slate-100">(x + 1)/2 + x = (3x - 1)/4</p></div><div class="text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1 border-t border-dashed border-slate-200 dark:border-slate-700 pt-2 pl-8"><p>2(x+1) + 4x = 3x - 1</p>
+            <p>2x + 2 + 4x = 3x - 1</p>
+            <p>2x + 4x - 3x = -1 - 2</p><p class="text-emerald-600 dark:text-emerald-400 font-bold text-sm pt-0.5">x = -1</p></div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="problemes" class="py-16 md:py-24 bg-sky-50/50 dark:bg-slate-900/40">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal flex items-center gap-4 mb-8">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-sky-600 text-white font-display font-bold text-xl shadow-soft shrink-0">IV</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Résolution de problèmes</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">La méthode en 4 étapes, appliquée à deux exemples</p>
+      </div>
+    </div>
+
+    <!-- Regle -->
+    <div class="reveal mb-10 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+      <p class="text-xs font-bold uppercase tracking-wide text-sky-500 mb-4">Règle : pour résoudre un problème, on suit les étapes suivantes</p>
+      <div class="grid sm:grid-cols-4 gap-3">
+        <div class="rounded-xl bg-sky-50 dark:bg-sky-950/30 border border-sky-200 dark:border-sky-900 p-4 text-center">
+          <p class="font-display text-2xl font-extrabold text-sky-600 dark:text-sky-400">1</p>
+          <p class="text-sm font-semibold text-slate-700 dark:text-slate-200 mt-1">Choix de l'inconnue</p>
+        </div>
+        <div class="rounded-xl bg-sky-50 dark:bg-sky-950/30 border border-sky-200 dark:border-sky-900 p-4 text-center">
+          <p class="font-display text-2xl font-extrabold text-sky-600 dark:text-sky-400">2</p>
+          <p class="text-sm font-semibold text-slate-700 dark:text-slate-200 mt-1">Mise en équation</p>
+        </div>
+        <div class="rounded-xl bg-sky-50 dark:bg-sky-950/30 border border-sky-200 dark:border-sky-900 p-4 text-center">
+          <p class="font-display text-2xl font-extrabold text-sky-600 dark:text-sky-400">3</p>
+          <p class="text-sm font-semibold text-slate-700 dark:text-slate-200 mt-1">Résolution &amp; vérification</p>
+        </div>
+        <div class="rounded-xl bg-sky-50 dark:bg-sky-950/30 border border-sky-200 dark:border-sky-900 p-4 text-center">
+          <p class="font-display text-2xl font-extrabold text-sky-600 dark:text-sky-400">4</p>
+          <p class="text-sm font-semibold text-slate-700 dark:text-slate-200 mt-1">Retour au problème</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-6">
+      <!-- Exemple 1 -->
+      <div class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <p class="text-xs font-bold uppercase tracking-wide text-indigo-500 mb-3">✍️ Exemple 1</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">Saïd a deux ans de plus que sa sœur Amal. Après 5 ans, la somme de leurs âges sera 40 ans. Quel est l'âge de chacun d'entre eux maintenant ?</p>
+        <div class="space-y-3 text-sm">
+          <div class="rounded-lg bg-slate-50 dark:bg-slate-800/60 p-3"><b class="text-sky-600 dark:text-sky-400">1) Choix de l'inconnue —</b> Soit x l'âge d'Amal maintenant.</div>
+          <div class="rounded-lg bg-slate-50 dark:bg-slate-800/60 p-3"><b class="text-sky-600 dark:text-sky-400">2) Mise en équation —</b> L'âge de Saïd est (x+2). Après 5 ans, Amal aura (x+5) et Saïd aura ((x+2)+5). Donc : <span class="font-mono">(x+5) + ((x+2)+5) = 40</span></div>
+          <div class="rounded-lg bg-slate-50 dark:bg-slate-800/60 p-3 font-mono text-xs space-y-1">
+            <b class="font-body text-sky-600 dark:text-sky-400 text-sm">3) Résolution —</b>
+            <p>x + 5 + x + 2 + 5 = 40</p>
+            <p>2x = 40 - 5 - 2 - 5</p>
+            <p>2x = 28  ⟹  x = 14</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900 p-3"><b class="text-emerald-700 dark:text-emerald-400">4) Retour au problème —</b> Amal a <b>14 ans</b> et Saïd a <b>16 ans</b>.</div>
+        </div>
+      </div>
+
+      <!-- Exemple 2 -->
+      <div class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <p class="text-xs font-bold uppercase tracking-wide text-violet-500 mb-3">✍️ Exemple 2</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">Dans une classe de 1AC, le nombre d'élèves est 32 (filles et garçons). Quel est le nombre de filles et le nombre de garçons, sachant que les garçons représentent un tiers des filles ?</p>
+        <div class="space-y-3 text-sm">
+          <div class="rounded-lg bg-slate-50 dark:bg-slate-800/60 p-3"><b class="text-sky-600 dark:text-sky-400">1) Choix de l'inconnue —</b> Soit x le nombre de filles.</div>
+          <div class="rounded-lg bg-slate-50 dark:bg-slate-800/60 p-3"><b class="text-sky-600 dark:text-sky-400">2) Mise en équation —</b> Le nombre de garçons est <span class="font-mono">(1/3)x</span>. Comme il y a 32 élèves : <span class="font-mono">x + (1/3)x = 32</span></div>
+          <div class="rounded-lg bg-slate-50 dark:bg-slate-800/60 p-3 font-mono text-xs space-y-1">
+            <b class="font-body text-sky-600 dark:text-sky-400 text-sm">3) Résolution —</b>
+            <p>(3x)/3 + x/3 = 96/3</p>
+            <p>3x + x = 96</p>
+            <p>4x = 96  ⟹  x = 24</p>
+          </div>
+          <div class="rounded-lg bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900 p-3"><b class="text-emerald-700 dark:text-emerald-400">4) Retour au problème —</b> Il y a <b>24 filles</b> et <b>8 garçons</b>.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="exercices" class="py-16 md:py-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal flex items-center gap-4 mb-3">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-amber-500 text-white font-display font-bold text-xl shadow-soft shrink-0">✎</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Exercice N°4</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Les équations — cliquez sur « Correction » pour vérifier vos réponses</p>
+      </div>
+    </div>
+
+    <p class="reveal text-xs text-slate-400 dark:text-slate-500 mb-6">Niveau 1AC · Prof. AZZI Mustapha · Écoles Jules Ferry</p>
+
+    <div class="reveal mb-10 flex flex-wrap gap-2">
+      <span class="text-xs font-semibold text-slate-400 mr-1 mt-1.5">Accès rapide :</span>
+      <a href="#ex1" class="px-3 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">Exercice 1</a>
+      <a href="#ex2" class="px-3 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">Exercice 2</a>
+      <a href="#ex3" class="px-3 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">Exercice 3</a>
+      <a href="#pb" class="px-3 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">Problèmes</a>
+    </div>
+
+    
+    <div id="ex1" class="mb-14">
+      <div class="reveal flex flex-wrap items-center justify-between gap-3 mb-1">
+        <h3 class="font-display text-xl sm:text-2xl font-bold text-slate-800 dark:text-white flex items-center gap-3">
+          <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">1</span>
+          Exercice 1
+        </h3>
+        <div class="flex items-center gap-2 text-xs">
+            <button onclick="toggleAllEq('1', true)" class="font-semibold text-emerald-700 dark:text-emerald-400 hover:underline">Tout afficher</button>
+            <span class="text-slate-300 dark:text-slate-700">|</span>
+            <button onclick="toggleAllEq('1', false)" class="font-semibold text-slate-500 dark:text-slate-400 hover:underline">Tout masquer</button>
+          </div>
+      </div>
+      <p class="reveal text-sm text-slate-500 dark:text-slate-400 mb-5">Résoudre les équations suivantes.</p>
+      <div class="reveal grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">1</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-5x = -20</p>
+          </div>
+          <button onclick="toggleEq('1-1')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-1">Correction</span>
+            <svg id="eqchevron-1-1" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-1" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = -20 ÷ (-5)</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 4</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">2</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-4x = -12</p>
+          </div>
+          <button onclick="toggleEq('1-2')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-2">Correction</span>
+            <svg id="eqchevron-1-2" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-2" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = -12 ÷ (-4)</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 3</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">3</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-2x = 18</p>
+          </div>
+          <button onclick="toggleEq('1-3')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-3">Correction</span>
+            <svg id="eqchevron-1-3" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-3" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = 18 ÷ (-2)</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -9</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">4</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">3x = 21</p>
+          </div>
+          <button onclick="toggleEq('1-4')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-4">Correction</span>
+            <svg id="eqchevron-1-4" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-4" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = 21 ÷ 3</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 7</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">5</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">x - 12 = -17</p>
+          </div>
+          <button onclick="toggleEq('1-5')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-5">Correction</span>
+            <svg id="eqchevron-1-5" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-5" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = -17 + 12</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -5</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">6</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">3x = -24</p>
+          </div>
+          <button onclick="toggleEq('1-6')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-6">Correction</span>
+            <svg id="eqchevron-1-6" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-6" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = -24 ÷ 3</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -8</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">7</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-3x = 21</p>
+          </div>
+          <button onclick="toggleEq('1-7')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-7">Correction</span>
+            <svg id="eqchevron-1-7" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-7" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = 21 ÷ (-3)</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -7</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">8</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-3x = 21</p>
+          </div>
+          <button onclick="toggleEq('1-8')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-8">Correction</span>
+            <svg id="eqchevron-1-8" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-8" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = 21 ÷ (-3)</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -7</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">9</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">x + 7 = 1</p>
+          </div>
+          <button onclick="toggleEq('1-9')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-9">Correction</span>
+            <svg id="eqchevron-1-9" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-9" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = 1 - 7</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -6</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">10</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">x + 2 = -3</p>
+          </div>
+          <button onclick="toggleEq('1-10')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-10">Correction</span>
+            <svg id="eqchevron-1-10" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-10" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = -3 - 2</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -5</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">11</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">x - 10 = 0</p>
+          </div>
+          <button onclick="toggleEq('1-11')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-11">Correction</span>
+            <svg id="eqchevron-1-11" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-11" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = 0 + 10</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 10</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">12</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">x + 1 = -4</p>
+          </div>
+          <button onclick="toggleEq('1-12')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-12">Correction</span>
+            <svg id="eqchevron-1-12" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-12" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = -4 - 1</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -5</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">13</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">2x = 6</p>
+          </div>
+          <button onclick="toggleEq('1-13')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-13">Correction</span>
+            <svg id="eqchevron-1-13" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-13" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = 6 ÷ 2</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 3</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">14</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">x - 15 = -16</p>
+          </div>
+          <button onclick="toggleEq('1-14')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-14">Correction</span>
+            <svg id="eqchevron-1-14" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-14" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = -16 + 15</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -1</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">15</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-3x = 24</p>
+          </div>
+          <button onclick="toggleEq('1-15')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-15">Correction</span>
+            <svg id="eqchevron-1-15" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-15" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = 24 ÷ (-3)</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -8</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">16</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">x - 9 = -13</p>
+          </div>
+          <button onclick="toggleEq('1-16')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-16">Correction</span>
+            <svg id="eqchevron-1-16" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-16" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = -13 + 9</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -4</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">17</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">x - 15 = -25</p>
+          </div>
+          <button onclick="toggleEq('1-17')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-17">Correction</span>
+            <svg id="eqchevron-1-17" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-17" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = -25 + 15</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -10</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">18</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">x + 14 = 11</p>
+          </div>
+          <button onclick="toggleEq('1-18')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-18">Correction</span>
+            <svg id="eqchevron-1-18" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-18" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = 11 - 14</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -3</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">19</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">2x = 4</p>
+          </div>
+          <button onclick="toggleEq('1-19')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-19">Correction</span>
+            <svg id="eqchevron-1-19" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-19" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = 4 ÷ 2</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 2</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">20</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">x + 16 = 13</p>
+          </div>
+          <button onclick="toggleEq('1-20')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-1-20">Correction</span>
+            <svg id="eqchevron-1-20" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-1-20" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x = 13 - 16</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -3</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="reveal text-xs text-slate-400 dark:text-slate-500 mt-3 italic">Remarque : les questions 7 et 8 sont identiques dans le document original.</p>
+    </div>
+
+    
+    <div id="ex2" class="mb-14">
+      <div class="reveal flex flex-wrap items-center justify-between gap-3 mb-1">
+        <h3 class="font-display text-xl sm:text-2xl font-bold text-slate-800 dark:text-white flex items-center gap-3">
+          <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">2</span>
+          Exercice 2
+        </h3>
+        <div class="flex items-center gap-2 text-xs">
+            <button onclick="toggleAllEq('2', true)" class="font-semibold text-emerald-700 dark:text-emerald-400 hover:underline">Tout afficher</button>
+            <span class="text-slate-300 dark:text-slate-700">|</span>
+            <button onclick="toggleAllEq('2', false)" class="font-semibold text-slate-500 dark:text-slate-400 hover:underline">Tout masquer</button>
+          </div>
+      </div>
+      <p class="reveal text-sm text-slate-500 dark:text-slate-400 mb-5">Résoudre les équations suivantes.</p>
+      <div class="reveal grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">1</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">4(x - 6) = 8</p>
+          </div>
+          <button onclick="toggleEq('2-1')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-1">Correction</span>
+            <svg id="eqchevron-2-1" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-1" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x - 6 = 2</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 8</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">2</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">4(x - 7) = 8</p>
+          </div>
+          <button onclick="toggleEq('2-2')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-2">Correction</span>
+            <svg id="eqchevron-2-2" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-2" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x - 7 = 2</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 9</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">3</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-(x - 5) = 13</p>
+          </div>
+          <button onclick="toggleEq('2-3')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-3">Correction</span>
+            <svg id="eqchevron-2-3" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-3" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x - 5 = -13</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -8</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">4</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">4(x + 3) = -16</p>
+          </div>
+          <button onclick="toggleEq('2-4')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-4">Correction</span>
+            <svg id="eqchevron-2-4" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-4" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x + 3 = -4</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -7</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">5</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-3x - 5 = 16</p>
+          </div>
+          <button onclick="toggleEq('2-5')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-5">Correction</span>
+            <svg id="eqchevron-2-5" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-5" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>-3x = 21</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -7</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">6</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">5(x + 6) = 55</p>
+          </div>
+          <button onclick="toggleEq('2-6')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-6">Correction</span>
+            <svg id="eqchevron-2-6" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-6" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x + 6 = 11</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 5</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">7</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-2x + 8 = 8</p>
+          </div>
+          <button onclick="toggleEq('2-7')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-7">Correction</span>
+            <svg id="eqchevron-2-7" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-7" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>-2x = 0</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 0</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">8</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-x + 8 = -1</p>
+          </div>
+          <button onclick="toggleEq('2-8')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-8">Correction</span>
+            <svg id="eqchevron-2-8" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-8" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>-x = -9</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 9</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">9</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">3x - 9 = 15</p>
+          </div>
+          <button onclick="toggleEq('2-9')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-9">Correction</span>
+            <svg id="eqchevron-2-9" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-9" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>3x = 24</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 8</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">10</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-2x + 3 = -15</p>
+          </div>
+          <button onclick="toggleEq('2-10')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-10">Correction</span>
+            <svg id="eqchevron-2-10" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-10" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>-2x = -18</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 9</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">11</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">3(x - 7) = -3</p>
+          </div>
+          <button onclick="toggleEq('2-11')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-11">Correction</span>
+            <svg id="eqchevron-2-11" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-11" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x - 7 = -1</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 6</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">12</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">3(x - 1) = 18</p>
+          </div>
+          <button onclick="toggleEq('2-12')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-12">Correction</span>
+            <svg id="eqchevron-2-12" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-12" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x - 1 = 6</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 7</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">13</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-4(x - 6) = 52</p>
+          </div>
+          <button onclick="toggleEq('2-13')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-13">Correction</span>
+            <svg id="eqchevron-2-13" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-13" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x - 6 = -13</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -7</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">14</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-2x + 7 = 11</p>
+          </div>
+          <button onclick="toggleEq('2-14')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-14">Correction</span>
+            <svg id="eqchevron-2-14" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-14" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>-2x = 4</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -2</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">15</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">3(x - 10) = -12</p>
+          </div>
+          <button onclick="toggleEq('2-15')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-15">Correction</span>
+            <svg id="eqchevron-2-15" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-15" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x - 10 = -4</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 6</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">16</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">4(x + 2) = 40</p>
+          </div>
+          <button onclick="toggleEq('2-16')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-16">Correction</span>
+            <svg id="eqchevron-2-16" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-16" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x + 2 = 10</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 8</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">17</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">4(x + 5) = 56</p>
+          </div>
+          <button onclick="toggleEq('2-17')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-17">Correction</span>
+            <svg id="eqchevron-2-17" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-17" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x + 5 = 14</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 9</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">18</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-4(x + 3) = 20</p>
+          </div>
+          <button onclick="toggleEq('2-18')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-18">Correction</span>
+            <svg id="eqchevron-2-18" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-18" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x + 3 = -5</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -8</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">19</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">5(x + 5) = 70</p>
+          </div>
+          <button onclick="toggleEq('2-19')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-19">Correction</span>
+            <svg id="eqchevron-2-19" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-19" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>x + 5 = 14</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 9</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">20</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">4x + 1 = -35</p>
+          </div>
+          <button onclick="toggleEq('2-20')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-2-20">Correction</span>
+            <svg id="eqchevron-2-20" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-2-20" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>4x = -36</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -9</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    
+    <div id="ex3" class="mb-14">
+      <div class="reveal flex flex-wrap items-center justify-between gap-3 mb-1">
+        <h3 class="font-display text-xl sm:text-2xl font-bold text-slate-800 dark:text-white flex items-center gap-3">
+          <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">3</span>
+          Exercice 3
+        </h3>
+        <div class="flex items-center gap-2 text-xs">
+            <button onclick="toggleAllEq('3', true)" class="font-semibold text-emerald-700 dark:text-emerald-400 hover:underline">Tout afficher</button>
+            <span class="text-slate-300 dark:text-slate-700">|</span>
+            <button onclick="toggleAllEq('3', false)" class="font-semibold text-slate-500 dark:text-slate-400 hover:underline">Tout masquer</button>
+          </div>
+      </div>
+      <p class="reveal text-sm text-slate-500 dark:text-slate-400 mb-5">Résoudre les équations suivantes (l'inconnue x figure dans les deux membres).</p>
+      <div class="reveal grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">1</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-(x - 5) = -5x - 19</p>
+          </div>
+          <button onclick="toggleEq('3-1')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-1">Correction</span>
+            <svg id="eqchevron-3-1" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-1" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>-x + 5 = -5x - 19</p>
+              <p>-x + 5x = -19 - 5</p>
+              <p>4x = -24</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -6</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">2</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-5x + 8 = x + 38</p>
+          </div>
+          <button onclick="toggleEq('3-2')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-2">Correction</span>
+            <svg id="eqchevron-3-2" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-2" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>-5x - x = 38 - 8</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -5</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">3</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-2(x - 4) = -3x</p>
+          </div>
+          <button onclick="toggleEq('3-3')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-3">Correction</span>
+            <svg id="eqchevron-3-3" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-3" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>-2x + 8 = -3x</p>
+              <p>-2x + 3x = -8</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -8</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">4</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-2x - 10 = 5x + 18</p>
+          </div>
+          <button onclick="toggleEq('3-4')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-4">Correction</span>
+            <svg id="eqchevron-3-4" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-4" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>-2x - 5x = 18 + 10</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -4</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">5</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-2(x - 9) = -5x + 21</p>
+          </div>
+          <button onclick="toggleEq('3-5')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-5">Correction</span>
+            <svg id="eqchevron-3-5" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-5" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>-2x + 18 = -5x + 21</p>
+              <p>-2x + 5x = 21 - 18</p>
+              <p>3x = 3</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 1</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">6</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">4x - 10 = -x - 40</p>
+          </div>
+          <button onclick="toggleEq('3-6')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-6">Correction</span>
+            <svg id="eqchevron-3-6" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-6" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>4x + x = -40 + 10</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -6</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">7</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">3(x + 1) = 2x + 11</p>
+          </div>
+          <button onclick="toggleEq('3-7')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-7">Correction</span>
+            <svg id="eqchevron-3-7" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-7" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>3x + 3 = 2x + 11</p>
+              <p>3x - 2x = 11 - 3</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 8</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">8</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">4(x - 7) = -4x + 28</p>
+          </div>
+          <button onclick="toggleEq('3-8')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-8">Correction</span>
+            <svg id="eqchevron-3-8" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-8" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>4x - 28 = -4x + 28</p>
+              <p>4x + 4x = 28 + 28</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 7</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">9</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-4(x - 5) = -3x + 23</p>
+          </div>
+          <button onclick="toggleEq('3-9')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-9">Correction</span>
+            <svg id="eqchevron-3-9" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-9" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>-4x + 20 = -3x + 23</p>
+              <p>-4x + 3x = 23 - 20</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -3</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">10</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">3(x + 7) = -2x + 61</p>
+          </div>
+          <button onclick="toggleEq('3-10')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-10">Correction</span>
+            <svg id="eqchevron-3-10" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-10" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>3x + 21 = -2x + 61</p>
+              <p>3x + 2x = 61 - 21</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 8</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">11</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">2x - 6 = -2x - 18</p>
+          </div>
+          <button onclick="toggleEq('3-11')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-11">Correction</span>
+            <svg id="eqchevron-3-11" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-11" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>2x + 2x = -18 + 6</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -3</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">12</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-2x - 6 = -4x - 12</p>
+          </div>
+          <button onclick="toggleEq('3-12')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-12">Correction</span>
+            <svg id="eqchevron-3-12" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-12" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>-2x + 4x = -12 + 6</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -3</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">13</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">2x - 3 = x + 3</p>
+          </div>
+          <button onclick="toggleEq('3-13')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-13">Correction</span>
+            <svg id="eqchevron-3-13" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-13" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>2x - x = 3 + 3</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 6</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">14</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-x + 2 = 3x + 22</p>
+          </div>
+          <button onclick="toggleEq('3-14')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-14">Correction</span>
+            <svg id="eqchevron-3-14" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-14" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>-x - 3x = 22 - 2</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -5</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">15</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">3(x - 9) = 5x - 27</p>
+          </div>
+          <button onclick="toggleEq('3-15')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-15">Correction</span>
+            <svg id="eqchevron-3-15" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-15" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>3x - 27 = 5x - 27</p>
+              <p>3x - 5x = -27 + 27</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 0</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">16</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">4x - 3 = x - 33</p>
+          </div>
+          <button onclick="toggleEq('3-16')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-16">Correction</span>
+            <svg id="eqchevron-3-16" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-16" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>4x - x = -33 + 3</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = -10</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">17</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-4(x - 10) = 3x + 40</p>
+          </div>
+          <button onclick="toggleEq('3-17')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-17">Correction</span>
+            <svg id="eqchevron-3-17" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-17" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>-4x + 40 = 3x + 40</p>
+              <p>-4x - 3x = 40 - 40</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 0</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">18</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-4x - 6 = -2x - 16</p>
+          </div>
+          <button onclick="toggleEq('3-18')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-18">Correction</span>
+            <svg id="eqchevron-3-18" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-18" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>-4x + 2x = -16 + 6</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 5</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">19</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">3(x - 9) = -4x - 6</p>
+          </div>
+          <button onclick="toggleEq('3-19')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-19">Correction</span>
+            <svg id="eqchevron-3-19" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-19" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>3x - 27 = -4x - 6</p>
+              <p>3x + 4x = -6 + 27</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 3</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq-card reveal bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm p-3.5 flex flex-col">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="w-5 h-5 shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-[10px] font-bold flex items-center justify-center mt-0.5">20</span>
+            <p class="font-mono text-[13px] sm:text-sm text-slate-800 dark:text-slate-100 leading-snug">-4(x - 9) = -3x + 30</p>
+          </div>
+          <button onclick="toggleEq('3-20')" class="mt-auto w-full inline-flex items-center justify-center gap-1.5 text-[11px] sm:text-xs font-semibold text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-900 rounded-lg py-1.5 hover:bg-amber-50 dark:hover:bg-amber-950/30 transition">
+            <span id="eqlabel-3-20">Correction</span>
+            <svg id="eqchevron-3-20" class="w-3 h-3 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="eqwrap-3-20" class="accordion-wrap">
+            <div class="accordion-inner">
+              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700 text-[11px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 space-y-1">
+              <p>-4x + 36 = -3x + 30</p>
+              <p>-4x + 3x = 30 - 36</p>
+              <p class="text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm pt-0.5">x = 6</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+
+    <div id="pb" class="mb-4">
+      <div class="reveal flex items-center gap-4 mb-1">
+        <h3 class="font-display text-xl sm:text-2xl font-bold text-slate-800 dark:text-white flex items-center gap-3">
+          <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">✎</span>
+          Problèmes
+        </h3>
+      </div>
+      <p class="reveal text-sm text-slate-500 dark:text-slate-400 mb-5">À résoudre avec la méthode en 4 étapes vue plus haut.</p>
+      <div class="space-y-6">
+        <article id="pb1" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">1</span>
+            Problème n°1 — Le prix d'un livre
+          </h3>
+          <button onclick="toggleCorrection('pb1')" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-pb1">Voir la correction</span>
+            <svg id="chevron-pb1" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+<p class="text-sm text-slate-600 dark:text-slate-300 mb-4">Ahmed achète 3 livres et Karim en achète 4. Ensemble, ils ont dépensé 70 dh. Quel est le prix d'un livre ?</p>        <div id="wrap-pb1" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-2.5 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>1) Choix de l'inconnue —</b> soit <b>x</b> le prix d'un livre, en dh.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>2) Mise en équation —</b> Ahmed paie 3x et Karim paie 4x. Ensemble : <span class="font-mono">3x + 4x = 70</span></div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>3) Résolution —</b> <span class="font-mono">7x = 70 ⟹ x = 10</span></div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>4) Retour au problème —</b> le prix d'un livre est <b>10 dh</b>.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article id="pb2" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">2</span>
+            Problème n°2 — Même périmètre
+          </h3>
+          <button onclick="toggleCorrection('pb2')" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-pb2">Voir la correction</span>
+            <svg id="chevron-pb2" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+<p class="text-sm text-slate-600 dark:text-slate-300 mb-4">On considère les deux figures suivantes. Déterminer la valeur de x afin que le triangle ABC et le rectangle GDEF (GF et DE horizontaux) aient le même périmètre.</p><div class="bg-slate-50 dark:bg-slate-800/40 rounded-xl p-4 mb-2"><svg viewBox="0 0 480 260" class="w-full h-auto max-w-md mx-auto">
+          <polygon points="30,230 150,30 240,165" class="fill-indigo-50 dark:fill-indigo-950/30 stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.5"/>
+          <circle cx="30" cy="230" r="4.5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <circle cx="150" cy="30" r="4.5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <circle cx="240" cy="165" r="4.5" class="fill-indigo-600 dark:fill-indigo-400"/>
+          <text x="10" y="250" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+          <text x="144" y="20" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+          <text x="248" y="160" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+          <text x="62" y="122" font-size="12" class="fill-indigo-700 dark:fill-indigo-300 font-semibold">4</text>
+          <text x="196" y="90" font-size="12" class="fill-indigo-700 dark:fill-indigo-300 font-semibold">x+1</text>
+          <text x="105" y="220" font-size="12" class="fill-indigo-700 dark:fill-indigo-300 font-semibold">3x-2</text>
+          <rect x="290" y="50" width="170" height="140" class="fill-rose-50 dark:fill-rose-950/20 stroke-rose-600 dark:stroke-rose-400" stroke-width="2.5"/>
+          <circle cx="290" cy="50" r="4.5" class="fill-rose-600 dark:fill-rose-400"/>
+          <circle cx="460" cy="50" r="4.5" class="fill-rose-600 dark:fill-rose-400"/>
+          <circle cx="290" cy="190" r="4.5" class="fill-rose-600 dark:fill-rose-400"/>
+          <circle cx="460" cy="190" r="4.5" class="fill-rose-600 dark:fill-rose-400"/>
+          <text x="277" y="42" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">G</text>
+          <text x="465" y="42" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">F</text>
+          <text x="277" y="210" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">D</text>
+          <text x="465" y="210" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">E</text>
+          <text x="353" y="212" font-size="12" class="fill-rose-700 dark:fill-rose-300 font-semibold">2x-1</text>
+          <text x="466" y="124" font-size="12" class="fill-rose-700 dark:fill-rose-300 font-semibold">3x-5</text>
+        </svg></div>        <div id="wrap-pb2" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-2.5 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>1) Mise en équation —</b> périmètre(ABC) = périmètre(rectangle) : <span class="font-mono">4 + (x+1) + (3x-2) = 2×[(2x-1) + (3x-5)]</span></div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>2) Résolution —</b> <span class="font-mono">4x + 3 = 2(5x-6)<br>4x + 3 = 10x - 12<br>4x - 10x = -12 - 3<br>-6x = -15 ⟹ x = 2,5</span></div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>3) Vérification —</b> périmètre triangle = 4 + 3,5 + 5,5 = <b>13</b> ; périmètre rectangle = 2×(4 + 2,5) = <b>13</b>. Les deux périmètres sont bien égaux.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>4) Retour au problème —</b> la valeur cherchée est <b>x = 2,5</b>.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article id="pb3" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">3</span>
+            Problème n°3 — Trois nombres consécutifs
+          </h3>
+          <button onclick="toggleCorrection('pb3')" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-pb3">Voir la correction</span>
+            <svg id="chevron-pb3" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+<p class="text-sm text-slate-600 dark:text-slate-300 mb-4">Déterminer trois nombres consécutifs entiers naturels dont la somme est 309.</p>        <div id="wrap-pb3" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-2.5 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>1) Choix de l'inconnue —</b> soit <b>x</b> le premier des trois nombres. Les nombres sont x, x+1 et x+2.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>2) Mise en équation —</b> <span class="font-mono">x + (x+1) + (x+2) = 309</span></div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>3) Résolution —</b> <span class="font-mono">3x + 3 = 309 ⟹ 3x = 306 ⟹ x = 102</span></div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>4) Retour au problème —</b> les trois nombres sont <b>102, 103 et 104</b>.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article id="pb4" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">4</span>
+            Problème n°4 — Les âges
+          </h3>
+          <button onclick="toggleCorrection('pb4')" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-pb4">Voir la correction</span>
+            <svg id="chevron-pb4" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+<p class="text-sm text-slate-600 dark:text-slate-300 mb-4">Safaa a 11 ans et son frère a 26 ans. Dans combien d'années l'âge du frère sera-t-il le double de celui de Safaa ?</p>        <div id="wrap-pb4" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-2.5 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>1) Choix de l'inconnue —</b> soit <b>x</b> le nombre d'années à attendre.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>2) Mise en équation —</b> dans x années, Safaa aura (11+x) ans et son frère (26+x) ans : <span class="font-mono">26 + x = 2(11 + x)</span></div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>3) Résolution —</b> <span class="font-mono">26 + x = 22 + 2x ⟹ 26 - 22 = 2x - x ⟹ x = 4</span></div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>4) Retour au problème —</b> dans <b>4 ans</b> (Safaa aura 15 ans, son frère 30 ans, soit bien le double).</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article id="pb5" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">5</span>
+            Problème n°5 — La salle d'étude
+          </h3>
+          <button onclick="toggleCorrection('pb5')" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-pb5">Voir la correction</span>
+            <svg id="chevron-pb5" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+<p class="text-sm text-slate-600 dark:text-slate-300 mb-4">Dans une salle d'étude, la moitié des élèves font des mathématiques, le quart étudie l'histoire, le septième l'anglais, et trois élèves font du dessin. Trouver le nombre d'élèves dans cette salle.</p>        <div id="wrap-pb5" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-2.5 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>1) Choix de l'inconnue —</b> soit <b>x</b> le nombre total d'élèves.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>2) Mise en équation —</b> <span class="font-mono">x/2 + x/4 + x/7 + 3 = x</span></div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>3) Résolution —</b> <span class="font-mono">(×28) : 14x + 7x + 4x + 84 = 28x<br>25x + 84 = 28x ⟹ 84 = 3x ⟹ x = 28</span></div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>4) Retour au problème —</b> il y a <b>28 élèves</b> (14 en maths, 7 en histoire, 4 en anglais, 3 en dessin).</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article id="pb6" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">6</span>
+            Problème n°6 — Les bonbons
+          </h3>
+          <button onclick="toggleCorrection('pb6')" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-pb6">Voir la correction</span>
+            <svg id="chevron-pb6" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+<p class="text-sm text-slate-600 dark:text-slate-300 mb-4">J'ai 36 bonbons. 7/12 d'entre eux sont à la fraise, et les 2/3 des bonbons restants sont au caramel.</p><ol class="list-decimal list-inside text-sm text-slate-700 dark:text-slate-200 mb-4 space-y-1"><li>Combien y a-t-il de bonbons à la fraise ? Combien en reste-t-il ?</li><li>Combien y en a-t-il au caramel ?</li></ol>        <div id="wrap-pb6" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-2.5 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>1) Bonbons à la fraise —</b> <span class="font-mono">(7/12) × 36 = 21</span> bonbons à la fraise. Il en reste <span class="font-mono">36 - 21 = 15</span>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>2) Bonbons au caramel —</b> <span class="font-mono">(2/3) × 15 = 10</span> bonbons au caramel.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="bg-slate-900 dark:bg-black text-slate-300 mt-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid sm:grid-cols-2 gap-8">
+    <div>
+      <a href="/" class="flex items-center gap-2.5">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+        <span class="font-display font-bold text-white leading-tight">
+          <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+          <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+        </span>
+      </a>
+      <p class="text-sm text-slate-400 mt-3 leading-relaxed">Les équations du premier degré — cours et exercices corrigés, pensés pour réviser efficacement sur mobile comme sur ordinateur.</p>
+      <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+    </div>
+    <div>
+      <p class="text-white font-semibold text-sm mb-3">Sommaire</p>
+      <ul class="space-y-2 text-sm text-slate-400">
+        <li><a href="#definition" class="hover:text-white transition">I. Définition &amp; vocabulaire</a></li>
+        <li><a href="#resoudre" class="hover:text-white transition">II. Résoudre une équation</a></li>
+        <li><a href="#methodes" class="hover:text-white transition">III. Méthodes et techniques</a></li>
+        <li><a href="#problemes" class="hover:text-white transition">IV. Résolution de problèmes</a></li>
+        <li><a href="#exercices" class="hover:text-white transition">Exercices (66)</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-slate-800 py-5 flex items-center justify-center gap-2 text-xs text-slate-400">
+    <span class="flex items-center justify-center w-6 h-6 rounded-md bg-indigo-600 shrink-0">
+      <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 19h16M7 15l3-4 3 3 4-6" />
+      </svg>
+    </span>
+    <span>Maths · 1AC</span>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Retour en haut" class="hidden fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white shadow-soft flex items-center justify-center transition">
+  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" /></svg>
+</button>
+
+<script>
+  // Mobile menu
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+  });
+
+  // Dark mode toggle
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  // Correction accordion toggle (big Probleme cards)
+  function toggleCorrection(id) {
+    const wrap = document.getElementById('wrap-' + id);
+    const chevron = document.getElementById('chevron-' + id);
+    const label = document.getElementById('label-' + id);
+    const isOpen = wrap.classList.toggle('open');
+    chevron.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+    label.textContent = isOpen ? 'Masquer la correction' : 'Voir la correction';
+  }
+
+  // Compact equation-card correction toggle (Exercices 1/2/3 — 60 cards)
+  function toggleEq(id) {
+    const wrap = document.getElementById('eqwrap-' + id);
+    const chevron = document.getElementById('eqchevron-' + id);
+    const label = document.getElementById('eqlabel-' + id);
+    const card = wrap.closest('.eq-card');
+    const isOpen = wrap.classList.toggle('open');
+    chevron.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+    label.textContent = isOpen ? 'Masquer' : 'Correction';
+    if (card) card.classList.toggle('is-open', isOpen);
+  }
+
+  // Bulk show/hide all corrections within one exercise (prefix = '1', '2' or '3')
+  function toggleAllEq(prefix, show) {
+    document.querySelectorAll('[id^="eqwrap-' + prefix + '-"]').forEach(wrap => {
+      const id = wrap.id.replace('eqwrap-', '');
+      const chevron = document.getElementById('eqchevron-' + id);
+      const label = document.getElementById('eqlabel-' + id);
+      const card = wrap.closest('.eq-card');
+      wrap.classList.toggle('open', show);
+      chevron.style.transform = show ? 'rotate(180deg)' : 'rotate(0deg)';
+      label.textContent = show ? 'Masquer' : 'Correction';
+      if (card) card.classList.toggle('is-open', show);
+    });
+  }
+
+  // Back to top button
+  const backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('hidden', window.scrollY < 500);
+  });
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Reveal on scroll (with a safety-net fallback so content is never stuck invisible)
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
+    revealEls.forEach(el => observer.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in-view'));
+  }
+  // Fallback: guarantee full visibility shortly after load even if the observer
+  // never fires for some elements (e.g. very fast scroll, reduced-motion tools).
+  window.addEventListener('load', () => {
+    setTimeout(() => revealEls.forEach(el => el.classList.add('in-view')), 1800);
+  });
+</script>
+</body>
+</html>

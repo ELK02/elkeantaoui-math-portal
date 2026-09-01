@@ -1,0 +1,2189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repère dans le Plan — Cours &amp; Exercices | 3ème Collège</title>
+<meta name="description" content="Cours complet et Exercices N°9 corrigés sur le repère dans le plan pour la 3ème année collège (section APIC) : coordonnées d'un point, milieu d'un segment, coordonnées d'un vecteur, distance entre deux points, avec corrections détaillées pas à pas.">
+
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+          display: ['Poppins', 'ui-sans-serif', 'system-ui'],
+        },
+        colors: {
+          blue: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+        },
+        boxShadow: {
+          'glow': '0 8px 30px -8px rgba(2,132,199,0.35)',
+        },
+        keyframes: {
+          fadeInUp: { '0%': { opacity: 0, transform: 'translateY(14px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+        },
+        animation: {
+          'fade-in-up': 'fadeInUp 0.6s ease-out both',
+        }
+      }
+    }
+  }
+</script>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- KaTeX for math rendering -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+
+<!-- Component classes (Tailwind Play CDN @apply support) -->
+<style type="text/tailwindcss">
+  @layer components {
+    .container-custom { @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8; }
+    .section-eyebrow { @apply inline-flex items-center gap-2 rounded-full bg-blue-100 text-blue-700 text-xs font-bold tracking-wide uppercase px-3 py-1; }
+    .section-heading { @apply font-display text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight; }
+    .card { @apply bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-7; }
+    .box-def { @apply relative rounded-xl border border-blue-200 bg-blue-50/70 px-5 py-4 my-4; }
+    .box-prop { @apply relative rounded-xl border border-cyan-200 bg-cyan-50/70 px-5 py-4 my-4; }
+    .box-example { @apply rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 my-4; }
+    .box-remark { @apply rounded-lg border-l-4 border-amber-400 bg-amber-50 px-4 py-3 my-3 text-[0.95rem] text-slate-700; }
+    .box-solution { @apply rounded-xl border border-emerald-200 bg-emerald-50/60 px-5 py-4; }
+    .kicker-label { @apply font-display font-semibold text-blue-700; }
+    .btn-correction { @apply inline-flex items-center gap-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white font-semibold px-5 py-2.5 shadow-sm shadow-amber-500/30 transition active:scale-95 cursor-pointer select-none; }
+    .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-full bg-white text-blue-700 font-semibold px-6 py-3 shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition; }
+    .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/40 text-white font-semibold px-6 py-3 hover:bg-white/10 transition; }
+    .badge { @apply inline-flex items-center gap-1.5 rounded-full bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1; }
+    .badge-amber { @apply inline-flex items-center gap-1.5 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1; }
+    .nav-link { @apply text-sm font-medium text-slate-600 hover:text-blue-600 transition dark:text-slate-300 dark:hover:text-white; }
+    .toc-link { @apply block rounded-lg px-3 py-1.5 text-sm text-slate-600 hover:text-blue-700 hover:bg-blue-50 transition dark:text-slate-300 dark:hover:bg-white/5; }
+  }
+</style>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; }
+  .font-display { font-family: 'Poppins', sans-serif; }
+
+  /* Accordion reveal using grid-template-rows trick */
+  .reveal { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.45s cubic-bezier(0.4,0,0.2,1); }
+  .reveal.open { grid-template-rows: 1fr; }
+  .reveal > div { overflow: hidden; }
+  .chevron { transition: transform 0.35s ease; }
+  .chevron.rotate { transform: rotate(180deg); }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #f1f5f9; }
+  ::-webkit-scrollbar-thumb { background: #bae6fd; border-radius: 9999px; }
+  ::-webkit-scrollbar-thumb:hover { background: #7dd3fc; }
+
+  .hero-bg {
+    background-image: linear-gradient(135deg, rgba(12,44,74,0.92), rgba(3,105,161,0.85), rgba(8,51,68,0.92)), url('https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+  }
+  .katex { font-size: 1.05em; }
+  #mobile-menu.open { max-height: 480px; }
+  #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+
+  .active-link { color: #0369a1 !important; font-weight: 700; }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50, .dark .bg-emerald-50\/70, .dark .bg-emerald-50\/60 { background-color: #0d2818; }
+  .dark .bg-emerald-100 { background-color: #0d2818; }
+  .dark .border-emerald-200 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
+  .dark .bg-amber-50, .dark .bg-amber-50\/70 { background-color: #3a2a0a; }
+  .dark .bg-amber-100 { background-color: #3a2a0a; }
+  .dark .border-amber-200, .dark .border-amber-400 { border-color: #92400e; }
+  .dark .text-amber-700, .dark .text-amber-800 { color: #fbbf24; }
+  .dark .bg-blue-50, .dark .bg-blue-50\/70, .dark .bg-blue-100 { background-color: #12294c; }
+  .dark .border-blue-200 { border-color: #1c3a63; }
+  .dark .text-blue-600, .dark .text-blue-700 { color: #8fb0da; }
+  .dark .bg-cyan-50, .dark .bg-cyan-100 { background-color: #082f36; }
+  .dark .border-cyan-200 { border-color: #155e63; }
+  .dark .text-cyan-600, .dark .text-cyan-700 { color: #67e8f9; }
+  .dark .bg-sky-100 { background-color: #0a2333; }
+  .dark .border-sky-200 { border-color: #1e5a7a; }
+  .dark .katex { color: #e2e8f0; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased dark:bg-[#071528] dark:text-slate-200">
+
+<!-- ============ GLOBAL SVG MARKERS (shared arrowheads) ============ -->
+<svg width="0" height="0" class="absolute">
+  <defs>
+    <marker id="arr-blue" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#2563eb"/></marker>
+    <marker id="arr-sky" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#0284c7"/></marker>
+    <marker id="arr-rose" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#e11d48"/></marker>
+    <marker id="arr-emerald" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#059669"/></marker>
+    <marker id="arr-amber" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#d97706"/></marker>
+    <marker id="arr-violet" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#7c3aed"/></marker>
+    <marker id="arr-slate" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#475569"/></marker>
+  </defs>
+</svg>
+
+<!-- ============ HEADER ============ -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] dark:border-slate-800 backdrop-blur border-b border-slate-200">
+  <div class="container-custom flex items-center justify-between h-16">
+    <a href="#accueil" class="flex items-center gap-2.5">
+      <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-10 h-10 shrink-0 rounded-full">
+      <span class="leading-tight">
+        <span class="block font-display font-bold text-slate-900 dark:text-white text-sm sm:text-base">Repère dans le Plan</span>
+        <span class="block text-[11px] text-slate-500 dark:text-slate-400 font-medium">Collège Mhamed 9 · 3ème APIC</span>
+      </span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8" id="desktop-nav">
+      <a href="/" class="nav-link" data-nav>← Portail</a>
+      <a href="#accueil" class="nav-link" data-nav>Accueil</a>
+      <a href="#points" class="nav-link" data-nav>Coordonnées d'un point</a>
+      <a href="#vecteurs" class="nav-link" data-nav>Coordonnées d'un vecteur</a>
+      <a href="#exercices" class="nav-link" data-nav>Exercices</a>
+      <a href="#exercices" class="inline-flex items-center gap-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2.5 shadow-sm transition">
+        Exercices N°9
+      </a>
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 transition-colors">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+    </nav>
+
+    <div class="flex items-center gap-1 md:hidden">
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+      <button id="menu-btn" class="grid place-items-center w-10 h-10 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5" aria-label="Ouvrir le menu" aria-expanded="false">
+        <svg id="icon-open" viewBox="0 0 24 24" class="w-6 h-6 text-slate-700 dark:text-slate-200" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg id="icon-close" viewBox="0 0 24 24" class="w-6 h-6 text-slate-700 dark:text-slate-200 hidden" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0b1f3a]">
+    <div class="container-custom py-3 flex flex-col gap-1">
+      <a href="/" class="nav-link py-2" data-nav>← Portail</a>
+      <a href="#accueil" class="nav-link py-2" data-nav>Accueil</a>
+      <a href="#points" class="nav-link py-2" data-nav>I. Coordonnées d'un point</a>
+      <a href="#vecteurs" class="nav-link py-2" data-nav>II. Coordonnées d'un vecteur</a>
+      <a href="#exercices" class="nav-link py-2" data-nav>Exercices N°9</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section id="accueil" class="hero-bg relative text-white">
+    <div class="container-custom py-20 sm:py-28 relative z-10">
+      <div class="max-w-2xl animate-fade-in-up">
+        <span class="section-eyebrow bg-white/10 text-sky-100 ring-1 ring-white/20">Mathématiques · 3ème Année Collège · Section APIC</span>
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold mt-5 leading-tight">
+          Repère <br class="hidden sm:block"> dans le Plan
+        </h1>
+        <p class="mt-5 text-sky-100 text-base sm:text-lg leading-relaxed">
+          Un cours complet et structuré — coordonnées d'un point, milieu d'un segment, coordonnées d'un vecteur,
+          distance entre deux points — accompagné des <strong class="text-white">Exercices N°9</strong>
+          entièrement corrigés, étape par étape.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="#points" class="btn-primary">
+            Découvrir le cours
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#exercices" class="btn-ghost">
+            Voir les exercices corrigés
+          </a>
+        </div>
+
+        <dl class="mt-12 grid grid-cols-3 gap-4 max-w-lg">
+          <div>
+            <dt class="text-2xl sm:text-3xl font-display font-bold">2</dt>
+            <dd class="text-xs sm:text-sm text-sky-200 mt-1">Grandes parties</dd>
+          </div>
+          <div>
+            <dt class="text-2xl sm:text-3xl font-display font-bold">8</dt>
+            <dd class="text-xs sm:text-sm text-sky-200 mt-1">Propriétés &amp; formules</dd>
+          </div>
+          <div>
+            <dt class="text-2xl sm:text-3xl font-display font-bold">11</dt>
+            <dd class="text-xs sm:text-sm text-sky-200 mt-1">Exercices corrigés</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+    <svg class="absolute bottom-0 left-0 w-full text-slate-50" viewBox="0 0 1440 60" fill="currentColor" preserveAspectRatio="none" style="height:50px;"><path d="M0,32L80,29C160,26,320,20,480,21C640,22,800,30,960,34C1120,38,1280,38,1360,38L1440,38L1440,60L0,60Z"/></svg>
+  </section>
+
+  <!-- ============ QUICK NAV CARDS ============ -->
+  <section class="container-custom -mt-2 sm:-mt-4 relative z-10 pb-4">
+    <div class="grid sm:grid-cols-3 gap-4 sm:gap-6">
+      <a href="#points" class="card hover:shadow-glow hover:-translate-y-1 transition group">
+        <div class="w-11 h-11 rounded-xl bg-blue-100 text-blue-700 grid place-items-center mb-3 group-hover:bg-blue-600 group-hover:text-white transition">
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none"><path d="M4 20L20 4M4 4v16h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="15" cy="9" r="1.8" fill="currentColor"/></svg>
+        </div>
+        <h3 class="font-display font-semibold text-slate-900">I. Coordonnées d'un point</h3>
+        <p class="text-sm text-slate-500 mt-1">Repère orthonormé, abscisse, ordonnée, milieu d'un segment…</p>
+      </a>
+      <a href="#vecteurs" class="card hover:shadow-glow hover:-translate-y-1 transition group">
+        <div class="w-11 h-11 rounded-xl bg-cyan-100 text-cyan-700 grid place-items-center mb-3 group-hover:bg-cyan-600 group-hover:text-white transition">
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none"><path d="M4 20L18 6M18 6H10M18 6V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="font-display font-semibold text-slate-900">II. Coordonnées d'un vecteur</h3>
+        <p class="text-sm text-slate-500 mt-1">Égalité, somme, produit par un réel, distance entre deux points.</p>
+      </a>
+      <a href="#exercices" class="card hover:shadow-glow hover:-translate-y-1 transition group">
+        <div class="w-11 h-11 rounded-xl bg-amber-100 text-amber-700 grid place-items-center mb-3 group-hover:bg-amber-500 group-hover:text-white transition">
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="font-display font-semibold text-slate-900">Exercices N°9</h3>
+        <p class="text-sm text-slate-500 mt-1">11 exercices (régions 2018-2021) avec correction au clic.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ COURSE SECTION ============ -->
+  <section id="cours" class="py-14 sm:py-20">
+    <div class="container-custom">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="section-eyebrow">Le Cours</span>
+        <h2 class="section-heading mt-4">Repère dans le Plan</h2>
+        <p class="text-slate-500 mt-3">Toutes les notions du chapitre, illustrées et expliquées avec des exercices d'application résolus.</p>
+      </div>
+
+      <!-- Mobile TOC -->
+      <details class="lg:hidden card mb-8 open:shadow-md">
+        <summary class="font-display font-semibold text-slate-900 cursor-pointer list-none flex items-center justify-between">
+          Sommaire du chapitre
+          <svg viewBox="0 0 24 24" class="w-5 h-5 text-slate-500" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="grid grid-cols-1 gap-0.5 mt-3 pt-3 border-t border-slate-100">
+          <p class="kicker-label text-xs uppercase tracking-wide px-3 mb-1 mt-1">I. Coordonnées d'un point</p>
+          <a href="#repere-orthonorme" class="toc-link">1. Repère orthonormé du plan</a>
+          <a href="#coordonnees-point" class="toc-link">2. Coordonnées d'un point</a>
+          <a href="#milieu-segment" class="toc-link">3. Milieu d'un segment</a>
+          <p class="kicker-label text-xs uppercase tracking-wide px-3 mb-1 mt-3">II. Coordonnées d'un vecteur</p>
+          <a href="#def-vecteur" class="toc-link">1. Définition</a>
+          <a href="#egalite-vecteurs" class="toc-link">2. Égalité de deux vecteurs</a>
+          <a href="#somme-vecteurs" class="toc-link">3. Somme de deux vecteurs</a>
+          <a href="#produit-reel" class="toc-link">4. Produit par un réel</a>
+          <a href="#distance" class="toc-link">5. Distance entre deux points</a>
+        </div>
+      </details>
+
+      <div class="lg:grid lg:grid-cols-[250px_1fr] lg:gap-10 items-start">
+
+        <!-- Desktop sticky TOC -->
+        <aside class="hidden lg:block sticky top-24 self-start">
+          <p class="kicker-label text-xs uppercase tracking-wide px-3 mb-2">I. Coordonnées d'un point</p>
+          <nav class="flex flex-col gap-0.5 mb-5">
+            <a href="#repere-orthonorme" class="toc-link">1. Repère orthonormé du plan</a>
+            <a href="#coordonnees-point" class="toc-link">2. Coordonnées d'un point</a>
+            <a href="#milieu-segment" class="toc-link">3. Milieu d'un segment</a>
+          </nav>
+          <p class="kicker-label text-xs uppercase tracking-wide px-3 mb-2">II. Coordonnées d'un vecteur</p>
+          <nav class="flex flex-col gap-0.5">
+            <a href="#def-vecteur" class="toc-link">1. Définition</a>
+            <a href="#egalite-vecteurs" class="toc-link">2. Égalité de deux vecteurs</a>
+            <a href="#somme-vecteurs" class="toc-link">3. Somme de deux vecteurs</a>
+            <a href="#produit-reel" class="toc-link">4. Produit par un réel</a>
+            <a href="#distance" class="toc-link">5. Distance entre deux points</a>
+          </nav>
+        </aside>
+
+        <!-- ============ ARTICLE: PART I ============ -->
+        <article>
+          <div id="points" class="flex items-center gap-3 mb-8 scroll-mt-24">
+            <span class="grid place-items-center w-9 h-9 rounded-lg bg-blue-600 text-white font-display font-bold">I</span>
+            <h3 class="font-display text-2xl sm:text-3xl font-bold text-slate-900">Les coordonnées d'un point</h3>
+          </div>
+
+          <!-- 1. Repere orthonorme -->
+          <div id="repere-orthonorme" class="card mb-6 scroll-mt-24">
+            <h4 class="font-display text-xl font-semibold text-slate-900 mb-1">1. Repère orthonormé du plan</h4>
+            <p class="text-sm text-slate-600 mt-3">Soient \((OI)\) et \((OJ)\) deux droites graduées, dont l'unité de graduation est respectivement \(OI\) et \(OJ\), telles que :</p>
+            <div class="box-def">
+              <p class="text-center">\(\begin{cases} OI = OJ = 1 \\ (OI) \perp (OJ) \end{cases}\)</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-6 items-center mt-5">
+              <svg viewBox="0 0 318 318" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#e2e8f0" stroke-width="1">
+<line x1="40.0" y1="278.0" x2="40.0" y2="40.0"/>
+<line x1="74.0" y1="278.0" x2="74.0" y2="40.0"/>
+<line x1="108.0" y1="278.0" x2="108.0" y2="40.0"/>
+<line x1="142.0" y1="278.0" x2="142.0" y2="40.0"/>
+<line x1="176.0" y1="278.0" x2="176.0" y2="40.0"/>
+<line x1="210.0" y1="278.0" x2="210.0" y2="40.0"/>
+<line x1="244.0" y1="278.0" x2="244.0" y2="40.0"/>
+<line x1="278.0" y1="278.0" x2="278.0" y2="40.0"/>
+<line x1="40.0" y1="278.0" x2="278.0" y2="278.0"/>
+<line x1="40.0" y1="244.0" x2="278.0" y2="244.0"/>
+<line x1="40.0" y1="210.0" x2="278.0" y2="210.0"/>
+<line x1="40.0" y1="176.0" x2="278.0" y2="176.0"/>
+<line x1="40.0" y1="142.0" x2="278.0" y2="142.0"/>
+<line x1="40.0" y1="108.0" x2="278.0" y2="108.0"/>
+<line x1="40.0" y1="74.0" x2="278.0" y2="74.0"/>
+<line x1="40.0" y1="40.0" x2="278.0" y2="40.0"/>
+</g>
+<line x1="26.0" y1="210.0" x2="296.0" y2="210.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="298.0" y="215.0" font-size="13" fill="#475569" font-style="italic">x</text>
+<line x1="108.0" y1="292.0" x2="108.0" y2="22.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="94.0" y="18.0" font-size="13" fill="#475569" font-style="italic">y</text>
+<g font-size="10.5" fill="#94a3b8" font-family="sans-serif">
+<text x="37.0" y="226.0" text-anchor="middle">-2</text>
+<text x="71.0" y="226.0" text-anchor="middle">-1</text>
+<text x="139.0" y="226.0" text-anchor="middle">1</text>
+<text x="173.0" y="226.0" text-anchor="middle">2</text>
+<text x="207.0" y="226.0" text-anchor="middle">3</text>
+<text x="241.0" y="226.0" text-anchor="middle">4</text>
+<text x="275.0" y="226.0" text-anchor="middle">5</text>
+<text x="100.0" y="281.5" text-anchor="end">-2</text>
+<text x="100.0" y="247.5" text-anchor="end">-1</text>
+<text x="100.0" y="179.5" text-anchor="end">1</text>
+<text x="100.0" y="145.5" text-anchor="end">2</text>
+<text x="100.0" y="111.5" text-anchor="end">3</text>
+<text x="100.0" y="77.5" text-anchor="end">4</text>
+<text x="100.0" y="43.5" text-anchor="end">5</text>
+<text x="100.0" y="226.0" text-anchor="end" font-style="italic" fill="#475569">O</text>
+</g>
+<circle cx="108.0" cy="210.0" r="4" fill="#1e293b"/>
+<text x="92.0" y="226.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">O</text>
+<circle cx="142.0" cy="210.0" r="4" fill="#2563eb"/>
+<text x="138.0" y="228.0" font-size="15" font-style="italic" font-weight="600" fill="#2563eb">I</text>
+<circle cx="108.0" cy="176.0" r="4" fill="#e11d48"/>
+<text x="93.0" y="170.0" font-size="15" font-style="italic" font-weight="600" fill="#e11d48">J</text>
+
+</svg>
+              <ul class="space-y-2.5 text-sm text-slate-600">
+                <li class="flex gap-2"><span class="badge shrink-0">Repère</span> <span>on dit que le plan <strong>est rapporté à un repère orthonormé</strong> \((O;I;J)\).</span></li>
+                <li class="flex gap-2"><span class="badge shrink-0">Abscisses</span> <span>la droite \((OI)\) est appelée <strong>l'axe des abscisses</strong>.</span></li>
+                <li class="flex gap-2"><span class="badge shrink-0">Ordonnées</span> <span>la droite \((OJ)\) est appelée <strong>l'axe des ordonnées</strong>.</span></li>
+                <li class="flex gap-2"><span class="badge shrink-0">Origine</span> <span>le point \(O\) est appelé <strong>l'origine du repère</strong>.</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 2. Coordonnees d'un point -->
+          <div id="coordonnees-point" class="card mb-6 scroll-mt-24">
+            <h4 class="font-display text-xl font-semibold text-slate-900 mb-1">2. Les coordonnées d'un point</h4>
+            <p class="text-sm text-slate-400 font-medium mb-3">a) Définition</p>
+            <div class="box-def">
+              <p>Dans un plan rapporté à un repère orthonormé, pour tout point \(M\) il existe un <strong>couple unique de nombres réels</strong> \((x_M\,;\,y_M)\), appelé couple de coordonnées du point \(M\), et on écrit : \(M(x_M\,;\,y_M)\).</p>
+              <p class="mt-1">\(x_M\) est appelé <strong>l'abscisse</strong> de \(M\). &nbsp; \(y_M\) est appelé <strong>l'ordonnée</strong> de \(M\).</p>
+            </div>
+            <div class="box-remark"><strong>Remarque importante :</strong> si le plan est rapporté à un repère orthonormé \((O;I;J)\), alors : \(O(0;0)\) &nbsp;;&nbsp; \(I(1;0)\) &nbsp;;&nbsp; \(J(0;1)\).</div>
+
+            <p class="text-sm text-slate-400 font-medium mb-3 mt-5">b) Exemple</p>
+            <p class="text-sm text-slate-600 mb-3">On considère que le plan est rapporté à un repère orthonormé \((O;I;J)\). Plaçons les points :</p>
+            <div class="box-example text-center">
+              \(A(2;-3)\) &nbsp;;&nbsp; \(B(2;4)\) &nbsp;;&nbsp; \(C(-1;2)\) &nbsp;;&nbsp; \(D(-3;1)\) &nbsp;;&nbsp; \(E(0;-4)\) &nbsp;;&nbsp; \(F(3;0)\)
+            </div>
+            <svg viewBox="0 0 522 420" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#e2e8f0" stroke-width="1">
+<line x1="40.0" y1="380.0" x2="40.0" y2="40.0"/>
+<line x1="74.0" y1="380.0" x2="74.0" y2="40.0"/>
+<line x1="108.0" y1="380.0" x2="108.0" y2="40.0"/>
+<line x1="142.0" y1="380.0" x2="142.0" y2="40.0"/>
+<line x1="176.0" y1="380.0" x2="176.0" y2="40.0"/>
+<line x1="210.0" y1="380.0" x2="210.0" y2="40.0"/>
+<line x1="244.0" y1="380.0" x2="244.0" y2="40.0"/>
+<line x1="278.0" y1="380.0" x2="278.0" y2="40.0"/>
+<line x1="312.0" y1="380.0" x2="312.0" y2="40.0"/>
+<line x1="346.0" y1="380.0" x2="346.0" y2="40.0"/>
+<line x1="380.0" y1="380.0" x2="380.0" y2="40.0"/>
+<line x1="414.0" y1="380.0" x2="414.0" y2="40.0"/>
+<line x1="448.0" y1="380.0" x2="448.0" y2="40.0"/>
+<line x1="482.0" y1="380.0" x2="482.0" y2="40.0"/>
+<line x1="40.0" y1="380.0" x2="482.0" y2="380.0"/>
+<line x1="40.0" y1="346.0" x2="482.0" y2="346.0"/>
+<line x1="40.0" y1="312.0" x2="482.0" y2="312.0"/>
+<line x1="40.0" y1="278.0" x2="482.0" y2="278.0"/>
+<line x1="40.0" y1="244.0" x2="482.0" y2="244.0"/>
+<line x1="40.0" y1="210.0" x2="482.0" y2="210.0"/>
+<line x1="40.0" y1="176.0" x2="482.0" y2="176.0"/>
+<line x1="40.0" y1="142.0" x2="482.0" y2="142.0"/>
+<line x1="40.0" y1="108.0" x2="482.0" y2="108.0"/>
+<line x1="40.0" y1="74.0" x2="482.0" y2="74.0"/>
+<line x1="40.0" y1="40.0" x2="482.0" y2="40.0"/>
+</g>
+<line x1="26.0" y1="210.0" x2="500.0" y2="210.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="502.0" y="215.0" font-size="13" fill="#475569" font-style="italic">x</text>
+<line x1="244.0" y1="394.0" x2="244.0" y2="22.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="230.0" y="18.0" font-size="13" fill="#475569" font-style="italic">y</text>
+<g font-size="10.5" fill="#94a3b8" font-family="sans-serif">
+<text x="37.0" y="226.0" text-anchor="middle">-6</text>
+<text x="71.0" y="226.0" text-anchor="middle">-5</text>
+<text x="105.0" y="226.0" text-anchor="middle">-4</text>
+<text x="139.0" y="226.0" text-anchor="middle">-3</text>
+<text x="173.0" y="226.0" text-anchor="middle">-2</text>
+<text x="207.0" y="226.0" text-anchor="middle">-1</text>
+<text x="275.0" y="226.0" text-anchor="middle">1</text>
+<text x="309.0" y="226.0" text-anchor="middle">2</text>
+<text x="343.0" y="226.0" text-anchor="middle">3</text>
+<text x="377.0" y="226.0" text-anchor="middle">4</text>
+<text x="411.0" y="226.0" text-anchor="middle">5</text>
+<text x="445.0" y="226.0" text-anchor="middle">6</text>
+<text x="479.0" y="226.0" text-anchor="middle">7</text>
+<text x="236.0" y="383.5" text-anchor="end">-5</text>
+<text x="236.0" y="349.5" text-anchor="end">-4</text>
+<text x="236.0" y="315.5" text-anchor="end">-3</text>
+<text x="236.0" y="281.5" text-anchor="end">-2</text>
+<text x="236.0" y="247.5" text-anchor="end">-1</text>
+<text x="236.0" y="179.5" text-anchor="end">1</text>
+<text x="236.0" y="145.5" text-anchor="end">2</text>
+<text x="236.0" y="111.5" text-anchor="end">3</text>
+<text x="236.0" y="77.5" text-anchor="end">4</text>
+<text x="236.0" y="43.5" text-anchor="end">5</text>
+<text x="236.0" y="226.0" text-anchor="end" font-style="italic" fill="#475569">O</text>
+</g>
+<circle cx="312.0" cy="312.0" r="4" fill="#e11d48"/>
+<text x="322.0" y="327.0" font-size="15" font-style="italic" font-weight="600" fill="#e11d48">A</text>
+<line x1="312.0" y1="312.0" x2="312.0" y2="210.0" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="312.0" y1="312.0" x2="244.0" y2="312.0" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="312.0" cy="74.0" r="4" fill="#2563eb"/>
+<text x="322.0" y="64.0" font-size="15" font-style="italic" font-weight="600" fill="#2563eb">B</text>
+<line x1="312.0" y1="74.0" x2="312.0" y2="210.0" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="312.0" y1="74.0" x2="244.0" y2="74.0" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="210.0" cy="142.0" r="4" fill="#059669"/>
+<text x="193.0" y="134.0" font-size="15" font-style="italic" font-weight="600" fill="#059669">C</text>
+<line x1="210.0" y1="142.0" x2="210.0" y2="210.0" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="210.0" y1="142.0" x2="244.0" y2="142.0" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="142.0" cy="176.0" r="4" fill="#d97706"/>
+<text x="132.0" y="164.0" font-size="15" font-style="italic" font-weight="600" fill="#d97706">D</text>
+<line x1="142.0" y1="176.0" x2="142.0" y2="210.0" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="142.0" y1="176.0" x2="244.0" y2="176.0" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="244.0" cy="346.0" r="4" fill="#7c3aed"/>
+<text x="253.0" y="351.0" font-size="15" font-style="italic" font-weight="600" fill="#7c3aed">E</text>
+<circle cx="346.0" cy="210.0" r="4" fill="#0284c7"/>
+<text x="340.0" y="199.0" font-size="15" font-style="italic" font-weight="600" fill="#0284c7">F</text>
+
+</svg>
+          </div>
+
+          <!-- 3. Milieu segment -->
+          <div id="milieu-segment" class="card mb-6 scroll-mt-24">
+            <h4 class="font-display text-xl font-semibold text-slate-900 mb-1">3. Les coordonnées du milieu d'un segment</h4>
+            <p class="text-sm text-slate-400 font-medium mb-3">a) Définition</p>
+            <div class="box-def">
+              <p>Soient \(A\) et \(B\) deux points distincts du plan rapporté à un repère orthonormé \((O;I;J)\). Les coordonnées du point \(M\) milieu du segment \([AB]\) sont :</p>
+              <p class="mt-2 text-center">\(x_M = \dfrac{x_A+x_B}{2}\) &nbsp; et &nbsp; \(y_M = \dfrac{y_A+y_B}{2}\)</p>
+              <p class="mt-2">On écrit : \(M\!\left(\dfrac{x_A+x_B}{2}\,;\,\dfrac{y_A+y_B}{2}\right)\)</p>
+            </div>
+
+            <p class="text-sm text-slate-400 font-medium mb-3 mt-5">b) Exemple</p>
+            <p class="text-sm text-slate-600">Soient \(A(-2;6)\), \(B(4;-8)\) et \(E\) trois points du plan rapporté à un repère orthonormé tels que \(E\) est le milieu du segment \([AB]\). Déterminons les coordonnées du point \(E\).</p>
+            <div class="grid sm:grid-cols-2 gap-6 items-center mt-3">
+              <div class="box-example">
+                <p>On a : \(\begin{cases} x_E = \dfrac{x_A+x_B}{2} = \dfrac{-2+4}{2} = \dfrac{2}{2} = 1 \\[6px] y_E = \dfrac{y_A+y_B}{2} = \dfrac{6-8}{2} = \dfrac{-2}{2} = -1 \end{cases}\)</p>
+                <p class="mt-2 font-semibold text-blue-700">D'où : \(E(1;-1)\)</p>
+              </div>
+              <svg viewBox="0 0 240 400" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#e2e8f0" stroke-width="1">
+<line x1="40.0" y1="360.0" x2="40.0" y2="40.0"/>
+<line x1="60.0" y1="360.0" x2="60.0" y2="40.0"/>
+<line x1="80.0" y1="360.0" x2="80.0" y2="40.0"/>
+<line x1="100.0" y1="360.0" x2="100.0" y2="40.0"/>
+<line x1="120.0" y1="360.0" x2="120.0" y2="40.0"/>
+<line x1="140.0" y1="360.0" x2="140.0" y2="40.0"/>
+<line x1="160.0" y1="360.0" x2="160.0" y2="40.0"/>
+<line x1="180.0" y1="360.0" x2="180.0" y2="40.0"/>
+<line x1="200.0" y1="360.0" x2="200.0" y2="40.0"/>
+<line x1="40.0" y1="360.0" x2="200.0" y2="360.0"/>
+<line x1="40.0" y1="340.0" x2="200.0" y2="340.0"/>
+<line x1="40.0" y1="320.0" x2="200.0" y2="320.0"/>
+<line x1="40.0" y1="300.0" x2="200.0" y2="300.0"/>
+<line x1="40.0" y1="280.0" x2="200.0" y2="280.0"/>
+<line x1="40.0" y1="260.0" x2="200.0" y2="260.0"/>
+<line x1="40.0" y1="240.0" x2="200.0" y2="240.0"/>
+<line x1="40.0" y1="220.0" x2="200.0" y2="220.0"/>
+<line x1="40.0" y1="200.0" x2="200.0" y2="200.0"/>
+<line x1="40.0" y1="180.0" x2="200.0" y2="180.0"/>
+<line x1="40.0" y1="160.0" x2="200.0" y2="160.0"/>
+<line x1="40.0" y1="140.0" x2="200.0" y2="140.0"/>
+<line x1="40.0" y1="120.0" x2="200.0" y2="120.0"/>
+<line x1="40.0" y1="100.0" x2="200.0" y2="100.0"/>
+<line x1="40.0" y1="80.0" x2="200.0" y2="80.0"/>
+<line x1="40.0" y1="60.0" x2="200.0" y2="60.0"/>
+<line x1="40.0" y1="40.0" x2="200.0" y2="40.0"/>
+</g>
+<line x1="26.0" y1="180.0" x2="218.0" y2="180.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="220.0" y="185.0" font-size="13" fill="#475569" font-style="italic">x</text>
+<line x1="100.0" y1="374.0" x2="100.0" y2="22.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="86.0" y="18.0" font-size="13" fill="#475569" font-style="italic">y</text>
+<g font-size="10.5" fill="#94a3b8" font-family="sans-serif">
+<text x="37.0" y="196.0" text-anchor="middle">-3</text>
+<text x="57.0" y="196.0" text-anchor="middle">-2</text>
+<text x="77.0" y="196.0" text-anchor="middle">-1</text>
+<text x="117.0" y="196.0" text-anchor="middle">1</text>
+<text x="137.0" y="196.0" text-anchor="middle">2</text>
+<text x="157.0" y="196.0" text-anchor="middle">3</text>
+<text x="177.0" y="196.0" text-anchor="middle">4</text>
+<text x="197.0" y="196.0" text-anchor="middle">5</text>
+<text x="92.0" y="363.5" text-anchor="end">-9</text>
+<text x="92.0" y="343.5" text-anchor="end">-8</text>
+<text x="92.0" y="323.5" text-anchor="end">-7</text>
+<text x="92.0" y="303.5" text-anchor="end">-6</text>
+<text x="92.0" y="283.5" text-anchor="end">-5</text>
+<text x="92.0" y="263.5" text-anchor="end">-4</text>
+<text x="92.0" y="243.5" text-anchor="end">-3</text>
+<text x="92.0" y="223.5" text-anchor="end">-2</text>
+<text x="92.0" y="203.5" text-anchor="end">-1</text>
+<text x="92.0" y="163.5" text-anchor="end">1</text>
+<text x="92.0" y="143.5" text-anchor="end">2</text>
+<text x="92.0" y="123.5" text-anchor="end">3</text>
+<text x="92.0" y="103.5" text-anchor="end">4</text>
+<text x="92.0" y="83.5" text-anchor="end">5</text>
+<text x="92.0" y="63.5" text-anchor="end">6</text>
+<text x="92.0" y="43.5" text-anchor="end">7</text>
+<text x="92.0" y="196.0" text-anchor="end" font-style="italic" fill="#475569">O</text>
+</g>
+<line x1="60.0" y1="60.0" x2="180.0" y2="340.0" stroke="#1e293b" stroke-width="1.6"/>
+<circle cx="60.0" cy="60.0" r="4" fill="#2563eb"/>
+<text x="43.0" y="52.0" font-size="15" font-style="italic" font-weight="600" fill="#2563eb">A</text>
+<circle cx="180.0" cy="340.0" r="4" fill="#e11d48"/>
+<text x="190.0" y="350.0" font-size="15" font-style="italic" font-weight="600" fill="#e11d48">B</text>
+<circle cx="120.0" cy="200.0" r="4" fill="#059669"/>
+<text x="130.0" y="194.0" font-size="15" font-style="italic" font-weight="600" fill="#059669">E</text>
+
+</svg>
+            </div>
+
+            <!-- Exercice d'application -->
+            <div class="mt-7 rounded-xl border border-slate-200 overflow-hidden">
+              <div class="bg-slate-100 px-5 py-3 flex items-center gap-2">
+                <span class="badge-amber">Exercice d'application</span>
+              </div>
+              <div class="p-5">
+                <p>Dans le plan rapporté à un repère orthonormé, on considère les points \(A(2;-4)\) ; \(B(3;1)\) et \(C(-2;2)\).</p>
+                <ol class="list-decimal list-inside space-y-1 mt-2">
+                  <li>Déterminer le couple des coordonnées du point \(E\) le milieu du segment \([AB]\).</li>
+                  <li>Montrer (ou vérifier) que le point \(F(0;-1)\) est le milieu du segment \([AC]\).</li>
+                </ol>
+                <button type="button" class="btn-correction mt-4" data-target="sol-milieu-app" aria-expanded="false">
+                  <span class="btn-text">Afficher la correction</span>
+                  <svg class="chevron w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="reveal mt-4" id="sol-milieu-app"><div>
+                  <div class="box-solution space-y-3">
+                    <p class="font-semibold text-emerald-800">Solution</p>
+                    <p class="text-sm font-medium">1) Déterminons le couple des coordonnées du point \(E\) :</p>
+                    <p class="text-sm">\(E\) le milieu du segment \([AB]\) signifie que : \(\begin{cases} x_E = \dfrac{x_A+x_B}{2} = \dfrac{2+3}{2} = \dfrac{5}{2} \\[6px] y_E = \dfrac{y_A+y_B}{2} = \dfrac{-4+1}{2} = \dfrac{-3}{2} \end{cases}\)</p>
+                    <p class="text-sm font-semibold text-emerald-700">D'où : \(E\!\left(\dfrac{5}{2}\,;\,\dfrac{-3}{2}\right)\).</p>
+                    <p class="text-sm font-medium mt-3">2) Montrons que \(F(0;-1)\) est le milieu du segment \([AC]\) :</p>
+                    <p class="text-sm">On calcule : \(\dfrac{x_A+x_C}{2} = \dfrac{2-2}{2} = 0\) &nbsp; et &nbsp; \(\dfrac{y_A+y_C}{2} = \dfrac{-4+2}{2} = \dfrac{-2}{2} = -1\).</p>
+                    <p class="text-sm">Or \(F(0;-1)\), c'est-à-dire \(x_F=0=\dfrac{x_A+x_C}{2}\) et \(y_F=-1=\dfrac{y_A+y_C}{2}\).</p>
+                    <p class="text-sm font-semibold text-emerald-700">D'où : \(F(0;-1)\) est bien le milieu du segment \([AC]\).</p>
+                  </div>
+                </div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ ARTICLE: PART II ============ -->
+          <div id="vecteurs" class="flex items-center gap-3 mb-8 mt-14 scroll-mt-24">
+            <span class="grid place-items-center w-9 h-9 rounded-lg bg-cyan-600 text-white font-display font-bold">II</span>
+            <h3 class="font-display text-2xl sm:text-3xl font-bold text-slate-900">Les coordonnées d'un vecteur</h3>
+          </div>
+
+          <!-- 1. Definition -->
+          <div id="def-vecteur" class="card mb-6 scroll-mt-24">
+            <h4 class="font-display text-xl font-semibold text-slate-900 mb-1">1. Définition</h4>
+            <div class="box-def">
+              <p>\(A\) et \(B\) deux points distincts du plan rapporté à un repère orthonormé \((O;I;J)\). Les coordonnées du vecteur \(\overrightarrow{AB}\) sont : \(x_B - x_A\) &nbsp;et&nbsp; \(y_B - y_A\).</p>
+              <p class="mt-1">On écrit : \(\overrightarrow{AB}\big(x_B-x_A\,;\,y_B-y_A\big)\).</p>
+            </div>
+
+            <!-- Exercice d'application -->
+            <div class="mt-6 rounded-xl border border-slate-200 overflow-hidden">
+              <div class="bg-slate-100 px-5 py-3 flex items-center gap-2"><span class="badge-amber">Exercice d'application</span></div>
+              <div class="p-5">
+                <p>Soient \(A(2;3)\) ; \(B(-1;-4)\) et \(C(3;2)\) trois points du plan rapporté à un repère orthonormé \((O;I;J)\).</p>
+                <ol class="list-decimal list-inside space-y-1 mt-2">
+                  <li>Déterminer les coordonnées du vecteur \(\overrightarrow{AB}\).</li>
+                  <li>Montrer que : \(\overrightarrow{AC}(1;-1)\).</li>
+                  <li>Déterminer les coordonnées du point \(E\) sachant que \(\overrightarrow{AE}(1;1)\).</li>
+                </ol>
+                <svg viewBox="0 0 284 420" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#e2e8f0" stroke-width="1">
+<line x1="40.0" y1="380.0" x2="40.0" y2="40.0"/>
+<line x1="74.0" y1="380.0" x2="74.0" y2="40.0"/>
+<line x1="108.0" y1="380.0" x2="108.0" y2="40.0"/>
+<line x1="142.0" y1="380.0" x2="142.0" y2="40.0"/>
+<line x1="176.0" y1="380.0" x2="176.0" y2="40.0"/>
+<line x1="210.0" y1="380.0" x2="210.0" y2="40.0"/>
+<line x1="244.0" y1="380.0" x2="244.0" y2="40.0"/>
+<line x1="40.0" y1="380.0" x2="244.0" y2="380.0"/>
+<line x1="40.0" y1="346.0" x2="244.0" y2="346.0"/>
+<line x1="40.0" y1="312.0" x2="244.0" y2="312.0"/>
+<line x1="40.0" y1="278.0" x2="244.0" y2="278.0"/>
+<line x1="40.0" y1="244.0" x2="244.0" y2="244.0"/>
+<line x1="40.0" y1="210.0" x2="244.0" y2="210.0"/>
+<line x1="40.0" y1="176.0" x2="244.0" y2="176.0"/>
+<line x1="40.0" y1="142.0" x2="244.0" y2="142.0"/>
+<line x1="40.0" y1="108.0" x2="244.0" y2="108.0"/>
+<line x1="40.0" y1="74.0" x2="244.0" y2="74.0"/>
+<line x1="40.0" y1="40.0" x2="244.0" y2="40.0"/>
+</g>
+<line x1="26.0" y1="210.0" x2="262.0" y2="210.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="264.0" y="215.0" font-size="13" fill="#475569" font-style="italic">x</text>
+<line x1="108.0" y1="394.0" x2="108.0" y2="22.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="94.0" y="18.0" font-size="13" fill="#475569" font-style="italic">y</text>
+<g font-size="10.5" fill="#94a3b8" font-family="sans-serif">
+<text x="37.0" y="226.0" text-anchor="middle">-2</text>
+<text x="71.0" y="226.0" text-anchor="middle">-1</text>
+<text x="139.0" y="226.0" text-anchor="middle">1</text>
+<text x="173.0" y="226.0" text-anchor="middle">2</text>
+<text x="207.0" y="226.0" text-anchor="middle">3</text>
+<text x="241.0" y="226.0" text-anchor="middle">4</text>
+<text x="100.0" y="383.5" text-anchor="end">-5</text>
+<text x="100.0" y="349.5" text-anchor="end">-4</text>
+<text x="100.0" y="315.5" text-anchor="end">-3</text>
+<text x="100.0" y="281.5" text-anchor="end">-2</text>
+<text x="100.0" y="247.5" text-anchor="end">-1</text>
+<text x="100.0" y="179.5" text-anchor="end">1</text>
+<text x="100.0" y="145.5" text-anchor="end">2</text>
+<text x="100.0" y="111.5" text-anchor="end">3</text>
+<text x="100.0" y="77.5" text-anchor="end">4</text>
+<text x="100.0" y="43.5" text-anchor="end">5</text>
+<text x="100.0" y="226.0" text-anchor="end" font-style="italic" fill="#475569">O</text>
+</g>
+<line x1="176.0" y1="108.0" x2="74.0" y2="346.0" stroke="#2563eb" stroke-width="2.4" marker-end="url(#arr-blue)"/>
+<line x1="176.0" y1="108.0" x2="210.0" y2="142.0" stroke="#e11d48" stroke-width="2.4" marker-end="url(#arr-rose)"/>
+<line x1="176.0" y1="108.0" x2="210.0" y2="74.0" stroke="#059669" stroke-width="2.4" marker-end="url(#arr-emerald)"/>
+<circle cx="176.0" cy="108.0" r="4" fill="#1e293b"/>
+<text x="184.0" y="99.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">A</text>
+<circle cx="74.0" cy="346.0" r="4" fill="#1e293b"/>
+<text x="57.0" y="357.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">B</text>
+<circle cx="210.0" cy="142.0" r="4" fill="#1e293b"/>
+<text x="219.0" y="134.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">C</text>
+<circle cx="210.0" cy="74.0" r="4" fill="#059669"/>
+<text x="219.0" y="66.0" font-size="15" font-style="italic" font-weight="600" fill="#059669">E</text>
+
+</svg>
+                <button type="button" class="btn-correction mt-2" data-target="sol-def-vecteur" aria-expanded="false">
+                  <span class="btn-text">Afficher la correction</span>
+                  <svg class="chevron w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="reveal mt-4" id="sol-def-vecteur"><div>
+                  <div class="box-solution space-y-3">
+                    <p class="font-semibold text-emerald-800">Solution</p>
+                    <p class="text-sm font-medium">1) Déterminons les coordonnées du vecteur \(\overrightarrow{AB}\) :</p>
+                    <p class="text-sm">On a : \(\begin{cases} x_B - x_A = -1-2 = -3 \\ y_B - y_A = -4-3 = -7 \end{cases}\) &nbsp; d'où : \(\overrightarrow{AB}(-3;-7)\).</p>
+                    <p class="text-sm font-medium mt-3">2) Montrons que \(\overrightarrow{AC}(1;-1)\) :</p>
+                    <p class="text-sm">On a \(\overrightarrow{AC}(x_C-x_A\,;\,y_C-y_A)\), c'est-à-dire \(\overrightarrow{AC}(3-2\,;\,2-3)\), d'où \(\overrightarrow{AC}(1;-1)\).</p>
+                    <p class="text-sm font-medium mt-3">3) Déterminons les coordonnées du point \(E\) tel que \(\overrightarrow{AE}(1;1)\) :</p>
+                    <p class="text-sm">\(\overrightarrow{AE}(1;1)\) signifie que : \(\begin{cases} x_E - x_A = 1 \\ y_E - y_A = 1 \end{cases}\) c'est-à-dire \(\begin{cases} x_E = 1+2 \\ y_E = 1+3 \end{cases}\)</p>
+                    <p class="text-sm font-semibold text-emerald-700">D'où : \(E(3;4)\).</p>
+                  </div>
+                </div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Egalite de deux vecteurs -->
+          <div id="egalite-vecteurs" class="card mb-6 scroll-mt-24">
+            <h4 class="font-display text-xl font-semibold text-slate-900 mb-1">2. Égalité de deux vecteurs</h4>
+            <p class="text-sm text-slate-400 font-medium mb-3">a) Propriété</p>
+            <div class="box-prop">
+              <p>\(\overrightarrow{AB}(a;b)\) et \(\overrightarrow{CD}(c;d)\) deux vecteurs non nuls.</p>
+              <p class="mt-1">\(\overrightarrow{AB}=\overrightarrow{CD}\) est équivalent à &nbsp; \(a=c\) &nbsp;et&nbsp; \(b=d\).</p>
+            </div>
+
+            <p class="text-sm text-slate-400 font-medium mb-3 mt-5">b) Exemple</p>
+            <p class="text-sm text-slate-600">Soient \(A(2;3)\) ; \(B(-2;4)\) ; \(C(-1;2)\) et \(D(3;1)\) des points du plan rapporté à un repère orthonormé. Comparons les vecteurs \(\overrightarrow{AB}\) et \(\overrightarrow{DC}\) :</p>
+            <div class="grid sm:grid-cols-2 gap-6 items-center mt-3">
+              <div class="box-example text-sm">
+                <p>On a : \(\begin{cases} \overrightarrow{AB}(x_B-x_A\,;\,y_B-y_A) \\ \overrightarrow{DC}(x_C-x_D\,;\,y_C-y_D) \end{cases}\)</p>
+                <p class="mt-2">c'est-à-dire : \(\begin{cases} \overrightarrow{AB}(-2-2\,;\,4-3) \\ \overrightarrow{DC}(-1-3\,;\,2-1) \end{cases}\)</p>
+                <p class="mt-2">\(\begin{cases} \overrightarrow{AB}(-4;3) \\ \overrightarrow{DC}(-4;3) \end{cases}\)</p>
+                <p class="mt-2 font-semibold text-cyan-700">D'où : \(\overrightarrow{AB}=\overrightarrow{DC}\)</p>
+              </div>
+              <svg viewBox="0 0 318 250" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#e2e8f0" stroke-width="1">
+<line x1="40.0" y1="210.0" x2="40.0" y2="40.0"/>
+<line x1="74.0" y1="210.0" x2="74.0" y2="40.0"/>
+<line x1="108.0" y1="210.0" x2="108.0" y2="40.0"/>
+<line x1="142.0" y1="210.0" x2="142.0" y2="40.0"/>
+<line x1="176.0" y1="210.0" x2="176.0" y2="40.0"/>
+<line x1="210.0" y1="210.0" x2="210.0" y2="40.0"/>
+<line x1="244.0" y1="210.0" x2="244.0" y2="40.0"/>
+<line x1="278.0" y1="210.0" x2="278.0" y2="40.0"/>
+<line x1="40.0" y1="210.0" x2="278.0" y2="210.0"/>
+<line x1="40.0" y1="176.0" x2="278.0" y2="176.0"/>
+<line x1="40.0" y1="142.0" x2="278.0" y2="142.0"/>
+<line x1="40.0" y1="108.0" x2="278.0" y2="108.0"/>
+<line x1="40.0" y1="74.0" x2="278.0" y2="74.0"/>
+<line x1="40.0" y1="40.0" x2="278.0" y2="40.0"/>
+</g>
+<line x1="26.0" y1="210.0" x2="296.0" y2="210.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="298.0" y="215.0" font-size="13" fill="#475569" font-style="italic">x</text>
+<line x1="142.0" y1="224.0" x2="142.0" y2="22.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="128.0" y="18.0" font-size="13" fill="#475569" font-style="italic">y</text>
+<g font-size="10.5" fill="#94a3b8" font-family="sans-serif">
+<text x="37.0" y="226.0" text-anchor="middle">-3</text>
+<text x="71.0" y="226.0" text-anchor="middle">-2</text>
+<text x="105.0" y="226.0" text-anchor="middle">-1</text>
+<text x="173.0" y="226.0" text-anchor="middle">1</text>
+<text x="207.0" y="226.0" text-anchor="middle">2</text>
+<text x="241.0" y="226.0" text-anchor="middle">3</text>
+<text x="275.0" y="226.0" text-anchor="middle">4</text>
+<text x="134.0" y="179.5" text-anchor="end">1</text>
+<text x="134.0" y="145.5" text-anchor="end">2</text>
+<text x="134.0" y="111.5" text-anchor="end">3</text>
+<text x="134.0" y="77.5" text-anchor="end">4</text>
+<text x="134.0" y="43.5" text-anchor="end">5</text>
+<text x="134.0" y="226.0" text-anchor="end" font-style="italic" fill="#475569">O</text>
+</g>
+<line x1="210.0" y1="108.0" x2="74.0" y2="74.0" stroke="#2563eb" stroke-width="2.6" marker-end="url(#arr-blue)"/>
+<line x1="244.0" y1="176.0" x2="108.0" y2="142.0" stroke="#e11d48" stroke-width="2.6" marker-end="url(#arr-rose)"/>
+<circle cx="210.0" cy="108.0" r="4" fill="#1e293b"/>
+<text x="218.0" y="100.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">A</text>
+<circle cx="74.0" cy="74.0" r="4" fill="#1e293b"/>
+<text x="65.0" y="64.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">B</text>
+<circle cx="108.0" cy="142.0" r="4" fill="#1e293b"/>
+<text x="91.0" y="152.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">C</text>
+<circle cx="244.0" cy="176.0" r="4" fill="#1e293b"/>
+<text x="253.0" y="190.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">D</text>
+
+</svg>
+            </div>
+
+            <!-- Exercice d'application -->
+            <div class="mt-7 rounded-xl border border-slate-200 overflow-hidden">
+              <div class="bg-slate-100 px-5 py-3 flex items-center gap-2"><span class="badge-amber">Exercice d'application</span></div>
+              <div class="p-5">
+                <p>Dans le plan rapporté à un repère orthonormé, on considère les points : \(A(2;-2)\) ; \(B(4;-1)\) ; \(C(-6;-2)\) et \(D\).</p>
+                <p class="mt-2">Déterminer le couple des coordonnées du point \(D\) tel que : \(\overrightarrow{AB}=\overrightarrow{CD}\).</p>
+                <button type="button" class="btn-correction mt-4" data-target="sol-egalite-app" aria-expanded="false">
+                  <span class="btn-text">Afficher la correction</span>
+                  <svg class="chevron w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="reveal mt-4" id="sol-egalite-app"><div>
+                  <div class="box-solution space-y-2">
+                    <p class="font-semibold text-emerald-800 mb-1">Solution</p>
+                    <p class="text-sm">On a : \(\overrightarrow{AB}=\overrightarrow{CD}\) signifie que : \(\begin{cases} x_B - x_A = x_D - x_C \\ y_B - y_A = y_D - y_C \end{cases}\)</p>
+                    <p class="text-sm">c'est-à-dire : \(\begin{cases} 4-2 = x_D + 6 \\ -1+2 = y_D + 2 \end{cases}\) &nbsp;&nbsp; \(\begin{cases} 2 = x_D + 6 \\ 1 = y_D + 2 \end{cases}\) &nbsp;&nbsp; \(\begin{cases} x_D = 2-6 \\ y_D = 1-2 \end{cases}\)</p>
+                    <p class="text-sm font-semibold text-emerald-700">D'où : \(D(-4;-1)\).</p>
+                  </div>
+                </div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Somme de deux vecteurs -->
+          <div id="somme-vecteurs" class="card mb-6 scroll-mt-24">
+            <h4 class="font-display text-xl font-semibold text-slate-900 mb-1">3. Les coordonnées de la somme de deux vecteurs</h4>
+            <p class="text-sm text-slate-400 font-medium mb-3">a) Propriété</p>
+            <div class="box-prop">
+              <p>Si \(\overrightarrow{AB}(a;b)\) et \(\overrightarrow{CD}(c;d)\) sont deux vecteurs, alors :</p>
+              <p class="mt-1 text-center">\(\overrightarrow{AB}+\overrightarrow{CD}\,\big(a+c\,;\,b+d\big)\)</p>
+            </div>
+            <p class="text-sm text-slate-400 font-medium mb-3 mt-5">b) Exemple</p>
+            <div class="grid sm:grid-cols-2 gap-6 items-center">
+              <div class="box-example text-sm">
+                <p>Soient \(\overrightarrow{AB}(-1;2)\) et \(\overrightarrow{EF}(4;3)\) deux vecteurs. Cherchons les coordonnées du vecteur \(\overrightarrow{AB}+\overrightarrow{EF}\) :</p>
+                <p class="mt-2">On a : \(\overrightarrow{AB}+\overrightarrow{EF}\,(-1+4\,;\,2+3)\).</p>
+                <p class="mt-2 font-semibold text-cyan-700">D'où : \(\overrightarrow{AB}+\overrightarrow{EF}\,(3;5)\)</p>
+              </div>
+              <svg viewBox="0 0 318 318" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#e2e8f0" stroke-width="1">
+<line x1="40.0" y1="278.0" x2="40.0" y2="40.0"/>
+<line x1="74.0" y1="278.0" x2="74.0" y2="40.0"/>
+<line x1="108.0" y1="278.0" x2="108.0" y2="40.0"/>
+<line x1="142.0" y1="278.0" x2="142.0" y2="40.0"/>
+<line x1="176.0" y1="278.0" x2="176.0" y2="40.0"/>
+<line x1="210.0" y1="278.0" x2="210.0" y2="40.0"/>
+<line x1="244.0" y1="278.0" x2="244.0" y2="40.0"/>
+<line x1="278.0" y1="278.0" x2="278.0" y2="40.0"/>
+<line x1="40.0" y1="278.0" x2="278.0" y2="278.0"/>
+<line x1="40.0" y1="244.0" x2="278.0" y2="244.0"/>
+<line x1="40.0" y1="210.0" x2="278.0" y2="210.0"/>
+<line x1="40.0" y1="176.0" x2="278.0" y2="176.0"/>
+<line x1="40.0" y1="142.0" x2="278.0" y2="142.0"/>
+<line x1="40.0" y1="108.0" x2="278.0" y2="108.0"/>
+<line x1="40.0" y1="74.0" x2="278.0" y2="74.0"/>
+<line x1="40.0" y1="40.0" x2="278.0" y2="40.0"/>
+</g>
+<line x1="26.0" y1="244.0" x2="296.0" y2="244.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="298.0" y="249.0" font-size="13" fill="#475569" font-style="italic">x</text>
+<line x1="108.0" y1="292.0" x2="108.0" y2="22.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="94.0" y="18.0" font-size="13" fill="#475569" font-style="italic">y</text>
+<g font-size="10.5" fill="#94a3b8" font-family="sans-serif">
+<text x="37.0" y="260.0" text-anchor="middle">-2</text>
+<text x="71.0" y="260.0" text-anchor="middle">-1</text>
+<text x="139.0" y="260.0" text-anchor="middle">1</text>
+<text x="173.0" y="260.0" text-anchor="middle">2</text>
+<text x="207.0" y="260.0" text-anchor="middle">3</text>
+<text x="241.0" y="260.0" text-anchor="middle">4</text>
+<text x="275.0" y="260.0" text-anchor="middle">5</text>
+<text x="100.0" y="281.5" text-anchor="end">-1</text>
+<text x="100.0" y="213.5" text-anchor="end">1</text>
+<text x="100.0" y="179.5" text-anchor="end">2</text>
+<text x="100.0" y="145.5" text-anchor="end">3</text>
+<text x="100.0" y="111.5" text-anchor="end">4</text>
+<text x="100.0" y="77.5" text-anchor="end">5</text>
+<text x="100.0" y="43.5" text-anchor="end">6</text>
+<text x="100.0" y="260.0" text-anchor="end" font-style="italic" fill="#475569">O</text>
+</g>
+<line x1="108.0" y1="244.0" x2="74.0" y2="176.0" stroke="#2563eb" stroke-width="2.4" marker-end="url(#arr-blue)"/>
+<line x1="74.0" y1="176.0" x2="210.0" y2="74.0" stroke="#e11d48" stroke-width="2.4" marker-end="url(#arr-rose)"/>
+<line x1="108.0" y1="244.0" x2="210.0" y2="74.0" stroke="#059669" stroke-width="2.4" stroke-dasharray="5 4" marker-end="url(#arr-emerald)"/>
+<circle cx="108.0" cy="244.0" r="4" fill="#1e293b"/>
+<text x="94.0" y="258.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">A</text>
+<circle cx="74.0" cy="176.0" r="4" fill="#2563eb"/>
+<text x="57.0" y="170.0" font-size="15" font-style="italic" font-weight="600" fill="#2563eb">B</text>
+<circle cx="74.0" cy="176.0" r="0" fill="#2563eb"/>
+<text x="74.0" y="176.0" font-size="15" font-style="italic" font-weight="600" fill="#2563eb">E</text>
+<circle cx="210.0" cy="74.0" r="4" fill="#e11d48"/>
+<text x="219.0" y="68.0" font-size="15" font-style="italic" font-weight="600" fill="#e11d48">F</text>
+
+</svg>
+            </div>
+          </div>
+
+          <!-- 4. Produit par un reel -->
+          <div id="produit-reel" class="card mb-6 scroll-mt-24">
+            <h4 class="font-display text-xl font-semibold text-slate-900 mb-1">4. Les coordonnées du produit d'un vecteur par un nombre réel</h4>
+            <p class="text-sm text-slate-400 font-medium mb-3">a) Propriété</p>
+            <div class="box-prop">
+              <p>Si \(\overrightarrow{AB}(a;b)\) est un vecteur et \(k\) un nombre réel, alors :</p>
+              <p class="mt-1 text-center">\(k\times\overrightarrow{AB}\,\big(k\times a\,;\,k\times b\big)\)</p>
+            </div>
+            <p class="text-sm text-slate-400 font-medium mb-3 mt-5">b) Exemple</p>
+            <div class="box-example text-sm">
+              <p>Soit \(\overrightarrow{AB}(-5;2)\) un vecteur. Cherchons les coordonnées du vecteur \(-3\overrightarrow{AB}\) :</p>
+              <p class="mt-2">On a : \(\overrightarrow{AB}(-5;2)\), donc : \(-3\times\overrightarrow{AB}\,\big(-3\times(-5)\,;\,-3\times 2\big)\)</p>
+              <p class="mt-2 font-semibold text-cyan-700">D'où : \(-3\overrightarrow{AB}\,(15;-6)\)</p>
+            </div>
+          </div>
+
+          <!-- 5. Distance -->
+          <div id="distance" class="card mb-6 scroll-mt-24">
+            <h4 class="font-display text-xl font-semibold text-slate-900 mb-1">5. La distance entre deux points</h4>
+            <p class="text-sm text-slate-400 font-medium mb-3">a) Propriété (1)</p>
+            <div class="box-prop">
+              <p>Si \(A\) et \(B\) sont deux points du plan rapporté à un repère orthonormé, alors :</p>
+              <p class="mt-1 text-center">\(AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}\)</p>
+            </div>
+            <p class="text-sm text-slate-400 font-medium mb-3 mt-5">Exemple</p>
+            <div class="grid sm:grid-cols-2 gap-6 items-center">
+              <div class="box-example text-sm">
+                <p>Soient \(A(-1;4)\) et \(B(6;2)\) deux points du plan rapporté à un repère orthonormé.</p>
+                <p class="mt-2">\(AB=\sqrt{(6-(-1))^2+(2-4)^2}=\sqrt{7^2+(-2)^2}=\sqrt{49+4}\)</p>
+                <p class="mt-2 font-semibold text-cyan-700">D'où : \(AB=\sqrt{53}\)</p>
+              </div>
+              <svg viewBox="0 0 386 284" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#e2e8f0" stroke-width="1">
+<line x1="40.0" y1="244.0" x2="40.0" y2="40.0"/>
+<line x1="74.0" y1="244.0" x2="74.0" y2="40.0"/>
+<line x1="108.0" y1="244.0" x2="108.0" y2="40.0"/>
+<line x1="142.0" y1="244.0" x2="142.0" y2="40.0"/>
+<line x1="176.0" y1="244.0" x2="176.0" y2="40.0"/>
+<line x1="210.0" y1="244.0" x2="210.0" y2="40.0"/>
+<line x1="244.0" y1="244.0" x2="244.0" y2="40.0"/>
+<line x1="278.0" y1="244.0" x2="278.0" y2="40.0"/>
+<line x1="312.0" y1="244.0" x2="312.0" y2="40.0"/>
+<line x1="346.0" y1="244.0" x2="346.0" y2="40.0"/>
+<line x1="40.0" y1="244.0" x2="346.0" y2="244.0"/>
+<line x1="40.0" y1="210.0" x2="346.0" y2="210.0"/>
+<line x1="40.0" y1="176.0" x2="346.0" y2="176.0"/>
+<line x1="40.0" y1="142.0" x2="346.0" y2="142.0"/>
+<line x1="40.0" y1="108.0" x2="346.0" y2="108.0"/>
+<line x1="40.0" y1="74.0" x2="346.0" y2="74.0"/>
+<line x1="40.0" y1="40.0" x2="346.0" y2="40.0"/>
+</g>
+<line x1="26.0" y1="210.0" x2="364.0" y2="210.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="366.0" y="215.0" font-size="13" fill="#475569" font-style="italic">x</text>
+<line x1="108.0" y1="258.0" x2="108.0" y2="22.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="94.0" y="18.0" font-size="13" fill="#475569" font-style="italic">y</text>
+<g font-size="10.5" fill="#94a3b8" font-family="sans-serif">
+<text x="37.0" y="226.0" text-anchor="middle">-2</text>
+<text x="71.0" y="226.0" text-anchor="middle">-1</text>
+<text x="139.0" y="226.0" text-anchor="middle">1</text>
+<text x="173.0" y="226.0" text-anchor="middle">2</text>
+<text x="207.0" y="226.0" text-anchor="middle">3</text>
+<text x="241.0" y="226.0" text-anchor="middle">4</text>
+<text x="275.0" y="226.0" text-anchor="middle">5</text>
+<text x="309.0" y="226.0" text-anchor="middle">6</text>
+<text x="343.0" y="226.0" text-anchor="middle">7</text>
+<text x="100.0" y="247.5" text-anchor="end">-1</text>
+<text x="100.0" y="179.5" text-anchor="end">1</text>
+<text x="100.0" y="145.5" text-anchor="end">2</text>
+<text x="100.0" y="111.5" text-anchor="end">3</text>
+<text x="100.0" y="77.5" text-anchor="end">4</text>
+<text x="100.0" y="43.5" text-anchor="end">5</text>
+<text x="100.0" y="226.0" text-anchor="end" font-style="italic" fill="#475569">O</text>
+</g>
+<line x1="74.0" y1="74.0" x2="312.0" y2="142.0" stroke="#2563eb" stroke-width="2.4"/>
+<circle cx="74.0" cy="74.0" r="4" fill="#1e293b"/>
+<text x="66.0" y="64.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">A</text>
+<circle cx="312.0" cy="142.0" r="4" fill="#1e293b"/>
+<text x="321.0" y="146.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">B</text>
+
+</svg>
+            </div>
+
+            <p class="text-sm text-slate-400 font-medium mb-3 mt-6">b) Propriété (2)</p>
+            <div class="box-prop">
+              <p>Si \(\overrightarrow{AB}(a;b)\) est un vecteur du plan rapporté à un repère orthonormé, alors :</p>
+              <p class="mt-1 text-center">\(AB=\sqrt{a^2+b^2}\)</p>
+            </div>
+            <p class="text-sm text-slate-400 font-medium mb-3 mt-5">Exemple</p>
+            <div class="box-example text-sm">
+              <p>Soit \(\overrightarrow{AB}(-1;4)\) un vecteur. On a : \(AB=\sqrt{(-1)^2+4^2}=\sqrt{1+16}\)</p>
+              <p class="mt-2 font-semibold text-cyan-700">D'où : \(AB=\sqrt{17}\)</p>
+            </div>
+
+            <!-- Exercice d'application -->
+            <div class="mt-7 rounded-xl border border-slate-200 overflow-hidden">
+              <div class="bg-slate-100 px-5 py-3 flex items-center gap-2"><span class="badge-amber">Exercice d'application</span></div>
+              <div class="p-5">
+                <p>Soient \(\overrightarrow{AB}(3;4)\) un vecteur, \(E(3;1)\) et \(F(0;-2)\) deux points.</p>
+                <p class="mt-2">Calculer \(AB\) puis \(EF\).</p>
+                <button type="button" class="btn-correction mt-4" data-target="sol-distance-app" aria-expanded="false">
+                  <span class="btn-text">Afficher la correction</span>
+                  <svg class="chevron w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="reveal mt-4" id="sol-distance-app"><div>
+                  <div class="box-solution space-y-3">
+                    <p class="font-semibold text-emerald-800">Solution</p>
+                    <p class="text-sm font-medium">Calculons \(AB\) :</p>
+                    <p class="text-sm">\(AB=\sqrt{3^2+4^2}=\sqrt{9+16}=\sqrt{25}\)</p>
+                    <p class="text-sm font-semibold text-emerald-700">D'où : \(AB=5\).</p>
+                    <p class="text-sm font-medium mt-3">Calculons \(EF\) :</p>
+                    <p class="text-sm">\(EF=\sqrt{(x_F-x_E)^2+(y_F-y_E)^2}=\sqrt{(0-3)^2+(-2-1)^2}=\sqrt{(-3)^2+(-3)^2}=\sqrt{9+9}=\sqrt{18}\)</p>
+                    <p class="text-sm font-semibold text-emerald-700">D'où : \(EF=3\sqrt{2}\).</p>
+                  </div>
+                </div></div>
+              </div>
+            </div>
+          </div>
+
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXERCISES SECTION ============ -->
+  <section id="exercices" class="py-14 sm:py-20">
+    <div class="container-custom">
+      <div class="text-center max-w-2xl mx-auto mb-4">
+        <span class="section-eyebrow">Entraînement</span>
+        <h2 class="section-heading mt-4">Exercices N° 9</h2>
+        <p class="text-slate-500 mt-3">Repère dans le plan — 3ème APIC. Cherchez d'abord par vous-même, puis cliquez sur le bouton pour vérifier votre solution.</p>
+      </div>
+      <div class="flex justify-center mb-12">
+        <span class="badge">Collège Mhamed 9 — Exercices proposés par ELK.H</span>
+      </div>
+
+      <div class="grid gap-6">
+
+        <!-- EXERCICE 1 -->
+        <article class="card scroll-mt-24" id="exercice-1">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <h3 class="font-display text-lg font-bold text-slate-900 flex items-center gap-3">
+              <span class="grid place-items-center w-8 h-8 rounded-lg bg-blue-600 text-white text-sm">1</span>
+              Exercice 1
+            </h3>
+            <span class="badge">Distances &amp; milieux</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-2">On considère un repère orthonormé \((O;I;J)\) tel que : \(A(2;2)\) ; \(B(-1;-1)\) et \(C(4;-1)\).</p>
+          <ol class="list-decimal list-inside space-y-1.5 text-sm text-slate-700">
+            <li>Placer les points \(A\), \(B\) et \(C\).</li>
+            <li>Déterminer la longueur \(AB\) et la longueur \(AC\).</li>
+            <li>Déterminer les coordonnées des points \(E\), \(F\) et \(G\) les milieux respectifs des segments \([AB]\), \([AC]\) et \([BC]\).</li>
+          </ol>
+
+          <button type="button" class="btn-correction mt-5" data-target="sol-ex1" aria-expanded="false">
+            <span class="btn-text">Afficher la correction</span>
+            <svg class="chevron w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="reveal mt-5" id="sol-ex1"><div>
+            <div class="box-solution space-y-3">
+              <p class="font-semibold text-emerald-800">Correction</p>
+              <div class="grid sm:grid-cols-2 gap-5 items-center">
+                <svg viewBox="0 0 318 250" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#e2e8f0" stroke-width="1">
+<line x1="40.0" y1="210.0" x2="40.0" y2="40.0"/>
+<line x1="74.0" y1="210.0" x2="74.0" y2="40.0"/>
+<line x1="108.0" y1="210.0" x2="108.0" y2="40.0"/>
+<line x1="142.0" y1="210.0" x2="142.0" y2="40.0"/>
+<line x1="176.0" y1="210.0" x2="176.0" y2="40.0"/>
+<line x1="210.0" y1="210.0" x2="210.0" y2="40.0"/>
+<line x1="244.0" y1="210.0" x2="244.0" y2="40.0"/>
+<line x1="278.0" y1="210.0" x2="278.0" y2="40.0"/>
+<line x1="40.0" y1="210.0" x2="278.0" y2="210.0"/>
+<line x1="40.0" y1="176.0" x2="278.0" y2="176.0"/>
+<line x1="40.0" y1="142.0" x2="278.0" y2="142.0"/>
+<line x1="40.0" y1="108.0" x2="278.0" y2="108.0"/>
+<line x1="40.0" y1="74.0" x2="278.0" y2="74.0"/>
+<line x1="40.0" y1="40.0" x2="278.0" y2="40.0"/>
+</g>
+<line x1="26.0" y1="142.0" x2="296.0" y2="142.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="298.0" y="147.0" font-size="13" fill="#475569" font-style="italic">x</text>
+<line x1="108.0" y1="224.0" x2="108.0" y2="22.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="94.0" y="18.0" font-size="13" fill="#475569" font-style="italic">y</text>
+<g font-size="10.5" fill="#94a3b8" font-family="sans-serif">
+<text x="37.0" y="158.0" text-anchor="middle">-2</text>
+<text x="71.0" y="158.0" text-anchor="middle">-1</text>
+<text x="139.0" y="158.0" text-anchor="middle">1</text>
+<text x="173.0" y="158.0" text-anchor="middle">2</text>
+<text x="207.0" y="158.0" text-anchor="middle">3</text>
+<text x="241.0" y="158.0" text-anchor="middle">4</text>
+<text x="275.0" y="158.0" text-anchor="middle">5</text>
+<text x="100.0" y="213.5" text-anchor="end">-2</text>
+<text x="100.0" y="179.5" text-anchor="end">-1</text>
+<text x="100.0" y="111.5" text-anchor="end">1</text>
+<text x="100.0" y="77.5" text-anchor="end">2</text>
+<text x="100.0" y="43.5" text-anchor="end">3</text>
+<text x="100.0" y="158.0" text-anchor="end" font-style="italic" fill="#475569">O</text>
+</g>
+<polygon points="176.0,74.0 74.0,176.0 244.0,176.0" fill="#eff6ff" stroke="#2563eb" stroke-width="1.3" opacity="0.5"/>
+<circle cx="176.0" cy="74.0" r="4" fill="#1e293b"/>
+<text x="184.0" y="65.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">A</text>
+<circle cx="74.0" cy="176.0" r="4" fill="#1e293b"/>
+<text x="65.0" y="192.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">B</text>
+<circle cx="244.0" cy="176.0" r="4" fill="#1e293b"/>
+<text x="253.0" y="186.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">C</text>
+<circle cx="125.0" cy="125.0" r="4" fill="#2563eb"/>
+<text x="108.0" y="121.0" font-size="15" font-style="italic" font-weight="600" fill="#2563eb">E</text>
+<circle cx="210.0" cy="125.0" r="4" fill="#059669"/>
+<text x="219.0" y="121.0" font-size="15" font-style="italic" font-weight="600" fill="#059669">F</text>
+<circle cx="159.0" cy="176.0" r="4" fill="#e11d48"/>
+<text x="153.0" y="193.0" font-size="15" font-style="italic" font-weight="600" fill="#e11d48">G</text>
+
+</svg>
+                <div class="text-sm space-y-2">
+                  <p><strong>2)</strong> \(AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}=\sqrt{(-1-2)^2+(-1-2)^2}=\sqrt{9+9}=\sqrt{18}\)</p>
+                  <p class="font-semibold text-emerald-700">D'où : \(AB=3\sqrt{2}\)</p>
+                  <p class="mt-2">\(AC=\sqrt{(4-2)^2+(-1-2)^2}=\sqrt{4+9}=\sqrt{13}\)</p>
+                  <p class="font-semibold text-emerald-700">D'où : \(AC=\sqrt{13}\)</p>
+                </div>
+              </div>
+              <div class="rounded-lg bg-white/70 border border-emerald-100 p-4 text-sm space-y-1.5">
+                <p><strong>3)</strong> \(E\) milieu de \([AB]\) : \(x_E=\dfrac{2-1}{2}=\dfrac12\) ; \(y_E=\dfrac{2-1}{2}=\dfrac12\) &nbsp;→&nbsp; \(E\!\left(\dfrac12;\dfrac12\right)\)</p>
+                <p>\(F\) milieu de \([AC]\) : \(x_F=\dfrac{2+4}{2}=3\) ; \(y_F=\dfrac{2-1}{2}=\dfrac12\) &nbsp;→&nbsp; \(F\!\left(3;\dfrac12\right)\)</p>
+                <p>\(G\) milieu de \([BC]\) : \(x_G=\dfrac{-1+4}{2}=\dfrac32\) ; \(y_G=\dfrac{-1-1}{2}=-1\) &nbsp;→&nbsp; \(G\!\left(\dfrac32;-1\right)\)</p>
+              </div>
+            </div>
+          </div></div>
+        </article>
+
+        <!-- EXERCICE 2 -->
+        <article class="card scroll-mt-24" id="exercice-2">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <h3 class="font-display text-lg font-bold text-slate-900 flex items-center gap-3">
+              <span class="grid place-items-center w-8 h-8 rounded-lg bg-blue-600 text-white text-sm">2</span>
+              Exercice 2
+            </h3>
+            <span class="badge">Symétrique d'un point</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-2">Soit \(A(-1;2)\) et \(B(0;1)\).</p>
+          <ol class="list-decimal list-inside space-y-1.5 text-sm text-slate-700">
+            <li>Placer les points \(A\) et \(B\) dans un repère orthonormé \((O;I;J)\).</li>
+            <li>Déterminer les coordonnées du point \(A'\) symétrique de \(A\) par rapport à \(B\).</li>
+          </ol>
+
+          <button type="button" class="btn-correction mt-5" data-target="sol-ex2" aria-expanded="false">
+            <span class="btn-text">Afficher la correction</span>
+            <svg class="chevron w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="reveal mt-5" id="sol-ex2"><div>
+            <div class="box-solution space-y-3">
+              <p class="font-semibold text-emerald-800">Correction</p>
+              <div class="grid sm:grid-cols-2 gap-5 items-center">
+                <svg viewBox="0 0 216 216" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#e2e8f0" stroke-width="1">
+<line x1="40.0" y1="176.0" x2="40.0" y2="40.0"/>
+<line x1="74.0" y1="176.0" x2="74.0" y2="40.0"/>
+<line x1="108.0" y1="176.0" x2="108.0" y2="40.0"/>
+<line x1="142.0" y1="176.0" x2="142.0" y2="40.0"/>
+<line x1="176.0" y1="176.0" x2="176.0" y2="40.0"/>
+<line x1="40.0" y1="176.0" x2="176.0" y2="176.0"/>
+<line x1="40.0" y1="142.0" x2="176.0" y2="142.0"/>
+<line x1="40.0" y1="108.0" x2="176.0" y2="108.0"/>
+<line x1="40.0" y1="74.0" x2="176.0" y2="74.0"/>
+<line x1="40.0" y1="40.0" x2="176.0" y2="40.0"/>
+</g>
+<line x1="26.0" y1="142.0" x2="194.0" y2="142.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="196.0" y="147.0" font-size="13" fill="#475569" font-style="italic">x</text>
+<line x1="108.0" y1="190.0" x2="108.0" y2="22.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="94.0" y="18.0" font-size="13" fill="#475569" font-style="italic">y</text>
+<g font-size="10.5" fill="#94a3b8" font-family="sans-serif">
+<text x="37.0" y="158.0" text-anchor="middle">-2</text>
+<text x="71.0" y="158.0" text-anchor="middle">-1</text>
+<text x="139.0" y="158.0" text-anchor="middle">1</text>
+<text x="173.0" y="158.0" text-anchor="middle">2</text>
+<text x="100.0" y="179.5" text-anchor="end">-1</text>
+<text x="100.0" y="111.5" text-anchor="end">1</text>
+<text x="100.0" y="77.5" text-anchor="end">2</text>
+<text x="100.0" y="43.5" text-anchor="end">3</text>
+<text x="100.0" y="158.0" text-anchor="end" font-style="italic" fill="#475569">O</text>
+</g>
+<line x1="74.0" y1="74.0" x2="142.0" y2="142.0" stroke="#2563eb" stroke-width="2"/>
+<circle cx="74.0" cy="74.0" r="4" fill="#1e293b"/>
+<text x="66.0" y="64.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">A</text>
+<circle cx="108.0" cy="108.0" r="4" fill="#1e293b"/>
+<text x="117.0" y="112.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">B</text>
+<circle cx="142.0" cy="142.0" r="4" fill="#e11d48"/>
+<text x="151.0" y="152.0" font-size="15" font-style="italic" font-weight="600" fill="#e11d48">A'</text>
+
+</svg>
+                <div class="text-sm space-y-2">
+                  <p>\(A'\) symétrique de \(A\) par rapport à \(B\) signifie que \(B\) est le milieu du segment \([AA']\), donc :</p>
+                  <p>\(\begin{cases} x_B = \dfrac{x_A+x_{A'}}{2} \\ y_B = \dfrac{y_A+y_{A'}}{2} \end{cases}\) c'est-à-dire \(\begin{cases} 0 = \dfrac{-1+x_{A'}}{2} \\ 1 = \dfrac{2+y_{A'}}{2} \end{cases}\)</p>
+                  <p>\(\begin{cases} x_{A'} = 1 \\ y_{A'} = 0 \end{cases}\)</p>
+                  <p class="font-semibold text-emerald-700">D'où : \(A'(1;0)\)</p>
+                </div>
+              </div>
+            </div>
+          </div></div>
+        </article>
+
+        <!-- EXERCICE 3 -->
+        <article class="card scroll-mt-24" id="exercice-3">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <h3 class="font-display text-lg font-bold text-slate-900 flex items-center gap-3">
+              <span class="grid place-items-center w-8 h-8 rounded-lg bg-blue-600 text-white text-sm">3</span>
+              Exercice 3
+            </h3>
+            <span class="badge">Milieu &amp; symétrique</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-2">Soit \((O;I;J)\) un repère orthonormé, tel que : \(A(1;1)\) ; \(C(2;4)\).</p>
+          <ol class="list-decimal list-inside space-y-1.5 text-sm text-slate-700">
+            <li>Placer les points \(A\) et \(C\).</li>
+            <li>Soit \(B\) le milieu du segment \([AC]\).
+              <ol type="a" class="list-[lower-alpha] list-inside ml-4 mt-1 space-y-1">
+                <li>Déterminer les coordonnées du point \(B\).</li>
+              </ol>
+            </li>
+            <li>Déterminer les coordonnées du point \(B'\) symétrique de \(B\) par rapport à \(A\).</li>
+            <li>Déterminer les coordonnées des vecteurs \(\overrightarrow{BC}\) et \(\overrightarrow{AB}\).</li>
+          </ol>
+
+          <button type="button" class="btn-correction mt-5" data-target="sol-ex3" aria-expanded="false">
+            <span class="btn-text">Afficher la correction</span>
+            <svg class="chevron w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="reveal mt-5" id="sol-ex3"><div>
+            <div class="box-solution space-y-3">
+              <p class="font-semibold text-emerald-800">Correction</p>
+              <div class="grid sm:grid-cols-2 gap-5 items-center">
+                <svg viewBox="0 0 216 284" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#e2e8f0" stroke-width="1">
+<line x1="40.0" y1="244.0" x2="40.0" y2="40.0"/>
+<line x1="74.0" y1="244.0" x2="74.0" y2="40.0"/>
+<line x1="108.0" y1="244.0" x2="108.0" y2="40.0"/>
+<line x1="142.0" y1="244.0" x2="142.0" y2="40.0"/>
+<line x1="176.0" y1="244.0" x2="176.0" y2="40.0"/>
+<line x1="40.0" y1="244.0" x2="176.0" y2="244.0"/>
+<line x1="40.0" y1="210.0" x2="176.0" y2="210.0"/>
+<line x1="40.0" y1="176.0" x2="176.0" y2="176.0"/>
+<line x1="40.0" y1="142.0" x2="176.0" y2="142.0"/>
+<line x1="40.0" y1="108.0" x2="176.0" y2="108.0"/>
+<line x1="40.0" y1="74.0" x2="176.0" y2="74.0"/>
+<line x1="40.0" y1="40.0" x2="176.0" y2="40.0"/>
+</g>
+<line x1="26.0" y1="210.0" x2="194.0" y2="210.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="196.0" y="215.0" font-size="13" fill="#475569" font-style="italic">x</text>
+<line x1="74.0" y1="258.0" x2="74.0" y2="22.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="60.0" y="18.0" font-size="13" fill="#475569" font-style="italic">y</text>
+<g font-size="10.5" fill="#94a3b8" font-family="sans-serif">
+<text x="37.0" y="226.0" text-anchor="middle">-1</text>
+<text x="105.0" y="226.0" text-anchor="middle">1</text>
+<text x="139.0" y="226.0" text-anchor="middle">2</text>
+<text x="173.0" y="226.0" text-anchor="middle">3</text>
+<text x="66.0" y="247.5" text-anchor="end">-1</text>
+<text x="66.0" y="179.5" text-anchor="end">1</text>
+<text x="66.0" y="145.5" text-anchor="end">2</text>
+<text x="66.0" y="111.5" text-anchor="end">3</text>
+<text x="66.0" y="77.5" text-anchor="end">4</text>
+<text x="66.0" y="43.5" text-anchor="end">5</text>
+<text x="66.0" y="226.0" text-anchor="end" font-style="italic" fill="#475569">O</text>
+</g>
+<line x1="108.0" y1="176.0" x2="142.0" y2="74.0" stroke="#1e293b" stroke-width="1.6" stroke-dasharray="5 4"/>
+<line x1="91.0" y1="227.0" x2="125.0" y2="125.0" stroke="#e11d48" stroke-width="1.8"/>
+<circle cx="108.0" cy="176.0" r="4" fill="#1e293b"/>
+<text x="92.0" y="186.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">A</text>
+<circle cx="142.0" cy="74.0" r="4" fill="#1e293b"/>
+<text x="151.0" y="66.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">C</text>
+<circle cx="125.0" cy="125.0" r="4" fill="#2563eb"/>
+<text x="134.0" y="119.0" font-size="15" font-style="italic" font-weight="600" fill="#2563eb">B</text>
+<circle cx="91.0" cy="227.0" r="4" fill="#e11d48"/>
+<text x="72.0" y="231.0" font-size="15" font-style="italic" font-weight="600" fill="#e11d48">B'</text>
+
+</svg>
+                <div class="text-sm space-y-2">
+                  <p><strong>2) a)</strong> \(B\) milieu de \([AC]\) : \(x_B=\dfrac{1+2}{2}=\dfrac32\) ; \(y_B=\dfrac{1+4}{2}=\dfrac52\)</p>
+                  <p class="font-semibold text-emerald-700">D'où : \(B\!\left(\dfrac32;\dfrac52\right)\)</p>
+                  <p class="mt-2"><strong>3)</strong> \(B'\) symétrique de \(B\) par rapport à \(A\) signifie que \(A\) est le milieu de \([BB']\) :</p>
+                  <p>\(x_{B'}=2x_A-x_B=2-\dfrac32=\dfrac12\) ; \(y_{B'}=2y_A-y_B=2-\dfrac52=-\dfrac12\)</p>
+                  <p class="font-semibold text-emerald-700">D'où : \(B'\!\left(\dfrac12;-\dfrac12\right)\)</p>
+                </div>
+              </div>
+              <div class="rounded-lg bg-white/70 border border-emerald-100 p-4 text-sm">
+                <p><strong>4)</strong> \(\overrightarrow{BC}(x_C-x_B\,;\,y_C-y_B)=\left(2-\dfrac32\,;\,4-\dfrac52\right)=\left(\dfrac12\,;\,\dfrac32\right)\)</p>
+                <p class="mt-1">\(\overrightarrow{AB}(x_B-x_A\,;\,y_B-y_A)=\left(\dfrac32-1\,;\,\dfrac52-1\right)=\left(\dfrac12\,;\,\dfrac32\right)\)</p>
+                <p class="mt-1 text-xs text-slate-500">On remarque que \(\overrightarrow{AB}=\overrightarrow{BC}\) : c'est cohérent puisque \(B\) est le milieu de \([AC]\).</p>
+              </div>
+            </div>
+          </div></div>
+        </article>
+
+        <!-- EXERCICE 4 -->
+        <article class="card scroll-mt-24" id="exercice-4">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <h3 class="font-display text-lg font-bold text-slate-900 flex items-center gap-3">
+              <span class="grid place-items-center w-8 h-8 rounded-lg bg-blue-600 text-white text-sm">4</span>
+              Exercice 4
+            </h3>
+            <span class="badge">Translation &amp; losange</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-2">On considère un repère orthonormé \((O;I;J)\). On donne : \(A(-3;6)\), \(B(4;5)\), \(C(5;-2)\) et \(D(-2;-1)\).</p>
+          <ol class="list-decimal list-inside space-y-1.5 text-sm text-slate-700">
+            <li>Construire les points \(A\), \(B\), \(C\) et \(D\).</li>
+            <li>Calculer les coordonnées du milieu \(M\) de \([BD]\).</li>
+            <li>Montrer que \(C\) est l'image de \(D\) par la translation qui transforme \(A\) en \(B\).</li>
+            <li>Calculer \(AB\).</li>
+            <li>Démontrer que \(ABCD\) est un losange.</li>
+          </ol>
+
+          <button type="button" class="btn-correction mt-5" data-target="sol-ex4" aria-expanded="false">
+            <span class="btn-text">Afficher la correction</span>
+            <svg class="chevron w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="reveal mt-5" id="sol-ex4"><div>
+            <div class="box-solution space-y-3">
+              <p class="font-semibold text-emerald-800">Correction</p>
+              <svg viewBox="0 0 420 420" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#e2e8f0" stroke-width="1">
+<line x1="40.0" y1="380.0" x2="40.0" y2="40.0"/>
+<line x1="74.0" y1="380.0" x2="74.0" y2="40.0"/>
+<line x1="108.0" y1="380.0" x2="108.0" y2="40.0"/>
+<line x1="142.0" y1="380.0" x2="142.0" y2="40.0"/>
+<line x1="176.0" y1="380.0" x2="176.0" y2="40.0"/>
+<line x1="210.0" y1="380.0" x2="210.0" y2="40.0"/>
+<line x1="244.0" y1="380.0" x2="244.0" y2="40.0"/>
+<line x1="278.0" y1="380.0" x2="278.0" y2="40.0"/>
+<line x1="312.0" y1="380.0" x2="312.0" y2="40.0"/>
+<line x1="346.0" y1="380.0" x2="346.0" y2="40.0"/>
+<line x1="380.0" y1="380.0" x2="380.0" y2="40.0"/>
+<line x1="40.0" y1="380.0" x2="380.0" y2="380.0"/>
+<line x1="40.0" y1="346.0" x2="380.0" y2="346.0"/>
+<line x1="40.0" y1="312.0" x2="380.0" y2="312.0"/>
+<line x1="40.0" y1="278.0" x2="380.0" y2="278.0"/>
+<line x1="40.0" y1="244.0" x2="380.0" y2="244.0"/>
+<line x1="40.0" y1="210.0" x2="380.0" y2="210.0"/>
+<line x1="40.0" y1="176.0" x2="380.0" y2="176.0"/>
+<line x1="40.0" y1="142.0" x2="380.0" y2="142.0"/>
+<line x1="40.0" y1="108.0" x2="380.0" y2="108.0"/>
+<line x1="40.0" y1="74.0" x2="380.0" y2="74.0"/>
+<line x1="40.0" y1="40.0" x2="380.0" y2="40.0"/>
+</g>
+<line x1="26.0" y1="278.0" x2="398.0" y2="278.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="400.0" y="283.0" font-size="13" fill="#475569" font-style="italic">x</text>
+<line x1="176.0" y1="394.0" x2="176.0" y2="22.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="162.0" y="18.0" font-size="13" fill="#475569" font-style="italic">y</text>
+<g font-size="10.5" fill="#94a3b8" font-family="sans-serif">
+<text x="37.0" y="294.0" text-anchor="middle">-4</text>
+<text x="71.0" y="294.0" text-anchor="middle">-3</text>
+<text x="105.0" y="294.0" text-anchor="middle">-2</text>
+<text x="139.0" y="294.0" text-anchor="middle">-1</text>
+<text x="207.0" y="294.0" text-anchor="middle">1</text>
+<text x="241.0" y="294.0" text-anchor="middle">2</text>
+<text x="275.0" y="294.0" text-anchor="middle">3</text>
+<text x="309.0" y="294.0" text-anchor="middle">4</text>
+<text x="343.0" y="294.0" text-anchor="middle">5</text>
+<text x="377.0" y="294.0" text-anchor="middle">6</text>
+<text x="168.0" y="383.5" text-anchor="end">-3</text>
+<text x="168.0" y="349.5" text-anchor="end">-2</text>
+<text x="168.0" y="315.5" text-anchor="end">-1</text>
+<text x="168.0" y="247.5" text-anchor="end">1</text>
+<text x="168.0" y="213.5" text-anchor="end">2</text>
+<text x="168.0" y="179.5" text-anchor="end">3</text>
+<text x="168.0" y="145.5" text-anchor="end">4</text>
+<text x="168.0" y="111.5" text-anchor="end">5</text>
+<text x="168.0" y="77.5" text-anchor="end">6</text>
+<text x="168.0" y="43.5" text-anchor="end">7</text>
+<text x="168.0" y="294.0" text-anchor="end" font-style="italic" fill="#475569">O</text>
+</g>
+<polygon points="74.0,74.0 312.0,108.0 346.0,346.0 108.0,312.0" fill="#eff6ff" stroke="#2563eb" stroke-width="1.3" opacity="0.55"/>
+<line x1="74.0" y1="74.0" x2="108.0" y2="312.0" stroke="#1e293b" stroke-width="1.3" stroke-dasharray="5 4"/>
+<line x1="312.0" y1="108.0" x2="346.0" y2="346.0" stroke="#1e293b" stroke-width="1.3" stroke-dasharray="5 4"/>
+<circle cx="74.0" cy="74.0" r="4" fill="#1e293b"/>
+<text x="65.0" y="64.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">A</text>
+<circle cx="312.0" cy="108.0" r="4" fill="#1e293b"/>
+<text x="321.0" y="100.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">B</text>
+<circle cx="346.0" cy="346.0" r="4" fill="#1e293b"/>
+<text x="355.0" y="354.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">C</text>
+<circle cx="108.0" cy="312.0" r="4" fill="#1e293b"/>
+<text x="99.0" y="328.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">D</text>
+<circle cx="210.0" cy="210.0" r="4" fill="#e11d48"/>
+<text x="220.0" y="214.0" font-size="15" font-style="italic" font-weight="600" fill="#e11d48">M</text>
+
+</svg>
+              <div class="rounded-lg bg-white/70 border border-emerald-100 p-4 text-sm space-y-1.5">
+                <p><strong>2)</strong> \(M\) milieu de \([BD]\) : \(x_M=\dfrac{4-2}{2}=1\) ; \(y_M=\dfrac{5-1}{2}=2\) &nbsp;→&nbsp; \(M(1;2)\)</p>
+              </div>
+              <div class="rounded-lg bg-white/70 border border-emerald-100 p-4 text-sm space-y-1.5">
+                <p><strong>3)</strong> La translation qui transforme \(A\) en \(B\) a pour vecteur \(\overrightarrow{AB}(x_B-x_A\,;\,y_B-y_A)=(4+3\,;\,5-6)=(7;-1)\).</p>
+                <p>L'image de \(D\) par cette translation est le point \(C\) si, et seulement si, \(\overrightarrow{DC}=\overrightarrow{AB}\). Or \(\overrightarrow{DC}(x_C-x_D\,;\,y_C-y_D)=(5+2\,;\,-2+1)=(7;-1)\).</p>
+                <p class="font-semibold text-emerald-700">Comme \(\overrightarrow{DC}=\overrightarrow{AB}=(7;-1)\), \(C\) est bien l'image de \(D\) par la translation qui transforme \(A\) en \(B\).</p>
+              </div>
+              <div class="rounded-lg bg-white/70 border border-emerald-100 p-4 text-sm space-y-1.5">
+                <p><strong>4)</strong> \(AB=\sqrt{7^2+(-1)^2}=\sqrt{49+1}=\sqrt{50}\), d'où \(AB=5\sqrt2\).</p>
+              </div>
+              <div class="rounded-lg bg-white/70 border border-emerald-100 p-4 text-sm space-y-1.5">
+                <p><strong>5)</strong> Puisque \(\overrightarrow{AB}=\overrightarrow{DC}\), le quadrilatère \(ABCD\) est un parallélogramme (on peut aussi vérifier que \([AC]\) et \([BD]\) ont le même milieu \((1;2)\)).</p>
+                <p>Calculons \(AD\) : \(\overrightarrow{AD}(x_D-x_A\,;\,y_D-y_A)=(-2+3\,;\,-1-6)=(1;-7)\), donc \(AD=\sqrt{1^2+(-7)^2}=\sqrt{1+49}=\sqrt{50}=5\sqrt2\).</p>
+                <p class="font-semibold text-emerald-700">Comme \(AB=AD=5\sqrt2\) (deux côtés consécutifs égaux) et \(ABCD\) est un parallélogramme, \(ABCD\) est un losange.</p>
+              </div>
+            </div>
+          </div></div>
+        </article>
+
+        <!-- EXERCICE 5 -->
+        <article class="card scroll-mt-24" id="exercice-5">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <h3 class="font-display text-lg font-bold text-slate-900 flex items-center gap-3">
+              <span class="grid place-items-center w-8 h-8 rounded-lg bg-blue-600 text-white text-sm">5</span>
+              Exercice 5
+            </h3>
+            <span class="badge">Parallélogramme &amp; rectangle</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-2">On considère un repère orthonormé \((O;I;J)\). On donne : \(A(-3;2)\), \(B(3;5)\), \(M\!\left(1;\dfrac32\right)\) et \(D(-1;-2)\).</p>
+          <ol class="list-decimal list-inside space-y-1.5 text-sm text-slate-700">
+            <li>Construire les points \(A\), \(B\), \(M\) et \(D\).</li>
+            <li>Soit \(M\) milieu de \([AC]\) ; calculer les coordonnées du point \(C\).</li>
+            <li>Montrer que le quadrilatère \(ABCD\) est un parallélogramme.</li>
+            <li>Calculer \(BD\).</li>
+            <li>Démontrer que \(ABCD\) est un rectangle.</li>
+          </ol>
+
+          <button type="button" class="btn-correction mt-5" data-target="sol-ex5" aria-expanded="false">
+            <span class="btn-text">Afficher la correction</span>
+            <svg class="chevron w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="reveal mt-5" id="sol-ex5"><div>
+            <div class="box-solution space-y-3">
+              <p class="font-semibold text-emerald-800">Correction</p>
+              <svg viewBox="0 0 420 386" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#e2e8f0" stroke-width="1">
+<line x1="40.0" y1="346.0" x2="40.0" y2="40.0"/>
+<line x1="74.0" y1="346.0" x2="74.0" y2="40.0"/>
+<line x1="108.0" y1="346.0" x2="108.0" y2="40.0"/>
+<line x1="142.0" y1="346.0" x2="142.0" y2="40.0"/>
+<line x1="176.0" y1="346.0" x2="176.0" y2="40.0"/>
+<line x1="210.0" y1="346.0" x2="210.0" y2="40.0"/>
+<line x1="244.0" y1="346.0" x2="244.0" y2="40.0"/>
+<line x1="278.0" y1="346.0" x2="278.0" y2="40.0"/>
+<line x1="312.0" y1="346.0" x2="312.0" y2="40.0"/>
+<line x1="346.0" y1="346.0" x2="346.0" y2="40.0"/>
+<line x1="380.0" y1="346.0" x2="380.0" y2="40.0"/>
+<line x1="40.0" y1="346.0" x2="380.0" y2="346.0"/>
+<line x1="40.0" y1="312.0" x2="380.0" y2="312.0"/>
+<line x1="40.0" y1="278.0" x2="380.0" y2="278.0"/>
+<line x1="40.0" y1="244.0" x2="380.0" y2="244.0"/>
+<line x1="40.0" y1="210.0" x2="380.0" y2="210.0"/>
+<line x1="40.0" y1="176.0" x2="380.0" y2="176.0"/>
+<line x1="40.0" y1="142.0" x2="380.0" y2="142.0"/>
+<line x1="40.0" y1="108.0" x2="380.0" y2="108.0"/>
+<line x1="40.0" y1="74.0" x2="380.0" y2="74.0"/>
+<line x1="40.0" y1="40.0" x2="380.0" y2="40.0"/>
+</g>
+<line x1="26.0" y1="244.0" x2="398.0" y2="244.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="400.0" y="249.0" font-size="13" fill="#475569" font-style="italic">x</text>
+<line x1="176.0" y1="360.0" x2="176.0" y2="22.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="162.0" y="18.0" font-size="13" fill="#475569" font-style="italic">y</text>
+<g font-size="10.5" fill="#94a3b8" font-family="sans-serif">
+<text x="37.0" y="260.0" text-anchor="middle">-4</text>
+<text x="71.0" y="260.0" text-anchor="middle">-3</text>
+<text x="105.0" y="260.0" text-anchor="middle">-2</text>
+<text x="139.0" y="260.0" text-anchor="middle">-1</text>
+<text x="207.0" y="260.0" text-anchor="middle">1</text>
+<text x="241.0" y="260.0" text-anchor="middle">2</text>
+<text x="275.0" y="260.0" text-anchor="middle">3</text>
+<text x="309.0" y="260.0" text-anchor="middle">4</text>
+<text x="343.0" y="260.0" text-anchor="middle">5</text>
+<text x="377.0" y="260.0" text-anchor="middle">6</text>
+<text x="168.0" y="349.5" text-anchor="end">-3</text>
+<text x="168.0" y="315.5" text-anchor="end">-2</text>
+<text x="168.0" y="281.5" text-anchor="end">-1</text>
+<text x="168.0" y="213.5" text-anchor="end">1</text>
+<text x="168.0" y="179.5" text-anchor="end">2</text>
+<text x="168.0" y="145.5" text-anchor="end">3</text>
+<text x="168.0" y="111.5" text-anchor="end">4</text>
+<text x="168.0" y="77.5" text-anchor="end">5</text>
+<text x="168.0" y="43.5" text-anchor="end">6</text>
+<text x="168.0" y="260.0" text-anchor="end" font-style="italic" fill="#475569">O</text>
+</g>
+<polygon points="74.0,176.0 278.0,74.0 346.0,210.0 142.0,312.0" fill="#eff6ff" stroke="#2563eb" stroke-width="1.3" opacity="0.55"/>
+<line x1="74.0" y1="176.0" x2="346.0" y2="210.0" stroke="#1e293b" stroke-width="1.3" stroke-dasharray="5 4"/>
+<line x1="278.0" y1="74.0" x2="142.0" y2="312.0" stroke="#1e293b" stroke-width="1.3" stroke-dasharray="5 4"/>
+<circle cx="74.0" cy="176.0" r="4" fill="#1e293b"/>
+<text x="65.0" y="186.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">A</text>
+<circle cx="278.0" cy="74.0" r="4" fill="#1e293b"/>
+<text x="287.0" y="66.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">B</text>
+<circle cx="346.0" cy="210.0" r="4" fill="#1e293b"/>
+<text x="355.0" y="218.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">C</text>
+<circle cx="142.0" cy="312.0" r="4" fill="#1e293b"/>
+<text x="133.0" y="328.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">D</text>
+<circle cx="210.0" cy="193.0" r="4" fill="#e11d48"/>
+<text x="220.0" y="185.0" font-size="15" font-style="italic" font-weight="600" fill="#e11d48">M</text>
+
+</svg>
+              <div class="rounded-lg bg-white/70 border border-emerald-100 p-4 text-sm space-y-1.5">
+                <p><strong>2)</strong> \(M\) milieu de \([AC]\) signifie que \(x_C=2x_M-x_A=2-(-3)=5\) et \(y_C=2y_M-y_A=3-2=1\).</p>
+                <p class="font-semibold text-emerald-700">D'où : \(C(5;1)\)</p>
+              </div>
+              <div class="rounded-lg bg-white/70 border border-emerald-100 p-4 text-sm space-y-1.5">
+                <p><strong>3)</strong> Milieu de \([BD]\) : \(x=\dfrac{3-1}{2}=1\) ; \(y=\dfrac{5-2}{2}=\dfrac32\), soit le point \(\left(1;\dfrac32\right)=M\).</p>
+                <p class="font-semibold text-emerald-700">Les diagonales \([AC]\) et \([BD]\) ont le même milieu \(M\), donc \(ABCD\) est un parallélogramme.</p>
+              </div>
+              <div class="rounded-lg bg-white/70 border border-emerald-100 p-4 text-sm space-y-1.5">
+                <p><strong>4)</strong> \(BD=\sqrt{(x_D-x_B)^2+(y_D-y_B)^2}=\sqrt{(-1-3)^2+(-2-5)^2}=\sqrt{16+49}=\sqrt{65}\)</p>
+              </div>
+              <div class="rounded-lg bg-white/70 border border-emerald-100 p-4 text-sm space-y-1.5">
+                <p><strong>5)</strong> \(AC=\sqrt{(x_C-x_A)^2+(y_C-y_A)^2}=\sqrt{(5+3)^2+(1-2)^2}=\sqrt{64+1}=\sqrt{65}\)</p>
+                <p class="font-semibold text-emerald-700">Comme \(AC=BD=\sqrt{65}\) (les diagonales sont égales) et \(ABCD\) est un parallélogramme, \(ABCD\) est un rectangle.</p>
+              </div>
+            </div>
+          </div></div>
+        </article>
+
+        <!-- EXERCICE 6 -->
+        <article class="card scroll-mt-24" id="exercice-6">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <h3 class="font-display text-lg font-bold text-slate-900 flex items-center gap-3">
+              <span class="grid place-items-center w-8 h-8 rounded-lg bg-blue-600 text-white text-sm">6</span>
+              Exercice 6
+            </h3>
+            <span class="badge">Parallélogramme ABDC</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-2">\((O;I;J)\) est un repère orthonormé.</p>
+          <ol class="list-decimal list-inside space-y-1.5 text-sm text-slate-700">
+            <li>Placer les points : \(A(2;1)\) ; \(B(3;-2)\) et \(C(-4;-1)\).</li>
+            <li>Trouver les coordonnées des vecteurs \(\overrightarrow{BC}\) et \(\overrightarrow{AC}\).</li>
+            <li>Calculer les distances \(CB\) ; \(AC\) et \(AB\).</li>
+            <li>Trouver les coordonnées du point \(M\) milieu de \([BD]\).</li>
+            <li>Déterminer les coordonnées du point \(D\) pour que \(ABDC\) soit un parallélogramme.</li>
+          </ol>
+          <p class="text-xs text-slate-400 mt-2 italic">Remarque : la question 4 utilise le point \(D\) — on commence donc naturellement par la question 5.</p>
+
+          <button type="button" class="btn-correction mt-5" data-target="sol-ex6" aria-expanded="false">
+            <span class="btn-text">Afficher la correction</span>
+            <svg class="chevron w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="reveal mt-5" id="sol-ex6"><div>
+            <div class="box-solution space-y-3">
+              <p class="font-semibold text-emerald-800">Correction</p>
+              <div class="grid sm:grid-cols-2 gap-5 items-center">
+                <svg viewBox="0 0 386 318" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#e2e8f0" stroke-width="1">
+<line x1="40.0" y1="278.0" x2="40.0" y2="40.0"/>
+<line x1="74.0" y1="278.0" x2="74.0" y2="40.0"/>
+<line x1="108.0" y1="278.0" x2="108.0" y2="40.0"/>
+<line x1="142.0" y1="278.0" x2="142.0" y2="40.0"/>
+<line x1="176.0" y1="278.0" x2="176.0" y2="40.0"/>
+<line x1="210.0" y1="278.0" x2="210.0" y2="40.0"/>
+<line x1="244.0" y1="278.0" x2="244.0" y2="40.0"/>
+<line x1="278.0" y1="278.0" x2="278.0" y2="40.0"/>
+<line x1="312.0" y1="278.0" x2="312.0" y2="40.0"/>
+<line x1="346.0" y1="278.0" x2="346.0" y2="40.0"/>
+<line x1="40.0" y1="278.0" x2="346.0" y2="278.0"/>
+<line x1="40.0" y1="244.0" x2="346.0" y2="244.0"/>
+<line x1="40.0" y1="210.0" x2="346.0" y2="210.0"/>
+<line x1="40.0" y1="176.0" x2="346.0" y2="176.0"/>
+<line x1="40.0" y1="142.0" x2="346.0" y2="142.0"/>
+<line x1="40.0" y1="108.0" x2="346.0" y2="108.0"/>
+<line x1="40.0" y1="74.0" x2="346.0" y2="74.0"/>
+<line x1="40.0" y1="40.0" x2="346.0" y2="40.0"/>
+</g>
+<line x1="26.0" y1="108.0" x2="364.0" y2="108.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="366.0" y="113.0" font-size="13" fill="#475569" font-style="italic">x</text>
+<line x1="210.0" y1="292.0" x2="210.0" y2="22.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="196.0" y="18.0" font-size="13" fill="#475569" font-style="italic">y</text>
+<g font-size="10.5" fill="#94a3b8" font-family="sans-serif">
+<text x="37.0" y="124.0" text-anchor="middle">-5</text>
+<text x="71.0" y="124.0" text-anchor="middle">-4</text>
+<text x="105.0" y="124.0" text-anchor="middle">-3</text>
+<text x="139.0" y="124.0" text-anchor="middle">-2</text>
+<text x="173.0" y="124.0" text-anchor="middle">-1</text>
+<text x="241.0" y="124.0" text-anchor="middle">1</text>
+<text x="275.0" y="124.0" text-anchor="middle">2</text>
+<text x="309.0" y="124.0" text-anchor="middle">3</text>
+<text x="343.0" y="124.0" text-anchor="middle">4</text>
+<text x="202.0" y="281.5" text-anchor="end">-5</text>
+<text x="202.0" y="247.5" text-anchor="end">-4</text>
+<text x="202.0" y="213.5" text-anchor="end">-3</text>
+<text x="202.0" y="179.5" text-anchor="end">-2</text>
+<text x="202.0" y="145.5" text-anchor="end">-1</text>
+<text x="202.0" y="77.5" text-anchor="end">1</text>
+<text x="202.0" y="43.5" text-anchor="end">2</text>
+<text x="202.0" y="124.0" text-anchor="end" font-style="italic" fill="#475569">O</text>
+</g>
+<polygon points="278.0,74.0 312.0,176.0 108.0,244.0 74.0,142.0" fill="#eff6ff" stroke="#2563eb" stroke-width="1.3" opacity="0.55"/>
+<line x1="278.0" y1="74.0" x2="108.0" y2="244.0" stroke="#1e293b" stroke-width="1.3" stroke-dasharray="5 4"/>
+<line x1="312.0" y1="176.0" x2="74.0" y2="142.0" stroke="#1e293b" stroke-width="1.3" stroke-dasharray="5 4"/>
+<circle cx="278.0" cy="74.0" r="4" fill="#1e293b"/>
+<text x="287.0" y="66.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">A</text>
+<circle cx="312.0" cy="176.0" r="4" fill="#1e293b"/>
+<text x="321.0" y="180.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">B</text>
+<circle cx="74.0" cy="142.0" r="4" fill="#1e293b"/>
+<text x="65.0" y="133.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">C</text>
+<circle cx="108.0" cy="244.0" r="4" fill="#1e293b"/>
+<text x="99.0" y="260.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">D</text>
+<circle cx="210.0" cy="210.0" r="4" fill="#e11d48"/>
+<text x="202.0" y="227.0" font-size="15" font-style="italic" font-weight="600" fill="#e11d48">M</text>
+
+</svg>
+                <div class="text-sm space-y-2">
+                  <p><strong>2)</strong> \(\overrightarrow{BC}(x_C-x_B\,;\,y_C-y_B)=(-4-3\,;\,-1+2)=(-7;1)\)</p>
+                  <p>\(\overrightarrow{AC}(x_C-x_A\,;\,y_C-y_A)=(-4-2\,;\,-1-1)=(-6;-2)\)</p>
+                  <p class="mt-2"><strong>3)</strong> \(CB=\sqrt{(-7)^2+1^2}=\sqrt{50}=5\sqrt2\)</p>
+                  <p>\(AC=\sqrt{(-6)^2+(-2)^2}=\sqrt{40}=2\sqrt{10}\)</p>
+                  <p>\(AB=\sqrt{(3-2)^2+(-2-1)^2}=\sqrt{1+9}=\sqrt{10}\)</p>
+                </div>
+              </div>
+              <div class="rounded-lg bg-white/70 border border-emerald-100 p-4 text-sm space-y-1.5">
+                <p><strong>5) (résolue avant la question 4)</strong> \(ABDC\) parallélogramme signifie que ses diagonales \([AD]\) et \([BC]\) ont le même milieu.</p>
+                <p>Milieu de \([BC]\) : \(\left(\dfrac{3-4}{2}\,;\,\dfrac{-2-1}{2}\right)=\left(-\dfrac12\,;\,-\dfrac32\right)\)</p>
+                <p>Donc \(x_D=2\times\left(-\dfrac12\right)-x_A=-1-2=-3\) et \(y_D=2\times\left(-\dfrac32\right)-y_A=-3-1=-4\).</p>
+                <p class="font-semibold text-emerald-700">D'où : \(D(-3;-4)\)</p>
+              </div>
+              <div class="rounded-lg bg-white/70 border border-emerald-100 p-4 text-sm space-y-1.5">
+                <p><strong>4)</strong> \(M\) milieu de \([BD]\) : \(x_M=\dfrac{3-3}{2}=0\) ; \(y_M=\dfrac{-2-4}{2}=-3\)</p>
+                <p class="font-semibold text-emerald-700">D'où : \(M(0;-3)\)</p>
+              </div>
+            </div>
+          </div></div>
+        </article>
+
+
+        <!-- EXERCICE 7 -->
+        <article class="card scroll-mt-24" id="exercice-7">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <h3 class="font-display text-lg font-bold text-slate-900 flex items-center gap-3">
+              <span class="grid place-items-center w-8 h-8 rounded-lg bg-cyan-600 text-white text-sm">7</span>
+              Exercice 7
+            </h3>
+            <span class="badge">Casablanca 2021 — Alignement</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-2">Dans le plan muni d'un repère orthonormé \((O;E;F)\), on considère les points : \(A(2;2)\) ; \(B(-2;-1)\) et \(C(2;-3)\).</p>
+          <ol class="list-decimal list-inside space-y-1.5 text-sm text-slate-700">
+            <li>Placer les points \(A\), \(B\) et \(C\).</li>
+            <li>a) Calculer les distances \(AB\) et \(AC\). &nbsp; b) En déduire que \(ABC\) est un triangle isocèle.</li>
+            <li>\(I\) et \(J\) deux milieux respectifs de \([BC]\) et \([AC]\). Soit \(G\) un point tel que : \(\overrightarrow{AG}=\dfrac{2}{3}\overrightarrow{AI}\).
+              <br>a) Montrer que les points \(B\), \(G\) et \(J\) sont alignés.</li>
+          </ol>
+
+          <button type="button" class="btn-correction mt-5" data-target="sol-ex7" aria-expanded="false">
+            <span class="btn-text">Afficher la correction</span>
+            <svg class="chevron w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="reveal mt-5" id="sol-ex7"><div>
+            <div class="box-solution space-y-3">
+              <p class="font-semibold text-emerald-800">Correction</p>
+              <div class="grid sm:grid-cols-2 gap-5 items-center">
+                <svg viewBox="0 0 284 318" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#e2e8f0" stroke-width="1">
+<line x1="40.0" y1="278.0" x2="40.0" y2="40.0"/>
+<line x1="74.0" y1="278.0" x2="74.0" y2="40.0"/>
+<line x1="108.0" y1="278.0" x2="108.0" y2="40.0"/>
+<line x1="142.0" y1="278.0" x2="142.0" y2="40.0"/>
+<line x1="176.0" y1="278.0" x2="176.0" y2="40.0"/>
+<line x1="210.0" y1="278.0" x2="210.0" y2="40.0"/>
+<line x1="244.0" y1="278.0" x2="244.0" y2="40.0"/>
+<line x1="40.0" y1="278.0" x2="244.0" y2="278.0"/>
+<line x1="40.0" y1="244.0" x2="244.0" y2="244.0"/>
+<line x1="40.0" y1="210.0" x2="244.0" y2="210.0"/>
+<line x1="40.0" y1="176.0" x2="244.0" y2="176.0"/>
+<line x1="40.0" y1="142.0" x2="244.0" y2="142.0"/>
+<line x1="40.0" y1="108.0" x2="244.0" y2="108.0"/>
+<line x1="40.0" y1="74.0" x2="244.0" y2="74.0"/>
+<line x1="40.0" y1="40.0" x2="244.0" y2="40.0"/>
+</g>
+<line x1="26.0" y1="142.0" x2="262.0" y2="142.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="264.0" y="147.0" font-size="13" fill="#475569" font-style="italic">x</text>
+<line x1="142.0" y1="292.0" x2="142.0" y2="22.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="128.0" y="18.0" font-size="13" fill="#475569" font-style="italic">y</text>
+<g font-size="10.5" fill="#94a3b8" font-family="sans-serif">
+<text x="37.0" y="158.0" text-anchor="middle">-3</text>
+<text x="71.0" y="158.0" text-anchor="middle">-2</text>
+<text x="105.0" y="158.0" text-anchor="middle">-1</text>
+<text x="173.0" y="158.0" text-anchor="middle">1</text>
+<text x="207.0" y="158.0" text-anchor="middle">2</text>
+<text x="241.0" y="158.0" text-anchor="middle">3</text>
+<text x="134.0" y="281.5" text-anchor="end">-4</text>
+<text x="134.0" y="247.5" text-anchor="end">-3</text>
+<text x="134.0" y="213.5" text-anchor="end">-2</text>
+<text x="134.0" y="179.5" text-anchor="end">-1</text>
+<text x="134.0" y="111.5" text-anchor="end">1</text>
+<text x="134.0" y="77.5" text-anchor="end">2</text>
+<text x="134.0" y="43.5" text-anchor="end">3</text>
+<text x="134.0" y="158.0" text-anchor="end" font-style="italic" fill="#475569">O</text>
+</g>
+<polygon points="210.0,74.0 74.0,176.0 210.0,244.0" fill="#eff6ff" stroke="#2563eb" stroke-width="1.3" opacity="0.5"/>
+<line x1="74.0" y1="176.0" x2="210.0" y2="159.0" stroke="#e11d48" stroke-width="1.8"/>
+<line x1="210.0" y1="74.0" x2="142.0" y2="210.0" stroke="#d97706" stroke-width="1.3" stroke-dasharray="5 4"/>
+<circle cx="210.0" cy="74.0" r="4" fill="#1e293b"/>
+<text x="219.0" y="66.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">A</text>
+<circle cx="74.0" cy="176.0" r="4" fill="#1e293b"/>
+<text x="65.0" y="167.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">B</text>
+<circle cx="210.0" cy="244.0" r="4" fill="#1e293b"/>
+<text x="219.0" y="254.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">C</text>
+<circle cx="142.0" cy="210.0" r="4" fill="#d97706"/>
+<text x="134.0" y="227.0" font-size="15" font-style="italic" font-weight="600" fill="#d97706">I</text>
+<circle cx="210.0" cy="159.0" r="4" fill="#059669"/>
+<text x="219.0" y="153.0" font-size="15" font-style="italic" font-weight="600" fill="#059669">J</text>
+<circle cx="164.7" cy="164.7" r="4" fill="#e11d48"/>
+<text x="170.7" y="181.7" font-size="15" font-style="italic" font-weight="600" fill="#e11d48">G</text>
+
+</svg>
+                <div class="text-sm space-y-2">
+                  <p><strong>2) a)</strong> \(AB=\sqrt{(-2-2)^2+(-1-2)^2}=\sqrt{16+9}=\sqrt{25}=5\)</p>
+                  <p>\(AC=\sqrt{(2-2)^2+(-3-2)^2}=\sqrt{0+25}=5\)</p>
+                  <p class="font-semibold text-emerald-700"><strong>b)</strong> Comme \(AB=AC=5\), le triangle \(ABC\) est isocèle en \(A\).</p>
+                </div>
+              </div>
+              <div class="rounded-lg bg-white/70 border border-emerald-100 p-4 text-sm space-y-1.5">
+                <p><strong>3)</strong> \(I\) milieu \([BC]\) : \(I(0;-2)\). &nbsp; \(J\) milieu \([AC]\) : \(J\!\left(2;-\dfrac12\right)\).</p>
+                <p>\(\overrightarrow{AI}(x_I-x_A\,;\,y_I-y_A)=(0-2\,;\,-2-2)=(-2;-4)\), donc \(\dfrac23\overrightarrow{AI}=\left(-\dfrac43\,;\,-\dfrac83\right)\).</p>
+                <p>\(\overrightarrow{AG}=\dfrac23\overrightarrow{AI}\) donne : \(x_G=x_A-\dfrac43=\dfrac23\) et \(y_G=y_A-\dfrac83=-\dfrac23\), soit \(G\!\left(\dfrac23;-\dfrac23\right)\).</p>
+              </div>
+              <div class="rounded-lg bg-white/70 border border-emerald-100 p-4 text-sm space-y-1.5">
+                <p><strong>a)</strong> \(\overrightarrow{BG}(x_G-x_B\,;\,y_G-y_B)=\left(\dfrac23+2\,;\,-\dfrac23+1\right)=\left(\dfrac83\,;\,\dfrac13\right)\)</p>
+                <p>\(\overrightarrow{BJ}(x_J-x_B\,;\,y_J-y_B)=\left(2+2\,;\,-\dfrac12+1\right)=\left(4\,;\,\dfrac12\right)\)</p>
+                <p>On remarque que : \(\dfrac23\,\overrightarrow{BJ}=\dfrac23\left(4;\dfrac12\right)=\left(\dfrac83;\dfrac13\right)=\overrightarrow{BG}\)</p>
+                <p class="font-semibold text-emerald-700">Comme \(\overrightarrow{BG}=\dfrac23\overrightarrow{BJ}\), les vecteurs \(\overrightarrow{BG}\) et \(\overrightarrow{BJ}\) sont colinéaires : les points \(B\), \(G\) et \(J\) sont alignés.</p>
+              </div>
+            </div>
+          </div></div>
+        </article>
+
+        <!-- EXERCICE 8 -->
+        <article class="card scroll-mt-24" id="exercice-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <h3 class="font-display text-lg font-bold text-slate-900 flex items-center gap-3">
+              <span class="grid place-items-center w-8 h-8 rounded-lg bg-cyan-600 text-white text-sm">8</span>
+              Exercice 8
+            </h3>
+            <span class="badge">Région Béni Mellal 2021</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-2">Le plan est rapporté à un repère orthonormé \((O;I;J)\). On considère les points : \(A(1;3)\) ; \(B(3;-1)\) et \(C(4;2)\).</p>
+          <ol class="list-decimal list-inside space-y-1.5 text-sm text-slate-700">
+            <li>Déterminer les coordonnées du vecteur \(\overrightarrow{AC}\).</li>
+            <li>Calculer les distances \(AC\) et \(BC\).</li>
+            <li>Soit \(H\) le milieu du segment \([AB]\). Montrer que le point \(H\) a pour coordonnées \((2;1)\).</li>
+            <li>a) Déterminer les coordonnées de \(\overrightarrow{OH}-\overrightarrow{HC}\). &nbsp; b) Montrer que \(H\) est le milieu de \([OC]\).</li>
+            <li>Construire dans le même repère le point \(H\) et les droites \((AB)\) et \((OC)\).</li>
+          </ol>
+
+          <button type="button" class="btn-correction mt-5" data-target="sol-ex8" aria-expanded="false">
+            <span class="btn-text">Afficher la correction</span>
+            <svg class="chevron w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="reveal mt-5" id="sol-ex8"><div>
+            <div class="box-solution space-y-3">
+              <p class="font-semibold text-emerald-800">Correction</p>
+              <div class="grid sm:grid-cols-2 gap-5 items-center">
+                <svg viewBox="0 0 284 284" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#e2e8f0" stroke-width="1">
+<line x1="40.0" y1="244.0" x2="40.0" y2="40.0"/>
+<line x1="74.0" y1="244.0" x2="74.0" y2="40.0"/>
+<line x1="108.0" y1="244.0" x2="108.0" y2="40.0"/>
+<line x1="142.0" y1="244.0" x2="142.0" y2="40.0"/>
+<line x1="176.0" y1="244.0" x2="176.0" y2="40.0"/>
+<line x1="210.0" y1="244.0" x2="210.0" y2="40.0"/>
+<line x1="244.0" y1="244.0" x2="244.0" y2="40.0"/>
+<line x1="40.0" y1="244.0" x2="244.0" y2="244.0"/>
+<line x1="40.0" y1="210.0" x2="244.0" y2="210.0"/>
+<line x1="40.0" y1="176.0" x2="244.0" y2="176.0"/>
+<line x1="40.0" y1="142.0" x2="244.0" y2="142.0"/>
+<line x1="40.0" y1="108.0" x2="244.0" y2="108.0"/>
+<line x1="40.0" y1="74.0" x2="244.0" y2="74.0"/>
+<line x1="40.0" y1="40.0" x2="244.0" y2="40.0"/>
+</g>
+<line x1="26.0" y1="176.0" x2="262.0" y2="176.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="264.0" y="181.0" font-size="13" fill="#475569" font-style="italic">x</text>
+<line x1="74.0" y1="258.0" x2="74.0" y2="22.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="60.0" y="18.0" font-size="13" fill="#475569" font-style="italic">y</text>
+<g font-size="10.5" fill="#94a3b8" font-family="sans-serif">
+<text x="37.0" y="192.0" text-anchor="middle">-1</text>
+<text x="105.0" y="192.0" text-anchor="middle">1</text>
+<text x="139.0" y="192.0" text-anchor="middle">2</text>
+<text x="173.0" y="192.0" text-anchor="middle">3</text>
+<text x="207.0" y="192.0" text-anchor="middle">4</text>
+<text x="241.0" y="192.0" text-anchor="middle">5</text>
+<text x="66.0" y="247.5" text-anchor="end">-2</text>
+<text x="66.0" y="213.5" text-anchor="end">-1</text>
+<text x="66.0" y="145.5" text-anchor="end">1</text>
+<text x="66.0" y="111.5" text-anchor="end">2</text>
+<text x="66.0" y="77.5" text-anchor="end">3</text>
+<text x="66.0" y="43.5" text-anchor="end">4</text>
+<text x="66.0" y="192.0" text-anchor="end" font-style="italic" fill="#475569">O</text>
+</g>
+<line x1="108.0" y1="74.0" x2="176.0" y2="210.0" stroke="#1e293b" stroke-width="1.6"/>
+<line x1="74.0" y1="176.0" x2="210.0" y2="108.0" stroke="#059669" stroke-width="1.8"/>
+<line x1="108.0" y1="74.0" x2="210.0" y2="108.0" stroke="#1e293b" stroke-width="1.3" stroke-dasharray="5 4"/>
+<line x1="176.0" y1="210.0" x2="210.0" y2="108.0" stroke="#1e293b" stroke-width="1.3" stroke-dasharray="5 4"/>
+<circle cx="108.0" cy="74.0" r="4" fill="#1e293b"/>
+<text x="100.0" y="64.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">A</text>
+<circle cx="176.0" cy="210.0" r="4" fill="#1e293b"/>
+<text x="185.0" y="224.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">B</text>
+<circle cx="210.0" cy="108.0" r="4" fill="#1e293b"/>
+<text x="219.0" y="104.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">C</text>
+<circle cx="142.0" cy="142.0" r="4" fill="#e11d48"/>
+<text x="126.0" y="152.0" font-size="15" font-style="italic" font-weight="600" fill="#e11d48">H</text>
+<circle cx="74.0" cy="176.0" r="4" fill="#1e293b"/>
+<text x="60.0" y="190.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">O</text>
+
+</svg>
+                <div class="text-sm space-y-2">
+                  <p><strong>1)</strong> \(\overrightarrow{AC}(x_C-x_A\,;\,y_C-y_A)=(4-1\,;\,2-3)=(3;-1)\)</p>
+                  <p><strong>2)</strong> \(AC=\sqrt{3^2+(-1)^2}=\sqrt{10}\)</p>
+                  <p>\(BC=\sqrt{(4-3)^2+(2+1)^2}=\sqrt{1+9}=\sqrt{10}\)</p>
+                </div>
+              </div>
+              <div class="rounded-lg bg-white/70 border border-emerald-100 p-4 text-sm space-y-1.5">
+                <p><strong>3)</strong> \(H\) milieu de \([AB]\) : \(x_H=\dfrac{1+3}{2}=2\) ; \(y_H=\dfrac{3-1}{2}=1\), d'où \(H(2;1)\), ce qui correspond bien aux coordonnées annoncées.</p>
+              </div>
+              <div class="rounded-lg bg-white/70 border border-emerald-100 p-4 text-sm space-y-1.5">
+                <p><strong>4) a)</strong> \(O\) étant l'origine, \(\overrightarrow{OH}(x_H;y_H)=(2;1)\). &nbsp; \(\overrightarrow{HC}(x_C-x_H\,;\,y_C-y_H)=(4-2\,;\,2-1)=(2;1)\).</p>
+                <p>\(\overrightarrow{OH}-\overrightarrow{HC}=(2-2\,;\,1-1)=(0;0)=\vec 0\)</p>
+                <p><strong>b)</strong> Comme \(\overrightarrow{OH}-\overrightarrow{HC}=\vec 0\), on a \(\overrightarrow{OH}=\overrightarrow{HC}\), donc \(H\) est le milieu du segment \([OC]\) (ce que l'on peut vérifier directement : milieu de \([OC]=\left(\dfrac{0+4}{2};\dfrac{0+2}{2}\right)=(2;1)=H\)).</p>
+                <p class="text-xs text-slate-500 mt-1">Les droites \((AB)\) et \((OC)\) se coupent donc exactement au point \(H\), milieu commun des deux segments.</p>
+              </div>
+            </div>
+          </div></div>
+        </article>
+
+        <!-- EXERCICE 9 -->
+        <article class="card scroll-mt-24" id="exercice-9">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <h3 class="font-display text-lg font-bold text-slate-900 flex items-center gap-3">
+              <span class="grid place-items-center w-8 h-8 rounded-lg bg-cyan-600 text-white text-sm">9</span>
+              Exercice 9
+            </h3>
+            <span class="badge">Région Casablanca 2019</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-2">Dans le plan rapporté à un repère orthonormé \((O;I;J)\), on considère les points : \(A(0;2)\) ; \(B(1;0)\) et \(C(4;4)\).</p>
+          <ol class="list-decimal list-inside space-y-1.5 text-sm text-slate-700">
+            <li>Déterminer les coordonnées du vecteur \(\overrightarrow{AB}\) ; puis calculer la distance \(AB\).</li>
+            <li>Montrer que \(ABC\) est un triangle rectangle.</li>
+            <li>Calculer l'aire du triangle \(ABC\).</li>
+          </ol>
+
+          <button type="button" class="btn-correction mt-5" data-target="sol-ex9" aria-expanded="false">
+            <span class="btn-text">Afficher la correction</span>
+            <svg class="chevron w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="reveal mt-5" id="sol-ex9"><div>
+            <div class="box-solution space-y-3">
+              <p class="font-semibold text-emerald-800">Correction</p>
+              <div class="grid sm:grid-cols-2 gap-5 items-center">
+                <svg viewBox="0 0 284 284" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#e2e8f0" stroke-width="1">
+<line x1="40.0" y1="244.0" x2="40.0" y2="40.0"/>
+<line x1="74.0" y1="244.0" x2="74.0" y2="40.0"/>
+<line x1="108.0" y1="244.0" x2="108.0" y2="40.0"/>
+<line x1="142.0" y1="244.0" x2="142.0" y2="40.0"/>
+<line x1="176.0" y1="244.0" x2="176.0" y2="40.0"/>
+<line x1="210.0" y1="244.0" x2="210.0" y2="40.0"/>
+<line x1="244.0" y1="244.0" x2="244.0" y2="40.0"/>
+<line x1="40.0" y1="244.0" x2="244.0" y2="244.0"/>
+<line x1="40.0" y1="210.0" x2="244.0" y2="210.0"/>
+<line x1="40.0" y1="176.0" x2="244.0" y2="176.0"/>
+<line x1="40.0" y1="142.0" x2="244.0" y2="142.0"/>
+<line x1="40.0" y1="108.0" x2="244.0" y2="108.0"/>
+<line x1="40.0" y1="74.0" x2="244.0" y2="74.0"/>
+<line x1="40.0" y1="40.0" x2="244.0" y2="40.0"/>
+</g>
+<line x1="26.0" y1="210.0" x2="262.0" y2="210.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="264.0" y="215.0" font-size="13" fill="#475569" font-style="italic">x</text>
+<line x1="74.0" y1="258.0" x2="74.0" y2="22.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="60.0" y="18.0" font-size="13" fill="#475569" font-style="italic">y</text>
+<g font-size="10.5" fill="#94a3b8" font-family="sans-serif">
+<text x="37.0" y="226.0" text-anchor="middle">-1</text>
+<text x="105.0" y="226.0" text-anchor="middle">1</text>
+<text x="139.0" y="226.0" text-anchor="middle">2</text>
+<text x="173.0" y="226.0" text-anchor="middle">3</text>
+<text x="207.0" y="226.0" text-anchor="middle">4</text>
+<text x="241.0" y="226.0" text-anchor="middle">5</text>
+<text x="66.0" y="247.5" text-anchor="end">-1</text>
+<text x="66.0" y="179.5" text-anchor="end">1</text>
+<text x="66.0" y="145.5" text-anchor="end">2</text>
+<text x="66.0" y="111.5" text-anchor="end">3</text>
+<text x="66.0" y="77.5" text-anchor="end">4</text>
+<text x="66.0" y="43.5" text-anchor="end">5</text>
+<text x="66.0" y="226.0" text-anchor="end" font-style="italic" fill="#475569">O</text>
+</g>
+<polygon points="74.0,142.0 108.0,210.0 210.0,74.0" fill="#eff6ff" stroke="#2563eb" stroke-width="1.3" opacity="0.4"/>
+<path d="M79.8,153.6 L91.4,147.8 L85.6,136.2" fill="none" stroke="#475569" stroke-width="1.5"/>
+<line x1="74.0" y1="142.0" x2="108.0" y2="210.0" stroke="#1e293b" stroke-width="1.8"/>
+<line x1="74.0" y1="142.0" x2="210.0" y2="74.0" stroke="#1e293b" stroke-width="1.8"/>
+<line x1="108.0" y1="210.0" x2="210.0" y2="74.0" stroke="#2563eb" stroke-width="1.8"/>
+<circle cx="74.0" cy="142.0" r="4" fill="#1e293b"/>
+<text x="60.0" y="148.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">A</text>
+<circle cx="108.0" cy="210.0" r="4" fill="#1e293b"/>
+<text x="114.0" y="227.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">B</text>
+<circle cx="210.0" cy="74.0" r="4" fill="#1e293b"/>
+<text x="219.0" y="68.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">C</text>
+
+</svg>
+                <div class="text-sm space-y-2">
+                  <p><strong>1)</strong> \(\overrightarrow{AB}(x_B-x_A\,;\,y_B-y_A)=(1-0\,;\,0-2)=(1;-2)\)</p>
+                  <p>\(AB=\sqrt{1^2+(-2)^2}=\sqrt{1+4}=\sqrt5\)</p>
+                </div>
+              </div>
+              <div class="rounded-lg bg-white/70 border border-emerald-100 p-4 text-sm space-y-1.5">
+                <p><strong>2)</strong> Calculons les trois côtés : \(AB=\sqrt5\) (question 1).</p>
+                <p>\(AC=\sqrt{(4-0)^2+(4-2)^2}=\sqrt{16+4}=\sqrt{20}=2\sqrt5\)</p>
+                <p>\(BC=\sqrt{(4-1)^2+(4-0)^2}=\sqrt{9+16}=\sqrt{25}=5\)</p>
+                <p>Or \(AB^2+AC^2=5+20=25=BC^2\).</p>
+                <p class="font-semibold text-emerald-700">D'après la réciproque du théorème de Pythagore, le triangle \(ABC\) est rectangle en \(A\).</p>
+              </div>
+              <div class="rounded-lg bg-white/70 border border-emerald-100 p-4 text-sm space-y-1.5">
+                <p><strong>3)</strong> \(ABC\) étant rectangle en \(A\), les côtés \([AB]\) et \([AC]\) sont les côtés de l'angle droit :</p>
+                <p>\(\text{Aire}=\dfrac{AB\times AC}{2}=\dfrac{\sqrt5\times2\sqrt5}{2}=\dfrac{2\times5}{2}=5\)</p>
+                <p class="font-semibold text-emerald-700">D'où : l'aire du triangle \(ABC\) est \(5\) unités d'aire.</p>
+              </div>
+            </div>
+          </div></div>
+        </article>
+
+        <!-- EXERCICE 10 -->
+        <article class="card scroll-mt-24" id="exercice-10">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <h3 class="font-display text-lg font-bold text-slate-900 flex items-center gap-3">
+              <span class="grid place-items-center w-8 h-8 rounded-lg bg-cyan-600 text-white text-sm">10</span>
+              Exercice 10
+            </h3>
+            <span class="badge">Région Marrakech 2019</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-2">Dans le plan muni d'un repère orthonormé \((O;I;J)\), on considère les points : \(A(4;4)\) ; \(B(1;5)\) et \(C(3;1)\).</p>
+          <ol class="list-decimal list-inside space-y-1.5 text-sm text-slate-700">
+            <li>Représenter les points \(A\), \(B\) et \(C\) dans le repère \((O;I;J)\).</li>
+            <li>a) Déterminer les coordonnées du vecteur \(\overrightarrow{AB}\). &nbsp; b) Vérifier que \(AB=\sqrt{10}\). &nbsp; c) Vérifier que \(K(2;3)\) est le milieu de \([BC]\).</li>
+          </ol>
+
+          <button type="button" class="btn-correction mt-5" data-target="sol-ex10" aria-expanded="false">
+            <span class="btn-text">Afficher la correction</span>
+            <svg class="chevron w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="reveal mt-5" id="sol-ex10"><div>
+            <div class="box-solution space-y-3">
+              <p class="font-semibold text-emerald-800">Correction</p>
+              <div class="grid sm:grid-cols-2 gap-5 items-center">
+                <svg viewBox="0 0 250 284" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#e2e8f0" stroke-width="1">
+<line x1="40.0" y1="244.0" x2="40.0" y2="40.0"/>
+<line x1="74.0" y1="244.0" x2="74.0" y2="40.0"/>
+<line x1="108.0" y1="244.0" x2="108.0" y2="40.0"/>
+<line x1="142.0" y1="244.0" x2="142.0" y2="40.0"/>
+<line x1="176.0" y1="244.0" x2="176.0" y2="40.0"/>
+<line x1="210.0" y1="244.0" x2="210.0" y2="40.0"/>
+<line x1="40.0" y1="244.0" x2="210.0" y2="244.0"/>
+<line x1="40.0" y1="210.0" x2="210.0" y2="210.0"/>
+<line x1="40.0" y1="176.0" x2="210.0" y2="176.0"/>
+<line x1="40.0" y1="142.0" x2="210.0" y2="142.0"/>
+<line x1="40.0" y1="108.0" x2="210.0" y2="108.0"/>
+<line x1="40.0" y1="74.0" x2="210.0" y2="74.0"/>
+<line x1="40.0" y1="40.0" x2="210.0" y2="40.0"/>
+</g>
+<line x1="26.0" y1="244.0" x2="228.0" y2="244.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="230.0" y="249.0" font-size="13" fill="#475569" font-style="italic">x</text>
+<line x1="40.0" y1="258.0" x2="40.0" y2="22.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="26.0" y="18.0" font-size="13" fill="#475569" font-style="italic">y</text>
+<g font-size="10.5" fill="#94a3b8" font-family="sans-serif">
+<text x="71.0" y="260.0" text-anchor="middle">1</text>
+<text x="105.0" y="260.0" text-anchor="middle">2</text>
+<text x="139.0" y="260.0" text-anchor="middle">3</text>
+<text x="173.0" y="260.0" text-anchor="middle">4</text>
+<text x="207.0" y="260.0" text-anchor="middle">5</text>
+<text x="32.0" y="213.5" text-anchor="end">1</text>
+<text x="32.0" y="179.5" text-anchor="end">2</text>
+<text x="32.0" y="145.5" text-anchor="end">3</text>
+<text x="32.0" y="111.5" text-anchor="end">4</text>
+<text x="32.0" y="77.5" text-anchor="end">5</text>
+<text x="32.0" y="43.5" text-anchor="end">6</text>
+<text x="32.0" y="260.0" text-anchor="end" font-style="italic" fill="#475569">O</text>
+</g>
+<line x1="176.0" y1="108.0" x2="74.0" y2="74.0" stroke="#1e293b" stroke-width="1.6"/>
+<line x1="74.0" y1="74.0" x2="142.0" y2="210.0" stroke="#1e293b" stroke-width="1.6"/>
+<line x1="142.0" y1="210.0" x2="176.0" y2="108.0" stroke="#1e293b" stroke-width="1.6"/>
+<circle cx="176.0" cy="108.0" r="4" fill="#1e293b"/>
+<text x="185.0" y="102.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">A</text>
+<circle cx="74.0" cy="74.0" r="4" fill="#1e293b"/>
+<text x="65.0" y="65.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">B</text>
+<circle cx="142.0" cy="210.0" r="4" fill="#1e293b"/>
+<text x="151.0" y="224.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">C</text>
+<circle cx="108.0" cy="142.0" r="4" fill="#e11d48"/>
+<text x="91.0" y="146.0" font-size="15" font-style="italic" font-weight="600" fill="#e11d48">K</text>
+
+</svg>
+                <div class="text-sm space-y-2">
+                  <p><strong>2) a)</strong> \(\overrightarrow{AB}(x_B-x_A\,;\,y_B-y_A)=(1-4\,;\,5-4)=(-3;1)\)</p>
+                  <p><strong>b)</strong> \(AB=\sqrt{(-3)^2+1^2}=\sqrt{9+1}=\sqrt{10}\). On retrouve bien \(AB=\sqrt{10}\). ✓</p>
+                  <p><strong>c)</strong> Milieu de \([BC]\) : \(x=\dfrac{1+3}{2}=2\) ; \(y=\dfrac{5+1}{2}=3\).</p>
+                  <p class="font-semibold text-emerald-700">On retrouve \((2;3)=K\) : \(K\) est bien le milieu de \([BC]\). ✓</p>
+                </div>
+              </div>
+            </div>
+          </div></div>
+        </article>
+
+        <!-- EXERCICE 11 -->
+        <article class="card scroll-mt-24" id="exercice-11">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <h3 class="font-display text-lg font-bold text-slate-900 flex items-center gap-3">
+              <span class="grid place-items-center w-8 h-8 rounded-lg bg-cyan-600 text-white text-sm">11</span>
+              Exercice 11
+            </h3>
+            <span class="badge">Région Casablanca 2018</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-2">Dans le plan muni d'un repère orthonormé \((O;I;J)\), on considère les points : \(A(1;7)\) ; \(B(-6;3)\) et \(C(0;-1)\).</p>
+          <ol class="list-decimal list-inside space-y-1.5 text-sm text-slate-700">
+            <li>Calculer la distance \(AB\).</li>
+            <li>Montrer que \(ABC\) est un triangle isocèle en \(A\).</li>
+            <li>Déterminer le couple de coordonnées du point \(L\) milieu de \([BC]\).</li>
+          </ol>
+
+          <button type="button" class="btn-correction mt-5" data-target="sol-ex11" aria-expanded="false">
+            <span class="btn-text">Afficher la correction</span>
+            <svg class="chevron w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="reveal mt-5" id="sol-ex11"><div>
+            <div class="box-solution space-y-3">
+              <p class="font-semibold text-emerald-800">Correction</p>
+              <div class="grid sm:grid-cols-2 gap-5 items-center">
+                <svg viewBox="0 0 386 420" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#e2e8f0" stroke-width="1">
+<line x1="40.0" y1="380.0" x2="40.0" y2="40.0"/>
+<line x1="74.0" y1="380.0" x2="74.0" y2="40.0"/>
+<line x1="108.0" y1="380.0" x2="108.0" y2="40.0"/>
+<line x1="142.0" y1="380.0" x2="142.0" y2="40.0"/>
+<line x1="176.0" y1="380.0" x2="176.0" y2="40.0"/>
+<line x1="210.0" y1="380.0" x2="210.0" y2="40.0"/>
+<line x1="244.0" y1="380.0" x2="244.0" y2="40.0"/>
+<line x1="278.0" y1="380.0" x2="278.0" y2="40.0"/>
+<line x1="312.0" y1="380.0" x2="312.0" y2="40.0"/>
+<line x1="346.0" y1="380.0" x2="346.0" y2="40.0"/>
+<line x1="40.0" y1="380.0" x2="346.0" y2="380.0"/>
+<line x1="40.0" y1="346.0" x2="346.0" y2="346.0"/>
+<line x1="40.0" y1="312.0" x2="346.0" y2="312.0"/>
+<line x1="40.0" y1="278.0" x2="346.0" y2="278.0"/>
+<line x1="40.0" y1="244.0" x2="346.0" y2="244.0"/>
+<line x1="40.0" y1="210.0" x2="346.0" y2="210.0"/>
+<line x1="40.0" y1="176.0" x2="346.0" y2="176.0"/>
+<line x1="40.0" y1="142.0" x2="346.0" y2="142.0"/>
+<line x1="40.0" y1="108.0" x2="346.0" y2="108.0"/>
+<line x1="40.0" y1="74.0" x2="346.0" y2="74.0"/>
+<line x1="40.0" y1="40.0" x2="346.0" y2="40.0"/>
+</g>
+<line x1="26.0" y1="312.0" x2="364.0" y2="312.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="366.0" y="317.0" font-size="13" fill="#475569" font-style="italic">x</text>
+<line x1="278.0" y1="394.0" x2="278.0" y2="22.0" stroke="#475569" stroke-width="1.8" marker-end="url(#arr-slate)"/>
+<text x="264.0" y="18.0" font-size="13" fill="#475569" font-style="italic">y</text>
+<g font-size="10.5" fill="#94a3b8" font-family="sans-serif">
+<text x="37.0" y="328.0" text-anchor="middle">-7</text>
+<text x="71.0" y="328.0" text-anchor="middle">-6</text>
+<text x="105.0" y="328.0" text-anchor="middle">-5</text>
+<text x="139.0" y="328.0" text-anchor="middle">-4</text>
+<text x="173.0" y="328.0" text-anchor="middle">-3</text>
+<text x="207.0" y="328.0" text-anchor="middle">-2</text>
+<text x="241.0" y="328.0" text-anchor="middle">-1</text>
+<text x="309.0" y="328.0" text-anchor="middle">1</text>
+<text x="343.0" y="328.0" text-anchor="middle">2</text>
+<text x="270.0" y="383.5" text-anchor="end">-2</text>
+<text x="270.0" y="349.5" text-anchor="end">-1</text>
+<text x="270.0" y="281.5" text-anchor="end">1</text>
+<text x="270.0" y="247.5" text-anchor="end">2</text>
+<text x="270.0" y="213.5" text-anchor="end">3</text>
+<text x="270.0" y="179.5" text-anchor="end">4</text>
+<text x="270.0" y="145.5" text-anchor="end">5</text>
+<text x="270.0" y="111.5" text-anchor="end">6</text>
+<text x="270.0" y="77.5" text-anchor="end">7</text>
+<text x="270.0" y="43.5" text-anchor="end">8</text>
+<text x="270.0" y="328.0" text-anchor="end" font-style="italic" fill="#475569">O</text>
+</g>
+<line x1="312.0" y1="74.0" x2="74.0" y2="210.0" stroke="#1e293b" stroke-width="1.6"/>
+<line x1="74.0" y1="210.0" x2="278.0" y2="346.0" stroke="#1e293b" stroke-width="1.6"/>
+<line x1="278.0" y1="346.0" x2="312.0" y2="74.0" stroke="#1e293b" stroke-width="1.6"/>
+<circle cx="312.0" cy="74.0" r="4" fill="#1e293b"/>
+<text x="321.0" y="68.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">A</text>
+<circle cx="74.0" cy="210.0" r="4" fill="#1e293b"/>
+<text x="65.0" y="201.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">B</text>
+<circle cx="278.0" cy="346.0" r="4" fill="#1e293b"/>
+<text x="287.0" y="356.0" font-size="15" font-style="italic" font-weight="600" fill="#1e293b">C</text>
+<circle cx="176.0" cy="278.0" r="4" fill="#e11d48"/>
+<text x="168.0" y="295.0" font-size="15" font-style="italic" font-weight="600" fill="#e11d48">L</text>
+
+</svg>
+                <div class="text-sm space-y-2">
+                  <p><strong>1)</strong> \(AB=\sqrt{(-6-1)^2+(3-7)^2}=\sqrt{49+16}=\sqrt{65}\)</p>
+                  <p><strong>2)</strong> \(AC=\sqrt{(0-1)^2+(-1-7)^2}=\sqrt{1+64}=\sqrt{65}\)</p>
+                  <p class="font-semibold text-emerald-700">Comme \(AB=AC=\sqrt{65}\), le triangle \(ABC\) est isocèle en \(A\).</p>
+                </div>
+              </div>
+              <div class="rounded-lg bg-white/70 border border-emerald-100 p-4 text-sm">
+                <p><strong>3)</strong> \(L\) milieu de \([BC]\) : \(x_L=\dfrac{-6+0}{2}=-3\) ; \(y_L=\dfrac{3-1}{2}=1\)</p>
+                <p class="font-semibold text-emerald-700 mt-1">D'où : \(L(-3;1)\)</p>
+              </div>
+            </div>
+          </div></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-slate-900 text-slate-300">
+  <div class="container-custom py-12">
+    <div class="grid sm:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="flex items-center gap-2.5 mb-3">
+          <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-10 h-10 shrink-0 rounded-full">
+          <span class="font-display font-bold text-white leading-tight">
+            <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+          </span>
+        </a>
+        <p class="text-sm text-slate-400">Collège Mhamed 9 — 3ème Année Collège, Section APIC. Cours et exercices N°9 corrigés.</p>
+        <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+      </div>
+      <div>
+        <p class="font-display font-semibold text-white mb-3 text-sm uppercase tracking-wide">Navigation</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#points" class="hover:text-white transition">I. Coordonnées d'un point</a></li>
+          <li><a href="#vecteurs" class="hover:text-white transition">II. Coordonnées d'un vecteur</a></li>
+          <li><a href="#exercices" class="hover:text-white transition">Exercices N°9</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-display font-semibold text-white mb-3 text-sm uppercase tracking-wide">À propos</p>
+        <p class="text-sm text-slate-400">Contenu adapté du cours et des exercices "Repère dans le plan" (Exercices N°9, proposés par ELK.H), incluant des sujets des régions Casablanca, Béni Mellal et Marrakech.</p>
+      </div>
+    </div>
+    <div class="mt-10 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+      <p>© 2026 Collège Mhamed 9 — Mathématiques 3ème APIC.</p>
+      <a href="#accueil" class="inline-flex items-center gap-1.5 hover:text-white transition">
+        Haut de page
+        <svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- KaTeX -->
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+<script>
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Render math
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\(', right: '\\)', display: false},
+        {left: '\\[', right: '\\]', display: true}
+      ],
+      throwOnError: false
+    });
+
+    // Mobile menu toggle
+    var menuBtn = document.getElementById('menu-btn');
+    var mobileMenu = document.getElementById('mobile-menu');
+    var iconOpen = document.getElementById('icon-open');
+    var iconClose = document.getElementById('icon-close');
+    menuBtn.addEventListener('click', function () {
+      var isOpen = mobileMenu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', isOpen);
+      iconOpen.classList.toggle('hidden', isOpen);
+      iconClose.classList.toggle('hidden', !isOpen);
+    });
+    document.querySelectorAll('#mobile-menu a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        mobileMenu.classList.remove('open');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+      });
+    });
+
+    // Correction toggle buttons
+    document.querySelectorAll('[data-target]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var target = document.getElementById(btn.dataset.target);
+        if (!target) return;
+        var isOpen = target.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen);
+        var label = btn.querySelector('.btn-text');
+        var chevron = btn.querySelector('.chevron');
+        label.textContent = isOpen ? 'Masquer la correction' : 'Afficher la correction';
+        chevron.classList.toggle('rotate', isOpen);
+        if (isOpen) {
+          setTimeout(function () {
+            target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 200);
+        }
+      });
+    });
+
+    // Active nav link on scroll (scroll-spy)
+    var sections = ['accueil', 'points', 'vecteurs', 'exercices'].map(function (id) {
+      return document.getElementById(id);
+    }).filter(Boolean);
+    var navLinks = document.querySelectorAll('[data-nav]');
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.getAttribute('id');
+          navLinks.forEach(function (link) {
+            link.classList.toggle('active-link', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(function (s) { observer.observe(s); });
+  });
+</script>
+
+</body>
+</html>
+

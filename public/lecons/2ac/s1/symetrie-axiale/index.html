@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Symétrie Axiale — Cours et Exercices | 2APIC</title>
+<meta name="description" content="Cours complet sur la symétrie axiale (médiatrice, symétrique d'un point, de figures usuelles) et l'Exercice N°5 corrigé — Niveau 2APIC.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+          display: ['Poppins', 'ui-sans-serif', 'system-ui'],
+        },
+        colors: {
+          brand: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+          sun: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
+          leaf: { 50: '#ecfdf5', 100: '#d1fae5', 500: '#10b981', 600: '#059669', 700: '#047857' }
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; }
+  h1, h2, h3, .font-display { font-family: 'Poppins', sans-serif; }
+  .exo-hidden { display: none; }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  .diagram { max-width: 340px; }
+  .diagram text { font-family: 'Inter', sans-serif; }
+
+  /* Dark mode retrofit */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .border-slate-100 { border-color: #1c3a63; }
+  .dark .ring-slate-200 { --tw-ring-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
+  .dark .text-emerald-800, .dark .text-emerald-700 { color: #6ee7a3; }
+  .dark .bg-brand-50 { background-color: #0f2847; }
+  .dark .bg-brand-100 { background-color: #1c3a63; }
+  .dark .text-brand-700 { color: #8fb0da; }
+  .dark .text-brand-600 { color: #8fb0da; }
+  .dark .text-brand-800 { color: #b8cfec; }
+  .dark .ring-brand-200 { --tw-ring-color: #1c3a63; }
+  .dark .bg-amber-50 { background-color: #2c1f0a; }
+  .dark .text-sun-700 { color: #fbbf24; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased dark:bg-[#071528] dark:text-slate-100">
+
+<!-- Shared SVG defs (arrow markers reused across every diagram) -->
+<svg width="0" height="0" class="absolute">
+  <defs>
+    <marker id="arrIndigo" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#4f46e5"/>
+    </marker>
+    <marker id="arrLeaf" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#059669"/>
+    </marker>
+  </defs>
+</svg>
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200 dark:bg-[#0b1f3ad9] dark:border-[#1c3a63]">
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#accueil" class="flex items-center gap-2 font-display font-bold text-brand-700 dark:text-brand-300 text-lg">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-9 h-9 shrink-0 rounded-full">
+        <span class="hidden sm:inline">Symétrie Axiale</span>
+      </a>
+      <div class="hidden md:flex items-center gap-1">
+        <a href="/" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-700 hover:bg-brand-50 transition">← Portail</a>
+        <a href="#cours" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-700 hover:bg-brand-50 transition">Cours</a>
+        <a href="#figures" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-700 hover:bg-brand-50 transition">Figures usuelles</a>
+        <a href="#serie" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-700 hover:bg-brand-50 transition">Exercice N°5</a>
+        <a href="#serie" class="ml-2 px-4 py-2 rounded-lg text-sm font-semibold bg-brand-600 text-white hover:bg-brand-700 transition shadow-sm">Voir les corrections</a>
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-2 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </div>
+      <div class="flex items-center gap-1 md:hidden">
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+        <button id="menuBtn" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-brand-900" aria-label="Ouvrir le menu" aria-expanded="false">
+          <svg id="iconOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="iconClose" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden pb-4 flex flex-col gap-1">
+      <a href="/" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-brand-900">← Portail</a>
+      <a href="#cours" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-brand-900">Cours</a>
+      <a href="#figures" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-brand-900">Figures usuelles</a>
+      <a href="#serie" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-brand-900">Exercice N°5</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-brand-700 via-brand-600 to-brand-800 text-white">
+  <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_20%,white,transparent_35%),radial-gradient(circle_at_80%_60%,white,transparent_30%)]"></div>
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <p class="inline-block px-3 py-1 rounded-full bg-white/15 text-sm font-semibold tracking-wide mb-4">Niveau : 2APIC · Mathématiques</p>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold leading-tight mb-4">La symétrie axiale</h1>
+      <h2 class="text-xl sm:text-2xl font-display font-semibold text-brand-100 mb-6">Médiatrice, symétrique d'un point et de figures usuelles</h2>
+      <p class="text-brand-50/90 text-base sm:text-lg leading-relaxed mb-8">
+        Découvrez la médiatrice d'un segment, la construction du symétrique d'un point par rapport à une droite,
+        et les propriétés de conservation de la symétrie axiale (longueurs, alignement, angles) — puis entraînez-vous
+        avec l'Exercice N°5, corrigé exercice par exercice.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="#cours" class="px-5 py-3 rounded-xl bg-white text-brand-700 font-semibold shadow-lg hover:bg-brand-50 transition">Commencer le cours</a>
+        <a href="#serie" class="px-5 py-3 rounded-xl bg-brand-800/60 border border-white/30 font-semibold hover:bg-brand-800 transition">Aller aux exercices</a>
+      </div>
+    </div>
+    <div class="relative hidden md:block">
+      <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=1200&auto=format&fit=crop"
+           alt="Illustration mathématique : figures géométriques et symétrie sur un tableau"
+           class="rounded-2xl shadow-2xl ring-1 ring-white/20 object-cover w-full h-80 lg:h-96">
+      <div class="absolute -bottom-6 -left-6 bg-white text-slate-800 rounded-xl shadow-xl p-4 w-52">
+        <p class="text-xs text-slate-500 font-medium">Propriété clé</p>
+        <p class="font-display font-bold text-brand-700 text-lg">M ∈ (Δ) ⟹ MA = MB</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+<!-- ===================== COURS ===================== -->
+<section id="cours" class="py-14 sm:py-20">
+  <div class="mb-10">
+    <p class="text-brand-600 font-semibold text-sm uppercase tracking-wider mb-2">Cours</p>
+    <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900">Ce que vous allez apprendre</h2>
+    <p class="text-slate-500 mt-2 max-w-2xl">La médiatrice d'un segment, la construction du symétrique d'un point, puis les propriétés de la symétrie axiale sur les figures usuelles.</p>
+  </div>
+
+  <!-- I. Médiatrice d'un segment -->
+  <article id="mediatrice" class="scroll-mt-20 mb-8 bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+    <div class="p-6 sm:p-8 grid lg:grid-cols-5 gap-8 items-center">
+      <div class="lg:col-span-3">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 font-display font-bold flex items-center justify-center">I</span>
+          <h3 class="text-xl sm:text-2xl font-display font-bold text-slate-900">Médiatrice d'un segment</h3>
+        </div>
+
+        <div class="bg-brand-50 border-l-4 border-brand-500 rounded-r-xl p-4 sm:p-5 mb-5">
+          <p class="font-semibold text-brand-800 mb-1">Définition</p>
+          <p class="text-slate-700 leading-relaxed">
+            La médiatrice d'un segment est la droite <span class="font-semibold">perpendiculaire</span> à ce segment
+            en <span class="font-semibold">son milieu</span>.
+          </p>
+        </div>
+
+        <div class="bg-slate-50 rounded-xl p-4 sm:p-5 ring-1 ring-slate-200">
+          <p class="font-semibold text-slate-700 mb-1">Propriété</p>
+          <p class="text-slate-700">
+            Soit [AB] un segment, (Δ) sa médiatrice et M un point.<br>
+            Si M ∈ (Δ) alors : <span class="font-semibold text-brand-700">MA = MB</span>.
+          </p>
+        </div>
+      </div>
+      <div class="lg:col-span-2 flex justify-center">
+        <svg viewBox="0 0 320 200" class="diagram w-full h-auto">
+          <line x1="160" y1="15" x2="160" y2="190" stroke="#e11d48" stroke-width="2" stroke-dasharray="6 4"/>
+          <text x="168" y="28" fill="#e11d48" font-size="14" font-weight="600">(Δ)</text>
+          <line x1="60" y1="150" x2="260" y2="150" stroke="#4f46e5" stroke-width="2.5"/>
+          <line x1="160" y1="150" x2="160" y2="60" stroke="#4f46e5" stroke-width="2.5"/>
+          <line x1="60" y1="150" x2="160" y2="60" stroke="#4f46e5" stroke-width="2.5"/>
+          <line x1="260" y1="150" x2="160" y2="60" stroke="#4f46e5" stroke-width="2.5"/>
+          <path d="M160,138 L172,138 L172,150" fill="none" stroke="#334155" stroke-width="1.6"/>
+          <line x1="105" y1="145" x2="115" y2="155" stroke="#4f46e5" stroke-width="2"/>
+          <line x1="205" y1="145" x2="215" y2="155" stroke="#4f46e5" stroke-width="2"/>
+          <circle cx="60" cy="150" r="3.5" fill="#0f172a"/>
+          <circle cx="260" cy="150" r="3.5" fill="#0f172a"/>
+          <circle cx="160" cy="60" r="3.5" fill="#0f172a"/>
+          <text x="42" y="168" font-size="15" font-weight="700" fill="#0f172a">A</text>
+          <text x="266" y="168" font-size="15" font-weight="700" fill="#0f172a">B</text>
+          <text x="166" y="52" font-size="15" font-weight="700" fill="#0f172a">M</text>
+        </svg>
+      </div>
+    </div>
+  </article>
+
+  <!-- II. Symétrique d'un point -->
+  <article id="symetrique-point" class="scroll-mt-20 mb-8 bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+    <div class="p-6 sm:p-8 grid lg:grid-cols-5 gap-8 items-center">
+      <div class="lg:col-span-3">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 font-display font-bold flex items-center justify-center">II</span>
+          <h3 class="text-xl sm:text-2xl font-display font-bold text-slate-900">Symétrique d'un point</h3>
+        </div>
+
+        <div class="bg-brand-50 border-l-4 border-brand-500 rounded-r-xl p-4 sm:p-5 mb-5">
+          <p class="font-semibold text-brand-800 mb-1">Définition</p>
+          <p class="text-slate-700 leading-relaxed">
+            Soit (Δ) une droite et M un point du plan. Le symétrique du point M par rapport à la droite (Δ) est
+            le point M' tel que (Δ) est <span class="font-semibold">la médiatrice</span> du segment [MM'].
+          </p>
+        </div>
+
+        <div class="bg-amber-50 border-l-4 border-sun-500 rounded-r-xl p-4 sm:p-5">
+          <p class="font-semibold text-sun-700 mb-1">Remarque</p>
+          <p class="text-slate-700">Si un point A ∈ (Δ), alors ce point est le symétrique de lui-même par rapport à (Δ).</p>
+        </div>
+      </div>
+      <div class="lg:col-span-2 flex justify-center">
+        <svg viewBox="0 0 320 200" class="diagram w-full h-auto">
+          <line x1="160" y1="15" x2="160" y2="190" stroke="#e11d48" stroke-width="2" stroke-dasharray="6 4"/>
+          <text x="168" y="28" fill="#e11d48" font-size="14" font-weight="600">(Δ)</text>
+          <line x1="230" y1="70" x2="90" y2="70" stroke="#64748b" stroke-width="1.6" stroke-dasharray="3 3"/>
+          <path d="M160,58 L172,58 L172,70" fill="none" stroke="#334155" stroke-width="1.6"/>
+          <line x1="118" y1="65" x2="122" y2="75" stroke="#334155" stroke-width="2"/>
+          <line x1="198" y1="65" x2="202" y2="75" stroke="#334155" stroke-width="2"/>
+          <circle cx="230" cy="70" r="4" fill="#4f46e5"/>
+          <circle cx="90" cy="70" r="4" fill="#059669"/>
+          <circle cx="160" cy="155" r="3.5" fill="#0f172a"/>
+          <text x="238" y="66" font-size="15" font-weight="700" fill="#4f46e5">M</text>
+          <text x="64" y="66" font-size="15" font-weight="700" fill="#059669">M'</text>
+          <text x="168" y="175" font-size="14" fill="#0f172a">A ∈ (Δ) : A' = A</text>
+        </svg>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ===================== FIGURES USUELLES ===================== -->
+<section id="figures" class="scroll-mt-20 py-10 sm:py-16">
+  <div class="mb-10">
+    <p class="text-brand-600 font-semibold text-sm uppercase tracking-wider mb-2">III. Symétrique de figures usuelles</p>
+    <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900">Propriétés de conservation de la symétrie axiale</h2>
+    <p class="text-slate-500 mt-2 max-w-2xl">Dans tous les cas ci-dessous, (Δ) est une droite ; A', B', O'… désignent les symétriques respectifs de A, B, O… par rapport à (Δ).</p>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-6">
+
+    <!-- 1. Segment -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 p-6">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="w-8 h-8 rounded-lg bg-leaf-100 text-leaf-700 font-display font-bold flex items-center justify-center text-sm">1</span>
+        <h3 class="font-display font-bold text-lg text-slate-900">Symétrique d'un segment</h3>
+      </div>
+      <p class="text-slate-700 mb-3">Le symétrique du segment [AB] par rapport à (Δ) est le segment [A'B']. On a <span class="font-semibold text-brand-700">A'B' = AB</span> : la symétrie axiale <em>conserve les longueurs</em>.</p>
+      <svg viewBox="0 0 320 200" class="diagram w-full h-auto mx-auto">
+        <line x1="160" y1="10" x2="160" y2="190" stroke="#e11d48" stroke-width="2" stroke-dasharray="6 4"/>
+        <text x="166" y="24" fill="#e11d48" font-size="13" font-weight="600">(Δ)</text>
+        <line x1="210" y1="60" x2="250" y2="140" stroke="#4f46e5" stroke-width="2.5"/>
+        <line x1="110" y1="60" x2="70" y2="140" stroke="#059669" stroke-width="2.5"/>
+        <line x1="210" y1="60" x2="110" y2="60" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <line x1="250" y1="140" x2="70" y2="140" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <circle cx="210" cy="60" r="4" fill="#4f46e5"/><circle cx="250" cy="140" r="4" fill="#4f46e5"/>
+        <circle cx="110" cy="60" r="4" fill="#059669"/><circle cx="70" cy="140" r="4" fill="#059669"/>
+        <text x="216" y="56" font-size="14" font-weight="700" fill="#4f46e5">A</text>
+        <text x="256" y="144" font-size="14" font-weight="700" fill="#4f46e5">B</text>
+        <text x="86" y="56" font-size="14" font-weight="700" fill="#059669">A'</text>
+        <text x="44" y="144" font-size="14" font-weight="700" fill="#059669">B'</text>
+      </svg>
+    </article>
+
+    <!-- 2. Droite -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 p-6">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="w-8 h-8 rounded-lg bg-leaf-100 text-leaf-700 font-display font-bold flex items-center justify-center text-sm">2</span>
+        <h3 class="font-display font-bold text-lg text-slate-900">Symétrique d'une droite</h3>
+      </div>
+      <p class="text-slate-700 mb-3">Le symétrique de la droite (AB) par rapport à (Δ) est la droite (A'B').</p>
+      <svg viewBox="0 0 320 200" class="diagram w-full h-auto mx-auto">
+        <line x1="160" y1="10" x2="160" y2="190" stroke="#e11d48" stroke-width="2" stroke-dasharray="6 4"/>
+        <text x="166" y="24" fill="#e11d48" font-size="13" font-weight="600">(Δ)</text>
+        <line x1="230" y1="40" x2="190" y2="160" stroke="#4f46e5" stroke-width="2.5" marker-end="url(#arrIndigo)"/>
+        <line x1="190" y1="160" x2="230" y2="40" stroke="#4f46e5" stroke-width="0" />
+        <line x1="230" y1="160" x2="190" y2="40" stroke="#4f46e5" stroke-width="0"/>
+        <line x1="210" y1="60" x2="180" y2="150" stroke="#4f46e5" stroke-width="0"/>
+        <line x1="220" y1="55" x2="195" y2="150" stroke="#4f46e5" stroke-width="2.5" marker-end="url(#arrIndigo)" marker-start="url(#arrIndigo)"/>
+        <line x1="100" y1="55" x2="125" y2="150" stroke="#059669" stroke-width="2.5" marker-end="url(#arrLeaf)" marker-start="url(#arrLeaf)"/>
+        <circle cx="220" cy="55" r="4" fill="#4f46e5"/><circle cx="195" cy="150" r="4" fill="#4f46e5"/>
+        <circle cx="100" cy="55" r="4" fill="#059669"/><circle cx="125" cy="150" r="4" fill="#059669"/>
+        <text x="226" y="52" font-size="14" font-weight="700" fill="#4f46e5">A</text>
+        <text x="201" y="166" font-size="14" font-weight="700" fill="#4f46e5">B</text>
+        <text x="76" y="52" font-size="14" font-weight="700" fill="#059669">A'</text>
+        <text x="84" y="166" font-size="14" font-weight="700" fill="#059669">B'</text>
+      </svg>
+    </article>
+
+    <!-- 3. Demi-droite -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 p-6">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="w-8 h-8 rounded-lg bg-leaf-100 text-leaf-700 font-display font-bold flex items-center justify-center text-sm">3</span>
+        <h3 class="font-display font-bold text-lg text-slate-900">Symétrique d'une demi-droite</h3>
+      </div>
+      <p class="text-slate-700 mb-3">Le symétrique de la demi-droite [AB) par rapport à (Δ) est la demi-droite [A'B').</p>
+      <svg viewBox="0 0 320 200" class="diagram w-full h-auto mx-auto">
+        <line x1="160" y1="10" x2="160" y2="190" stroke="#e11d48" stroke-width="2" stroke-dasharray="6 4"/>
+        <text x="166" y="24" fill="#e11d48" font-size="13" font-weight="600">(Δ)</text>
+        <line x1="220" y1="55" x2="195" y2="150" stroke="#4f46e5" stroke-width="2.5" marker-end="url(#arrIndigo)"/>
+        <line x1="100" y1="55" x2="125" y2="150" stroke="#059669" stroke-width="2.5" marker-end="url(#arrLeaf)"/>
+        <circle cx="220" cy="55" r="4" fill="#4f46e5"/><circle cx="195" cy="150" r="4" fill="#4f46e5"/>
+        <circle cx="100" cy="55" r="4" fill="#059669"/><circle cx="125" cy="150" r="4" fill="#059669"/>
+        <text x="226" y="52" font-size="14" font-weight="700" fill="#4f46e5">A</text>
+        <text x="201" y="166" font-size="14" font-weight="700" fill="#4f46e5">B</text>
+        <text x="76" y="52" font-size="14" font-weight="700" fill="#059669">A'</text>
+        <text x="84" y="166" font-size="14" font-weight="700" fill="#059669">B'</text>
+      </svg>
+    </article>
+
+    <!-- 4. Alignement -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 p-6">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="w-8 h-8 rounded-lg bg-leaf-100 text-leaf-700 font-display font-bold flex items-center justify-center text-sm">4</span>
+        <h3 class="font-display font-bold text-lg text-slate-900">Conservation de l'alignement</h3>
+      </div>
+      <p class="text-slate-700 mb-3">Les symétriques de points alignés par rapport à une droite sont aussi des points alignés.</p>
+      <svg viewBox="0 0 320 200" class="diagram w-full h-auto mx-auto">
+        <line x1="160" y1="10" x2="160" y2="190" stroke="#e11d48" stroke-width="2" stroke-dasharray="6 4"/>
+        <text x="166" y="24" fill="#e11d48" font-size="13" font-weight="600">(Δ)</text>
+        <line x1="220" y1="40" x2="270" y2="160" stroke="#4f46e5" stroke-width="2.5"/>
+        <line x1="100" y1="40" x2="50" y2="160" stroke="#059669" stroke-width="2.5"/>
+        <circle cx="220" cy="40" r="4" fill="#4f46e5"/><circle cx="240" cy="88" r="4" fill="#4f46e5"/><circle cx="270" cy="160" r="4" fill="#4f46e5"/>
+        <circle cx="100" cy="40" r="4" fill="#059669"/><circle cx="80" cy="88" r="4" fill="#059669"/><circle cx="50" cy="160" r="4" fill="#059669"/>
+        <text x="226" y="37" font-size="13" font-weight="700" fill="#4f46e5">A</text>
+        <text x="246" y="86" font-size="13" font-weight="700" fill="#4f46e5">B</text>
+        <text x="276" y="158" font-size="13" font-weight="700" fill="#4f46e5">C</text>
+        <text x="72" y="37" font-size="13" font-weight="700" fill="#059669">A'</text>
+        <text x="44" y="86" font-size="13" font-weight="700" fill="#059669">B'</text>
+        <text x="18" y="158" font-size="13" font-weight="700" fill="#059669">C'</text>
+      </svg>
+    </article>
+
+    <!-- 5. Angle -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 p-6">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="w-8 h-8 rounded-lg bg-leaf-100 text-leaf-700 font-display font-bold flex items-center justify-center text-sm">5</span>
+        <h3 class="font-display font-bold text-lg text-slate-900">Symétrique d'un angle</h3>
+      </div>
+      <p class="text-slate-700 mb-3">Le symétrique de l'angle AOB par rapport à (Δ) est l'angle A'O'B'. On a <span class="font-semibold text-brand-700">AOB = A'O'B'</span> : la symétrie <em>conserve la mesure des angles</em>.</p>
+      <svg viewBox="0 0 320 200" class="diagram w-full h-auto mx-auto">
+        <line x1="160" y1="10" x2="160" y2="190" stroke="#e11d48" stroke-width="2" stroke-dasharray="6 4"/>
+        <text x="166" y="24" fill="#e11d48" font-size="13" font-weight="600">(Δ)</text>
+        <line x1="220" y1="140" x2="280" y2="60" stroke="#4f46e5" stroke-width="2.5"/>
+        <line x1="220" y1="140" x2="290" y2="170" stroke="#4f46e5" stroke-width="2.5"/>
+        <line x1="100" y1="140" x2="40" y2="60" stroke="#059669" stroke-width="2.5"/>
+        <line x1="100" y1="140" x2="30" y2="170" stroke="#059669" stroke-width="2.5"/>
+        <circle cx="220" cy="140" r="4" fill="#4f46e5"/><circle cx="100" cy="140" r="4" fill="#059669"/>
+        <text x="226" y="138" font-size="14" font-weight="700" fill="#4f46e5">O</text>
+        <text x="286" y="58" font-size="13" font-weight="700" fill="#4f46e5">A</text>
+        <text x="294" y="172" font-size="13" font-weight="700" fill="#4f46e5">B</text>
+        <text x="74" y="138" font-size="14" font-weight="700" fill="#059669">O'</text>
+        <text x="14" y="58" font-size="13" font-weight="700" fill="#059669">A'</text>
+        <text x="0" y="172" font-size="13" font-weight="700" fill="#059669">B'</text>
+      </svg>
+    </article>
+
+    <!-- 6. Cercle -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 p-6">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="w-8 h-8 rounded-lg bg-leaf-100 text-leaf-700 font-display font-bold flex items-center justify-center text-sm">6</span>
+        <h3 class="font-display font-bold text-lg text-slate-900">Symétrique d'un cercle</h3>
+      </div>
+      <p class="text-slate-700 mb-3">Le symétrique du cercle C(O ; r) par rapport à (Δ) est le cercle C'(O' ; r) — <span class="font-semibold text-brand-700">même rayon r</span>.</p>
+      <svg viewBox="0 0 320 200" class="diagram w-full h-auto mx-auto">
+        <line x1="160" y1="10" x2="160" y2="190" stroke="#e11d48" stroke-width="2" stroke-dasharray="6 4"/>
+        <text x="166" y="24" fill="#e11d48" font-size="13" font-weight="600">(Δ)</text>
+        <circle cx="230" cy="100" r="35" fill="none" stroke="#4f46e5" stroke-width="2.5"/>
+        <circle cx="90" cy="100" r="35" fill="none" stroke="#059669" stroke-width="2.5"/>
+        <circle cx="230" cy="100" r="3" fill="#4f46e5"/><circle cx="90" cy="100" r="3" fill="#059669"/>
+        <line x1="230" y1="100" x2="265" y2="100" stroke="#4f46e5" stroke-width="1.5"/>
+        <line x1="90" y1="100" x2="55" y2="100" stroke="#059669" stroke-width="1.5"/>
+        <text x="236" y="96" font-size="14" font-weight="700" fill="#4f46e5">O</text>
+        <text x="246" y="98" font-size="12" fill="#4f46e5">r</text>
+        <text x="70" y="96" font-size="14" font-weight="700" fill="#059669">O'</text>
+        <text x="66" y="98" font-size="12" fill="#059669">r</text>
+      </svg>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===================== SERIE N°5 ===================== -->
+<section id="serie" class="scroll-mt-20 py-10 sm:py-16">
+  <div class="mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+    <div>
+      <p class="text-brand-600 font-semibold text-sm uppercase tracking-wider mb-2">S'entraîner</p>
+      <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900">Exercice N°5 — La symétrie axiale</h2>
+      <p class="text-slate-500 mt-2">8 exercices corrigés, cliquez sur « Voir la correction » pour révéler la solution détaillée.</p>
+    </div>
+    <div class="flex flex-wrap gap-2 text-sm">
+      <span class="px-3 py-1.5 rounded-full bg-brand-100 text-brand-700 font-medium">Niveau : 2AC</span>
+      <span class="px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 font-medium">Prof : LAHBIB ELKEANTAOUI</span>
+    </div>
+  </div>
+
+  <div class="grid gap-6">
+
+    <!-- Exercice 1 -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+      <div class="p-5 sm:p-7">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 shrink-0 rounded-lg bg-brand-600 text-white font-display font-bold flex items-center justify-center">1</span>
+            <h3 class="font-display font-bold text-lg text-slate-900">Tracer l'axe de symétrie</h3>
+          </div>
+          <button onclick="toggleCorr('c1', this)" aria-expanded="false"
+            class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 transition shadow-sm">Voir la correction</button>
+        </div>
+        <div class="grid sm:grid-cols-5 gap-6 items-center">
+          <p class="text-slate-700 sm:col-span-3">M et N sont deux points du plan. Trace la droite (Δ) telle que M soit le symétrique de N par rapport à (Δ).</p>
+          <svg viewBox="0 0 320 200" class="diagram w-full h-auto sm:col-span-2">
+            <line x1="90" y1="80" x2="230" y2="180" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="4 3"/>
+            <circle cx="90" cy="80" r="4" fill="#0f172a"/><circle cx="230" cy="180" r="4" fill="#0f172a"/>
+            <text x="70" y="72" font-size="14" font-weight="700" fill="#0f172a">M</text>
+            <text x="238" y="184" font-size="14" font-weight="700" fill="#0f172a">N</text>
+          </svg>
+        </div>
+
+        <div id="c1" class="exo-hidden mt-5 bg-brand-50 rounded-xl p-4 sm:p-5 ring-1 ring-brand-200">
+          <p class="font-display font-bold text-brand-700 mb-3">✔ Correction</p>
+          <div class="grid sm:grid-cols-5 gap-6 items-center">
+            <div class="sm:col-span-3 text-slate-700 space-y-2">
+              <p>« M est le symétrique de N par rapport à (Δ) » signifie, par définition, que <span class="font-semibold">(Δ) est la médiatrice du segment [MN]</span>.</p>
+              <p class="font-semibold">Construction :</p>
+              <ul class="list-disc list-inside space-y-1">
+                <li>On trace le segment [MN] et on place son milieu I.</li>
+                <li>On trace la droite perpendiculaire à (MN) passant par I : c'est la droite (Δ) cherchée.</li>
+              </ul>
+            </div>
+            <svg viewBox="0 0 320 260" class="diagram w-full h-auto sm:col-span-2">
+              <line x1="90" y1="80" x2="230" y2="180" stroke="#0f172a" stroke-width="2"/>
+              <line x1="96" y1="220" x2="224" y2="40" stroke="#e11d48" stroke-width="2.5" stroke-dasharray="6 4"/>
+              <text x="200" y="55" fill="#e11d48" font-size="14" font-weight="600">(Δ)</text>
+              <circle cx="90" cy="80" r="4" fill="#0f172a"/><circle cx="230" cy="180" r="4" fill="#0f172a"/>
+              <circle cx="160" cy="130" r="3.5" fill="#334155"/>
+              <path d="M148,138 L158,146 L166,136" fill="none" stroke="#334155" stroke-width="1.6"/>
+              <text x="70" y="72" font-size="14" font-weight="700" fill="#0f172a">M</text>
+              <text x="238" y="184" font-size="14" font-weight="700" fill="#0f172a">N</text>
+              <text x="168" y="122" font-size="12" fill="#334155">I</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Exercice 2 -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+      <div class="p-5 sm:p-7">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 shrink-0 rounded-lg bg-brand-600 text-white font-display font-bold flex items-center justify-center">2</span>
+            <h3 class="font-display font-bold text-lg text-slate-900">Symétrique d'un sommet de triangle</h3>
+          </div>
+          <button onclick="toggleCorr('c2', this)" aria-expanded="false"
+            class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 transition shadow-sm">Voir la correction</button>
+        </div>
+        <div class="grid sm:grid-cols-5 gap-6 items-center">
+          <div class="text-slate-700 sm:col-span-3 space-y-2">
+            <p>ABC est un triangle.</p>
+            <ol class="list-decimal list-inside space-y-1">
+              <li>Construis le point A' symétrique du point A par rapport à la droite (BC).</li>
+              <li>Quel est le symétrique de la droite (AB) par rapport à la droite (BC) ? Justifier.</li>
+            </ol>
+          </div>
+          <svg viewBox="0 0 300 200" class="diagram w-full h-auto sm:col-span-2">
+            <line x1="30" y1="150" x2="270" y2="150" stroke="#0f172a" stroke-width="2"/>
+            <line x1="30" y1="150" x2="150" y2="50" stroke="#0f172a" stroke-width="2"/>
+            <line x1="270" y1="150" x2="150" y2="50" stroke="#0f172a" stroke-width="2"/>
+            <circle cx="30" cy="150" r="4" fill="#0f172a"/><circle cx="270" cy="150" r="4" fill="#0f172a"/><circle cx="150" cy="50" r="4" fill="#0f172a"/>
+            <text x="12" y="168" font-size="14" font-weight="700" fill="#0f172a">B</text>
+            <text x="276" y="168" font-size="14" font-weight="700" fill="#0f172a">C</text>
+            <text x="156" y="46" font-size="14" font-weight="700" fill="#0f172a">A</text>
+          </svg>
+        </div>
+
+        <div id="c2" class="exo-hidden mt-5 bg-brand-50 rounded-xl p-4 sm:p-5 ring-1 ring-brand-200">
+          <p class="font-display font-bold text-brand-700 mb-3">✔ Correction</p>
+          <div class="grid sm:grid-cols-5 gap-6 items-center">
+            <div class="sm:col-span-3 text-slate-700 space-y-2">
+              <p><span class="font-semibold">1)</span> On trace la perpendiculaire à (BC) passant par A ; elle coupe (BC) en un point H. On place A' sur cette perpendiculaire, de l'autre côté de (BC), tel que HA' = HA.</p>
+              <p><span class="font-semibold">2)</span> Le point B appartient à la droite (BC), donc B est son propre symétrique : B' = B.</p>
+              <p>Le symétrique de la droite (AB) par rapport à (BC) est donc la droite passant par les symétriques de A et de B, c'est-à-dire la droite <span class="font-semibold text-brand-700">(A'B)</span>.</p>
+            </div>
+            <svg viewBox="0 0 300 270" class="diagram w-full h-auto sm:col-span-2">
+              <line x1="30" y1="150" x2="270" y2="150" stroke="#0f172a" stroke-width="2"/>
+              <line x1="150" y1="50" x2="150" y2="250" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="4 3"/>
+              <line x1="30" y1="150" x2="150" y2="50" stroke="#4f46e5" stroke-width="2.5"/>
+              <line x1="270" y1="150" x2="150" y2="50" stroke="#0f172a" stroke-width="2"/>
+              <line x1="30" y1="150" x2="150" y2="250" stroke="#059669" stroke-width="2.5"/>
+              <path d="M150,138 L162,138 L162,150" fill="none" stroke="#334155" stroke-width="1.6"/>
+              <circle cx="30" cy="150" r="4" fill="#0f172a"/><circle cx="270" cy="150" r="4" fill="#0f172a"/>
+              <circle cx="150" cy="50" r="4" fill="#4f46e5"/><circle cx="150" cy="150" r="3" fill="#334155"/><circle cx="150" cy="250" r="4" fill="#059669"/>
+              <text x="12" y="168" font-size="14" font-weight="700" fill="#0f172a">B</text>
+              <text x="276" y="168" font-size="14" font-weight="700" fill="#0f172a">C</text>
+              <text x="156" y="46" font-size="14" font-weight="700" fill="#4f46e5">A</text>
+              <text x="158" y="145" font-size="12" fill="#334155">H</text>
+              <text x="156" y="264" font-size="14" font-weight="700" fill="#059669">A'</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Exercice 3 -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+      <div class="p-5 sm:p-7">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 shrink-0 rounded-lg bg-brand-600 text-white font-display font-bold flex items-center justify-center">3</span>
+            <h3 class="font-display font-bold text-lg text-slate-900">Deux droites parallèles</h3>
+          </div>
+          <button onclick="toggleCorr('c3', this)" aria-expanded="false"
+            class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 transition shadow-sm">Voir la correction</button>
+        </div>
+        <div class="grid sm:grid-cols-5 gap-6 items-center">
+          <div class="text-slate-700 sm:col-span-3 space-y-2">
+            <p>(D) et (Δ) sont deux droites parallèles. A est un point n'appartenant ni à (Δ) ni à (D).</p>
+            <ol class="list-decimal list-inside space-y-1">
+              <li>Construis le point M symétrique de A par rapport à (Δ).</li>
+              <li>Construis le point N symétrique de A par rapport à (D).</li>
+              <li>Montre que les points A, M et N sont alignés.</li>
+            </ol>
+          </div>
+          <svg viewBox="0 0 300 250" class="diagram w-full h-auto sm:col-span-2">
+            <line x1="90" y1="20" x2="90" y2="230" stroke="#e11d48" stroke-width="2" stroke-dasharray="6 4"/>
+            <line x1="210" y1="20" x2="210" y2="230" stroke="#e11d48" stroke-width="2" stroke-dasharray="6 4"/>
+            <circle cx="150" cy="120" r="4" fill="#0f172a"/>
+            <text x="78" y="14" fill="#e11d48" font-size="13" font-weight="600">(Δ)</text>
+            <text x="198" y="14" fill="#e11d48" font-size="13" font-weight="600">(D)</text>
+            <text x="130" y="112" font-size="14" font-weight="700" fill="#0f172a">A</text>
+          </svg>
+        </div>
+
+        <div id="c3" class="exo-hidden mt-5 bg-brand-50 rounded-xl p-4 sm:p-5 ring-1 ring-brand-200">
+          <p class="font-display font-bold text-brand-700 mb-3">✔ Correction</p>
+          <div class="grid sm:grid-cols-5 gap-6 items-center">
+            <div class="sm:col-span-3 text-slate-700 space-y-2">
+              <p>Comme (Δ) est la médiatrice de [AM], on a <span class="font-semibold">(AM) ⊥ (Δ)</span>. Comme (D) est la médiatrice de [AN], on a <span class="font-semibold">(AN) ⊥ (D)</span>.</p>
+              <p>Or (D) // (Δ). Toute droite perpendiculaire à (Δ) est donc aussi perpendiculaire à (D). Ainsi (AM) et (AN) sont deux droites passant par le même point A et perpendiculaires à la même direction : il n'existe qu'une seule droite passant par A et perpendiculaire à (Δ), donc (AM) et (AN) sont <span class="font-semibold">la même droite</span>.</p>
+              <p class="font-semibold text-brand-700">Conclusion : les points A, M et N sont alignés.</p>
+            </div>
+            <svg viewBox="0 0 300 250" class="diagram w-full h-auto sm:col-span-2">
+              <line x1="90" y1="20" x2="90" y2="230" stroke="#e11d48" stroke-width="2" stroke-dasharray="6 4"/>
+              <line x1="210" y1="20" x2="210" y2="230" stroke="#e11d48" stroke-width="2" stroke-dasharray="6 4"/>
+              <line x1="30" y1="120" x2="270" y2="120" stroke="#0f172a" stroke-width="2"/>
+              <circle cx="150" cy="120" r="4" fill="#0f172a"/><circle cx="30" cy="120" r="4" fill="#059669"/><circle cx="270" cy="120" r="4" fill="#059669"/>
+              <text x="78" y="14" fill="#e11d48" font-size="13" font-weight="600">(Δ)</text>
+              <text x="198" y="14" fill="#e11d48" font-size="13" font-weight="600">(D)</text>
+              <text x="130" y="112" font-size="14" font-weight="700" fill="#0f172a">A</text>
+              <text x="10" y="112" font-size="14" font-weight="700" fill="#059669">M</text>
+              <text x="278" y="112" font-size="14" font-weight="700" fill="#059669">N</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Exercice 4 -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+      <div class="p-5 sm:p-7">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 shrink-0 rounded-lg bg-brand-600 text-white font-display font-bold flex items-center justify-center">4</span>
+            <h3 class="font-display font-bold text-lg text-slate-900">Symétrique d'un angle</h3>
+          </div>
+          <button onclick="toggleCorr('c4', this)" aria-expanded="false"
+            class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 transition shadow-sm">Voir la correction</button>
+        </div>
+        <div class="grid sm:grid-cols-5 gap-6 items-center">
+          <div class="text-slate-700 sm:col-span-3 space-y-2">
+            <p>ABC est un triangle tel que : AB = 6 cm, BAC = 100° et ABC = 30°. Soit M le milieu de [BC]. E est le symétrique de B par rapport à la droite (AM) et F le symétrique de C par rapport à la droite (AM).</p>
+            <ol class="list-decimal list-inside space-y-1">
+              <li>Fais un schéma.</li>
+              <li>Quel est le symétrique de l'angle BAC par rapport à la droite (AM) ? Justifier.</li>
+            </ol>
+          </div>
+          <svg viewBox="0 0 300 260" class="diagram w-full h-auto sm:col-span-2">
+            <line x1="150" y1="50" x2="140" y2="205" stroke="#e11d48" stroke-width="2" stroke-dasharray="6 4"/>
+            <line x1="150" y1="50" x2="50" y2="220" stroke="#0f172a" stroke-width="2"/>
+            <line x1="150" y1="50" x2="230" y2="190" stroke="#0f172a" stroke-width="2"/>
+            <line x1="50" y1="220" x2="230" y2="190" stroke="#0f172a" stroke-width="2"/>
+            <circle cx="150" cy="50" r="4" fill="#0f172a"/><circle cx="50" cy="220" r="4" fill="#0f172a"/><circle cx="230" cy="190" r="4" fill="#0f172a"/><circle cx="140" cy="205" r="3.5" fill="#334155"/>
+            <text x="156" y="46" font-size="14" font-weight="700" fill="#0f172a">A</text>
+            <text x="30" y="234" font-size="14" font-weight="700" fill="#0f172a">B</text>
+            <text x="238" y="188" font-size="14" font-weight="700" fill="#0f172a">C</text>
+            <text x="146" y="222" font-size="12" fill="#334155">M</text>
+            <text x="164" y="130" fill="#e11d48" font-size="12" font-weight="600">(Δ)</text>
+          </svg>
+        </div>
+
+        <div id="c4" class="exo-hidden mt-5 bg-brand-50 rounded-xl p-4 sm:p-5 ring-1 ring-brand-200">
+          <p class="font-display font-bold text-brand-700 mb-3">✔ Correction</p>
+          <div class="grid sm:grid-cols-5 gap-6 items-center">
+            <div class="sm:col-span-3 text-slate-700 space-y-2">
+              <p>Le point A appartient à la droite (AM) : A est donc son propre symétrique.</p>
+              <p>Le symétrique de B est E, le symétrique de C est F. Le symétrique de l'angle BAC par rapport à (AM) est donc l'angle <span class="font-semibold text-brand-700">EAF</span>.</p>
+              <p>Or la symétrie axiale conserve la mesure des angles, donc :</p>
+              <p class="font-semibold text-brand-700 text-center">EAF = BAC = 100°</p>
+            </div>
+            <svg viewBox="0 0 320 260" class="diagram w-full h-auto sm:col-span-2">
+              <line x1="150" y1="50" x2="140" y2="205" stroke="#e11d48" stroke-width="2" stroke-dasharray="6 4"/>
+              <line x1="150" y1="50" x2="50" y2="220" stroke="#4f46e5" stroke-width="2"/>
+              <line x1="150" y1="50" x2="230" y2="190" stroke="#4f46e5" stroke-width="2"/>
+              <line x1="150" y1="50" x2="227" y2="231" stroke="#059669" stroke-width="2"/>
+              <line x1="150" y1="50" x2="53" y2="179" stroke="#059669" stroke-width="2"/>
+              <circle cx="150" cy="50" r="4" fill="#0f172a"/>
+              <circle cx="50" cy="220" r="4" fill="#4f46e5"/><circle cx="230" cy="190" r="4" fill="#4f46e5"/>
+              <circle cx="227" cy="231" r="4" fill="#059669"/><circle cx="53" cy="179" r="4" fill="#059669"/>
+              <text x="156" y="46" font-size="14" font-weight="700" fill="#0f172a">A</text>
+              <text x="30" y="234" font-size="13" font-weight="700" fill="#4f46e5">B</text>
+              <text x="238" y="188" font-size="13" font-weight="700" fill="#4f46e5">C</text>
+              <text x="233" y="245" font-size="13" font-weight="700" fill="#059669">F</text>
+              <text x="20" y="182" font-size="13" font-weight="700" fill="#059669">E</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Exercice 5 -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+      <div class="p-5 sm:p-7">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 shrink-0 rounded-lg bg-brand-600 text-white font-display font-bold flex items-center justify-center">5</span>
+            <h3 class="font-display font-bold text-lg text-slate-900">Triangle rectangle et symétrie</h3>
+          </div>
+          <button onclick="toggleCorr('c5', this)" aria-expanded="false"
+            class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 transition shadow-sm">Voir la correction</button>
+        </div>
+        <div class="grid sm:grid-cols-5 gap-6 items-center">
+          <div class="text-slate-700 sm:col-span-3 space-y-2">
+            <p>ABC est un triangle rectangle en A. B' est le symétrique de B par rapport au point A.</p>
+            <ol class="list-decimal list-inside space-y-1">
+              <li>Fais une figure.</li>
+              <li>Montre que B' est le symétrique de B par rapport à la droite (AC).</li>
+            </ol>
+          </div>
+          <svg viewBox="0 0 300 200" class="diagram w-full h-auto sm:col-span-2">
+            <line x1="150" y1="180" x2="150" y2="60" stroke="#0f172a" stroke-width="2"/>
+            <line x1="150" y1="180" x2="270" y2="180" stroke="#0f172a" stroke-width="2"/>
+            <line x1="150" y1="60" x2="270" y2="180" stroke="#0f172a" stroke-width="2"/>
+            <path d="M150,168 L162,168 L162,180" fill="none" stroke="#334155" stroke-width="1.6"/>
+            <circle cx="150" cy="180" r="4" fill="#0f172a"/><circle cx="150" cy="60" r="4" fill="#0f172a"/><circle cx="270" cy="180" r="4" fill="#0f172a"/>
+            <text x="130" y="196" font-size="14" font-weight="700" fill="#0f172a">A</text>
+            <text x="156" y="56" font-size="14" font-weight="700" fill="#0f172a">B</text>
+            <text x="276" y="184" font-size="14" font-weight="700" fill="#0f172a">C</text>
+          </svg>
+        </div>
+
+        <div id="c5" class="exo-hidden mt-5 bg-brand-50 rounded-xl p-4 sm:p-5 ring-1 ring-brand-200">
+          <p class="font-display font-bold text-brand-700 mb-3">✔ Correction</p>
+          <div class="grid sm:grid-cols-5 gap-6 items-center">
+            <div class="sm:col-span-3 text-slate-700 space-y-2">
+              <p>B' symétrique de B par rapport au point A signifie que <span class="font-semibold">A est le milieu de [BB']</span>. Donc B, A, B' sont alignés et AB = AB'.</p>
+              <p>Le triangle ABC est rectangle en A, donc <span class="font-semibold">(AC) ⊥ (AB)</span>, c'est-à-dire (AC) ⊥ (BB') puisque B' appartient à la droite (AB).</p>
+              <p>Ainsi (AC) passe par le milieu A de [BB'] et est perpendiculaire à [BB'] : (AC) est donc la <span class="font-semibold">médiatrice</span> de [BB'].</p>
+              <p class="font-semibold text-brand-700">Conclusion : B' est le symétrique de B par rapport à la droite (AC).</p>
+            </div>
+            <svg viewBox="0 0 300 340" class="diagram w-full h-auto sm:col-span-2">
+              <line x1="150" y1="300" x2="150" y2="60" stroke="#0f172a" stroke-width="2"/>
+              <line x1="150" y1="180" x2="270" y2="180" stroke="#e11d48" stroke-width="2.5"/>
+              <line x1="150" y1="180" x2="270" y2="180" stroke="#e11d48" stroke-width="0"/>
+              <line x1="150" y1="60" x2="270" y2="180" stroke="#4f46e5" stroke-width="2"/>
+              <line x1="150" y1="300" x2="270" y2="180" stroke="#059669" stroke-width="2"/>
+              <path d="M150,168 L162,168 L162,180" fill="none" stroke="#334155" stroke-width="1.6"/>
+              <circle cx="150" cy="180" r="4" fill="#0f172a"/><circle cx="150" cy="60" r="4" fill="#4f46e5"/><circle cx="270" cy="180" r="4" fill="#0f172a"/><circle cx="150" cy="300" r="4" fill="#059669"/>
+              <text x="130" y="196" font-size="14" font-weight="700" fill="#0f172a">A</text>
+              <text x="156" y="56" font-size="14" font-weight="700" fill="#4f46e5">B</text>
+              <text x="276" y="176" font-size="14" font-weight="700" fill="#e11d48">C</text>
+              <text x="156" y="304" font-size="14" font-weight="700" fill="#059669">B'</text>
+              <text x="180" y="160" fill="#e11d48" font-size="12" font-weight="600">(AC)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Exercice 6 -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+      <div class="p-5 sm:p-7">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 shrink-0 rounded-lg bg-brand-600 text-white font-display font-bold flex items-center justify-center">6</span>
+            <h3 class="font-display font-bold text-lg text-slate-900">Alignement à partir d'une figure</h3>
+          </div>
+          <button onclick="toggleCorr('c6', this)" aria-expanded="false"
+            class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 transition shadow-sm">Voir la correction</button>
+        </div>
+        <div class="grid sm:grid-cols-5 gap-6 items-center">
+          <div class="text-slate-700 sm:col-span-3 space-y-2">
+            <p>Soit la figure ci-contre, où A, E et B sont alignés et où E appartient à (Δ).</p>
+            <ol class="list-decimal list-inside space-y-1">
+              <li>Construis les points A' et B' symétriques de A et B par rapport à (Δ).</li>
+              <li>Montre que les points A', E et B' sont alignés.</li>
+            </ol>
+          </div>
+          <svg viewBox="0 0 320 220" class="diagram w-full h-auto sm:col-span-2">
+            <line x1="200" y1="15" x2="200" y2="200" stroke="#e11d48" stroke-width="2" stroke-dasharray="6 4"/>
+            <line x1="120" y1="60" x2="260" y2="150" stroke="#0f172a" stroke-width="2"/>
+            <circle cx="120" cy="60" r="4" fill="#0f172a"/><circle cx="260" cy="150" r="4" fill="#0f172a"/><circle cx="200" cy="111" r="3.5" fill="#334155"/>
+            <text x="100" y="52" font-size="14" font-weight="700" fill="#0f172a">A</text>
+            <text x="266" y="154" font-size="14" font-weight="700" fill="#0f172a">B</text>
+            <text x="206" y="104" font-size="14" font-weight="700" fill="#334155">E</text>
+            <text x="206" y="30" fill="#e11d48" font-size="13" font-weight="600">(Δ)</text>
+          </svg>
+        </div>
+
+        <div id="c6" class="exo-hidden mt-5 bg-brand-50 rounded-xl p-4 sm:p-5 ring-1 ring-brand-200">
+          <p class="font-display font-bold text-brand-700 mb-3">✔ Correction</p>
+          <div class="grid sm:grid-cols-5 gap-6 items-center">
+            <div class="sm:col-span-3 text-slate-700 space-y-2">
+              <p><span class="font-semibold">1)</span> On construit A' et B' en traçant les perpendiculaires à (Δ) issues de A et de B, et en reportant des distances égales de l'autre côté de (Δ) (voir figure).</p>
+              <p><span class="font-semibold">2)</span> Le point E appartient à (Δ), donc E est son propre symétrique : E' = E.</p>
+              <p>Or A, E, B sont alignés. Comme la symétrie axiale <span class="font-semibold">conserve l'alignement des points</span>, leurs symétriques A', E' = E et B' sont eux aussi alignés.</p>
+              <p class="font-semibold text-brand-700">Conclusion : les points A', E et B' sont alignés.</p>
+            </div>
+            <svg viewBox="0 0 320 220" class="diagram w-full h-auto sm:col-span-2">
+              <line x1="200" y1="15" x2="200" y2="200" stroke="#e11d48" stroke-width="2" stroke-dasharray="6 4"/>
+              <line x1="120" y1="60" x2="260" y2="150" stroke="#4f46e5" stroke-width="2"/>
+              <line x1="280" y1="60" x2="140" y2="150" stroke="#059669" stroke-width="2"/>
+              <line x1="120" y1="60" x2="280" y2="60" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3 3"/>
+              <line x1="260" y1="150" x2="140" y2="150" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="3 3"/>
+              <circle cx="120" cy="60" r="4" fill="#4f46e5"/><circle cx="260" cy="150" r="4" fill="#4f46e5"/>
+              <circle cx="280" cy="60" r="4" fill="#059669"/><circle cx="140" cy="150" r="4" fill="#059669"/>
+              <circle cx="200" cy="111" r="3.5" fill="#334155"/>
+              <text x="100" y="52" font-size="14" font-weight="700" fill="#4f46e5">A</text>
+              <text x="266" y="154" font-size="14" font-weight="700" fill="#4f46e5">B</text>
+              <text x="286" y="56" font-size="14" font-weight="700" fill="#059669">A'</text>
+              <text x="112" y="158" font-size="14" font-weight="700" fill="#059669">B'</text>
+              <text x="206" y="104" font-size="14" font-weight="700" fill="#334155">E</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Exercice 7 -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+      <div class="p-5 sm:p-7">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 shrink-0 rounded-lg bg-brand-600 text-white font-display font-bold flex items-center justify-center">7</span>
+            <h3 class="font-display font-bold text-lg text-slate-900">Point sur la bissectrice</h3>
+          </div>
+          <button onclick="toggleCorr('c7', this)" aria-expanded="false"
+            class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 transition shadow-sm">Voir la correction</button>
+        </div>
+        <div class="grid sm:grid-cols-5 gap-6 items-center">
+          <div class="text-slate-700 sm:col-span-3 space-y-2">
+            <p>ABC est un triangle. I est un point de la bissectrice de l'angle BAC, distinct de A.</p>
+            <ol class="list-decimal list-inside space-y-1">
+              <li>Construis le point E symétrique de I par rapport à (AB).</li>
+              <li>Construis le point F symétrique de I par rapport à (AC).</li>
+              <li>Calcule l'angle EAF en fonction de l'angle BAC. Dans quel cas les points A, E et F sont-ils alignés ?</li>
+            </ol>
+          </div>
+          <svg viewBox="0 0 300 250" class="diagram w-full h-auto sm:col-span-2">
+            <line x1="150" y1="220" x2="150" y2="100" stroke="#e11d48" stroke-width="2" stroke-dasharray="6 4"/>
+            <line x1="150" y1="220" x2="58" y2="89" stroke="#0f172a" stroke-width="2"/>
+            <line x1="150" y1="220" x2="230" y2="105" stroke="#0f172a" stroke-width="2"/>
+            <circle cx="150" cy="220" r="4" fill="#0f172a"/><circle cx="58" cy="89" r="4" fill="#0f172a"/><circle cx="230" cy="105" r="4" fill="#0f172a"/><circle cx="150" cy="130" r="3.5" fill="#334155"/>
+            <text x="156" y="234" font-size="14" font-weight="700" fill="#0f172a">A</text>
+            <text x="38" y="86" font-size="14" font-weight="700" fill="#0f172a">B</text>
+            <text x="236" y="102" font-size="14" font-weight="700" fill="#0f172a">C</text>
+            <text x="156" y="126" font-size="13" font-weight="700" fill="#334155">I</text>
+          </svg>
+        </div>
+
+        <div id="c7" class="exo-hidden mt-5 bg-brand-50 rounded-xl p-4 sm:p-5 ring-1 ring-brand-200">
+          <p class="font-display font-bold text-brand-700 mb-3">✔ Correction</p>
+          <div class="grid sm:grid-cols-5 gap-6 items-center">
+            <div class="sm:col-span-3 text-slate-700 space-y-2">
+              <p>Comme I appartient à la bissectrice de l'angle BAC, on a : BAI = IAC = ½ BAC.</p>
+              <p>A appartient à la droite (AB), donc A est son propre symétrique. La symétrie par rapport à (AB) conserve les longueurs et les angles, donc <span class="font-semibold">AE = AI</span> et BAE = BAI (E est situé de l'autre côté de (AB) par rapport à I).</p>
+              <p>De même, par rapport à (AC) : <span class="font-semibold">AF = AI</span> et CAF = CAI.</p>
+              <p>En additionnant ces quatre angles égaux : EAF = EAB + BAI + IAC + CAF = 4 × (½ BAC) = <span class="font-semibold">2 × BAC</span>.</p>
+              <p>Les points A, E, F sont alignés lorsque EAF = 180°, c'est-à-dire lorsque BAC = 90°. Dans tous les cas, le triangle AEF est isocèle en A (AE = AF = AI) et la bissectrice (AI) est un axe de symétrie de la figure AEIF.</p>
+            </div>
+            <svg viewBox="0 0 300 250" class="diagram w-full h-auto sm:col-span-2">
+              <line x1="150" y1="220" x2="150" y2="100" stroke="#e11d48" stroke-width="2" stroke-dasharray="6 4"/>
+              <line x1="150" y1="220" x2="58" y2="89" stroke="#4f46e5" stroke-width="2"/>
+              <line x1="150" y1="220" x2="230" y2="105" stroke="#4f46e5" stroke-width="2"/>
+              <line x1="150" y1="220" x2="65" y2="189" stroke="#059669" stroke-width="2"/>
+              <line x1="150" y1="220" x2="235" y2="189" stroke="#059669" stroke-width="2"/>
+              <circle cx="150" cy="220" r="4" fill="#0f172a"/><circle cx="58" cy="89" r="4" fill="#4f46e5"/><circle cx="230" cy="105" r="4" fill="#4f46e5"/>
+              <circle cx="150" cy="130" r="3.5" fill="#334155"/><circle cx="65" cy="189" r="4" fill="#059669"/><circle cx="235" cy="189" r="4" fill="#059669"/>
+              <text x="156" y="234" font-size="14" font-weight="700" fill="#0f172a">A</text>
+              <text x="38" y="86" font-size="13" font-weight="700" fill="#4f46e5">B</text>
+              <text x="236" y="102" font-size="13" font-weight="700" fill="#4f46e5">C</text>
+              <text x="156" y="126" font-size="13" font-weight="700" fill="#334155">I</text>
+              <text x="42" y="196" font-size="13" font-weight="700" fill="#059669">E</text>
+              <text x="241" y="196" font-size="13" font-weight="700" fill="#059669">F</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Exercice 8 -->
+    <article class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-200 overflow-hidden">
+      <div class="p-5 sm:p-7">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 shrink-0 rounded-lg bg-brand-600 text-white font-display font-bold flex items-center justify-center">8</span>
+            <h3 class="font-display font-bold text-lg text-slate-900">Construction à la règle non graduée</h3>
+          </div>
+          <button onclick="toggleCorr('c8', this)" aria-expanded="false"
+            class="px-4 py-2 rounded-xl bg-brand-600 text-white font-semibold text-sm hover:bg-brand-700 transition shadow-sm">Voir la correction</button>
+        </div>
+        <div class="grid sm:grid-cols-5 gap-6 items-center">
+          <div class="text-slate-700 sm:col-span-3 space-y-2">
+            <p>Dans la figure ci-contre, (Δ) est une droite et A' est le symétrique de A par rapport à (Δ).</p>
+            <p>En utilisant une <span class="font-semibold">règle non graduée</span>, détermine le point B' symétrique de B par rapport à (Δ).</p>
+          </div>
+          <svg viewBox="0 0 320 260" class="diagram w-full h-auto sm:col-span-2">
+            <line x1="10" y1="150" x2="310" y2="150" stroke="#0f172a" stroke-width="2"/>
+            <line x1="90" y1="70" x2="90" y2="230" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="4 3"/>
+            <path d="M90,138 L102,138 L102,150" fill="none" stroke="#334155" stroke-width="1.6"/>
+            <line x1="80" y1="105" x2="86" y2="115" stroke="#334155" stroke-width="2"/>
+            <line x1="94" y1="185" x2="100" y2="195" stroke="#334155" stroke-width="2"/>
+            <circle cx="90" cy="70" r="4" fill="#0f172a"/><circle cx="90" cy="230" r="4" fill="#0f172a"/><circle cx="200" cy="90" r="4" fill="#0f172a"/>
+            <text x="70" y="62" font-size="14" font-weight="700" fill="#0f172a">A</text>
+            <text x="96" y="234" font-size="14" font-weight="700" fill="#0f172a">A'</text>
+            <text x="208" y="88" font-size="14" font-weight="700" fill="#0f172a">B</text>
+            <text x="270" y="146" fill="#0f172a" font-size="13" font-weight="600">(Δ)</text>
+          </svg>
+        </div>
+
+        <div id="c8" class="exo-hidden mt-5 bg-brand-50 rounded-xl p-4 sm:p-5 ring-1 ring-brand-200">
+          <p class="font-display font-bold text-brand-700 mb-3">✔ Correction — méthode à la règle seule</p>
+          <div class="grid sm:grid-cols-5 gap-6 items-center">
+            <div class="sm:col-span-3 text-slate-700 space-y-2 text-sm sm:text-base">
+              <p>On ne peut pas mesurer : on utilise uniquement des droites passant par des points déjà connus (ou par leurs symétriques).</p>
+              <ul class="list-disc list-inside space-y-1">
+                <li>On trace la droite (AB) : elle coupe (Δ) en un point <span class="font-semibold">K</span>. Comme K ∈ (Δ), K est son propre symétrique.</li>
+                <li>Le symétrique de la droite (AB) est donc la droite <span class="font-semibold">(A'K)</span> : B' appartient à cette droite.</li>
+                <li>On trace la droite (A'B) : elle coupe (Δ) en un point <span class="font-semibold">M</span>, qui est lui aussi son propre symétrique.</li>
+                <li>Le symétrique de la droite (A'B) est donc la droite <span class="font-semibold">(AM)</span> : B' appartient aussi à cette droite.</li>
+              </ul>
+              <p class="font-semibold text-brand-700">B' est donc le point d'intersection des droites (A'K) et (AM) — obtenu uniquement à la règle, sans aucune mesure.</p>
+            </div>
+            <svg viewBox="0 0 320 260" class="diagram w-full h-auto sm:col-span-2">
+              <line x1="10" y1="150" x2="310" y2="150" stroke="#0f172a" stroke-width="2"/>
+              <line x1="90" y1="70" x2="90" y2="230" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="4 3"/>
+              <path d="M90,138 L102,138 L102,150" fill="none" stroke="#334155" stroke-width="1.6"/>
+              <line x1="80" y1="60" x2="240" y2="175" stroke="#4f46e5" stroke-width="1.8"/>
+              <line x1="80" y1="240" x2="210" y2="120" stroke="#f59e0b" stroke-width="1.8"/>
+              <line x1="80" y1="240" x2="245" y2="145" stroke="#059669" stroke-width="1.8"/>
+              <line x1="80" y1="60" x2="210" y2="180" stroke="#7c3aed" stroke-width="1.8"/>
+              <circle cx="90" cy="70" r="4" fill="#4f46e5"/><circle cx="90" cy="230" r="4" fill="#f59e0b"/>
+              <circle cx="200" cy="90" r="4" fill="#0f172a"/>
+              <circle cx="236.7" cy="150" r="3.5" fill="#334155"/><circle cx="178" cy="150" r="3.5" fill="#334155"/>
+              <circle cx="200" cy="170" r="4.5" fill="#059669"/>
+              <text x="70" y="62" font-size="13" font-weight="700" fill="#4f46e5">A</text>
+              <text x="96" y="234" font-size="13" font-weight="700" fill="#f59e0b">A'</text>
+              <text x="208" y="88" font-size="13" font-weight="700" fill="#0f172a">B</text>
+              <text x="240" y="145" font-size="12" fill="#334155">K</text>
+              <text x="160" y="146" font-size="12" fill="#334155">M</text>
+              <text x="206" y="180" font-size="13" font-weight="700" fill="#059669">B'</text>
+              <text x="270" y="146" fill="#0f172a" font-size="12" font-weight="600">(Δ)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-slate-900 text-slate-300 mt-10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid sm:grid-cols-3 gap-8">
+    <div>
+      <a href="/" class="flex items-center gap-2.5 mb-3">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-9 h-9 shrink-0 rounded-full">
+        <span class="font-display font-bold text-white leading-tight">
+          <span class="block text-sm">Prof. Lahbib Elkeantaoui</span>
+          <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+        </span>
+      </a>
+      <p class="text-sm text-slate-400">Cours et exercices — médiatrice, symétrique d'un point et de figures usuelles, niveau 2APIC.</p>
+    </div>
+    <div>
+      <p class="font-semibold text-white mb-3 text-sm uppercase tracking-wide">Contenu</p>
+      <ul class="space-y-2 text-sm">
+        <li><a href="#cours" class="hover:text-white transition">Cours complet</a></li>
+        <li><a href="#figures" class="hover:text-white transition">Figures usuelles</a></li>
+        <li><a href="#serie" class="hover:text-white transition">Exercice N°5 corrigé</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-semibold text-white mb-3 text-sm uppercase tracking-wide">Informations</p>
+      <ul class="space-y-2 text-sm text-slate-400">
+        <li>Niveau : 2APIC</li>
+        <li>Prof : LAHBIB ELKEANTAOUI</li>
+      </ul>
+      <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+    </div>
+  </div>
+  <div class="border-t border-slate-800 py-5 text-center text-xs text-slate-500">
+    © 2026 — Page pédagogique générée pour l'apprentissage de la symétrie axiale.
+  </div>
+</footer>
+
+<script>
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const iconOpen = document.getElementById('iconOpen');
+  const iconClose = document.getElementById('iconClose');
+  menuBtn.addEventListener('click', () => {
+    const isHidden = mobileMenu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden', !isHidden);
+    iconClose.classList.toggle('hidden', isHidden);
+    menuBtn.setAttribute('aria-expanded', String(!isHidden));
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Correction toggle
+  function toggleCorr(id, btn) {
+    const el = document.getElementById(id);
+    el.classList.toggle('exo-hidden');
+    const isHidden = el.classList.contains('exo-hidden');
+    const base = 'Voir la correction';
+    btn.innerHTML = isHidden ? base : '✓ Masquer la correction';
+    btn.setAttribute('aria-expanded', String(!isHidden));
+  }
+</script>
+
+</body>
+</html>

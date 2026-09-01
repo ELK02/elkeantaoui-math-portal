@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Les angles – Cours &amp; Exercices corrigés | 1AC</title>
+<meta name="description" content="Cours complet (angles complémentaires, supplémentaires, adjacents et opposés par le sommet) et 5 exercices d'application corrigés en détail, figures à l'appui — 1ère année collège." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=STIX+Two+Text:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          display: ['Lexend', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          math: ['STIX Two Text', 'Cambria', 'Georgia', 'serif'],
+        },
+        colors: {
+          indigo: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+        },
+      }
+    }
+  }
+</script>
+<style>
+  .fig-label { font-family: 'STIX Two Text', Cambria, Georgia, serif; font-style: italic; }
+  .fig-point path { stroke: #0f172a; }
+  .vf-btn[data-picked="true"] { box-shadow: inset 0 0 0 2px currentColor; }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white, .dark table.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .text-slate-300 { color: #cbd5e1; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .ring-emerald-100, .dark .ring-emerald-200 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800, .dark .text-emerald-600 { color: #6ee7a3; }
+  .dark .bg-rose-50, .dark .bg-rose-100 { background-color: #3a0d18; }
+  .dark .border-rose-400, .dark .ring-rose-200 { border-color: #7a2138; }
+  .dark .text-rose-600, .dark .text-rose-700, .dark .text-rose-500 { color: #fb7185; }
+  .dark .bg-amber-50 { background-color: #3a2a0a; }
+  .dark .border-amber-400, .dark .ring-amber-200 { border-color: #92400e; }
+  .dark .bg-violet-50 { background-color: #241a3d; }
+  .dark .border-violet-200 { border-color: #4c3a7a; }
+  .dark .text-violet-700, .dark .text-violet-900 { color: #c4b5fd; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased transition-colors">
+
+<a href="#contenu" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow-lg">Aller au contenu</a>
+
+<!-- ===================== HEADER ===================== -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur border-b border-slate-200 dark:border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#accueil" class="flex items-center gap-2 font-display font-bold text-lg text-indigo-700 dark:text-white">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-9 w-9 shrink-0 rounded-full">
+        <span class="hidden xs:inline sm:inline">Les angles</span>
+      </a>
+      <nav aria-label="Navigation principale" class="hidden md:flex items-center gap-1 text-sm font-medium">
+        <a href="/" class="nav-link px-3 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white transition">← Portail</a>
+        <a href="#definitions" class="nav-link px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white transition">Cours</a>
+        <a href="#adjacents" class="nav-link px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white transition">Adjacents</a>
+        <a href="#opposes" class="nav-link px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white transition">Opposés</a>
+        <a href="#exercices" class="nav-link ml-2 px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition">Exercices</a>
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-amber-400 transition-colors">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </nav>
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="md:hidden mr-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+      <button id="menuBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu" class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5">
+        <svg id="menuIconOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75Zm0 5A.75.75 0 0 1 2.75 9h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 9.75Zm0 5a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd"/></svg>
+        <svg id="menuIconClose" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z"/></svg>
+      </button>
+    </div>
+    <nav id="mobileMenu" aria-label="Navigation mobile" class="hidden md:hidden pb-4 flex flex-col gap-1 text-sm font-medium">
+      <a href="/" class="nav-link px-3 py-2.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-white/5">← Portail</a>
+      <a href="#definitions" class="nav-link px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-white/5">Complémentaires &amp; supplémentaires</a>
+      <a href="#adjacents" class="nav-link px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-white/5">Angles adjacents</a>
+      <a href="#opposes" class="nav-link px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-white/5">Opposés par le sommet</a>
+      <a href="#exercices" class="nav-link px-3 py-2.5 rounded-lg bg-indigo-600 text-white text-center">Exercices corrigés</a>
+    </nav>
+  </div>
+  <!-- Sommaire pills -->
+  <nav aria-label="Sommaire du cours" class="border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-indigo-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto">
+      <ul class="flex gap-2 py-3 text-xs sm:text-sm font-medium whitespace-nowrap">
+        <li><a href="#definitions" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">01 · Complémentaires &amp; supplémentaires</a></li>
+        <li><a href="#adjacents" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">02 · Angles adjacents</a></li>
+        <li><a href="#opposes" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">03 · Opposés par le sommet</a></li>
+        <li><a href="#exercices" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">04 · Exercices corrigés</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main id="contenu">
+
+  <!-- ===================== HERO ===================== -->
+  <section id="accueil" aria-label="Présentation" class="relative overflow-hidden bg-gradient-to-br from-indigo-950 via-indigo-800 to-violet-600 text-white scroll-mt-28">
+    <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1920&q=80" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-20 mix-blend-overlay" />
+    <div class="absolute inset-0 opacity-[0.15] [background-image:radial-gradient(white_1px,transparent_1px)] [background-size:22px_22px]" aria-hidden="true"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <p class="inline-block rounded-full bg-white/10 px-4 py-1 text-xs sm:text-sm font-semibold tracking-wide uppercase mb-4 ring-1 ring-white/25">1ʳᵉ Année Collège · Mathématiques</p>
+      <h1 class="font-display text-3xl sm:text-5xl font-extrabold leading-tight max-w-3xl">Les angles</h1>
+      <p class="mt-4 max-w-2xl text-indigo-100 text-base sm:text-lg">Angles complémentaires, supplémentaires, adjacents et opposés par le sommet — le cours avec les questions clés, puis 5 exercices d'application corrigés pas à pas, figures à l'appui.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#definitions" class="rounded-xl bg-white text-indigo-700 px-5 py-3 font-semibold shadow hover:bg-indigo-50 transition">Commencer le cours</a>
+        <a href="#exercices" class="rounded-xl bg-white/10 ring-1 ring-white/30 px-5 py-3 font-semibold hover:bg-white/20 transition">Voir les exercices</a>
+      </div>
+      <dl class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-2xl">
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-indigo-200">Cours</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">3 notions clés</dd>
+        </div>
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-indigo-200">Conditions</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">3 conditions</dd>
+        </div>
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-indigo-200">Entraînement</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">5 exercices</dd>
+        </div>
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-indigo-200">Figures</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">20+ schémas</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ===================== I. COMPLÉMENTAIRES & SUPPLÉMENTAIRES ===================== -->
+  <section id="definitions" aria-labelledby="definitions-heading" class="scroll-mt-28 py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-4">
+        <span class="text-indigo-600 font-semibold text-sm uppercase tracking-wide">Partie I</span>
+        <h2 id="definitions-heading" class="font-display text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Angles complémentaires et supplémentaires</h2>
+      </div>
+      <div class="rounded-2xl bg-indigo-50 ring-1 ring-indigo-100 p-5 mb-10 flex gap-3">
+        <span class="shrink-0 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 text-white text-sm font-bold">Q1</span>
+        <p class="text-sm sm:text-base text-indigo-900 pt-0.5">Donne les définitions de deux angles complémentaires puis de deux angles supplémentaires.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6">
+        <!-- Complémentaires -->
+        <article class="rounded-2xl bg-white ring-1 ring-slate-100 shadow-sm p-6 sm:p-8">
+          <h3 class="font-display font-bold text-slate-900 mb-3">Angles complémentaires</h3>
+          <div class="rounded-2xl border-2 border-indigo-200 bg-indigo-50 p-5 mb-4">
+            <p class="text-xs text-indigo-500 font-bold uppercase tracking-wide mb-1">Définition</p>
+            <p class="text-indigo-900 text-sm sm:text-base leading-relaxed">Deux angles sont <strong>complémentaires</strong> lorsque la somme de leurs mesures est égale à <strong>90°</strong>.</p>
+          </div>
+          <svg viewBox="0 0 240 170" class="w-full h-auto max-w-xs mx-auto">
+            <path d="M40,150 L200,150" stroke="#0f172a" stroke-width="2"/>
+            <path d="M40,150 L40,10" stroke="#0f172a" stroke-width="2"/>
+            <path d="M40,150 L154.7,69.7" stroke="#0f172a" stroke-width="2"/>
+            <path d="M40,138 L52,138 L52,150" fill="none" stroke="#0f172a" stroke-width="1.5"/>
+            <path d="M62.9,133.9 A28,28 0 0 1 68,150" fill="none" stroke="#4338ca" stroke-width="1.5"/>
+            <text x="70" y="140" font-size="13" fill="#4338ca" font-weight="600">35°</text>
+            <path d="M40,116 A34,34 0 0 1 67.9,130.5" fill="none" stroke="#7c3aed" stroke-width="1.5"/>
+            <text x="52" y="112" font-size="13" fill="#7c3aed" font-weight="600">55°</text>
+            <g class="fig-point">
+              <path d="M35,145 L45,155 M35,155 L45,145" stroke-width="2"/><text x="20" y="163" class="fig-label" font-size="15">O</text>
+              <text x="204" y="155" class="fig-label" font-size="15">A</text>
+              <text x="158" y="65" class="fig-label" font-size="15">B</text>
+              <text x="28" y="14" class="fig-label" font-size="15">C</text>
+            </g>
+          </svg>
+          <p class="mt-3 text-sm text-slate-700">Ici <span class="font-mono">AÔB = 35°</span> et <span class="font-mono">BÔC = 55°</span>, avec <span class="font-mono">AÔC = 90°</span> (angle droit). Comme <span class="font-mono font-semibold text-indigo-700">35° + 55° = 90°</span>, les angles <span class="font-mono">AÔB</span> et <span class="font-mono">BÔC</span> sont complémentaires.</p>
+        </article>
+
+        <!-- Supplémentaires -->
+        <article class="rounded-2xl bg-white ring-1 ring-slate-100 shadow-sm p-6 sm:p-8">
+          <h3 class="font-display font-bold text-slate-900 mb-3">Angles supplémentaires</h3>
+          <div class="rounded-2xl border-2 border-violet-200 bg-violet-50 p-5 mb-4">
+            <p class="text-xs text-violet-500 font-bold uppercase tracking-wide mb-1">Définition</p>
+            <p class="text-violet-900 text-sm sm:text-base leading-relaxed">Deux angles sont <strong>supplémentaires</strong> lorsque la somme de leurs mesures est égale à <strong>180°</strong>.</p>
+          </div>
+          <svg viewBox="0 0 300 170" class="w-full h-auto max-w-xs mx-auto">
+            <path d="M20,150 L280,150" stroke="#0f172a" stroke-width="2"/>
+            <path d="M150,150 L191,37.2" stroke="#0f172a" stroke-width="2"/>
+            <path d="M163,114.3 A38,38 0 0 1 188,150" fill="none" stroke="#4338ca" stroke-width="1.5"/>
+            <text x="178" y="126" font-size="13" fill="#4338ca" font-weight="600">70°</text>
+            <path d="M95,150 A55,55 0 0 1 168.8,98.3" fill="none" stroke="#7c3aed" stroke-width="1.5"/>
+            <text x="98" y="101" font-size="13" fill="#7c3aed" font-weight="600">110°</text>
+            <g class="fig-point">
+              <path d="M15,145 L25,155 M15,155 L25,145" stroke-width="2"/><text x="6" y="165" class="fig-label" font-size="15">Y</text>
+              <path d="M275,145 L285,155 M275,155 L285,145" stroke-width="2"/><text x="286" y="155" class="fig-label" font-size="15">Z</text>
+              <path d="M145,145 L155,155 M145,155 L155,145" stroke-width="2"/><text x="150" y="167" class="fig-label" font-size="15">O</text>
+              <text x="193" y="32" class="fig-label" font-size="15">X</text>
+            </g>
+          </svg>
+          <p class="mt-3 text-sm text-slate-700">Ici Y, O, Z sont alignés : <span class="font-mono">YÔX = 110°</span> et <span class="font-mono">XÔZ = 70°</span>. Comme <span class="font-mono font-semibold text-violet-700">110° + 70° = 180°</span>, les angles <span class="font-mono">YÔX</span> et <span class="font-mono">XÔZ</span> sont supplémentaires.</p>
+        </article>
+      </div>
+
+      <div class="mt-6 rounded-2xl bg-amber-50 ring-1 ring-amber-200 p-5">
+        <p class="text-xs font-bold uppercase tracking-wide text-amber-600 mb-1">À retenir</p>
+        <p class="text-sm text-amber-900">Pour être complémentaires ou supplémentaires, deux angles n'ont <strong>pas besoin d'être adjacents</strong> : il suffit que la somme de leurs mesures fasse 90° (ou 180°), même si on les dessine séparément.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== II. ANGLES ADJACENTS ===================== -->
+  <section id="adjacents" aria-labelledby="adjacents-heading" class="scroll-mt-28 py-16 sm:py-24 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-4">
+        <span class="text-indigo-600 font-semibold text-sm uppercase tracking-wide">Partie II</span>
+        <h2 id="adjacents-heading" class="font-display text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Angles adjacents</h2>
+      </div>
+      <div class="rounded-2xl bg-indigo-50 ring-1 ring-indigo-100 p-5 mb-10 flex gap-3">
+        <span class="shrink-0 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 text-white text-sm font-bold">Q2</span>
+        <p class="text-sm sm:text-base text-indigo-900 pt-0.5">Quelles sont les trois conditions que doivent vérifier deux angles pour être adjacents ?</p>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-4 mb-10">
+        <div class="rounded-2xl bg-indigo-600 text-white p-5">
+          <span class="font-display text-2xl font-extrabold text-indigo-200">1</span>
+          <p class="mt-2 text-sm font-semibold">Même sommet</p>
+          <p class="mt-1 text-xs text-indigo-100">Les deux angles ont le même sommet.</p>
+        </div>
+        <div class="rounded-2xl bg-indigo-600 text-white p-5">
+          <span class="font-display text-2xl font-extrabold text-indigo-200">2</span>
+          <p class="mt-2 text-sm font-semibold">Côté commun</p>
+          <p class="mt-1 text-xs text-indigo-100">Les deux angles ont un côté (un rayon) commun.</p>
+        </div>
+        <div class="rounded-2xl bg-indigo-600 text-white p-5">
+          <span class="font-display text-2xl font-extrabold text-indigo-200">3</span>
+          <p class="mt-2 text-sm font-semibold">De part et d'autre</p>
+          <p class="mt-1 text-xs text-indigo-100">Ils sont situés de part et d'autre de ce côté commun (ils ne se chevauchent pas).</p>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Bon exemple -->
+        <article class="rounded-2xl bg-white ring-1 ring-emerald-200 shadow-sm p-5">
+          <p class="inline-flex items-center gap-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold px-2.5 py-1 mb-3">✓ Adjacents</p>
+          <svg viewBox="0 0 160 130" class="w-full h-auto">
+            <path d="M20,110 L140,110" stroke="#0f172a" stroke-width="2"/>
+            <path d="M20,110 L95,20" stroke="#0f172a" stroke-width="2"/>
+            <path d="M20,110 L140,45" stroke="#0f172a" stroke-width="2"/>
+            <path d="M46.4,95.7 A30,30 0 0 1 50,110" fill="none" stroke="#059669" stroke-width="1.5"/>
+            <path d="M44.3,80.8 A38,38 0 0 1 53.4,91.9" fill="none" stroke="#d97706" stroke-width="1.5"/>
+            <g class="fig-point"><path d="M15,105 L25,115 M15,115 L25,105" stroke-width="2"/><text x="4" y="124" class="fig-label" font-size="14">O</text></g>
+          </svg>
+          <p class="mt-2 text-xs text-slate-600 text-center">Même sommet O, côté commun, aucun chevauchement.</p>
+        </article>
+        <!-- Contre-ex 1 -->
+        <article class="rounded-2xl bg-white ring-1 ring-rose-200 shadow-sm p-5">
+          <p class="inline-flex items-center gap-1 rounded-full bg-rose-100 text-rose-600 text-xs font-bold px-2.5 py-1 mb-3">✗ Sommets différents</p>
+          <svg viewBox="0 0 160 130" class="w-full h-auto">
+            <path d="M15,60 L60,15" stroke="#0f172a" stroke-width="2"/>
+            <path d="M15,60 L75,60" stroke="#0f172a" stroke-width="2"/>
+            <path d="M100,110 L150,70" stroke="#0f172a" stroke-width="2"/>
+            <path d="M100,110 L155,115" stroke="#0f172a" stroke-width="2"/>
+            <g class="fig-point">
+              <path d="M10,55 L20,65 M10,65 L20,55" stroke-width="2"/><text x="0" y="48" class="fig-label" font-size="14">M</text>
+              <path d="M95,105 L105,115 M95,115 L105,105" stroke-width="2"/><text x="82" y="112" class="fig-label" font-size="14">N</text>
+            </g>
+          </svg>
+          <p class="mt-2 text-xs text-slate-600 text-center">Condition 1 non vérifiée : sommets M et N différents.</p>
+        </article>
+        <!-- Contre-ex 2 -->
+        <article class="rounded-2xl bg-white ring-1 ring-rose-200 shadow-sm p-5">
+          <p class="inline-flex items-center gap-1 rounded-full bg-rose-100 text-rose-600 text-xs font-bold px-2.5 py-1 mb-3">✗ Aucun côté commun</p>
+          <svg viewBox="0 0 160 130" class="w-full h-auto">
+            <path d="M20,110 L30,15" stroke="#0f172a" stroke-width="2"/>
+            <path d="M20,110 L85,25" stroke="#0f172a" stroke-width="2"/>
+            <path d="M20,110 L120,55" stroke="#0f172a" stroke-width="2"/>
+            <path d="M20,110 L145,105" stroke="#0f172a" stroke-width="2"/>
+            <path d="M24.7,65.2 A45,45 0 0 1 47.3,74.3" fill="none" stroke="#059669" stroke-width="1.5"/>
+            <path d="M59.4,88.3 A45,45 0 0 1 65,108.2" fill="none" stroke="#d97706" stroke-width="1.5"/>
+            <g class="fig-point"><path d="M15,105 L25,115 M15,115 L25,105" stroke-width="2"/><text x="4" y="124" class="fig-label" font-size="14">O</text></g>
+          </svg>
+          <p class="mt-2 text-xs text-slate-600 text-center">Condition 2 non vérifiée : les deux angles marqués n'ont pas de côté en commun.</p>
+        </article>
+        <!-- Contre-ex 3 -->
+        <article class="rounded-2xl bg-white ring-1 ring-rose-200 shadow-sm p-5">
+          <p class="inline-flex items-center gap-1 rounded-full bg-rose-100 text-rose-600 text-xs font-bold px-2.5 py-1 mb-3">✗ Angles superposés</p>
+          <svg viewBox="0 0 160 130" class="w-full h-auto">
+            <path d="M20,110 L145,110" stroke="#0f172a" stroke-width="2"/>
+            <path d="M20,110 L40,15" stroke="#0f172a" stroke-width="2"/>
+            <path d="M20,110 L110,30" stroke="#0f172a" stroke-width="2"/>
+            <path d="M49.9,83.4 A40,40 0 0 1 60,110" fill="none" stroke="#059669" stroke-width="1.5"/>
+            <path d="M31.3,56.2 A55,55 0 0 1 75,110" fill="none" stroke="#d97706" stroke-width="1.5"/>
+            <g class="fig-point"><path d="M15,105 L25,115 M15,115 L25,105" stroke-width="2"/><text x="4" y="124" class="fig-label" font-size="14">O</text></g>
+          </svg>
+          <p class="mt-2 text-xs text-slate-600 text-center">Condition 3 non vérifiée : le petit angle est à l'intérieur du grand (ils se chevauchent).</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== III. OPPOSÉS PAR LE SOMMET ===================== -->
+  <section id="opposes" aria-labelledby="opposes-heading" class="scroll-mt-28 py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-4">
+        <span class="text-indigo-600 font-semibold text-sm uppercase tracking-wide">Partie III</span>
+        <h2 id="opposes-heading" class="font-display text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Angles opposés par le sommet</h2>
+      </div>
+      <div class="rounded-2xl bg-indigo-50 ring-1 ring-indigo-100 p-5 mb-10 flex gap-3">
+        <span class="shrink-0 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 text-white text-sm font-bold">Q3</span>
+        <p class="text-sm sm:text-base text-indigo-900 pt-0.5">Donne la définition de deux angles opposés par le sommet.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6 items-start">
+        <div class="rounded-2xl border-2 border-indigo-200 bg-indigo-50 p-6 sm:p-8">
+          <p class="text-xs text-indigo-500 font-bold uppercase tracking-wide mb-2">Définition</p>
+          <p class="text-indigo-900 text-sm sm:text-base leading-relaxed">Deux angles sont <strong>opposés par le sommet</strong> lorsqu'ils sont formés par deux droites sécantes, qu'ils ont le <strong>même sommet</strong>, et que les côtés de l'un sont dans le <strong>prolongement</strong> des côtés de l'autre (ils n'ont donc <strong>aucun côté commun</strong>).</p>
+          <div class="mt-4 rounded-xl bg-white ring-1 ring-indigo-100 p-4">
+            <p class="text-xs font-bold uppercase tracking-wide text-indigo-500 mb-1">Propriété</p>
+            <p class="text-sm text-slate-700">Deux angles opposés par le sommet ont <strong>la même mesure</strong>.</p>
+          </div>
+        </div>
+        <article class="rounded-2xl bg-white ring-1 ring-slate-100 shadow-sm p-6 sm:p-8">
+          <svg viewBox="0 0 260 220" class="w-full h-auto max-w-sm mx-auto">
+            <path d="M20,190 L240,50" stroke="#0f172a" stroke-width="2"/>
+            <path d="M30,40 L230,180" stroke="#0f172a" stroke-width="2"/>
+            <path d="M137.5,115.2 L118.9,127 A22,22 0 0 1 119.5,102.6 Z" fill="#4338ca" opacity="0.18"/>
+            <path d="M137.5,115.2 L156.1,103.4 A22,22 0 0 1 155.5,127.8 Z" fill="#4338ca" opacity="0.18"/>
+            <path d="M137.5,115.2 L157.2,129 A24,24 0 0 1 117.3,128.1 Z" fill="#d97706" opacity="0.18"/>
+            <path d="M137.5,115.2 L117.8,101.4 A24,24 0 0 1 157.7,102.3 Z" fill="#d97706" opacity="0.18"/>
+            <g class="fig-point">
+              <path d="M15,185 L25,195 M15,195 L25,185" stroke-width="2"/><text x="2" y="205" class="fig-label" font-size="15">x</text>
+              <path d="M235,45 L245,55 M235,55 L245,45" stroke-width="2"/><text x="246" y="42" class="fig-label" font-size="15">y</text>
+              <path d="M25,35 L35,45 M25,45 L35,35" stroke-width="2"/><text x="10" y="30" class="fig-label" font-size="15">z</text>
+              <path d="M225,175 L235,185 M225,185 L235,175" stroke-width="2"/><text x="237" y="195" class="fig-label" font-size="15">t</text>
+              <path d="M132.5,110.2 L142.5,120.2 M132.5,120.2 L142.5,110.2" stroke-width="2"/><text x="145" y="107" class="fig-label" font-size="15">O</text>
+            </g>
+          </svg>
+          <p class="mt-3 text-sm text-slate-700 text-center">Les angles <span class="font-mono text-indigo-700 font-semibold">xÔz</span> et <span class="font-mono text-indigo-700 font-semibold">yÔt</span> sont opposés par le sommet (en indigo), de même que <span class="font-mono text-amber-700 font-semibold">xÔt</span> et <span class="font-mono text-amber-700 font-semibold">yÔz</span> (en orange).</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXERCICES ===================== -->
+  <section id="exercices" aria-labelledby="exercices-heading" class="scroll-mt-28 py-16 sm:py-24 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-6">
+        <span class="text-indigo-600 font-semibold text-sm uppercase tracking-wide">Partie IV</span>
+        <h2 id="exercices-heading" class="font-display text-2xl sm:text-3xl font-bold text-slate-900 mt-1">5 exercices d'application corrigés</h2>
+        <p class="mt-3 text-slate-600">Cherche chaque exercice sur ton cahier, puis clique sur « Voir la correction » (ou choisis une réponse) pour vérifier.</p>
+      </div>
+
+      <div class="flex flex-wrap gap-2 mb-12">
+        <a href="#exercice1" class="rounded-full bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 px-4 py-2 text-sm font-semibold transition">Ex. 01</a>
+        <a href="#exercice2" class="rounded-full bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 px-4 py-2 text-sm font-semibold transition">Ex. 02</a>
+        <a href="#exercice3" class="rounded-full bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 px-4 py-2 text-sm font-semibold transition">Ex. 03</a>
+        <a href="#exercice4" class="rounded-full bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 px-4 py-2 text-sm font-semibold transition">Ex. 04</a>
+        <a href="#exercice5" class="rounded-full bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 px-4 py-2 text-sm font-semibold transition">Ex. 05</a>
+      </div>
+
+      <!-- ========== EXERCICE 1 ========== -->
+      <div id="exercice1" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-4">
+          <span class="inline-block rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 1</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Nommer des angles à l'aide des points d'une figure</span>
+        </div>
+
+        <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+          <div class="p-4 sm:p-6">
+            <p class="text-sm sm:text-base text-slate-700 mb-4">Complète le tableau en nommant les angles marqués <strong>ⓐ</strong> à <strong>ⓕ</strong> à l'aide des points de la figure (le sommet s'écrit toujours au milieu, par exemple <span class="font-mono">GFK</span>) :</p>
+
+            <svg viewBox="0 0 460 380" class="w-full h-auto max-w-lg mx-auto bg-slate-50 rounded-xl ring-1 ring-slate-200">
+              <line x1="80" y1="30" x2="290" y2="360" stroke="#0f172a" stroke-width="1.6"/>
+              <line x1="30" y1="120" x2="430" y2="178" stroke="#0f172a" stroke-width="1.6"/>
+              <line x1="105" y1="365" x2="405" y2="92" stroke="#0f172a" stroke-width="1.6"/>
+
+              <g class="fig-point">
+                <path d="M96,51 L106,61 M96,61 L106,51" stroke-width="2"/><text x="76" y="46" class="fig-label" font-size="16">G</text>
+                <path d="M46,124 L56,134 M46,134 L56,124" stroke-width="2"/><text x="26" y="120" class="fig-label" font-size="16">K</text>
+                <path d="M406,164 L416,174 M406,174 L416,164" stroke-width="2"/><text x="418" y="164" class="fig-label" font-size="16">C</text>
+                <path d="M380,105 L390,115 M380,115 L390,105" stroke-width="2"/><text x="392" y="102" class="fig-label" font-size="16">B</text>
+                <path d="M122,340 L132,350 M122,350 L132,340" stroke-width="2"/><text x="103" y="362" class="fig-label" font-size="16">R</text>
+                <path d="M257,327 L267,337 M257,337 L267,327" stroke-width="2"/><text x="266" y="345" class="fig-label" font-size="16">S</text>
+                <text x="132" y="136" class="fig-label" font-size="16">F</text>
+                <text x="338" y="153" class="fig-label" font-size="16">O</text>
+                <text x="222" y="280" class="fig-label" font-size="16">U</text>
+              </g>
+
+              <g font-size="14" font-weight="700" text-anchor="middle">
+                <circle cx="118" cy="120" r="12" fill="#eef2ff" stroke="#4338ca"/><text x="118" y="125" fill="#4338ca">e</text>
+                <circle cx="122" cy="182" r="12" fill="#eef2ff" stroke="#4338ca"/><text x="122" y="187" fill="#4338ca">b</text>
+                <circle cx="373" cy="146" r="12" fill="#fef3c7" stroke="#d97706"/><text x="373" y="151" fill="#d97706">a</text>
+                <circle cx="287" cy="174" r="12" fill="#fef3c7" stroke="#d97706"/><text x="287" y="179" fill="#d97706">d</text>
+                <circle cx="264" cy="267" r="12" fill="#dcfce7" stroke="#059669"/><text x="264" y="272" fill="#059669">c</text>
+                <circle cx="176" cy="253" r="12" fill="#dcfce7" stroke="#059669"/><text x="176" y="258" fill="#059669">f</text>
+              </g>
+            </svg>
+
+            <div class="mt-5 overflow-x-auto">
+              <table class="w-full text-sm border border-slate-200 rounded-lg overflow-hidden">
+                <tbody>
+                  <tr class="border-b border-slate-200">
+                    <td class="bg-slate-50 font-semibold px-3 py-2 w-1/6">a.</td>
+                    <td class="px-3 py-2 w-1/6">&nbsp;</td>
+                    <td class="bg-slate-50 font-semibold px-3 py-2 w-1/6">b.</td>
+                    <td class="px-3 py-2 w-1/6">&nbsp;</td>
+                    <td class="bg-slate-50 font-semibold px-3 py-2 w-1/6">c.</td>
+                    <td class="px-3 py-2 w-1/6">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td class="bg-slate-50 font-semibold px-3 py-2">d.</td>
+                    <td class="px-3 py-2">&nbsp;</td>
+                    <td class="bg-slate-50 font-semibold px-3 py-2">e.</td>
+                    <td class="px-3 py-2">&nbsp;</td>
+                    <td class="bg-slate-50 font-semibold px-3 py-2">f.</td>
+                    <td class="px-3 py-2">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="flex justify-end px-4 sm:px-6 pb-4">
+            <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex1" data-ex="1" data-state="hidden" onclick="toggleCorrection(this)">
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+              <span>Voir la correction</span>
+            </button>
+          </div>
+          <div id="c-ex1" data-ex="1" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6">
+            <p class="text-xs text-slate-500 mb-3">Rappel de méthode : le sommet de l'angle s'écrit toujours entre les deux autres lettres.</p>
+            <div class="grid sm:grid-cols-3 gap-3 text-sm">
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3"><span class="font-bold text-amber-600">a.</span> <span class="font-mono">C Ô B</span> <span class="text-slate-400">(ou BÔC)</span></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3"><span class="font-bold text-indigo-600">b.</span> <span class="font-mono">S F̂ K</span> <span class="text-slate-400">(ou KF̂S)</span></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3"><span class="font-bold text-emerald-600">c.</span> <span class="font-mono">S Û B</span> <span class="text-slate-400">(ou BÛS)</span></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3"><span class="font-bold text-amber-600">d.</span> <span class="font-mono">R Ô K</span> <span class="text-slate-400">(ou KÔR)</span></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3"><span class="font-bold text-indigo-600">e.</span> <span class="font-mono">G F̂ K</span> <span class="text-slate-400">(ou KF̂G)</span></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3"><span class="font-bold text-emerald-600">f.</span> <span class="font-mono">R Û G</span> <span class="text-slate-400">(ou GÛR)</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ========== EXERCICE 2 ========== -->
+      <div id="exercice2" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-4">
+          <span class="inline-block rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 2</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Angles adjacents ? Vrai ou Faux</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-6">Pour chaque figure, clique sur <strong>Vrai</strong> ou <strong>Faux</strong> pour savoir si les deux angles proposés sont adjacents.</p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+          <!-- 2.1 -->
+          <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-4 sm:p-5">
+            <svg viewBox="0 0 160 140" class="w-full h-auto max-w-[220px] mx-auto">
+              <path d="M25,110 L55,15 M25,110 L110,35 M25,110 L150,105" stroke="#0f172a" stroke-width="1.6"/>
+              <g class="fig-point">
+                <path d="M20,105 L30,115 M20,115 L30,105" stroke-width="2"/><text x="6" y="128" class="fig-label" font-size="14">T</text>
+                <path d="M50,10 L60,20 M50,20 L60,10" stroke-width="2"/><text x="58" y="10" class="fig-label" font-size="14">r</text>
+                <path d="M105,30 L115,40 M105,40 L115,30" stroke-width="2"/><text x="116" y="28" class="fig-label" font-size="14">s</text>
+                <path d="M145,100 L155,110 M145,110 L155,100" stroke-width="2"/><text x="140" y="122" class="fig-label" font-size="14">u</text>
+              </g>
+            </svg>
+            <p class="mt-2 text-center text-sm"><span class="font-mono">r͡Ts</span> et <span class="font-mono">s͡Tu</span></p>
+            <div class="vf-group mt-3 flex justify-center gap-2">
+              <button class="vf-btn rounded-lg px-4 py-2 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="true" onclick="pickAnswer(this)">Vrai</button>
+              <button class="vf-btn rounded-lg px-4 py-2 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="false" onclick="pickAnswer(this)">Faux</button>
+            </div>
+            <p class="vf-feedback hidden mt-2 text-xs text-center font-medium">VRAI — même sommet T, côté commun [Ts], situés de part et d'autre : ils sont adjacents.</p>
+          </article>
+
+          <!-- 2.2 -->
+          <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-4 sm:p-5">
+            <svg viewBox="0 0 160 140" class="w-full h-auto max-w-[220px] mx-auto">
+              <path d="M20,15 L20,75 L115,55 L70,110 L145,125" fill="none" stroke="#0f172a" stroke-width="1.6"/>
+              <g class="fig-point">
+                <path d="M15,10 L25,20 M15,20 L25,10" stroke-width="2"/><text x="6" y="8" class="fig-label" font-size="14">A</text>
+                <path d="M15,70 L25,80 M15,80 L25,70" stroke-width="2"/><text x="2" y="88" class="fig-label" font-size="14">E</text>
+                <path d="M110,50 L120,60 M110,60 L120,50" stroke-width="2"/><text x="122" y="48" class="fig-label" font-size="14">B</text>
+                <path d="M65,105 L75,115 M65,115 L75,105" stroke-width="2"/><text x="70" y="128" class="fig-label" font-size="14">D</text>
+                <path d="M140,120 L150,130 M140,130 L150,120" stroke-width="2"/><text x="150" y="122" class="fig-label" font-size="14">C</text>
+              </g>
+            </svg>
+            <p class="mt-2 text-center text-sm"><span class="font-mono">AÊB</span> et <span class="font-mono">BD̂C</span></p>
+            <div class="vf-group mt-3 flex justify-center gap-2">
+              <button class="vf-btn rounded-lg px-4 py-2 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="false" onclick="pickAnswer(this)">Vrai</button>
+              <button class="vf-btn rounded-lg px-4 py-2 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="true" onclick="pickAnswer(this)">Faux</button>
+            </div>
+            <p class="vf-feedback hidden mt-2 text-xs text-center font-medium">FAUX — AEB a pour sommet E, BDC a pour sommet D : sommets différents, donc pas adjacents.</p>
+          </article>
+
+          <!-- 2.3 -->
+          <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-4 sm:p-5">
+            <svg viewBox="0 0 160 150" class="w-full h-auto max-w-[220px] mx-auto">
+              <path d="M10,75 L150,75 M80,10 L80,140" stroke="#0f172a" stroke-width="1.6"/>
+              <g class="fig-point">
+                <path d="M5,70 L15,80 M5,80 L15,70" stroke-width="2"/><text x="0" y="93" class="fig-label" font-size="14">u</text>
+                <path d="M145,70 L155,80 M145,80 L155,70" stroke-width="2"/><text x="150" y="93" class="fig-label" font-size="14">t</text>
+                <path d="M75,5 L85,15 M75,15 L85,5" stroke-width="2"/><text x="86" y="10" class="fig-label" font-size="14">x</text>
+                <path d="M75,135 L85,145 M75,145 L85,135" stroke-width="2"/><text x="86" y="148" class="fig-label" font-size="14">w</text>
+                <text x="86" y="70" class="fig-label" font-size="14">G</text>
+              </g>
+            </svg>
+            <p class="mt-2 text-center text-sm"><span class="font-mono">x͡Gu</span> et <span class="font-mono">t͡Gx</span></p>
+            <div class="vf-group mt-3 flex justify-center gap-2">
+              <button class="vf-btn rounded-lg px-4 py-2 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="true" onclick="pickAnswer(this)">Vrai</button>
+              <button class="vf-btn rounded-lg px-4 py-2 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="false" onclick="pickAnswer(this)">Faux</button>
+            </div>
+            <p class="vf-feedback hidden mt-2 text-xs text-center font-medium">VRAI — même sommet G, côté commun [Gx], situés de part et d'autre : ils sont adjacents.</p>
+          </article>
+
+          <!-- 2.4 -->
+          <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-4 sm:p-5">
+            <svg viewBox="0 0 160 150" class="w-full h-auto max-w-[220px] mx-auto">
+              <path d="M20,110 L25,15 M20,110 L115,55 M20,110 L145,95 M20,110 L100,135" stroke="#0f172a" stroke-width="1.6"/>
+              <g class="fig-point">
+                <path d="M15,105 L25,115 M15,115 L25,105" stroke-width="2"/><text x="4" y="128" class="fig-label" font-size="14">U</text>
+                <path d="M20,10 L30,20 M20,20 L30,10" stroke-width="2"/><text x="30" y="10" class="fig-label" font-size="14">t</text>
+                <path d="M110,50 L120,60 M110,60 L120,50" stroke-width="2"/><text x="121" y="48" class="fig-label" font-size="14">v</text>
+                <path d="M140,90 L150,100 M140,100 L150,90" stroke-width="2"/><text x="150" y="88" class="fig-label" font-size="14">w</text>
+                <path d="M95,130 L105,140 M95,140 L105,130" stroke-width="2"/><text x="104" y="148" class="fig-label" font-size="14">x</text>
+              </g>
+            </svg>
+            <p class="mt-2 text-center text-sm"><span class="font-mono">v͡Ux</span> et <span class="font-mono">w͡Uv</span></p>
+            <div class="vf-group mt-3 flex justify-center gap-2">
+              <button class="vf-btn rounded-lg px-4 py-2 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="false" onclick="pickAnswer(this)">Vrai</button>
+              <button class="vf-btn rounded-lg px-4 py-2 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="true" onclick="pickAnswer(this)">Faux</button>
+            </div>
+            <p class="vf-feedback hidden mt-2 text-xs text-center font-medium">FAUX — [Uw] passe à l'intérieur de l'angle vUx : les deux angles se chevauchent, ils ne sont pas de part et d'autre de [Uv].</p>
+          </article>
+
+          <!-- 2.5 -->
+          <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-4 sm:p-5">
+            <svg viewBox="0 0 160 150" class="w-full h-auto max-w-[220px] mx-auto">
+              <path d="M20,110 L25,15 M20,110 L115,55 M20,110 L145,95 M20,110 L100,135" stroke="#0f172a" stroke-width="1.6"/>
+              <g class="fig-point">
+                <path d="M15,105 L25,115 M15,115 L25,105" stroke-width="2"/><text x="4" y="128" class="fig-label" font-size="14">U</text>
+                <path d="M20,10 L30,20 M20,20 L30,10" stroke-width="2"/><text x="30" y="10" class="fig-label" font-size="14">t</text>
+                <path d="M110,50 L120,60 M110,60 L120,50" stroke-width="2"/><text x="121" y="48" class="fig-label" font-size="14">v</text>
+                <path d="M140,90 L150,100 M140,100 L150,90" stroke-width="2"/><text x="150" y="88" class="fig-label" font-size="14">w</text>
+                <path d="M95,130 L105,140 M95,140 L105,130" stroke-width="2"/><text x="104" y="148" class="fig-label" font-size="14">x</text>
+              </g>
+            </svg>
+            <p class="mt-2 text-center text-sm"><span class="font-mono">t͡Uv</span> et <span class="font-mono">w͡Ux</span></p>
+            <div class="vf-group mt-3 flex justify-center gap-2">
+              <button class="vf-btn rounded-lg px-4 py-2 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="false" onclick="pickAnswer(this)">Vrai</button>
+              <button class="vf-btn rounded-lg px-4 py-2 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="true" onclick="pickAnswer(this)">Faux</button>
+            </div>
+            <p class="vf-feedback hidden mt-2 text-xs text-center font-medium">FAUX — tUv et wUx n'ont aucun côté commun : ils ne sont pas adjacents.</p>
+          </article>
+
+          <!-- 2.6 -->
+          <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-4 sm:p-5">
+            <svg viewBox="0 0 180 150" class="w-full h-auto max-w-[220px] mx-auto">
+              <path d="M55,15 L20,85 L140,85 L160,140" fill="none" stroke="#0f172a" stroke-width="1.6"/>
+              <g class="fig-point">
+                <path d="M50,10 L60,20 M50,20 L60,10" stroke-width="2"/><text x="58" y="8" class="fig-label" font-size="14">T</text>
+                <path d="M15,80 L25,90 M15,90 L25,80" stroke-width="2"/><text x="4" y="80" class="fig-label" font-size="14">R</text>
+                <path d="M135,80 L145,90 M135,90 L145,80" stroke-width="2"/><text x="146" y="80" class="fig-label" font-size="14">S</text>
+                <path d="M155,135 L165,145 M155,145 L165,135" stroke-width="2"/><text x="166" y="145" class="fig-label" font-size="14">U</text>
+              </g>
+            </svg>
+            <p class="mt-2 text-center text-sm"><span class="font-mono">TR̂S</span> et <span class="font-mono">RŜU</span></p>
+            <div class="vf-group mt-3 flex justify-center gap-2">
+              <button class="vf-btn rounded-lg px-4 py-2 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="false" onclick="pickAnswer(this)">Vrai</button>
+              <button class="vf-btn rounded-lg px-4 py-2 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="true" onclick="pickAnswer(this)">Faux</button>
+            </div>
+            <p class="vf-feedback hidden mt-2 text-xs text-center font-medium">FAUX — TRS a pour sommet R, RSU a pour sommet S : sommets différents, donc pas adjacents.</p>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- ========== EXERCICE 3 ========== -->
+      <div id="exercice3" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-4">
+          <span class="inline-block rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 3</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Opposés par le sommet ? OUI ou NON</span>
+        </div>
+
+        <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-4 sm:p-6">
+          <p class="text-sm text-slate-600 mb-4">Sur la figure ci-dessous, indique si les angles proposés sont opposés par le sommet.</p>
+          <svg viewBox="0 0 270 180" class="w-full h-auto max-w-md mx-auto bg-slate-50 rounded-xl ring-1 ring-slate-200">
+            <line x1="20" y1="90" x2="250" y2="90" stroke="#0f172a" stroke-width="1.6"/>
+            <line x1="45" y1="145" x2="135" y2="35" stroke="#0f172a" stroke-width="1.6"/>
+            <line x1="160" y1="15" x2="200" y2="165" stroke="#0f172a" stroke-width="1.6"/>
+            <g class="fig-point">
+              <path d="M15,85 L25,95 M15,95 L25,85" stroke-width="2"/><text x="4" y="82" class="fig-label" font-size="15">y</text>
+              <path d="M245,85 L255,95 M245,95 L255,85" stroke-width="2"/><text x="256" y="82" class="fig-label" font-size="15">r</text>
+              <path d="M40,140 L50,150 M40,150 L50,140" stroke-width="2"/><text x="27" y="158" class="fig-label" font-size="15">w</text>
+              <path d="M130,30 L140,40 M130,40 L140,30" stroke-width="2"/><text x="141" y="26" class="fig-label" font-size="15">s</text>
+              <path d="M155,10 L165,20 M155,20 L165,10" stroke-width="2"/><text x="150" y="6" class="fig-label" font-size="15">x</text>
+              <path d="M195,160 L205,170 M195,170 L205,160" stroke-width="2"/><text x="207" y="172" class="fig-label" font-size="15">t</text>
+              <text x="78" y="80" class="fig-label" font-size="15">G</text>
+              <text x="185" y="80" class="fig-label" font-size="15">H</text>
+            </g>
+          </svg>
+
+          <div class="mt-5 grid sm:grid-cols-2 gap-3">
+            <div class="rounded-xl ring-1 ring-slate-200 p-4">
+              <p class="text-sm mb-2"><strong>a.</strong> <span class="font-mono">y͡Gw</span> et <span class="font-mono">HĜs</span></p>
+              <div class="vf-group flex gap-2">
+                <button class="vf-btn rounded-lg px-4 py-1.5 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="true" onclick="pickAnswer(this)">OUI</button>
+                <button class="vf-btn rounded-lg px-4 py-1.5 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="false" onclick="pickAnswer(this)">NON</button>
+              </div>
+              <p class="vf-feedback hidden mt-2 text-xs font-medium">OUI — [Gy] est le prolongement de [GH], et [Gw] est le prolongement de [Gs] : aucun côté commun, sommet commun G.</p>
+            </div>
+            <div class="rounded-xl ring-1 ring-slate-200 p-4">
+              <p class="text-sm mb-2"><strong>b.</strong> <span class="font-mono">r͡Hx</span> et <span class="font-mono">t͡Hw</span></p>
+              <div class="vf-group flex gap-2">
+                <button class="vf-btn rounded-lg px-4 py-1.5 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="false" onclick="pickAnswer(this)">OUI</button>
+                <button class="vf-btn rounded-lg px-4 py-1.5 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="true" onclick="pickAnswer(this)">NON</button>
+              </div>
+              <p class="vf-feedback hidden mt-2 text-xs font-medium">NON — [Hw] n'existe même pas comme côté en H (w est sur l'autre droite, celle de G) : ce n'est pas une vraie paire d'angles opposés par le sommet.</p>
+            </div>
+            <div class="rounded-xl ring-1 ring-slate-200 p-4">
+              <p class="text-sm mb-2"><strong>c.</strong> <span class="font-mono">r͡Ht</span> et <span class="font-mono">x͡HG</span></p>
+              <div class="vf-group flex gap-2">
+                <button class="vf-btn rounded-lg px-4 py-1.5 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="true" onclick="pickAnswer(this)">OUI</button>
+                <button class="vf-btn rounded-lg px-4 py-1.5 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="false" onclick="pickAnswer(this)">NON</button>
+              </div>
+              <p class="vf-feedback hidden mt-2 text-xs font-medium">OUI — [Hr] est le prolongement de [HG], et [Ht] est le prolongement de [Hx] : sommet commun H, aucun côté commun.</p>
+            </div>
+            <div class="rounded-xl ring-1 ring-slate-200 p-4">
+              <p class="text-sm mb-2"><strong>d.</strong> <span class="font-mono">r͡Gy</span> et <span class="font-mono">s͡Gw</span></p>
+              <div class="vf-group flex gap-2">
+                <button class="vf-btn rounded-lg px-4 py-1.5 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="false" onclick="pickAnswer(this)">OUI</button>
+                <button class="vf-btn rounded-lg px-4 py-1.5 text-sm font-semibold bg-white text-slate-700 ring-1 ring-slate-300 hover:ring-indigo-300 transition" data-correct="true" onclick="pickAnswer(this)">NON</button>
+              </div>
+              <p class="vf-feedback hidden mt-2 text-xs font-medium">NON — r,G,y sont alignés et s,G,w aussi : rGy et sGw sont deux angles plats (180°), ce n'est pas la configuration d'angles opposés par le sommet.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ========== EXERCICE 4 ========== -->
+      <div id="exercice4" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-4">
+          <span class="inline-block rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 4</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Opposés par le sommet — droites concourantes</span>
+        </div>
+
+        <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+          <div class="p-4 sm:p-6">
+            <p class="text-sm text-slate-600 mb-4">Les droites de la figure ci-dessous sont concourantes en un point F. Quel est le nom de l'angle opposé par le sommet à chacun des angles suivants ?</p>
+
+            <svg viewBox="0 0 300 300" class="w-full h-auto max-w-sm mx-auto bg-slate-50 rounded-xl ring-1 ring-slate-200">
+              <line x1="130" y1="30" x2="170" y2="270" stroke="#0f172a" stroke-width="1.6"/>
+              <line x1="250" y1="80" x2="50" y2="220" stroke="#0f172a" stroke-width="1.6"/>
+              <line x1="270" y1="170" x2="30" y2="130" stroke="#0f172a" stroke-width="1.6"/>
+              <g class="fig-point">
+                <path d="M125,25 L135,35 M125,35 L135,25" stroke-width="2"/><text x="112" y="20" class="fig-label" font-size="16">x</text>
+                <path d="M245,75 L255,85 M245,85 L255,75" stroke-width="2"/><text x="258" y="70" class="fig-label" font-size="16">r</text>
+                <path d="M265,165 L275,175 M265,175 L275,165" stroke-width="2"/><text x="278" y="175" class="fig-label" font-size="16">s</text>
+                <path d="M165,265 L175,275 M165,275 L175,265" stroke-width="2"/><text x="176" y="288" class="fig-label" font-size="16">t</text>
+                <path d="M45,215 L55,225 M45,225 L55,215" stroke-width="2"/><text x="26" y="230" class="fig-label" font-size="16">w</text>
+                <path d="M25,125 L35,135 M25,135 L35,125" stroke-width="2"/><text x="10" y="122" class="fig-label" font-size="16">y</text>
+                <path d="M145,145 L155,155 M145,155 L155,145" stroke-width="2"/><text x="158" y="145" class="fig-label" font-size="16">F</text>
+              </g>
+            </svg>
+
+            <div class="mt-5 overflow-x-auto">
+              <table class="w-full text-sm border border-slate-200 rounded-lg overflow-hidden text-center">
+                <thead>
+                  <tr class="bg-indigo-600 text-white">
+                    <th class="px-3 py-2 font-semibold">Angle</th>
+                    <th class="px-3 py-2 font-mono">x͡Fr</th>
+                    <th class="px-3 py-2 font-mono">y͡Ft</th>
+                    <th class="px-3 py-2 font-mono">s͡Fr</th>
+                    <th class="px-3 py-2 font-mono">s͡Fw</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="bg-white">
+                    <td class="bg-slate-50 font-semibold px-3 py-3">Angle opposé</td>
+                    <td class="px-3 py-3">&nbsp;</td>
+                    <td class="px-3 py-3">&nbsp;</td>
+                    <td class="px-3 py-3">&nbsp;</td>
+                    <td class="px-3 py-3">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="flex justify-end px-4 sm:px-6 pb-4">
+            <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex4" data-ex="4" data-state="hidden" onclick="toggleCorrection(this)">
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+              <span>Voir la correction</span>
+            </button>
+          </div>
+          <div id="c-ex4" data-ex="4" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6">
+            <p class="text-xs text-slate-500 mb-3">Méthode : l'opposé d'un angle s'obtient en prolongeant chacun de ses deux côtés de l'autre côté de F.</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 text-center"><span class="font-mono">xF̂r</span> → <span class="font-mono font-bold text-emerald-700">tF̂w</span></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 text-center"><span class="font-mono">yF̂t</span> → <span class="font-mono font-bold text-emerald-700">sF̂x</span></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 text-center"><span class="font-mono">sF̂r</span> → <span class="font-mono font-bold text-emerald-700">yF̂w</span></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 text-center"><span class="font-mono">sF̂w</span> → <span class="font-mono font-bold text-emerald-700">yF̂r</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ========== EXERCICE 5 ========== -->
+      <div id="exercice5" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-4">
+          <span class="inline-block rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 5</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Mélange de définitions</span>
+        </div>
+
+        <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+          <div class="p-4 sm:p-6">
+            <p class="text-sm text-slate-600 mb-4">Pour chaque cas, précise, lorsque c'est possible, la nature des angles marqués.</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-6">
+              <!-- a -->
+              <div class="rounded-xl ring-1 ring-slate-200 p-3">
+                <p class="text-center text-xs font-bold text-slate-500 mb-1">a.</p>
+                <svg viewBox="0 0 150 150" class="w-full h-auto">
+                  <path d="M25,130 L145,130 M25,130 L105,45 M25,130 L25,15" fill="none" stroke="#0f172a" stroke-width="1.5"/>
+                  <text x="60" y="115" font-size="12" fill="#4338ca" font-weight="600">45°</text>
+                  <text x="45" y="70" font-size="12" fill="#7c3aed" font-weight="600">45°</text>
+                </svg>
+              </div>
+              <!-- b -->
+              <div class="rounded-xl ring-1 ring-slate-200 p-3">
+                <p class="text-center text-xs font-bold text-slate-500 mb-1">b.</p>
+                <svg viewBox="0 0 150 150" class="w-full h-auto">
+                  <path d="M10,110 L140,110 M90,110 L135,32" fill="none" stroke="#0f172a" stroke-width="1.5"/>
+                  <g class="fig-label" font-size="13">
+                    <text x="0" y="125">z</text><text x="142" y="125">x</text><text x="138" y="26">y</text>
+                  </g>
+                  <text x="93" y="128" class="fig-label" font-size="13">A</text>
+                </svg>
+              </div>
+              <!-- c -->
+              <div class="rounded-xl ring-1 ring-slate-200 p-3">
+                <p class="text-center text-xs font-bold text-slate-500 mb-1">c.</p>
+                <svg viewBox="0 0 150 150" class="w-full h-auto">
+                  <path d="M20,130 L20,20 M20,130 L140,130 M20,130 L90,60" fill="none" stroke="#0f172a" stroke-width="1.5"/>
+                  <path d="M20,118 L32,118 L32,130" fill="none" stroke="#0f172a" stroke-width="1.3"/>
+                  <g class="fig-label" font-size="13">
+                    <text x="10" y="15">f</text><text x="95" y="52">e</text><text x="142" y="128">g</text>
+                  </g>
+                  <text x="4" y="145" class="fig-label" font-size="13">K</text>
+                </svg>
+              </div>
+              <!-- d -->
+              <div class="rounded-xl ring-1 ring-slate-200 p-3">
+                <p class="text-center text-xs font-bold text-slate-500 mb-1">d. <span class="font-mono normal-case">pŜn=90°</span></p>
+                <svg viewBox="0 0 150 150" class="w-full h-auto">
+                  <path d="M30,130 L30,20 M30,130 L150,130 M30,130 L110,55" fill="none" stroke="#0f172a" stroke-width="1.5"/>
+                  <path d="M30,118 L42,118 L42,130" fill="none" stroke="#0f172a" stroke-width="1.3"/>
+                  <g class="fig-label" font-size="13">
+                    <text x="20" y="15">p</text><text x="114" y="47">m</text><text x="152" y="128">n</text>
+                  </g>
+                  <text x="14" y="145" class="fig-label" font-size="13">S</text>
+                </svg>
+              </div>
+              <!-- e -->
+              <div class="rounded-xl ring-1 ring-slate-200 p-3">
+                <p class="text-center text-xs font-bold text-slate-500 mb-1">e.</p>
+                <svg viewBox="0 0 150 150" class="w-full h-auto">
+                  <path d="M30,30 L30,120 L130,120" fill="none" stroke="#0f172a" stroke-width="1.5"/>
+                  <path d="M30,105 L45,105 L45,120" fill="none" stroke="#0f172a" stroke-width="1.3"/>
+                </svg>
+              </div>
+              <!-- f -->
+              <div class="rounded-xl ring-1 ring-slate-200 p-3">
+                <p class="text-center text-xs font-bold text-slate-500 mb-1">f.</p>
+                <svg viewBox="0 0 150 150" class="w-full h-auto">
+                  <path d="M20,130 L20,20 M20,130 L110,65 M20,130 L145,130" fill="none" stroke="#0f172a" stroke-width="1.5"/>
+                  <g class="fig-label" font-size="13">
+                    <text x="10" y="15">r</text><text x="115" y="58">t</text><text x="147" y="128">u</text>
+                  </g>
+                  <text x="4" y="145" class="fig-label" font-size="13">S</text>
+                </svg>
+              </div>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm border border-slate-200 rounded-lg overflow-hidden text-center">
+                <thead>
+                  <tr class="bg-slate-100">
+                    <th class="px-3 py-2 text-left font-semibold text-slate-600">&nbsp;</th>
+                    <th class="px-3 py-2 font-semibold">a.</th>
+                    <th class="px-3 py-2 font-semibold">b.</th>
+                    <th class="px-3 py-2 font-semibold">c.</th>
+                    <th class="px-3 py-2 font-semibold">d.</th>
+                    <th class="px-3 py-2 font-semibold">e.</th>
+                    <th class="px-3 py-2 font-semibold">f.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-t border-slate-200"><td class="text-left px-3 py-2.5 bg-slate-50 font-medium">angles adjacents</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                  <tr class="border-t border-slate-200"><td class="text-left px-3 py-2.5 bg-slate-50 font-medium">angles complémentaires</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                  <tr class="border-t border-slate-200"><td class="text-left px-3 py-2.5 bg-slate-50 font-medium">angles supplémentaires</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="flex justify-end px-4 sm:px-6 pb-4">
+            <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex5" data-ex="5" data-state="hidden" onclick="toggleCorrection(this)">
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+              <span>Voir la correction</span>
+            </button>
+          </div>
+          <div id="c-ex5" data-ex="5" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6">
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm border border-emerald-100 rounded-lg overflow-hidden text-center bg-white">
+                <thead>
+                  <tr class="bg-emerald-600 text-white">
+                    <th class="px-3 py-2 text-left font-semibold">&nbsp;</th>
+                    <th class="px-3 py-2 font-semibold">a.</th>
+                    <th class="px-3 py-2 font-semibold">b.</th>
+                    <th class="px-3 py-2 font-semibold">c.</th>
+                    <th class="px-3 py-2 font-semibold">d.</th>
+                    <th class="px-3 py-2 font-semibold">e.</th>
+                    <th class="px-3 py-2 font-semibold">f.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-t border-emerald-100"><td class="text-left px-3 py-2.5 bg-emerald-50/60 font-medium">adjacents</td><td class="text-emerald-600 font-bold">✓</td><td class="text-emerald-600 font-bold">✓</td><td class="text-emerald-600 font-bold">✓</td><td class="text-emerald-600 font-bold">✓</td><td class="text-slate-300">–</td><td class="text-emerald-600 font-bold">✓</td></tr>
+                  <tr class="border-t border-emerald-100"><td class="text-left px-3 py-2.5 bg-emerald-50/60 font-medium">complémentaires</td><td class="text-emerald-600 font-bold">✓</td><td class="text-slate-300">–</td><td class="text-emerald-600 font-bold">✓</td><td class="text-emerald-600 font-bold">✓</td><td class="text-slate-300">–</td><td class="text-amber-500 font-bold">?</td></tr>
+                  <tr class="border-t border-emerald-100"><td class="text-left px-3 py-2.5 bg-emerald-50/60 font-medium">supplémentaires</td><td class="text-slate-300">–</td><td class="text-emerald-600 font-bold">✓</td><td class="text-slate-300">–</td><td class="text-slate-300">–</td><td class="text-slate-300">–</td><td class="text-amber-500 font-bold">?</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="mt-4 grid sm:grid-cols-2 gap-3 text-xs text-slate-700">
+              <p class="rounded-lg bg-white ring-1 ring-emerald-100 p-3"><strong>a, c, d :</strong> deux angles adjacents dont la somme fait 90° (45°+45°, l'angle droit marqué, ou pŜn=90°) → adjacents <strong>et</strong> complémentaires.</p>
+              <p class="rounded-lg bg-white ring-1 ring-emerald-100 p-3"><strong>b :</strong> deux angles adjacents qui, ensemble, forment une droite (angle plat = 180°) → adjacents <strong>et</strong> supplémentaires.</p>
+              <p class="rounded-lg bg-white ring-1 ring-emerald-100 p-3"><strong>e :</strong> un seul angle est marqué (aucune paire à comparer) : aucune des trois natures ne s'applique.</p>
+              <p class="rounded-lg bg-white ring-1 ring-emerald-100 p-3"><strong>f :</strong> rSt et tSu sont bien adjacents, mais aucune mesure n'est donnée : impossible de dire s'ils sont complémentaires ou supplémentaires.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-slate-900 text-slate-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+      <div>
+        <a href="/" class="flex items-center gap-2.5">
+          <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+          <span class="font-display font-bold text-white leading-tight">
+            <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+          </span>
+        </a>
+        <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+      </div>
+      <nav aria-label="Navigation du pied de page" class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+        <a href="#definitions" class="hover:text-white transition">Complémentaires &amp; supplémentaires</a>
+        <a href="#adjacents" class="hover:text-white transition">Adjacents</a>
+        <a href="#opposes" class="hover:text-white transition">Opposés par le sommet</a>
+        <a href="#exercices" class="hover:text-white transition">Exercices</a>
+      </nav>
+    </div>
+    <div class="mt-8 pt-6 border-t border-slate-800 text-xs text-slate-500">
+      Fiche de cours — Les angles (complémentaires, supplémentaires, adjacents, opposés par le sommet) · Mathématiques, 1ʳᵉ année collège.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuIconOpen = document.getElementById('menuIconOpen');
+  const menuIconClose = document.getElementById('menuIconClose');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = !mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    menuIconOpen.classList.toggle('hidden');
+    menuIconClose.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', String(!isOpen));
+  });
+  document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+    menuIconOpen.classList.remove('hidden');
+    menuIconClose.classList.add('hidden');
+  }));
+
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  // Correction toggle (single)
+  function toggleCorrection(btn) {
+    const target = document.getElementById(btn.dataset.target);
+    const isHidden = target.classList.contains('hidden');
+    target.classList.toggle('hidden');
+    btn.dataset.state = isHidden ? 'shown' : 'hidden';
+    btn.querySelector('span').textContent = isHidden ? 'Masquer la correction' : 'Voir la correction';
+    btn.classList.toggle('bg-emerald-600', !isHidden);
+    btn.classList.toggle('hover:bg-emerald-700', !isHidden);
+    btn.classList.toggle('bg-slate-500', isHidden);
+    btn.classList.toggle('hover:bg-slate-600', isHidden);
+  }
+
+  // V/F and OUI/NON quiz buttons: click to pick, reveal correct answer
+  function pickAnswer(btn) {
+    const group = btn.closest('.vf-group');
+    group.querySelectorAll('.vf-btn').forEach(b => {
+      b.disabled = true;
+      b.dataset.picked = (b === btn) ? 'true' : 'false';
+    });
+    const good = btn.dataset.correct === 'true';
+    group.querySelectorAll('.vf-btn').forEach(b => {
+      if (b.dataset.correct === 'true') {
+        b.classList.add('bg-emerald-600', 'text-white');
+        b.classList.remove('bg-white', 'text-slate-700');
+      } else {
+        b.classList.add('bg-rose-100', 'text-rose-500');
+        b.classList.remove('bg-white', 'text-slate-700');
+      }
+    });
+    const fb = group.parentElement.querySelector('.vf-feedback');
+    if (fb) {
+      fb.classList.remove('hidden');
+      fb.classList.add(good ? 'text-emerald-700' : 'text-rose-600');
+    }
+  }
+</script>
+
+</body>
+</html>

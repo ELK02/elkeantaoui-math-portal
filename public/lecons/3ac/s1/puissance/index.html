@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Puissances — Cours 3ème APIC | Collège Mhamed 9</title>
+<meta name="description" content="Cours complet et interactif sur les puissances : définition, règles de calcul, puissances de 10 et notation scientifique. Niveau 3ème APIC — Collège Mhamed 9.">
+<meta name="theme-color" content="#1e1b4b">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Puissances — Cours 3ème APIC | Collège Mhamed 9">
+<meta property="og:description" content="Définition, règles de calcul et notation scientifique — exemples corrigés pas à pas.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80">
+
+<!-- Tailwind CSS (CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          heading: ['Lexend', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          indigo: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+        },
+      }
+    }
+  }
+</script>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lexend:wght@600;700;800&display=swap" rel="stylesheet">
+
+<!-- KaTeX (typographie mathématique) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+
+<style>
+  body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+  .font-heading { font-family: 'Lexend', ui-sans-serif, system-ui, sans-serif; }
+  .katex-display { overflow-x: auto; overflow-y: hidden; padding: .35rem .125rem; margin: 0; }
+  .katex { font-size: 1.05em; }
+  ::selection { background: #fde68a; color: #1e1b4b; }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
+  .dark .bg-amber-50 { background-color: #3a2a0a; }
+  .dark .border-amber-200, .dark .border-amber-300, .dark .border-amber-400 { border-color: #92400e; }
+  .dark .text-amber-700 { color: #fcd34d; }
+  .dark .bg-sky-50 { background-color: #082234; }
+  .dark .border-sky-200 { border-color: #0e4a63; }
+  .dark .text-sky-900, .dark .text-sky-600, .dark .text-sky-700 { color: #7dd3fc; }
+  .dark .bg-rose-50 { background-color: #3a0d18; }
+  .dark .border-rose-200 { border-color: #7a2138; }
+  .dark .text-rose-600, .dark .text-rose-700, .dark .text-rose-900 { color: #fb7185; }
+  .dark .bg-indigo-50 { background-color: #12294c; }
+  .dark .ring-indigo-100 { --tw-ring-color: #1c3a63; }
+  .dark .text-indigo-900, .dark .text-indigo-500, .dark .text-indigo-400 { color: #b8cfec; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased transition-colors">
+
+<a href="#definition" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-indigo-700 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">Aller au contenu principal</a>
+
+<!-- ===================== HEADER ===================== -->
+<header class="sticky top-0 z-50 bg-white/85 dark:bg-[#0b1f3ad9] backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 sm:h-[70px]">
+      <a href="#top" class="flex items-center gap-3 group">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 sm:h-11 sm:w-11 shrink-0 rounded-full">
+        <span class="leading-tight">
+          <span class="block text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-slate-400">Collège Mhamed 9</span>
+          <span class="block text-sm sm:text-base font-heading font-bold text-indigo-950 dark:text-white">Puissances</span>
+        </span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8" aria-label="Navigation principale">
+        <a href="/" class="nav-link text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-indigo-700 dark:hover:text-white transition-colors">← Portail</a>
+        <a href="#definition" class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-white transition-colors">Définition</a>
+        <a href="#conventions" class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-white transition-colors">Règles</a>
+        <a href="#notation-scientifique" class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-white transition-colors">Notation scientifique</a>
+        <a href="#exercices" class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-white transition-colors">Exercices</a>
+        <a href="#memo" class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-white transition-colors">Fiche mémo</a>
+      </nav>
+
+      <div class="hidden lg:flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5 rounded-full bg-indigo-50 dark:bg-indigo-900 px-3 py-1.5 text-xs font-bold text-indigo-700 dark:text-indigo-200 ring-1 ring-indigo-100 dark:ring-indigo-700">3ème APIC</span>
+        <button onclick="window.print()" class="print:hidden inline-flex items-center gap-1.5 rounded-full border border-slate-200 dark:border-slate-700 px-3 py-1.5 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+          Imprimer
+        </button>
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-amber-400 transition-colors">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </div>
+
+      <div class="flex items-center gap-1 lg:hidden">
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+        <button id="menu-btn" aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu" class="inline-flex items-center justify-center h-10 w-10 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5">
+          <svg id="icon-open" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7" stroke-linecap="round"/><line x1="4" y1="12" x2="20" y2="12" stroke-linecap="round"/><line x1="4" y1="17" x2="20" y2="17" stroke-linecap="round"/></svg>
+          <svg id="icon-close" class="hidden h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round"/><line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0b1f3a]">
+    <nav class="flex flex-col px-4 py-3 gap-1" aria-label="Navigation mobile">
+      <a href="/" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-500 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">← Portail</a>
+      <a href="#definition" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">Définition</a>
+      <a href="#conventions" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">Règles par convention</a>
+      <a href="#regles-calcul" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">Règles de calcul</a>
+      <a href="#produit-quotient" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">Produit &amp; quotient</a>
+      <a href="#notation-scientifique" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">Notation scientifique</a>
+      <a href="#exercices" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">Exercices</a>
+      <a href="#memo" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">Fiche mémo</a>
+      <span class="mt-2 inline-flex w-fit items-center gap-1.5 rounded-full bg-indigo-50 dark:bg-indigo-900 px-3 py-1.5 text-xs font-bold text-indigo-700 dark:text-indigo-200 ring-1 ring-indigo-100 dark:ring-indigo-700">3ème APIC · Semestre 1</span>
+    </nav>
+  </div>
+
+  <div class="h-[3px] w-full bg-slate-100">
+    <div id="scroll-progress" class="h-full w-0 bg-gradient-to-r from-amber-400 via-amber-500 to-indigo-600"></div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- ===================== HERO ===================== -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-indigo-950 via-indigo-900 to-blue-900 text-white">
+    <div class="pointer-events-none absolute -top-24 -left-24 h-96 w-96 rounded-full bg-indigo-500/30 blur-3xl"></div>
+    <div class="pointer-events-none absolute top-1/3 -right-32 h-96 w-96 rounded-full bg-amber-400/20 blur-3xl"></div>
+    <div class="pointer-events-none absolute inset-0 opacity-[0.06]" style="background-image:radial-gradient(circle, #fff 1px, transparent 1px); background-size: 26px 26px;"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20 sm:pt-16 sm:pb-24 lg:pt-20 lg:pb-28">
+      <div class="grid lg:grid-cols-2 gap-14 items-center">
+        <div>
+          <p class="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-amber-300 mb-4">Collège Mhamed 9 · Mathématiques · Semestre 1</p>
+          <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white">Puissances</h1>
+          <p class="mt-5 text-base sm:text-lg text-indigo-100 max-w-xl leading-relaxed">
+            Chapitre de calcul numérique&nbsp;: définition des puissances, toutes les règles de calcul à connaître, et notation scientifique — illustrées par des exemples corrigés pas à pas.
+          </p>
+
+          <div class="mt-6 flex flex-wrap items-center gap-2.5">
+            <span class="inline-flex items-center rounded-full bg-white/10 backdrop-blur px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-white ring-1 ring-white/20">Niveau 3ème APIC</span>
+            <span class="inline-flex items-center rounded-full bg-white/10 backdrop-blur px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-white ring-1 ring-white/20">Prof. ELK.H</span>
+            <span class="inline-flex items-center rounded-full bg-amber-400 px-3.5 py-1.5 text-xs sm:text-sm font-bold text-indigo-950">Calcul numérique</span>
+          </div>
+
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a href="#definition" class="inline-flex items-center gap-2 rounded-xl bg-amber-400 hover:bg-amber-300 px-6 py-3.5 text-sm font-bold text-indigo-950 shadow-lg shadow-amber-900/20 transition-colors">
+              Commencer le cours
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#memo" class="inline-flex items-center gap-2 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur px-6 py-3.5 text-sm font-bold text-white ring-1 ring-white/25 transition-colors">
+              Fiche mémo express
+            </a>
+          </div>
+
+          <dl class="mt-12 grid grid-cols-3 gap-4 max-w-md border-t border-white/10 pt-6">
+            <div>
+              <dt class="text-2xl sm:text-3xl font-heading font-extrabold text-white">3</dt>
+              <dd class="text-xs text-indigo-200 mt-0.5">Grandes parties</dd>
+            </div>
+            <div>
+              <dt class="text-2xl sm:text-3xl font-heading font-extrabold text-white">9</dt>
+              <dd class="text-xs text-indigo-200 mt-0.5">Règles à connaître</dd>
+            </div>
+            <div>
+              <dt class="text-2xl sm:text-3xl font-heading font-extrabold text-white">30+</dt>
+              <dd class="text-xs text-indigo-200 mt-0.5">Exemples corrigés</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="relative hidden lg:block">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+            <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80" alt="Tableau noir recouvert de formules mathématiques" class="h-[420px] w-full object-cover" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-indigo-950/70 via-transparent to-transparent"></div>
+          </div>
+          <div class="absolute -bottom-6 -left-8 rounded-2xl bg-white text-indigo-950 shadow-2xl p-5 w-64">
+            <p class="text-xs font-bold uppercase tracking-wide text-indigo-400 mb-1.5">Définition clé</p>
+            <p class="text-center text-lg">$$a^{n}=\underbrace{a\times a\times\cdots\times a}_{n\ \text{fois}}$$</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 text-slate-50 leading-[0]">
+      <svg viewBox="0 0 1440 60" class="w-full h-8 sm:h-12" preserveAspectRatio="none"><path fill="currentColor" d="M0,32L80,28C160,24,320,16,480,18.7C640,21,800,35,960,37.3C1120,40,1280,32,1360,28L1440,24L1440,60L0,60Z"></path></svg>
+    </div>
+  </section>
+
+  <!-- ===================== QUICK NAV CHIPS ===================== -->
+  <div class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 overflow-x-auto">
+      <div class="flex items-center gap-2 w-max sm:w-full sm:flex-wrap">
+        <a href="#definition" class="flex-shrink-0 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs sm:text-sm font-semibold text-slate-600 hover:border-indigo-300 hover:text-indigo-700 hover:bg-indigo-50 transition-colors">① Définition</a>
+        <a href="#conventions" class="flex-shrink-0 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs sm:text-sm font-semibold text-slate-600 hover:border-indigo-300 hover:text-indigo-700 hover:bg-indigo-50 transition-colors">② Par convention</a>
+        <a href="#regles-calcul" class="flex-shrink-0 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs sm:text-sm font-semibold text-slate-600 hover:border-indigo-300 hover:text-indigo-700 hover:bg-indigo-50 transition-colors">③ Règles de calcul</a>
+        <a href="#produit-quotient" class="flex-shrink-0 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs sm:text-sm font-semibold text-slate-600 hover:border-indigo-300 hover:text-indigo-700 hover:bg-indigo-50 transition-colors">④ Produit &amp; quotient</a>
+        <a href="#puissances-10" class="flex-shrink-0 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs sm:text-sm font-semibold text-slate-600 hover:border-indigo-300 hover:text-indigo-700 hover:bg-indigo-50 transition-colors">⑤ Puissances de 10</a>
+        <a href="#ecriture-scientifique" class="flex-shrink-0 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs sm:text-sm font-semibold text-slate-600 hover:border-indigo-300 hover:text-indigo-700 hover:bg-indigo-50 transition-colors">⑥ Écriture scientifique</a>
+        <a href="#exercices" class="flex-shrink-0 rounded-full border border-emerald-300 bg-emerald-50 px-4 py-2 text-xs sm:text-sm font-bold text-emerald-700 hover:bg-emerald-100 transition-colors">⑦ Exercices</a>
+        <a href="#memo" class="flex-shrink-0 rounded-full border border-amber-300 bg-amber-50 px-4 py-2 text-xs sm:text-sm font-bold text-amber-700 hover:bg-amber-100 transition-colors">★ Mémo</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PARTIE 1 : PUISSANCES ===================== -->
+  <section id="puissances" class="scroll-mt-24 py-16 sm:py-20 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="max-w-2xl mb-14">
+        <p class="text-sm font-bold uppercase tracking-[0.15em] text-indigo-600 mb-3">Partie 01</p>
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">Les puissances</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">Définition générale, conventions de base et règles de calcul indispensables pour manipuler les puissances d'un nombre réel.</p>
+      </div>
+
+      <!-- Définition -->
+      <div id="definition" class="scroll-mt-24 mb-16">
+        <h3 class="font-heading text-xl sm:text-2xl font-bold text-slate-900 mb-5 flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-bold">1a</span>
+          Définition
+        </h3>
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-10">
+          <p class="text-slate-600 text-sm sm:text-base mb-5">Le nombre réel <strong class="text-slate-900">a</strong>, à la puissance <strong class="text-slate-900">n</strong> (ou « a à l'exposant n ») est défini par&nbsp;:</p>
+          <div class="rounded-xl bg-amber-50 ring-1 ring-amber-200 py-6 px-4 text-center">
+            <p class="text-2xl sm:text-3xl">$$a^{n}=\underbrace{a\times a\times a\times\cdots\times a}_{n\ \text{fois}}$$</p>
+          </div>
+          <p class="mt-5 text-sm text-slate-500">avec <span class="font-semibold text-slate-700">$a\in\mathbb{R}$</span> (a est un nombre réel quelconque) et <span class="font-semibold text-slate-700">$n\in\mathbb{N}^{*}$</span> (n est un entier naturel non nul).</p>
+        </div>
+      </div>
+
+      <!-- Règles par convention -->
+      <div id="conventions" class="scroll-mt-24 mb-16">
+        <h3 class="font-heading text-xl sm:text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-bold">1b</span>
+          Règles par convention
+        </h3>
+        <p class="text-sm text-slate-500 mb-6 ml-11">Quatre cas particuliers à connaître par cœur.</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm hover:shadow-lg p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700 font-heading font-bold text-base ring-1 ring-indigo-100">a<sup>0</sup></span>
+              <h4 class="font-heading font-bold text-slate-900 text-sm sm:text-base">Exposant nul</h4>
+            </div>
+            <div class="rounded-xl bg-amber-50 ring-1 ring-amber-200 py-3 text-center mb-5 text-lg">$a^{0}=1$</div>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li>$3^{0}=1$</li>
+              <li>$(-5{,}75)^{0}=1$</li>
+              <li>$\left(\dfrac{\pi}{5}\right)^{0}=1$</li>
+            </ul>
+          </div>
+
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm hover:shadow-lg p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700 font-heading font-bold text-base ring-1 ring-indigo-100">a<sup>1</sup></span>
+              <h4 class="font-heading font-bold text-slate-900 text-sm sm:text-base">Exposant un</h4>
+            </div>
+            <div class="rounded-xl bg-amber-50 ring-1 ring-amber-200 py-3 text-center mb-5 text-lg">$a^{1}=a$</div>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li>$3^{1}=3$</li>
+              <li>$(-5{,}75)^{1}=-5{,}75$</li>
+              <li>$\left(\dfrac{\pi}{5}\right)^{1}=\dfrac{\pi}{5}$</li>
+              <li>$x^{1}=x$</li>
+            </ul>
+          </div>
+
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm hover:shadow-lg p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700 font-heading font-bold text-base ring-1 ring-indigo-100">a<sup>-1</sup></span>
+              <h4 class="font-heading font-bold text-slate-900 text-sm sm:text-base">Exposant moins un</h4>
+            </div>
+            <div class="rounded-xl bg-amber-50 ring-1 ring-amber-200 py-3 text-center mb-5 text-lg">$a^{-1}=\dfrac{1}{a}$</div>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li>$3^{-1}=\dfrac{1}{3}$</li>
+              <li>$10^{-1}=\dfrac{1}{10}=0{,}1$</li>
+              <li>$x^{-1}=\dfrac{1}{x}$</li>
+            </ul>
+          </div>
+
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm hover:shadow-lg p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700 font-heading font-bold text-base ring-1 ring-indigo-100">a<sup>-n</sup></span>
+              <h4 class="font-heading font-bold text-slate-900 text-sm sm:text-base">Exposant négatif</h4>
+            </div>
+            <div class="rounded-xl bg-amber-50 ring-1 ring-amber-200 py-3 text-center mb-5 text-lg">$a^{-n}=\dfrac{1}{a^{n}}$</div>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li>$3^{-2}=\dfrac{1}{3^{2}}=\dfrac{1}{9}$</li>
+              <li>$10^{-3}=\dfrac{1}{10^{3}}=0{,}001$</li>
+              <li>$x^{-2}=\dfrac{1}{x^{2}}$</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-6 flex items-start gap-3 rounded-xl bg-sky-50 border border-sky-200 p-4 sm:p-5">
+          <svg class="h-5 w-5 flex-shrink-0 text-sky-600 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11.5" stroke-linecap="round"/><circle cx="12" cy="8.2" r="0.75" fill="currentColor" stroke="none"/></svg>
+          <p class="text-sm text-sky-900"><span class="font-bold">Remarque :</span> $0^{0}$ n'est pas défini, il n'existe pas.</p>
+        </div>
+      </div>
+
+      <!-- Règles de calcul -->
+      <div id="regles-calcul" class="scroll-mt-24 mb-16">
+        <h3 class="font-heading text-xl sm:text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-bold">1c</span>
+          Règles de calcul
+        </h3>
+        <p class="text-sm text-slate-500 mb-6 ml-11">Valables pour $n,p\in\mathbb{Z}$ (entiers relatifs).</p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Produit -->
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm hover:shadow-lg p-6 sm:p-7">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700 font-heading font-bold text-sm ring-1 ring-indigo-100">a<sup>n</sup>·a<sup>p</sup></span>
+              <h4 class="font-heading font-bold text-slate-900 text-sm sm:text-base">Produit de puissances</h4>
+            </div>
+            <div class="rounded-xl bg-amber-50 ring-1 ring-amber-200 py-3 text-center mb-5 text-lg">$a^{n}\times a^{p}=a^{n+p}$</div>
+            <div class="space-y-3">
+              <div class="rounded-lg bg-slate-50 px-4 py-3.5">
+                <div class="text-slate-600 text-sm">$A=2^{3}\times2^{4}=2^{3+4}$</div>
+                <div class="mt-2 text-base">$$\boxed{\textcolor{#e11d48}{A=2^{7}}}$$</div>
+              </div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3.5">
+                <div class="text-slate-600 text-sm">$B=10^{3}\times10^{-4}=10^{3-4}=10^{-1}$</div>
+                <div class="mt-2 text-base">$$\boxed{\textcolor{#e11d48}{B=\dfrac{1}{10}=0{,}1}}$$</div>
+              </div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3.5">
+                <div class="text-slate-600 text-sm">$C=x^{2}\times x^{3}=x^{2+3}$</div>
+                <div class="mt-2 text-base">$$\boxed{\textcolor{#e11d48}{C=x^{5}}}$$</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Puissance de puissance -->
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm hover:shadow-lg p-6 sm:p-7">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700 font-heading font-bold text-sm ring-1 ring-indigo-100">(a<sup>n</sup>)<sup>p</sup></span>
+              <h4 class="font-heading font-bold text-slate-900 text-sm sm:text-base">Puissance d'une puissance</h4>
+            </div>
+            <div class="rounded-xl bg-amber-50 ring-1 ring-amber-200 py-3 text-center mb-5 text-lg">$(a^{n})^{p}=a^{n\times p}$</div>
+            <div class="space-y-3">
+              <div class="rounded-lg bg-slate-50 px-4 py-3.5">
+                <div class="text-slate-600 text-sm">$D=(2^{3})^{4}=2^{3\times4}$</div>
+                <div class="mt-2 text-base">$$\boxed{\textcolor{#e11d48}{D=2^{12}}}$$</div>
+              </div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3.5">
+                <div class="text-slate-600 text-sm">$E=(10^{3})^{-4}=10^{3\times(-4)}=10^{-12}$</div>
+                <div class="mt-2 text-base">$$\boxed{\textcolor{#e11d48}{E=\dfrac{1}{10^{12}}}}$$</div>
+              </div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3.5">
+                <div class="text-slate-600 text-sm">$F=(x^{2})^{3}=x^{2\times3}$</div>
+                <div class="mt-2 text-base">$$\boxed{\textcolor{#e11d48}{F=x^{6}}}$$</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quotient -->
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm hover:shadow-lg p-6 sm:p-7">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700 font-heading font-bold text-sm ring-1 ring-indigo-100">a<sup>n</sup>/a<sup>p</sup></span>
+              <h4 class="font-heading font-bold text-slate-900 text-sm sm:text-base">Quotient de puissances</h4>
+            </div>
+            <div class="rounded-xl bg-amber-50 ring-1 ring-amber-200 py-3 text-center mb-5 text-lg">$\dfrac{a^{n}}{a^{p}}=a^{n-p}$</div>
+            <div class="space-y-3">
+              <div class="rounded-lg bg-slate-50 px-4 py-3.5">
+                <div class="text-slate-600 text-sm">$G=\dfrac{2^{3}}{2^{7}}=2^{3-7}=2^{-4}$</div>
+                <div class="mt-2 text-base">$$\boxed{\textcolor{#e11d48}{G=\dfrac{1}{2^{4}}}}$$</div>
+              </div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3.5">
+                <div class="text-slate-600 text-sm">$H=\dfrac{10^{3}}{10^{-2}}=10^{3-(-2)}=10^{3+2}$</div>
+                <div class="mt-2 text-base">$$\boxed{\textcolor{#e11d48}{H=10^{5}=100\,000}}$$</div>
+              </div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3.5">
+                <div class="text-slate-600 text-sm">$I=\dfrac{x^{3}}{x}=\dfrac{x^{3}}{x^{1}}=x^{3-1}$</div>
+                <div class="mt-2 text-base">$$\boxed{\textcolor{#e11d48}{I=x^{2}}}$$</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Produit / quotient de a et b -->
+      <div id="produit-quotient" class="scroll-mt-24">
+        <h3 class="font-heading text-xl sm:text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-bold">1d</span>
+          Puissance d'un produit et d'un quotient
+        </h3>
+        <p class="text-sm text-slate-500 mb-6 ml-11">Valables pour $a,b\in\mathbb{R}$ ($b\neq0$) et $n\in\mathbb{Z}$.</p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm hover:shadow-lg p-6 sm:p-7">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700 font-heading font-bold text-sm ring-1 ring-indigo-100">(ab)<sup>n</sup></span>
+              <h4 class="font-heading font-bold text-slate-900 text-sm sm:text-base">Puissance d'un produit</h4>
+            </div>
+            <div class="rounded-xl bg-amber-50 ring-1 ring-amber-200 py-3 text-center mb-5 text-lg">$(a\times b)^{n}=a^{n}\times b^{n}$</div>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="rounded-lg bg-slate-50 px-4 py-3.5">
+                <div class="text-slate-600 text-sm">$J=(5\times3)^{2}=5^{2}\times3^{2}=25\times9$</div>
+                <div class="mt-2 text-base">$$\boxed{\textcolor{#e11d48}{J=225}}$$</div>
+              </div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3.5">
+                <div class="text-slate-600 text-sm">$K=5^{5}\times2^{5}=(5\times2)^{5}=10^{5}$</div>
+                <div class="mt-2 text-base">$$\boxed{\textcolor{#e11d48}{K=100\,000}}$$</div>
+              </div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3.5">
+                <div class="text-slate-600 text-sm">$L=(3x)^{2}=3^{2}\times x^{2}$</div>
+                <div class="mt-2 text-base">$$\boxed{\textcolor{#e11d48}{L=9x^{2}}}$$</div>
+              </div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3.5">
+                <div class="text-slate-600 text-sm">$M=(-2x)^{3}=(-2)^{3}\times x^{3}$</div>
+                <div class="mt-2 text-base">$$\boxed{\textcolor{#e11d48}{M=-8x^{3}}}$$</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm hover:shadow-lg p-6 sm:p-7">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700 font-heading font-bold text-sm ring-1 ring-indigo-100">(a/b)<sup>n</sup></span>
+              <h4 class="font-heading font-bold text-slate-900 text-sm sm:text-base">Puissance d'un quotient</h4>
+            </div>
+            <div class="rounded-xl bg-amber-50 ring-1 ring-amber-200 py-4 px-3 text-center mb-5 space-y-2">
+              <div class="text-lg">$\left(\dfrac{a}{b}\right)^{n}=\dfrac{a^{n}}{b^{n}}$</div>
+              <div class="text-xs text-amber-700 font-semibold">et</div>
+              <div class="text-lg">$\left(\dfrac{a}{b}\right)^{-n}=\left(\dfrac{b}{a}\right)^{n}=\dfrac{b^{n}}{a^{n}}$</div>
+            </div>
+            <div class="space-y-3">
+              <div class="rounded-lg bg-slate-50 px-4 py-3.5">
+                <div class="text-slate-600 text-sm">$N=\left(\dfrac{2}{3}\right)^{2}=\dfrac{2^{2}}{3^{2}}$</div>
+                <div class="mt-2 text-base">$$\boxed{\textcolor{#e11d48}{N=\dfrac{4}{9}}}$$</div>
+              </div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3.5">
+                <div class="text-slate-600 text-sm">$P=\left(\dfrac{10}{3}\right)^{-2}=\left(\dfrac{3}{10}\right)^{2}=\dfrac{3^{2}}{10^{2}}$</div>
+                <div class="mt-2 text-base">$$\boxed{\textcolor{#e11d48}{P=\dfrac{9}{100}=0{,}09}}$$</div>
+              </div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3.5">
+                <div class="text-slate-600 text-sm">$Q=\left(\dfrac{x}{4}\right)^{2}=\dfrac{x^{2}}{4^{2}}$</div>
+                <div class="mt-2 text-base">$$\boxed{\textcolor{#e11d48}{Q=\dfrac{x^{2}}{16}}}$$</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== PARTIE 2 : NOTATION SCIENTIFIQUE ===================== -->
+  <section id="notation-scientifique" class="scroll-mt-24 py-16 sm:py-20 lg:py-24 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="max-w-2xl mb-10">
+        <p class="text-sm font-bold uppercase tracking-[0.15em] text-indigo-600 mb-3">Partie 02</p>
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">Notation scientifique</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">Les puissances de 10 et une méthode simple pour écrire n'importe quel nombre sous une forme compacte et universelle.</p>
+      </div>
+
+      <div class="relative rounded-3xl overflow-hidden shadow-xl mb-16">
+        <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1600&q=80" alt="Vue étoilée de l'espace illustrant l'utilité des très grands nombres" class="w-full h-52 sm:h-72 object-cover" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-r from-indigo-950/90 via-indigo-950/50 to-transparent"></div>
+        <div class="absolute inset-0 flex items-center">
+          <p class="max-w-md px-6 sm:px-10 text-white text-sm sm:text-base font-medium leading-relaxed">
+            La notation scientifique permet d'exprimer simplement des nombres immenses — comme les distances entre étoiles — ou infiniment petits, comme la taille d'un atome.
+          </p>
+        </div>
+      </div>
+
+      <!-- Puissances de 10 -->
+      <div id="puissances-10" class="scroll-mt-24 mb-16">
+        <h3 class="font-heading text-xl sm:text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-bold">2a</span>
+          Puissances de 10
+        </h3>
+        <p class="text-sm text-slate-500 mb-6 ml-11">Pour $n$ entier relatif positif non nul.</p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm hover:shadow-lg p-6 sm:p-7">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700 font-heading font-bold text-sm ring-1 ring-indigo-100">10<sup>n</sup></span>
+              <h4 class="font-heading font-bold text-slate-900 text-sm sm:text-base">Puissances positives</h4>
+            </div>
+            <div class="rounded-xl bg-amber-50 ring-1 ring-amber-200 py-3 text-center mb-5">$10^{n}=\underbrace{10\times10\times\cdots\times10}_{n\ \text{fois}}=1\underbrace{00\ldots0}_{n\ \text{zéros}}$</div>
+            <div class="space-y-2.5">
+              <div class="flex items-center justify-between gap-2 rounded-lg bg-slate-50 px-4 py-3">
+                <span>$10^{3}=1\,000$</span>
+                <span class="flex-shrink-0 text-xs font-semibold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">mille</span>
+              </div>
+              <div class="flex items-center justify-between gap-2 rounded-lg bg-slate-50 px-4 py-3">
+                <span>$10^{6}=1\,000\,000$</span>
+                <span class="flex-shrink-0 text-xs font-semibold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">1 million</span>
+              </div>
+              <div class="flex items-center justify-between gap-2 rounded-lg bg-slate-50 px-4 py-3">
+                <span>$10^{9}=1\,000\,000\,000$</span>
+                <span class="flex-shrink-0 text-xs font-semibold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">1 milliard</span>
+              </div>
+              <div class="flex items-center justify-between gap-2 rounded-lg bg-slate-50 px-4 py-3">
+                <span>$10^{12}=1\,000\,000\,000\,000$</span>
+                <span class="flex-shrink-0 text-xs font-semibold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">1 billion*</span>
+              </div>
+            </div>
+            <p class="mt-4 text-xs text-slate-400">* En France. Attention : en anglais, <em>« billion »</em> désigne $10^{9}$ (un milliard) — un faux-ami classique !</p>
+          </div>
+
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm hover:shadow-lg p-6 sm:p-7">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700 font-heading font-bold text-sm ring-1 ring-indigo-100">10<sup>-n</sup></span>
+              <h4 class="font-heading font-bold text-slate-900 text-sm sm:text-base">Puissances négatives</h4>
+            </div>
+            <div class="rounded-xl bg-amber-50 ring-1 ring-amber-200 py-3 text-center mb-5">$10^{-n}=\dfrac{1}{10^{n}}=0{,}\underbrace{0\ldots0}_{n\ \text{zéros}}1$</div>
+            <div class="space-y-2.5">
+              <div class="flex items-center justify-between gap-2 rounded-lg bg-slate-50 px-4 py-3">
+                <span>$10^{-1}=\dfrac{1}{10}=0{,}1$</span>
+                <span class="flex-shrink-0 text-xs font-semibold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">1 dixième</span>
+              </div>
+              <div class="flex items-center justify-between gap-2 rounded-lg bg-slate-50 px-4 py-3">
+                <span>$10^{-2}=\dfrac{1}{10^{2}}=0{,}01$</span>
+                <span class="flex-shrink-0 text-xs font-semibold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">1 centième</span>
+              </div>
+              <div class="flex items-center justify-between gap-2 rounded-lg bg-slate-50 px-4 py-3">
+                <span>$10^{-3}=\dfrac{1}{10^{3}}=0{,}001$</span>
+                <span class="flex-shrink-0 text-xs font-semibold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">1 millième</span>
+              </div>
+              <div class="flex items-center justify-between gap-2 rounded-lg bg-slate-50 px-4 py-3">
+                <span>$10^{-6}=\dfrac{1}{10^{6}}=0{,}000\,001$</span>
+                <span class="flex-shrink-0 text-xs font-semibold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">1 millionième</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Écriture scientifique -->
+      <div id="ecriture-scientifique" class="scroll-mt-24">
+        <h3 class="font-heading text-xl sm:text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-bold">2b</span>
+          Écriture scientifique
+        </h3>
+
+        <div class="rounded-2xl bg-amber-50 ring-1 ring-amber-200 p-6 sm:p-8 text-center mb-8">
+          <p class="text-sm font-semibold text-slate-600 mb-3">Écrire un nombre en écriture scientifique, c'est l'exprimer sous la forme&nbsp;:</p>
+          <p class="text-2xl sm:text-3xl">$$a\times10^{\,n}$$</p>
+          <p class="mt-3 text-xs sm:text-sm font-semibold text-amber-700">avec <span class="underline decoration-amber-400 decoration-2">a</span>, un nombre compris entre 1 et 10 (10 exclu), et <span class="italic">n</span> un entier relatif.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-7">
+            <div class="flex items-center gap-2 mb-5">
+              <span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+              <h4 class="font-heading font-bold text-slate-900 text-sm sm:text-base">Nombres supérieurs à 1 <span class="text-slate-400 font-normal">(en valeur absolue)</span> → exposant <span class="text-emerald-600">positif</span></h4>
+            </div>
+            <div class="space-y-2.5">
+              <div class="rounded-lg bg-slate-50 px-4 py-3">$9{,}5=\textcolor{#e11d48}{9{,}5}\times10^{0}$</div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3">$50{,}7=\textcolor{#e11d48}{5{,}07}\times10^{1}$</div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3">$1\,000=\textcolor{#e11d48}{1}\times10^{3}$</div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3">$1\,234=\textcolor{#e11d48}{1{,}234}\times10^{3}$</div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3">$-25{,}1=\textcolor{#e11d48}{-2{,}51}\times10^{1}$</div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3">$\dfrac{5}{2}=2{,}5=\textcolor{#e11d48}{2{,}5}\times10^{0}$</div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-7">
+            <div class="flex items-center gap-2 mb-5">
+              <span class="h-2.5 w-2.5 rounded-full bg-rose-500"></span>
+              <h4 class="font-heading font-bold text-slate-900 text-sm sm:text-base">Nombres inférieurs à 1 <span class="text-slate-400 font-normal">(en valeur absolue)</span> → exposant <span class="text-rose-600">négatif</span></h4>
+            </div>
+            <div class="space-y-2.5">
+              <div class="rounded-lg bg-slate-50 px-4 py-3">$0{,}5=\textcolor{#e11d48}{5}\times10^{-1}$</div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3">$0{,}02=\textcolor{#e11d48}{2}\times10^{-2}$</div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3">$0{,}0123=\textcolor{#e11d48}{1{,}23}\times10^{-2}$</div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3">$0{,}000\,15=\textcolor{#e11d48}{1{,}5}\times10^{-4}$</div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3">$-0{,}7=\textcolor{#e11d48}{-7}\times10^{-1}$</div>
+              <div class="rounded-lg bg-slate-50 px-4 py-3">$\dfrac{1}{4}=0{,}25=\textcolor{#e11d48}{2{,}5}\times10^{-1}$</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== PARTIE 3 : EXERCICES ===================== -->
+  <section id="exercices" class="scroll-mt-24 py-16 sm:py-20 lg:py-24 bg-slate-50 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="max-w-2xl mb-4">
+        <p class="text-sm font-bold uppercase tracking-[0.15em] text-emerald-600 mb-3">Partie 03 · Entraînement</p>
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">Exercices</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">Cinq exercices progressifs pour s'entraîner à appliquer les règles de calcul vues dans le cours ci-dessus. Munissez-vous d'une feuille, des <a href="#memo" class="font-semibold text-emerald-700 hover:text-emerald-800 underline decoration-emerald-300 underline-offset-2">formules du mémo</a>, cherchez chaque expression, puis cliquez sur « Voir la correction » pour vérifier.</p>
+        <p class="mt-3 text-xs text-slate-400 italic">Corrections calculées et vérifiées pas à pas (non fournies dans le document original du professeur).</p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2.5 mb-12">
+        <span class="inline-flex items-center rounded-full bg-emerald-600 px-3.5 py-1.5 text-xs sm:text-sm font-bold text-white">Exercice 2</span>
+        <span class="inline-flex items-center rounded-full bg-white px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-slate-600 ring-1 ring-slate-200">5 exercices</span>
+        <span class="inline-flex items-center rounded-full bg-white px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-slate-600 ring-1 ring-slate-200">36 expressions à calculer</span>
+      </div>
+
+      <div class="space-y-6">
+
+        <!-- Exercice 1 -->
+        <div class="exercise-card rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-7">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+            <div class="flex items-center gap-3">
+              <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-600 text-white text-sm font-bold">1</span>
+              <h3 class="font-heading font-bold text-slate-900 text-base sm:text-lg">Exercice 1</h3>
+            </div>
+            <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full ring-1 ring-emerald-100">5 expressions</span>
+          </div>
+          <p class="text-sm text-slate-500 mb-5">Écrire sous forme d'une puissance&nbsp;:</p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$A=(2^{3})^{2}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$A=2^{6}=64$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$B=7^{5}\times3^{5}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$B=21^{5}=4\,084\,101$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$C=(10^{4})^{3}\times10^{-5}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$C=10^{7}=10\,000\,000$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$D=\dfrac{2^{4}}{2^{-3}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$D=2^{7}=128$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$E=\dfrac{5^{9}\times5^{-2}}{5^{4}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$E=5^{3}=125$</div>
+            </div>
+          </div>
+          <button type="button" class="correction-toggle mt-5 inline-flex items-center gap-2 rounded-xl border-2 border-emerald-600 px-5 py-2.5 text-sm font-bold text-emerald-700 hover:bg-emerald-600 hover:text-white transition-colors">
+            <svg class="chevron h-4 w-4 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <!-- Exercice 2 -->
+        <div class="exercise-card rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-7">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+            <div class="flex items-center gap-3">
+              <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-600 text-white text-sm font-bold">2</span>
+              <h3 class="font-heading font-bold text-slate-900 text-base sm:text-lg">Exercice 2</h3>
+            </div>
+            <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full ring-1 ring-emerald-100">6 expressions</span>
+          </div>
+          <p class="text-sm text-slate-500 mb-5">Calculer et simplifier&nbsp;:</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$E=(-2)^{3}-3^{3}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$E=-35$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$F=\dfrac{7\times10^{5}}{2\times10^{-3}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$F=3{,}5\times10^{8}$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$G=\dfrac{(-3)^{5}\times5^{5}}{15^{2}\times3^{3}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$G=-125$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$H=\dfrac{6{,}3\times10^{-4}\times15\times10^{6}}{3^{3}\times10^{2}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$H=3{,}5$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$I=\dfrac{11\times10^{7}}{4\times(10^{3})^{5}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$I=2{,}75\times10^{-8}$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$J=\dfrac{54\times10^{-1}-83\times10^{-2}}{10^{-2}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$J=457$</div>
+            </div>
+          </div>
+          <button type="button" class="correction-toggle mt-5 inline-flex items-center gap-2 rounded-xl border-2 border-emerald-600 px-5 py-2.5 text-sm font-bold text-emerald-700 hover:bg-emerald-600 hover:text-white transition-colors">
+            <svg class="chevron h-4 w-4 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <!-- Exercice 3 -->
+        <div class="exercise-card rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-7">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+            <div class="flex items-center gap-3">
+              <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-600 text-white text-sm font-bold">3</span>
+              <h3 class="font-heading font-bold text-slate-900 text-base sm:text-lg">Exercice 3</h3>
+            </div>
+            <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full ring-1 ring-emerald-100">3 expressions</span>
+          </div>
+          <p class="text-sm text-slate-500 mb-5">Calculer et simplifier <span class="text-slate-400">(avec $a,b,c$ des réels non nuls)</span>&nbsp;:</p>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-3">
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-4 text-center overflow-x-auto">$E=\dfrac{a^{4}\times(ab^{-2})^{4}}{(ab^{-1})^{6}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$E=\dfrac{a^{2}}{b^{2}}$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-4 text-center overflow-x-auto">$F=\dfrac{(ab^{2})^{2}\times(a^{2}b)^{-2}\times(a^{3}b^{2})^{-2}}{(a^{-1}b)^{3}\times(a^{2}b^{-1})^{-2}\times a^{4}b^{-2}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$F=\dfrac{1}{a^{5}b^{5}}$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-4 text-center overflow-x-auto">$G=\dfrac{(a^{3}b^{-2})^{5}\times c^{5}}{(a^{-1}c)^{3}\times(b^{2}c^{-1})^{-2}\times a^{18}b^{-7}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$G=b$</div>
+            </div>
+          </div>
+          <button type="button" class="correction-toggle mt-5 inline-flex items-center gap-2 rounded-xl border-2 border-emerald-600 px-5 py-2.5 text-sm font-bold text-emerald-700 hover:bg-emerald-600 hover:text-white transition-colors">
+            <svg class="chevron h-4 w-4 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <!-- Exercice 4 -->
+        <div class="exercise-card rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-7">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+            <div class="flex items-center gap-3">
+              <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-600 text-white text-sm font-bold">4</span>
+              <h3 class="font-heading font-bold text-slate-900 text-base sm:text-lg">Exercice 4</h3>
+            </div>
+            <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full ring-1 ring-emerald-100">12 expressions</span>
+          </div>
+          <p class="text-sm text-slate-500 mb-4">Écrire sous la forme d'une puissance de 10, puis donner l'écriture décimale de ces nombres&nbsp;:</p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-3">
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$(10^{1})^{5}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$10^{5}=100\,000$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$(10^{4})^{2}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$10^{8}=100\,000\,000$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$(10^{1})^{-1}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$10^{-1}=0{,}1$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$(10^{-8})^{0}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$10^{0}=1$</div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$10^{4}\times10^{8}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$10^{12}=1\,000\,000\,000\,000$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$10^{-4}\times10^{0}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$10^{-4}=0{,}0001$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$10^{1}\times10^{5}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$10^{6}=1\,000\,000$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$10^{-5}\times10^{-2}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$10^{-7}=0{,}0000001$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$\dfrac{10^{-8}}{10^{5}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$10^{-13}$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$\dfrac{10^{-1}}{10^{-6}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$10^{5}=100\,000$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$\dfrac{10^{-5}}{10^{5}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$10^{-10}$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$\dfrac{10^{-6}}{10^{4}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$10^{-10}$</div>
+            </div>
+          </div>
+          <button type="button" class="correction-toggle mt-5 inline-flex items-center gap-2 rounded-xl border-2 border-emerald-600 px-5 py-2.5 text-sm font-bold text-emerald-700 hover:bg-emerald-600 hover:text-white transition-colors">
+            <svg class="chevron h-4 w-4 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <!-- Exercice 5 -->
+        <div class="exercise-card rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-7">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+            <div class="flex items-center gap-3">
+              <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-600 text-white text-sm font-bold">5</span>
+              <h3 class="font-heading font-bold text-slate-900 text-base sm:text-lg">Exercice 5</h3>
+            </div>
+            <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full ring-1 ring-emerald-100">10 expressions</span>
+          </div>
+          <p class="text-sm text-slate-500 mb-5">Donner l'écriture scientifique des nombres suivants&nbsp;:</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$M=\dfrac{3{,}6\times10^{4}}{4\times10^{6}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$M=9\times10^{-3}$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$N=\dfrac{3{,}2\times10^{5}}{2\times10^{6}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$N=1{,}6\times10^{-1}$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$P=\dfrac{12\times10^{-4}\times5\times10^{6}}{15\times10^{3}\times2\times10^{2}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$P=2\times10^{-3}$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$Q=10^{-4}\times0{,}2\times10^{3}\times\dfrac{1}{10^{2}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$Q=2\times10^{-4}$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$R=3^{2}\times2-125\times10^{-1}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$R=5{,}5\times10^{0}$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$S=(5\times10^{-14})\times(0{,}4\times10^{16})\times\left(\dfrac{0{,}00056}{7}\right)$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$S=1{,}6\times10^{-2}$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$T=\dfrac{10^{-8}\times0{,}7\times10^{12}}{21\times10^{3}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$T=\dfrac{1}{3}\approx3{,}33\times10^{-1}$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$U=\dfrac{24\times10^{2}\times3{,}5\times10^{5}}{8\times10^{-1}\times21\times10^{4}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$U=5\times10^{3}$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$V=\dfrac{4\times(10^{-2})^{3}\times10^{2}}{12\times10^{-3}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$V=\dfrac{1}{30}\approx3{,}33\times10^{-2}$</div>
+            </div>
+            <div class="rounded-lg bg-slate-50 overflow-hidden hover:ring-1 hover:ring-emerald-200 transition-colors">
+              <div class="px-4 py-3.5 text-center">$W=\dfrac{1{,}5\times10^{-5}\times(2\times10^{3})^{2}}{0{,}14\times10^{2}}$</div>
+              <div class="exo-answer hidden px-4 py-2.5 text-center bg-emerald-50 border-t border-emerald-200 text-emerald-700 font-semibold text-sm">$W=\dfrac{30}{7}\approx4{,}29\times10^{0}$</div>
+            </div>
+          </div>
+          <p class="exo-answer hidden mt-4 text-xs text-slate-400 italic">Pour T, V et W, le quotient exact n'est pas un nombre décimal (fractions 1/3, 1/30 et 30/7) — les valeurs ci-dessus sont arrondies au centième.</p>
+          <button type="button" class="correction-toggle mt-5 inline-flex items-center gap-2 rounded-xl border-2 border-emerald-600 px-5 py-2.5 text-sm font-bold text-emerald-700 hover:bg-emerald-600 hover:text-white transition-colors">
+            <svg class="chevron h-4 w-4 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+      </div>
+
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl bg-indigo-950 text-white px-6 sm:px-8 py-6">
+        <p class="text-sm text-indigo-100">Besoin de revoir une règle avant de continuer&nbsp;?</p>
+        <a href="#memo" class="flex-shrink-0 inline-flex items-center gap-2 rounded-xl bg-amber-400 hover:bg-amber-300 px-5 py-2.5 text-sm font-bold text-indigo-950 transition-colors">Consulter la fiche mémo</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== FICHE MÉMO ===================== -->
+  <section id="memo" class="scroll-mt-24 py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-slate-50 to-indigo-50/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-10">
+        <p class="text-sm font-bold uppercase tracking-[0.15em] text-amber-600 mb-3">Révision rapide</p>
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">Fiche mémo</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">Toutes les formules du chapitre réunies en un coup d'œil — idéal avant un contrôle.</p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+        <div class="rounded-xl bg-white ring-1 ring-slate-200 hover:ring-indigo-300 hover:shadow-md transition-all p-4 sm:p-5 text-center">
+          <p class="text-[10px] font-bold uppercase tracking-wide text-slate-400 mb-2">01</p>
+          <p>$a^{0}=1$</p>
+        </div>
+        <div class="rounded-xl bg-white ring-1 ring-slate-200 hover:ring-indigo-300 hover:shadow-md transition-all p-4 sm:p-5 text-center">
+          <p class="text-[10px] font-bold uppercase tracking-wide text-slate-400 mb-2">02</p>
+          <p>$a^{1}=a$</p>
+        </div>
+        <div class="rounded-xl bg-white ring-1 ring-slate-200 hover:ring-indigo-300 hover:shadow-md transition-all p-4 sm:p-5 text-center">
+          <p class="text-[10px] font-bold uppercase tracking-wide text-slate-400 mb-2">03</p>
+          <p>$a^{-1}=\dfrac{1}{a}$</p>
+        </div>
+        <div class="rounded-xl bg-white ring-1 ring-slate-200 hover:ring-indigo-300 hover:shadow-md transition-all p-4 sm:p-5 text-center">
+          <p class="text-[10px] font-bold uppercase tracking-wide text-slate-400 mb-2">04</p>
+          <p>$a^{-n}=\dfrac{1}{a^{n}}$</p>
+        </div>
+        <div class="rounded-xl bg-white ring-1 ring-slate-200 hover:ring-indigo-300 hover:shadow-md transition-all p-4 sm:p-5 text-center">
+          <p class="text-[10px] font-bold uppercase tracking-wide text-slate-400 mb-2">05</p>
+          <p>$a^{n}a^{p}=a^{n+p}$</p>
+        </div>
+        <div class="rounded-xl bg-white ring-1 ring-slate-200 hover:ring-indigo-300 hover:shadow-md transition-all p-4 sm:p-5 text-center">
+          <p class="text-[10px] font-bold uppercase tracking-wide text-slate-400 mb-2">06</p>
+          <p>$(a^{n})^{p}=a^{np}$</p>
+        </div>
+        <div class="rounded-xl bg-white ring-1 ring-slate-200 hover:ring-indigo-300 hover:shadow-md transition-all p-4 sm:p-5 text-center">
+          <p class="text-[10px] font-bold uppercase tracking-wide text-slate-400 mb-2">07</p>
+          <p>$\dfrac{a^{n}}{a^{p}}=a^{n-p}$</p>
+        </div>
+        <div class="rounded-xl bg-white ring-1 ring-slate-200 hover:ring-indigo-300 hover:shadow-md transition-all p-4 sm:p-5 text-center">
+          <p class="text-[10px] font-bold uppercase tracking-wide text-slate-400 mb-2">08</p>
+          <p>$(ab)^{n}=a^{n}b^{n}$</p>
+        </div>
+        <div class="rounded-xl bg-white ring-1 ring-slate-200 hover:ring-indigo-300 hover:shadow-md transition-all p-4 sm:p-5 text-center">
+          <p class="text-[10px] font-bold uppercase tracking-wide text-slate-400 mb-2">09</p>
+          <p>$\left(\dfrac{a}{b}\right)^{n}=\dfrac{a^{n}}{b^{n}}$</p>
+        </div>
+        <div class="rounded-xl bg-gradient-to-br from-indigo-600 to-blue-700 ring-1 ring-indigo-600 hover:shadow-md transition-all p-4 sm:p-5 text-center text-white">
+          <p class="text-[10px] font-bold uppercase tracking-wide text-indigo-200 mb-2">10</p>
+          <p>$a\times10^{n}$</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-indigo-950 text-indigo-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+    <div class="lg:col-span-2">
+      <a href="/" class="flex items-center gap-2.5">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+        <span class="font-heading font-bold text-white leading-tight">
+          <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+          <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+        </span>
+      </a>
+      <p class="mt-4 text-sm text-indigo-300 max-w-sm leading-relaxed">Support de cours de mathématiques — Chapitre « Puissances », destiné aux élèves de 3ème APIC. Définitions, règles de calcul, notation scientifique et exercices d'application.</p>
+      <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+    </div>
+    <div>
+      <h5 class="font-heading font-bold text-white text-sm uppercase tracking-wide mb-4">Sommaire</h5>
+      <ul class="space-y-2.5 text-sm">
+        <li><a href="#definition" class="hover:text-amber-300 transition-colors">Définition</a></li>
+        <li><a href="#conventions" class="hover:text-amber-300 transition-colors">Règles par convention</a></li>
+        <li><a href="#regles-calcul" class="hover:text-amber-300 transition-colors">Règles de calcul</a></li>
+        <li><a href="#notation-scientifique" class="hover:text-amber-300 transition-colors">Notation scientifique</a></li>
+        <li><a href="#exercices" class="hover:text-amber-300 transition-colors">Exercices</a></li>
+        <li><a href="#memo" class="hover:text-amber-300 transition-colors">Fiche mémo</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-indigo-400">
+      <p>© 2026 Collège Mhamed 9 — Tous droits réservés.</p>
+      <p>Document pédagogique numérisé par ELK.H</p>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Retour en haut de page" class="print:hidden fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-indigo-700 text-white shadow-lg shadow-indigo-900/30 opacity-0 pointer-events-none translate-y-3 transition-all duration-300 hover:bg-indigo-600">
+  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  // Menu mobile
+  var menuBtn = document.getElementById('menu-btn');
+  var mobileMenu = document.getElementById('mobile-menu');
+  var iconOpen = document.getElementById('icon-open');
+  var iconClose = document.getElementById('icon-close');
+  menuBtn.addEventListener('click', function () {
+    var isHidden = mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', String(isHidden));
+  });
+  document.querySelectorAll('#mobile-menu a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      mobileMenu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Barre de progression de lecture
+  var progress = document.getElementById('scroll-progress');
+  function updateProgress() {
+    var h = document.documentElement;
+    var scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight || 1);
+    progress.style.width = Math.min(Math.max(scrolled * 100, 0), 100) + '%';
+  }
+  document.addEventListener('scroll', updateProgress, { passive: true });
+
+  // Bouton retour en haut
+  var backToTop = document.getElementById('back-to-top');
+  function toggleBackToTop() {
+    if (window.scrollY > 480) {
+      backToTop.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
+    } else {
+      backToTop.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
+    }
+  }
+  document.addEventListener('scroll', toggleBackToTop, { passive: true });
+  backToTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Navigation active
+  var navLinks = document.querySelectorAll('.nav-link');
+  var trackedIds = ['definition', 'conventions', 'notation-scientifique', 'exercices', 'memo'];
+  var sections = trackedIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var navObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        navLinks.forEach(function (l) { l.classList.remove('text-indigo-700'); l.classList.add('text-slate-600'); });
+        var match = document.querySelector('.nav-link[href="#' + entry.target.id + '"]');
+        if (match) { match.classList.remove('text-slate-600'); match.classList.add('text-indigo-700'); }
+      }
+    });
+  }, { rootMargin: '-45% 0px -45% 0px' });
+  sections.forEach(function (s) { navObserver.observe(s); });
+
+  // Corrections des exercices
+  document.querySelectorAll('.correction-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('.exercise-card');
+      if (!card) return;
+      var answers = card.querySelectorAll('.exo-answer');
+      var willShow = answers.length > 0 && answers[0].classList.contains('hidden');
+      answers.forEach(function (ans) { ans.classList.toggle('hidden', !willShow); });
+      btn.querySelector('.btn-label').textContent = willShow ? 'Masquer la correction' : 'Voir la correction';
+      btn.classList.toggle('bg-emerald-600', willShow);
+      btn.classList.toggle('text-white', willShow);
+      btn.classList.toggle('text-emerald-700', !willShow);
+      var chevron = btn.querySelector('.chevron');
+      if (chevron) chevron.classList.toggle('rotate-180', willShow);
+    });
+  });
+
+  // Rendu KaTeX
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false
+      });
+    }
+  });
+</script>
+</body>
+</html>

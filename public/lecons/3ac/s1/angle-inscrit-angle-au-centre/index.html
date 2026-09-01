@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angles Inscrits et Angles au Centre — Cours et Exercices Corrigés | 3ème APIC</title>
+<meta name="description" content="Cours complet et illustré sur les angles inscrits et les angles au centre dans un cercle (définitions, cas particulier de la tangente, propriétés) — niveau 3ème APIC, Collège Mhamed 9. Deux exemples résolus pas à pas et 3 exercices avec correction détaillée au clic.">
+<meta name="theme-color" content="#1e1b4b">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Angles Inscrits et Angles au Centre — Cours et Exercices Corrigés">
+<meta property="og:description" content="Définitions, cas particulier de la tangente, propriétés des angles inscrits et au centre — cours illustré et exercices corrigés pas à pas.">
+<meta property="og:image" content="/lecons/3ac/s1/angle-inscrit-angle-au-centre/histoire-angles-cercle.jpg">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' stroke='%234f46e5' stroke-width='2' fill='%23eef2ff'/%3E%3Cpath d='M9 12 L16 16 L20 8' stroke='%23f59e0b' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='16' cy='16' r='1.6' fill='%234f46e5'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS (CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Outfit', 'sans-serif'],
+          sans: ['Inter', 'sans-serif'],
+        },
+        colors: {
+          brand: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+          accent: {
+            50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d',
+            400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309',
+          },
+        },
+        boxShadow: {
+          soft: '0 4px 24px -4px rgb(11 31 58 / 0.12)',
+        },
+      },
+    },
+    darkMode: 'class',
+  };
+</script>
+
+<!-- KaTeX (typographie mathématique) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+
+<style>
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body { font-feature-settings: "cv02","cv03","cv04","cv11"; overflow-x: hidden; }
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal-visible { opacity: 1; transform: translateY(0); }
+  #mobile-menu.hidden { display: none; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #f1f5f9; }
+  ::-webkit-scrollbar-thumb { background: #c7d2fe; border-radius: 9999px; }
+  .config-fig { max-width: 100%; height: auto; }
+  .katex-display { overflow-x: auto; overflow-y: hidden; padding: .3rem .1rem; margin: .4rem 0; }
+  .katex { font-size: 1.05em; }
+  .chip { display: inline-block; background: #fff; border: 1px solid #e2e8f0; box-shadow: 0 1px 2px rgb(0 0 0 / 0.04); padding: .4rem .7rem; border-radius: .6rem; font-size: .92rem; line-height: 1.3; color: #334155; font-weight: 500; }
+  .legend-dot { width: .7rem; height: .7rem; border-radius: 9999px; display: inline-block; }
+
+  /* ===== Mode nuit (retrofit générique — cible les classes Tailwind utilisées dans la page) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .bg-black\/10 { background-color: rgb(0 0 0 / 0.25); }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .border-slate-100 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
+  .dark .text-emerald-800, .dark .text-emerald-700 { color: #6ee7a3; }
+  .dark .bg-accent-50 { background-color: #3a2a0a; }
+  .dark .border-accent-200 { border-color: #6b4d10; }
+  .dark .bg-amber-50 { background-color: #3a2a0a; }
+  .dark .border-amber-200 { border-color: #6b4d10; }
+  .dark .chip { background: #0b1f3a; border-color: #1c3a63; color: #cbd5e1; }
+  .dark ::-webkit-scrollbar-track { background: #12294c; }
+</style>
+</head>
+<body class="bg-slate-50 dark:bg-navy-950 text-slate-800 antialiased font-sans transition-colors">
+
+<a href="#angle-inscrit" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-brand-700 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">Aller au contenu principal</a>
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="sticky top-0 z-50 bg-white/85 dark:bg-[#0b1f3ad9] backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <a href="#accueil" class="flex items-center gap-2.5 group">
+      <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-10 h-10 shrink-0 rounded-full">
+      <span class="font-display font-bold text-lg text-slate-900 dark:text-white tracking-tight">Angles<span class="text-brand-600 dark:text-accent-400">.</span></span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-1">
+      <a href="/" class="px-4 py-2 text-sm font-semibold text-slate-500 hover:text-brand-700 hover:bg-brand-50 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white rounded-full transition-colors">← Portail</a>
+      <a href="#angle-inscrit" class="px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-brand-50 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white rounded-full transition-colors">Angle inscrit</a>
+      <a href="#angle-au-centre" class="px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-brand-50 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white rounded-full transition-colors">Angle au centre</a>
+      <a href="#proprietes" class="px-3.5 py-2 text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-brand-50 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white rounded-full transition-colors">Propriétés</a>
+      <a href="#exercices" class="ml-1 px-4 py-2 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-full shadow-soft transition-colors">S'entraîner →</a>
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-brand-700 dark:hover:text-accent-400 transition-colors">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+    </div>
+
+    <div class="flex items-center gap-1 md:hidden">
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+      <button id="menu-btn" onclick="toggleMobileMenu()" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" class="p-2 -mr-2 text-slate-700 dark:text-slate-200">
+        <svg id="icon-burger" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-navy-900 px-4 py-3 space-y-1">
+    <a href="/" class="block px-3 py-2.5 rounded-lg text-slate-500 dark:text-slate-400 font-semibold hover:bg-brand-50 dark:hover:bg-white/5">← Portail</a>
+    <a href="#angle-inscrit" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 dark:text-slate-200 font-semibold hover:bg-brand-50 dark:hover:bg-white/5">Angle inscrit</a>
+    <a href="#angle-au-centre" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 dark:text-slate-200 font-semibold hover:bg-brand-50 dark:hover:bg-white/5">Angle au centre</a>
+    <a href="#proprietes" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 dark:text-slate-200 font-semibold hover:bg-brand-50 dark:hover:bg-white/5">Propriétés</a>
+    <a href="#exercices" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 dark:text-slate-200 font-semibold hover:bg-brand-50 dark:hover:bg-white/5">Exercices corrigés</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section id="accueil" class="relative overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1635372722656-389f87a941b7?auto=format&fit=crop&w=1740&q=80"
+         alt="Tableau noir recouvert de formules mathématiques" class="w-full h-full object-cover" loading="eager">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-950/95 via-brand-900/90 to-brand-700/85"></div>
+  </div>
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-20 md:pt-24 md:pb-28">
+    <div class="max-w-2xl">
+      <span class="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-accent-300 text-xs sm:text-sm font-semibold px-3.5 py-1.5 rounded-full backdrop-blur-sm">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.454 1.405 1.02L10 15.591l4.069 2.485c.713.434 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.753-.382-1.83-4.401Z"/></svg>
+        Mathématiques · 3ème APIC · Collège Mhamed 9
+      </span>
+
+      <h1 class="mt-5 font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.05] tracking-tight">
+        Angles Inscrits<br class="hidden sm:block"> et Angles au <span class="text-accent-400">Centre</span>
+      </h1>
+
+      <p class="mt-5 text-base sm:text-lg text-brand-100 leading-relaxed max-w-xl">
+        Dans un cercle, deux familles d'angles se répondent : l'angle inscrit, dont le sommet est sur le cercle,
+        et l'angle au centre, dont le sommet est le centre. Un cours illustré, deux propriétés démontrées
+        pas à pas, et <strong class="text-white">3 exercices</strong> avec correction détaillée à afficher en un clic.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#angle-inscrit" class="inline-flex items-center gap-2 bg-white text-brand-800 font-bold px-5 py-3 rounded-full shadow-lg hover:bg-brand-50 transition-colors">
+          Commencer le cours
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
+        <a href="#exercices" class="inline-flex items-center gap-2 bg-white/10 border border-white/25 text-white font-semibold px-5 py-3 rounded-full hover:bg-white/20 transition-colors backdrop-blur-sm">
+          Voir les exercices
+        </a>
+      </div>
+
+      <div class="mt-10 flex flex-wrap gap-x-8 gap-y-4">
+        <div>
+          <p class="font-display font-extrabold text-2xl sm:text-3xl text-white">2</p>
+          <p class="text-xs sm:text-sm text-brand-200 font-medium">définitions à maîtriser</p>
+        </div>
+        <div>
+          <p class="font-display font-extrabold text-2xl sm:text-3xl text-white">2</p>
+          <p class="text-xs sm:text-sm text-brand-200 font-medium">propriétés démontrées</p>
+        </div>
+        <div>
+          <p class="font-display font-extrabold text-2xl sm:text-3xl text-white">3</p>
+          <p class="text-xs sm:text-sm text-brand-200 font-medium">exercices corrigés</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative border-t border-white/10 bg-black/10 backdrop-blur-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap gap-2 justify-center sm:justify-start">
+      <a href="#angle-inscrit" class="text-xs sm:text-sm font-semibold text-brand-100 hover:text-white px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">① Angle inscrit</a>
+      <a href="#angle-au-centre" class="text-xs sm:text-sm font-semibold text-brand-100 hover:text-white px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">② Angle au centre</a>
+      <a href="#propriete1" class="text-xs sm:text-sm font-semibold text-brand-100 hover:text-white px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">③ Propriété 1</a>
+      <a href="#propriete2" class="text-xs sm:text-sm font-semibold text-brand-100 hover:text-white px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">④ Propriété 2</a>
+      <a href="#exercices" class="text-xs sm:text-sm font-semibold text-brand-100 hover:text-white px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">⑤ Exercices</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION I : ANGLE INSCRIT ============ -->
+<section id="angle-inscrit" class="py-16 sm:py-20 border-b border-slate-200 scroll-mt-4">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal grid md:grid-cols-2 gap-10 items-center mb-10">
+      <div>
+        <p class="text-brand-600 font-bold text-sm tracking-wide uppercase mb-2">I. Cours</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">L'angle inscrit dans un cercle</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">
+          Le premier angle que l'on étudie dans un cercle est celui dont le sommet se trouve
+          <strong>sur le cercle lui-même</strong>. On l'appelle l'angle inscrit.
+        </p>
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow-soft">
+        <img src="histoire-angles-cercle.jpg"
+             alt="Illustration historique : angle inscrit et angle au centre dans un cercle" class="w-full h-56 sm:h-64 object-cover" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Légende -->
+    <div class="reveal flex flex-wrap items-center gap-x-6 gap-y-2 mb-10 bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm">
+      <span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Légende des figures :</span>
+      <span class="inline-flex items-center gap-2 text-slate-700"><span class="legend-dot bg-brand-600"></span>Angle inscrit</span>
+      <span class="inline-flex items-center gap-2 text-slate-700"><span class="legend-dot bg-accent-500"></span>Angle au centre</span>
+      <span class="inline-flex items-center gap-2 text-slate-700"><span class="w-4 h-1.5 rounded-full bg-sky-500 inline-block"></span>Arc intercepté</span>
+    </div>
+
+    <!-- 1. Définition -->
+    <article class="reveal mb-14 scroll-mt-24">
+      <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-4">1. Définition</h3>
+      <div class="relative bg-white border-2 border-brand-200 rounded-2xl shadow-sm p-5 sm:p-6">
+        <svg class="absolute -top-3 -left-3 w-8 h-8 text-brand-500 bg-white rounded-full p-1 shadow-sm" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        <p class="text-slate-700 leading-relaxed">
+          Dans un cercle, un <strong class="text-brand-700">angle inscrit</strong> est un angle dont
+          <strong>le sommet est sur le cercle</strong> et dont <strong>les côtés coupent le cercle</strong>.
+        </p>
+      </div>
+    </article>
+
+    <!-- 2. Exemple -->
+    <article class="reveal mb-14 scroll-mt-24">
+      <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-4">2. Exemple</h3>
+      <div class="grid sm:grid-cols-2 gap-6 items-center bg-white rounded-2xl border border-slate-200 shadow-soft p-5 sm:p-6">
+        <svg viewBox="0 0 300 300" class="config-fig max-w-xs mx-auto">
+          <circle cx="150" cy="150" r="105" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+          <text x="228" y="65" font-size="14" fill="#94a3b8" font-style="italic">(ζ)</text>
+          <!-- arc BC highlighted -->
+          <path d="M 114.1 248.7 A 105 105 0 0 0 253.4 168.2" fill="none" stroke="#0ea5e9" stroke-width="5" stroke-linecap="round"/>
+          <!-- chords -->
+          <line x1="64.0" y1="89.8" x2="114.1" y2="248.7" stroke="#475569" stroke-width="2"/>
+          <line x1="64.0" y1="89.8" x2="287.5" y2="182.3" stroke="#475569" stroke-width="2"/>
+          <!-- wedge at A -->
+          <path d="M 64.0 89.8 L 88.0 99.7 A 26 26 0 0 1 71.8 114.6 Z" fill="#4f46e5" fill-opacity="0.55"/>
+          <!-- points -->
+          <circle cx="150" cy="150" r="3" fill="#475569"/>
+          <text x="156" y="146" font-size="13" fill="#64748b">O</text>
+          <circle cx="64.0" cy="89.8" r="4" fill="#1e293b"/>
+          <circle cx="114.1" cy="248.7" r="4" fill="#1e293b"/>
+          <circle cx="253.4" cy="168.2" r="4" fill="#1e293b"/>
+          <text x="47.6" y="78.3" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">A</text>
+          <text x="107.2" y="267.5" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">B</text>
+          <text x="273.1" y="171.7" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">C</text>
+          <text x="216.5" y="265.2" text-anchor="middle" font-size="12" fill="#0369a1" font-style="italic">arc BC</text>
+        </svg>
+        <div class="space-y-3 text-sm sm:text-base text-slate-700 leading-relaxed">
+          <p>On considère la figure ci-contre.</p>
+          <p>L'angle <span class="font-semibold">$\widehat{BAC}$</span> est appelé : <strong class="text-brand-700">angle inscrit</strong>.</p>
+          <p>On dit que l'angle inscrit $\widehat{BAC}$ intercepte l'arc $\overgroup{BC}$ <span class="text-sky-600 font-semibold">(en bleu)</span>.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. Cas particulier -->
+    <article class="reveal scroll-mt-24">
+      <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-4">3. Cas particulier d'angle inscrit</h3>
+      <p class="text-slate-600 mb-4">On considère la figure suivante telle que <span class="font-semibold">(AC)</span> est une tangente au cercle $(\zeta)$ en $A$ :</p>
+      <div class="grid sm:grid-cols-2 gap-6 items-center bg-white rounded-2xl border border-slate-200 shadow-soft p-5 sm:p-6">
+        <svg viewBox="0 0 300 300" class="config-fig max-w-xs mx-auto">
+          <circle cx="150" cy="150" r="100" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+          <text x="88" y="42" font-size="14" fill="#94a3b8" font-style="italic">(ζ)</text>
+          <!-- arc AB highlighted -->
+          <path d="M 250.0 150.0 A 100 100 0 0 1 56.0 184.2" fill="none" stroke="#0ea5e9" stroke-width="5" stroke-linecap="round"/>
+          <!-- tangent line -->
+          <line x1="250" y1="55" x2="250" y2="245" stroke="#475569" stroke-width="2"/>
+          <!-- radius OA dashed -->
+          <line x1="150" y1="150" x2="250" y2="150" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="4 3"/>
+          <!-- chord AB -->
+          <line x1="250" y1="150" x2="56.0" y2="184.2" stroke="#475569" stroke-width="2"/>
+          <!-- right angle mark at A -->
+          <path d="M 238 150 L 238 138 L 250 138" fill="none" stroke="#94a3b8" stroke-width="1.6"/>
+          <!-- wedge at A (BAC) -->
+          <path d="M 250.0 150.0 L 250.0 172.0 A 22 22 0 0 1 228.3 153.8 Z" fill="#4f46e5" fill-opacity="0.55"/>
+          <!-- points -->
+          <circle cx="150" cy="150" r="3" fill="#475569"/>
+          <text x="138" y="146" font-size="13" fill="#64748b">O</text>
+          <circle cx="250" cy="150" r="4" fill="#1e293b"/>
+          <circle cx="56.0" cy="184.2" r="4" fill="#1e293b"/>
+          <circle cx="250" cy="245" r="4" fill="#1e293b"/>
+          <text x="270.0" y="150.0" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">A</text>
+          <text x="37.2" y="191.0" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">B</text>
+          <text x="264" y="252" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">C</text>
+          <text x="170.8" y="268.2" text-anchor="middle" font-size="12" fill="#0369a1" font-style="italic">arc AB</text>
+        </svg>
+        <div class="space-y-3 text-sm sm:text-base text-slate-700 leading-relaxed">
+          <p>L'angle <span class="font-semibold">$\widehat{BAC}$</span> est appelé aussi <strong class="text-brand-700">angle inscrit</strong>.</p>
+          <p>Il intercepte l'arc $\overgroup{AB}$ <span class="text-sky-600 font-semibold">(en bleu)</span>.</p>
+          <div class="flex gap-2.5 bg-brand-50 border border-brand-200 rounded-xl p-3.5 mt-2">
+            <svg class="w-5 h-5 shrink-0 text-brand-600 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <p class="text-xs sm:text-sm text-slate-700">Un des côtés de l'angle inscrit peut donc être une <strong>tangente</strong> au cercle plutôt qu'une corde.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ SECTION II : ANGLE AU CENTRE ============ -->
+<section id="angle-au-centre" class="py-16 sm:py-20 border-b border-slate-200 bg-white scroll-mt-4">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal grid md:grid-cols-2 gap-10 items-center mb-14">
+      <div class="order-2 md:order-1 rounded-2xl overflow-hidden shadow-soft">
+        <img src="angle-au-centre-histoire.jpg"
+             alt="Illustration historique : mathématicien de l'âge d'or islamique et angle au centre dans un cercle" class="w-full h-56 sm:h-64 object-cover" loading="lazy">
+      </div>
+      <div class="order-1 md:order-2">
+        <p class="text-brand-600 font-bold text-sm tracking-wide uppercase mb-2">II. Cours</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">L'angle au centre</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">
+          Le second angle a, cette fois, son sommet <strong>au centre du cercle</strong>. C'est l'angle au centre —
+          il va nous permettre de relier la mesure d'un angle inscrit à celle d'un arc.
+        </p>
+      </div>
+    </div>
+
+    <!-- 1. Définition -->
+    <article class="reveal mb-14 scroll-mt-24">
+      <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-4">1. Définition</h3>
+      <div class="relative bg-white border-2 border-accent-300 rounded-2xl shadow-sm p-5 sm:p-6">
+        <svg class="absolute -top-3 -left-3 w-8 h-8 text-accent-500 bg-white rounded-full p-1 shadow-sm" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        <p class="text-slate-700 leading-relaxed">
+          Dans un cercle, un <strong class="text-accent-700">angle au centre</strong> est un angle dont
+          <strong>le sommet est le centre du cercle</strong>.
+        </p>
+      </div>
+    </article>
+
+    <!-- 2. Exemple -->
+    <article class="reveal scroll-mt-24">
+      <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-4">2. Exemple</h3>
+      <div class="grid sm:grid-cols-2 gap-6 items-center bg-white rounded-2xl border border-slate-200 shadow-soft p-5 sm:p-6">
+        <svg viewBox="0 0 300 300" class="config-fig max-w-xs mx-auto">
+          <circle cx="150" cy="150" r="105" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+          <text x="228" y="65" font-size="14" fill="#94a3b8" font-style="italic">(ζ)</text>
+          <!-- arc BC highlighted -->
+          <path d="M 131.8 253.4 A 105 105 0 0 0 255.0 150.0" fill="none" stroke="#0ea5e9" stroke-width="5" stroke-linecap="round"/>
+          <!-- radii -->
+          <line x1="150" y1="150" x2="131.8" y2="253.4" stroke="#475569" stroke-width="2"/>
+          <line x1="150" y1="150" x2="255.0" y2="150.0" stroke="#475569" stroke-width="2"/>
+          <!-- wedge at O -->
+          <path d="M 150 150 L 144.5 181.5 A 32 32 0 0 0 182.0 150.0 Z" fill="#f59e0b" fill-opacity="0.6"/>
+          <!-- points -->
+          <circle cx="150" cy="150" r="4" fill="#1e293b"/>
+          <text x="158" y="145" font-weight="700" font-size="16" fill="#1e293b">O</text>
+          <circle cx="131.8" cy="253.4" r="4" fill="#1e293b"/>
+          <circle cx="255.0" cy="150.0" r="4" fill="#1e293b"/>
+          <text x="128.3" y="273.1" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">B</text>
+          <text x="275.0" y="150.0" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">C</text>
+          <text x="235.5" y="251.9" text-anchor="middle" font-size="12" fill="#0369a1" font-style="italic">arc BC</text>
+        </svg>
+        <div class="space-y-3 text-sm sm:text-base text-slate-700 leading-relaxed">
+          <p>On considère la figure ci-contre.</p>
+          <p>L'angle <span class="font-semibold">$\widehat{BOC}$</span> est appelé : <strong class="text-accent-700">angle au centre</strong>.</p>
+          <p>On dit que l'angle au centre $\widehat{BOC}$ intercepte l'arc $\overgroup{BC}$ <span class="text-sky-600 font-semibold">(en bleu)</span>.</p>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ SECTION III : PROPRIETES ============ -->
+<section id="proprietes" class="py-16 sm:py-20 border-b border-slate-200 scroll-mt-4">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal grid md:grid-cols-2 gap-10 items-center mb-14">
+      <div>
+        <p class="text-brand-600 font-bold text-sm tracking-wide uppercase mb-2">III. Cours</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">Propriétés des angles inscrits et au centre</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">
+          Deux propriétés relient entre eux les angles inscrits et les angles au centre lorsqu'ils
+          interceptent le <strong>même arc</strong>. Elles sont la clé de tous les calculs d'angles dans un cercle.
+        </p>
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow-soft">
+        <img src="proprietes-angles-cercle.jpg"
+             alt="Illustration historique : la propriété angle au centre = 2 × angle inscrit" class="w-full h-56 sm:h-64 object-cover" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Propriété 1 -->
+    <article id="propriete1" class="reveal mb-16 scroll-mt-24">
+      <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-4">1. Propriété 1</h3>
+      <div class="relative bg-white border-2 border-rose-200 rounded-2xl shadow-sm p-5 sm:p-6">
+        <p class="text-slate-700 leading-relaxed">
+          Dans un cercle, si <strong class="text-rose-700">deux angles inscrits interceptent le même arc</strong>,
+          alors ils ont la même mesure (c'est-à-dire isométriques).
+        </p>
+      </div>
+
+      <!-- Exercice d'application -->
+      <div class="mt-6 flex items-center gap-3 mb-4">
+        <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">✓</span>
+        <h4 class="font-display font-bold text-lg sm:text-xl text-slate-900">Exercice d'application</h4>
+      </div>
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <p class="font-semibold text-slate-800 mb-3">Énoncé</p>
+          <p class="text-slate-600 leading-relaxed">
+            On considère la figure suivante telle que : $\widehat{BAC}=60°$.
+            Calculer la mesure de l'angle $\widehat{BDC}$, en justifiant la réponse.
+          </p>
+
+          <div class="mt-6 bg-slate-50 rounded-xl border border-slate-200 p-4 flex justify-center">
+            <svg viewBox="0 0 300 300" class="config-fig max-w-[260px]">
+              <circle cx="150" cy="150" r="100" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+              <text x="228" y="70" font-size="14" fill="#94a3b8" font-style="italic">(ζ)</text>
+              <!-- arc BC highlighted -->
+              <path d="M 73.4 214.3 A 100 100 0 0 0 244.0 184.2" fill="none" stroke="#0ea5e9" stroke-width="4" stroke-linecap="round"/>
+              <!-- diagonals -->
+              <line x1="63.4" y1="100.0" x2="244.0" y2="184.2" stroke="#94a3b8" stroke-width="1.6"/>
+              <line x1="73.4" y1="214.3" x2="200.0" y2="63.4" stroke="#94a3b8" stroke-width="1.6"/>
+              <!-- sides -->
+              <line x1="63.4" y1="100.0" x2="73.4" y2="214.3" stroke="#475569" stroke-width="2"/>
+              <line x1="200.0" y1="63.4" x2="244.0" y2="184.2" stroke="#475569" stroke-width="2"/>
+              <!-- wedges -->
+              <path d="M 63.4 100.0 L 83.3 109.3 A 22 22 0 0 1 65.3 121.9 Z" fill="#4f46e5" fill-opacity="0.55"/>
+              <path d="M 200.0 63.4 L 207.5 84.1 A 22 22 0 0 1 185.9 80.3 Z" fill="#4f46e5" fill-opacity="0.3"/>
+              <!-- points -->
+              <circle cx="63.4" cy="100.0" r="4" fill="#1e293b"/>
+              <circle cx="200.0" cy="63.4" r="4" fill="#1e293b"/>
+              <circle cx="244.0" cy="184.2" r="4" fill="#1e293b"/>
+              <circle cx="73.4" cy="214.3" r="4" fill="#1e293b"/>
+              <circle cx="150" cy="150" r="3" fill="#475569"/>
+              <text x="156" y="146" font-size="13" fill="#64748b">O</text>
+              <text x="46.1" y="90.0" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">A</text>
+              <text x="210.0" y="46.1" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">D</text>
+              <text x="262.8" y="191.0" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">C</text>
+              <text x="58.1" y="227.1" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">B</text>
+              <text x="90" y="112" font-size="12.5" font-weight="700" fill="#4338ca">60°</text>
+              <text x="196" y="90" font-size="12.5" font-weight="700" fill="#4338ca">?</text>
+            </svg>
+          </div>
+
+          <button onclick="toggleCorrection('sol-prop1', this)" aria-expanded="false" aria-controls="sol-prop1"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la solution</span>
+          </button>
+        </div>
+
+        <div id="sol-prop1" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-3">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+            <p class="text-slate-700 leading-relaxed">On a d'après la figure :</p>
+            <p class="text-slate-700 leading-relaxed">$\widehat{BAC}$ et $\widehat{BDC}$ sont deux angles inscrits qui interceptent le même arc $\overgroup{BC}$.</p>
+            <p class="text-slate-700 leading-relaxed">Donc : $\widehat{BAC}=\widehat{BDC}$.</p>
+            <p class="text-slate-700 leading-relaxed">Et puisque $\widehat{BAC}=60°$, alors :</p>
+            <p class="text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">$\widehat{BDC}=60°$</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Propriété 2 -->
+    <article id="propriete2" class="reveal mb-14 scroll-mt-24">
+      <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-4">2. Propriété 2</h3>
+      <div class="relative bg-white border-2 border-rose-200 rounded-2xl shadow-sm p-5 sm:p-6">
+        <p class="text-slate-700 leading-relaxed">
+          Dans un cercle, si <strong class="text-rose-700">un angle inscrit et un angle au centre interceptent le même arc</strong>,
+          alors la mesure de l'angle au centre est <strong>le double</strong> de celle de l'angle inscrit.
+        </p>
+      </div>
+
+      <!-- Exercice d'application -->
+      <div class="mt-6 flex items-center gap-3 mb-4">
+        <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">✓</span>
+        <h4 class="font-display font-bold text-lg sm:text-xl text-slate-900">Exercice d'application</h4>
+      </div>
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <p class="font-semibold text-slate-800 mb-3">Énoncé</p>
+          <p class="text-slate-600 leading-relaxed">
+            On considère la figure suivante telle que : $\widehat{BOC}=130°$.
+            Calculer la mesure de l'angle $\widehat{BAC}$, en justifiant la réponse.
+          </p>
+
+          <div class="mt-6 bg-slate-50 rounded-xl border border-slate-200 p-4 flex justify-center">
+            <svg viewBox="0 0 300 300" class="config-fig max-w-[260px]">
+              <circle cx="150" cy="150" r="100" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+              <text x="228" y="70" font-size="14" fill="#94a3b8" font-style="italic">(ζ)</text>
+              <!-- arc BC highlighted -->
+              <path d="M 73.4 214.3 A 100 100 0 0 0 248.5 167.4" fill="none" stroke="#0ea5e9" stroke-width="4" stroke-linecap="round"/>
+              <!-- radii -->
+              <line x1="150" y1="150" x2="73.4" y2="214.3" stroke="#475569" stroke-width="1.8"/>
+              <line x1="150" y1="150" x2="248.5" y2="167.4" stroke="#475569" stroke-width="1.8"/>
+              <!-- chords from A -->
+              <line x1="73.4" y1="85.7" x2="73.4" y2="214.3" stroke="#475569" stroke-width="2"/>
+              <line x1="73.4" y1="85.7" x2="248.5" y2="167.4" stroke="#475569" stroke-width="2"/>
+              <!-- wedges -->
+              <path d="M 150 150 L 125.5 170.6 A 32 32 0 0 0 181.5 155.6 Z" fill="#f59e0b" fill-opacity="0.6"/>
+              <path d="M 73.4 85.7 L 73.4 107.7 A 22 22 0 0 0 93.3 95.0 Z" fill="#4f46e5" fill-opacity="0.3"/>
+              <!-- points -->
+              <circle cx="73.4" cy="85.7" r="4" fill="#1e293b"/>
+              <circle cx="73.4" cy="214.3" r="4" fill="#1e293b"/>
+              <circle cx="248.5" cy="167.4" r="4" fill="#1e293b"/>
+              <circle cx="150" cy="150" r="4" fill="#1e293b"/>
+              <text x="58.1" y="72.9" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">A</text>
+              <text x="58.1" y="227.1" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">B</text>
+              <text x="268.2" y="170.8" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">C</text>
+              <text x="158" y="145" font-weight="700" font-size="16" fill="#1e293b">O</text>
+              <text x="152" y="185" font-size="12.5" font-weight="700" fill="#b45309">130°</text>
+              <text x="82" y="100" font-size="12.5" font-weight="700" fill="#4338ca">?</text>
+            </svg>
+          </div>
+
+          <button onclick="toggleCorrection('sol-prop2', this)" aria-expanded="false" aria-controls="sol-prop2"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la solution</span>
+          </button>
+        </div>
+
+        <div id="sol-prop2" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-3">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+            <p class="text-slate-700 leading-relaxed">On a d'après la figure :</p>
+            <p class="text-slate-700 leading-relaxed">$\widehat{BAC}$ est un angle inscrit et $\widehat{BOC}$ est un angle au centre qui interceptent le même arc $\overgroup{BC}$.</p>
+            <p class="text-slate-700 leading-relaxed">Donc : $\widehat{BOC}=2\times\widehat{BAC}$.</p>
+            <p class="text-slate-700 leading-relaxed">D'où : $\widehat{BAC}=\dfrac{\widehat{BOC}}{2}$.</p>
+            <p class="text-slate-700 leading-relaxed">Et puisque $\widehat{BOC}=130°$, alors : $\widehat{BAC}=\dfrac{130°}{2}$.</p>
+            <p class="text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">$\widehat{BAC}=65°$</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Résumé -->
+    <div class="reveal relative bg-gradient-to-br from-brand-700 to-brand-900 rounded-2xl shadow-soft p-6 sm:p-8 text-white">
+      <svg class="absolute top-4 right-4 w-10 h-10 text-white/15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2 2 21h20L12 2z"/></svg>
+      <p class="font-display font-bold text-lg mb-2">En résumé — pour un même arc intercepté :</p>
+      <div class="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-3 bg-white/10 rounded-xl py-5 px-4 text-lg sm:text-xl">
+        <span>Angle au centre</span>
+        <span class="text-accent-300 font-bold">=</span>
+        <span>2 × Angle inscrit</span>
+      </div>
+      <p class="mt-3 text-brand-100 text-sm text-center">c'est-à-dire : Angle inscrit = Angle au centre ÷ 2</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ SECTION IV : EXERCICES ============ -->
+<section id="exercices" class="py-16 sm:py-20 scroll-mt-4">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal grid md:grid-cols-2 gap-10 items-center mb-6">
+      <div>
+        <p class="text-brand-600 font-bold text-sm tracking-wide uppercase mb-2">IV. Entraînement</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">3 exercices corrigés</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">
+          Cherchez chaque exercice au brouillon, puis cliquez sur
+          <span class="font-semibold text-accent-600">« Voir la correction »</span> pour vérifier votre réponse
+          étape par étape.
+        </p>
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow-soft">
+        <img src="mathematiciens-histoire.jpg"
+             alt="Illustration : grands mathématiciens de l'histoire (Euclide, Newton, Al-Khwârizmî, Turing...)" class="w-full h-56 sm:h-64 object-cover" loading="lazy">
+      </div>
+    </div>
+
+    <div class="reveal flex flex-wrap gap-2 mb-12">
+      <span class="text-xs font-bold text-slate-500 uppercase tracking-wide mt-1.5 mr-1">Accès rapide :</span>
+      <a href="#ex1" class="text-xs font-semibold bg-white border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">01</a>
+      <a href="#ex2" class="text-xs font-semibold bg-white border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">02</a>
+      <a href="#ex3" class="text-xs font-semibold bg-white border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">03</a>
+    </div>
+
+    <div class="space-y-8">
+
+      <!-- EXERCICE 01 -->
+      <article id="ex1" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">1</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Exercice 01</h3>
+            <span class="text-xs font-semibold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full">Angle inscrit &amp; angle au centre</span>
+          </div>
+          <p class="text-slate-600 leading-relaxed">On considère la figure suivante : les points $R$, $P$ et $M$ sont sur le cercle de centre $O$.</p>
+
+          <div class="mt-5 bg-slate-50 rounded-xl border border-slate-200 p-4 flex justify-center">
+            <svg viewBox="0 0 300 300" class="config-fig max-w-[220px]">
+              <circle cx="150" cy="150" r="100" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+              <circle cx="150" cy="150" r="3.5" fill="#475569"/>
+              <text x="158" y="146" font-size="13" fill="#64748b">O</text>
+              <circle cx="56.0" cy="115.8" r="4" fill="#1e293b"/>
+              <circle cx="79.3" cy="220.7" r="4" fill="#1e293b"/>
+              <circle cx="141.3" cy="249.6" r="4" fill="#1e293b"/>
+              <text x="37.2" y="109.0" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">R</text>
+              <text x="65.1" y="234.9" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">P</text>
+              <text x="139.5" y="269.5" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">M</text>
+            </svg>
+          </div>
+
+          <div class="mt-6 grid gap-3">
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <p class="text-xs font-bold text-brand-600 uppercase mb-1">1)</p>
+              <p class="text-slate-700 text-sm">Sachant que $\widehat{ROP}=65°$, déterminer la mesure de l'angle $\widehat{RMP}$.</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <p class="text-xs font-bold text-brand-600 uppercase mb-1">2)</p>
+              <p class="text-slate-700 text-sm space-y-1">
+                <span class="block">a) Colorier l'arc de cercle intercepté par l'angle inscrit $\widehat{RPM}$.</span>
+                <span class="block">b) Colorier l'angle au centre associé à l'angle inscrit $\widehat{RPM}$.</span>
+                <span class="block">c) Sachant que $\widehat{RPM}=105°$, déterminer, en justifiant, la mesure de l'angle au centre associé à l'angle inscrit $\widehat{RPM}$.</span>
+              </p>
+            </div>
+          </div>
+
+          <button onclick="toggleCorrection('sol-1', this)" aria-expanded="false" aria-controls="sol-1"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <div id="sol-1" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-5">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+
+            <div class="grid sm:grid-cols-2 gap-6 items-center bg-white rounded-xl border border-emerald-300 p-4 sm:p-5">
+              <svg viewBox="0 0 300 300" class="config-fig max-w-[220px] mx-auto">
+                <circle cx="150" cy="150" r="100" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+                <!-- dashed OM for reflex context -->
+                <line x1="150" y1="150" x2="141.3" y2="249.6" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="3 3"/>
+                <!-- major arc RM dashed -->
+                <path d="M 56.0 115.8 A 100 100 0 1 1 141.3 249.6" fill="none" stroke="#0ea5e9" stroke-width="3.5" stroke-dasharray="7 5" stroke-linecap="round"/>
+                <!-- O-R, O-P solid (central angle) -->
+                <line x1="150" y1="150" x2="56.0" y2="115.8" stroke="#475569" stroke-width="2"/>
+                <line x1="150" y1="150" x2="79.3" y2="220.7" stroke="#475569" stroke-width="2"/>
+                <!-- M-R, M-P (inscribed angle) -->
+                <line x1="141.3" y1="249.6" x2="56.0" y2="115.8" stroke="#475569" stroke-width="2"/>
+                <line x1="141.3" y1="249.6" x2="79.3" y2="220.7" stroke="#475569" stroke-width="2"/>
+                <!-- wedges -->
+                <path d="M 150 150 L 125.6 141.1 A 26 26 0 0 0 131.6 168.4 Z" fill="#f59e0b" fill-opacity="0.6"/>
+                <path d="M 141.3 249.6 L 123.2 241.2 A 20 20 0 0 1 130.5 232.7 Z" fill="#4f46e5" fill-opacity="0.55"/>
+                <!-- points -->
+                <circle cx="150" cy="150" r="3.5" fill="#475569"/>
+                <text x="158" y="146" font-size="13" fill="#64748b">O</text>
+                <circle cx="56.0" cy="115.8" r="4" fill="#1e293b"/>
+                <circle cx="79.3" cy="220.7" r="4" fill="#1e293b"/>
+                <circle cx="141.3" cy="249.6" r="4" fill="#1e293b"/>
+                <text x="37.2" y="109.0" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">R</text>
+                <text x="65.1" y="234.9" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">P</text>
+                <text x="139.5" y="269.5" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">M</text>
+                <text x="118" y="140" font-size="12" font-weight="700" fill="#b45309">65°</text>
+                <text x="115" y="234" font-size="11.5" font-weight="700" fill="#4338ca">32,5°</text>
+                <text x="200" y="80" text-anchor="middle" font-size="11.5" fill="#0369a1" font-style="italic">grand arc RM</text>
+              </svg>
+              <div class="text-xs sm:text-sm text-slate-600 leading-relaxed space-y-2">
+                <p><span class="inline-block w-3 h-3 rounded-full bg-accent-500 mr-1.5 align-middle"></span>Angle au centre $\widehat{ROP}=65°$</p>
+                <p><span class="inline-block w-3 h-3 rounded-full bg-brand-600 mr-1.5 align-middle"></span>Angle inscrit $\widehat{RMP}$ (question 1)</p>
+                <p><span class="inline-block w-4 h-1.5 rounded-full bg-sky-500 mr-1 align-middle"></span>Arc en pointillé = grand arc $\overgroup{RM}$ (question 2)</p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">1) Mesure de $\widehat{RMP}$</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Dans le cercle, $\widehat{ROP}$ est l'angle au centre associé à l'angle inscrit $\widehat{RMP}$ et $\widehat{ROP}=65°$.</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Or, dans un cercle, la mesure d'un angle inscrit est égale à la moitié de la mesure de l'angle au centre associé.</p>
+              <p class="text-slate-700 text-sm mt-1">Donc : $\widehat{RMP}=\dfrac{\widehat{ROP}}{2}=\dfrac{65°}{2}=\boxed{32{,}5°}$</p>
+            </div>
+
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">2) a) et b)</p>
+              <p class="text-slate-700 text-sm leading-relaxed">L'angle inscrit $\widehat{RPM}$ a son sommet en $P$, entre $R$ et $M$ : il intercepte donc l'arc $\overgroup{RM}$ qui ne contient <strong>pas</strong> $P$ — ici, c'est le <strong>grand arc</strong> $\overgroup{RM}$ (en pointillé bleu ci-dessus).</p>
+              <p class="text-slate-700 text-sm leading-relaxed mt-1">L'angle au centre associé doit intercepter ce même grand arc : c'est donc l'<strong>angle rentrant</strong> $\widehat{ROM}$ (la partie de l'angle en $O$ supérieure à 180°, « de l'autre côté » du petit angle $\widehat{ROM}$).</p>
+            </div>
+
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">2) c) Mesure de l'angle rentrant $\widehat{ROM}$</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Dans le cercle, l'angle rentrant $\widehat{ROM}$ est l'angle au centre associé à l'angle inscrit $\widehat{RPM}$ et $\widehat{RPM}=105°$.</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Or, la mesure d'un angle inscrit est égale à la moitié de celle de l'angle au centre associé : $\widehat{RPM}=\dfrac{\widehat{ROM}}{2}$.</p>
+              <p class="text-slate-700 text-sm mt-1">D'où : $\widehat{ROM}=2\times\widehat{RPM}=2\times105°=\boxed{210°}$</p>
+            </div>
+
+            <div class="flex gap-2.5 bg-amber-50 border border-amber-200 rounded-xl p-3.5">
+              <svg class="w-5 h-5 shrink-0 text-amber-600 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg>
+              <p class="text-xs sm:text-sm text-slate-700"><strong>À retenir :</strong> un angle inscrit intercepte toujours l'arc qui <strong>ne contient pas</strong> son sommet. Si cet arc est le « grand » arc (plus de la moitié du cercle), l'angle au centre associé est un <strong>angle rentrant</strong> (supérieur à 180°).</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 02 -->
+      <article id="ex2" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">2</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Exercice 02</h3>
+            <span class="text-xs font-semibold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full">Angles inscrits &amp; diamètre</span>
+          </div>
+          <p class="text-slate-600 leading-relaxed">On considère la figure ci-dessous dans laquelle :</p>
+          <ul class="mt-2 space-y-1 text-slate-600 text-sm list-disc list-inside">
+            <li>les points $E$, $D$, $P$, $F$, $N$, $M$ et $G$ appartiennent au cercle de centre $I$ ;</li>
+            <li>le segment $[GP]$ est un diamètre du cercle.</li>
+          </ul>
+
+          <div class="mt-5 bg-slate-50 rounded-xl border border-slate-200 p-4 flex justify-center">
+            <svg viewBox="0 0 300 300" class="config-fig max-w-[260px]">
+              <circle cx="150" cy="150" r="105" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+              <!-- lines -->
+              <line x1="69.6" y1="217.5" x2="230.4" y2="82.5" stroke="#475569" stroke-width="2"/>
+              <line x1="69.6" y1="217.5" x2="131.8" y2="46.6" stroke="#94a3b8" stroke-width="1.4"/>
+              <line x1="131.8" y1="46.6" x2="248.7" y2="185.9" stroke="#94a3b8" stroke-width="1.4"/>
+              <line x1="69.6" y1="217.5" x2="48.6" y2="122.8" stroke="#94a3b8" stroke-width="1.4"/>
+              <line x1="48.6" y1="122.8" x2="248.7" y2="185.9" stroke="#94a3b8" stroke-width="1.4"/>
+              <line x1="48.6" y1="122.8" x2="230.4" y2="82.5" stroke="#94a3b8" stroke-width="1.4"/>
+              <line x1="69.6" y1="217.5" x2="105.6" y2="245.2" stroke="#94a3b8" stroke-width="1.4"/>
+              <line x1="105.6" y1="245.2" x2="230.4" y2="82.5" stroke="#94a3b8" stroke-width="1.4"/>
+              <line x1="105.6" y1="245.2" x2="248.7" y2="185.9" stroke="#94a3b8" stroke-width="1.4"/>
+              <line x1="69.6" y1="217.5" x2="168.2" y2="253.4" stroke="#94a3b8" stroke-width="1.4"/>
+              <line x1="168.2" y1="253.4" x2="248.7" y2="185.9" stroke="#94a3b8" stroke-width="1.4"/>
+              <!-- wedge at I (GIF) -->
+              <path d="M 150 150 L 180.1 160.9 A 32 32 0 0 1 125.5 170.6 Z" fill="#f59e0b" fill-opacity="0.6"/>
+              <!-- points -->
+              <circle cx="150" cy="150" r="3.5" fill="#475569"/>
+              <text x="137" y="139" font-size="12.5" font-weight="700" fill="#64748b">I</text>
+              <circle cx="69.6" cy="217.5" r="4" fill="#1e293b"/>
+              <circle cx="230.4" cy="82.5" r="4" fill="#1e293b"/>
+              <circle cx="131.8" cy="46.6" r="4" fill="#1e293b"/>
+              <circle cx="48.6" cy="122.8" r="4" fill="#1e293b"/>
+              <circle cx="248.7" cy="185.9" r="4" fill="#1e293b"/>
+              <circle cx="105.6" cy="245.2" r="4" fill="#1e293b"/>
+              <circle cx="168.2" cy="253.4" r="4" fill="#1e293b"/>
+              <text x="52.7" y="231.6" text-anchor="middle" font-weight="700" font-size="15" fill="#1e293b">G</text>
+              <text x="247.3" y="68.4" text-anchor="middle" font-weight="700" font-size="15" fill="#1e293b">P</text>
+              <text x="127.9" y="24.9" text-anchor="middle" font-weight="700" font-size="15" fill="#1e293b">D</text>
+              <text x="27.3" y="117.1" text-anchor="middle" font-weight="700" font-size="15" fill="#1e293b">E</text>
+              <text x="269.3" y="193.4" text-anchor="middle" font-weight="700" font-size="15" fill="#1e293b">F</text>
+              <text x="96.3" y="265.1" text-anchor="middle" font-weight="700" font-size="15" fill="#1e293b">M</text>
+              <text x="172.1" y="275.1" text-anchor="middle" font-weight="700" font-size="15" fill="#1e293b">N</text>
+              <text x="163" y="152" font-size="12" font-weight="700" fill="#b45309">120°</text>
+            </svg>
+          </div>
+
+          <div class="mt-6 grid gap-3">
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <p class="text-xs font-bold text-brand-600 uppercase mb-1">1)</p>
+              <p class="text-slate-700 text-sm">Démontrer que la mesure de l'angle $\widehat{GEF}$ est égale à celle de l'angle $\widehat{GDF}$. Quelle est cette mesure ? Justifier.</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <p class="text-xs font-bold text-brand-600 uppercase mb-1">2)</p>
+              <p class="text-slate-700 text-sm">Démontrer que la mesure de l'angle $\widehat{GEP}$ est égale à celle de l'angle $\widehat{GMP}$. Quelle est cette mesure ? Justifier.</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <p class="text-xs font-bold text-brand-600 uppercase mb-1">3)</p>
+              <p class="text-slate-700 text-sm">Démontrer que la mesure de l'angle $\widehat{GMF}$ est égale à celle de l'angle $\widehat{GNF}$. Calculer la mesure de $\widehat{GMF}$. Justifier.</p>
+            </div>
+          </div>
+
+          <button onclick="toggleCorrection('sol-2', this)" aria-expanded="false" aria-controls="sol-2"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <div id="sol-2" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-4">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">1) $\widehat{GEF}$ et $\widehat{GDF}$</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Dans le cercle, $\widehat{GEF}$ et $\widehat{GDF}$ sont deux angles inscrits interceptant le même arc $\overgroup{GF}$.</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Or, dans un cercle, si deux angles inscrits interceptent le même arc, alors ils ont la même mesure.</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Donc : $\widehat{GEF}=\widehat{GDF}$.</p>
+              <p class="text-slate-700 text-sm leading-relaxed mt-1">De plus, $\widehat{GIF}$ est l'angle au centre associé à ces deux angles inscrits, et $\widehat{GIF}=120°$.</p>
+              <p class="text-slate-700 text-sm mt-1">Donc : $\widehat{GEF}=\widehat{GDF}=\dfrac{\widehat{GIF}}{2}=\dfrac{120°}{2}=\boxed{60°}$</p>
+            </div>
+
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">2) $\widehat{GEP}$ et $\widehat{GMP}$</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Les triangles $GEP$ et $GMP$ sont inscrits dans le cercle de diamètre $[GP]$.</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Or, si un triangle est inscrit dans un cercle et si l'un de ses côtés est un diamètre de ce cercle, alors ce triangle est rectangle.</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Donc $GEP$ et $GMP$ sont deux triangles rectangles, respectivement en $E$ et en $M$.</p>
+              <p class="text-slate-700 text-sm mt-1">On en déduit que : $\widehat{GEP}=\widehat{GMP}=\boxed{90°}$</p>
+            </div>
+
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">3) $\widehat{GMF}$ et $\widehat{GNF}$</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Dans le cercle, $\widehat{GMF}$ et $\widehat{GNF}$ sont deux angles inscrits interceptant le grand arc $\overgroup{GF}$.</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Or, si deux angles inscrits interceptent le même arc, alors ils ont la même mesure. Donc : $\widehat{GMF}=\widehat{GNF}$.</p>
+              <p class="text-slate-700 text-sm leading-relaxed mt-1">L'angle au centre associé à ce grand arc est l'angle $\widehat{GIF}$ « rentrant », c'est-à-dire $360°-120°=240°$.</p>
+              <p class="text-slate-700 text-sm mt-1">Donc : $\widehat{GMF}=\widehat{GNF}=\dfrac{240°}{2}=\boxed{120°}$</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 03 -->
+      <article id="ex3" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">3</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Exercice 03</h3>
+            <span class="text-xs font-semibold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full">Angles inscrits &amp; triangle</span>
+          </div>
+          <p class="text-slate-600 leading-relaxed">Sur la figure ci-dessous, les points $E$, $F$, $G$ et $H$ sont sur le cercle $(\zeta)$ de centre $O$. Les droites $(FH)$ et $(EG)$ sont sécantes au point $I$.</p>
+          <p class="text-slate-700 font-semibold mt-2">$\widehat{HOG}=130°$ et $\widehat{EHF}=40°$</p>
+
+          <div class="mt-5 bg-slate-50 rounded-xl border border-slate-200 p-4 flex justify-center">
+            <svg viewBox="0 0 300 300" class="config-fig max-w-[240px]">
+              <circle cx="150" cy="150" r="105" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+              <text x="52" y="60" font-size="14" fill="#94a3b8" font-style="italic">(ζ)</text>
+              <!-- O radii -->
+              <line x1="150" y1="150" x2="140.8" y2="45.4" stroke="#475569" stroke-width="1.8"/>
+              <line x1="150" y1="150" x2="75.8" y2="224.2" stroke="#475569" stroke-width="1.8"/>
+              <!-- chords -->
+              <line x1="140.8" y1="45.4" x2="75.8" y2="224.2" stroke="#94a3b8" stroke-width="1.5"/>
+              <line x1="140.8" y1="45.4" x2="224.2" y2="224.2" stroke="#475569" stroke-width="2"/>
+              <line x1="140.8" y1="45.4" x2="236.0" y2="89.8" stroke="#475569" stroke-width="2"/>
+              <line x1="236.0" y1="89.8" x2="75.8" y2="224.2" stroke="#475569" stroke-width="2"/>
+              <!-- triangle FGI side highlighted -->
+              <line x1="75.8" y1="224.2" x2="224.2" y2="224.2" stroke="#e11d48" stroke-width="2.4"/>
+              <!-- wedges -->
+              <path d="M 150 150 L 130.2 169.8 A 28 28 0 0 1 147.5 122.1 Z" fill="#f59e0b" fill-opacity="0.6"/>
+              <path d="M 140.8 45.4 L 149.3 63.5 A 20 20 0 0 0 158.9 53.9 Z" fill="#4f46e5" fill-opacity="0.55"/>
+              <!-- points -->
+              <circle cx="150" cy="150" r="3.5" fill="#475569"/>
+              <text x="156" y="146" font-size="13" fill="#64748b">O</text>
+              <circle cx="140.8" cy="45.4" r="4" fill="#1e293b"/>
+              <circle cx="236.0" cy="89.8" r="4" fill="#1e293b"/>
+              <circle cx="224.2" cy="224.2" r="4" fill="#1e293b"/>
+              <circle cx="75.8" cy="224.2" r="4" fill="#1e293b"/>
+              <circle cx="182.5" cy="134.7" r="3.5" fill="#e11d48"/>
+              <text x="138.9" y="23.5" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">H</text>
+              <text x="254.0" y="77.2" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">E</text>
+              <text x="239.8" y="239.8" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">F</text>
+              <text x="60.2" y="239.8" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">G</text>
+              <text x="190" y="128" font-size="13" font-weight="700" fill="#e11d48">I</text>
+              <text x="122" y="140" font-size="12" font-weight="700" fill="#b45309">130°</text>
+              <text x="152" y="58" font-size="11.5" font-weight="700" fill="#4338ca">40°</text>
+            </svg>
+          </div>
+
+          <div class="mt-6 bg-slate-50 border border-slate-200 rounded-xl p-4">
+            <p class="text-slate-700 text-sm">Calculer la mesure de <strong>chaque angle du triangle $FGI$</strong> (en rouge sur la figure). Justifier chaque réponse.</p>
+          </div>
+
+          <button onclick="toggleCorrection('sol-3', this)" aria-expanded="false" aria-controls="sol-3"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <div id="sol-3" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-4">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">Calcul de $\widehat{HFG}$ (= angle $\widehat{GFI}$ du triangle, car $I\in(FH)$)</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Dans le cercle $(\zeta)$, $\widehat{HOG}$ est l'angle au centre associé à l'angle inscrit $\widehat{HFG}$ et $\widehat{HOG}=130°$.</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Or, la mesure d'un angle inscrit est égale à la moitié de la mesure de l'angle au centre associé.</p>
+              <p class="text-slate-700 text-sm mt-1">Donc : $\widehat{HFG}=\dfrac{\widehat{HOG}}{2}=\dfrac{130°}{2}=\boxed{65°}$</p>
+            </div>
+
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">Calcul de $\widehat{EGF}$ (= angle $\widehat{FGI}$ du triangle, car $I\in(EG)$)</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Dans le cercle $(\zeta)$, $\widehat{EGF}$ et $\widehat{EHF}$ sont deux angles inscrits interceptant le même arc $\overgroup{EF}$, et $\widehat{EHF}=40°$.</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Or, si deux angles inscrits interceptent le même arc, alors ils ont la même mesure.</p>
+              <p class="text-slate-700 text-sm mt-1">Donc : $\widehat{EGF}=\widehat{EHF}=\boxed{40°}$</p>
+            </div>
+
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">Calcul de $\widehat{FIG}$</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Dans le triangle $FIG$, la somme des angles vaut $180°$ :</p>
+              <p class="text-slate-700 text-sm">$\widehat{FIG}+\widehat{IGF}+\widehat{GFI}=180°$</p>
+              <p class="text-slate-700 text-sm">$\widehat{FIG}+40°+65°=180°$</p>
+              <p class="text-slate-700 text-sm">$\widehat{FIG}+105°=180°$</p>
+              <p class="text-slate-700 text-sm mt-1">Donc : $\widehat{FIG}=180°-105°=\boxed{75°}$</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-slate-950 text-slate-400">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid sm:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="flex items-center gap-2.5">
+          <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-10 h-10 shrink-0 rounded-full">
+          <span class="font-display font-bold text-white leading-tight">
+            <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-accent-400">Mathématiques</span>
+          </span>
+        </a>
+        <p class="mt-3 text-sm leading-relaxed">Cours de mathématiques — Niveau 3ème APIC / Collège. Angles inscrits et angles au centre dans un cercle : définitions, propriétés et exercices corrigés.</p>
+        <a href="/" class="mt-3 inline-block text-sm font-semibold text-accent-400 hover:text-accent-300">← Retour au portail</a>
+      </div>
+      <div>
+        <p class="font-semibold text-white text-sm uppercase tracking-wide mb-3">Sommaire</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#angle-inscrit" class="hover:text-white transition-colors">Angle inscrit</a></li>
+          <li><a href="#angle-au-centre" class="hover:text-white transition-colors">Angle au centre</a></li>
+          <li><a href="#propriete1" class="hover:text-white transition-colors">Propriété 1</a></li>
+          <li><a href="#propriete2" class="hover:text-white transition-colors">Propriété 2</a></li>
+          <li><a href="#exercices" class="hover:text-white transition-colors">Exercices corrigés</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white text-sm uppercase tracking-wide mb-3">Exercices</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#ex1" class="hover:text-white transition-colors">Exercice 01 — Angle rentrant</a></li>
+          <li><a href="#ex2" class="hover:text-white transition-colors">Exercice 02 — Diamètre</a></li>
+          <li><a href="#ex3" class="hover:text-white transition-colors">Exercice 03 — Triangle</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-10 pt-6 border-t border-slate-800 text-xs text-slate-500 flex flex-col sm:flex-row justify-between gap-2">
+      <p>Contenu pédagogique basé sur le cours et le soutien du Collège Mhamed 9 (3ème APIC).</p>
+      <p>Page réalisée pour un usage pédagogique.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut"
+  class="hidden fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-brand-600 hover:bg-brand-700 text-white shadow-lg items-center justify-center transition-colors">
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+</button>
+
+<script>
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const burger = document.getElementById('icon-burger');
+    const close = document.getElementById('icon-close');
+    const btn = document.getElementById('menu-btn');
+    const isHidden = menu.classList.contains('hidden');
+    menu.classList.toggle('hidden');
+    burger.classList.toggle('hidden');
+    close.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobile-menu').classList.add('hidden');
+    document.getElementById('icon-burger').classList.remove('hidden');
+    document.getElementById('icon-close').classList.add('hidden');
+    document.getElementById('menu-btn').setAttribute('aria-expanded', 'false');
+  }
+
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  function toggleCorrection(id, btn) {
+    const panel = document.getElementById(id);
+    const isHidden = panel.classList.contains('hidden');
+    const label = btn.querySelector('.btn-label');
+    const icon = btn.querySelector('.btn-icon');
+
+    panel.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+
+    if (isHidden) {
+      label.textContent = label.textContent.includes('solution') ? 'Masquer la solution' : 'Masquer la correction';
+      icon.classList.add('rotate-180');
+      btn.classList.remove('bg-accent-500', 'hover:bg-accent-600');
+      btn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+      setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
+    } else {
+      label.textContent = label.textContent.includes('solution') ? 'Voir la solution' : 'Voir la correction';
+      icon.classList.remove('rotate-180');
+      btn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
+      btn.classList.add('bg-accent-500', 'hover:bg-accent-600');
+    }
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Back to top visibility
+  const backBtn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 500) {
+      backBtn.classList.remove('hidden');
+      backBtn.classList.add('flex');
+    } else {
+      backBtn.classList.add('hidden');
+      backBtn.classList.remove('flex');
+    }
+  }, { passive: true });
+
+  // Rendu KaTeX
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

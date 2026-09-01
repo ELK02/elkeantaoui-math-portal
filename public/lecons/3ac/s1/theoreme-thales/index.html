@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Théorème de Thalès — Cours, Exemples et Exercices Corrigés | 3ème</title>
+<meta name="description" content="Cours complet et illustré sur le théorème de Thalès et sa réciproque (niveau 3ème / Collège) : définitions, exemples résolus, et 6 exercices de brevet avec correction détaillée au clic.">
+<meta property="og:title" content="Le Théorème de Thalès — Cours et Exercices Corrigés">
+<meta property="og:description" content="Cours illustré, exemples résolus pas à pas et 6 exercices de brevet corrigés sur le théorème de Thalès.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%234f46e5' d='M16 3 29 27 3 27Z'/%3E%3Cpath stroke='%23fbbf24' stroke-width='2.5' d='M9.5 20h13'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Outfit', 'sans-serif'],
+          sans: ['Inter', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+        colors: {
+          brand: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+          accent: {
+            50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d',
+            400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309',
+          },
+        },
+        boxShadow: {
+          soft: '0 4px 24px -4px rgb(11 31 58 / 0.12)',
+        },
+      },
+    },
+    darkMode: 'class',
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-feature-settings: "cv02","cv03","cv04","cv11"; }
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal-visible { opacity: 1; transform: translateY(0); }
+  .frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 .35rem; line-height: 1.15; }
+  .frac span { padding: 0 .2rem; }
+  .frac span:first-child { border-bottom: 2px solid currentColor; padding-bottom: 2px; }
+  .frac span:last-child { padding-top: 2px; }
+  .eq-chip { font-family: 'JetBrains Mono', monospace; }
+  #mobile-menu.hidden { display: none; }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #f1f5f9; }
+  ::-webkit-scrollbar-thumb { background: #c7d2fe; border-radius: 9999px; }
+  .config-fig { max-width: 100%; height: auto; }
+
+  /* ===== Mode nuit (retrofit générique — cible les classes Tailwind utilisées dans la page) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .bg-black\/10 { background-color: rgb(0 0 0 / 0.25); }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .border-slate-100 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
+  .dark .text-emerald-800, .dark .text-emerald-700 { color: #6ee7a3; }
+  .dark .bg-accent-50 { background-color: #3a2a0a; }
+  .dark .border-accent-200 { border-color: #6b4d10; }
+  .dark ::-webkit-scrollbar-track { background: #12294c; }
+</style>
+</head>
+<body class="bg-slate-50 dark:bg-navy-950 text-slate-800 antialiased font-sans transition-colors">
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="sticky top-0 z-50 bg-white/85 dark:bg-[#0b1f3ad9] backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <a href="#accueil" class="flex items-center gap-2.5 group">
+      <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-10 h-10 shrink-0 rounded-full">
+      <span class="font-display font-bold text-lg text-slate-900 dark:text-white tracking-tight">Thalès<span class="text-brand-600 dark:text-accent-400">.</span></span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-1">
+      <a href="/" class="px-4 py-2 text-sm font-semibold text-slate-500 hover:text-brand-700 hover:bg-brand-50 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white rounded-full transition-colors">← Portail</a>
+      <a href="#cours" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-brand-50 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white rounded-full transition-colors">Le cours</a>
+      <a href="#reciproque" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-brand-50 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white rounded-full transition-colors">La réciproque</a>
+      <a href="#exercices" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-brand-50 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white rounded-full transition-colors">Exercices</a>
+      <a href="#exercices" class="ml-2 px-4 py-2 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-full shadow-soft transition-colors">S'entraîner →</a>
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-brand-700 dark:hover:text-accent-400 transition-colors">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+    </div>
+
+    <div class="flex items-center gap-1 md:hidden">
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+      <button id="menu-btn" onclick="toggleMobileMenu()" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" class="p-2 -mr-2 text-slate-700 dark:text-slate-200">
+        <svg id="icon-burger" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-navy-900 px-4 py-3 space-y-1">
+    <a href="/" class="block px-3 py-2.5 rounded-lg text-slate-500 dark:text-slate-400 font-semibold hover:bg-brand-50 dark:hover:bg-white/5">← Portail</a>
+    <a href="#cours" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 dark:text-slate-200 font-semibold hover:bg-brand-50 dark:hover:bg-white/5">Le cours</a>
+    <a href="#reciproque" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 dark:text-slate-200 font-semibold hover:bg-brand-50 dark:hover:bg-white/5">La réciproque</a>
+    <a href="#exercices" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 dark:text-slate-200 font-semibold hover:bg-brand-50 dark:hover:bg-white/5">Exercices corrigés</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section id="accueil" class="relative overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?auto=format&fit=crop&w=1740&q=80"
+         alt="Cahier d'exercices de mathématiques" class="w-full h-full object-cover" loading="eager">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-950/95 via-brand-900/90 to-brand-700/85"></div>
+  </div>
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-20 md:pt-24 md:pb-28">
+    <div class="max-w-2xl">
+      <span class="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-accent-300 text-xs sm:text-sm font-semibold px-3.5 py-1.5 rounded-full backdrop-blur-sm">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.454 1.405 1.02L10 15.591l4.069 2.485c.713.434 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.753-.382-1.83-4.401Z"/></svg>
+        Mathématiques · Niveau 3ème / Collège
+      </span>
+
+      <h1 class="mt-5 font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.05] tracking-tight">
+        Le Théorème<br class="hidden sm:block"> de <span class="text-accent-400">Thalès</span>
+      </h1>
+
+      <p class="mt-5 text-base sm:text-lg text-brand-100 leading-relaxed max-w-xl">
+        Un cours clair et illustré, deux exemples résolus pas à pas, la réciproque du théorème,
+        et <strong class="text-white">6 exercices de brevet</strong> avec correction
+        détaillée à afficher en un clic.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#cours" class="inline-flex items-center gap-2 bg-white text-brand-800 font-bold px-5 py-3 rounded-full shadow-lg hover:bg-brand-50 transition-colors">
+          Commencer le cours
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
+        <a href="#exercices" class="inline-flex items-center gap-2 bg-white/10 border border-white/25 text-white font-semibold px-5 py-3 rounded-full hover:bg-white/20 transition-colors backdrop-blur-sm">
+          Voir les exercices
+        </a>
+      </div>
+
+      <div class="mt-10 flex flex-wrap gap-x-8 gap-y-4">
+        <div>
+          <p class="font-display font-extrabold text-2xl sm:text-3xl text-white">2</p>
+          <p class="text-xs sm:text-sm text-brand-200 font-medium">exemples résolus</p>
+        </div>
+        <div>
+          <p class="font-display font-extrabold text-2xl sm:text-3xl text-white">6</p>
+          <p class="text-xs sm:text-sm text-brand-200 font-medium">exercices de brevet</p>
+        </div>
+        <div>
+          <p class="font-display font-extrabold text-2xl sm:text-3xl text-white">100%</p>
+          <p class="text-xs sm:text-sm text-brand-200 font-medium">corrigés en détail</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative border-t border-white/10 bg-black/10 backdrop-blur-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap gap-2 justify-center sm:justify-start">
+      <a href="#theoreme" class="text-xs sm:text-sm font-semibold text-brand-100 hover:text-white px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">① Le théorème</a>
+      <a href="#exemple1" class="text-xs sm:text-sm font-semibold text-brand-100 hover:text-white px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">② Exemple résolu</a>
+      <a href="#reciproque" class="text-xs sm:text-sm font-semibold text-brand-100 hover:text-white px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">③ La réciproque</a>
+      <a href="#exemple2" class="text-xs sm:text-sm font-semibold text-brand-100 hover:text-white px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">④ 2ᵉ exemple</a>
+      <a href="#exercices" class="text-xs sm:text-sm font-semibold text-brand-100 hover:text-white px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">⑤ Exercices</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION I : LE COURS ============ -->
+<section id="cours" class="py-16 sm:py-20 border-b border-slate-200">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal grid md:grid-cols-2 gap-10 items-center mb-14">
+      <div>
+        <p class="text-brand-600 font-bold text-sm tracking-wide uppercase mb-2">I. Cours</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">Le théorème de Thalès</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">
+          Le théorème de Thalès permet de calculer une longueur ou de comparer des rapports de longueurs
+          dès que l'on repère <strong>deux droites sécantes coupées par deux droites parallèles</strong>.
+          C'est l'un des outils les plus utilisés en géométrie au collège.
+        </p>
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow-soft">
+        <img src="https://images.unsplash.com/photo-1509869175650-a1d97972541a?auto=format&fit=crop&w=1200&q=80"
+             alt="Tableau noir avec formules mathématiques" class="w-full h-56 sm:h-64 object-cover" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 1. Exemple / configurations -->
+    <article class="reveal mb-14">
+      <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-2">1. Situation de départ</h3>
+      <p class="text-slate-600 leading-relaxed max-w-3xl">
+        Soient <span class="eq-chip font-semibold">(D)</span> et <span class="eq-chip font-semibold">(D′)</span>
+        deux droites sécantes en un point <span class="eq-chip font-semibold">A</span>. Soient
+        <span class="eq-chip font-semibold">B</span> et <span class="eq-chip font-semibold">M</span> deux points de
+        <span class="eq-chip font-semibold">(D)</span> distincts de <span class="eq-chip font-semibold">A</span>,
+        et soient <span class="eq-chip font-semibold">C</span> et <span class="eq-chip font-semibold">N</span> deux
+        points de <span class="eq-chip font-semibold">(D′)</span> distincts de <span class="eq-chip font-semibold">A</span>,
+        tels que <span class="eq-chip font-semibold text-brand-700">(BC) // (MN)</span>.
+        Cette situation se présente sous deux formes possibles :
+      </p>
+
+      <div class="mt-8 grid sm:grid-cols-2 gap-6">
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-soft p-5">
+          <p class="font-semibold text-slate-800 mb-3 text-center">Configuration « triangle »</p>
+          <svg viewBox="0 0 340 320" class="config-fig">
+            <line x1="160" y1="25" x2="30" y2="295" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="160" y1="25" x2="290" y2="295" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="95" y1="160" x2="225" y2="160" stroke="#4f46e5" stroke-width="3" stroke-linecap="round"/>
+            <line x1="30" y1="295" x2="290" y2="295" stroke="#4f46e5" stroke-width="3" stroke-linecap="round"/>
+            <g stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round"><line x1="154" y1="165" x2="159" y2="155"/><line x1="161" y1="165" x2="166" y2="155"/></g>
+            <g stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round"><line x1="154" y1="300" x2="159" y2="290"/><line x1="161" y1="300" x2="166" y2="290"/></g>
+            <circle cx="160" cy="25" r="4" fill="#1e293b"/>
+            <circle cx="95" cy="160" r="4" fill="#1e293b"/>
+            <circle cx="225" cy="160" r="4" fill="#1e293b"/>
+            <circle cx="30" cy="295" r="4" fill="#1e293b"/>
+            <circle cx="290" cy="295" r="4" fill="#1e293b"/>
+            <text x="160" y="16" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">A</text>
+            <text x="80" y="152" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">B</text>
+            <text x="240" y="152" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">C</text>
+            <text x="16" y="312" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">M</text>
+            <text x="304" y="312" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">N</text>
+          </svg>
+          <p class="text-center text-sm text-slate-500 mt-2">B, M sur (D) · C, N sur (D′) · même côté de A</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-soft p-5">
+          <p class="font-semibold text-slate-800 mb-3 text-center">Configuration « papillon »</p>
+          <svg viewBox="0 0 320 320" class="config-fig">
+            <line x1="60" y1="60" x2="290" y2="290" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="260" y1="60" x2="30" y2="290" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="60" y1="60" x2="260" y2="60" stroke="#4f46e5" stroke-width="3" stroke-linecap="round"/>
+            <line x1="30" y1="290" x2="290" y2="290" stroke="#4f46e5" stroke-width="3" stroke-linecap="round"/>
+            <g stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round"><line x1="154" y1="65" x2="159" y2="55"/><line x1="161" y1="65" x2="166" y2="55"/></g>
+            <g stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round"><line x1="154" y1="295" x2="159" y2="285"/><line x1="161" y1="295" x2="166" y2="285"/></g>
+            <circle cx="160" cy="160" r="4.5" fill="#f59e0b"/>
+            <circle cx="60" cy="60" r="4" fill="#1e293b"/>
+            <circle cx="260" cy="60" r="4" fill="#1e293b"/>
+            <circle cx="290" cy="290" r="4" fill="#1e293b"/>
+            <circle cx="30" cy="290" r="4" fill="#1e293b"/>
+            <text x="176" y="164" font-weight="700" font-size="16" fill="#b45309">A</text>
+            <text x="46" y="48" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">M</text>
+            <text x="274" y="48" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">N</text>
+            <text x="304" y="305" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">B</text>
+            <text x="16" y="305" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">C</text>
+          </svg>
+          <p class="text-center text-sm text-slate-500 mt-2">B, M de part et d'autre de A (idem C, N)</p>
+        </div>
+      </div>
+
+      <p class="mt-6 text-center text-slate-700 bg-brand-50 border border-brand-100 rounded-xl py-3 px-4 max-w-2xl mx-auto">
+        Dans les deux cas, on obtient la même relation :
+        <span class="block mt-2 font-mono font-bold text-brand-700 text-base sm:text-lg">
+          AB/AM&nbsp;=&nbsp;AC/AN&nbsp;=&nbsp;BC/MN &nbsp;&nbsp;(ou son inverse)
+        </span>
+      </p>
+    </article>
+
+    <!-- 2. Propriété -->
+    <article id="theoreme" class="reveal mb-14 scroll-mt-24">
+      <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-4">2. Propriété (Théorème de Thalès)</h3>
+
+      <div class="relative bg-gradient-to-br from-brand-700 to-brand-900 rounded-2xl shadow-soft p-6 sm:p-8 text-white">
+        <svg class="absolute top-4 right-4 w-10 h-10 text-white/15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2 2 21h20L12 2z"/></svg>
+        <p class="leading-relaxed text-brand-50">
+          Soient <b>(D)</b> et <b>(D′)</b> deux droites sécantes en <b>A</b>. Soient <b>B</b> et <b>M</b> deux points
+          de <b>(D)</b> distincts de <b>A</b>, et soient <b>C</b> et <b>N</b> deux points de <b>(D′)</b> distincts de <b>A</b>.
+        </p>
+        <p class="mt-4 font-semibold text-white">
+          Si <span class="eq-chip">(BC) // (MN)</span>, alors :
+        </p>
+        <div class="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 bg-white/10 rounded-xl py-4 px-4 text-lg sm:text-xl">
+          <span class="frac"><span>AB</span><span>AM</span></span>
+          <span>=</span>
+          <span class="frac"><span>AC</span><span>AN</span></span>
+          <span>=</span>
+          <span class="frac"><span>BC</span><span>MN</span></span>
+          <span class="text-brand-200 text-sm sm:text-base mx-2">ou</span>
+          <span class="frac"><span>AM</span><span>AB</span></span>
+          <span>=</span>
+          <span class="frac"><span>AN</span><span>AC</span></span>
+          <span>=</span>
+          <span class="frac"><span>MN</span><span>BC</span></span>
+        </div>
+      </div>
+
+      <div class="mt-5 flex gap-3 bg-accent-50 border border-accent-200 rounded-xl p-4">
+        <svg class="w-5 h-5 shrink-0 text-accent-600 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 1 1 4.243 0M9.879 17h4.242"/></svg>
+        <p class="text-sm text-slate-700"><b>Remarque :</b> on utilise le théorème de Thalès pour calculer des longueurs, ou pour comparer / calculer des rapports de longueurs.</p>
+      </div>
+    </article>
+
+    <!-- 3. Application triangle -->
+    <article class="reveal mb-14">
+      <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-4">3. Cas particulier : le triangle</h3>
+      <div class="bg-white border-2 border-brand-100 rounded-2xl shadow-soft p-6 sm:p-8">
+        <p class="text-slate-700 leading-relaxed">
+          Soit <b>ABC</b> un triangle. Soit <b>M</b> un point de <b>(AB)</b> distinct de A et B, et <b>N</b> un point
+          de <b>(AC)</b> distinct de A et C.
+        </p>
+        <p class="mt-3 font-semibold text-slate-800">
+          Si <span class="eq-chip">(BC) // (MN)</span>, alors :
+        </p>
+        <div class="mt-4 flex justify-center">
+          <span class="eq-chip bg-brand-50 text-brand-700 font-bold text-base sm:text-lg px-5 py-2.5 rounded-full border border-brand-200">
+            AB/AM = AC/AN = BC/MN
+          </span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Exemple résolu 1 -->
+    <article id="exemple1" class="reveal scroll-mt-24">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">✓</span>
+        <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900">Exemple résolu</h3>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <p class="font-semibold text-slate-800 mb-3">Énoncé</p>
+          <p class="text-slate-600 leading-relaxed">
+            On considère la figure ci-contre telle que : <b>ABCD</b> est un trapèze de bases [AB] et [CD],
+            avec <b>EB = 2 cm</b>, <b>BC = 1 cm</b> et <b>DC = 6 cm</b>.
+          </p>
+          <ol class="mt-4 space-y-2">
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">1</span><span class="text-slate-700">Montrer que AB/DC = 2/3.</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">2</span><span class="text-slate-700">En déduire la longueur AB.</span></li>
+          </ol>
+
+          <div class="mt-6 grid sm:grid-cols-2 gap-6 items-center">
+            <div class="bg-slate-50 rounded-xl border border-slate-200 p-4">
+              <svg viewBox="0 0 340 300" class="config-fig">
+                <line x1="300" y1="40" x2="40" y2="260" stroke="#94a3b8" stroke-width="1.5"/>
+                <line x1="300" y1="40" x2="280" y2="260" stroke="#94a3b8" stroke-width="1.5"/>
+                <line x1="40" y1="260" x2="280" y2="260" stroke="#334155" stroke-width="2"/>
+                <line x1="126.7" y1="186.7" x2="286.7" y2="186.7" stroke="#4f46e5" stroke-width="3" stroke-linecap="round"/>
+                <g stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round"><line x1="200" y1="192" x2="205" y2="182"/><line x1="207" y1="192" x2="212" y2="182"/></g>
+                <g stroke="#334155" stroke-width="2.2" stroke-linecap="round"><line x1="153" y1="265" x2="158" y2="255"/><line x1="160" y1="265" x2="165" y2="255"/></g>
+                <circle cx="300" cy="40" r="4" fill="#1e293b"/>
+                <circle cx="40" cy="260" r="4" fill="#1e293b"/>
+                <circle cx="280" cy="260" r="4" fill="#1e293b"/>
+                <circle cx="126.7" cy="186.7" r="4" fill="#1e293b"/>
+                <circle cx="286.7" cy="186.7" r="4" fill="#1e293b"/>
+                <text x="308" y="36" font-weight="700" font-size="16" fill="#1e293b">E</text>
+                <text x="112" y="182" text-anchor="end" font-weight="700" font-size="16" fill="#1e293b">A</text>
+                <text x="296" y="182" font-weight="700" font-size="16" fill="#1e293b">B</text>
+                <text x="26" y="278" font-weight="700" font-size="16" fill="#1e293b">D</text>
+                <text x="286" y="278" font-weight="700" font-size="16" fill="#1e293b">C</text>
+                <text x="300" y="218" text-anchor="end" font-size="12.5" fill="#64748b" font-style="italic">EB = 2 cm</text>
+                <text x="270" y="240" text-anchor="end" font-size="12.5" fill="#64748b" font-style="italic">BC = 1 cm</text>
+                <text x="160" y="278" text-anchor="middle" font-size="12.5" fill="#64748b" font-style="italic">DC = 6 cm</text>
+              </svg>
+            </div>
+            <div class="flex flex-wrap gap-2 content-start">
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">EB = 2 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">BC = 1 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">DC = 6 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">ABCD trapèze, bases [AB] et [CD]</span>
+            </div>
+          </div>
+
+          <button onclick="toggleCorrection('sol-ex1', this)" aria-expanded="false" aria-controls="sol-ex1"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la solution</span>
+          </button>
+        </div>
+
+        <div id="sol-ex1" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-4">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+            <div>
+              <p class="font-semibold text-slate-800">1) Montrons que AB/DC = 2/3</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">On sait que ABCD est un trapèze de bases [AB] et [CD], donc <span class="eq-chip">(AB) // (DC)</span>.</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">On considère le triangle EDC. On a A ∈ (ED) et B ∈ (EC), et puisque (AB) // (DC), d'après le théorème de Thalès :</p>
+              <p class="mt-2 text-center eq-chip font-bold text-brand-700">EA/ED = EB/EC = AB/DC</p>
+              <p class="mt-2 text-slate-700 leading-relaxed">D'où AB/DC = EB/EC, c'est-à-dire :</p>
+              <p class="mt-2 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700 eq-chip">AB / DC = 2 / 3 ✓</p>
+            </div>
+            <div>
+              <p class="font-semibold text-slate-800">2) Déduisons la longueur AB</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">On sait que AB/DC = 2/3 et DC = 6 cm, donc AB/6 = 2/3, soit AB = (6 × 2)/3 = 12/3.</p>
+              <p class="mt-2 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">AB = 4 cm</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ SECTION II : LA RECIPROQUE ============ -->
+<section id="reciproque" class="py-16 sm:py-20 border-b border-slate-200 bg-white scroll-mt-4">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal grid md:grid-cols-2 gap-10 items-center mb-14">
+      <div class="order-2 md:order-1 rounded-2xl overflow-hidden shadow-soft">
+        <img src="https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?auto=format&fit=crop&w=1200&q=80"
+             alt="Stylo posé sur une feuille d'équations" class="w-full h-56 sm:h-64 object-cover" loading="lazy">
+      </div>
+      <div class="order-1 md:order-2">
+        <p class="text-brand-600 font-bold text-sm tracking-wide uppercase mb-2">II. Cours</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">La réciproque du théorème de Thalès</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">
+          On l'utilise dans l'autre sens : pour <strong>démontrer que deux droites sont parallèles</strong>,
+          à partir de longueurs connues.
+        </p>
+      </div>
+    </div>
+
+    <article class="reveal mb-14">
+      <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-4">1. Propriété</h3>
+      <div class="relative bg-gradient-to-br from-slate-800 to-slate-950 rounded-2xl shadow-soft p-6 sm:p-8 text-white">
+        <p class="leading-relaxed text-slate-200">
+          Soient <b>(D)</b> et <b>(D′)</b> deux droites sécantes en <b>A</b>. Soient <b>B</b> et <b>M</b> deux points
+          de <b>(D)</b> distincts de <b>A</b>, et soient <b>C</b> et <b>N</b> deux points de <b>(D′)</b> distincts de <b>A</b>.
+        </p>
+        <div class="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 bg-white/10 rounded-xl py-4 px-4 text-lg sm:text-xl">
+          <span>Si</span>
+          <span class="frac"><span>AM</span><span>AB</span></span>
+          <span>=</span>
+          <span class="frac"><span>AN</span><span>AC</span></span>
+          <span class="text-slate-300 text-sm sm:text-base">ou</span>
+          <span class="frac"><span>AB</span><span>AM</span></span>
+          <span>=</span>
+          <span class="frac"><span>AC</span><span>AN</span></span>
+        </div>
+        <p class="mt-4 text-slate-200 leading-relaxed">
+          … et si les points A, B, M d'une part, et A, C, N d'autre part, sont alignés dans le même ordre, alors :
+        </p>
+        <p class="mt-3 text-center font-bold text-xl text-accent-400">(BC) // (MN)</p>
+      </div>
+      <div class="mt-5 flex gap-3 bg-accent-50 border border-accent-200 rounded-xl p-4">
+        <svg class="w-5 h-5 shrink-0 text-accent-600 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 1 1 4.243 0M9.879 17h4.242"/></svg>
+        <p class="text-sm text-slate-700"><b>Remarque :</b> on utilise la réciproque du théorème de Thalès pour démontrer que deux droites sont parallèles.</p>
+      </div>
+    </article>
+
+    <article class="reveal mb-14">
+      <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-4">2. Cas particulier : le triangle</h3>
+      <div class="bg-white border-2 border-brand-100 rounded-2xl shadow-soft p-6 sm:p-8">
+        <p class="text-slate-700 leading-relaxed">
+          Soit <b>ABC</b> un triangle, <b>M</b> un point de (AB) distinct de A et B, <b>N</b> un point de (AC) distinct de A et C.
+        </p>
+        <p class="mt-3 font-semibold text-slate-800">
+          Si <span class="eq-chip">AB/AM = AC/AN</span> (ou <span class="eq-chip">AM/AB = AN/AC</span>) et si A, B, M
+          et A, C, N sont alignés dans le même ordre, alors :
+        </p>
+        <div class="mt-4 flex justify-center">
+          <span class="eq-chip bg-brand-50 text-brand-700 font-bold text-base sm:text-lg px-5 py-2.5 rounded-full border border-brand-200">
+            (BC) // (MN)
+          </span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Exemple résolu 2 -->
+    <article id="exemple2" class="reveal scroll-mt-24">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">✓</span>
+        <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900">Exemple résolu</h3>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <p class="font-semibold text-slate-800 mb-3">Énoncé</p>
+          <p class="text-slate-600 leading-relaxed">
+            On considère la figure ci-contre telle que <b>AD = 21 cm</b>, <b>AB = 14 cm</b>, <b>AE = 33 cm</b> et <b>CE = 11 cm</b>.
+            Démontrer que <b>(DE) // (BC)</b>.
+          </p>
+
+          <div class="mt-6 grid sm:grid-cols-2 gap-6 items-center">
+            <div class="bg-slate-50 rounded-xl border border-slate-200 p-4">
+              <svg viewBox="0 0 360 370" class="config-fig">
+                <line x1="200" y1="40" x2="60" y2="290" stroke="#334155" stroke-width="2"/>
+                <line x1="200" y1="40" x2="320" y2="340" stroke="#334155" stroke-width="2"/>
+                <line x1="60" y1="290" x2="320" y2="340" stroke="#334155" stroke-width="2"/>
+                <line x1="106.7" y1="206.7" x2="280" y2="240" stroke="#4f46e5" stroke-width="3" stroke-linecap="round"/>
+                <g stroke="#334155" stroke-width="2.2" stroke-linecap="round" transform="rotate(11 190 315)"><line x1="185" y1="322" x2="190" y2="312"/><line x1="192" y1="322" x2="197" y2="312"/></g>
+                <g stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round" transform="rotate(11 193 223)"><line x1="188" y1="230" x2="193" y2="220"/><line x1="195" y1="230" x2="200" y2="220"/></g>
+                <circle cx="200" cy="40" r="4" fill="#1e293b"/>
+                <circle cx="60" cy="290" r="4" fill="#1e293b"/>
+                <circle cx="320" cy="340" r="4" fill="#1e293b"/>
+                <circle cx="106.7" cy="206.7" r="4" fill="#1e293b"/>
+                <circle cx="280" cy="240" r="4" fill="#1e293b"/>
+                <text x="200" y="30" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">A</text>
+                <text x="90" y="207" text-anchor="end" font-weight="700" font-size="16" fill="#1e293b">B</text>
+                <text x="294" y="236" font-weight="700" font-size="16" fill="#1e293b">C</text>
+                <text x="45" y="305" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">D</text>
+                <text x="330" y="352" font-weight="700" font-size="16" fill="#1e293b">E</text>
+              </svg>
+            </div>
+            <div class="flex flex-wrap gap-2 content-start">
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">AD = 21 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">AB = 14 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">AE = 33 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">CE = 11 cm</span>
+            </div>
+          </div>
+
+          <button onclick="toggleCorrection('sol-ex2', this)" aria-expanded="false" aria-controls="sol-ex2"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la solution</span>
+          </button>
+        </div>
+
+        <div id="sol-ex2" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-3">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+            <p class="text-slate-700 leading-relaxed">Montrons d'abord que AB/AD = AC/AE, avec AC = AE − CE = 33 − 11 = 22 cm.</p>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <p class="text-center bg-white rounded-lg border border-emerald-300 py-2 eq-chip font-semibold text-slate-800">AB/AD = 14/21 = 2/3</p>
+              <p class="text-center bg-white rounded-lg border border-emerald-300 py-2 eq-chip font-semibold text-slate-800">AC/AE = 22/33 = 2/3</p>
+            </div>
+            <p class="text-slate-700 leading-relaxed">Donc AB/AD = AC/AE. On considère le triangle ADE. On a B ∈ (AD) et C ∈ (AE), et les points A, B, D d'une part, A, C, E d'autre part, sont alignés dans le même ordre.</p>
+            <p class="text-slate-700 leading-relaxed">D'après la <b>réciproque du théorème de Thalès</b> :</p>
+            <p class="mt-1 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">(DE) // (BC)</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ SECTION III : EXERCICES ============ -->
+<section id="exercices" class="py-16 sm:py-20 scroll-mt-4">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal grid md:grid-cols-2 gap-10 items-center mb-6">
+      <div>
+        <p class="text-brand-600 font-bold text-sm tracking-wide uppercase mb-2">III. Entraînement</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">Exercices — Propriété de Thalès</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">
+          6 exercices authentiques, tirés de sujets du <strong>Brevet des collèges (session 2000)</strong> :
+          Rennes, Clermont-Ferrand, Grenoble, Réunion, Nantes et Paris. Cherchez chaque exercice au brouillon,
+          puis cliquez sur <span class="font-semibold text-accent-600">« Voir la correction »</span> pour vérifier votre réponse.
+        </p>
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow-soft">
+        <img src="https://images.unsplash.com/photo-1596495578065-6e0763fa1178?auto=format&fit=crop&w=1200&q=80"
+             alt="Élève souriant, cahier ouvert sur le bureau" class="w-full h-56 sm:h-64 object-cover" loading="lazy">
+      </div>
+    </div>
+
+    <div class="reveal flex flex-wrap gap-2 mb-12">
+      <span class="text-xs font-bold text-slate-500 uppercase tracking-wide mt-1.5 mr-1">Accès rapide :</span>
+      <a href="#ex1" class="text-xs font-semibold bg-white border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">1 · Rennes</a>
+      <a href="#ex2" class="text-xs font-semibold bg-white border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">2 · Clermont-Ferrand</a>
+      <a href="#ex3" class="text-xs font-semibold bg-white border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">3 · Grenoble</a>
+      <a href="#ex4" class="text-xs font-semibold bg-white border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">4 · Réunion</a>
+      <a href="#ex5" class="text-xs font-semibold bg-white border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">5 · Nantes</a>
+      <a href="#ex6" class="text-xs font-semibold bg-white border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">6 · Paris</a>
+    </div>
+
+    <div class="space-y-8">
+
+      <!-- EXERCICE 1 -->
+      <article id="ex1" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">1</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Exercice 1</h3>
+            <span class="text-xs font-semibold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full">Rennes · 2000</span>
+          </div>
+
+          <p class="text-slate-600 leading-relaxed">
+            Sur le dessin ci-dessous, les droites (AB) et (CD) sont parallèles ; les droites (AC) et (BD) sont sécantes en O.
+          </p>
+
+          <div class="mt-5 grid sm:grid-cols-2 gap-6 items-center">
+            <div class="bg-slate-50 rounded-xl border border-slate-200 p-4 order-2 sm:order-1">
+              <svg viewBox="0 0 340 320" class="config-fig">
+                <line x1="260" y1="70" x2="135" y2="182.5" stroke="#94a3b8" stroke-width="1.5"/>
+                <line x1="270" y1="260" x2="132.5" y2="135" stroke="#94a3b8" stroke-width="1.5"/>
+                <line x1="260" y1="70" x2="270" y2="260" stroke="#4f46e5" stroke-width="3" stroke-linecap="round"/>
+                <line x1="135" y1="182.5" x2="132.5" y2="135" stroke="#4f46e5" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="160" cy="160" r="4" fill="#f59e0b"/>
+                <circle cx="260" cy="70" r="4" fill="#1e293b"/>
+                <circle cx="270" cy="260" r="4" fill="#1e293b"/>
+                <circle cx="135" cy="182.5" r="4" fill="#1e293b"/>
+                <circle cx="132.5" cy="135" r="4" fill="#1e293b"/>
+                <text x="168" y="155" font-weight="700" font-size="16" fill="#b45309">O</text>
+                <text x="270" y="62" font-weight="700" font-size="16" fill="#1e293b">A</text>
+                <text x="278" y="270" font-weight="700" font-size="16" fill="#1e293b">B</text>
+                <text x="120" y="192" text-anchor="end" font-weight="700" font-size="16" fill="#1e293b">C</text>
+                <text x="118" y="130" text-anchor="end" font-weight="700" font-size="16" fill="#1e293b">D</text>
+              </svg>
+            </div>
+            <div class="flex flex-wrap gap-2 content-start order-1 sm:order-2">
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">OA = 8 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">OB = 10 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">OC = 2 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">DC = 1,5 cm</span>
+            </div>
+          </div>
+
+          <ol class="mt-5 space-y-2">
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">1</span><span class="text-slate-700">Calculer la longueur du segment [AB].</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">2</span><span class="text-slate-700">Calculer la longueur du segment [OD].</span></li>
+          </ol>
+
+          <button onclick="toggleCorrection('sol-1', this)" aria-expanded="false" aria-controls="sol-1"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <div id="sol-1" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-4">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+            <p class="text-slate-700 leading-relaxed">
+              Les points O, A, C sont alignés (sur la droite (AC)) et les points O, B, D sont alignés (sur la droite (BD)).
+              Comme (AB) // (CD), le triangle OAB et le triangle OCD sont dans une configuration de Thalès (papillon).
+              D'après le théorème de Thalès :
+            </p>
+            <p class="text-center eq-chip font-bold text-brand-700 bg-white rounded-lg border border-emerald-300 py-2">OA/OC = OB/OD = AB/CD</p>
+            <div>
+              <p class="font-semibold text-slate-800">1) Longueur AB</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">OA/OC = 8/2 = 4, donc AB/CD = 4, soit AB = 4 × 1,5.</p>
+              <p class="mt-2 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">AB = 6 cm</p>
+            </div>
+            <div>
+              <p class="font-semibold text-slate-800">2) Longueur OD</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">OA/OC = 4, donc OB/OD = 4, soit OD = OB ÷ 4 = 10 ÷ 4.</p>
+              <p class="mt-2 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">OD = 2,5 cm</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 2 -->
+      <article id="ex2" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">2</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Exercice 2</h3>
+            <span class="text-xs font-semibold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full">Clermont-Ferrand · 2000</span>
+          </div>
+
+          <p class="text-slate-600 leading-relaxed">
+            Sur la figure ci-après, tracée à main levée (on ne demande pas de refaire la figure) :
+          </p>
+
+          <div class="mt-5 grid sm:grid-cols-2 gap-6 items-center">
+            <div class="bg-slate-50 rounded-xl border border-slate-200 p-4 order-2 sm:order-1">
+              <svg viewBox="0 0 220 340" class="config-fig">
+                <line x1="50" y1="260" x2="173" y2="174.5" stroke="#94a3b8" stroke-width="1.5"/>
+                <line x1="50" y1="260" x2="119.3" y2="317.6" stroke="#94a3b8" stroke-width="1.5"/>
+                <line x1="148.4" y1="191.6" x2="96.2" y2="298.4" stroke="#334155" stroke-width="2"/>
+                <line x1="173" y1="174.5" x2="107.75" y2="308" stroke="#334155" stroke-width="2"/>
+                <line x1="99.2" y1="225.8" x2="119.3" y2="317.6" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,4"/>
+                <circle cx="50" cy="260" r="4.5" fill="#f59e0b"/>
+                <circle cx="99.2" cy="225.8" r="4" fill="#1e293b"/>
+                <circle cx="148.4" cy="191.6" r="4" fill="#1e293b"/>
+                <circle cx="173" cy="174.5" r="4" fill="#1e293b"/>
+                <circle cx="96.2" cy="298.4" r="4" fill="#1e293b"/>
+                <circle cx="107.75" cy="308" r="4" fill="#1e293b"/>
+                <circle cx="119.3" cy="317.6" r="4" fill="#1e293b"/>
+                <text x="34" y="264" font-weight="700" font-size="15" fill="#b45309">I</text>
+                <text x="100" y="216" text-anchor="middle" font-weight="700" font-size="15" fill="#1e293b">M</text>
+                <text x="155" y="184" font-weight="700" font-size="15" fill="#1e293b">R</text>
+                <text x="181" y="171" font-weight="700" font-size="15" fill="#1e293b">S</text>
+                <text x="80" y="300" text-anchor="end" font-weight="700" font-size="15" fill="#1e293b">P</text>
+                <text x="105" y="325" font-weight="700" font-size="15" fill="#1e293b">T</text>
+                <text x="126" y="330" font-weight="700" font-size="15" fill="#1e293b">N</text>
+              </svg>
+              <p class="text-center text-xs text-slate-400 mt-2 italic">Figure schématique, non à l'échelle</p>
+            </div>
+            <div class="flex flex-wrap gap-2 content-start order-1 sm:order-2">
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">IR = 8 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">RP = 10 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">IP = 4 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">IM = 4 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">IS = 10 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">IN = 6 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">IT = 5 cm</span>
+            </div>
+          </div>
+
+          <ol class="mt-5 space-y-2">
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">1</span><span class="text-slate-700">Démontrer que les droites (ST) et (RP) sont parallèles.</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">2</span><span class="text-slate-700">En déduire ST.</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">3</span><span class="text-slate-700">Les droites (MN) et (ST) sont-elles parallèles ? Justifier.</span></li>
+          </ol>
+
+          <button onclick="toggleCorrection('sol-2', this)" aria-expanded="false" aria-controls="sol-2"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <div id="sol-2" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-4">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+            <div>
+              <p class="font-semibold text-slate-800">1) (ST) et (RP) parallèles ?</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">I, R, S sont alignés et I, P, T sont alignés. On calcule :</p>
+              <div class="grid sm:grid-cols-2 gap-3 mt-2">
+                <p class="text-center bg-white rounded-lg border border-emerald-300 py-2 eq-chip font-semibold text-slate-800">IR/IS = 8/10 = 0,8</p>
+                <p class="text-center bg-white rounded-lg border border-emerald-300 py-2 eq-chip font-semibold text-slate-800">IP/IT = 4/5 = 0,8</p>
+              </div>
+              <p class="mt-2 text-slate-700 leading-relaxed">On a IR/IS = IP/IT, avec I,R,S et I,P,T alignés dans le même ordre : d'après la <b>réciproque du théorème de Thalès</b> :</p>
+              <p class="mt-2 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">(RP) // (ST)</p>
+            </div>
+            <div>
+              <p class="font-semibold text-slate-800">2) Longueur ST</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">D'après le théorème de Thalès : IR/IS = IP/IT = RP/ST, donc 0,8 = 10/ST.</p>
+              <p class="mt-2 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">ST = 10 ÷ 0,8 = 12,5 cm</p>
+            </div>
+            <div>
+              <p class="font-semibold text-slate-800">3) (MN) et (ST) parallèles ?</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">I, M, R sont alignés et I, N, P... on compare les rapports depuis I :</p>
+              <div class="grid sm:grid-cols-2 gap-3 mt-2">
+                <p class="text-center bg-white rounded-lg border border-emerald-300 py-2 eq-chip font-semibold text-slate-800">IM/IR = 4/8 = 0,5</p>
+                <p class="text-center bg-white rounded-lg border border-emerald-300 py-2 eq-chip font-semibold text-slate-800">IN/IP = 6/4 = 1,5</p>
+              </div>
+              <p class="mt-2 text-slate-700 leading-relaxed">0,5 ≠ 1,5 : les rapports ne sont pas égaux.</p>
+              <p class="mt-2 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">(MN) n'est PAS parallèle à (ST)</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 3 -->
+      <article id="ex3" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">3</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Exercice 3</h3>
+            <span class="text-xs font-semibold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full">Grenoble · 2000</span>
+          </div>
+
+          <p class="text-slate-600 leading-relaxed">
+            L'unité est le centimètre. On considère le triangle ABC. Soit E un point du segment [AB] ; la parallèle
+            à la droite (BC) passant par E coupe le segment [AC] au point D.
+          </p>
+
+          <div class="mt-5 grid sm:grid-cols-2 gap-6 items-center">
+            <div class="bg-slate-50 rounded-xl border border-slate-200 p-4 order-2 sm:order-1">
+              <svg viewBox="0 0 340 310" class="config-fig">
+                <line x1="190" y1="40" x2="60" y2="290" stroke="#334155" stroke-width="2"/>
+                <line x1="190" y1="40" x2="320" y2="290" stroke="#334155" stroke-width="2"/>
+                <line x1="60" y1="290" x2="320" y2="290" stroke="#334155" stroke-width="2"/>
+                <line x1="8" y1="190" x2="268" y2="190" stroke="#4f46e5" stroke-width="3" stroke-linecap="round"/>
+                <line x1="60" y1="290" x2="8" y2="190" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,4"/>
+                <g stroke="#4f46e5" stroke-width="2.2" stroke-linecap="round"><line x1="184" y1="195" x2="189" y2="185"/><line x1="191" y1="195" x2="196" y2="185"/></g>
+                <g stroke="#334155" stroke-width="2.2" stroke-linecap="round"><line x1="184" y1="295" x2="189" y2="285"/><line x1="191" y1="295" x2="196" y2="285"/></g>
+                <circle cx="190" cy="40" r="4" fill="#1e293b"/>
+                <circle cx="60" cy="290" r="4" fill="#1e293b"/>
+                <circle cx="320" cy="290" r="4" fill="#1e293b"/>
+                <circle cx="112" cy="190" r="4" fill="#1e293b"/>
+                <circle cx="268" cy="190" r="4" fill="#1e293b"/>
+                <circle cx="8" cy="190" r="4" fill="#1e293b"/>
+                <text x="190" y="30" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">A</text>
+                <text x="46" y="305" font-weight="700" font-size="16" fill="#1e293b">B</text>
+                <text x="326" y="295" font-weight="700" font-size="16" fill="#1e293b">C</text>
+                <text x="112" y="178" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">E</text>
+                <text x="268" y="178" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">D</text>
+                <text x="-2" y="178" text-anchor="start" font-weight="700" font-size="16" fill="#b45309">F</text>
+              </svg>
+              <p class="text-center text-xs text-slate-400 mt-2 italic">(BF) en pointillé — question 2</p>
+            </div>
+            <div class="flex flex-wrap gap-2 content-start order-1 sm:order-2">
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">AE = BC = 3</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">EB = AD = 2</span>
+            </div>
+          </div>
+
+          <ol class="mt-5 space-y-2">
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">1</span><span class="text-slate-700">Montrer que ED = 1,8.</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">2</span><span class="text-slate-700">Sur la demi-droite [DE), on place le point F tel que DF = 3. Les droites (AD) et (BF) sont-elles parallèles ?</span></li>
+          </ol>
+
+          <button onclick="toggleCorrection('sol-3', this)" aria-expanded="false" aria-controls="sol-3"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <div id="sol-3" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-4">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+            <div>
+              <p class="font-semibold text-slate-800">1) Montrons que ED = 1,8</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">AB = AE + EB = 3 + 2 = 5 cm. Dans le triangle ABC, E ∈ [AB], D ∈ [AC] et (ED) // (BC), donc d'après Thalès :</p>
+              <p class="mt-2 text-center eq-chip font-bold text-brand-700 bg-white rounded-lg border border-emerald-300 py-2">AE/AB = ED/BC</p>
+              <p class="mt-2 text-slate-700 leading-relaxed">Donc ED = BC × (AE/AB) = 3 × (3/5) = 9/5.</p>
+              <p class="mt-2 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">ED = 1,8 cm</p>
+            </div>
+            <div>
+              <p class="font-semibold text-slate-800">2) (AD) et (BF) parallèles ?</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">Sur la demi-droite [DE), F est tel que DF = 3, donc EF = DF − DE = 3 − 1,8 = 1,2 cm (F est au-delà de E).</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">E appartient à la fois au segment [AB] et à la droite (DF) : on a une configuration papillon en E, avec les points A, B d'un côté et D, F de l'autre. On compare :</p>
+              <div class="grid sm:grid-cols-2 gap-3 mt-2">
+                <p class="text-center bg-white rounded-lg border border-emerald-300 py-2 eq-chip font-semibold text-slate-800">EA/EB = 3/2 = 1,5</p>
+                <p class="text-center bg-white rounded-lg border border-emerald-300 py-2 eq-chip font-semibold text-slate-800">ED/EF = 1,8/1,2 = 1,5</p>
+              </div>
+              <p class="mt-2 text-slate-700 leading-relaxed">EA/EB = ED/EF, avec E entre A et B, et E entre D et F (même configuration) : d'après la réciproque du théorème de Thalès (configuration papillon), (AD) et (BF) relient les extrémités correspondantes, donc :</p>
+              <p class="mt-2 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">Oui, (AD) // (BF)</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 4 -->
+      <article id="ex4" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">4</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Exercice 4</h3>
+            <span class="text-xs font-semibold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full">Réunion · 2000</span>
+          </div>
+
+          <p class="text-slate-600 leading-relaxed">
+            Calculer la valeur exacte de ST en utilisant les informations données : <span class="eq-chip font-semibold">(QR) // (UV)</span> et <span class="eq-chip font-semibold">(UV) // (ST)</span>.
+          </p>
+
+          <div class="mt-5 grid sm:grid-cols-2 gap-6 items-center">
+            <div class="bg-slate-50 rounded-xl border border-slate-200 p-4 order-2 sm:order-1">
+              <svg viewBox="0 0 380 220" class="config-fig">
+                <line x1="190" y1="20" x2="88" y2="190" stroke="#94a3b8" stroke-width="1.5"/>
+                <line x1="190" y1="20" x2="292" y2="190" stroke="#94a3b8" stroke-width="1.5"/>
+                <line x1="148" y1="90" x2="232" y2="90" stroke="#4f46e5" stroke-width="3" stroke-linecap="round"/>
+                <line x1="115" y1="145" x2="265" y2="145" stroke="#4f46e5" stroke-width="3" stroke-linecap="round"/>
+                <line x1="88" y1="190" x2="292" y2="190" stroke="#4f46e5" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="190" cy="20" r="4.5" fill="#f59e0b"/>
+                <circle cx="148" cy="90" r="4" fill="#1e293b"/>
+                <circle cx="232" cy="90" r="4" fill="#1e293b"/>
+                <circle cx="115" cy="145" r="4" fill="#1e293b"/>
+                <circle cx="265" cy="145" r="4" fill="#1e293b"/>
+                <circle cx="88" cy="190" r="4" fill="#1e293b"/>
+                <circle cx="292" cy="190" r="4" fill="#1e293b"/>
+                <text x="190" y="13" text-anchor="middle" font-weight="700" font-size="15" fill="#b45309">P</text>
+                <text x="134" y="86" text-anchor="end" font-weight="700" font-size="15" fill="#1e293b">U</text>
+                <text x="246" y="86" font-weight="700" font-size="15" fill="#1e293b">V</text>
+                <text x="101" y="141" text-anchor="end" font-weight="700" font-size="15" fill="#1e293b">Q</text>
+                <text x="279" y="141" font-weight="700" font-size="15" fill="#1e293b">R</text>
+                <text x="74" y="200" text-anchor="end" font-weight="700" font-size="15" fill="#1e293b">S</text>
+                <text x="306" y="200" font-weight="700" font-size="15" fill="#1e293b">T</text>
+              </svg>
+              <p class="text-center text-xs text-slate-400 mt-2 italic">Figure schématique, non à l'échelle</p>
+            </div>
+            <div class="flex flex-wrap gap-2 content-start order-1 sm:order-2">
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">RP = 4 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">QR = 2,4 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">PV = 2 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">PS = 4,5 cm</span>
+            </div>
+          </div>
+
+          <button onclick="toggleCorrection('sol-4', this)" aria-expanded="false" aria-controls="sol-4"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <div id="sol-4" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-3">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+            <p class="text-slate-700 leading-relaxed">(QR) // (UV) et (UV) // (ST), donc par transitivité du parallélisme : (QR) // (ST).</p>
+            <p class="text-slate-700 leading-relaxed">Les droites (SR)… pardon, les droites qui portent Q,T d'une part et R,S d'autre part sont sécantes en P. Dans cette configuration, comme (QR) // (ST), le théorème de Thalès donne :</p>
+            <p class="text-center eq-chip font-bold text-brand-700 bg-white rounded-lg border border-emerald-300 py-2">PR/PS = PQ/PT = QR/ST</p>
+            <p class="text-slate-700 leading-relaxed">Donc 4/4,5 = 2,4/ST, d'où :</p>
+            <p class="mt-1 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">ST = (2,4 × 4,5) / 4 = 2,7 cm</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 5 -->
+      <article id="ex5" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">5</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Exercice 5</h3>
+            <span class="text-xs font-semibold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full">Nantes · 2000</span>
+          </div>
+
+          <p class="text-slate-600 leading-relaxed">
+            La figure ci-dessous représente un champ rectangulaire ABCD traversé par une route de largeur uniforme
+            (partie grisée). Les droites (AC) et (MN) sont parallèles.
+          </p>
+
+          <div class="mt-5 grid sm:grid-cols-2 gap-6 items-center">
+            <div class="bg-slate-50 rounded-xl border border-slate-200 p-4 order-2 sm:order-1">
+              <svg viewBox="0 0 400 220" class="config-fig">
+                <polygon points="116.8,50 360,50 360,147.28 40,178" fill="#c7d2fe" opacity="0.45"/>
+                <rect x="40" y="50" width="320" height="128" fill="none" stroke="#334155" stroke-width="2"/>
+                <line x1="40" y1="50" x2="360" y2="178" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,4"/>
+                <line x1="116.8" y1="50" x2="360" y2="147.28" stroke="#4f46e5" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="40" cy="50" r="4" fill="#1e293b"/>
+                <circle cx="360" cy="50" r="4" fill="#1e293b"/>
+                <circle cx="360" cy="178" r="4" fill="#1e293b"/>
+                <circle cx="40" cy="178" r="4" fill="#1e293b"/>
+                <circle cx="116.8" cy="50" r="4" fill="#1e293b"/>
+                <circle cx="360" cy="147.28" r="4" fill="#1e293b"/>
+                <text x="26" y="46" font-weight="700" font-size="15" fill="#1e293b">A</text>
+                <text x="368" y="46" font-weight="700" font-size="15" fill="#1e293b">B</text>
+                <text x="368" y="188" font-weight="700" font-size="15" fill="#1e293b">C</text>
+                <text x="26" y="192" font-weight="700" font-size="15" fill="#1e293b">D</text>
+                <text x="116.8" y="40" text-anchor="middle" font-weight="700" font-size="15" fill="#1e293b">M</text>
+                <text x="368" y="150" font-weight="700" font-size="15" fill="#1e293b">N</text>
+              </svg>
+              <p class="text-center text-xs text-slate-400 mt-2 italic">(AC) en pointillé · route en grisé</p>
+            </div>
+            <div class="flex flex-wrap gap-2 content-start order-1 sm:order-2">
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">AB = 100 m</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">BC = 40 m</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">AM = 24 m</span>
+            </div>
+          </div>
+
+          <ol class="mt-5 space-y-2">
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">1</span><span class="text-slate-700">La valeur arrondie au décimètre près de la longueur AC.</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">2</span><span class="text-slate-700">La longueur MB.</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">3</span><span class="text-slate-700">La longueur BN.</span></li>
+          </ol>
+
+          <button onclick="toggleCorrection('sol-5', this)" aria-expanded="false" aria-controls="sol-5"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <div id="sol-5" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-4">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+            <div>
+              <p class="font-semibold text-slate-800">1) Longueur AC</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">ABCD étant un rectangle, le triangle ABC est rectangle en B. D'après le théorème de Pythagore :</p>
+              <p class="mt-2 text-center eq-chip font-bold text-brand-700 bg-white rounded-lg border border-emerald-300 py-2">AC² = AB² + BC² = 100² + 40² = 11 600</p>
+              <p class="mt-2 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">AC ≈ 107,7 m</p>
+            </div>
+            <div>
+              <p class="font-semibold text-slate-800">2) Longueur MB</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">M appartient à [AB], donc MB = AB − AM = 100 − 24.</p>
+              <p class="mt-2 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">MB = 76 m</p>
+            </div>
+            <div>
+              <p class="font-semibold text-slate-800">3) Longueur BN</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">Dans le triangle BAC, M ∈ [BA], N ∈ [BC] et (MN) // (AC), donc d'après Thalès :</p>
+              <p class="mt-2 text-center eq-chip font-bold text-brand-700 bg-white rounded-lg border border-emerald-300 py-2">BM/BA = BN/BC</p>
+              <p class="mt-2 text-slate-700 leading-relaxed">76/100 = BN/40, donc BN = 76 × 40 / 100.</p>
+              <p class="mt-2 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">BN = 30,4 m</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 6 -->
+      <article id="ex6" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">6</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Exercice 6</h3>
+            <span class="text-xs font-semibold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full">Paris · 2000</span>
+          </div>
+
+          <p class="text-slate-600 leading-relaxed">
+            ABCD est un parallélogramme. E est le point de la droite (AD) tel que AE = 1,5 cm et E n'est pas sur le
+            segment [AD] ; la droite (EC) coupe le segment [AB] en M.
+          </p>
+
+          <div class="mt-5 grid sm:grid-cols-2 gap-6 items-center">
+            <div class="bg-slate-50 rounded-xl border border-slate-200 p-4 order-2 sm:order-1">
+              <svg viewBox="0 0 400 290" class="config-fig">
+                <polygon points="100,105 380,105 340,260 60,260" fill="#eef2ff" stroke="#334155" stroke-width="2"/>
+                <line x1="113" y1="54" x2="60" y2="260" stroke="#334155" stroke-width="2"/>
+                <line x1="113" y1="54" x2="340" y2="260" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,4"/>
+                <line x1="100" y1="105" x2="270" y2="260" stroke="#4f46e5" stroke-width="2.5" stroke-dasharray="2,4"/>
+                <circle cx="113" cy="54" r="4" fill="#1e293b"/>
+                <circle cx="100" cy="105" r="4" fill="#1e293b"/>
+                <circle cx="380" cy="105" r="4" fill="#1e293b"/>
+                <circle cx="60" cy="260" r="4" fill="#1e293b"/>
+                <circle cx="340" cy="260" r="4" fill="#1e293b"/>
+                <circle cx="170" cy="105" r="4.5" fill="#b45309"/>
+                <circle cx="270" cy="260" r="4.5" fill="#b45309"/>
+                <text x="113" y="44" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">E</text>
+                <text x="86" y="100" text-anchor="end" font-weight="700" font-size="16" fill="#1e293b">A</text>
+                <text x="388" y="102" font-weight="700" font-size="16" fill="#1e293b">B</text>
+                <text x="46" y="272" font-weight="700" font-size="16" fill="#1e293b">D</text>
+                <text x="348" y="272" font-weight="700" font-size="16" fill="#1e293b">C</text>
+                <text x="170" y="94" text-anchor="middle" font-weight="700" font-size="15" fill="#b45309">M</text>
+                <text x="270" y="278" text-anchor="middle" font-weight="700" font-size="15" fill="#b45309">N</text>
+              </svg>
+              <p class="text-center text-xs text-slate-400 mt-2 italic">(EC) en pointillé orange · (AN) en pointillé indigo</p>
+            </div>
+            <div class="flex flex-wrap gap-2 content-start order-1 sm:order-2">
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">AB = 8 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">AD = 4,5 cm</span>
+              <span class="bg-white border border-slate-200 shadow-sm text-slate-700 text-sm font-mono font-medium px-3 py-1.5 rounded-lg">AE = 1,5 cm</span>
+            </div>
+          </div>
+
+          <ol class="mt-5 space-y-2">
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">1</span><span class="text-slate-700">Calculer AM.</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">2</span><span class="text-slate-700">Placer le point N sur [DC] tel que DN = (3/4)DC. Démontrer que (AN) et (EC) sont parallèles.</span></li>
+          </ol>
+
+          <button onclick="toggleCorrection('sol-6', this)" aria-expanded="false" aria-controls="sol-6"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <div id="sol-6" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-4">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+            <div>
+              <p class="font-semibold text-slate-800">1) Calcul de AM</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">E n'étant pas sur [AD], on a l'ordre E, A, D : donc ED = EA + AD = 1,5 + 4,5 = 6 cm.</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">ABCD est un parallélogramme donc (AB) // (DC), donc (AM) // (DC). Dans le triangle EDC, A ∈ [ED], M ∈ [EC], donc d'après Thalès :</p>
+              <p class="mt-2 text-center eq-chip font-bold text-brand-700 bg-white rounded-lg border border-emerald-300 py-2">EA/ED = EM/EC = AM/DC</p>
+              <p class="mt-2 text-slate-700 leading-relaxed">EA/ED = 1,5/6 = 0,25, et DC = AB = 8 cm, donc AM = 0,25 × 8.</p>
+              <p class="mt-2 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">AM = 2 cm</p>
+            </div>
+            <div>
+              <p class="font-semibold text-slate-800">2) (AN) et (EC) parallèles ?</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">DN = (3/4) × DC = (3/4) × 8 = 6 cm. On compare, depuis D, les deux rapports :</p>
+              <div class="grid sm:grid-cols-2 gap-3 mt-2">
+                <p class="text-center bg-white rounded-lg border border-emerald-300 py-2 eq-chip font-semibold text-slate-800">DA/DE = 4,5/6 = 0,75</p>
+                <p class="text-center bg-white rounded-lg border border-emerald-300 py-2 eq-chip font-semibold text-slate-800">DN/DC = 6/8 = 0,75</p>
+              </div>
+              <p class="mt-2 text-slate-700 leading-relaxed">DA/DE = DN/DC, avec A ∈ [DE] et N ∈ [DC] alignés dans le même ordre depuis D : d'après la réciproque du théorème de Thalès dans le triangle DEC :</p>
+              <p class="mt-2 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">(AN) // (EC)</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- CTA récap -->
+    <div class="reveal mt-14 bg-gradient-to-br from-brand-600 to-brand-800 rounded-2xl p-8 sm:p-10 text-center shadow-soft">
+      <h3 class="font-display font-bold text-2xl text-white">Bravo, vous avez terminé les exercices !</h3>
+      <p class="mt-2 text-brand-100 max-w-xl mx-auto">Relisez la propriété de Thalès et sa réciproque autant de fois que nécessaire — c'est en pratiquant sur des figures variées qu'on les retient le mieux.</p>
+      <a href="#cours" class="mt-6 inline-flex items-center gap-2 bg-white text-brand-700 font-bold px-6 py-3 rounded-full shadow-lg hover:bg-brand-50 transition-colors">
+        Revoir le cours
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-slate-950 text-slate-400">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid sm:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="flex items-center gap-2.5">
+          <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-10 h-10 shrink-0 rounded-full">
+          <span class="font-display font-bold text-white leading-tight">
+            <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-accent-400">Mathématiques</span>
+          </span>
+        </a>
+        <p class="mt-3 text-sm leading-relaxed">Cours de mathématiques — Niveau 3ème / Collège. Théorème de Thalès, sa réciproque, exemples résolus et exercices de brevet corrigés.</p>
+        <a href="/" class="mt-3 inline-block text-sm font-semibold text-accent-400 hover:text-accent-300">← Retour au portail</a>
+      </div>
+      <div>
+        <p class="font-semibold text-white text-sm uppercase tracking-wide mb-3">Sommaire</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#theoreme" class="hover:text-white transition-colors">Le théorème de Thalès</a></li>
+          <li><a href="#reciproque" class="hover:text-white transition-colors">La réciproque</a></li>
+          <li><a href="#exercices" class="hover:text-white transition-colors">Exercices corrigés</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white text-sm uppercase tracking-wide mb-3">Exercices</p>
+        <ul class="space-y-2 text-sm grid grid-cols-2 gap-x-4">
+          <li><a href="#ex1" class="hover:text-white transition-colors">Exercice 1</a></li>
+          <li><a href="#ex2" class="hover:text-white transition-colors">Exercice 2</a></li>
+          <li><a href="#ex3" class="hover:text-white transition-colors">Exercice 3</a></li>
+          <li><a href="#ex4" class="hover:text-white transition-colors">Exercice 4</a></li>
+          <li><a href="#ex5" class="hover:text-white transition-colors">Exercice 5</a></li>
+          <li><a href="#ex6" class="hover:text-white transition-colors">Exercice 6</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-10 pt-6 border-t border-slate-800 text-xs text-slate-500 flex flex-col sm:flex-row justify-between gap-2">
+      <p>Contenu pédagogique basé sur le cours du Collège Mhamed 9 (3ème APIC) et des sujets de brevet 2000.</p>
+      <p>Page réalisée pour un usage pédagogique.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut"
+  class="hidden fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-brand-600 hover:bg-brand-700 text-white shadow-lg items-center justify-center transition-colors">
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+</button>
+
+<script>
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const burger = document.getElementById('icon-burger');
+    const close = document.getElementById('icon-close');
+    const btn = document.getElementById('menu-btn');
+    const isHidden = menu.classList.contains('hidden');
+    menu.classList.toggle('hidden');
+    burger.classList.toggle('hidden');
+    close.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobile-menu').classList.add('hidden');
+    document.getElementById('icon-burger').classList.remove('hidden');
+    document.getElementById('icon-close').classList.add('hidden');
+    document.getElementById('menu-btn').setAttribute('aria-expanded', 'false');
+  }
+
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  function toggleCorrection(id, btn) {
+    const panel = document.getElementById(id);
+    const isHidden = panel.classList.contains('hidden');
+    const label = btn.querySelector('.btn-label');
+    const icon = btn.querySelector('.btn-icon');
+
+    panel.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+
+    if (isHidden) {
+      label.textContent = label.textContent.includes('solution') ? 'Masquer la solution' : 'Masquer la correction';
+      icon.classList.add('rotate-180');
+      btn.classList.remove('bg-accent-500', 'hover:bg-accent-600');
+      btn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+      setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
+    } else {
+      label.textContent = label.textContent.includes('solution') ? 'Voir la solution' : 'Voir la correction';
+      icon.classList.remove('rotate-180');
+      btn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
+      btn.classList.add('bg-accent-500', 'hover:bg-accent-600');
+    }
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Back to top visibility
+  const backBtn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 500) {
+      backBtn.classList.remove('hidden');
+      backBtn.classList.add('flex');
+    } else {
+      backBtn.classList.add('hidden');
+      backBtn.classList.remove('flex');
+    }
+  }, { passive: true });
+</script>
+
+</body>
+</html>

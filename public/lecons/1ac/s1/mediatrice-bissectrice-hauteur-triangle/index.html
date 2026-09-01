@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Médiatrice, Bissectrice et Hauteur d'un triangle — Cours &amp; Exercices corrigés | 1AC</title>
+<meta name="description" content="Cours complet et illustré sur les droites remarquables d'un triangle (médiatrice, bissectrice, hauteur), les cercles circonscrit et inscrit, l'orthocentre — suivi de 7 exercices corrigés en détail. 1ère année collège, semestre 1.">
+<meta name="theme-color" content="#4f46e5">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%234f46e5'/%3E%3Cpolygon points='50,18 85,82 15,82' fill='none' stroke='white' stroke-width='8' stroke-linejoin='round'/%3E%3Ccircle cx='50' cy='60.5' r='5.5' fill='%23fbbf24'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=STIX+Two+Text:ital@0;1&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          display: ['Lexend', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          math: ['STIX Two Text', 'Cambria', 'Georgia', 'serif'],
+        },
+        colors: {
+          indigo: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 116px; }
+  body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+  .font-display { font-family: 'Lexend', ui-sans-serif, system-ui, sans-serif; }
+  .var { font-family: 'STIX Two Text', Cambria, Georgia, serif; font-style: italic; }
+
+  .frac { display: inline-flex; flex-direction: column; text-align: center; vertical-align: middle; margin: 0 .22em; line-height: 1.15; }
+  .frac .num, .frac .den { display: block; padding: 0 .35em; }
+  .frac .num { border-bottom: 2px solid currentColor; padding-bottom: 1px; }
+  .frac .den { padding-top: 1px; }
+  .frac-sm { font-size: .82em; }
+
+  .scroll-mt-28 { scroll-margin-top: 7.5rem; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+  .correction-panel:not(.hidden) { animation: fadeIn .35s ease; }
+
+  .diagram { background: linear-gradient(180deg,#fbfcff, #f4f6fb); }
+  .diagram-grid { background-image: linear-gradient(#e2e8f0 1px, transparent 1px), linear-gradient(90deg, #e2e8f0 1px, transparent 1px); background-size: 20px 20px; }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #f1f5f9; }
+  ::-webkit-scrollbar-thumb { background: #c7d2fe; border-radius: 9999px; }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .text-slate-300 { color: #cbd5e1; }
+  .dark .border-slate-100, .dark .border-slate-200, .dark .ring-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .ring-emerald-100, .dark .ring-emerald-200 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
+  .dark .bg-rose-50 { background-color: #3a0d18; }
+  .dark .ring-rose-200 { border-color: #7a2138; }
+  .dark .text-rose-600, .dark .text-rose-900 { color: #fb7185; }
+  .dark .bg-amber-50 { background-color: #3a2a0a; }
+  .dark .ring-amber-200 { border-color: #92400e; }
+  .dark .text-amber-900 { color: #fde68a; }
+  .dark .text-amber-600 { color: #fbbf24; }
+  .dark .diagram { background: linear-gradient(180deg,#0b1f3a,#0d2447); }
+  .dark .diagram-grid { background-image: linear-gradient(#1c3a63 1px, transparent 1px), linear-gradient(90deg, #1c3a63 1px, transparent 1px); }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased transition-colors">
+
+<a href="#contenu" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow-lg">Aller au contenu</a>
+
+<!-- ===================== HEADER ===================== -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur border-b border-slate-200 dark:border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#accueil" class="flex items-center gap-2 font-display font-bold text-lg text-indigo-700 dark:text-white">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-9 w-9 shrink-0 rounded-full">
+        <span class="hidden xs:inline sm:inline">Droites remarquables</span>
+      </a>
+      <nav aria-label="Navigation principale" class="hidden md:flex items-center gap-1 text-sm font-medium">
+        <a href="/" class="nav-link px-3 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white transition">← Portail</a>
+        <a href="#mediatrice" class="nav-link px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white transition">Médiatrice</a>
+        <a href="#bissectrice" class="nav-link px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white transition">Bissectrice</a>
+        <a href="#hauteur" class="nav-link px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white transition">Hauteur</a>
+        <a href="#exercices" class="nav-link ml-2 px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition">Exercices corrigés</a>
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-amber-400 transition-colors">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </nav>
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="md:hidden mr-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+      <button id="menuBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu" class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5">
+        <svg id="menuIconOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75Zm0 5A.75.75 0 0 1 2.75 9h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 9.75Zm0 5a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd"/></svg>
+        <svg id="menuIconClose" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z"/></svg>
+      </button>
+    </div>
+    <nav id="mobileMenu" aria-label="Navigation mobile" class="hidden md:hidden pb-4 flex flex-col gap-1 text-sm font-medium">
+      <a href="/" class="nav-link px-3 py-2.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-white/5">← Portail</a>
+      <a href="#mediatrice" class="nav-link px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-white/5">Médiatrice</a>
+      <a href="#bissectrice" class="nav-link px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-white/5">Bissectrice</a>
+      <a href="#hauteur" class="nav-link px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-white/5">Hauteur</a>
+      <a href="#exercices" class="nav-link px-3 py-2.5 rounded-lg bg-indigo-600 text-white text-center">Exercices corrigés</a>
+    </nav>
+  </div>
+  <nav aria-label="Sommaire" class="border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-indigo-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto">
+      <ul class="flex gap-2 py-3 text-xs sm:text-sm font-medium whitespace-nowrap">
+        <li><a href="#mediatrice" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">1. Médiatrice</a></li>
+        <li><a href="#bissectrice" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">2. Bissectrice</a></li>
+        <li><a href="#hauteur" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">3. Hauteur</a></li>
+        <li><a href="#exercice1" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">Ex. 01</a></li>
+        <li><a href="#exercice2" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">Ex. 02</a></li>
+        <li><a href="#exercice3" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">Ex. 03</a></li>
+        <li><a href="#exercice4" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">Ex. 04</a></li>
+        <li><a href="#exercice5" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">Ex. 05</a></li>
+        <li><a href="#exercice6" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">Ex. 06</a></li>
+        <li><a href="#exercice7" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">Ex. 07</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main id="contenu">
+
+  <!-- ===================== HERO ===================== -->
+  <section id="accueil" aria-label="Présentation" class="relative overflow-hidden bg-gradient-to-br from-indigo-950 via-indigo-800 to-violet-600 text-white scroll-mt-28">
+    <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1920&q=80" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-20 mix-blend-overlay" />
+    <div class="absolute inset-0 opacity-[0.15] [background-image:radial-gradient(white_1px,transparent_1px)] [background-size:22px_22px]" aria-hidden="true"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <p class="inline-block rounded-full bg-white/10 px-4 py-1 text-xs sm:text-sm font-semibold tracking-wide uppercase mb-4 ring-1 ring-white/25">1ʳᵉ Année Collège · Semestre 1</p>
+      <h1 class="font-display text-3xl sm:text-5xl font-extrabold leading-tight max-w-3xl">Médiatrice, Bissectrice et Hauteur d'un triangle</h1>
+      <p class="mt-4 max-w-2xl text-indigo-100 text-base sm:text-lg">Les trois droites remarquables d'un triangle, les cercles circonscrit et inscrit, l'orthocentre — puis 7 exercices corrigés pas à pas, avec figures interactives.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#exercices" class="rounded-xl bg-white text-indigo-700 px-5 py-3 font-semibold shadow hover:bg-indigo-50 transition">Commencer les exercices</a>
+        <a href="#mediatrice" class="rounded-xl bg-white/10 ring-1 ring-white/30 px-5 py-3 font-semibold hover:bg-white/20 transition">Revoir le cours</a>
+      </div>
+      <dl class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-2xl">
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-indigo-200">Droites étudiées</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">3 types</dd>
+        </div>
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-indigo-200">Cercles associés</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">Circ. &amp; inscrit</dd>
+        </div>
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-indigo-200">Entraînement</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">7 exercices</dd>
+        </div>
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-indigo-200">Corrections</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">pas à pas</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ===================== INTRO COURS ===================== -->
+  <section id="cours" aria-labelledby="cours-heading" class="scroll-mt-28 pt-16 sm:pt-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="text-indigo-600 font-semibold text-sm uppercase tracking-wide">Partie I — Le cours</span>
+        <h2 id="cours-heading" class="font-display text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Les droites remarquables d'un triangle</h2>
+        <p class="mt-3 text-slate-600">Dans tout triangle, on peut tracer des droites particulières liées à ses sommets, ses côtés et ses angles. Cette fiche étudie trois d'entre elles : la <strong class="text-slate-800">médiatrice</strong>, la <strong class="text-slate-800">bissectrice</strong> et la <strong class="text-slate-800">hauteur</strong> — ainsi que les points et cercles remarquables qu'elles permettent de construire.</p>
+      </div>
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <a href="#mediatrice" class="group rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5 hover:ring-indigo-300 hover:shadow-md transition">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700 font-display font-bold">1</span>
+          <p class="mt-3 font-display font-bold text-slate-900 group-hover:text-indigo-700">Médiatrice</p>
+          <p class="mt-1 text-sm text-slate-500">→ cercle <strong>circonscrit</strong></p>
+        </a>
+        <a href="#bissectrice" class="group rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5 hover:ring-indigo-300 hover:shadow-md transition">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700 font-display font-bold">2</span>
+          <p class="mt-3 font-display font-bold text-slate-900 group-hover:text-indigo-700">Bissectrice</p>
+          <p class="mt-1 text-sm text-slate-500">→ cercle <strong>inscrit</strong></p>
+        </a>
+        <a href="#hauteur" class="group rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5 hover:ring-indigo-300 hover:shadow-md transition">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-100 text-indigo-700 font-display font-bold">3</span>
+          <p class="mt-3 font-display font-bold text-slate-900 group-hover:text-indigo-700">Hauteur</p>
+          <p class="mt-1 text-sm text-slate-500">→ <strong>orthocentre</strong></p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== I. MEDIATRICE ===================== -->
+  <article id="mediatrice" aria-labelledby="mediatrice-heading" class="scroll-mt-28 py-14 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-600 text-white font-display font-bold text-lg">I</span>
+        <h2 id="mediatrice-heading" class="font-display text-2xl sm:text-3xl font-bold text-slate-900">Médiatrice d'un triangle</h2>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6 items-start">
+        <div class="space-y-5">
+          <div class="rounded-2xl bg-indigo-50 ring-1 ring-indigo-100 p-5">
+            <p class="text-xs font-bold uppercase tracking-wide text-indigo-600 mb-2">Définition</p>
+            <p class="text-slate-800">La <strong>médiatrice d'un triangle</strong> est la médiatrice de l'un de ses côtés.</p>
+          </div>
+
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5">
+            <p class="text-xs font-bold uppercase tracking-wide text-slate-400 mb-2">Exemple</p>
+            <p class="text-slate-700 text-sm sm:text-base">Soit <strong>ABC</strong> un triangle. Traçons (Δ) la médiatrice du côté [BC]. La droite (Δ) est appelée aussi <strong class="text-indigo-700">médiatrice du triangle ABC</strong>.</p>
+          </div>
+
+          <div class="rounded-2xl bg-amber-50 ring-1 ring-amber-200 p-5">
+            <p class="text-xs font-bold uppercase tracking-wide text-amber-600 mb-1">Remarque</p>
+            <p class="text-sm text-amber-900">Chaque triangle a <strong>trois médiatrices</strong> (une par côté).</p>
+          </div>
+        </div>
+
+        <figure class="diagram rounded-2xl ring-1 ring-slate-200 shadow-sm p-4 sm:p-6">
+          <svg viewBox="0 0 290 250" class="w-full h-auto" role="img" aria-label="Triangle ABC avec la médiatrice du côté BC tracée perpendiculairement en son milieu">
+            <line x1="45" y1="205" x2="235" y2="205" stroke="#334155" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="45" y1="205" x2="220" y2="55" stroke="#334155" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="235" y1="205" x2="220" y2="55" stroke="#334155" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="140" y1="22" x2="140" y2="228" stroke="#4f46e5" stroke-width="2.5" stroke-dasharray="6 5"/>
+            <path d="M132,205 L132,197 L140,197 L140,205" fill="none" stroke="#4f46e5" stroke-width="2"/>
+            <line x1="88" y1="201" x2="96" y2="209" stroke="#334155" stroke-width="2"/>
+            <line x1="184" y1="201" x2="192" y2="209" stroke="#334155" stroke-width="2"/>
+            <circle cx="45" cy="205" r="3" fill="#334155"/>
+            <circle cx="235" cy="205" r="3" fill="#334155"/>
+            <circle cx="220" cy="55" r="3" fill="#334155"/>
+            <text x="149" y="24" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#4f46e5">(Δ)</text>
+            <text x="226" y="46" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">A</text>
+            <text x="22" y="220" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">B</text>
+            <text x="242" y="220" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">C</text>
+          </svg>
+          <figcaption class="mt-3 text-xs text-slate-500 text-center">(Δ) est perpendiculaire à [BC] et passe par son milieu : c'est la médiatrice du triangle ABC.</figcaption>
+        </figure>
+      </div>
+
+      <!-- Cercle circonscrit -->
+      <div class="mt-12">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-indigo-100 text-indigo-700 font-display font-bold">a</span>
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-slate-900">Cercle circonscrit à un triangle</h3>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-6 items-start">
+          <div class="space-y-5">
+            <div class="rounded-2xl bg-indigo-50 ring-1 ring-indigo-100 p-5">
+              <p class="text-xs font-bold uppercase tracking-wide text-indigo-600 mb-2">Définition</p>
+              <p class="text-slate-800">Le <strong>cercle circonscrit</strong> à un triangle est un cercle qui passe par les sommets du triangle et qui a pour centre le <strong>point de rencontre de ses médiatrices</strong>.</p>
+            </div>
+            <div class="rounded-2xl bg-rose-50 ring-1 ring-rose-200 p-5">
+              <p class="text-xs font-bold uppercase tracking-wide text-rose-600 mb-1">Remarque importante</p>
+              <p class="text-sm text-rose-900">Pour tracer le cercle circonscrit à un triangle, il suffit de tracer <strong>deux</strong> de ses médiatrices : leur point de rencontre est le centre du cercle.</p>
+            </div>
+            <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5">
+              <p class="text-xs font-bold uppercase tracking-wide text-slate-400 mb-2">Exemple</p>
+              <p class="text-slate-700 text-sm sm:text-base">Soit ABC un triangle. Traçons le cercle circonscrit au triangle ABC, de centre <strong>O</strong>. On a alors <span class="var">OA = OB = OC</span> (rayons du cercle).</p>
+            </div>
+          </div>
+          <figure class="diagram rounded-2xl ring-1 ring-slate-200 shadow-sm p-4 sm:p-6">
+            <svg viewBox="0 0 300 270" class="w-full h-auto" role="img" aria-label="Triangle ABC inscrit dans son cercle circonscrit de centre O, avec les trois rayons OA, OB et OC égaux">
+              <circle cx="150" cy="135" r="95" fill="none" stroke="#f59e0b" stroke-width="2.5"/>
+              <polygon points="150,40 67.7,182.5 239.3,167.5" fill="none" stroke="#334155" stroke-width="2.5" stroke-linejoin="round"/>
+              <line x1="150" y1="135" x2="150" y2="40" stroke="#4f46e5" stroke-width="2" stroke-dasharray="5 4"/>
+              <line x1="150" y1="135" x2="67.7" y2="182.5" stroke="#4f46e5" stroke-width="2" stroke-dasharray="5 4"/>
+              <line x1="150" y1="135" x2="239.3" y2="167.5" stroke="#4f46e5" stroke-width="2" stroke-dasharray="5 4"/>
+              <line x1="145" y1="87.5" x2="155" y2="87.5" stroke="#334155" stroke-width="2"/>
+              <line x1="111.35" y1="163.08" x2="106.35" y2="154.42" stroke="#334155" stroke-width="2"/>
+              <line x1="192.94" y1="155.95" x2="196.36" y2="146.55" stroke="#334155" stroke-width="2"/>
+              <circle cx="150" cy="135" r="4" fill="#4f46e5"/>
+              <circle cx="150" cy="40" r="3" fill="#334155"/>
+              <circle cx="67.7" cy="182.5" r="3" fill="#334155"/>
+              <circle cx="239.3" cy="167.5" r="3" fill="#334155"/>
+              <text x="156" y="34" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">A</text>
+              <text x="45" y="192" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">B</text>
+              <text x="248" y="172" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">C</text>
+              <text x="158" y="128" font-family="Lexend,sans-serif" font-size="16" font-weight="700" fill="#4f46e5">O</text>
+            </svg>
+            <figcaption class="mt-3 text-xs text-slate-500 text-center">Le centre O (point de rencontre des médiatrices) est équidistant des trois sommets.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ===================== II. BISSECTRICE ===================== -->
+  <article id="bissectrice" aria-labelledby="bissectrice-heading" class="scroll-mt-28 py-14 sm:py-20 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-600 text-white font-display font-bold text-lg">II</span>
+        <h2 id="bissectrice-heading" class="font-display text-2xl sm:text-3xl font-bold text-slate-900">Bissectrice d'un triangle</h2>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6 items-start">
+        <div class="space-y-5">
+          <div class="rounded-2xl bg-indigo-50 ring-1 ring-indigo-100 p-5">
+            <p class="text-xs font-bold uppercase tracking-wide text-indigo-600 mb-2">Définition</p>
+            <p class="text-slate-800">La <strong>bissectrice d'un triangle</strong> est la bissectrice de l'un de ses angles.</p>
+          </div>
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5">
+            <p class="text-xs font-bold uppercase tracking-wide text-slate-400 mb-2">Exemple</p>
+            <p class="text-slate-700 text-sm sm:text-base">Soit ABC un triangle. Traçons [AE) la bissectrice de l'angle ∠BAC. La demi-droite [AE) est appelée aussi <strong class="text-indigo-700">bissectrice du triangle ABC</strong>.</p>
+          </div>
+          <div class="rounded-2xl bg-amber-50 ring-1 ring-amber-200 p-5">
+            <p class="text-xs font-bold uppercase tracking-wide text-amber-600 mb-1">Remarque</p>
+            <p class="text-sm text-amber-900">Chaque triangle a <strong>trois bissectrices</strong> (une par angle).</p>
+          </div>
+        </div>
+
+        <figure class="diagram rounded-2xl ring-1 ring-slate-200 shadow-sm p-4 sm:p-6">
+          <svg viewBox="0 0 260 220" class="w-full h-auto" role="img" aria-label="Triangle ABC avec la bissectrice de l'angle A partageant celui-ci en deux angles égaux">
+            <line x1="45" y1="120" x2="220" y2="45" stroke="#334155" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="45" y1="120" x2="220" y2="195" stroke="#334155" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="220" y1="45" x2="220" y2="195" stroke="#334155" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="45" y1="120" x2="220" y2="110" stroke="#4f46e5" stroke-width="2.5"/>
+            <path d="M65.2,111.3 A22,22 0 0,1 66.96,118.74" fill="none" stroke="#4f46e5" stroke-width="1.8"/>
+            <path d="M66.96,118.74 A22,22 0 0,1 65.2,128.67" fill="none" stroke="#4f46e5" stroke-width="1.8"/>
+            <line x1="63.5" y1="115.66" x2="69.3" y2="114.3" stroke="#4f46e5" stroke-width="1.8"/>
+            <line x1="63.5" y1="124.34" x2="69.3" y2="125.7" stroke="#4f46e5" stroke-width="1.8"/>
+            <circle cx="45" cy="120" r="3" fill="#334155"/>
+            <circle cx="220" cy="45" r="3" fill="#334155"/>
+            <circle cx="220" cy="195" r="3" fill="#334155"/>
+            <circle cx="220" cy="110" r="3" fill="#4f46e5"/>
+            <text x="22" y="126" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">A</text>
+            <text x="228" y="42" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">B</text>
+            <text x="228" y="202" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">C</text>
+            <text x="227" y="107" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#4f46e5">E</text>
+          </svg>
+          <figcaption class="mt-3 text-xs text-slate-500 text-center">[AE) partage l'angle ∠BAC en deux angles égaux : ∠BAE = ∠EAC.</figcaption>
+        </figure>
+      </div>
+
+      <div class="mt-12">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-indigo-100 text-indigo-700 font-display font-bold">a</span>
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-slate-900">Cercle inscrit dans un triangle</h3>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-6 items-start">
+          <div class="space-y-5">
+            <div class="rounded-2xl bg-indigo-50 ring-1 ring-indigo-100 p-5">
+              <p class="text-xs font-bold uppercase tracking-wide text-indigo-600 mb-2">Définition</p>
+              <p class="text-slate-800">Le <strong>cercle inscrit</strong> dans un triangle est un cercle qui a pour centre le <strong>point de rencontre de ses bissectrices</strong> (il est tangent intérieurement aux trois côtés).</p>
+            </div>
+            <div class="rounded-2xl bg-rose-50 ring-1 ring-rose-200 p-5">
+              <p class="text-xs font-bold uppercase tracking-wide text-rose-600 mb-1">Remarque importante</p>
+              <p class="text-sm text-rose-900">Pour tracer le cercle inscrit dans un triangle, il suffit de tracer <strong>deux</strong> de ses bissectrices.</p>
+            </div>
+            <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5">
+              <p class="text-xs font-bold uppercase tracking-wide text-slate-400 mb-2">Exemple</p>
+              <p class="text-slate-700 text-sm sm:text-base">Soit ABC un triangle. Traçons le cercle inscrit dans le triangle ABC, de centre <strong>O</strong>.</p>
+            </div>
+          </div>
+          <figure class="diagram rounded-2xl ring-1 ring-slate-200 shadow-sm p-4 sm:p-6">
+            <svg viewBox="0 0 300 260" class="w-full h-auto" role="img" aria-label="Triangle ABC avec son cercle inscrit de centre O, tangent aux trois côtés, et les bissectrices tracées">
+              <polygon points="150,35 45,220 255,220" fill="none" stroke="#334155" stroke-width="2.5" stroke-linejoin="round"/>
+              <circle cx="150" cy="159" r="61" fill="none" stroke="#f59e0b" stroke-width="2.5"/>
+              <line x1="150" y1="35" x2="150" y2="220" stroke="#4f46e5" stroke-width="2" stroke-dasharray="5 4"/>
+              <line x1="45" y1="220" x2="202.8" y2="128.1" stroke="#4f46e5" stroke-width="2" stroke-dasharray="5 4"/>
+              <line x1="255" y1="220" x2="97.2" y2="128.1" stroke="#4f46e5" stroke-width="2" stroke-dasharray="5 4"/>
+              <circle cx="150" cy="159" r="4" fill="#4f46e5"/>
+              <circle cx="150" cy="35" r="3" fill="#334155"/>
+              <circle cx="45" cy="220" r="3" fill="#334155"/>
+              <circle cx="255" cy="220" r="3" fill="#334155"/>
+              <circle cx="202.8" cy="128.1" r="3" fill="#4f46e5"/>
+              <circle cx="97.2" cy="128.1" r="3" fill="#4f46e5"/>
+              <text x="156" y="28" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">A</text>
+              <text x="22" y="238" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">B</text>
+              <text x="262" y="238" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">C</text>
+              <text x="158" y="152" font-family="Lexend,sans-serif" font-size="16" font-weight="700" fill="#4f46e5">O</text>
+              <text x="207" y="122" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#4f46e5">E</text>
+              <text x="80" y="122" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#4f46e5">F</text>
+            </svg>
+            <figcaption class="mt-3 text-xs text-slate-500 text-center">O, point de rencontre des bissectrices [BE) et [CF), est le centre du cercle inscrit.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ===================== III. HAUTEUR ===================== -->
+  <article id="hauteur" aria-labelledby="hauteur-heading" class="scroll-mt-28 py-14 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-600 text-white font-display font-bold text-lg">III</span>
+        <h2 id="hauteur-heading" class="font-display text-2xl sm:text-3xl font-bold text-slate-900">Hauteur d'un triangle</h2>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6 items-start">
+        <div class="space-y-5">
+          <div class="rounded-2xl bg-indigo-50 ring-1 ring-indigo-100 p-5">
+            <p class="text-xs font-bold uppercase tracking-wide text-indigo-600 mb-2">Définition</p>
+            <p class="text-slate-800">La <strong>hauteur d'un triangle</strong> est la droite qui passe par l'un des sommets de ce triangle et qui est perpendiculaire au côté opposé à ce sommet.</p>
+          </div>
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5">
+            <p class="text-xs font-bold uppercase tracking-wide text-slate-400 mb-2">Exemple</p>
+            <p class="text-slate-700 text-sm sm:text-base">Soit ABC un triangle. Traçons (AH) la hauteur du triangle ABC. On dit que (AH) est la <strong class="text-indigo-700">hauteur issue de A</strong>.</p>
+          </div>
+          <div class="rounded-2xl bg-amber-50 ring-1 ring-amber-200 p-5 space-y-1.5">
+            <p class="text-xs font-bold uppercase tracking-wide text-amber-600 mb-1">Remarques</p>
+            <p class="text-sm text-amber-900">— Chaque triangle a <strong>trois hauteurs</strong>.</p>
+            <p class="text-sm text-amber-900">— Le point H est appelé <strong>pied de la hauteur</strong> (AH).</p>
+            <p class="text-sm text-amber-900">— La hauteur (AH) peut être notée (AH) ou [AH].</p>
+          </div>
+        </div>
+
+        <figure class="diagram rounded-2xl ring-1 ring-slate-200 shadow-sm p-4 sm:p-6">
+          <svg viewBox="0 0 300 240" class="w-full h-auto" role="img" aria-label="Triangle ABC avec la hauteur issue de A, perpendiculaire au côté BC, de pied H">
+            <polygon points="170,40 50,210 260,210" fill="none" stroke="#334155" stroke-width="2.5" stroke-linejoin="round"/>
+            <line x1="170" y1="40" x2="170" y2="210" stroke="#4f46e5" stroke-width="2.5"/>
+            <path d="M162,210 L162,202 L170,202" fill="none" stroke="#4f46e5" stroke-width="2"/>
+            <circle cx="170" cy="40" r="3" fill="#334155"/>
+            <circle cx="50" cy="210" r="3" fill="#334155"/>
+            <circle cx="260" cy="210" r="3" fill="#334155"/>
+            <circle cx="170" cy="210" r="3" fill="#4f46e5"/>
+            <text x="177" y="34" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">A</text>
+            <text x="27" y="224" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">B</text>
+            <text x="268" y="224" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">C</text>
+            <text x="176" y="226" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#4f46e5">H</text>
+          </svg>
+          <figcaption class="mt-3 text-xs text-slate-500 text-center">(AH) ⊥ (BC) : H est le pied de la hauteur issue de A.</figcaption>
+        </figure>
+      </div>
+
+      <div class="mt-8 grid lg:grid-cols-2 gap-6 items-start">
+        <figure class="diagram rounded-2xl ring-1 ring-slate-200 shadow-sm p-4 sm:p-6 order-2 lg:order-1">
+          <svg viewBox="0 0 340 260" class="w-full h-auto" role="img" aria-label="Triangle ABC ayant un angle obtus en B : la hauteur issue de A tombe à l'extérieur du triangle">
+            <polygon points="60,60 180,180 300,140" fill="none" stroke="#334155" stroke-width="2.5" stroke-linejoin="round"/>
+            <line x1="300" y1="140" x2="108" y2="204" stroke="#334155" stroke-width="2" stroke-dasharray="6 5"/>
+            <line x1="60" y1="60" x2="108" y2="204" stroke="#4f46e5" stroke-width="2.5"/>
+            <path d="M104.84,194.51 L114.33,191.35 L117.49,200.84" fill="none" stroke="#4f46e5" stroke-width="2"/>
+            <circle cx="60" cy="60" r="3" fill="#334155"/>
+            <circle cx="180" cy="180" r="3" fill="#334155"/>
+            <circle cx="300" cy="140" r="3" fill="#334155"/>
+            <circle cx="108" cy="204" r="3" fill="#4f46e5"/>
+            <text x="42" y="50" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">A</text>
+            <text x="188" y="196" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">B</text>
+            <text x="308" y="132" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">C</text>
+            <text x="85" y="220" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#4f46e5">H</text>
+          </svg>
+          <figcaption class="mt-3 text-xs text-slate-500 text-center">∠ABC obtus : le pied H de la hauteur issue de A tombe hors du segment [BC].</figcaption>
+        </figure>
+        <div class="rounded-2xl bg-rose-50 ring-1 ring-rose-200 p-5 order-1 lg:order-2">
+          <p class="text-xs font-bold uppercase tracking-wide text-rose-600 mb-2">Cas particulier — angle obtus</p>
+          <p class="text-sm text-rose-900">Soit ABC un triangle tel que ∠ABC est un angle obtus. Traçons (AH) la hauteur du triangle ABC issue de A. Comme sur la figure ci-contre, le pied H se trouve alors <strong>en dehors</strong> du côté [BC] : il faut prolonger (BC) pour tracer la hauteur.</p>
+        </div>
+      </div>
+
+      <div class="mt-12">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-indigo-100 text-indigo-700 font-display font-bold">a</span>
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-slate-900">L'orthocentre d'un triangle</h3>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-6 items-start">
+          <div class="space-y-5">
+            <div class="rounded-2xl bg-indigo-50 ring-1 ring-indigo-100 p-5">
+              <p class="text-xs font-bold uppercase tracking-wide text-indigo-600 mb-2">Définition</p>
+              <p class="text-slate-800">L'<strong>orthocentre</strong> d'un triangle est le point de rencontre de ses hauteurs.</p>
+            </div>
+            <div class="rounded-2xl bg-rose-50 ring-1 ring-rose-200 p-5">
+              <p class="text-xs font-bold uppercase tracking-wide text-rose-600 mb-1">Remarque importante</p>
+              <p class="text-sm text-rose-900">Pour déterminer l'orthocentre d'un triangle, il suffit de tracer <strong>deux</strong> de ses hauteurs.</p>
+            </div>
+            <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5">
+              <p class="text-xs font-bold uppercase tracking-wide text-slate-400 mb-2">Exemple</p>
+              <p class="text-slate-700 text-sm sm:text-base">Soit ABC un triangle. Traçons <strong>K</strong> l'orthocentre du triangle ABC : c'est le point commun aux hauteurs (AH) et (BH').</p>
+            </div>
+          </div>
+          <figure class="diagram rounded-2xl ring-1 ring-slate-200 shadow-sm p-4 sm:p-6">
+            <svg viewBox="0 0 300 240" class="w-full h-auto" role="img" aria-label="Triangle ABC avec deux hauteurs tracées se coupant en K, l'orthocentre">
+              <polygon points="170,40 50,210 260,210" fill="none" stroke="#334155" stroke-width="2.5" stroke-linejoin="round"/>
+              <line x1="170" y1="40" x2="170" y2="210" stroke="#4f46e5" stroke-width="2.2"/>
+              <line x1="50" y1="210" x2="214.03" y2="123.16" stroke="#4f46e5" stroke-width="2.2"/>
+              <path d="M162,210 L162,202 L170,202" fill="none" stroke="#4f46e5" stroke-width="2"/>
+              <path d="M209.35,114.32 L200.51,119.0 L205.19,127.84" fill="none" stroke="#4f46e5" stroke-width="2"/>
+              <circle cx="170" cy="40" r="3" fill="#334155"/>
+              <circle cx="50" cy="210" r="3" fill="#334155"/>
+              <circle cx="260" cy="210" r="3" fill="#334155"/>
+              <circle cx="170" cy="210" r="3" fill="#64748b"/>
+              <circle cx="214.03" cy="123.16" r="3" fill="#64748b"/>
+              <circle cx="170" cy="146.47" r="4.5" fill="#f59e0b"/>
+              <text x="177" y="34" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">A</text>
+              <text x="27" y="224" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">B</text>
+              <text x="268" y="224" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">C</text>
+              <text x="176" y="226" font-family="Lexend,sans-serif" font-size="14" font-weight="700" fill="#64748b">H</text>
+              <text x="220" y="120" font-family="Lexend,sans-serif" font-size="14" font-weight="700" fill="#64748b">H'</text>
+              <text x="178" y="144" font-family="Lexend,sans-serif" font-size="16" font-weight="700" fill="#b45309">K</text>
+            </svg>
+            <figcaption class="mt-3 text-xs text-slate-500 text-center">K, orthocentre de ABC, est le point de rencontre des trois hauteurs.</figcaption>
+          </figure>
+        </div>
+
+        <div class="mt-8 grid lg:grid-cols-2 gap-6 items-start">
+          <div class="rounded-2xl bg-emerald-50 ring-1 ring-emerald-200 p-5">
+            <p class="text-xs font-bold uppercase tracking-wide text-emerald-700 mb-2">Cas particulier — angle obtus</p>
+            <p class="text-sm text-emerald-900">Soit ABC un triangle tel que ∠ABC est un angle obtus. Traçons K l'orthocentre du triangle ABC. On remarque que <strong>l'orthocentre du triangle ABC se trouve à l'extérieur du triangle ABC.</strong></p>
+          </div>
+          <figure class="diagram rounded-2xl ring-1 ring-slate-200 shadow-sm p-4 sm:p-6">
+            <svg viewBox="0 0 360 330" class="w-full h-auto" role="img" aria-label="Triangle ABC obtus en B avec ses deux hauteurs prolongées se coupant en K, à l'extérieur du triangle">
+              <polygon points="60,60 180,180 300,140" fill="none" stroke="#334155" stroke-width="2.5" stroke-linejoin="round"/>
+              <line x1="60" y1="60" x2="140" y2="300" stroke="#4f46e5" stroke-width="2" stroke-dasharray="6 5"/>
+              <line x1="300" y1="140" x2="140" y2="300" stroke="#4f46e5" stroke-width="2" stroke-dasharray="6 5"/>
+              <path d="M104.84,194.51 L114.33,191.35 L117.49,200.84" fill="none" stroke="#4f46e5" stroke-width="2"/>
+              <path d="M227.07,212.93 L220,205.86 L212.93,212.93" fill="none" stroke="#4f46e5" stroke-width="2"/>
+              <circle cx="60" cy="60" r="3" fill="#334155"/>
+              <circle cx="180" cy="180" r="3" fill="#334155"/>
+              <circle cx="300" cy="140" r="3" fill="#334155"/>
+              <circle cx="108" cy="204" r="3" fill="#64748b"/>
+              <circle cx="220" cy="220" r="3" fill="#64748b"/>
+              <circle cx="140" cy="300" r="4.5" fill="#f59e0b"/>
+              <text x="42" y="50" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">A</text>
+              <text x="188" y="172" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">B</text>
+              <text x="308" y="132" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">C</text>
+              <text x="82" y="220" font-family="Lexend,sans-serif" font-size="14" font-weight="700" fill="#64748b">H</text>
+              <text x="228" y="215" font-family="Lexend,sans-serif" font-size="14" font-weight="700" fill="#64748b">H'</text>
+              <text x="148" y="316" font-family="Lexend,sans-serif" font-size="16" font-weight="700" fill="#b45309">K</text>
+            </svg>
+            <figcaption class="mt-3 text-xs text-slate-500 text-center">Les deux hauteurs prolongées (pointillés) se coupent en K, hors du triangle.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ===================== EXERCICES ===================== -->
+  <section id="exercices" aria-labelledby="exercices-heading" class="scroll-mt-28 py-16 sm:py-24 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-6">
+        <span class="text-indigo-600 font-semibold text-sm uppercase tracking-wide">Partie II</span>
+        <h2 id="exercices-heading" class="font-display text-2xl sm:text-3xl font-bold text-slate-900 mt-1">7 exercices corrigés</h2>
+        <p class="mt-3 text-slate-600">Cherche chaque exercice sur ton cahier avec tes instruments (règle, compas, équerre), puis clique sur « Voir la correction » pour vérifier ta démarche.</p>
+      </div>
+
+      <div class="flex flex-wrap gap-2 mb-12">
+        <a href="#exercice1" class="rounded-full bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 px-4 py-2 text-sm font-semibold transition">Ex. 01</a>
+        <a href="#exercice2" class="rounded-full bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 px-4 py-2 text-sm font-semibold transition">Ex. 02</a>
+        <a href="#exercice3" class="rounded-full bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 px-4 py-2 text-sm font-semibold transition">Ex. 03</a>
+        <a href="#exercice4" class="rounded-full bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 px-4 py-2 text-sm font-semibold transition">Ex. 04</a>
+        <a href="#exercice5" class="rounded-full bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 px-4 py-2 text-sm font-semibold transition">Ex. 05</a>
+        <a href="#exercice6" class="rounded-full bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 px-4 py-2 text-sm font-semibold transition">Ex. 06</a>
+        <a href="#exercice7" class="rounded-full bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 px-4 py-2 text-sm font-semibold transition">Ex. 07</a>
+      </div>
+
+      <!-- ========== EXERCICE 1 ========== -->
+      <article id="exercice1" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-4">
+          <span class="inline-block rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 1</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Construction · cercle circonscrit</span>
+        </div>
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+          <div class="p-4 sm:p-6 grid md:grid-cols-2 gap-6">
+            <div>
+              <p class="text-slate-700 text-sm sm:text-base">Tracer le triangle <strong>POU</strong> rectangle en <span class="var">O</span> tel que :</p>
+              <ul class="mt-3 space-y-1.5 text-sm sm:text-base text-slate-700">
+                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-indigo-500"></span> PU = 5 cm</li>
+                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-indigo-500"></span> PO = 3 cm</li>
+                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-indigo-500"></span> ∠PUO ≈ 30°</li>
+              </ul>
+              <p class="mt-4 text-slate-700 text-sm sm:text-base">Construire, <strong>en couleur</strong>, le cercle circonscrit au triangle POU.</p>
+              <p class="mt-2 text-slate-700 text-sm sm:text-base font-semibold">Où semble se trouver le centre de ce cercle ?</p>
+            </div>
+            <div class="diagram rounded-xl ring-1 ring-slate-200 p-4">
+              <svg viewBox="0 0 300 240" class="w-full h-auto" role="img" aria-label="Triangle POU rectangle en O">
+                <polygon points="70,80 70,200 230,200" fill="none" stroke="#334155" stroke-width="2.5" stroke-linejoin="round"/>
+                <line x1="70" y1="80" x2="230" y2="200" stroke="#334155" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M78,200 L78,192 L70,192" fill="none" stroke="#334155" stroke-width="2"/>
+                <text x="52" y="70" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">P</text>
+                <text x="52" y="214" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">O</text>
+                <text x="238" y="206" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">U</text>
+                <text x="40" y="145" font-family="Inter,sans-serif" font-size="13" fill="#64748b">3 cm</text>
+                <text x="140" y="212" font-family="Inter,sans-serif" font-size="13" fill="#64748b">4 cm</text>
+                <text x="165" y="130" font-family="Inter,sans-serif" font-size="13" fill="#64748b">5 cm</text>
+              </svg>
+            </div>
+          </div>
+          <div class="flex justify-end px-4 sm:px-6 pb-4">
+            <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex1" onclick="toggleCorrection(this)">
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+              <span>Voir la correction</span>
+            </button>
+          </div>
+          <div id="c-ex1" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6 space-y-4">
+            <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+              <p class="text-sm text-slate-700"><strong>Construction :</strong> le triangle est rectangle en O avec l'hypoténuse PU = 5 cm et un côté PO = 3 cm. D'après le théorème de <strong>Pythagore</strong> : <span class="var">OU</span>² = PU² − PO² = 5² − 3² = 25 − 9 = 16, donc <strong>OU = 4 cm</strong> (triangle 3-4-5). On trace donc [OP] et [OU] perpendiculaires en O avec OP = 3 cm et OU = 4 cm, puis on relie P et U.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4 items-center">
+              <div class="diagram rounded-xl ring-1 ring-emerald-200 p-4">
+                <svg viewBox="0 0 300 240" class="w-full h-auto" role="img" aria-label="Cercle circonscrit au triangle POU centré au milieu de l'hypoténuse PU">
+                  <circle cx="150" cy="140" r="100" fill="none" stroke="#f59e0b" stroke-width="2.5"/>
+                  <polygon points="70,80 70,200 230,200" fill="none" stroke="#334155" stroke-width="2.5" stroke-linejoin="round"/>
+                  <line x1="70" y1="80" x2="230" y2="200" stroke="#334155" stroke-width="2.5" stroke-linecap="round"/>
+                  <path d="M78,200 L78,192 L70,192" fill="none" stroke="#334155" stroke-width="2"/>
+                  <circle cx="150" cy="140" r="4" fill="#4f46e5"/>
+                  <text x="156" y="136" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#4f46e5">Ω</text>
+                  <text x="52" y="70" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">P</text>
+                  <text x="52" y="214" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">O</text>
+                  <text x="238" y="206" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">U</text>
+                </svg>
+              </div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                <p class="text-sm text-emerald-800"><strong>Réponse :</strong> le centre Ω du cercle circonscrit semble se trouver exactement au <strong>milieu de l'hypoténuse [PU]</strong>.</p>
+                <p class="mt-2 text-sm text-slate-600">C'est un résultat général très important : <strong>dans un triangle rectangle, le centre du cercle circonscrit est le milieu de l'hypoténuse</strong> (et le rayon vaut la moitié de l'hypoténuse).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ========== EXERCICE 2 ========== -->
+      <article id="exercice2" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-4">
+          <span class="inline-block rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 2</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Problème concret · médiatrices</span>
+        </div>
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+          <div class="p-4 sm:p-6 grid md:grid-cols-2 gap-6 items-center">
+            <p class="text-slate-700 text-sm sm:text-base">Le maire d'un village a décidé de construire une <strong>fontaine</strong> à égale distance des trois maisons A, B et C. Où doit-il la placer précisément ?</p>
+            <div class="diagram rounded-xl ring-1 ring-slate-200 p-4">
+              <svg viewBox="-10 -10 320 300" class="w-full h-auto" role="img" aria-label="Trois maisons A, B et C non alignées">
+                <g transform="translate(80,60)">
+                  <polygon points="-16,10 -16,-6 0,-18 16,-6 16,10" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+                  <line x1="-16" y1="-6" x2="0" y2="-18" stroke="#334155" stroke-width="2"/>
+                  <line x1="0" y1="-18" x2="16" y2="-6" stroke="#334155" stroke-width="2"/>
+                </g>
+                <text x="72" y="94" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">A</text>
+                <g transform="translate(60,220)">
+                  <polygon points="-16,10 -16,-6 0,-18 16,-6 16,10" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+                  <line x1="-16" y1="-6" x2="0" y2="-18" stroke="#334155" stroke-width="2"/>
+                  <line x1="0" y1="-18" x2="16" y2="-6" stroke="#334155" stroke-width="2"/>
+                </g>
+                <text x="52" y="254" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">B</text>
+                <g transform="translate(260,150)">
+                  <polygon points="-16,10 -16,-6 0,-18 16,-6 16,10" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+                  <line x1="-16" y1="-6" x2="0" y2="-18" stroke="#334155" stroke-width="2"/>
+                  <line x1="0" y1="-18" x2="16" y2="-6" stroke="#334155" stroke-width="2"/>
+                </g>
+                <text x="252" y="184" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">C</text>
+              </svg>
+            </div>
+          </div>
+          <div class="flex justify-end px-4 sm:px-6 pb-4">
+            <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex2" onclick="toggleCorrection(this)">
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+              <span>Voir la correction</span>
+            </button>
+          </div>
+          <div id="c-ex2" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6">
+            <div class="grid sm:grid-cols-2 gap-4 items-center">
+              <div class="diagram rounded-xl ring-1 ring-emerald-200 p-4">
+                <svg viewBox="-10 -10 320 300" class="w-full h-auto" role="img" aria-label="Les médiatrices des trois côtés se coupent au centre du cercle circonscrit, emplacement de la fontaine">
+                  <polygon points="80,60 60,220 260,150" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+                  <circle cx="147.6" cy="149.7" r="112.3" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                  <line x1="70" y1="140" x2="225.2" y2="159.4" stroke="#4f46e5" stroke-width="1.8" stroke-dasharray="5 4"/>
+                  <line x1="147.6" y1="149.7" x2="70" y2="240.9" stroke="#4f46e5" stroke-width="1.8" stroke-dasharray="5 4"/>
+                  <line x1="147.6" y1="149.7" x2="94.2" y2="43.9" stroke="#4f46e5" stroke-width="1.8" stroke-dasharray="5 4"/>
+                  <circle cx="80" cy="60" r="4" fill="#334155"/>
+                  <circle cx="60" cy="220" r="4" fill="#334155"/>
+                  <circle cx="260" cy="150" r="4" fill="#334155"/>
+                  <circle cx="147.6" cy="149.7" r="6" fill="#16a34a"/>
+                  <path d="M147.6,141 a8.7,8.7 0 1,1 -0.1,0 Z" fill="none" stroke="#16a34a" stroke-width="1.6" opacity="0"/>
+                  <text x="66" y="50" font-family="Lexend,sans-serif" font-size="16" font-weight="700" fill="#1e293b">A</text>
+                  <text x="42" y="238" font-family="Lexend,sans-serif" font-size="16" font-weight="700" fill="#1e293b">B</text>
+                  <text x="268" y="156" font-family="Lexend,sans-serif" font-size="16" font-weight="700" fill="#1e293b">C</text>
+                  <text x="156" y="145" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#15803d">Fontaine</text>
+                </svg>
+              </div>
+              <div class="space-y-3">
+                <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                  <p class="text-sm text-emerald-800"><strong>Réponse :</strong> la fontaine doit être placée au <strong>point de rencontre des médiatrices</strong> du triangle ABC, c'est-à-dire au centre du cercle circonscrit à ABC.</p>
+                </div>
+                <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                  <p class="text-sm text-slate-600"><strong>Justification :</strong> tout point de la médiatrice d'un segment est équidistant des deux extrémités de ce segment. Le point de rencontre des médiatrices de [AB], [BC] et [AC] est donc équidistant de A, B <strong>et</strong> C : c'est exactement l'endroit recherché.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ========== EXERCICE 3 ========== -->
+      <article id="exercice3" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-4">
+          <span class="inline-block rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 3</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Hauteurs &amp; orthocentre · 12 questions</span>
+        </div>
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+          <div class="p-4 sm:p-6 grid lg:grid-cols-5 gap-6">
+            <div class="lg:col-span-2 diagram rounded-xl ring-1 ring-slate-200 p-4 h-fit">
+              <svg viewBox="0 0 300 240" class="w-full h-auto" role="img" aria-label="Triangle ABC avec l'orthocentre H, D pied de la hauteur issue de B et E pied de la hauteur issue de A">
+                <polygon points="170,40 50,210 260,210" fill="none" stroke="#334155" stroke-width="2.5" stroke-linejoin="round"/>
+                <line x1="170" y1="40" x2="170" y2="210" stroke="#334155" stroke-width="1.8" stroke-dasharray="6 4"/>
+                <line x1="50" y1="210" x2="214.03" y2="123.16" stroke="#334155" stroke-width="1.8" stroke-dasharray="6 4"/>
+                <path d="M162,210 L162,202 L170,202" fill="none" stroke="#334155" stroke-width="1.8"/>
+                <path d="M209.35,114.32 L200.51,119.0 L205.19,127.84" fill="none" stroke="#334155" stroke-width="1.8"/>
+                <circle cx="170" cy="40" r="3" fill="#1e293b"/>
+                <circle cx="50" cy="210" r="3" fill="#1e293b"/>
+                <circle cx="260" cy="210" r="3" fill="#1e293b"/>
+                <circle cx="170" cy="210" r="3" fill="#4f46e5"/>
+                <circle cx="214.03" cy="123.16" r="3" fill="#4f46e5"/>
+                <circle cx="170" cy="146.47" r="4.5" fill="#f59e0b"/>
+                <text x="177" y="34" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">A</text>
+                <text x="27" y="224" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">B</text>
+                <text x="268" y="224" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">C</text>
+                <text x="176" y="226" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#4338ca">E</text>
+                <text x="220" y="120" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#4338ca">D</text>
+                <text x="178" y="144" font-family="Lexend,sans-serif" font-size="16" font-weight="700" fill="#b45309">H</text>
+              </svg>
+              <p class="mt-3 text-xs text-slate-500 text-center">H : orthocentre de ABC · D : pied de la hauteur issue de B · E : pied de la hauteur issue de A</p>
+            </div>
+            <div class="lg:col-span-3 space-y-4">
+              <div class="rounded-xl ring-1 ring-slate-200 p-4">
+                <p class="font-bold text-indigo-700 mb-2">1. Dans le triangle ABC :</p>
+                <ol class="space-y-1 text-sm text-slate-700 list-[lower-alpha] pl-5">
+                  <li>Quelle est la hauteur issue de A ?</li>
+                  <li>Quelle est la hauteur relative à [AC] ?</li>
+                  <li>Quelle est la hauteur issue de C ?</li>
+                  <li>Quel est l'orthocentre du triangle ?</li>
+                </ol>
+              </div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-4">
+                <p class="font-bold text-indigo-700 mb-2">2. Dans le triangle BCH :</p>
+                <ol class="space-y-1 text-sm text-slate-700 list-[lower-alpha] pl-5">
+                  <li>Quelle est la hauteur relative à [BC] ?</li>
+                  <li>Quelle est la hauteur issue de B ?</li>
+                  <li>Quelle est la hauteur relative à [BH] ?</li>
+                  <li>Quel est l'orthocentre du triangle ?</li>
+                </ol>
+              </div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-4">
+                <p class="font-bold text-indigo-700 mb-2">3. Dans le triangle ABH :</p>
+                <ol class="space-y-1 text-sm text-slate-700 list-[lower-alpha] pl-5">
+                  <li>Quelle est la hauteur relative à [AB] ?</li>
+                  <li>Quelle est la hauteur relative à [AH] ?</li>
+                  <li>Quelle est la hauteur relative à [BH] ?</li>
+                  <li>Quel est l'orthocentre du triangle ?</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-end px-4 sm:px-6 pb-4">
+            <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex3" onclick="toggleCorrection(this)">
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+              <span>Voir la correction</span>
+            </button>
+          </div>
+          <div id="c-ex3" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6 space-y-4 text-sm">
+            <div class="rounded-xl bg-indigo-50 ring-1 ring-indigo-100 p-4">
+              <p class="text-indigo-900"><strong>Idée clé :</strong> A, B, C, H forment un « système orthocentrique » : chacun de ces 4 points est l'orthocentre du triangle formé par les 3 autres ! On l'utilise pour répondre très vite aux questions 2 et 3.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                <p class="font-bold text-emerald-700 mb-2">1. Triangle ABC</p>
+                <p class="text-slate-700"><strong>a.</strong> hauteur issue de A : <strong>(AH)</strong>, ⊥(BC) en E</p>
+                <p class="text-slate-700"><strong>b.</strong> hauteur relative à [AC] : <strong>(BH)</strong>, ⊥(AC) en D</p>
+                <p class="text-slate-700"><strong>c.</strong> hauteur issue de C : <strong>(CH)</strong>, ⊥(AB)</p>
+                <p class="text-slate-700"><strong>d.</strong> orthocentre : <strong class="text-amber-600">H</strong></p>
+              </div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                <p class="font-bold text-emerald-700 mb-2">2. Triangle BCH</p>
+                <p class="text-slate-700"><strong>a.</strong> relative à [BC] : <strong>(HE)</strong>, portée par (AH), ⊥(BC)</p>
+                <p class="text-slate-700"><strong>b.</strong> issue de B : <strong>(AB)</strong>, car (AB)⊥(CH)</p>
+                <p class="text-slate-700"><strong>c.</strong> relative à [BH] : <strong>(AC)</strong>, car (AC)⊥(BH)</p>
+                <p class="text-slate-700"><strong>d.</strong> orthocentre : <strong class="text-amber-600">A</strong></p>
+              </div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                <p class="font-bold text-emerald-700 mb-2">3. Triangle ABH</p>
+                <p class="text-slate-700"><strong>a.</strong> relative à [AB] : <strong>(CH)</strong>, car (CH)⊥(AB)</p>
+                <p class="text-slate-700"><strong>b.</strong> relative à [AH] : <strong>(BC)</strong>, car (BC)⊥(AH)</p>
+                <p class="text-slate-700"><strong>c.</strong> relative à [BH] : <strong>(AC)</strong>, car (AC)⊥(BH)</p>
+                <p class="text-slate-700"><strong>d.</strong> orthocentre : <strong class="text-amber-600">C</strong></p>
+              </div>
+            </div>
+            <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+              <p class="text-slate-600"><strong>Pourquoi ça marche :</strong> par exemple pour le triangle BCH, le côté [CH] est porté par la hauteur (CH) de ABC, qui est ⊥(AB) par définition. Une droite ⊥(CH) passant par B est donc parallèle à (AB) — et comme elle passe par B, c'est (AB) elle-même. On raisonne de la même façon pour chaque cas.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ========== EXERCICE 4 ========== -->
+      <article id="exercice4" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-4">
+          <span class="inline-block rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 4</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Problème concret · médiatrices</span>
+        </div>
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+          <div class="p-4 sm:p-6 grid md:grid-cols-2 gap-6 items-center">
+            <div>
+              <p class="font-display font-bold text-slate-900 mb-2">🏝️ Le Trésor du Triangle des Bermudes</p>
+              <p class="text-slate-700 text-sm sm:text-base">Les célèbres pirates <strong>Mat</strong> et <strong>Matic</strong> ont caché leur trésor dans le triangle des Bermudes. Ils l'ont placé à <strong>égale distance</strong> des îles E, F et G.</p>
+              <p class="mt-2 text-slate-700 text-sm sm:text-base font-semibold">Trouver l'emplacement K du trésor.</p>
+            </div>
+            <div class="diagram rounded-xl ring-1 ring-slate-200 p-4">
+              <svg viewBox="0 -10 360 290" class="w-full h-auto" role="img" aria-label="Trois îles E, F et G formant un triangle">
+                <g transform="translate(70,190)"><ellipse cx="0" cy="0" rx="26" ry="11" fill="#fde68a" stroke="#b45309" stroke-width="1.5"/><line x1="0" y1="0" x2="0" y2="-26" stroke="#166534" stroke-width="3"/><path d="M0,-26 Q-14,-34 -20,-24 M0,-26 Q14,-34 20,-24 M0,-26 Q-4,-40 -14,-38 M0,-26 Q4,-40 14,-38" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round"/></g>
+                <text x="60" y="222" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">E</text>
+                <g transform="translate(180,50)"><ellipse cx="0" cy="0" rx="26" ry="11" fill="#fde68a" stroke="#b45309" stroke-width="1.5"/><line x1="0" y1="0" x2="0" y2="-26" stroke="#166534" stroke-width="3"/><path d="M0,-26 Q-14,-34 -20,-24 M0,-26 Q14,-34 20,-24 M0,-26 Q-4,-40 -14,-38 M0,-26 Q4,-40 14,-38" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round"/></g>
+                <text x="170" y="82" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">F</text>
+                <g transform="translate(290,140)"><ellipse cx="0" cy="0" rx="26" ry="11" fill="#fde68a" stroke="#b45309" stroke-width="1.5"/><line x1="0" y1="0" x2="0" y2="-26" stroke="#166534" stroke-width="3"/><path d="M0,-26 Q-14,-34 -20,-24 M0,-26 Q14,-34 20,-24 M0,-26 Q-4,-40 -14,-38 M0,-26 Q4,-40 14,-38" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round"/></g>
+                <text x="300" y="172" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">G</text>
+              </svg>
+            </div>
+          </div>
+          <div class="flex justify-end px-4 sm:px-6 pb-4">
+            <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex4" onclick="toggleCorrection(this)">
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+              <span>Voir la correction</span>
+            </button>
+          </div>
+          <div id="c-ex4" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6">
+            <div class="grid sm:grid-cols-2 gap-4 items-center">
+              <div class="diagram rounded-xl ring-1 ring-emerald-200 p-4">
+                <svg viewBox="0 -10 360 290" class="w-full h-auto" role="img" aria-label="Les médiatrices de EF, FG et EG se coupent au trésor K">
+                  <polygon points="70,190 180,50 290,140" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+                  <circle cx="179.5" cy="162.8" r="112.8" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                  <line x1="125" y1="120" x2="234" y2="205.6" stroke="#4f46e5" stroke-width="1.8" stroke-dasharray="5 4"/>
+                  <line x1="235" y1="95" x2="124" y2="230.6" stroke="#4f46e5" stroke-width="1.8" stroke-dasharray="5 4"/>
+                  <circle cx="70" cy="190" r="4" fill="#166534"/>
+                  <circle cx="180" cy="50" r="4" fill="#166534"/>
+                  <circle cx="290" cy="140" r="4" fill="#166534"/>
+                  <path d="M179.5,150 l6,10 l-6,4 l-6,-4 Z" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
+                  <text x="60" y="212" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#1e293b">E</text>
+                  <text x="172" y="42" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#1e293b">F</text>
+                  <text x="298" y="132" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#1e293b">G</text>
+                  <text x="184" y="180" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#b45309">K</text>
+                </svg>
+              </div>
+              <div class="space-y-3">
+                <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                  <p class="text-sm text-emerald-800"><strong>Réponse :</strong> K est le point de rencontre des <strong>médiatrices</strong> de [EF], [FG] et [EG] — le centre du cercle circonscrit au triangle EFG.</p>
+                </div>
+                <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                  <p class="text-sm text-slate-600">Même principe que l'exercice 2 : K, équidistant de E, F et G, appartient forcément aux trois médiatrices du triangle EFG.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ========== EXERCICE 5 ========== -->
+      <article id="exercice5" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-4">
+          <span class="inline-block rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 5</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Construction · orthocentre &amp; parallélogramme</span>
+        </div>
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+          <div class="p-4 sm:p-6 grid lg:grid-cols-5 gap-6">
+            <div class="lg:col-span-3 space-y-2">
+              <ol class="space-y-2 text-sm sm:text-base text-slate-700 list-decimal pl-5">
+                <li>Construire un triangle IJK tel que IJ = 6 cm, JK = 4 cm et IK = 8 cm.</li>
+                <li>Placer le point L tel que IJKL soit un parallélogramme.</li>
+                <li>Dans le triangle IJK, tracer les hauteurs issues de I et de J.</li>
+                <li>On appelle M le point d'intersection de ces deux hauteurs. Que peut-on dire du point M ?</li>
+                <li>Montrer que (IJ) est perpendiculaire à (KM).</li>
+                <li>Quelle est la nature du triangle KLM ? Justifier.</li>
+              </ol>
+            </div>
+            <div class="lg:col-span-2 diagram rounded-xl ring-1 ring-slate-200 p-4 h-fit">
+              <svg viewBox="0 0 290 260" class="w-full h-auto" role="img" aria-label="Triangle IJK point de départ de la construction">
+                <polygon points="230,120 80,120 55,216.8" fill="none" stroke="#334155" stroke-width="2.5" stroke-linejoin="round"/>
+                <circle cx="230" cy="120" r="3" fill="#1e293b"/>
+                <circle cx="80" cy="120" r="3" fill="#1e293b"/>
+                <circle cx="55" cy="216.8" r="3" fill="#1e293b"/>
+                <text x="236" y="116" font-family="Lexend,sans-serif" font-size="16" font-weight="700" fill="#1e293b">I</text>
+                <text x="60" y="112" font-family="Lexend,sans-serif" font-size="16" font-weight="700" fill="#1e293b">J</text>
+                <text x="32" y="228" font-family="Lexend,sans-serif" font-size="16" font-weight="700" fill="#1e293b">K</text>
+                <text x="150" y="112" font-family="Inter,sans-serif" font-size="12" fill="#64748b">6 cm</text>
+                <text x="52" y="170" font-family="Inter,sans-serif" font-size="12" fill="#64748b">4 cm</text>
+                <text x="150" y="180" font-family="Inter,sans-serif" font-size="12" fill="#64748b">8 cm</text>
+              </svg>
+            </div>
+          </div>
+          <div class="flex justify-end px-4 sm:px-6 pb-4">
+            <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex5" onclick="toggleCorrection(this)">
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+              <span>Voir la correction</span>
+            </button>
+          </div>
+          <div id="c-ex5" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6">
+            <div class="grid lg:grid-cols-5 gap-4 items-start">
+              <div class="lg:col-span-2 diagram rounded-xl ring-1 ring-emerald-200 p-4">
+                <svg viewBox="0 0 290 260" class="w-full h-auto" role="img" aria-label="Figure complète avec parallélogramme IJKL et orthocentre M">
+                  <polygon points="230,120 80,120 55,216.8" fill="none" stroke="#334155" stroke-width="2.5" stroke-linejoin="round"/>
+                  <polygon points="80,120 55,216.8 205,216.8 230,120" fill="none" stroke="#8b5cf6" stroke-width="1.8" stroke-dasharray="5 4"/>
+                  <line x1="230" y1="120" x2="55" y2="74.8" stroke="#4f46e5" stroke-width="1.6" stroke-dasharray="4 4"/>
+                  <line x1="80" y1="120" x2="115.15" y2="183.53" stroke="#4f46e5" stroke-width="1.6" stroke-dasharray="4 4"/>
+                  <line x1="55" y1="216.8" x2="55" y2="74.8" stroke="#dc2626" stroke-width="2"/>
+                  <path d="M65,120 L65,110 L55,110" fill="none" stroke="#dc2626" stroke-width="1.8"/>
+                  <circle cx="230" cy="120" r="3" fill="#1e293b"/>
+                  <circle cx="80" cy="120" r="3" fill="#1e293b"/>
+                  <circle cx="55" cy="216.8" r="3" fill="#1e293b"/>
+                  <circle cx="205" cy="216.8" r="3" fill="#7c3aed"/>
+                  <circle cx="55" cy="74.8" r="4" fill="#f59e0b"/>
+                  <circle cx="55" cy="120" r="3" fill="#dc2626"/>
+                  <text x="236" y="116" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#1e293b">I</text>
+                  <text x="62" y="112" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#1e293b">J</text>
+                  <text x="30" y="230" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#1e293b">K</text>
+                  <text x="211" y="230" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#7c3aed">L</text>
+                  <text x="34" y="70" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#b45309">M</text>
+                </svg>
+                <p class="mt-2 text-xs text-slate-500 text-center">Triangle KLM : rectangle en K (surligné en rouge).</p>
+              </div>
+              <div class="lg:col-span-3 space-y-3 text-sm">
+                <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                  <p class="text-slate-700"><strong>1-3.</strong> Construction : tracer IJK avec les 3 longueurs données, placer L tel que <span class="var">L = I + K − J</span> (diagonales du parallélogramme de même milieu), puis tracer les hauteurs issues de I (⊥[JK]) et de J (⊥[IK]).</p>
+                </div>
+                <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                  <p class="text-slate-700"><strong>4.</strong> M est le point de rencontre de deux hauteurs du triangle IJK : par définition, <strong>M est l'orthocentre du triangle IJK</strong>.</p>
+                </div>
+                <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                  <p class="text-slate-700"><strong>5.</strong> Puisque M est l'orthocentre de IJK, la <strong>troisième hauteur</strong> (issue de K) passe elle aussi par M (les 3 hauteurs sont concourantes). Cette troisième hauteur est perpendiculaire à [IJ] et passe par K et M : c'est donc la droite (KM). Conclusion : <strong>(IJ) ⊥ (KM)</strong>.</p>
+                </div>
+                <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                  <p class="text-slate-700"><strong>6.</strong> IJKL étant un parallélogramme, (KL) est parallèle à (IJ). Or (KM) ⊥ (IJ) d'après la question 5 ; une droite perpendiculaire à (IJ) l'est donc aussi à toute parallèle de (IJ), en particulier à (KL). Donc <strong>(KM) ⊥ (KL)</strong>, c'est-à-dire ∠LKM = 90°. <strong>Le triangle KLM est rectangle en K.</strong></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ========== EXERCICE 6 ========== -->
+      <article id="exercice6" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-4">
+          <span class="inline-block rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 6</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Démonstration · perpendicularité</span>
+        </div>
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+          <div class="p-4 sm:p-6 grid md:grid-cols-2 gap-6 items-center">
+            <div>
+              <ol class="space-y-2 text-sm sm:text-base text-slate-700 list-decimal pl-5">
+                <li>Dans la figure ci-contre, tracer <strong>F</strong> le point d'intersection des deux droites (CD) et (BE).</li>
+                <li>Montrer que <strong>(AF) ⊥ (BC)</strong>.</li>
+              </ol>
+            </div>
+            <div class="diagram diagram-grid rounded-xl ring-1 ring-slate-200 p-4">
+              <svg viewBox="0 0 300 240" class="w-full h-auto" role="img" aria-label="Triangle ABC avec D pied de la hauteur issue de C et E pied de la hauteur issue de B">
+                <polygon points="40,220 260,220 190,40" fill="#fdf2f8" fill-opacity="0.5" stroke="#334155" stroke-width="2.5" stroke-linejoin="round"/>
+                <line x1="190" y1="40" x2="190" y2="220" stroke="#334155" stroke-width="2"/>
+                <line x1="260" y1="220" x2="130.16" y2="111.8" stroke="#334155" stroke-width="2"/>
+                <path d="M180,220 L180,210 L190,210" fill="none" stroke="#16a34a" stroke-width="2"/>
+                <path d="M136.56,104.12 L144.24,110.52 L137.84,118.2" fill="none" stroke="#16a34a" stroke-width="2"/>
+                <circle cx="40" cy="220" r="3" fill="#1e293b"/>
+                <circle cx="260" cy="220" r="3" fill="#1e293b"/>
+                <circle cx="190" cy="40" r="3" fill="#1e293b"/>
+                <circle cx="190" cy="220" r="3.5" fill="#16a34a"/>
+                <circle cx="130.16" cy="111.8" r="3.5" fill="#16a34a"/>
+                <text x="24" y="236" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">A</text>
+                <text x="268" y="236" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">B</text>
+                <text x="197" y="32" font-family="Lexend,sans-serif" font-size="17" font-weight="700" fill="#1e293b">C</text>
+                <text x="187" y="236" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#15803d">D</text>
+                <text x="107" y="107" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#15803d">E</text>
+              </svg>
+            </div>
+          </div>
+          <div class="flex justify-end px-4 sm:px-6 pb-4">
+            <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex6" onclick="toggleCorrection(this)">
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+              <span>Voir la correction</span>
+            </button>
+          </div>
+          <div id="c-ex6" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6">
+            <div class="grid sm:grid-cols-2 gap-4 items-center">
+              <div class="diagram diagram-grid rounded-xl ring-1 ring-emerald-200 p-4">
+                <svg viewBox="0 0 300 240" class="w-full h-auto" role="img" aria-label="F, intersection de CD et BE, et la droite AF prolongée perpendiculaire à BC">
+                  <polygon points="40,220 260,220 190,40" fill="#fdf2f8" fill-opacity="0.5" stroke="#334155" stroke-width="2.5" stroke-linejoin="round"/>
+                  <line x1="190" y1="40" x2="190" y2="220" stroke="#334155" stroke-width="2"/>
+                  <line x1="260" y1="220" x2="130.16" y2="111.8" stroke="#334155" stroke-width="2"/>
+                  <line x1="40" y1="220" x2="231.1" y2="145.7" stroke="#4f46e5" stroke-width="2" stroke-dasharray="6 4"/>
+                  <path d="M227.48,136.38 L218.16,140.0 L221.78,149.32" fill="none" stroke="#4f46e5" stroke-width="2"/>
+                  <path d="M180,220 L180,210 L190,210" fill="none" stroke="#16a34a" stroke-width="2"/>
+                  <path d="M136.56,104.12 L144.24,110.52 L137.84,118.2" fill="none" stroke="#16a34a" stroke-width="2"/>
+                  <circle cx="40" cy="220" r="3" fill="#1e293b"/>
+                  <circle cx="260" cy="220" r="3" fill="#1e293b"/>
+                  <circle cx="190" cy="40" r="3" fill="#1e293b"/>
+                  <circle cx="190" cy="220" r="3.5" fill="#16a34a"/>
+                  <circle cx="130.16" cy="111.8" r="3.5" fill="#16a34a"/>
+                  <circle cx="190" cy="161.66" r="4.5" fill="#f59e0b"/>
+                  <text x="24" y="236" font-family="Lexend,sans-serif" font-size="16" font-weight="700" fill="#1e293b">A</text>
+                  <text x="266" y="236" font-family="Lexend,sans-serif" font-size="16" font-weight="700" fill="#1e293b">B</text>
+                  <text x="197" y="32" font-family="Lexend,sans-serif" font-size="16" font-weight="700" fill="#1e293b">C</text>
+                  <text x="187" y="236" font-family="Lexend,sans-serif" font-size="14" font-weight="700" fill="#15803d">D</text>
+                  <text x="107" y="107" font-family="Lexend,sans-serif" font-size="14" font-weight="700" fill="#15803d">E</text>
+                  <text x="196" y="158" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#b45309">F</text>
+                </svg>
+              </div>
+              <div class="space-y-3 text-sm">
+                <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                  <p class="text-slate-700"><strong>1.</strong> (CD) et (BE) sont deux hauteurs du triangle ABC (CD ⊥ AB en D, BE ⊥ AC en E). Leur point d'intersection <strong>F</strong> se place à l'intérieur du triangle, comme sur la figure.</p>
+                </div>
+                <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                  <p class="text-slate-700"><strong>2.</strong> F est le point de rencontre de deux hauteurs du triangle ABC : (CD) et (BE). Par définition, <strong>F est donc l'orthocentre du triangle ABC</strong>.</p>
+                  <p class="mt-2 text-slate-700">Or l'orthocentre est le point de rencontre des <strong>trois</strong> hauteurs : la troisième hauteur, issue de A et perpendiculaire à (BC), passe donc elle aussi par F. Cette hauteur est justement la droite (AF).</p>
+                  <p class="mt-2 font-semibold text-emerald-700">Conclusion : (AF) ⊥ (BC). ∎</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ========== EXERCICE 7 ========== -->
+      <article id="exercice7" class="scroll-mt-28 mb-4">
+        <div class="flex items-center gap-2 flex-wrap mb-4">
+          <span class="inline-block rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 7</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Construction · centre de gravité</span>
+        </div>
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+          <div class="p-4 sm:p-6 space-y-4">
+            <div class="rounded-xl bg-indigo-50 ring-1 ring-indigo-100 p-4">
+              <p class="text-xs font-bold uppercase tracking-wide text-indigo-600 mb-1">Rappel utile (hors-cours)</p>
+              <p class="text-sm text-indigo-900">La <strong>médiane</strong> issue d'un sommet relie ce sommet au milieu du côté opposé. Les trois médianes d'un triangle se coupent en un point unique : le <strong>centre de gravité</strong> G, situé aux <strong>2/3</strong> de chaque médiane en partant du sommet (et au 1/3 en partant du milieu du côté).</p>
+            </div>
+            <div class="rounded-xl ring-1 ring-slate-200 p-4">
+              <p class="font-semibold text-slate-800 mb-1">a) Construire un triangle ABC de base AB = 6 cm et dont le centre de gravité G soit tel que : AG = 4 cm et CG = 4 cm.</p>
+              <p class="text-sm text-slate-600">Justifier la construction. Quelle est la nature du triangle ABC ?</p>
+            </div>
+            <div class="rounded-xl ring-1 ring-slate-200 p-4">
+              <p class="font-semibold text-slate-800 mb-1">b) Construire, sans justification, un triangle TRI tel que la médiane issue de T mesure 6 cm, celle issue de R mesure 4,8 cm, et RI = 7 cm.</p>
+            </div>
+          </div>
+          <div class="flex justify-end px-4 sm:px-6 pb-4">
+            <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex7" onclick="toggleCorrection(this)">
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+              <span>Voir la correction</span>
+            </button>
+          </div>
+          <div id="c-ex7" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6 space-y-5">
+            <div>
+              <p class="font-bold text-emerald-700 mb-3">a) Triangle ABC (AB = 6, AG = 4, CG = 4)</p>
+              <div class="grid sm:grid-cols-2 gap-4 items-center">
+                <div class="diagram rounded-xl ring-1 ring-emerald-200 p-4">
+                  <svg viewBox="0 0 280 250" class="w-full h-auto" role="img" aria-label="Triangle ABC isocèle en B avec le centre de gravité G et les médianes">
+                    <polygon points="60,40 240,40 195,214.3" fill="none" stroke="#334155" stroke-width="2.5" stroke-linejoin="round"/>
+                    <line x1="60" y1="40" x2="217.5" y2="127.15" stroke="#4f46e5" stroke-width="1.8" stroke-dasharray="5 4"/>
+                    <line x1="195" y1="214.3" x2="150" y2="40" stroke="#4f46e5" stroke-width="1.8" stroke-dasharray="5 4"/>
+                    <line x1="60" y1="35" x2="60" y2="45" stroke="#334155" stroke-width="1.6"/>
+                    <line x1="195" y1="209.3" x2="195" y2="219.3" stroke="#334155" stroke-width="0" opacity="0"/>
+                    <circle cx="60" cy="40" r="3" fill="#1e293b"/>
+                    <circle cx="240" cy="40" r="3" fill="#1e293b"/>
+                    <circle cx="195" cy="214.3" r="3" fill="#1e293b"/>
+                    <circle cx="150" cy="40" r="3" fill="#64748b"/>
+                    <circle cx="217.5" cy="127.15" r="3" fill="#64748b"/>
+                    <circle cx="165" cy="98.1" r="4.5" fill="#f59e0b"/>
+                    <text x="40" y="30" font-family="Lexend,sans-serif" font-size="16" font-weight="700" fill="#1e293b">A</text>
+                    <text x="248" y="30" font-family="Lexend,sans-serif" font-size="16" font-weight="700" fill="#1e293b">B</text>
+                    <text x="200" y="230" font-family="Lexend,sans-serif" font-size="16" font-weight="700" fill="#1e293b">C</text>
+                    <text x="140" y="30" font-family="Lexend,sans-serif" font-size="13" font-weight="700" fill="#64748b">C'</text>
+                    <text x="223" y="122" font-family="Lexend,sans-serif" font-size="13" font-weight="700" fill="#64748b">A'</text>
+                    <text x="171" y="94" font-family="Lexend,sans-serif" font-size="15" font-weight="700" fill="#b45309">G</text>
+                  </svg>
+                  <p class="mt-2 text-xs text-slate-500 text-center">C' : milieu de [AB] · A' : milieu de [BC] · triangle isocèle en B</p>
+                </div>
+                <div class="space-y-3 text-sm">
+                  <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                    <p class="text-slate-700"><strong>Construction :</strong></p>
+                    <ol class="mt-1.5 space-y-1 list-decimal pl-4 text-slate-700">
+                      <li>Tracer [AB] = 6 cm et placer C', milieu de [AB].</li>
+                      <li>G est à 2/3 de la médiane issue de C, donc à 1/3 de C' : puisque CG = 4 (= 2/3 de CC'), on a C'G = 2 cm. Tracer le cercle (A, 4 cm) et le cercle (C', 2 cm) : leur intersection donne <strong>G</strong>.</li>
+                      <li>C est sur la demi-droite [C'G) tel que C'C = 3×C'G = 6 cm.</li>
+                    </ol>
+                  </div>
+                  <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                    <p class="text-slate-700"><strong>Justification :</strong> le centre de gravité vérifie toujours CG = (2/3)CC' et AG = (2/3)AA'. Fixer AG = 4 et C'G = 2 (déduit de CG = 4) détermine G comme intersection de deux cercles de centres connus (A et C') — d'où la construction.</p>
+                  </div>
+                  <div class="rounded-xl bg-amber-50 ring-1 ring-amber-200 p-4">
+                    <p class="text-amber-900"><strong>Nature du triangle :</strong> le calcul donne AB = BC = 6 cm (et AC = 3√6 ≈ 7,35 cm). <strong>ABC est isocèle en B.</strong></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-emerald-100 pt-4">
+              <p class="font-bold text-emerald-700 mb-2">b) Triangle TRI (sans justification)</p>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                <p class="text-sm text-slate-700">Même méthode que ci-dessus, avec I' le milieu de [RI] :</p>
+                <ol class="mt-2 space-y-1 text-sm list-decimal pl-4 text-slate-700">
+                  <li>Tracer [RI] = 7 cm et placer I', son milieu.</li>
+                  <li>La médiane issue de T mesure 6 cm ⟹ TG = 4 cm et I'G = 2 cm. La médiane issue de R mesure 4,8 cm ⟹ RG = 3,2 cm.</li>
+                  <li>G = intersection du cercle (I', 2 cm) et du cercle (R, 3,2 cm).</li>
+                  <li>T est sur la demi-droite [I'G) tel que I'T = 3×I'G = 6 cm.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-slate-900 text-slate-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+      <div>
+        <a href="/" class="flex items-center gap-2.5">
+          <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+          <span class="font-display font-bold text-white leading-tight">
+            <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+          </span>
+        </a>
+        <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+      </div>
+      <nav aria-label="Navigation du pied de page" class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+        <a href="#mediatrice" class="hover:text-white transition">Médiatrice</a>
+        <a href="#bissectrice" class="hover:text-white transition">Bissectrice</a>
+        <a href="#hauteur" class="hover:text-white transition">Hauteur</a>
+        <a href="#exercices" class="hover:text-white transition">Exercices</a>
+      </nav>
+    </div>
+    <div class="mt-8 pt-6 border-t border-slate-800 text-xs text-slate-500">
+      Fiche de cours et exercices — Médiatrice, bissectrice et hauteur d'un triangle (cercle circonscrit, cercle inscrit, orthocentre) · Mathématiques, 1ʳᵉ année collège, semestre 1.
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuIconOpen = document.getElementById('menuIconOpen');
+  const menuIconClose = document.getElementById('menuIconClose');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = !mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    menuIconOpen.classList.toggle('hidden');
+    menuIconClose.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', String(!isOpen));
+  });
+  document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+    menuIconOpen.classList.remove('hidden');
+    menuIconClose.classList.add('hidden');
+  }));
+
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  function toggleCorrection(btn) {
+    const target = document.getElementById(btn.dataset.target);
+    const isHidden = target.classList.contains('hidden');
+    target.classList.toggle('hidden');
+    btn.querySelector('span').textContent = isHidden ? 'Masquer la correction' : 'Voir la correction';
+    btn.classList.toggle('bg-emerald-600', !isHidden);
+    btn.classList.toggle('hover:bg-emerald-700', !isHidden);
+    btn.classList.toggle('bg-slate-500', isHidden);
+    btn.classList.toggle('hover:bg-slate-600', isHidden);
+    if (isHidden) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+</script>
+
+</body>
+</html>

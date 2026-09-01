@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Évaluation Diagnostique — Mathématiques | Correction automatique</title>
+<meta name="description" content="Évaluation diagnostique de mathématiques interactive et corrigée automatiquement : 15 questions sur les nombres relatifs, le calcul littéral, la proportionnalité et la géométrie. Cochez vos réponses et obtenez votre note instantanément.">
+<meta name="theme-color" content="#042f2e">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Évaluation Diagnostique — Mathématiques">
+<meta property="og:description" content="15 questions interactives, correction et note automatiques en un clic.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1635372722656-389f87a941b7?auto=format&fit=crop&w=1200&q=80">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='6' y='5' width='20' height='24' rx='3' fill='%23f0fdfa' stroke='%230d9488' stroke-width='2'/%3E%3Crect x='11' y='3' width='10' height='5' rx='1.5' fill='%230d9488'/%3E%3Cpath d='M11 17l3.5 3.5L21 13' stroke='%23f97316' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS (CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Outfit', 'sans-serif'],
+          sans: ['Inter', 'sans-serif'],
+        },
+        colors: {
+          brand: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+          accent: {
+            50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74',
+            400: '#fb923c', 500: '#f97316', 600: '#ea580c', 700: '#c2410c',
+          },
+        },
+        boxShadow: {
+          soft: '0 4px 24px -4px rgb(13 148 136 / 0.14)',
+        },
+      },
+    },
+  };
+</script>
+
+<!-- KaTeX (typographie mathématique) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+
+<style>
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body { font-feature-settings: "cv02","cv03","cv04","cv11"; overflow-x: hidden; }
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal-visible { opacity: 1; transform: translateY(0); }
+  #mobile-menu.hidden { display: none; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #f1f5f9; }
+  ::-webkit-scrollbar-thumb { background: #99f6e4; border-radius: 9999px; }
+  .config-fig { max-width: 100%; height: auto; }
+  .katex-display { overflow-x: auto; overflow-y: hidden; padding: .3rem .1rem; margin: .4rem 0; }
+  .katex { font-size: 1.05em; }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* Question type badges */
+  .type-chip { display:inline-flex; align-items:center; gap:.3rem; font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.03em; padding:.25rem .6rem; border-radius:9999px; }
+
+  /* QCM options */
+  .qcm-option { position:relative; display:flex; align-items:center; justify-content:center; text-align:center; cursor:pointer; user-select:none; border-radius:.75rem; border:2px solid #e2e8f0; background:#f8fafc; padding:.6rem .75rem; font-size:.88rem; font-weight:600; color:#334155; transition:all .15s ease; line-height:1.3; }
+  .qcm-option:hover { border-color:#5eead4; background:#f0fdfa; }
+  .qcm-option:focus-within { outline:2px solid #0d9488; outline-offset:2px; }
+  .qcm-option.is-selected { border-color:#0d9488; background:#f0fdfa; color:#0f766e; box-shadow:0 0 0 2px #99f6e4; }
+  .qcm-option.correct-answer { border-color:#10b981 !important; background:#ecfdf5 !important; color:#047857 !important; box-shadow:0 0 0 2px #6ee7b7 !important; }
+  .qcm-option.correct-answer::after { content:"✓"; position:absolute; top:-9px; right:-9px; width:20px; height:20px; border-radius:9999px; background:#10b981; color:#fff; font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; box-shadow:0 1px 3px rgb(0 0 0 / .25); }
+  .qcm-option.wrong-answer { border-color:#f43f5e !important; background:#fff1f2 !important; color:#be123c !important; box-shadow:0 0 0 2px #fda4af !important; }
+  .qcm-option.wrong-answer::after { content:"✗"; position:absolute; top:-9px; right:-9px; width:20px; height:20px; border-radius:9999px; background:#f43f5e; color:#fff; font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; box-shadow:0 1px 3px rgb(0 0 0 / .25); }
+
+  /* Compare segmented buttons */
+  .cmp-btn { padding:.4rem .85rem; font-size:.95rem; font-weight:800; color:#475569; background:#fff; transition:all .15s ease; }
+  .cmp-btn:hover { background:#f0fdfa; }
+  .cmp-btn.is-selected { background:#0d9488; color:#fff; }
+  .cmp-btn.correct-answer { background:#10b981 !important; color:#fff !important; }
+  .cmp-btn.wrong-answer { background:#f43f5e !important; color:#fff !important; }
+
+  /* Blank inputs */
+  .blank-input { width:3.6rem; text-align:center; border:2px solid #cbd5e1; border-radius:.5rem; padding:.35rem .25rem; font-weight:700; font-size:.9rem; color:#1e293b; background:#fff; }
+  .blank-input:focus { outline:none; border-color:#0d9488; box-shadow:0 0 0 3px #99f6e4; }
+  .blank-wide { width:6.5rem; }
+  .frac-blank { display:inline-flex; flex-direction:column; align-items:center; line-height:1; margin:0 .2rem; vertical-align:middle; }
+  .frac-blank input { width:2.6rem; text-align:center; border:2px solid #cbd5e1; border-radius:.4rem .4rem 0 0; padding:.2rem 0; font-weight:700; font-size:.85rem; }
+  .frac-blank input:focus { outline:none; border-color:#0d9488; box-shadow:0 0 0 3px #99f6e4; }
+  .frac-blank span { border-top:2px solid #1e293b; width:100%; text-align:center; font-size:.8rem; padding-top:.1rem; font-weight:700; }
+
+  .feedback-note { display:block; }
+  .self-btn { flex:1; padding:.6rem 1rem; border-radius:9999px; font-weight:700; font-size:.85rem; border:2px solid #e2e8f0; background:#fff; color:#475569; transition:all .15s ease; }
+  .self-btn:hover { border-color:#0d9488; }
+  .self-btn.active-yes { background:#ecfdf5; border-color:#10b981; color:#047857; }
+  .self-btn.active-no { background:#fff1f2; border-color:#f43f5e; color:#be123c; }
+
+  #results-modal.hidden { display:none; }
+  #score-ring { transition: background 1s ease; }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
+  .dark .bg-accent-50, .dark .bg-amber-50 { background-color: #3a2a0a; }
+  .dark .border-accent-200, .dark .border-amber-400 { border-color: #92400e; }
+  .dark .bg-rose-50 { background-color: #3a0d18; }
+  .dark .border-rose-200 { border-color: #7a2138; }
+  .dark .text-rose-700 { color: #fb7185; }
+  .dark .bg-orange-100 { background-color: #4a2a0a; }
+  .dark .text-orange-700 { color: #fdba74; }
+  .dark .bg-accent-100 { background-color: #4a2a0a; }
+  .dark .text-accent-700 { color: #fdba74; }
+  .dark .bg-brand-100 { background-color: #12294c; }
+  .dark .text-brand-700 { color: #b8cfec; }
+  .dark .bg-brand-50 { background-color: #0d2145; }
+  .dark .border-brand-200 { border-color: #1c3a63; }
+  .dark .text-brand-800 { color: #dbe7f6; }
+  .dark .qcm-option { background: #0b1f3a; border-color: #1c3a63; color: #cbd5e1; }
+  .dark .blank-input { background: #0b1f3a; border-color: #1c3a63; color: #f1f5f9; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans transition-colors">
+
+<a href="#accueil" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-brand-700 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">Aller au contenu principal</a>
+
+<!-- Progress bar -->
+<div class="fixed top-0 left-0 right-0 z-[60] h-1 bg-slate-200 dark:bg-slate-800">
+  <div id="progress-bar" class="h-full bg-gradient-to-r from-brand-500 to-accent-500 transition-all duration-300" style="width:0%"></div>
+</div>
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <a href="#accueil" class="flex items-center gap-2.5 group">
+      <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-9 h-9 shrink-0 rounded-full">
+      <span class="font-display font-bold text-lg text-slate-900 dark:text-white tracking-tight">Éval<span class="text-brand-600 dark:text-accent-400">.</span>Diagnostique</span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-1">
+      <a href="/" class="px-3.5 py-2 text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-brand-700 hover:bg-brand-50 dark:hover:bg-white/5 dark:hover:text-white rounded-full transition-colors">← Portail</a>
+      <a href="#section-nombres" class="px-3.5 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-700 hover:bg-brand-50 dark:hover:bg-white/5 dark:hover:text-white rounded-full transition-colors">Nombres</a>
+      <a href="#section-litteral" class="px-3.5 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-700 hover:bg-brand-50 dark:hover:bg-white/5 dark:hover:text-white rounded-full transition-colors">Calcul littéral</a>
+      <a href="#section-cercle" class="px-3.5 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-700 hover:bg-brand-50 dark:hover:bg-white/5 dark:hover:text-white rounded-full transition-colors">Géométrie</a>
+      <a href="#section-triangles" class="px-3.5 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-700 hover:bg-brand-50 dark:hover:bg-white/5 dark:hover:text-white rounded-full transition-colors">Triangles</a>
+      <button onclick="gradeQuiz()" class="ml-2 inline-flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-white bg-accent-500 hover:bg-accent-600 rounded-full shadow-soft transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+        Voir ma note
+      </button>
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-brand-700 dark:hover:text-accent-400 transition-colors">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+    </div>
+
+    <div class="flex items-center gap-1 md:hidden">
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+      <button id="menu-btn" onclick="toggleMobileMenu()" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" class="p-2 -mr-2 text-slate-700 dark:text-slate-200">
+        <svg id="icon-burger" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0b1f3a] px-4 py-3 space-y-1">
+    <a href="/" class="block px-3 py-2.5 rounded-lg text-slate-500 dark:text-slate-400 font-semibold hover:bg-brand-50 dark:hover:bg-white/5">← Portail</a>
+    <a href="#section-nombres" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 dark:text-slate-200 font-semibold hover:bg-brand-50 dark:hover:bg-white/5">1. Nombres & fractions</a>
+    <a href="#section-comparaisons" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 font-semibold hover:bg-brand-50">2. Comparaisons</a>
+    <a href="#section-litteral" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 font-semibold hover:bg-brand-50">3. Calcul littéral</a>
+    <a href="#section-proportionnalite" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 font-semibold hover:bg-brand-50">4. Proportionnalité</a>
+    <a href="#section-cercle" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 font-semibold hover:bg-brand-50">5. Géométrie du cercle</a>
+    <a href="#section-symetrie" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 font-semibold hover:bg-brand-50">6. Symétrie axiale</a>
+    <a href="#section-triangles" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 font-semibold hover:bg-brand-50">7. Triangles & vecteurs</a>
+    <button onclick="closeMobileMenu(); gradeQuiz();" class="w-full mt-2 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 text-sm font-bold text-white bg-accent-500 hover:bg-accent-600 rounded-full">
+      Voir ma note
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section id="accueil" class="relative overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1635372722656-389f87a941b7?auto=format&fit=crop&w=1740&q=80"
+         alt="Tableau noir recouvert de formules mathématiques" class="w-full h-full object-cover" loading="eager">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-950/95 via-brand-900/90 to-teal-800/85"></div>
+  </div>
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-20 md:pt-24 md:pb-28">
+    <div class="max-w-2xl">
+      <span class="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-accent-300 text-xs sm:text-sm font-semibold px-3.5 py-1.5 rounded-full backdrop-blur-sm">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.5 3A1.5 1.5 0 0 0 1 4.5v3.879a1.5 1.5 0 0 0 .44 1.06l8.5 8.5a1.5 1.5 0 0 0 2.12 0l3.879-3.879a1.5 1.5 0 0 0 0-2.12l-8.5-8.5A1.5 1.5 0 0 0 6.38 3H2.5ZM5 7a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" clip-rule="evenodd"/></svg>
+        Mathématiques · Évaluation diagnostique · Début d'année
+      </span>
+
+      <h1 class="mt-5 font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.05] tracking-tight">
+        Évaluation <span class="text-accent-400">Diagnostique</span>
+      </h1>
+
+      <p class="mt-5 text-base sm:text-lg text-brand-100 leading-relaxed max-w-xl">
+        15 questions pour faire le point sur les notions clés : nombres relatifs, fractions, calcul littéral,
+        proportionnalité et géométrie. Cochez ou complétez vos réponses, puis cliquez sur
+        <strong class="text-white">« Voir ma note »</strong> pour obtenir votre correction détaillée instantanément.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#section-nombres" class="inline-flex items-center gap-2 bg-white text-brand-800 font-bold px-5 py-3 rounded-full shadow-lg hover:bg-brand-50 transition-colors">
+          Commencer l'évaluation
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
+        <a href="#comment-ca-marche" class="inline-flex items-center gap-2 bg-white/10 border border-white/25 text-white font-semibold px-5 py-3 rounded-full hover:bg-white/20 transition-colors backdrop-blur-sm">
+          Comment ça marche ?
+        </a>
+      </div>
+
+      <div class="mt-10 flex flex-wrap gap-x-8 gap-y-4">
+        <div>
+          <p class="font-display font-extrabold text-2xl sm:text-3xl text-white">15</p>
+          <p class="text-xs sm:text-sm text-brand-200 font-medium">questions</p>
+        </div>
+        <div>
+          <p class="font-display font-extrabold text-2xl sm:text-3xl text-white">20</p>
+          <p class="text-xs sm:text-sm text-brand-200 font-medium">points au total</p>
+        </div>
+        <div>
+          <p class="font-display font-extrabold text-2xl sm:text-3xl text-white">7</p>
+          <p class="text-xs sm:text-sm text-brand-200 font-medium">thèmes couverts</p>
+        </div>
+        <div>
+          <p class="font-display font-extrabold text-2xl sm:text-3xl text-white">100%</p>
+          <p class="text-xs sm:text-sm text-brand-200 font-medium">correction instantanée</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMMENT ÇA MARCHE ============ -->
+<section id="comment-ca-marche" class="py-14 sm:py-16 bg-white border-b border-slate-200 scroll-mt-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal grid sm:grid-cols-3 gap-5">
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5">
+        <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold mb-3">1</span>
+        <p class="font-semibold text-slate-800 mb-1">Répondez aux questions</p>
+        <p class="text-sm text-slate-600 leading-relaxed">Cochez la bonne réponse, complétez les champs ou rédigez votre réponse selon le type de question.</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5">
+        <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold mb-3">2</span>
+        <p class="font-semibold text-slate-800 mb-1">Cliquez sur « Voir ma note »</p>
+        <p class="text-sm text-slate-600 leading-relaxed">Le bouton est disponible dans le menu et en bas de page, ou via la bulle flottante toujours visible.</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5">
+        <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold mb-3">3</span>
+        <p class="font-semibold text-slate-800 mb-1">Découvrez votre note et le corrigé</p>
+        <p class="text-sm text-slate-600 leading-relaxed">Votre score sur 20 s'affiche, et chaque question se colore en vert (correct) ou rouge (à revoir) avec la bonne réponse.</p>
+      </div>
+    </div>
+
+    <!-- Quick jump -->
+    <div class="reveal mt-8 flex flex-wrap items-center gap-2">
+      <span class="text-xs font-bold text-slate-500 uppercase tracking-wide mr-1">Accès rapide :</span>
+      <a href="#q1" class="text-xs font-semibold bg-slate-50 border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">01</a>
+      <a href="#q2" class="text-xs font-semibold bg-slate-50 border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">02</a>
+      <a href="#q3" class="text-xs font-semibold bg-slate-50 border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">03</a>
+      <a href="#q4" class="text-xs font-semibold bg-slate-50 border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">04</a>
+      <a href="#q5" class="text-xs font-semibold bg-slate-50 border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">05</a>
+      <a href="#q6" class="text-xs font-semibold bg-slate-50 border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">06</a>
+      <a href="#q7" class="text-xs font-semibold bg-slate-50 border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">07</a>
+      <a href="#q8" class="text-xs font-semibold bg-slate-50 border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">08</a>
+      <a href="#q9" class="text-xs font-semibold bg-slate-50 border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">09</a>
+      <a href="#q10" class="text-xs font-semibold bg-slate-50 border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">10</a>
+      <a href="#q11" class="text-xs font-semibold bg-slate-50 border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">11</a>
+      <a href="#q12" class="text-xs font-semibold bg-slate-50 border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">12</a>
+      <a href="#q13" class="text-xs font-semibold bg-slate-50 border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">13</a>
+      <a href="#q14" class="text-xs font-semibold bg-slate-50 border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">14</a>
+      <a href="#q15" class="text-xs font-semibold bg-slate-50 border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">15</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 1 : NOMBRES & FRACTIONS ============ -->
+<section id="section-nombres" data-section="Nombres & fractions" class="py-16 sm:py-20 border-b border-slate-200 bg-white scroll-mt-4">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal mb-10">
+      <p class="text-brand-600 font-bold text-sm tracking-wide uppercase mb-2">1. Nombres & calculs</p>
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">Nombres relatifs, fractions & écriture scientifique</h2>
+      <p class="mt-3 text-slate-600 leading-relaxed max-w-3xl">Les bases du calcul numérique : opérations sur les fractions, résolution d'équation, écriture scientifique et simplification de rationnels.</p>
+    </div>
+
+    <div class="space-y-8">
+
+      <!-- Q1 -->
+      <article id="q1" class="reveal scroll-mt-24 bg-slate-50 rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-5">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">1</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Question 1</h3>
+            <span class="type-chip bg-brand-100 text-brand-700">QCM</span>
+            <span class="type-chip bg-accent-100 text-accent-700">1,5 pt</span>
+          </div>
+          <p class="text-slate-600 mb-5">Cocher la bonne réponse pour chacun des trois calculs :</p>
+
+          <div class="space-y-4">
+            <!-- 1a -->
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 bg-white rounded-xl border border-slate-200 p-4">
+              <div class="shrink-0 sm:w-48 text-center font-semibold text-slate-800">$\dfrac{-6}{5}+\dfrac{1}{10}=\ ?$</div>
+              <div class="grade-item grid grid-cols-2 sm:grid-cols-5 gap-2 flex-1" data-type="mcq" data-weight="15">
+                <label class="qcm-option"><input type="radio" name="q1a" class="sr-only"><span>$\frac{-11}{71}$</span></label>
+                <label class="qcm-option"><input type="radio" name="q1a" class="sr-only"><span>$\frac{-5}{15}$</span></label>
+                <label class="qcm-option"><input type="radio" name="q1a" class="sr-only"><span>$\frac{-1}{2}$</span></label>
+                <label class="qcm-option"><input type="radio" name="q1a" class="sr-only"><span>$\frac{-2}{3}$</span></label>
+                <label class="qcm-option" data-correct="true"><input type="radio" name="q1a" class="sr-only"><span>$\frac{-11}{10}$</span></label>
+              </div>
+            </div>
+            <!-- 1b -->
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 bg-white rounded-xl border border-slate-200 p-4">
+              <div class="shrink-0 sm:w-48 text-center font-semibold text-slate-800">$\dfrac{3}{2}-\dfrac{7}{4}=\ ?$</div>
+              <div class="grade-item grid grid-cols-2 sm:grid-cols-5 gap-2 flex-1" data-type="mcq" data-weight="15">
+                <label class="qcm-option" data-correct="true"><input type="radio" name="q1b" class="sr-only"><span>$\frac{-1}{4}$</span></label>
+                <label class="qcm-option"><input type="radio" name="q1b" class="sr-only"><span>$\frac{-1}{2}$</span></label>
+                <label class="qcm-option"><input type="radio" name="q1b" class="sr-only"><span>$\frac{-5}{4}$</span></label>
+                <label class="qcm-option"><input type="radio" name="q1b" class="sr-only"><span>$\frac{-17}{2}$</span></label>
+                <label class="qcm-option"><input type="radio" name="q1b" class="sr-only"><span>$\frac{5}{3}$</span></label>
+              </div>
+            </div>
+            <!-- 1c -->
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3 bg-white rounded-xl border border-slate-200 p-4">
+              <div class="shrink-0 sm:w-48 text-center font-semibold text-slate-800">$\dfrac{4}{7}+\dfrac{1}{7}\times 3=\ ?$</div>
+              <div class="grade-item grid grid-cols-2 sm:grid-cols-5 gap-2 flex-1" data-type="mcq" data-weight="15">
+                <label class="qcm-option"><input type="radio" name="q1c" class="sr-only"><span>$\frac{15}{7}$</span></label>
+                <label class="qcm-option"><input type="radio" name="q1c" class="sr-only"><span>$\frac{-1}{8}$</span></label>
+                <label class="qcm-option" data-correct="true"><input type="radio" name="q1c" class="sr-only"><span>$1$</span></label>
+                <label class="qcm-option"><input type="radio" name="q1c" class="sr-only"><span>$\frac{2{,}5}{9}$</span></label>
+                <label class="qcm-option"><input type="radio" name="q1c" class="sr-only"><span>$\frac{-1}{7}$</span></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q2 -->
+      <article id="q2" class="reveal scroll-mt-24 bg-slate-50 rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-5">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">2</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Question 2</h3>
+            <span class="type-chip bg-brand-100 text-brand-700">QCM</span>
+            <span class="type-chip bg-accent-100 text-accent-700">0,5 pt</span>
+          </div>
+          <p class="text-slate-700 mb-4">La solution de cette équation $\dfrac{2}{3}x-2=0$ est :</p>
+          <div class="grade-item grid grid-cols-3 gap-2 max-w-md" data-type="mcq" data-weight="15">
+            <label class="qcm-option" data-correct="true"><input type="radio" name="q2" class="sr-only"><span>$3$</span></label>
+            <label class="qcm-option"><input type="radio" name="q2" class="sr-only"><span>$\frac{1}{6}$</span></label>
+            <label class="qcm-option"><input type="radio" name="q2" class="sr-only"><span>$\frac{3}{2}$</span></label>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q3 -->
+      <article id="q3" class="reveal scroll-mt-24 bg-slate-50 rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-5">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">3</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Question 3</h3>
+            <span class="type-chip bg-brand-100 text-brand-700">QCM</span>
+            <span class="type-chip bg-accent-100 text-accent-700">0,5 pt</span>
+          </div>
+          <p class="text-slate-700 mb-4">Le produit $2{,}5\times 10^{-3}$ est égal à :</p>
+          <div class="grade-item grid grid-cols-3 gap-2 max-w-md" data-type="mcq" data-weight="15">
+            <label class="qcm-option"><input type="radio" name="q3" class="sr-only"><span>$0{,}025$</span></label>
+            <label class="qcm-option"><input type="radio" name="q3" class="sr-only"><span>$2500$</span></label>
+            <label class="qcm-option" data-correct="true"><input type="radio" name="q3" class="sr-only"><span>$0{,}0025$</span></label>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q4 -->
+      <article id="q4" class="reveal scroll-mt-24 bg-slate-50 rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-5">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">4</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Question 4</h3>
+            <span class="type-chip bg-orange-100 text-orange-700">À compléter</span>
+            <span class="type-chip bg-accent-100 text-accent-700">3 pts</span>
+          </div>
+          <p class="text-slate-700 mb-5">Simplifier les rationnels suivants (écrire sous la forme <code class="bg-slate-200 px-1.5 py-0.5 rounded text-sm">a/b</code>, fraction irréductible) :</p>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="bg-white rounded-xl border border-slate-200 p-4 flex items-center justify-between gap-3">
+              <span class="font-semibold">$\dfrac{45}{18}=$</span>
+              <input type="text" class="grade-item blank-input" data-type="fraction" data-weight="18" data-answer="5/2" placeholder="a/b" autocomplete="off" autocapitalize="off" spellcheck="false">
+            </div>
+            <div class="bg-white rounded-xl border border-slate-200 p-4 flex items-center justify-between gap-3">
+              <span class="font-semibold">$\dfrac{40}{16}=$</span>
+              <input type="text" class="grade-item blank-input" data-type="fraction" data-weight="18" data-answer="5/2" placeholder="a/b" autocomplete="off" autocapitalize="off" spellcheck="false">
+            </div>
+            <div class="bg-white rounded-xl border border-slate-200 p-4 flex items-center justify-between gap-3">
+              <span class="font-semibold">$\dfrac{-36}{24}=$</span>
+              <input type="text" class="grade-item blank-input" data-type="fraction" data-weight="18" data-answer="-3/2" placeholder="a/b" autocomplete="off" autocapitalize="off" spellcheck="false">
+            </div>
+            <div class="bg-white rounded-xl border border-slate-200 p-4 flex items-center justify-between gap-3">
+              <span class="font-semibold">$\dfrac{72}{90}=$</span>
+              <input type="text" class="grade-item blank-input" data-type="fraction" data-weight="18" data-answer="4/5" placeholder="a/b" autocomplete="off" autocapitalize="off" spellcheck="false">
+            </div>
+            <div class="bg-white rounded-xl border border-slate-200 p-4 flex items-center justify-between gap-3">
+              <span class="font-semibold">$\dfrac{112}{-48}=$</span>
+              <input type="text" class="grade-item blank-input" data-type="fraction" data-weight="18" data-answer="-7/3" placeholder="a/b" autocomplete="off" autocapitalize="off" spellcheck="false">
+            </div>
+          </div>
+          <p class="mt-3 text-xs text-slate-400">Exemple de saisie : pour $\frac{-3}{2}$, tapez <code class="bg-slate-100 px-1 rounded">-3/2</code>.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 2 : COMPARAISONS & ENCADREMENTS ============ -->
+<section id="section-comparaisons" data-section="Comparaisons & encadrements" class="py-16 sm:py-20 border-b border-slate-200 scroll-mt-4">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal mb-10">
+      <p class="text-brand-600 font-bold text-sm tracking-wide uppercase mb-2">2. Comparaisons</p>
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">Comparer & encadrer des nombres</h2>
+      <p class="mt-3 text-slate-600 leading-relaxed max-w-3xl">Comparer des quotients à l'aide des symboles $<$, $=$, $>$, puis encadrer des nombres décimaux par deux entiers consécutifs.</p>
+    </div>
+
+    <div class="space-y-8">
+
+      <!-- Q6 -->
+      <article id="q6" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-5">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">6</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Question 6</h3>
+            <span class="type-chip bg-orange-100 text-orange-700">À compléter</span>
+            <span class="type-chip bg-accent-100 text-accent-700">2 pts</span>
+          </div>
+          <p class="text-slate-700 mb-5">Comparer les expressions suivantes (choisir $<$, $=$ ou $>$) :</p>
+
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div class="grade-item flex items-center justify-center gap-3 bg-slate-50 rounded-xl border border-slate-200 p-4" data-type="compare" data-weight="15" data-answer=">" data-selected="">
+              <span class="font-semibold">$\dfrac{-1}{2}$</span>
+              <div class="inline-flex rounded-lg border border-slate-300 overflow-hidden" role="group" aria-label="Comparer">
+                <button type="button" class="cmp-btn" data-val="&lt;" onclick="toggleCompare(this)">&lt;</button>
+                <button type="button" class="cmp-btn border-l border-slate-300" data-val="=" onclick="toggleCompare(this)">=</button>
+                <button type="button" class="cmp-btn border-l border-slate-300" data-val="&gt;" onclick="toggleCompare(this)">&gt;</button>
+              </div>
+              <span class="font-semibold">$\dfrac{-3}{2}$</span>
+            </div>
+
+            <div class="grade-item flex items-center justify-center gap-3 bg-slate-50 rounded-xl border border-slate-200 p-4" data-type="compare" data-weight="15" data-answer="&lt;" data-selected="">
+              <span class="font-semibold">$\dfrac{5}{-3}$</span>
+              <div class="inline-flex rounded-lg border border-slate-300 overflow-hidden" role="group" aria-label="Comparer">
+                <button type="button" class="cmp-btn" data-val="&lt;" onclick="toggleCompare(this)">&lt;</button>
+                <button type="button" class="cmp-btn border-l border-slate-300" data-val="=" onclick="toggleCompare(this)">=</button>
+                <button type="button" class="cmp-btn border-l border-slate-300" data-val="&gt;" onclick="toggleCompare(this)">&gt;</button>
+              </div>
+              <span class="font-semibold">$\dfrac{5}{-9}$</span>
+            </div>
+
+            <div class="grade-item flex items-center justify-center gap-3 bg-slate-50 rounded-xl border border-slate-200 p-4" data-type="compare" data-weight="15" data-answer="&lt;" data-selected="">
+              <span class="font-semibold">$\dfrac{1}{4}$</span>
+              <div class="inline-flex rounded-lg border border-slate-300 overflow-hidden" role="group" aria-label="Comparer">
+                <button type="button" class="cmp-btn" data-val="&lt;" onclick="toggleCompare(this)">&lt;</button>
+                <button type="button" class="cmp-btn border-l border-slate-300" data-val="=" onclick="toggleCompare(this)">=</button>
+                <button type="button" class="cmp-btn border-l border-slate-300" data-val="&gt;" onclick="toggleCompare(this)">&gt;</button>
+              </div>
+              <span class="font-semibold">$\dfrac{2}{4}$</span>
+            </div>
+
+            <div class="grade-item flex items-center justify-center gap-3 bg-slate-50 rounded-xl border border-slate-200 p-4" data-type="compare" data-weight="15" data-answer="&lt;" data-selected="">
+              <span class="font-semibold">$\dfrac{-5}{3}$</span>
+              <div class="inline-flex rounded-lg border border-slate-300 overflow-hidden" role="group" aria-label="Comparer">
+                <button type="button" class="cmp-btn" data-val="&lt;" onclick="toggleCompare(this)">&lt;</button>
+                <button type="button" class="cmp-btn border-l border-slate-300" data-val="=" onclick="toggleCompare(this)">=</button>
+                <button type="button" class="cmp-btn border-l border-slate-300" data-val="&gt;" onclick="toggleCompare(this)">&gt;</button>
+              </div>
+              <span class="font-semibold">$\dfrac{3}{-5}$</span>
+            </div>
+          </div>
+
+          <div class="mt-4 inline-flex items-center gap-3 bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3">
+            <span class="type-chip bg-emerald-600 text-white">Exemple</span>
+            <span class="font-semibold text-emerald-800">$\dfrac{7}{10} < \dfrac{8}{10}$</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q7 -->
+      <article id="q7" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-5">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">7</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Question 7</h3>
+            <span class="type-chip bg-orange-100 text-orange-700">À compléter</span>
+            <span class="type-chip bg-accent-100 text-accent-700">1 pt</span>
+          </div>
+          <p class="text-slate-700 mb-5">Encadrer chaque nombre décimal par deux entiers consécutifs :</p>
+          <div class="flex flex-col gap-4">
+            <div class="flex items-center justify-center flex-wrap gap-3 bg-slate-50 rounded-xl border border-slate-200 p-4">
+              <input type="text" class="grade-item blank-input" data-type="number" data-weight="5" data-answer="212" autocomplete="off" spellcheck="false">
+              <span class="font-bold text-lg">&lt;</span>
+              <span class="font-semibold text-lg">212,5</span>
+              <span class="font-bold text-lg">&lt;</span>
+              <input type="text" class="grade-item blank-input" data-type="number" data-weight="5" data-answer="213" autocomplete="off" spellcheck="false">
+            </div>
+            <div class="flex items-center justify-center flex-wrap gap-3 bg-slate-50 rounded-xl border border-slate-200 p-4">
+              <input type="text" class="grade-item blank-input" data-type="number" data-weight="5" data-answer="302" autocomplete="off" spellcheck="false">
+              <span class="font-bold text-lg">&lt;</span>
+              <span class="font-semibold text-lg">302,38</span>
+              <span class="font-bold text-lg">&lt;</span>
+              <input type="text" class="grade-item blank-input" data-type="number" data-weight="5" data-answer="303" autocomplete="off" spellcheck="false">
+            </div>
+            <div class="flex items-center justify-center flex-wrap gap-3 bg-slate-50 rounded-xl border border-slate-200 p-4">
+              <input type="text" class="grade-item blank-input" data-type="number" data-weight="5" data-answer="5" autocomplete="off" spellcheck="false">
+              <span class="font-bold text-lg">&lt;</span>
+              <span class="font-semibold text-lg">5,24</span>
+              <span class="font-bold text-lg">&lt;</span>
+              <input type="text" class="grade-item blank-input" data-type="number" data-weight="5" data-answer="6" autocomplete="off" spellcheck="false">
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 3 : CALCUL LITTÉRAL ============ -->
+<section id="section-litteral" data-section="Calcul littéral" class="py-16 sm:py-20 border-b border-slate-200 bg-white scroll-mt-4">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal mb-10">
+      <p class="text-brand-600 font-bold text-sm tracking-wide uppercase mb-2">3. Calcul littéral</p>
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">Développer & factoriser</h2>
+      <p class="mt-3 text-slate-600 leading-relaxed max-w-3xl">Reconnaître une factorisation et effectuer un développement d'expression littérale.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-6">
+
+      <!-- Q8 -->
+      <article id="q8" class="reveal scroll-mt-24 bg-slate-50 rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-5">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">8</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Question 8</h3>
+            <span class="type-chip bg-accent-100 text-accent-700">1 pt</span>
+          </div>
+          <p class="text-slate-700 mb-4">La factorisation de l'expression $\dfrac{7}{2}x+\dfrac{7}{2}$ est :</p>
+          <div class="grade-item grid grid-cols-1 gap-2" data-type="mcq" data-weight="30">
+            <label class="qcm-option !justify-start px-4"><input type="radio" name="q8" class="sr-only"><span>$\dfrac{14}{2}(x-1)$</span></label>
+            <label class="qcm-option !justify-start px-4"><input type="radio" name="q8" class="sr-only"><span>$\dfrac{7}{2}(x-1)$</span></label>
+            <label class="qcm-option !justify-start px-4" data-correct="true"><input type="radio" name="q8" class="sr-only"><span>$\dfrac{7}{2}(x+1)$</span></label>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q9 -->
+      <article id="q9" class="reveal scroll-mt-24 bg-slate-50 rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-5">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">9</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Question 9</h3>
+            <span class="type-chip bg-accent-100 text-accent-700">1 pt</span>
+          </div>
+          <p class="text-slate-700 mb-4">Le développement de l'expression $\dfrac{3}{-2}(2x-2)$ est :</p>
+          <div class="grade-item grid grid-cols-1 gap-2" data-type="mcq" data-weight="30">
+            <label class="qcm-option !justify-start px-4"><input type="radio" name="q9" class="sr-only"><span>$6x+6$</span></label>
+            <label class="qcm-option !justify-start px-4" data-correct="true"><input type="radio" name="q9" class="sr-only"><span>$-3x+3$</span></label>
+            <label class="qcm-option !justify-start px-4"><input type="radio" name="q9" class="sr-only"><span>$6x-3$</span></label>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 4 : PROPORTIONNALITÉ ============ -->
+<section id="section-proportionnalite" data-section="Proportionnalité" class="py-16 sm:py-20 border-b border-slate-200 scroll-mt-4">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal mb-10">
+      <p class="text-brand-600 font-bold text-sm tracking-wide uppercase mb-2">4. Proportionnalité</p>
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">Tableau de proportionnalité</h2>
+      <p class="mt-3 text-slate-600 leading-relaxed max-w-3xl">Retrouver le coefficient de proportionnalité et compléter les valeurs manquantes.</p>
+    </div>
+
+    <!-- Q10 -->
+    <article id="q10" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+      <div class="p-6 sm:p-8">
+        <div class="flex flex-wrap items-center gap-3 mb-5">
+          <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">10</span>
+          <h3 class="font-display font-bold text-xl text-slate-900">Question 10</h3>
+          <span class="type-chip bg-orange-100 text-orange-700">À compléter</span>
+          <span class="type-chip bg-accent-100 text-accent-700">1,5 pt</span>
+        </div>
+        <p class="text-slate-700 mb-5">Compléter le tableau pour qu'il représente une situation de proportionnalité :</p>
+
+        <div class="table-wrap">
+          <table class="w-full border-collapse text-center min-w-[420px]">
+            <tbody>
+              <tr>
+                <td class="border border-slate-300 bg-brand-50 font-semibold py-3 px-4">2</td>
+                <td class="border border-slate-300 bg-brand-50 font-semibold py-3 px-4">3</td>
+                <td class="border border-slate-300 bg-brand-50 font-semibold py-3 px-4">
+                  <input type="text" class="grade-item blank-input" data-type="number" data-weight="15" data-answer="4" autocomplete="off" spellcheck="false">
+                </td>
+                <td class="border border-slate-300 bg-brand-50 font-semibold py-3 px-4">0</td>
+              </tr>
+              <tr>
+                <td class="border border-slate-300 py-3 px-4 font-semibold">8</td>
+                <td class="border border-slate-300 py-3 px-4">
+                  <input type="text" class="grade-item blank-input" data-type="number" data-weight="15" data-answer="12" autocomplete="off" spellcheck="false">
+                </td>
+                <td class="border border-slate-300 py-3 px-4 font-semibold">16</td>
+                <td class="border border-slate-300 py-3 px-4">
+                  <input type="text" class="grade-item blank-input" data-type="number" data-weight="15" data-answer="0" autocomplete="off" spellcheck="false">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-3 text-xs text-slate-400">Indice : cherchez d'abord le coefficient de proportionnalité entre la 1ère et la 2ème ligne.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ SECTION 5 : GÉOMÉTRIE DU CERCLE ============ -->
+<section id="section-cercle" data-section="Géométrie du cercle" class="py-16 sm:py-20 border-b border-slate-200 bg-white scroll-mt-4">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal mb-10">
+      <p class="text-brand-600 font-bold text-sm tracking-wide uppercase mb-2">5. Géométrie</p>
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">Cercle circonscrit & cercle inscrit</h2>
+      <p class="mt-3 text-slate-600 leading-relaxed max-w-3xl">Propriété du triangle rectangle inscrit dans un demi-cercle, puis les méthodes de construction du cercle circonscrit et du cercle inscrit à un triangle.</p>
+    </div>
+
+    <div class="space-y-8">
+
+      <!-- Q5 -->
+      <article id="q5" class="reveal scroll-mt-24 bg-slate-50 rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-5">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">5</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Question 5</h3>
+            <span class="type-chip bg-orange-100 text-orange-700">À compléter</span>
+            <span class="type-chip bg-accent-100 text-accent-700">1 pt</span>
+          </div>
+          <p class="text-slate-700 mb-4">Compléter les propriétés suivantes :</p>
+
+          <div class="space-y-3">
+            <div class="bg-white rounded-xl border border-slate-200 p-4 flex items-start gap-3">
+              <svg class="w-5 h-5 shrink-0 mt-0.5 text-brand-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+              <p class="text-slate-700">SI un triangle $ABC$ est rectangle en $A$ <strong>ALORS</strong> $ABC$ est inscrit dans un demi-cercle de diamètre $[BC]$.</p>
+            </div>
+            <div class="bg-white rounded-xl border-2 border-brand-200 p-4 flex flex-col sm:flex-row sm:items-center gap-3">
+              <svg class="w-5 h-5 shrink-0 mt-0.5 text-brand-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+              <p class="text-slate-700 flex flex-wrap items-center gap-2">
+                SI un triangle $ABC$ est rectangle en $B$ <strong>ALORS</strong>
+                <input type="text" class="grade-item blank-input blank-wide" data-type="text" data-weight="15" data-answer="ABC" data-display="ABC" placeholder="…" autocomplete="off" autocapitalize="off" spellcheck="false">
+                est inscrit dans un demi-cercle de diamètre
+                <span class="inline-flex items-center gap-0.5">[<input type="text" class="grade-item blank-input" style="width:3rem" data-type="text" data-weight="15" data-answer="AC" data-display="[AC]" placeholder="…" autocomplete="off" autocapitalize="off" spellcheck="false">]</span>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Q11 -->
+      <article id="q11" class="reveal scroll-mt-24 bg-slate-50 rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-5">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">11</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Question 11</h3>
+            <span class="type-chip bg-brand-100 text-brand-700">QCM</span>
+            <span class="type-chip bg-accent-100 text-accent-700">1,5 pt</span>
+          </div>
+          <p class="text-slate-700 mb-5">Comment trace-t-on le cercle circonscrit à un triangle ?</p>
+          <div class="grade-item flex flex-col gap-2" data-type="mcq" data-weight="45">
+            <label class="qcm-option !justify-start px-4"><input type="radio" name="q11" class="sr-only"><span>On trace les bissectrices d'au moins deux angles du triangle ; leur point d'intersection est le centre du cercle circonscrit.</span></label>
+            <label class="qcm-option !justify-start px-4" data-correct="true"><input type="radio" name="q11" class="sr-only"><span>On trace les médiatrices d'au moins deux côtés du triangle ; leur point d'intersection est le centre du cercle circonscrit.</span></label>
+            <label class="qcm-option !justify-start px-4"><input type="radio" name="q11" class="sr-only"><span>On trace les hauteurs du triangle ; leur point d'intersection est le centre du cercle circonscrit.</span></label>
+            <label class="qcm-option !justify-start px-4"><input type="radio" name="q11" class="sr-only"><span>On trace les médianes du triangle ; leur point d'intersection est le centre du cercle circonscrit.</span></label>
+          </div>
+          <div class="reveal-on-grade hidden mt-4 bg-brand-50 border border-brand-200 rounded-xl p-4 text-sm text-brand-800">
+            <strong>Corrigé :</strong> On trace les médiatrices d'au moins deux côtés du triangle. Leur point d'intersection $O$ est le centre du cercle circonscrit : $OA=OB=OC$ (le rayon). On trace ensuite le cercle de centre $O$ passant par les trois sommets.
+          </div>
+        </div>
+      </article>
+
+      <!-- Q12 -->
+      <article id="q12" class="reveal scroll-mt-24 bg-slate-50 rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-5">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">12</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Question 12</h3>
+            <span class="type-chip bg-orange-100 text-orange-700">À compléter</span>
+            <span class="type-chip bg-accent-100 text-accent-700">0,5 pt</span>
+          </div>
+          <p class="text-slate-700 mb-5">Compléter les étapes de calcul suivantes :</p>
+          <div class="table-wrap bg-white rounded-xl border border-slate-200 p-4 sm:p-5">
+            <div class="flex items-center flex-nowrap whitespace-nowrap text-lg">
+              <span>$\dfrac{-1}{10}-\dfrac{3}{30}=$</span>
+              <span class="frac-blank"><input type="text" class="grade-item" data-type="number" data-weight="3" data-answer="-3"><span>30</span></span>
+              <span>&minus;</span>
+              <span class="frac-blank"><input type="text" class="grade-item" data-type="number" data-weight="3" data-answer="3"><span>30</span></span>
+              <span>=</span>
+              <span class="frac-blank" style="min-width:4.6rem"><span class="flex items-center gap-1">
+                <input type="text" class="grade-item" style="width:2.1rem" data-type="number" data-weight="3" data-answer="-3">
+                <span>&minus;</span>
+                <input type="text" class="grade-item" style="width:2.1rem" data-type="number" data-weight="3" data-answer="3">
+              </span><span>30</span></span>
+              <span>=</span>
+              <span class="frac-blank"><input type="text" class="grade-item" data-type="number" data-weight="3" data-answer="-6"><span>30</span></span>
+            </div>
+          </div>
+          <div class="reveal-on-grade hidden mt-4 bg-brand-50 border border-brand-200 rounded-xl p-4 text-sm text-brand-800">
+            <strong>Corrigé :</strong> $\dfrac{-1}{10}-\dfrac{3}{30}=\dfrac{-3}{30}-\dfrac{3}{30}=\dfrac{-3-3}{30}=\dfrac{-6}{30}$
+          </div>
+        </div>
+      </article>
+
+      <!-- Q13 -->
+      <article id="q13" class="reveal scroll-mt-24 bg-slate-50 rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-5">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">13</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Question 13</h3>
+            <span class="type-chip bg-brand-100 text-brand-700">QCM</span>
+            <span class="type-chip bg-accent-100 text-accent-700">1 pt</span>
+          </div>
+          <p class="text-slate-700 mb-5">Comment trace-t-on le cercle inscrit à un triangle ?</p>
+          <div class="grade-item flex flex-col gap-2" data-type="mcq" data-weight="30">
+            <label class="qcm-option !justify-start px-4"><input type="radio" name="q13" class="sr-only"><span>On trace les médiatrices d'au moins deux côtés du triangle ; leur point d'intersection est le centre du cercle inscrit.</span></label>
+            <label class="qcm-option !justify-start px-4" data-correct="true"><input type="radio" name="q13" class="sr-only"><span>On trace les bissectrices d'au moins deux angles du triangle ; leur point d'intersection est le centre du cercle inscrit (rayon = distance à un côté).</span></label>
+            <label class="qcm-option !justify-start px-4"><input type="radio" name="q13" class="sr-only"><span>On trace les hauteurs du triangle ; leur point d'intersection est le centre du cercle inscrit.</span></label>
+            <label class="qcm-option !justify-start px-4"><input type="radio" name="q13" class="sr-only"><span>On trace les médianes du triangle ; leur point d'intersection est le centre du cercle inscrit.</span></label>
+          </div>
+          <div class="reveal-on-grade hidden mt-4 bg-brand-50 border border-brand-200 rounded-xl p-4 text-sm text-brand-800">
+            <strong>Corrigé :</strong> On trace les bissectrices d'au moins deux angles du triangle. Leur point d'intersection $I$ est le centre du cercle inscrit. Le rayon est la distance de $I$ à un côté (perpendiculaire abaissée de $I$ sur un côté). On trace ensuite le cercle de centre $I$ et de ce rayon, tangent aux trois côtés.
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 6 : SYMÉTRIE AXIALE ============ -->
+<section id="section-symetrie" data-section="Symétrie axiale" class="py-16 sm:py-20 border-b border-slate-200 bg-white scroll-mt-4">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal mb-10">
+      <p class="text-brand-600 font-bold text-sm tracking-wide uppercase mb-2">6. Symétrie</p>
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">Symétrie axiale</h2>
+      <p class="mt-3 text-slate-600 leading-relaxed max-w-3xl">Propriétés de la symétrie par rapport à une droite : conservation des longueurs, des angles et de l'alignement.</p>
+    </div>
+
+    <!-- Q14 -->
+    <article id="q14" class="reveal scroll-mt-24 bg-slate-50 rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+      <div class="p-6 sm:p-8">
+        <div class="flex flex-wrap items-center gap-3 mb-5">
+          <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">14</span>
+          <h3 class="font-display font-bold text-xl text-slate-900">Question 14</h3>
+          <span class="type-chip bg-brand-100 text-brand-700">QCM</span>
+          <span class="type-chip bg-accent-100 text-accent-700">2 pts</span>
+        </div>
+        <p class="text-slate-700 mb-5">Cocher la bonne réponse :</p>
+
+        <div class="space-y-3">
+          <div class="bg-white rounded-xl border border-slate-200 p-4">
+            <p class="font-medium text-slate-800 mb-3">La symétrie par rapport à une droite s'appelle aussi :</p>
+            <div class="grade-item grid grid-cols-1 sm:grid-cols-3 gap-2" data-type="mcq" data-weight="10">
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q14a" class="sr-only"><span>La symétrie centrale</span></label>
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q14a" class="sr-only"><span>La symétrie orthogonale</span></label>
+              <label class="qcm-option !justify-start px-4" data-correct="true"><input type="radio" name="q14a" class="sr-only"><span>La symétrie axiale</span></label>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl border border-slate-200 p-4">
+            <p class="font-medium text-slate-800 mb-3">L'image d'un segment par rapport à une droite est :</p>
+            <div class="grade-item grid grid-cols-1 sm:grid-cols-3 gap-2" data-type="mcq" data-weight="10">
+              <label class="qcm-option !justify-start px-4" data-correct="true"><input type="radio" name="q14b" class="sr-only"><span>Un segment</span></label>
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q14b" class="sr-only"><span>Une droite</span></label>
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q14b" class="sr-only"><span>Une demi-droite</span></label>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl border border-slate-200 p-4">
+            <p class="font-medium text-slate-800 mb-3">Un triangle isocèle possède :</p>
+            <div class="grade-item grid grid-cols-1 sm:grid-cols-3 gap-2" data-type="mcq" data-weight="10">
+              <label class="qcm-option !justify-start px-4" data-correct="true"><input type="radio" name="q14c" class="sr-only"><span>Un axe de symétrie</span></label>
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q14c" class="sr-only"><span>Deux axes de symétrie</span></label>
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q14c" class="sr-only"><span>Trois axes de symétrie</span></label>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl border border-slate-200 p-4">
+            <p class="font-medium text-slate-800 mb-3">Si les points $A$, $B$ et $C$ sont alignés, alors leurs symétriques par rapport à une droite :</p>
+            <div class="grade-item grid grid-cols-1 sm:grid-cols-3 gap-2" data-type="mcq" data-weight="10">
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q14d" class="sr-only"><span>Forment un triangle équilatéral</span></label>
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q14d" class="sr-only"><span>Sont sur un même arc de cercle</span></label>
+              <label class="qcm-option !justify-start px-4" data-correct="true"><input type="radio" name="q14d" class="sr-only"><span>Sont alignés</span></label>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl border border-slate-200 p-4">
+            <p class="font-medium text-slate-800 mb-3">Soit $H$ le projeté orthogonal de $M$ sur une droite $(d)$. Si $N$ est le symétrique de $M$ par rapport à $(d)$, alors :</p>
+            <div class="grade-item grid grid-cols-1 sm:grid-cols-3 gap-2" data-type="mcq" data-weight="10">
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q14e" class="sr-only"><span>$MN=MH$</span></label>
+              <label class="qcm-option !justify-start px-4" data-correct="true"><input type="radio" name="q14e" class="sr-only"><span>$H$ est le milieu de $[MN]$</span></label>
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q14e" class="sr-only"><span>$NMH$ est équilatéral</span></label>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl border border-slate-200 p-4">
+            <p class="font-medium text-slate-800 mb-3">L'image d'un angle par une symétrie axiale est :</p>
+            <div class="grade-item grid grid-cols-1 sm:grid-cols-3 gap-2" data-type="mcq" data-weight="10">
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q14f" class="sr-only"><span>Un angle droit</span></label>
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q14f" class="sr-only"><span>Un triangle</span></label>
+              <label class="qcm-option !justify-start px-4" data-correct="true"><input type="radio" name="q14f" class="sr-only"><span>Un angle de même mesure</span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ SECTION 7 : TRIANGLES, PARALLÉLOGRAMME & VECTEURS ============ -->
+<section id="section-triangles" data-section="Triangles & vecteurs" class="py-16 sm:py-20 bg-white scroll-mt-4">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal mb-10">
+      <p class="text-brand-600 font-bold text-sm tracking-wide uppercase mb-2">7. Géométrie plane</p>
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">Triangles, parallélogramme & droite des milieux</h2>
+      <p class="mt-3 text-slate-600 leading-relaxed max-w-3xl">Droite des milieux, propriétés du parallélogramme, théorème de Thalès et vocabulaire des droites remarquables du triangle.</p>
+    </div>
+
+    <!-- Q15 -->
+    <article id="q15" class="reveal scroll-mt-24 bg-slate-50 rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+      <div class="p-6 sm:p-8">
+        <div class="flex flex-wrap items-center gap-3 mb-5">
+          <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">15</span>
+          <h3 class="font-display font-bold text-xl text-slate-900">Question 15</h3>
+          <span class="type-chip bg-brand-100 text-brand-700">QCM</span>
+          <span class="type-chip bg-accent-100 text-accent-700">2 pts</span>
+        </div>
+        <p class="text-slate-700 mb-5">Cocher la bonne réponse :</p>
+
+        <div class="space-y-3">
+          <div class="bg-white rounded-xl border border-slate-200 p-4">
+            <p class="font-medium text-slate-800 mb-3">$ABC$ est un triangle. $M$ est le milieu de $[AB]$ et $N$ le milieu de $[AC]$, alors :</p>
+            <div class="grade-item grid grid-cols-1 sm:grid-cols-3 gap-2" data-type="mcq" data-weight="12">
+              <label class="qcm-option !justify-start px-4" data-correct="true"><input type="radio" name="q15a" class="sr-only"><span>$(BC)\,//\,(MN)$ et $BC=2MN$</span></label>
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q15a" class="sr-only"><span>$(BC)\,//\,(AC)$ et $BC=2MN$</span></label>
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q15a" class="sr-only"><span>$MN=2AC$</span></label>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl border border-slate-200 p-4">
+            <p class="font-medium text-slate-800 mb-3">Les diagonales d'un rectangle sont :</p>
+            <div class="grade-item grid grid-cols-1 sm:grid-cols-3 gap-2" data-type="mcq" data-weight="12">
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q15b" class="sr-only"><span>Parallèles</span></label>
+              <label class="qcm-option !justify-start px-4" data-correct="true"><input type="radio" name="q15b" class="sr-only"><span>De même mesure</span></label>
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q15b" class="sr-only"><span>Perpendiculaires</span></label>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl border border-slate-200 p-4">
+            <p class="font-medium text-slate-800 mb-3">$ABCD$ est un parallélogramme, alors :</p>
+            <div class="grade-item grid grid-cols-1 sm:grid-cols-3 gap-2" data-type="mcq" data-weight="12">
+              <label class="qcm-option !justify-start px-4" data-correct="true"><input type="radio" name="q15c" class="sr-only"><span>$\vec{AB}=\vec{DC}$</span></label>
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q15c" class="sr-only"><span>$\vec{AC}=\vec{BC}$</span></label>
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q15c" class="sr-only"><span>$\vec{AD}=\vec{DC}$</span></label>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl border border-slate-200 p-4">
+            <p class="font-medium text-slate-800 mb-3">Sur la figure ci-contre, on sait que $(DE)\,//\,(BC)$ :</p>
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+              <div class="bg-slate-50 rounded-xl border border-slate-200 p-3 shrink-0">
+                <svg viewBox="0 0 240 220" class="config-fig w-44">
+                  <polygon points="120,20 40,190 200,190" fill="none" stroke="#334155" stroke-width="2"/>
+                  <line x1="76" y1="105" x2="164" y2="105" stroke="#e11d48" stroke-width="2.2"/>
+                  <line x1="40" y1="190" x2="200" y2="190" stroke="#e11d48" stroke-width="2.2"/>
+                  <circle cx="120" cy="20" r="3.2" fill="#1e293b"/>
+                  <circle cx="76" cy="105" r="3.2" fill="#1e293b"/>
+                  <circle cx="164" cy="105" r="3.2" fill="#1e293b"/>
+                  <circle cx="40" cy="190" r="3.2" fill="#1e293b"/>
+                  <circle cx="200" cy="190" r="3.2" fill="#1e293b"/>
+                  <text x="120" y="12" text-anchor="middle" font-weight="700" font-size="15" fill="#1e293b">A</text>
+                  <text x="63" y="100" text-anchor="middle" font-weight="700" font-size="14" fill="#1e293b">D</text>
+                  <text x="177" y="100" text-anchor="middle" font-weight="700" font-size="14" fill="#1e293b">E</text>
+                  <text x="26" y="204" text-anchor="middle" font-weight="700" font-size="15" fill="#1e293b">B</text>
+                  <text x="214" y="204" text-anchor="middle" font-weight="700" font-size="15" fill="#1e293b">C</text>
+                </svg>
+              </div>
+              <div class="grade-item grid grid-cols-1 gap-2 flex-1 w-full" data-type="mcq" data-weight="12">
+                <label class="qcm-option !justify-start px-4" data-correct="true"><input type="radio" name="q15d" class="sr-only"><span>$\dfrac{AB}{AD}=\dfrac{AC}{AE}$</span></label>
+                <label class="qcm-option !justify-start px-4"><input type="radio" name="q15d" class="sr-only"><span>$\dfrac{BD}{AD}=\dfrac{EC}{DE}$</span></label>
+                <label class="qcm-option !justify-start px-4"><input type="radio" name="q15d" class="sr-only"><span>$\dfrac{AC}{AB}=\dfrac{BC}{BA}$</span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl border border-slate-200 p-4">
+            <p class="font-medium text-slate-800 mb-3">Dans un triangle $ABC$, la droite qui passe par $B$ et par le milieu de $[AC]$ est une :</p>
+            <div class="grade-item grid grid-cols-1 sm:grid-cols-3 gap-2" data-type="mcq" data-weight="12">
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q15e" class="sr-only"><span>Bissectrice</span></label>
+              <label class="qcm-option !justify-start px-4" data-correct="true"><input type="radio" name="q15e" class="sr-only"><span>Médiane</span></label>
+              <label class="qcm-option !justify-start px-4"><input type="radio" name="q15e" class="sr-only"><span>Hauteur</span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Final CTA -->
+    <div class="reveal mt-12 bg-gradient-to-br from-brand-700 to-brand-900 rounded-3xl shadow-soft p-8 sm:p-10 text-center">
+      <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-white">C'est terminé !</h3>
+      <p class="mt-2 text-brand-100 max-w-xl mx-auto">Vérifiez que vous avez répondu à toutes les questions, puis cliquez ci-dessous pour découvrir votre note sur 20 et le corrigé complet.</p>
+      <button onclick="gradeQuiz()" class="mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-bold px-7 py-3.5 rounded-full shadow-lg transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+        Voir ma note
+      </button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-slate-950 text-slate-400">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid sm:grid-cols-3 gap-8">
+      <div>
+        <div class="flex items-center gap-2.5">
+          <svg class="w-8 h-8 shrink-0" viewBox="0 0 32 32" fill="none">
+            <rect x="6" y="5" width="20" height="24" rx="3" fill="none" stroke="#5eead4" stroke-width="2"/>
+            <rect x="11" y="3" width="10" height="5" rx="1.5" fill="#5eead4"/>
+            <path d="M11 17l3.5 3.5L21 13" stroke="#fb923c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <span class="font-display font-bold text-lg text-white">Éval<span class="text-brand-400">.</span>Diagnostique</span>
+        </div>
+        <p class="mt-3 text-sm leading-relaxed">Évaluation diagnostique de mathématiques — nombres relatifs, calcul littéral, proportionnalité et géométrie. Correction et notation automatiques.</p>
+      </div>
+      <div>
+        <p class="font-semibold text-white text-sm uppercase tracking-wide mb-3">Thèmes</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#section-nombres" class="hover:text-white transition-colors">Nombres & fractions</a></li>
+          <li><a href="#section-comparaisons" class="hover:text-white transition-colors">Comparaisons</a></li>
+          <li><a href="#section-litteral" class="hover:text-white transition-colors">Calcul littéral</a></li>
+          <li><a href="#section-proportionnalite" class="hover:text-white transition-colors">Proportionnalité</a></li>
+          <li><a href="#section-cercle" class="hover:text-white transition-colors">Géométrie du cercle</a></li>
+          <li><a href="#section-symetrie" class="hover:text-white transition-colors">Symétrie axiale</a></li>
+          <li><a href="#section-triangles" class="hover:text-white transition-colors">Triangles & vecteurs</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white text-sm uppercase tracking-wide mb-3">Questions</p>
+        <ul class="space-y-2 text-sm grid grid-cols-3 gap-x-3">
+          <li><a href="#q1" class="hover:text-white transition-colors">Q1</a></li>
+          <li><a href="#q2" class="hover:text-white transition-colors">Q2</a></li>
+          <li><a href="#q3" class="hover:text-white transition-colors">Q3</a></li>
+          <li><a href="#q4" class="hover:text-white transition-colors">Q4</a></li>
+          <li><a href="#q5" class="hover:text-white transition-colors">Q5</a></li>
+          <li><a href="#q6" class="hover:text-white transition-colors">Q6</a></li>
+          <li><a href="#q7" class="hover:text-white transition-colors">Q7</a></li>
+          <li><a href="#q8" class="hover:text-white transition-colors">Q8</a></li>
+          <li><a href="#q9" class="hover:text-white transition-colors">Q9</a></li>
+          <li><a href="#q10" class="hover:text-white transition-colors">Q10</a></li>
+          <li><a href="#q11" class="hover:text-white transition-colors">Q11</a></li>
+          <li><a href="#q12" class="hover:text-white transition-colors">Q12</a></li>
+          <li><a href="#q13" class="hover:text-white transition-colors">Q13</a></li>
+          <li><a href="#q14" class="hover:text-white transition-colors">Q14</a></li>
+          <li><a href="#q15" class="hover:text-white transition-colors">Q15</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-10 pt-6 border-t border-slate-800 text-xs text-slate-500 flex flex-col sm:flex-row justify-between gap-2">
+      <p>Contenu pédagogique — « Évaluation diagnostique » de mathématiques.</p>
+      <p>Page réalisée pour un usage pédagogique.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating "Ma note" button -->
+<button onclick="gradeQuiz()" aria-label="Voir ma note"
+  class="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-bold pl-4 pr-5 py-3.5 rounded-full shadow-2xl transition-transform hover:scale-105">
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+  <span class="hidden sm:inline">Ma note</span>
+</button>
+
+<!-- Back to top -->
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut"
+  class="hidden fixed bottom-6 left-6 z-40 w-11 h-11 rounded-full bg-brand-600 hover:bg-brand-700 text-white shadow-lg items-center justify-center transition-colors">
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+</button>
+
+<!-- ============ RESULTS MODAL ============ -->
+<div id="results-modal" class="hidden fixed inset-0 z-[100] flex items-end sm:items-center justify-center">
+  <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeModal()"></div>
+  <div class="relative bg-white w-full sm:max-w-lg sm:rounded-3xl rounded-t-3xl shadow-2xl max-h-[90vh] overflow-y-auto">
+    <div class="sticky top-0 bg-white/95 backdrop-blur px-6 pt-6 pb-3 flex items-center justify-between border-b border-slate-100 z-10">
+      <h3 class="font-display font-extrabold text-xl text-slate-900">Ma note</h3>
+      <button onclick="closeModal()" class="p-2 -mr-2 text-slate-400 hover:text-slate-700" aria-label="Fermer">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="p-6 sm:p-8">
+      <div class="flex flex-col items-center">
+        <div id="score-ring" class="w-36 h-36 rounded-full flex items-center justify-center" style="background:conic-gradient(#e2e8f0 0deg,#e2e8f0 360deg)">
+          <div class="w-28 h-28 rounded-full bg-white flex flex-col items-center justify-center shadow-inner">
+            <span id="modal-score" class="font-display font-extrabold text-3xl text-slate-900">0</span>
+            <span class="text-xs text-slate-400 font-semibold">/ 20</span>
+          </div>
+        </div>
+        <p id="modal-label" class="mt-4 font-display font-bold text-lg"></p>
+      </div>
+      <div id="modal-sections" class="mt-6 space-y-2"></div>
+      <div class="mt-6 flex flex-col sm:flex-row gap-3">
+        <button onclick="closeModal()" class="flex-1 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-5 py-3 rounded-full transition-colors">Voir le corrigé détaillé</button>
+        <button onclick="if(confirm('Recommencer l\'évaluation depuis le début ?')) location.reload();" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-5 py-3 rounded-full transition-colors">Recommencer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const burger = document.getElementById('icon-burger');
+    const close = document.getElementById('icon-close');
+    const btn = document.getElementById('menu-btn');
+    const isHidden = menu.classList.contains('hidden');
+    menu.classList.toggle('hidden');
+    burger.classList.toggle('hidden');
+    close.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobile-menu').classList.add('hidden');
+    document.getElementById('icon-burger').classList.remove('hidden');
+    document.getElementById('icon-close').classList.add('hidden');
+    document.getElementById('menu-btn').setAttribute('aria-expanded', 'false');
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Back to top visibility
+  const backBtn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 500) {
+      backBtn.classList.remove('hidden');
+      backBtn.classList.add('flex');
+    } else {
+      backBtn.classList.add('hidden');
+      backBtn.classList.remove('flex');
+    }
+  }, { passive: true });
+
+  // Rendu KaTeX
+  function renderMath() {
+    if (window.renderMathInElement) {
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false
+      });
+    }
+  }
+  document.addEventListener('DOMContentLoaded', renderMath);
+
+  /* =========================================================
+     MOTEUR DE CORRECTION
+  ========================================================= */
+
+  // ---- Sélection visuelle des QCM ----
+  document.addEventListener('change', (e) => {
+    if (e.target.matches('input[type=radio]')) {
+      const name = e.target.name;
+      document.getElementsByName(name).forEach(r => {
+        const lbl = r.closest('.qcm-option');
+        if (lbl) lbl.classList.toggle('is-selected', r.checked);
+      });
+    }
+    updateProgress();
+  });
+  document.addEventListener('input', updateProgress);
+
+  // ---- Comparateurs (<, =, >) ----
+  function toggleCompare(btn) {
+    const group = btn.closest('.grade-item');
+    group.dataset.selected = btn.dataset.val;
+    group.querySelectorAll('.cmp-btn').forEach(b => b.classList.remove('is-selected'));
+    btn.classList.add('is-selected');
+    updateProgress();
+  }
+
+  // ---- Auto-évaluation (questions rédigées) ----
+  function selfAssess(btn, val) {
+    const item = btn.closest('.grade-item');
+    item.dataset.selected = val;
+    item.querySelectorAll('.self-btn').forEach(b => b.classList.remove('active-yes', 'active-no'));
+    btn.classList.add(val === 'yes' ? 'active-yes' : 'active-no');
+    gradeQuiz();
+  }
+
+  // ---- Barre de progression ----
+  function updateProgress() {
+    let answered = 0, totalItems = 0;
+    document.querySelectorAll('.grade-item').forEach(item => {
+      totalItems++;
+      const type = item.dataset.type;
+      if (type === 'mcq') {
+        const radios = item.querySelectorAll('input[type=radio]');
+        if ([...radios].some(r => r.checked)) answered++;
+      } else if (type === 'compare') {
+        if (item.dataset.selected) answered++;
+      } else if (type === 'self') {
+        const ta = item.closest('article').querySelector('textarea');
+        if (ta && ta.value.trim()) answered++;
+      } else {
+        if (item.value && item.value.trim()) answered++;
+      }
+    });
+    const pct = totalItems ? Math.round((answered / totalItems) * 100) : 0;
+    const bar = document.getElementById('progress-bar');
+    if (bar) bar.style.width = pct + '%';
+  }
+  document.addEventListener('DOMContentLoaded', updateProgress);
+
+  // ---- Aides numériques / fractions ----
+  function gcd(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { [a, b] = [b, a % b]; } return a || 1; }
+
+  function parseFraction(raw) {
+    if (raw == null) return null;
+    const str = String(raw).trim().replace(',', '.').replace(/\s+/g, '');
+    if (!str) return null;
+    const m = str.match(/^(-?\d+)\/(-?\d+)$/);
+    if (m) {
+      let n = parseInt(m[1], 10), d = parseInt(m[2], 10);
+      if (!d) return null;
+      if (d < 0) { n = -n; d = -d; }
+      const g = gcd(n, d);
+      return { n: n / g, d: d / g };
+    }
+    if (/^-?\d+$/.test(str)) return { n: parseInt(str, 10), d: 1 };
+    return null;
+  }
+  function fracToText(f) { return f.d === 1 ? String(f.n) : (f.n + '/' + f.d); }
+
+  function parseNumber(raw) {
+    if (raw == null) return null;
+    const str = String(raw).trim().replace(',', '.');
+    if (str === '') return null;
+    const v = parseFloat(str);
+    return isNaN(v) ? null : v;
+  }
+
+  function normText(raw) {
+    return String(raw || '').trim().toUpperCase().replace(/[\[\]\s]/g, '').split('').sort().join('');
+  }
+
+  function paintInput(input, ok) {
+    input.classList.remove('border-slate-300', 'border-emerald-500', 'bg-emerald-50', 'ring-emerald-200', 'border-rose-500', 'bg-rose-50', 'ring-rose-200', 'ring-2', 'cbd5e1');
+    input.style.borderColor = '';
+    if (ok) input.classList.add('border-emerald-500', 'bg-emerald-50', 'ring-2', 'ring-emerald-200');
+    else input.classList.add('border-rose-500', 'bg-rose-50', 'ring-2', 'ring-rose-200');
+  }
+  function appendNote(input, ok, answerDisplay) {
+    const holder = input.parentElement;
+    let note = holder.querySelector('.feedback-note');
+    if (!note) {
+      note = document.createElement('div');
+      note.className = 'feedback-note mt-1 text-xs font-semibold';
+      holder.appendChild(note);
+    }
+    if (ok) {
+      note.textContent = '✓ Correct';
+      note.classList.add('text-emerald-600');
+      note.classList.remove('text-rose-600');
+    } else {
+      note.innerHTML = '✗ Réponse : ' + answerDisplay;
+      note.classList.add('text-rose-600');
+      note.classList.remove('text-emerald-600');
+    }
+  }
+
+  // ---- Moteur principal ----
+  function gradeQuiz() {
+    let earned = 0, total = 0;
+    const sectionTotals = {};
+
+    document.querySelectorAll('.grade-item').forEach(item => {
+      const type = item.dataset.type;
+      const weight = parseFloat(item.dataset.weight || '0');
+      const sectionEl = item.closest('section[data-section]');
+      const secName = sectionEl ? sectionEl.dataset.section : 'Autre';
+      if (!sectionTotals[secName]) sectionTotals[secName] = { earned: 0, total: 0 };
+
+      let isCorrect = false;
+
+      if (type === 'mcq') {
+        const radios = item.querySelectorAll('input[type=radio]');
+        let checkedLabel = null, correctLabel = null;
+        radios.forEach(r => {
+          const label = r.closest('.qcm-option');
+          if (label && label.dataset.correct === 'true') correctLabel = label;
+          if (r.checked) checkedLabel = label;
+        });
+        if (correctLabel) correctLabel.classList.add('correct-answer');
+        if (checkedLabel) {
+          isCorrect = checkedLabel === correctLabel;
+          if (!isCorrect) checkedLabel.classList.add('wrong-answer');
+        }
+      } else if (type === 'text' || type === 'fraction') {
+        let answerDisplay = item.dataset.display || item.dataset.answer;
+        if (type === 'text') {
+          const ans = normText(item.dataset.answer);
+          const val = normText(item.value);
+          isCorrect = val !== '' && val === ans;
+        } else {
+          const ans = parseFraction(item.dataset.answer);
+          const val = parseFraction(item.value);
+          isCorrect = !!(val && ans && val.n === ans.n && val.d === ans.d);
+          answerDisplay = ans ? fracToText(ans) : answerDisplay;
+        }
+        paintInput(item, isCorrect);
+        appendNote(item, isCorrect, answerDisplay);
+      } else if (type === 'number') {
+        const ans = parseNumber(item.dataset.answer);
+        const val = parseNumber(item.value);
+        isCorrect = val !== null && ans !== null && Math.abs(val - ans) < 1e-9;
+        paintInput(item, isCorrect);
+      } else if (type === 'compare') {
+        const sel = item.dataset.selected || '';
+        isCorrect = sel !== '' && sel === item.dataset.answer;
+        item.querySelectorAll('.cmp-btn').forEach(b => {
+          b.classList.remove('correct-answer', 'wrong-answer');
+          if (b.dataset.val === item.dataset.answer) b.classList.add('correct-answer');
+          else if (b.dataset.val === sel) b.classList.add('wrong-answer');
+        });
+      } else if (type === 'self') {
+        const sel = item.dataset.selected || '';
+        isCorrect = sel === 'yes';
+      }
+
+      if (isCorrect) earned += weight;
+      total += weight;
+      sectionTotals[secName].total += weight;
+      if (isCorrect) sectionTotals[secName].earned += weight;
+    });
+
+    document.querySelectorAll('.reveal-on-grade').forEach(el => el.classList.remove('hidden'));
+
+    const scoreOn20 = total > 0 ? (earned / total) * 20 : 0;
+    showResultsModal(scoreOn20, sectionTotals);
+    renderMath();
+    updateProgress();
+  }
+
+  function gradeColor(score) {
+    const r = score / 20;
+    if (r >= 0.8) return { color: '#0d9488', label: 'Excellent !' };
+    if (r >= 0.7) return { color: '#0ea5e9', label: 'Très bien' };
+    if (r >= 0.5) return { color: '#f59e0b', label: 'Bien' };
+    if (r >= 0.4) return { color: '#f97316', label: 'Passable' };
+    return { color: '#f43f5e', label: 'À consolider' };
+  }
+
+  function showResultsModal(score, sections) {
+    const { color, label } = gradeColor(score);
+    const pct = Math.max(0, Math.min(1, score / 20));
+
+    document.getElementById('modal-score').textContent = (Math.round(score * 100) / 100).toString().replace('.', ',');
+    document.getElementById('modal-score').style.color = color;
+    const label_el = document.getElementById('modal-label');
+    label_el.textContent = label;
+    label_el.style.color = color;
+
+    document.getElementById('score-ring').style.background =
+      `conic-gradient(${color} ${pct * 360}deg, #e2e8f0 ${pct * 360}deg)`;
+
+    const secWrap = document.getElementById('modal-sections');
+    secWrap.innerHTML = '';
+    Object.keys(sections).forEach(name => {
+      const s = sections[name];
+      const earnedPts = Math.round((s.earned / 30) * 100) / 100;
+      const totalPts = Math.round((s.total / 30) * 100) / 100;
+      const row = document.createElement('div');
+      row.className = 'flex items-center justify-between gap-3 bg-slate-50 rounded-lg px-3.5 py-2.5 text-sm';
+      const ratio = s.total > 0 ? s.earned / s.total : 0;
+      row.innerHTML = `
+        <span class="font-medium text-slate-700">${name}</span>
+        <span class="flex items-center gap-2">
+          <span class="w-20 h-1.5 rounded-full bg-slate-200 overflow-hidden"><span style="display:block;height:100%;width:${Math.round(ratio*100)}%;background:${ratio>=0.5?'#10b981':'#f43f5e'}"></span></span>
+          <span class="font-bold text-slate-800 tabular-nums">${earnedPts}<span class="text-slate-400 font-normal">/${totalPts}</span></span>
+        </span>`;
+      secWrap.appendChild(row);
+    });
+
+    document.getElementById('results-modal').classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+  }
+
+  function closeModal() {
+    document.getElementById('results-modal').classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+  }
+</script>
+
+</body>
+</html>

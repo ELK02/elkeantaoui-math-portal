@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Statistiques — 2ème APIC | Collège Mhamed 9</title>
+<meta name="description" content="Cours complet et série d'exercices corrigés sur les statistiques (effectifs cumulés, moyenne, médiane, étendue, diagrammes) — 2ème année APIC.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          heading: ['Poppins', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          brand: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da', 400: '#6089bd',
+            500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63', 800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+        },
+        boxShadow: {
+          soft: '0 10px 30px -12px rgba(18, 41, 76, 0.25)',
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; }
+  h1, h2, h3, h4, .font-heading { font-family: 'Poppins', sans-serif; }
+
+  /* Fraction display for formulas */
+  .frac {
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 0.25em;
+    line-height: 1.15;
+  }
+  .frac .num, .frac .den {
+    display: block;
+    padding: 0 0.35em;
+  }
+  .frac .num {
+    border-bottom: 2px solid currentColor;
+  }
+
+  /* Correction panel animation */
+  .correction-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s ease;
+  }
+  .correction-panel.open {
+    grid-template-rows: 1fr;
+  }
+  .correction-inner {
+    overflow: hidden;
+  }
+  .chevron {
+    transition: transform 0.3s ease;
+  }
+  .chevron.open {
+    transform: rotate(180deg);
+  }
+
+  .star {
+    color: #f59e0b;
+  }
+
+  #topnav.scrolled {
+    box-shadow: 0 8px 24px -12px rgba(0,0,0,0.15);
+  }
+
+  /* Bar chart bars */
+  .bar-wrap {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+  }
+  .bar {
+    width: 100%;
+    border-radius: 6px 6px 0 0;
+    transition: height 0.6s ease;
+  }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-100, .dark .border-emerald-200 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
+  .dark .bg-amber-50 { background-color: #3a2a0a; }
+  .dark .border-amber-400 { border-color: #92400e; }
+  .dark .bg-brand-50 { background-color: #12294c; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+<header id="topnav" class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur border-b border-slate-100 dark:border-slate-800 transition-shadow">
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+    <a href="#top" class="flex items-center gap-2.5 font-heading font-extrabold text-brand-700 dark:text-white">
+      <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-9 w-9 shrink-0 rounded-full">
+      <span class="leading-tight text-sm sm:text-base">
+        Collège Mhamed 9<br class="sm:hidden">
+        <span class="text-slate-400 font-medium text-xs sm:text-sm"> · Statistiques</span>
+      </span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-1">
+      <a href="/" class="px-4 py-2 rounded-lg text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-brand-700 hover:bg-brand-50 dark:hover:bg-white/5 dark:hover:text-white transition">← Portail</a>
+      <a href="#cours" class="px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-700 hover:bg-brand-50 dark:hover:bg-white/5 dark:hover:text-white transition">Cours</a>
+      <a href="#moyenne" class="px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-700 hover:bg-brand-50 dark:hover:bg-white/5 dark:hover:text-white transition">Moyenne &amp; médiane</a>
+      <a href="#diagrammes" class="px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-700 hover:bg-brand-50 dark:hover:bg-white/5 dark:hover:text-white transition">Diagrammes</a>
+      <a href="#exercices" class="ml-2 px-4 py-2 rounded-lg text-sm font-bold text-white bg-brand-600 hover:bg-brand-700 transition shadow-soft">Exercices</a>
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-brand-700 dark:hover:text-amber-400 transition-colors">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+    </div>
+
+    <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="md:hidden mr-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+      <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+      <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+    </button>
+    <button id="menuBtn" class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5" aria-label="Ouvrir le menu">
+      <svg id="menuIconOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+      <svg id="menuIconClose" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+    </button>
+  </nav>
+
+  <div id="mobileMenu" class="hidden md:hidden border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-[#0b1f3a] px-4 py-3 space-y-1">
+    <a href="/" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-500 dark:text-slate-400 hover:bg-brand-50 dark:hover:bg-white/5">← Portail</a>
+    <a href="#cours" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-white/5">I · Vocabulaire &amp; effectifs cumulés</a>
+    <a href="#moyenne" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-white/5">II · Moyenne, médiane, étendue</a>
+    <a href="#diagrammes" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-white/5">III · Diagrammes statistiques</a>
+    <a href="#exercices" class="block px-3 py-2 rounded-lg text-sm font-bold text-brand-700 dark:text-white bg-brand-50 dark:bg-white/5">Exercices</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-brand-700 via-brand-600 to-indigo-500 text-white">
+    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image:radial-gradient(circle at 20% 20%, white 1px, transparent 1px);background-size:26px 26px;"></div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 relative">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="inline-flex items-center gap-2 bg-white/15 border border-white/25 text-white text-xs sm:text-sm font-semibold px-3 py-1.5 rounded-full mb-5">
+            2<sup>ème</sup> APIC · Chapitre 08
+          </span>
+          <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-5">
+            Statistiques
+          </h1>
+          <p class="text-brand-50/90 text-base sm:text-lg leading-relaxed max-w-xl">
+            Vocabulaire statistique, effectifs et fréquences cumulés, moyenne, médiane, étendue et diagrammes (circulaire et en bâtons) — cours complet et exercices corrigés.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#cours" class="px-5 py-3 rounded-xl bg-white text-brand-700 font-bold text-sm hover:bg-brand-50 transition shadow-soft">Commencer le cours</a>
+            <a href="#exercices" class="px-5 py-3 rounded-xl bg-white/10 border border-white/30 text-white font-bold text-sm hover:bg-white/20 transition">Voir les exercices</a>
+          </div>
+        </div>
+        <div class="relative hidden lg:block">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop"
+               alt="Illustration mathématique - graphiques et statistiques"
+               class="rounded-2xl shadow-2xl ring-1 ring-white/20 object-cover w-full h-80">
+          <div class="absolute -bottom-5 -left-5 bg-white text-slate-800 rounded-xl shadow-soft px-4 py-3 text-sm font-heading font-bold">
+            <span class="text-brand-600">M = <span class="frac"><span class="num">Σ xi</span><span class="den">n</span></span></span>
+            <p class="text-xs font-medium text-slate-400 mt-0.5">moyenne d'une série statistique</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION I -->
+  <section id="cours" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 scroll-mt-16">
+    <div class="mb-10">
+      <span class="text-brand-600 font-bold text-sm tracking-wide uppercase">Partie I</span>
+      <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">Vocabulaire statistique &amp; effectifs cumulés</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
+      <div class="bg-white rounded-2xl shadow-soft ring-1 ring-slate-100 p-5">
+        <h3 class="font-heading font-bold text-slate-900 mb-2 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center text-xs font-black">1</span>
+          Population
+        </h3>
+        <p class="text-slate-600 text-sm leading-relaxed">C'est l'ensemble étudié dans l'enquête.</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-soft ring-1 ring-slate-100 p-5">
+        <h3 class="font-heading font-bold text-slate-900 mb-2 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center text-xs font-black">2</span>
+          Individu
+        </h3>
+        <p class="text-slate-600 text-sm leading-relaxed">C'est un élément de la population.</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-soft ring-1 ring-slate-100 p-5">
+        <h3 class="font-heading font-bold text-slate-900 mb-2 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center text-xs font-black">3</span>
+          Caractère (variable)
+        </h3>
+        <p class="text-slate-600 text-sm leading-relaxed">Ce qui est étudié dans la population et qui est commun à tous les individus.</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-soft ring-1 ring-slate-100 p-5">
+        <h3 class="font-heading font-bold text-slate-900 mb-2 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center text-xs font-black">4</span>
+          Modalités
+        </h3>
+        <p class="text-slate-600 text-sm leading-relaxed">Ce sont les différentes valeurs que le caractère peut prendre.</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-soft ring-1 ring-slate-100 p-5">
+        <h3 class="font-heading font-bold text-slate-900 mb-2 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center text-xs font-black">5</span>
+          Effectif d'une valeur
+        </h3>
+        <p class="text-slate-600 text-sm leading-relaxed">C'est le nombre de fois où cette valeur apparaît dans la série statistique.</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-soft ring-1 ring-slate-100 p-5">
+        <h3 class="font-heading font-bold text-slate-900 mb-2 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center text-xs font-black">6</span>
+          Effectif total
+        </h3>
+        <p class="text-slate-600 text-sm leading-relaxed">Il est égal au nombre de données de la série statistique.</p>
+      </div>
+    </div>
+
+    <article class="bg-gradient-to-br from-brand-50 to-white rounded-2xl ring-1 ring-brand-100 p-6 sm:p-8 mb-8">
+      <h3 class="font-heading text-xl font-bold text-slate-900 mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center text-sm font-black">1.7</span>
+        Fréquence
+      </h3>
+      <p class="text-slate-600 leading-relaxed mb-4">La fréquence d'une modalité est le quotient :</p>
+      <div class="inline-flex items-center text-lg font-heading font-bold text-brand-700 bg-white rounded-xl px-6 py-4 ring-1 ring-brand-100 shadow-soft">
+        Fréquence = <span class="frac"><span class="num">effectif de la modalité</span><span class="den">effectif total</span></span>
+      </div>
+      <ul class="mt-5 space-y-1.5 text-sm text-slate-600">
+        <li class="flex gap-2"><span class="text-brand-600 font-bold">•</span> Une fréquence est un nombre compris entre 0 et 1.</li>
+        <li class="flex gap-2"><span class="text-brand-600 font-bold">•</span> On peut l'exprimer sous forme de fraction, de nombre décimal ou de pourcentage : Pourcentage = Fréquence × 100.</li>
+        <li class="flex gap-2"><span class="text-brand-600 font-bold">•</span> La somme des fréquences de toutes les données est égale à 1.</li>
+      </ul>
+    </article>
+
+    <article class="bg-white rounded-2xl shadow-soft ring-1 ring-slate-100 p-6 sm:p-8 mb-6">
+      <h3 class="font-heading text-xl font-bold text-slate-900 mb-3">1.8 Effectif cumulé croissant</h3>
+      <p class="text-slate-600 leading-relaxed mb-4">On appelle <strong class="text-brand-700">effectif cumulé croissant</strong> le nombre d'individus qui correspondent au même caractère et aux caractères précédents. Pour le calculer, il suffit d'ajouter à l'effectif d'une valeur, le ou les effectifs des valeurs précédentes.</p>
+      <p class="text-sm font-bold text-brand-700 uppercase tracking-wide mb-2">Exemple — notes d'une classe de cinquième</p>
+      <div class="overflow-x-auto rounded-xl ring-1 ring-slate-200">
+        <table class="w-full text-center border-collapse min-w-[520px] text-sm">
+          <tbody>
+            <tr class="bg-slate-50"><td class="px-3 py-2.5 font-semibold text-left border-b border-slate-200">Notes des élèves</td><td class="px-3 py-2.5 border-b border-l border-slate-200">2</td><td class="px-3 py-2.5 border-b border-l border-slate-200">6</td><td class="px-3 py-2.5 border-b border-l border-slate-200">8</td><td class="px-3 py-2.5 border-b border-l border-slate-200">9</td><td class="px-3 py-2.5 border-b border-l border-slate-200">10</td><td class="px-3 py-2.5 border-b border-l border-slate-200">11</td><td class="px-3 py-2.5 border-b border-l border-slate-200">12</td><td class="px-3 py-2.5 border-b border-l border-slate-200">14</td><td class="px-3 py-2.5 border-b border-l border-slate-200">16</td></tr>
+            <tr><td class="px-3 py-2.5 font-semibold text-left border-b border-slate-200">Nombre d'élèves</td><td class="px-3 py-2.5 border-b border-l border-slate-200">1</td><td class="px-3 py-2.5 border-b border-l border-slate-200">3</td><td class="px-3 py-2.5 border-b border-l border-slate-200">3</td><td class="px-3 py-2.5 border-b border-l border-slate-200">7</td><td class="px-3 py-2.5 border-b border-l border-slate-200">6</td><td class="px-3 py-2.5 border-b border-l border-slate-200">5</td><td class="px-3 py-2.5 border-b border-l border-slate-200">3</td><td class="px-3 py-2.5 border-b border-l border-slate-200">2</td><td class="px-3 py-2.5 border-b border-l border-slate-200">1</td></tr>
+            <tr class="bg-brand-50 font-semibold text-brand-800"><td class="px-3 py-2.5 text-left">Effectifs cumulés</td><td class="px-3 py-2.5 border-l border-brand-100">1</td><td class="px-3 py-2.5 border-l border-brand-100">4</td><td class="px-3 py-2.5 border-l border-brand-100">7</td><td class="px-3 py-2.5 border-l border-brand-100">14</td><td class="px-3 py-2.5 border-l border-brand-100">20</td><td class="px-3 py-2.5 border-l border-brand-100">25</td><td class="px-3 py-2.5 border-l border-brand-100">28</td><td class="px-3 py-2.5 border-l border-brand-100">30</td><td class="px-3 py-2.5 border-l border-brand-100">31</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-slate-500 text-xs mt-3">Pour la note 6 : il y a 3 élèves et l'effectif cumulé précédent est 1, donc 1 + 3 = 4 élèves.</p>
+    </article>
+
+    <article class="bg-white rounded-2xl shadow-soft ring-1 ring-slate-100 p-6 sm:p-8">
+      <h3 class="font-heading text-xl font-bold text-slate-900 mb-3">1.9 Fréquence cumulée croissante</h3>
+      <p class="text-slate-600 leading-relaxed mb-4">La <strong class="text-brand-700">fréquence cumulée croissante</strong> associée à une valeur est la somme des fréquences des valeurs inférieures ou égales.</p>
+      <div class="overflow-x-auto rounded-xl ring-1 ring-slate-200">
+        <table class="w-full text-center border-collapse min-w-[560px] text-sm">
+          <tbody>
+            <tr class="bg-slate-50"><td class="px-3 py-2.5 font-semibold text-left border-b border-slate-200">Notes</td><td class="px-3 py-2.5 border-b border-l border-slate-200">2</td><td class="px-3 py-2.5 border-b border-l border-slate-200">6</td><td class="px-3 py-2.5 border-b border-l border-slate-200">8</td><td class="px-3 py-2.5 border-b border-l border-slate-200">9</td><td class="px-3 py-2.5 border-b border-l border-slate-200">10</td><td class="px-3 py-2.5 border-b border-l border-slate-200">11</td><td class="px-3 py-2.5 border-b border-l border-slate-200">12</td><td class="px-3 py-2.5 border-b border-l border-slate-200">14</td><td class="px-3 py-2.5 border-b border-l border-slate-200">16</td></tr>
+            <tr><td class="px-3 py-2.5 font-semibold text-left border-b border-slate-200">Fréquence</td><td class="px-3 py-2.5 border-b border-l border-slate-200">0,032</td><td class="px-3 py-2.5 border-b border-l border-slate-200">0,097</td><td class="px-3 py-2.5 border-b border-l border-slate-200">0,097</td><td class="px-3 py-2.5 border-b border-l border-slate-200">0,226</td><td class="px-3 py-2.5 border-b border-l border-slate-200">0,194</td><td class="px-3 py-2.5 border-b border-l border-slate-200">0,161</td><td class="px-3 py-2.5 border-b border-l border-slate-200">0,097</td><td class="px-3 py-2.5 border-b border-l border-slate-200">0,065</td><td class="px-3 py-2.5 border-b border-l border-slate-200">0,032</td></tr>
+            <tr class="bg-brand-50 font-semibold text-brand-800"><td class="px-3 py-2.5 text-left">Fréquence cumulée</td><td class="px-3 py-2.5 border-l border-brand-100">0,032</td><td class="px-3 py-2.5 border-l border-brand-100">0,129</td><td class="px-3 py-2.5 border-l border-brand-100">0,226</td><td class="px-3 py-2.5 border-l border-brand-100">0,452</td><td class="px-3 py-2.5 border-l border-brand-100">0,646</td><td class="px-3 py-2.5 border-l border-brand-100">0,807</td><td class="px-3 py-2.5 border-l border-brand-100">0,904</td><td class="px-3 py-2.5 border-l border-brand-100">0,969</td><td class="px-3 py-2.5 border-l border-brand-100">1</td></tr>
+            <tr class="bg-slate-50"><td class="px-3 py-2.5 font-semibold text-left border-t border-slate-200">Pourcentage (%)</td><td class="px-3 py-2.5 border-t border-l border-slate-200">3,2</td><td class="px-3 py-2.5 border-t border-l border-slate-200">9,7</td><td class="px-3 py-2.5 border-t border-l border-slate-200">9,7</td><td class="px-3 py-2.5 border-t border-l border-slate-200">22,6</td><td class="px-3 py-2.5 border-t border-l border-slate-200">19,4</td><td class="px-3 py-2.5 border-t border-l border-slate-200">16,1</td><td class="px-3 py-2.5 border-t border-l border-slate-200">9,7</td><td class="px-3 py-2.5 border-t border-l border-slate-200">6,5</td><td class="px-3 py-2.5 border-t border-l border-slate-200">3,2</td></tr>
+            <tr class="bg-emerald-50 font-semibold text-emerald-800"><td class="px-3 py-2.5 text-left">Pourcentage cumulé</td><td class="px-3 py-2.5 border-l border-emerald-100">3,2</td><td class="px-3 py-2.5 border-l border-emerald-100">12,9</td><td class="px-3 py-2.5 border-l border-emerald-100">22,6</td><td class="px-3 py-2.5 border-l border-emerald-100">45,2</td><td class="px-3 py-2.5 border-l border-emerald-100">64,6</td><td class="px-3 py-2.5 border-l border-emerald-100">80,7</td><td class="px-3 py-2.5 border-l border-emerald-100">90,4</td><td class="px-3 py-2.5 border-l border-emerald-100">96,9</td><td class="px-3 py-2.5 border-l border-emerald-100">100</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+
+  <!-- SECTION II -->
+  <section id="moyenne" class="bg-white border-y border-slate-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 scroll-mt-16">
+      <div class="mb-10">
+        <span class="text-brand-600 font-bold text-sm tracking-wide uppercase">Partie II</span>
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">Moyenne, médiane et étendue</h2>
+      </div>
+
+      <article class="bg-slate-50 rounded-2xl ring-1 ring-slate-100 p-6 sm:p-8 mb-6">
+        <h3 class="font-heading text-xl font-bold text-slate-900 mb-3 flex items-center gap-2">
+          <span class="w-8 h-8 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center text-sm font-black">2.1</span>
+          Moyenne d'une série
+        </h3>
+        <p class="text-slate-600 leading-relaxed mb-4">La moyenne d'une série de données statistiques est égale à la somme de toutes les données divisée par l'effectif total de la série.</p>
+        <div class="flex flex-col sm:flex-row items-center gap-6">
+          <div class="text-lg font-heading font-bold text-brand-700 bg-white rounded-xl px-6 py-4 ring-1 ring-brand-100 shadow-soft">
+            Moyenne = <span class="frac"><span class="num">somme de toutes les valeurs</span><span class="den">nombre de valeurs</span></span>
+          </div>
+        </div>
+        <p class="text-slate-600 leading-relaxed mt-4">
+          <strong>Exemple :</strong> quelle est la moyenne des valeurs suivantes : 9 ; 6 ; 4 ; 11 ; 6 ; 7 ; 8 ?
+        </p>
+        <p class="text-slate-600 leading-relaxed">
+          → (9 + 6 + 4 + 11 + 6 + 7 + 8) ÷ 7 = 51 ÷ 7 ≈ <strong class="text-brand-700">7,29</strong>
+        </p>
+      </article>
+
+      <article class="bg-slate-50 rounded-2xl ring-1 ring-slate-100 p-6 sm:p-8 mb-6">
+        <h3 class="font-heading text-xl font-bold text-slate-900 mb-3 flex items-center gap-2">
+          <span class="w-8 h-8 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center text-sm font-black">2.2</span>
+          Médiane d'une série
+        </h3>
+        <p class="text-slate-600 leading-relaxed mb-4">Après avoir <strong class="text-slate-900">ordonné les données</strong> dans l'ordre croissant, la <strong class="text-brand-700">médiane</strong> est la valeur qui partage la série en deux groupes de même effectif.</p>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="bg-white rounded-xl ring-1 ring-slate-200 p-4">
+            <p class="font-semibold text-slate-800 text-sm mb-1">Effectif total impair</p>
+            <p class="text-slate-600 text-sm leading-relaxed">La médiane est la valeur du milieu de la série ordonnée.</p>
+          </div>
+          <div class="bg-white rounded-xl ring-1 ring-slate-200 p-4">
+            <p class="font-semibold text-slate-800 text-sm mb-1">Effectif total pair</p>
+            <p class="text-slate-600 text-sm leading-relaxed">La médiane est la moyenne des deux valeurs du milieu de la série ordonnée.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="bg-slate-50 rounded-2xl ring-1 ring-slate-100 p-6 sm:p-8">
+        <h3 class="font-heading text-xl font-bold text-slate-900 mb-3 flex items-center gap-2">
+          <span class="w-8 h-8 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center text-sm font-black">2.3</span>
+          Étendue d'une série
+        </h3>
+        <p class="text-slate-600 leading-relaxed mb-3">L'<strong class="text-brand-700">étendue</strong> est un indicateur de dispersion : elle mesure l'écart entre la plus grande et la plus petite valeur de la série.</p>
+        <div class="inline-flex items-center text-lg font-heading font-bold text-brand-700 bg-white rounded-xl px-6 py-4 ring-1 ring-brand-100 shadow-soft">
+          Étendue = valeur maximale − valeur minimale
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- SECTION III -->
+  <section id="diagrammes" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 scroll-mt-16">
+    <div class="mb-10">
+      <span class="text-brand-600 font-bold text-sm tracking-wide uppercase">Partie III</span>
+      <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">Diagrammes d'une série statistique</h2>
+    </div>
+
+    <article class="bg-white rounded-2xl shadow-soft ring-1 ring-slate-100 p-6 sm:p-8 mb-6">
+      <h3 class="font-heading text-xl font-bold text-slate-900 mb-3">3.1 Diagramme circulaire</h3>
+      <p class="text-slate-600 leading-relaxed mb-2">Un diagramme circulaire est la représentation graphique d'une série statistique constituée de secteurs circulaires dont les mesures des angles sont proportionnelles aux effectifs.</p>
+      <p class="text-slate-600 leading-relaxed mb-4">L'effectif total correspond à un angle de 360° (180° pour les semi-circulaires). On obtient l'angle en degrés en multipliant la fréquence par 360° (ou 180°).</p>
+      <div class="inline-flex items-center text-base font-heading font-bold text-brand-700 bg-brand-50 rounded-xl px-5 py-3 ring-1 ring-brand-100 mb-6">
+        Angle = <span class="frac"><span class="num">pourcentage</span><span class="den">100</span></span> × 360°
+      </div>
+      <p class="text-sm font-bold text-brand-700 uppercase tracking-wide mb-3">Exemple — couleur des cheveux d'une classe</p>
+      <div class="grid sm:grid-cols-2 gap-6 items-center">
+        <div class="flex justify-center">
+          <div class="relative w-52 h-52 rounded-full shadow-soft" style="background: conic-gradient(from 0deg, #1e293b 0% 31.25%, #fbbf24 31.25% 53.125%, #f43f5e 53.125% 100%);">
+            <div class="absolute inset-6 bg-white rounded-full flex items-center justify-center text-center">
+              <span class="text-xs font-bold text-slate-500">360°<br>= effectif total</span>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-2 text-sm">
+          <div class="flex items-center gap-2"><span class="w-3.5 h-3.5 rounded-sm bg-slate-800"></span> Cheveux noirs — 112,5°</div>
+          <div class="flex items-center gap-2"><span class="w-3.5 h-3.5 rounded-sm bg-amber-400"></span> Cheveux blonds — 78,75°</div>
+          <div class="flex items-center gap-2"><span class="w-3.5 h-3.5 rounded-sm bg-rose-500"></span> Cheveux roux — 168,75°</div>
+          <p class="text-slate-500 text-xs pt-2">Ex : angle « cheveux noirs » = (pourcentage cheveux noirs ÷ 100) × 360° = 112,5°</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="bg-white rounded-2xl shadow-soft ring-1 ring-slate-100 p-6 sm:p-8">
+      <h3 class="font-heading text-xl font-bold text-slate-900 mb-3">3.2 Diagramme en bâtons (en barres)</h3>
+      <p class="text-slate-600 leading-relaxed mb-6">Un diagramme en bâtons est un graphique qui à chaque modalité associe un bâton de hauteur proportionnelle à l'effectif correspondant.</p>
+      <p class="text-sm font-bold text-brand-700 uppercase tracking-wide mb-3">Exemple — couleur des cheveux d'une classe</p>
+      <div class="h-52 flex items-end gap-8 justify-center px-4 border-b border-slate-200">
+        <div class="flex flex-col items-center gap-2 w-20">
+          <div class="bar-wrap h-40"><div class="bar bg-rose-500" style="height:100%"></div></div>
+          <span class="text-xs font-semibold text-slate-500">rouges (15)</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 w-20">
+          <div class="bar-wrap h-40"><div class="bar bg-amber-400" style="height:46.7%"></div></div>
+          <span class="text-xs font-semibold text-slate-500">blonds (7)</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 w-20">
+          <div class="bar-wrap h-40"><div class="bar bg-slate-800" style="height:66.7%"></div></div>
+          <span class="text-xs font-semibold text-slate-500">noirs (10)</span>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- SECTION EXERCICES -->
+  <section id="exercices" class="bg-slate-900 scroll-mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+      <div class="mb-10 text-center">
+        <span class="text-brand-300 font-bold text-sm tracking-wide uppercase">Exercice n°7 · Fiche D · Niveau 2APIC</span>
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white mt-1">Exercices sur les statistiques</h2>
+        <p class="text-slate-400 mt-3 max-w-2xl mx-auto">Cherche chaque exercice sur ton cahier, puis clique sur « Voir la correction » pour vérifier ta réponse.</p>
+      </div>
+
+      <div class="grid gap-6">
+
+        <!-- EX 12 -->
+        <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+          <div class="p-6 sm:p-8">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h3 class="font-heading text-lg font-bold text-slate-900">Exercice 12</h3>
+              <span class="star text-sm shrink-0">★★☆</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed mb-4">On donne les performances en saut en hauteur des élèves d'une classe de troisième. Les hauteurs sont données en centimètres.</p>
+            <div class="overflow-x-auto rounded-xl ring-1 ring-slate-200 mb-4">
+              <table class="w-full text-center border-collapse min-w-[520px] text-sm">
+                <tbody>
+                  <tr class="bg-slate-50"><td class="px-2.5 py-2 border-b border-slate-200">117</td><td class="px-2.5 py-2 border-b border-l border-slate-200">111</td><td class="px-2.5 py-2 border-b border-l border-slate-200">133</td><td class="px-2.5 py-2 border-b border-l border-slate-200">134</td><td class="px-2.5 py-2 border-b border-l border-slate-200">129</td><td class="px-2.5 py-2 border-b border-l border-slate-200">109</td><td class="px-2.5 py-2 border-b border-l border-slate-200">129</td><td class="px-2.5 py-2 border-b border-l border-slate-200">122</td><td class="px-2.5 py-2 border-b border-l border-slate-200">111</td><td class="px-2.5 py-2 border-b border-l border-slate-200">106</td></tr>
+                  <tr><td class="px-2.5 py-2">122</td><td class="px-2.5 py-2 border-l border-slate-200">128</td><td class="px-2.5 py-2 border-l border-slate-200">120</td><td class="px-2.5 py-2 border-l border-slate-200">120</td><td class="px-2.5 py-2 border-l border-slate-200">131</td><td class="px-2.5 py-2 border-l border-slate-200">130</td><td class="px-2.5 py-2 border-l border-slate-200">110</td><td class="px-2.5 py-2 border-l border-slate-200">109</td><td class="px-2.5 py-2 border-l border-slate-200">112</td><td class="px-2.5 py-2 border-l border-slate-200"></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <ol class="list-decimal list-inside space-y-1.5 text-slate-700 text-sm">
+              <li>Préciser la population et le caractère étudiés.</li>
+              <li>Calculer un indicateur de dispersion de cette série.</li>
+              <li>Déterminer la performance moyenne M des élèves de cette classe, arrondie à l'unité.</li>
+              <li>Déterminer la performance médiane m et donner la signification de ce résultat.</li>
+            </ol>
+          </div>
+          <button onclick="toggleCorrection('c12', this)" class="w-full flex items-center justify-center gap-2 bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold text-sm py-3.5 transition">
+            <span class="btn-label">Voir la correction</span>
+            <svg class="chevron w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="c12" class="correction-panel">
+            <div class="correction-inner bg-emerald-50 px-6 sm:px-8">
+              <div class="py-6 space-y-2.5 text-sm text-slate-700 leading-relaxed border-t border-emerald-100">
+                <p><strong>1.</strong> Population : les élèves de la classe de troisième. Caractère étudié : la performance (hauteur du saut), en cm.</p>
+                <p><strong>2.</strong> Étendue = valeur maximale − valeur minimale = 134 − 106 = <strong class="text-emerald-700">28 cm</strong>.</p>
+                <p><strong>3.</strong> Somme des 19 valeurs = 2 283. Moyenne M = 2 283 ÷ 19 ≈ 120,16 → <strong class="text-emerald-700">M ≈ 120 cm</strong>.</p>
+                <p><strong>4.</strong> Données ordonnées : 106, 109, 109, 110, 111, 111, 112, 117, 120, <strong>120</strong>, 122, 122, 128, 129, 129, 130, 131, 133, 134 (19 valeurs, impair) → médiane = 10<sup>e</sup> valeur = <strong class="text-emerald-700">m = 120 cm</strong>.</p>
+                <p class="italic text-slate-500">Signification : la moitié des élèves ont sauté une hauteur inférieure ou égale à 120 cm, et l'autre moitié une hauteur supérieure ou égale à 120 cm.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- EX 13 -->
+        <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+          <div class="p-6 sm:p-8">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h3 class="font-heading text-lg font-bold text-slate-900">Exercice 13</h3>
+              <span class="star text-sm shrink-0">★★☆</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed mb-4">Une enquête a été réalisée dans 80 restaurants d'une région pour connaître l'effectif de leur personnel.</p>
+            <div class="overflow-x-auto rounded-xl ring-1 ring-slate-200 mb-4">
+              <table class="w-full text-center border-collapse min-w-[380px] text-sm">
+                <tbody>
+                  <tr class="bg-slate-50"><td class="px-3 py-2.5 font-semibold text-left border-b border-slate-200">Nombre de salariés</td><td class="px-3 py-2.5 border-b border-l border-slate-200">2</td><td class="px-3 py-2.5 border-b border-l border-slate-200">3</td><td class="px-3 py-2.5 border-b border-l border-slate-200">4</td><td class="px-3 py-2.5 border-b border-l border-slate-200">5</td><td class="px-3 py-2.5 border-b border-l border-slate-200">6</td><td class="px-3 py-2.5 border-b border-l border-slate-200">7</td><td class="px-3 py-2.5 border-b border-l border-slate-200">8</td></tr>
+                  <tr><td class="px-3 py-2.5 font-semibold text-left">Nombre de restaurants</td><td class="px-3 py-2.5 border-l border-slate-200">5</td><td class="px-3 py-2.5 border-l border-slate-200">7</td><td class="px-3 py-2.5 border-l border-slate-200">14</td><td class="px-3 py-2.5 border-l border-slate-200">17</td><td class="px-3 py-2.5 border-l border-slate-200">21</td><td class="px-3 py-2.5 border-l border-slate-200">10</td><td class="px-3 py-2.5 border-l border-slate-200">6</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <ol class="list-decimal list-inside space-y-1.5 text-slate-700 text-sm">
+              <li>Préciser la population et le caractère étudiés.</li>
+              <li>Calculer la moyenne et la médiane de la série en interprétant les résultats.</li>
+            </ol>
+          </div>
+          <button onclick="toggleCorrection('c13', this)" class="w-full flex items-center justify-center gap-2 bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold text-sm py-3.5 transition">
+            <span class="btn-label">Voir la correction</span>
+            <svg class="chevron w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="c13" class="correction-panel">
+            <div class="correction-inner bg-emerald-50 px-6 sm:px-8">
+              <div class="py-6 space-y-2.5 text-sm text-slate-700 leading-relaxed border-t border-emerald-100">
+                <p><strong>1.</strong> Population : les 80 restaurants enquêtés. Caractère étudié : le nombre de salariés (effectif du personnel).</p>
+                <p><strong>2.</strong> Moyenne = (2×5 + 3×7 + 4×14 + 5×17 + 6×21 + 7×10 + 8×6) ÷ 80 = 416 ÷ 80 = <strong class="text-emerald-700">5,2 salariés</strong>.</p>
+                <div class="overflow-x-auto rounded-lg ring-1 ring-emerald-200 bg-white">
+                  <table class="w-full text-center border-collapse text-xs min-w-[420px]">
+                    <tbody>
+                      <tr class="bg-emerald-100/50 font-semibold"><td class="px-2.5 py-2 text-left border-b border-emerald-100">Salariés</td><td class="px-2.5 py-2 border-b border-l border-emerald-100">2</td><td class="px-2.5 py-2 border-b border-l border-emerald-100">3</td><td class="px-2.5 py-2 border-b border-l border-emerald-100">4</td><td class="px-2.5 py-2 border-b border-l border-emerald-100">5</td><td class="px-2.5 py-2 border-b border-l border-emerald-100">6</td><td class="px-2.5 py-2 border-b border-l border-emerald-100">7</td><td class="px-2.5 py-2 border-b border-l border-emerald-100">8</td></tr>
+                      <tr class="font-semibold"><td class="px-2.5 py-2 text-left">Cumulés</td><td class="px-2.5 py-2 border-l border-emerald-100">5</td><td class="px-2.5 py-2 border-l border-emerald-100">12</td><td class="px-2.5 py-2 border-l border-emerald-100">26</td><td class="px-2.5 py-2 border-l border-emerald-100 text-emerald-700">43</td><td class="px-2.5 py-2 border-l border-emerald-100">64</td><td class="px-2.5 py-2 border-l border-emerald-100">74</td><td class="px-2.5 py-2 border-l border-emerald-100">80</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>Effectif total 80 (pair) → médiane = moyenne du 40<sup>e</sup> et du 41<sup>e</sup> valeur. Comme l'effectif cumulé passe de 26 (à 4 salariés) à 43 (à 5 salariés), le 40<sup>e</sup> et le 41<sup>e</sup> élément appartiennent tous les deux à la valeur 5 → <strong class="text-emerald-700">médiane = 5 salariés</strong>.</p>
+                <p class="italic text-slate-500">Interprétation : la moitié des restaurants emploient au plus 5 salariés, l'autre moitié au moins 5 salariés. La moyenne (5,2) est très proche de la médiane (5), ce qui montre une répartition assez homogène du personnel.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- EX 14 -->
+        <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+          <div class="p-6 sm:p-8">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h3 class="font-heading text-lg font-bold text-slate-900">Exercice 14</h3>
+              <span class="star text-sm shrink-0">★★★</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed mb-4">Charlez et Siana sont deux professeurs de mathématiques et ont tous les deux une classe de troisième ayant 20 élèves. Ils comparent les notes obtenues par leurs élèves au dernier devoir commun.</p>
+            <div class="grid sm:grid-cols-2 gap-4 mb-4">
+              <div class="overflow-x-auto rounded-xl ring-1 ring-slate-200">
+                <p class="text-xs font-bold text-slate-500 uppercase px-2 pt-2">Notes de Charlez</p>
+                <table class="w-full text-center border-collapse text-sm">
+                  <tbody>
+                    <tr class="bg-slate-50"><td class="px-2.5 py-2 border-b border-slate-200">7</td><td class="px-2.5 py-2 border-b border-l border-slate-200">8</td><td class="px-2.5 py-2 border-b border-l border-slate-200">12</td><td class="px-2.5 py-2 border-b border-l border-slate-200">12</td><td class="px-2.5 py-2 border-b border-l border-slate-200">6</td></tr>
+                    <tr><td class="px-2.5 py-2 border-b border-slate-200">18</td><td class="px-2.5 py-2 border-b border-l border-slate-200">5</td><td class="px-2.5 py-2 border-b border-l border-slate-200">11</td><td class="px-2.5 py-2 border-b border-l border-slate-200">6</td><td class="px-2.5 py-2 border-b border-l border-slate-200">18</td></tr>
+                    <tr><td class="px-2.5 py-2 border-b border-slate-200">3</td><td class="px-2.5 py-2 border-b border-l border-slate-200">8</td><td class="px-2.5 py-2 border-b border-l border-slate-200">5</td><td class="px-2.5 py-2 border-b border-l border-slate-200">18</td><td class="px-2.5 py-2 border-b border-l border-slate-200">7</td></tr>
+                    <tr><td class="px-2.5 py-2">9</td><td class="px-2.5 py-2 border-l border-slate-200">20</td><td class="px-2.5 py-2 border-l border-slate-200">6</td><td class="px-2.5 py-2 border-l border-slate-200">16</td><td class="px-2.5 py-2 border-l border-slate-200">15</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="overflow-x-auto rounded-xl ring-1 ring-slate-200">
+                <p class="text-xs font-bold text-slate-500 uppercase px-2 pt-2">Notes de Siana</p>
+                <table class="w-full text-center border-collapse text-sm">
+                  <tbody>
+                    <tr class="bg-slate-50"><td class="px-2.5 py-2 border-b border-slate-200">8</td><td class="px-2.5 py-2 border-b border-l border-slate-200">8</td><td class="px-2.5 py-2 border-b border-l border-slate-200">9</td><td class="px-2.5 py-2 border-b border-l border-slate-200">12</td><td class="px-2.5 py-2 border-b border-l border-slate-200">11</td></tr>
+                    <tr><td class="px-2.5 py-2 border-b border-slate-200">8</td><td class="px-2.5 py-2 border-b border-l border-slate-200">13</td><td class="px-2.5 py-2 border-b border-l border-slate-200">15</td><td class="px-2.5 py-2 border-b border-l border-slate-200">7</td><td class="px-2.5 py-2 border-b border-l border-slate-200">9</td></tr>
+                    <tr><td class="px-2.5 py-2 border-b border-slate-200">10</td><td class="px-2.5 py-2 border-b border-l border-slate-200">10</td><td class="px-2.5 py-2 border-b border-l border-slate-200">12</td><td class="px-2.5 py-2 border-b border-l border-slate-200">8</td><td class="px-2.5 py-2 border-b border-l border-slate-200">10</td></tr>
+                    <tr><td class="px-2.5 py-2">14</td><td class="px-2.5 py-2 border-l border-slate-200">12</td><td class="px-2.5 py-2 border-l border-slate-200">11</td><td class="px-2.5 py-2 border-l border-slate-200">14</td><td class="px-2.5 py-2 border-l border-slate-200">9</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <ol class="list-decimal list-inside space-y-1.5 text-slate-700 text-sm">
+              <li>Construire, dans un même repère et avec deux couleurs différentes, le diagramme en bâtons représentant chaque série de notes.</li>
+              <li>Calculer l'étendue de chaque série.</li>
+              <li>Calculer la moyenne de chaque série.</li>
+              <li>Déterminer la médiane de chaque série.</li>
+              <li>Effectuer une comparaison des deux classes en se basant sur les réponses données aux questions précédentes.</li>
+            </ol>
+          </div>
+          <button onclick="toggleCorrection('c14', this)" class="w-full flex items-center justify-center gap-2 bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold text-sm py-3.5 transition">
+            <span class="btn-label">Voir la correction</span>
+            <svg class="chevron w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="c14" class="correction-panel">
+            <div class="correction-inner bg-emerald-50 px-6 sm:px-8">
+              <div class="py-6 space-y-4 text-sm text-slate-700 leading-relaxed border-t border-emerald-100">
+                <div>
+                  <p class="font-semibold mb-2"><strong>1.</strong> Diagramme en bâtons (bleu = Charlez, orange = Siana) :</p>
+                  <div class="overflow-x-auto bg-white rounded-xl ring-1 ring-emerald-200 p-4">
+                    <div class="h-44 flex items-end gap-2.5 min-w-[680px]">
+                      <div class="flex flex-col items-center gap-1 w-9"><div class="bar-wrap h-32 gap-0.5"><div class="bar bg-brand-500" style="height:25%"></div><div class="bar bg-amber-400" style="height:0%"></div></div><span class="text-[10px] text-slate-500">3</span></div>
+                      <div class="flex flex-col items-center gap-1 w-9"><div class="bar-wrap h-32 gap-0.5"><div class="bar bg-brand-500" style="height:50%"></div><div class="bar bg-amber-400" style="height:0%"></div></div><span class="text-[10px] text-slate-500">5</span></div>
+                      <div class="flex flex-col items-center gap-1 w-9"><div class="bar-wrap h-32 gap-0.5"><div class="bar bg-brand-500" style="height:75%"></div><div class="bar bg-amber-400" style="height:0%"></div></div><span class="text-[10px] text-slate-500">6</span></div>
+                      <div class="flex flex-col items-center gap-1 w-9"><div class="bar-wrap h-32 gap-0.5"><div class="bar bg-brand-500" style="height:50%"></div><div class="bar bg-amber-400" style="height:25%"></div></div><span class="text-[10px] text-slate-500">7</span></div>
+                      <div class="flex flex-col items-center gap-1 w-9"><div class="bar-wrap h-32 gap-0.5"><div class="bar bg-brand-500" style="height:50%"></div><div class="bar bg-amber-400" style="height:100%"></div></div><span class="text-[10px] text-slate-500">8</span></div>
+                      <div class="flex flex-col items-center gap-1 w-9"><div class="bar-wrap h-32 gap-0.5"><div class="bar bg-brand-500" style="height:25%"></div><div class="bar bg-amber-400" style="height:75%"></div></div><span class="text-[10px] text-slate-500">9</span></div>
+                      <div class="flex flex-col items-center gap-1 w-9"><div class="bar-wrap h-32 gap-0.5"><div class="bar bg-brand-500" style="height:0%"></div><div class="bar bg-amber-400" style="height:75%"></div></div><span class="text-[10px] text-slate-500">10</span></div>
+                      <div class="flex flex-col items-center gap-1 w-9"><div class="bar-wrap h-32 gap-0.5"><div class="bar bg-brand-500" style="height:25%"></div><div class="bar bg-amber-400" style="height:50%"></div></div><span class="text-[10px] text-slate-500">11</span></div>
+                      <div class="flex flex-col items-center gap-1 w-9"><div class="bar-wrap h-32 gap-0.5"><div class="bar bg-brand-500" style="height:50%"></div><div class="bar bg-amber-400" style="height:75%"></div></div><span class="text-[10px] text-slate-500">12</span></div>
+                      <div class="flex flex-col items-center gap-1 w-9"><div class="bar-wrap h-32 gap-0.5"><div class="bar bg-brand-500" style="height:0%"></div><div class="bar bg-amber-400" style="height:25%"></div></div><span class="text-[10px] text-slate-500">13</span></div>
+                      <div class="flex flex-col items-center gap-1 w-9"><div class="bar-wrap h-32 gap-0.5"><div class="bar bg-brand-500" style="height:0%"></div><div class="bar bg-amber-400" style="height:50%"></div></div><span class="text-[10px] text-slate-500">14</span></div>
+                      <div class="flex flex-col items-center gap-1 w-9"><div class="bar-wrap h-32 gap-0.5"><div class="bar bg-brand-500" style="height:25%"></div><div class="bar bg-amber-400" style="height:25%"></div></div><span class="text-[10px] text-slate-500">15</span></div>
+                      <div class="flex flex-col items-center gap-1 w-9"><div class="bar-wrap h-32 gap-0.5"><div class="bar bg-brand-500" style="height:25%"></div><div class="bar bg-amber-400" style="height:0%"></div></div><span class="text-[10px] text-slate-500">16</span></div>
+                      <div class="flex flex-col items-center gap-1 w-9"><div class="bar-wrap h-32 gap-0.5"><div class="bar bg-brand-500" style="height:75%"></div><div class="bar bg-amber-400" style="height:0%"></div></div><span class="text-[10px] text-slate-500">18</span></div>
+                      <div class="flex flex-col items-center gap-1 w-9"><div class="bar-wrap h-32 gap-0.5"><div class="bar bg-brand-500" style="height:25%"></div><div class="bar bg-amber-400" style="height:0%"></div></div><span class="text-[10px] text-slate-500">20</span></div>
+                    </div>
+                    <div class="flex items-center gap-4 mt-3 text-xs">
+                      <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-brand-500"></span>Charlez</span>
+                      <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-amber-400"></span>Siana</span>
+                    </div>
+                  </div>
+                </div>
+                <p><strong>2.</strong> Étendue Charlez = 20 − 3 = <strong class="text-emerald-700">17</strong>. Étendue Siana = 15 − 7 = <strong class="text-emerald-700">8</strong>.</p>
+                <p><strong>3.</strong> Somme des notes de Charlez = 210, moyenne = 210 ÷ 20 = <strong class="text-emerald-700">10,5</strong>. Somme des notes de Siana = 210, moyenne = 210 ÷ 20 = <strong class="text-emerald-700">10,5</strong> (les deux classes ont la même moyenne).</p>
+                <p><strong>4.</strong> Charlez ordonné : 3,5,5,6,6,6,7,7,8,<u>8</u>,<u>9</u>,11,12,12,15,16,18,18,18,20 → médiane = (8+9)÷2 = <strong class="text-emerald-700">8,5</strong>. Siana ordonné : 7,8,8,8,8,9,9,9,<u>10</u>,<u>10</u>,10,11,11,12,12,12,13,14,14,15 → médiane = (10+10)÷2 = <strong class="text-emerald-700">10</strong>.</p>
+                <p class="italic text-slate-500"><strong>5.</strong> Les deux classes ont la même moyenne (10,5), mais l'étendue de Charlez (17) est bien plus grande que celle de Siana (8) : les notes de Charlez vont de 3 à 20 (très dispersées) alors que celles de Siana restent entre 7 et 15 (plus regroupées). La médiane de Siana (10) est proche de sa moyenne, signe d'une distribution homogène ; celle de Charlez (8,5) s'en écarte davantage. La classe de Siana est donc plus régulière, celle de Charlez plus hétérogène.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- EX 15 -->
+        <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+          <div class="p-6 sm:p-8">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h3 class="font-heading text-lg font-bold text-slate-900">Exercice 15</h3>
+              <span class="star text-sm shrink-0">★★★</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed mb-4">Lors d'un sondage, on a demandé aux élèves combien de fois par semaine ils visitent le site Éducmat. Le tableau ci-contre indique les réponses.</p>
+            <div class="overflow-x-auto rounded-xl ring-1 ring-slate-200 mb-4">
+              <table class="w-full text-center border-collapse min-w-[480px] text-sm">
+                <tbody>
+                  <tr class="bg-slate-50"><td class="px-3 py-2.5 font-semibold text-left border-b border-slate-200">Nombre de visites</td><td class="px-3 py-2.5 border-b border-l border-slate-200">0</td><td class="px-3 py-2.5 border-b border-l border-slate-200">1</td><td class="px-3 py-2.5 border-b border-l border-slate-200">2</td><td class="px-3 py-2.5 border-b border-l border-slate-200">3</td><td class="px-3 py-2.5 border-b border-l border-slate-200">4</td><td class="px-3 py-2.5 border-b border-l border-slate-200">5</td><td class="px-3 py-2.5 border-b border-l border-slate-200">6</td><td class="px-3 py-2.5 border-b border-l border-slate-200 font-bold">Total</td></tr>
+                  <tr><td class="px-3 py-2.5 font-semibold text-left">Effectifs</td><td class="px-3 py-2.5 border-l border-slate-200">52</td><td class="px-3 py-2.5 border-l border-slate-200">132</td><td class="px-3 py-2.5 border-l border-slate-200">164</td><td class="px-3 py-2.5 border-l border-slate-200">196</td><td class="px-3 py-2.5 border-l border-slate-200">86</td><td class="px-3 py-2.5 border-l border-slate-200">44</td><td class="px-3 py-2.5 border-l border-slate-200">46</td><td class="px-3 py-2.5 border-l border-slate-200 font-bold">720</td></tr>
+                  <tr class="bg-slate-50"><td class="px-3 py-2.5 font-semibold text-left">Angles</td><td class="px-3 py-2.5 border-l border-slate-200 text-slate-300">?</td><td class="px-3 py-2.5 border-l border-slate-200 text-slate-300">?</td><td class="px-3 py-2.5 border-l border-slate-200 text-slate-300">?</td><td class="px-3 py-2.5 border-l border-slate-200 text-slate-300">?</td><td class="px-3 py-2.5 border-l border-slate-200 text-slate-300">?</td><td class="px-3 py-2.5 border-l border-slate-200 text-slate-300">?</td><td class="px-3 py-2.5 border-l border-slate-200 text-slate-300">?</td><td class="px-3 py-2.5 border-l border-slate-200 text-slate-300">360°</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <ol class="list-decimal list-inside space-y-1.5 text-slate-700 text-sm">
+              <li>Construire le diagramme en barres de cette série statistique.</li>
+              <li>Compléter le tableau puis construire le diagramme circulaire associé à cette série.</li>
+              <li>Déterminer graphiquement la médiane de la série.</li>
+            </ol>
+          </div>
+          <button onclick="toggleCorrection('c15', this)" class="w-full flex items-center justify-center gap-2 bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold text-sm py-3.5 transition">
+            <span class="btn-label">Voir la correction</span>
+            <svg class="chevron w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="c15" class="correction-panel">
+            <div class="correction-inner bg-emerald-50 px-6 sm:px-8">
+              <div class="py-6 space-y-4 text-sm text-slate-700 leading-relaxed border-t border-emerald-100">
+                <div>
+                  <p class="font-semibold mb-2"><strong>1.</strong> Diagramme en barres :</p>
+                  <div class="bg-white rounded-xl ring-1 ring-emerald-200 p-4">
+                    <div class="h-40 flex items-end gap-3 justify-center">
+                      <div class="flex flex-col items-center gap-1 w-10"><div class="bar-wrap h-32"><div class="bar bg-brand-500" style="height:26.5%"></div></div><span class="text-[10px] text-slate-500">0</span></div>
+                      <div class="flex flex-col items-center gap-1 w-10"><div class="bar-wrap h-32"><div class="bar bg-brand-500" style="height:67.3%"></div></div><span class="text-[10px] text-slate-500">1</span></div>
+                      <div class="flex flex-col items-center gap-1 w-10"><div class="bar-wrap h-32"><div class="bar bg-brand-500" style="height:83.7%"></div></div><span class="text-[10px] text-slate-500">2</span></div>
+                      <div class="flex flex-col items-center gap-1 w-10"><div class="bar-wrap h-32"><div class="bar bg-brand-500" style="height:100%"></div></div><span class="text-[10px] text-slate-500">3</span></div>
+                      <div class="flex flex-col items-center gap-1 w-10"><div class="bar-wrap h-32"><div class="bar bg-brand-500" style="height:43.9%"></div></div><span class="text-[10px] text-slate-500">4</span></div>
+                      <div class="flex flex-col items-center gap-1 w-10"><div class="bar-wrap h-32"><div class="bar bg-brand-500" style="height:22.4%"></div></div><span class="text-[10px] text-slate-500">5</span></div>
+                      <div class="flex flex-col items-center gap-1 w-10"><div class="bar-wrap h-32"><div class="bar bg-brand-500" style="height:23.5%"></div></div><span class="text-[10px] text-slate-500">6</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p class="font-semibold mb-2"><strong>2.</strong> Tableau complété (fréquence = effectif ÷ 720 ; angle = fréquence × 360°) :</p>
+                  <div class="overflow-x-auto rounded-lg ring-1 ring-emerald-200 bg-white mb-4">
+                    <table class="w-full text-center border-collapse text-xs min-w-[480px]">
+                      <tbody>
+                        <tr class="bg-emerald-100/50 font-semibold"><td class="px-2.5 py-2 text-left border-b border-emerald-100">Visites</td><td class="px-2.5 py-2 border-b border-l border-emerald-100">0</td><td class="px-2.5 py-2 border-b border-l border-emerald-100">1</td><td class="px-2.5 py-2 border-b border-l border-emerald-100">2</td><td class="px-2.5 py-2 border-b border-l border-emerald-100">3</td><td class="px-2.5 py-2 border-b border-l border-emerald-100">4</td><td class="px-2.5 py-2 border-b border-l border-emerald-100">5</td><td class="px-2.5 py-2 border-b border-l border-emerald-100">6</td></tr>
+                        <tr class="font-semibold"><td class="px-2.5 py-2 text-left">Angle</td><td class="px-2.5 py-2 border-l border-emerald-100">26°</td><td class="px-2.5 py-2 border-l border-emerald-100">66°</td><td class="px-2.5 py-2 border-l border-emerald-100">82°</td><td class="px-2.5 py-2 border-l border-emerald-100">98°</td><td class="px-2.5 py-2 border-l border-emerald-100">43°</td><td class="px-2.5 py-2 border-l border-emerald-100">22°</td><td class="px-2.5 py-2 border-l border-emerald-100">23°</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="flex flex-col sm:flex-row items-center gap-6 bg-white rounded-xl ring-1 ring-emerald-200 p-4">
+                    <div class="w-44 h-44 rounded-full shadow-soft shrink-0" style="background: conic-gradient(from 0deg, #2748d6 0% 7.22%, #38bdf8 7.22% 25.56%, #34d399 25.56% 48.33%, #fbbf24 48.33% 75.56%, #fb7185 75.56% 87.5%, #a78bfa 87.5% 93.61%, #94a3b8 93.61% 100%);"></div>
+                    <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs">
+                      <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-brand-600"></span>0 visite — 26°</span>
+                      <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-sky-400"></span>1 visite — 66°</span>
+                      <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-emerald-400"></span>2 visites — 82°</span>
+                      <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-amber-400"></span>3 visites — 98°</span>
+                      <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-rose-400"></span>4 visites — 43°</span>
+                      <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-violet-400"></span>5 visites — 22°</span>
+                      <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-slate-400"></span>6 visites — 23°</span>
+                    </div>
+                  </div>
+                </div>
+                <p><strong>3.</strong> Effectif total N = 720 (pair) → médiane = moyenne du 360<sup>e</sup> et du 361<sup>e</sup> élève. Effectifs cumulés : 52, 184, 348, <strong class="text-emerald-700">544</strong>, 630, 674, 720. Comme 348 &lt; 360 ≤ 544 et 348 &lt; 361 ≤ 544, le 360<sup>e</sup> et le 361<sup>e</sup> élève appartiennent au groupe « 3 visites » → <strong class="text-emerald-700">médiane = 3 visites par semaine</strong>. Graphiquement, on lit l'abscisse correspondant à N/2 = 360 sur la courbe des effectifs cumulés croissants.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="bg-slate-950 text-slate-400">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div>
+        <a href="/" class="flex items-center gap-2.5 justify-center sm:justify-start">
+          <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+          <span class="font-heading font-bold text-white leading-tight">
+            <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+          </span>
+        </a>
+        <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+        <p class="text-xs text-slate-500 mt-2">2ème APIC · Chapitre 08 — Statistiques · Collège Mhamed 9</p>
+      </div>
+      <p class="text-sm text-slate-400">
+        Prof : <span class="font-bold text-white">LAHBIB ELKEANTAOUI</span>
+      </p>
+    </div>
+    <div class="border-t border-slate-800 mt-6 pt-6 text-center text-xs text-slate-600">
+      © 2026 — Cours et exercices de mathématiques, statistiques.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const iconOpen = document.getElementById('menuIconOpen');
+  const iconClose = document.getElementById('menuIconClose');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+  }));
+
+  // Sticky nav shadow
+  window.addEventListener('scroll', () => {
+    document.getElementById('topnav').classList.toggle('scrolled', window.scrollY > 8);
+  });
+
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  // Correction toggle
+  function toggleCorrection(id, btn) {
+    const panel = document.getElementById(id);
+    const chevron = btn.querySelector('.chevron');
+    const label = btn.querySelector('.btn-label');
+    const isOpen = panel.classList.toggle('open');
+    chevron.classList.toggle('open', isOpen);
+    label.textContent = isOpen ? 'Masquer la correction' : 'Voir la correction';
+  }
+</script>
+
+</body>
+</html>

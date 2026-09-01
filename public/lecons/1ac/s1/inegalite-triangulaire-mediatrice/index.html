@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Inégalité triangulaire et médiatrice d'un segment – Cours &amp; Exercices corrigés | 1AC</title>
+<meta name="description" content="Cours complet (position d'un point et d'un segment, inégalité triangulaire, médiatrice d'un segment et ses propriétés directe, réciproque et caractéristique) et 5 exercices de construction corrigés en détail, figures à l'appui — 1ère année collège." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=STIX+Two+Text:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          display: ['Lexend', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          math: ['STIX Two Text', 'Cambria', 'Georgia', 'serif'],
+        },
+        colors: {
+          blue: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+        },
+      }
+    }
+  }
+</script>
+<style>
+  .fig-label { font-family: 'STIX Two Text', Cambria, Georgia, serif; font-style: italic; }
+  .fig-point path { stroke: #0f172a; }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50, .dark .bg-emerald-50\/60 { background-color: #0d2818; }
+  .dark .border-emerald-100, .dark .border-emerald-300 { border-color: #1e5631; }
+  .dark .text-emerald-700 { color: #6ee7a3; }
+  .dark .bg-rose-50, .dark .bg-rose-50\/60, .dark .bg-rose-100 { background-color: #3a0d18; }
+  .dark .border-rose-200, .dark .border-rose-300 { border-color: #7a2138; }
+  .dark .text-rose-500, .dark .text-rose-700, .dark .text-rose-900 { color: #fb7185; }
+  .dark .bg-amber-50, .dark .bg-amber-50\/95 { background-color: #3a2a0a; }
+  .dark .border-amber-200, .dark .border-amber-300\/60 { border-color: #92400e; }
+  .dark .text-amber-900 { color: #fcd34d; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased transition-colors">
+
+<a href="#contenu" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow-lg">Aller au contenu</a>
+
+<!-- ===================== HEADER ===================== -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur border-b border-slate-200 dark:border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#accueil" class="flex items-center gap-2 font-display font-bold text-lg text-blue-700 dark:text-white">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-9 w-9 shrink-0 rounded-full">
+        <span class="hidden xs:inline sm:inline">Inégalité &amp; médiatrice</span>
+      </a>
+      <nav aria-label="Navigation principale" class="hidden md:flex items-center gap-1 text-sm font-medium">
+        <a href="/" class="nav-link px-3 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-white/5 hover:text-blue-700 dark:hover:text-white transition">← Portail</a>
+        <a href="#inegalite" class="nav-link px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-white/5 hover:text-blue-700 dark:hover:text-white transition">Inégalité triangulaire</a>
+        <a href="#mediatrice" class="nav-link px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-white/5 hover:text-blue-700 dark:hover:text-white transition">Médiatrice</a>
+        <a href="#exercices" class="nav-link ml-2 px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition">Exercices</a>
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-blue-700 dark:hover:text-amber-400 transition-colors">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </nav>
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="md:hidden mr-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+      <button id="menuBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu" class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5">
+        <svg id="menuIconOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75Zm0 5A.75.75 0 0 1 2.75 9h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 9.75Zm0 5a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd"/></svg>
+        <svg id="menuIconClose" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z"/></svg>
+      </button>
+    </div>
+    <nav id="mobileMenu" aria-label="Navigation mobile" class="hidden md:hidden pb-4 flex flex-col gap-1 text-sm font-medium">
+      <a href="/" class="nav-link px-3 py-2.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-blue-50 dark:hover:bg-white/5">← Portail</a>
+      <a href="#position" class="nav-link px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-white/5">Position d'un point &amp; segment</a>
+      <a href="#inegalite" class="nav-link px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-white/5">Inégalité triangulaire</a>
+      <a href="#mediatrice" class="nav-link px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-white/5">Médiatrice d'un segment</a>
+      <a href="#exercices" class="nav-link px-3 py-2.5 rounded-lg bg-blue-600 text-white text-center">Exercices corrigés</a>
+    </nav>
+  </div>
+  <!-- Sommaire pills -->
+  <nav aria-label="Sommaire du cours" class="border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-blue-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto">
+      <ul class="flex gap-2 py-3 text-xs sm:text-sm font-medium whitespace-nowrap">
+        <li><a href="#position" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-blue-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">01 · Position d'un point</a></li>
+        <li><a href="#inegalite" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-blue-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">02 · Inégalité triangulaire</a></li>
+        <li><a href="#mediatrice" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-blue-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">03 · Médiatrice</a></li>
+        <li><a href="#proprietes-mediatrice" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-blue-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">04 · Propriétés &amp; applications</a></li>
+        <li><a href="#exercices" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-blue-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-blue-300 hover:text-blue-700 dark:hover:text-white transition">05 · Exercices corrigés</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main id="contenu">
+
+  <!-- ===================== HERO ===================== -->
+  <section id="accueil" aria-label="Présentation" class="relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-800 to-blue-600 text-white scroll-mt-28">
+    <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1920&q=80" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-20 mix-blend-overlay" />
+    <div class="absolute inset-0 opacity-[0.15] [background-image:radial-gradient(white_1px,transparent_1px)] [background-size:22px_22px]" aria-hidden="true"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <p class="inline-block rounded-full bg-white/10 px-4 py-1 text-xs sm:text-sm font-semibold tracking-wide uppercase mb-4 ring-1 ring-white/25">1ʳᵉ Année Collège · Mathématiques</p>
+      <h1 class="font-display text-3xl sm:text-5xl font-extrabold leading-tight max-w-3xl">Inégalité triangulaire et médiatrice d'un segment</h1>
+      <p class="mt-4 max-w-2xl text-blue-100 text-base sm:text-lg">Comparer des distances pour savoir si un triangle est constructible, puis découvrir la droite qui reste à égale distance des deux extrémités d'un segment — cours illustré et 5 exercices de construction corrigés pas à pas.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#inegalite" class="rounded-xl bg-white text-blue-700 px-5 py-3 font-semibold shadow hover:bg-blue-50 transition">Commencer le cours</a>
+        <a href="#exercices" class="rounded-xl bg-white/10 ring-1 ring-white/30 px-5 py-3 font-semibold hover:bg-white/20 transition">Voir les exercices</a>
+      </div>
+      <dl class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-2xl">
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-blue-200">Cours</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">2 grandes parties</dd>
+        </div>
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-blue-200">Propriétés</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">6 propriétés</dd>
+        </div>
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-blue-200">Entraînement</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">5 exercices</dd>
+        </div>
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-blue-200">Figures</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">25+ schémas</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ===================== I. INÉGALITÉ TRIANGULAIRE ===================== -->
+  <section id="inegalite" aria-labelledby="inegalite-heading" class="scroll-mt-28 py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-12">
+        <span class="text-blue-600 font-semibold text-sm uppercase tracking-wide">Partie I</span>
+        <h2 id="inegalite-heading" class="font-display text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Inégalité triangulaire</h2>
+        <p class="mt-3 text-slate-600">Comparer la longueur d'un côté à la somme des deux autres pour savoir, sans même tracer, si un triangle peut exister.</p>
+      </div>
+
+      <!-- 1. Position d'un point et un segment -->
+      <h3 id="position" class="scroll-mt-28 font-display text-xl font-bold text-slate-900 mb-6">1. Position d'un point et un segment</h3>
+      <div class="grid lg:grid-cols-2 gap-6 mb-14">
+
+        <!-- a) M n'appartient pas au segment -->
+        <article class="rounded-2xl bg-white ring-1 ring-slate-100 shadow-sm p-6 sm:p-8">
+          <h4 class="font-display font-bold text-slate-900 mb-1">a) Si un point n'appartient pas à un segment</h4>
+          <p class="text-xs text-blue-600 font-semibold uppercase tracking-wide mt-3 mb-2">Exemple</p>
+          <p class="text-sm text-slate-600">Soient [AB] un segment et M un point tels que : <span class="font-mono font-semibold rounded border border-rose-300 bg-rose-50 px-2 py-0.5 text-rose-700">M ∉ [AB]</span>.</p>
+          <svg viewBox="0 0 260 170" class="w-full h-auto max-w-sm mx-auto mt-3">
+            <g stroke="#0f172a" stroke-width="1.5" stroke-dasharray="4 3">
+              <line x1="110" y1="30" x2="40" y2="130"/>
+              <line x1="110" y1="30" x2="220" y2="90"/>
+            </g>
+            <line x1="40" y1="130" x2="220" y2="90" stroke="#0f172a" stroke-width="2"/>
+            <g class="fig-point">
+              <path d="M35,125 L45,135 M35,135 L45,125" stroke-width="2"/><text x="20" y="123" class="fig-label" font-size="16">A</text>
+              <path d="M215,85 L225,95 M215,95 L225,85" stroke-width="2"/><text x="227" y="83" class="fig-label" font-size="16">B</text>
+              <path d="M105,25 L115,35 M105,35 L115,25" stroke-width="2"/><text x="110" y="20" class="fig-label" font-size="16">M</text>
+            </g>
+          </svg>
+          <p class="mt-3 text-sm text-slate-700"><strong>Comparons</strong> les distances AB et MA+MB. On a, d'après la figure : AB&nbsp;=&nbsp;5,5&nbsp;cm et MA+MB&nbsp;=&nbsp;6,5&nbsp;cm.</p>
+          <p class="mt-1 text-sm text-slate-700">On remarque que : <span class="inline-block rounded border border-rose-300 bg-rose-50 px-2 py-0.5 font-mono font-semibold text-rose-700">AB &lt; MA+MB</span>.</p>
+          <div class="mt-4 rounded-2xl border-2 border-rose-200 bg-rose-50 p-5">
+            <p class="text-xs text-rose-500 font-bold uppercase tracking-wide mb-1">Propriété 1</p>
+            <p class="text-rose-900 text-sm sm:text-base leading-relaxed">Soient [AB] un segment et M un point.<br>Si <strong>M ∉ [AB]</strong>, alors <strong>AB &lt; MA + MB</strong>.</p>
+          </div>
+        </article>
+
+        <!-- b) M appartient au segment -->
+        <article class="rounded-2xl bg-white ring-1 ring-slate-100 shadow-sm p-6 sm:p-8">
+          <h4 class="font-display font-bold text-slate-900 mb-1">b) Si un point appartient à un segment</h4>
+          <p class="text-xs text-blue-600 font-semibold uppercase tracking-wide mt-3 mb-2">Exemple</p>
+          <p class="text-sm text-slate-600">Soient [AB] un segment et M un point tels que : <span class="font-mono font-semibold rounded border border-rose-300 bg-rose-50 px-2 py-0.5 text-rose-700">M ∈ [AB]</span>.</p>
+          <svg viewBox="0 0 260 110" class="w-full h-auto max-w-sm mx-auto mt-3">
+            <line x1="30" y1="80" x2="230" y2="30" stroke="#0f172a" stroke-width="2"/>
+            <g class="fig-point">
+              <path d="M25,75 L35,85 M25,85 L35,75" stroke-width="2"/><text x="14" y="72" class="fig-label" font-size="16">A</text>
+              <path d="M135,47.5 L145,57.5 M135,57.5 L145,47.5" stroke-width="2"/><text x="130" y="42" class="fig-label" font-size="16">M</text>
+              <path d="M225,25 L235,35 M225,35 L235,25" stroke-width="2"/><text x="237" y="24" class="fig-label" font-size="16">B</text>
+            </g>
+          </svg>
+          <p class="mt-3 text-sm text-slate-700"><strong>Comparons</strong> les distances AB et MA+MB. On a, d'après la figure : AB&nbsp;=&nbsp;6&nbsp;cm et MA+MB&nbsp;=&nbsp;6&nbsp;cm.</p>
+          <p class="mt-1 text-sm text-slate-700">On remarque que : <span class="inline-block rounded border border-rose-300 bg-rose-50 px-2 py-0.5 font-mono font-semibold text-rose-700">AB = MA+MB</span>.</p>
+          <div class="mt-4 rounded-2xl border-2 border-rose-200 bg-rose-50 p-5">
+            <p class="text-xs text-rose-500 font-bold uppercase tracking-wide mb-1">Propriété 2</p>
+            <p class="text-rose-900 text-sm sm:text-base leading-relaxed">Soient [AB] un segment et M un point.<br>Si <strong>M ∈ [AB]</strong>, alors <strong>AB = MA + MB</strong>.</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- 2. Inégalité triangulaire -->
+      <h3 class="font-display text-xl font-bold text-slate-900 mb-6">2. Inégalité triangulaire</h3>
+      <div class="grid lg:grid-cols-2 gap-6 items-start mb-8">
+        <article class="rounded-2xl bg-white ring-1 ring-slate-100 shadow-sm p-6 sm:p-8">
+          <p class="text-xs text-blue-600 font-semibold uppercase tracking-wide mb-2">Exemple</p>
+          <p class="text-sm text-slate-700">Soit <span class="fig-label">ABC</span> un triangle. Montrons que :</p>
+          <div class="mt-2 rounded-xl bg-slate-50 ring-1 ring-slate-200 p-4 font-mono text-sm text-slate-800 space-y-1">
+            <p>AB &lt; AC + BC</p>
+            <p>AC &lt; AB + BC</p>
+            <p>BC &lt; AB + AC</p>
+          </div>
+          <svg viewBox="0 0 260 200" class="w-full h-auto max-w-xs mx-auto mt-4">
+            <polygon points="40,170 230,110 180,30" fill="none" stroke="#0f172a" stroke-width="2"/>
+            <g class="fig-point">
+              <path d="M35,165 L45,175 M35,175 L45,165" stroke-width="2"/><text x="20" y="185" class="fig-label" font-size="16">A</text>
+              <path d="M225,105 L235,115 M225,115 L235,105" stroke-width="2"/><text x="237" y="103" class="fig-label" font-size="16">B</text>
+              <path d="M175,25 L185,35 M175,35 L185,25" stroke-width="2"/><text x="180" y="20" class="fig-label" font-size="16">C</text>
+            </g>
+          </svg>
+          <ul class="mt-4 space-y-1.5 text-sm text-slate-700">
+            <li><span class="fig-label">C</span> ∉ [AB], donc d'après la propriété 1 : <strong>AB &lt; AC+BC</strong></li>
+            <li><span class="fig-label">B</span> ∉ [AC], donc d'après la propriété 1 : <strong>AC &lt; AB+BC</strong></li>
+            <li><span class="fig-label">A</span> ∉ [BC], donc d'après la propriété 1 : <strong>BC &lt; AB+AC</strong></li>
+          </ul>
+        </article>
+
+        <article class="rounded-2xl bg-blue-600 text-white shadow-sm p-6 sm:p-8 flex flex-col">
+          <p class="text-xs text-blue-100 font-bold uppercase tracking-wide mb-2">Propriété 3 — l'inégalité triangulaire</p>
+          <p class="text-sm sm:text-base leading-relaxed mb-3">Si <span class="fig-label">ABC</span> est un triangle, alors :</p>
+          <div class="rounded-xl bg-white/10 ring-1 ring-white/20 p-4 font-mono text-sm space-y-1">
+            <p>AB &lt; AC + BC</p>
+            <p>AC &lt; AB + BC</p>
+            <p>BC &lt; AB + AC</p>
+          </div>
+          <p class="mt-4 text-sm text-blue-100">Autrement dit :</p>
+          <p class="mt-1 text-sm sm:text-base font-medium">Dans un triangle, la longueur de chaque côté est <strong>strictement inférieure</strong> à la somme des longueurs des deux autres.</p>
+          <div class="mt-5 rounded-xl border-2 border-amber-300/60 bg-amber-50/95 p-4 text-amber-900">
+            <p class="text-xs font-bold uppercase tracking-wide text-amber-600 mb-1">Remarque — méthode</p>
+            <p class="text-sm leading-relaxed">Pour vérifier si l'on peut construire un triangle dont on connaît les longueurs des côtés, il suffit de vérifier si la longueur du <strong>plus grand côté</strong> est strictement inférieure à la somme des longueurs des deux autres.</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- Applications -->
+      <h4 class="font-display font-bold text-slate-900 mb-4 mt-10">Applications</h4>
+      <div class="grid md:grid-cols-2 gap-6">
+        <article class="rounded-2xl bg-slate-50 ring-1 ring-slate-100 p-6">
+          <p class="text-sm sm:text-base text-slate-800">Peut-on construire le triangle <span class="fig-label">ABC</span> tel que : AB=5cm, AC=2,5cm et BC=6cm&nbsp;?</p>
+          <div class="mt-3 text-sm text-slate-700 space-y-1">
+            <p>On a : BC = 6cm et AB+AC = 7,5cm</p>
+            <p>On remarque que : <strong>BC &lt; AB+AC</strong></p>
+          </div>
+          <p class="mt-3 inline-flex items-center gap-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1">✓ On peut construire le triangle ABC</p>
+        </article>
+        <article class="rounded-2xl bg-slate-50 ring-1 ring-slate-100 p-6">
+          <p class="text-sm sm:text-base text-slate-800">Peut-on construire le triangle <span class="fig-label">EFG</span> tel que : EF=5cm, EG=4cm et FG=11cm&nbsp;?</p>
+          <div class="mt-3 text-sm text-slate-700 space-y-1">
+            <p>On a : FG = 11cm et EF+EG = 9cm</p>
+            <p>On remarque que : <strong>FG &gt; EF+EG</strong></p>
+          </div>
+          <p class="mt-3 inline-flex items-center gap-1.5 rounded-full bg-rose-100 text-rose-700 text-xs font-bold px-3 py-1">✗ On ne peut pas construire le triangle EFG</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== II. MÉDIATRICE D'UN SEGMENT ===================== -->
+  <section id="mediatrice" aria-labelledby="mediatrice-heading" class="scroll-mt-28 py-16 sm:py-24 bg-white border-y border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-12">
+        <span class="text-blue-600 font-semibold text-sm uppercase tracking-wide">Partie II</span>
+        <h2 id="mediatrice-heading" class="font-display text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Médiatrice d'un segment</h2>
+        <p class="mt-3 text-slate-600">La droite qui partage un segment en deux et qui rassemble tous les points équidistants de ses extrémités.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6 mb-14">
+        <article class="rounded-2xl bg-slate-50 ring-1 ring-slate-100 p-6 sm:p-8">
+          <h3 class="font-display font-bold text-slate-900 mb-3">1. Définition</h3>
+          <div class="rounded-2xl border-2 border-rose-200 bg-rose-50 p-5">
+            <p class="text-rose-900 text-sm sm:text-base leading-relaxed">La <strong>médiatrice</strong> d'un segment est la droite <strong>perpendiculaire</strong> à ce segment qui passe par son <strong>milieu</strong>.</p>
+          </div>
+        </article>
+
+        <article class="rounded-2xl bg-slate-50 ring-1 ring-slate-100 p-6 sm:p-8">
+          <h3 class="font-display font-bold text-slate-900 mb-3">2. Exemple</h3>
+          <p class="text-sm text-slate-600">Soit [AB] un segment. Traçons (Δ) la médiatrice du segment [AB].</p>
+          <svg viewBox="0 0 260 260" class="w-full h-auto max-w-xs mx-auto mt-2">
+            <line x1="108.3" y1="32.4" x2="151.7" y2="227.6" stroke="#0f172a" stroke-width="2"/>
+            <line x1="40" y1="150" x2="220" y2="110" stroke="#0f172a" stroke-width="2"/>
+            <path d="M127.4,118.3 L139.1,115.7 L141.7,127.4" fill="none" stroke="#0f172a" stroke-width="1.2"/>
+            <g stroke="#0f172a" stroke-width="1.4">
+              <line x1="81.5" y1="143.5" x2="88.5" y2="136.5"/>
+              <line x1="171.5" y1="123.5" x2="178.5" y2="116.5"/>
+            </g>
+            <g class="fig-point">
+              <path d="M35,145 L45,155 M35,155 L45,145" stroke-width="2"/><text x="20" y="143" class="fig-label" font-size="16">A</text>
+              <path d="M215,105 L225,115 M215,115 L225,105" stroke-width="2"/><text x="227" y="103" class="fig-label" font-size="16">B</text>
+            </g>
+            <text x="153" y="26" class="fig-label" font-size="16">(Δ)</text>
+          </svg>
+        </article>
+      </div>
+
+      <!-- 3. Propriétés -->
+      <h3 id="proprietes-mediatrice" class="scroll-mt-28 font-display text-xl font-bold text-slate-900 mb-6">3. Propriétés</h3>
+
+      <!-- a) Propriété directe -->
+      <h4 class="font-display font-bold text-blue-700 mb-4">a) Propriété directe</h4>
+      <div class="grid lg:grid-cols-2 gap-6 mb-10">
+        <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-8">
+          <p class="text-xs text-blue-600 font-semibold uppercase tracking-wide mb-2">Exemple</p>
+          <p class="text-sm text-slate-600">Soient [AB] un segment et (Δ) sa médiatrice. Soit E un point tel que : E∈(Δ) et E∉[AB].</p>
+          <svg viewBox="0 0 260 260" class="w-full h-auto max-w-xs mx-auto mt-3">
+            <line x1="108.3" y1="32.4" x2="151.7" y2="227.6" stroke="#0f172a" stroke-width="2"/>
+            <line x1="40" y1="150" x2="220" y2="110" stroke="#0f172a" stroke-width="2"/>
+            <g stroke="#0f172a" stroke-width="1.5" stroke-dasharray="4 3">
+              <line x1="114.8" y1="61.7" x2="40" y2="150"/>
+              <line x1="114.8" y1="61.7" x2="220" y2="110"/>
+            </g>
+            <path d="M127.4,118.3 L139.1,115.7 L141.7,127.4" fill="none" stroke="#0f172a" stroke-width="1.2"/>
+            <g class="fig-point">
+              <path d="M35,145 L45,155 M35,155 L45,145" stroke-width="2"/><text x="20" y="143" class="fig-label" font-size="16">A</text>
+              <path d="M215,105 L225,115 M215,115 L225,105" stroke-width="2"/><text x="227" y="103" class="fig-label" font-size="16">B</text>
+              <path d="M110,57 L120,67 M110,67 L120,57" stroke-width="2"/><text x="122" y="55" class="fig-label" font-size="16">E</text>
+            </g>
+            <text x="153" y="26" class="fig-label" font-size="16">(Δ)</text>
+          </svg>
+          <p class="mt-3 text-sm text-slate-700"><strong>Comparons</strong> les distances EA et EB. On remarque que : <span class="inline-block rounded border border-rose-300 bg-rose-50 px-2 py-0.5 font-mono font-semibold text-rose-700">EA = EB</span>.</p>
+          <p class="mt-2 text-sm text-slate-700">On dit que le point E est <strong class="text-blue-700">équidistant</strong> aux extrémités du segment [AB].</p>
+        </article>
+
+        <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-8 flex flex-col">
+          <div class="rounded-2xl border-2 border-rose-200 bg-rose-50 p-5">
+            <p class="text-xs text-rose-500 font-bold uppercase tracking-wide mb-1">Propriété</p>
+            <p class="text-rose-900 text-sm sm:text-base leading-relaxed">Si un point appartient à la médiatrice d'un segment, alors il est <strong>équidistant</strong> à ses extrémités.</p>
+          </div>
+          <p class="mt-4 text-xs text-slate-500 font-semibold uppercase tracking-wide">Autrement dit</p>
+          <div class="mt-2 rounded-xl bg-slate-50 ring-1 ring-slate-200 p-4 text-sm text-slate-700">
+            Soient [AB] un segment, (D) sa médiatrice et M un point.<br>Si <strong>M ∈ (D)</strong>, alors <strong>MA = MB</strong>.
+          </div>
+          <div class="mt-3 rounded-xl border-2 border-amber-200 bg-amber-50 p-4 text-amber-900">
+            <p class="text-xs font-bold uppercase tracking-wide text-amber-600 mb-1">Remarque</p>
+            <p class="text-sm">On utilise cette propriété pour <strong>comparer</strong> ou <strong>calculer</strong> des distances.</p>
+          </div>
+          <div class="mt-5">
+            <p class="text-xs text-blue-600 font-semibold uppercase tracking-wide mb-2">Application</p>
+            <p class="text-sm text-slate-700">Soient [EF] un segment et (D) sa médiatrice. Soit M un point de la droite (D) tel que : ME=4cm. Calculons MF.</p>
+            <svg viewBox="0 0 260 130" class="w-full h-auto max-w-xs mx-auto mt-3">
+              <line x1="150" y1="30" x2="150" y2="120" stroke="#0f172a" stroke-width="2"/>
+              <line x1="60" y1="90" x2="240" y2="90" stroke="#0f172a" stroke-width="2"/>
+              <path d="M150,79 L139,79 L139,90" fill="none" stroke="#0f172a" stroke-width="1.1"/>
+              <g stroke="#0f172a" stroke-width="1.4">
+                <line x1="98" y1="86" x2="102" y2="94"/>
+                <line x1="198" y1="86" x2="202" y2="94"/>
+              </g>
+              <g stroke="#0f172a" stroke-width="1.5" stroke-dasharray="3 3">
+                <line x1="150" y1="45" x2="60" y2="90"/>
+                <line x1="150" y1="45" x2="240" y2="90"/>
+              </g>
+              <g class="fig-point">
+                <path d="M55,85 L65,95 M55,95 L65,85" stroke-width="2"/><text x="42" y="83" class="fig-label" font-size="15">E</text>
+                <path d="M235,85 L245,95 M235,95 L245,85" stroke-width="2"/><text x="247" y="83" class="fig-label" font-size="15">F</text>
+                <path d="M145,40 L155,50 M145,50 L155,40" stroke-width="2"/><text x="158" y="38" class="fig-label" font-size="15">M</text>
+              </g>
+              <text x="153" y="24" class="fig-label" font-size="14">(D)</text>
+            </svg>
+            <p class="mt-3 text-sm text-slate-700">On a : M∈(D) et (D) est la médiatrice du segment [EF]. Donc : <strong>ME = MF</strong>.</p>
+            <p class="mt-1 text-sm text-slate-700">Et puisque ME=4cm, alors : <span class="inline-block rounded border border-emerald-300 bg-emerald-50 px-2 py-0.5 font-mono font-semibold text-emerald-700">MF = 4 cm</span></p>
+          </div>
+        </article>
+      </div>
+
+      <!-- b) Propriété réciproque -->
+      <h4 class="font-display font-bold text-blue-700 mb-4">b) Propriété réciproque</h4>
+      <div class="grid lg:grid-cols-2 gap-6 mb-10">
+        <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-8">
+          <p class="text-xs text-blue-600 font-semibold uppercase tracking-wide mb-2">Exemple</p>
+          <p class="text-sm text-slate-600">Soient [AB] un segment et (Δ) sa médiatrice. Soit E un point tel que : EA=EB.</p>
+          <svg viewBox="0 0 260 260" class="w-full h-auto max-w-xs mx-auto mt-3">
+            <line x1="108.3" y1="32.4" x2="151.7" y2="227.6" stroke="#0f172a" stroke-width="2"/>
+            <line x1="40" y1="150" x2="220" y2="110" stroke="#0f172a" stroke-width="2"/>
+            <g stroke="#0f172a" stroke-width="1.5" stroke-dasharray="4 3">
+              <line x1="114.8" y1="61.7" x2="40" y2="150"/>
+              <line x1="114.8" y1="61.7" x2="220" y2="110"/>
+            </g>
+            <path d="M127.4,118.3 L139.1,115.7 L141.7,127.4" fill="none" stroke="#0f172a" stroke-width="1.2"/>
+            <g class="fig-point">
+              <path d="M35,145 L45,155 M35,155 L45,145" stroke-width="2"/><text x="20" y="143" class="fig-label" font-size="16">A</text>
+              <path d="M215,105 L225,115 M215,115 L225,105" stroke-width="2"/><text x="227" y="103" class="fig-label" font-size="16">B</text>
+              <path d="M110,57 L120,67 M110,67 L120,57" stroke-width="2"/><text x="122" y="55" class="fig-label" font-size="16">E</text>
+            </g>
+            <text x="153" y="26" class="fig-label" font-size="16">(Δ)</text>
+          </svg>
+          <p class="mt-3 text-sm text-slate-700">On remarque que : <span class="inline-block rounded border border-rose-300 bg-rose-50 px-2 py-0.5 font-mono font-semibold text-rose-700">E ∈ (Δ)</span>.</p>
+        </article>
+
+        <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-8 flex flex-col">
+          <div class="rounded-2xl border-2 border-rose-200 bg-rose-50 p-5">
+            <p class="text-xs text-rose-500 font-bold uppercase tracking-wide mb-1">Propriété</p>
+            <p class="text-rose-900 text-sm sm:text-base leading-relaxed">Si un point est <strong>équidistant</strong> des extrémités d'un segment, alors il appartient à la médiatrice de ce segment.</p>
+          </div>
+          <p class="mt-4 text-xs text-slate-500 font-semibold uppercase tracking-wide">Autrement dit</p>
+          <div class="mt-2 rounded-xl bg-slate-50 ring-1 ring-slate-200 p-4 text-sm text-slate-700">
+            Soient [AB] un segment, (D) sa médiatrice et M un point.<br>Si <strong>MA = MB</strong>, alors <strong>M ∈ (D)</strong>.
+          </div>
+          <div class="mt-5">
+            <p class="text-xs text-blue-600 font-semibold uppercase tracking-wide mb-2">Application</p>
+            <p class="text-sm text-slate-700">Soit (ζ) un cercle de centre O et de rayon r. Soient A et B deux points distincts du cercle (ζ). Montrons que O appartient à la médiatrice du segment [AB].</p>
+            <svg viewBox="0 0 260 220" class="w-full h-auto max-w-xs mx-auto mt-3">
+              <circle cx="130" cy="110" r="80" fill="none" stroke="#0f172a" stroke-width="2"/>
+              <line x1="130" y1="20" x2="130" y2="200" stroke="#0f172a" stroke-width="1.4" stroke-dasharray="4 3"/>
+              <line x1="54.8" y1="82.6" x2="205.2" y2="82.6" stroke="#0f172a" stroke-width="2"/>
+              <g stroke="#0f172a" stroke-width="1.4" stroke-dasharray="2 3">
+                <line x1="130" y1="110" x2="54.8" y2="82.6"/>
+                <line x1="130" y1="110" x2="205.2" y2="82.6"/>
+              </g>
+              <g class="fig-point">
+                <path d="M50,78 L60,88 M50,88 L60,78" stroke-width="2"/><text x="35" y="76" class="fig-label" font-size="15">A</text>
+                <path d="M200,78 L210,88 M200,88 L210,78" stroke-width="2"/><text x="212" y="76" class="fig-label" font-size="15">B</text>
+                <path d="M125,105 L135,115 M125,115 L135,105" stroke-width="2"/><text x="136" y="120" class="fig-label" font-size="15">O</text>
+              </g>
+              <text x="10" y="205" class="fig-label" font-size="14">(ζ)</text>
+              <text x="133" y="16" class="fig-label" font-size="13">(Δ)</text>
+            </svg>
+            <div class="mt-3 text-sm text-slate-700 space-y-1">
+              <p>On a (ζ) un cercle de centre O et de rayon r.</p>
+              <p>Et puisque A∈(ζ) et B∈(ζ), alors : <strong>OA = r</strong> et <strong>OB = r</strong></p>
+              <p>Donc : <strong>OA = OB</strong></p>
+            </div>
+            <p class="mt-2 inline-block rounded border border-emerald-300 bg-emerald-50 px-2 py-1 text-sm font-semibold text-emerald-700">D'où : O appartient à la médiatrice du segment [AB]</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- c) Propriété caractéristique -->
+      <article class="rounded-2xl bg-blue-600 text-white shadow-sm p-6 sm:p-8">
+        <p class="text-xs text-blue-100 font-bold uppercase tracking-wide mb-2">c) Propriété caractéristique</p>
+        <p class="text-base sm:text-lg font-semibold leading-relaxed">La médiatrice d'un segment, c'est l'ensemble des points équidistants des extrémités de ce segment.</p>
+        <p class="mt-3 text-sm text-blue-100">Remarque : la propriété caractéristique contient les deux propriétés directe et réciproque.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== EXERCICES ===================== -->
+  <section id="exercices" aria-labelledby="exercices-heading" class="scroll-mt-28 py-16 sm:py-24 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-6">
+        <span class="text-blue-600 font-semibold text-sm uppercase tracking-wide">Partie III</span>
+        <h2 id="exercices-heading" class="font-display text-2xl sm:text-3xl font-bold text-slate-900 mt-1">5 exercices corrigés</h2>
+        <p class="mt-3 text-slate-600">Cherche chaque exercice sur ton cahier (règle, compas, équerre et rapporteur), puis clique sur « Voir la correction » pour vérifier ta réponse.</p>
+      </div>
+
+      <div class="flex flex-wrap gap-2 mb-12">
+        <a href="#exercice1" class="rounded-full bg-slate-100 hover:bg-blue-100 hover:text-blue-700 px-4 py-2 text-sm font-semibold transition">Ex. 01</a>
+        <a href="#exercice2" class="rounded-full bg-slate-100 hover:bg-blue-100 hover:text-blue-700 px-4 py-2 text-sm font-semibold transition">Ex. 02</a>
+        <a href="#exercice3" class="rounded-full bg-slate-100 hover:bg-blue-100 hover:text-blue-700 px-4 py-2 text-sm font-semibold transition">Ex. 03</a>
+        <a href="#exercice4" class="rounded-full bg-slate-100 hover:bg-blue-100 hover:text-blue-700 px-4 py-2 text-sm font-semibold transition">Ex. 04</a>
+        <a href="#exercice5" class="rounded-full bg-slate-100 hover:bg-blue-100 hover:text-blue-700 px-4 py-2 text-sm font-semibold transition">Ex. 05</a>
+      </div>
+
+      <!-- ========== EXERCICE 1 ========== -->
+      <div id="exercice1" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-2">
+          <span class="inline-block rounded-full bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 1</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Vocabulaire &amp; inégalité triangulaire</span>
+        </div>
+
+        <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+          <div class="p-4 sm:p-6">
+            <ol class="space-y-4 text-sm sm:text-base text-slate-700 list-decimal list-inside">
+              <li>Pour un triangle ABC, A, B et C sont ……………………… et [AB], [BC] et [AC] sont ……………………….</li>
+              <li>
+                Sans faire de dessin, peut-on construire ces trois triangles ? Explique pourquoi.
+                <ul class="mt-2 space-y-1.5 ml-5 list-none">
+                  <li class="flex gap-2"><span class="text-blue-500">➤</span> ABC avec AB=7cm, AC=3cm et BC=5cm.</li>
+                  <li class="flex gap-2"><span class="text-blue-500">➤</span> DEF avec DE=2cm, EF=6cm et DF=3cm.</li>
+                  <li class="flex gap-2"><span class="text-blue-500">➤</span> OIJ avec OJ=4cm, IJ=6cm et OI=10cm.</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+          <div class="flex justify-end px-4 sm:px-6 pb-4">
+            <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex1" data-ex="1" data-state="hidden" onclick="toggleCorrection(this)">
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+              <span>Voir la correction</span>
+            </button>
+          </div>
+          <div id="c-ex1" data-ex="1" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6">
+            <p class="text-sm text-slate-800"><strong>1)</strong> Pour un triangle ABC, A, B et C sont les <strong class="text-emerald-700">sommets</strong> du triangle, et [AB], [BC] et [AC] sont les <strong class="text-emerald-700">côtés</strong> du triangle.</p>
+            <p class="mt-4 text-sm text-slate-800"><strong>2)</strong> Méthode : on compare le <strong>plus grand côté</strong> à la somme des deux autres (inégalité triangulaire).</p>
+            <div class="mt-3 grid sm:grid-cols-3 gap-3">
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                <p class="font-semibold text-slate-800 text-sm">Triangle ABC</p>
+                <p class="text-xs text-slate-500 mt-1">AB=7, AC=3, BC=5</p>
+                <p class="text-sm text-slate-700 mt-2">Plus grand côté : AB=7cm.<br>AC+BC = 3+5 = 8cm.</p>
+                <p class="mt-2 font-mono text-sm text-emerald-700">7 &lt; 8 ✓</p>
+                <p class="mt-2 inline-flex items-center gap-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold px-2.5 py-1">Constructible</p>
+              </div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                <p class="font-semibold text-slate-800 text-sm">Triangle DEF</p>
+                <p class="text-xs text-slate-500 mt-1">DE=2, EF=6, DF=3</p>
+                <p class="text-sm text-slate-700 mt-2">Plus grand côté : EF=6cm.<br>DE+DF = 2+3 = 5cm.</p>
+                <p class="mt-2 font-mono text-sm text-rose-700">6 &gt; 5 ✗</p>
+                <p class="mt-2 inline-flex items-center gap-1 rounded-full bg-rose-100 text-rose-700 text-xs font-bold px-2.5 py-1">Pas constructible</p>
+              </div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+                <p class="font-semibold text-slate-800 text-sm">Triangle OIJ</p>
+                <p class="text-xs text-slate-500 mt-1">OJ=4, IJ=6, OI=10</p>
+                <p class="text-sm text-slate-700 mt-2">Plus grand côté : OI=10cm.<br>OJ+IJ = 4+6 = 10cm.</p>
+                <p class="mt-2 font-mono text-sm text-rose-700">10 = 10 ✗</p>
+                <p class="mt-2 inline-flex items-center gap-1 rounded-full bg-rose-100 text-rose-700 text-xs font-bold px-2.5 py-1">Pas constructible</p>
+              </div>
+            </div>
+            <div class="mt-4 rounded-xl border-2 border-amber-200 bg-amber-50 p-4">
+              <p class="text-xs font-bold uppercase tracking-wide text-amber-600 mb-2">Pourquoi OIJ est un cas particulier</p>
+              <div class="flex flex-col sm:flex-row items-center gap-4">
+                <svg viewBox="0 0 220 70" class="w-full max-w-[220px] h-auto shrink-0">
+                  <line x1="20" y1="35" x2="200" y2="35" stroke="#0f172a" stroke-width="2"/>
+                  <g class="fig-point">
+                    <path d="M15,30 L25,40 M15,40 L25,30" stroke-width="2"/><text x="10" y="55" class="fig-label" font-size="15">O</text>
+                    <path d="M87,30 L97,40 M87,40 L97,30" stroke-width="2"/><text x="86" y="55" class="fig-label" font-size="15">J</text>
+                    <path d="M195,30 L205,40 M195,40 L205,30" stroke-width="2"/><text x="197" y="55" class="fig-label" font-size="15">I</text>
+                  </g>
+                  <text x="42" y="25" font-size="11" fill="#64748b">4cm</text>
+                  <text x="130" y="25" font-size="11" fill="#64748b">6cm</text>
+                </svg>
+                <p class="text-sm text-amber-900">Puisque <strong>OJ+JI = OI</strong> (4+6=10), le point J appartient au segment [OI] d'après la <strong>propriété 2</strong> : les trois points O, J et I sont <strong>alignés</strong>. Ce n'est donc pas un vrai triangle (il est « aplati »).</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ========== EXERCICE 2 ========== -->
+      <div id="exercice2" class="scroll-mt-28 mb-16">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="inline-block rounded-full bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 2</span>
+              <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Constructions à la règle, au compas et à l'équerre</span>
+            </div>
+          </div>
+          <button data-ex-master="2" onclick="toggleAll(this)" class="master-btn shrink-0 self-start sm:self-auto rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 transition">Afficher toutes les corrections</button>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+
+          <!-- 2.1 -->
+          <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+            <div class="flex flex-wrap items-start justify-between gap-3 p-4 sm:p-5">
+              <p class="text-sm sm:text-base text-slate-800"><strong>1.</strong> Triangle ABC avec AB=6cm, AC=3cm et BC=7cm.</p>
+              <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex2-1" data-ex="2" data-state="hidden" onclick="toggleCorrection(this)">
+                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+                <span>Voir la correction</span>
+              </button>
+            </div>
+            <div id="c-ex2-1" data-ex="2" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-5">
+              <p class="text-xs text-slate-500">Vérification : plus grand côté BC=7cm ; AB+AC=9cm&gt;7cm ✓ constructible.</p>
+              <svg viewBox="0 0 320 240" class="w-full h-auto max-w-xs mx-auto mt-2 bg-white rounded-lg ring-1 ring-emerald-100">
+                <polygon points="54.4,198 278,198 42,86.9" fill="none" stroke="#0f172a" stroke-width="2"/>
+                <g class="fig-point">
+                  <path d="M49.4,193 L59.4,203 M49.4,203 L59.4,193" stroke-width="2"/><text x="35" y="214" class="fig-label" font-size="15">A</text>
+                  <path d="M273,193 L283,203 M273,203 L283,193" stroke-width="2"/><text x="285" y="212" class="fig-label" font-size="15">B</text>
+                  <path d="M37,81.9 L47,91.9 M37,91.9 L47,81.9" stroke-width="2"/><text x="20" y="80" class="fig-label" font-size="15">C</text>
+                </g>
+                <text x="140" y="212" font-size="11" fill="#64748b">6cm</text>
+              </svg>
+              <p class="mt-2 text-sm text-slate-700">Méthode : trace [AB]=6cm ; arc de rayon 3cm centré en A et arc de rayon 7cm centré en B ; leur intersection donne C.</p>
+            </div>
+          </article>
+
+          <!-- 2.2 -->
+          <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+            <div class="flex flex-wrap items-start justify-between gap-3 p-4 sm:p-5">
+              <p class="text-sm sm:text-base text-slate-800"><strong>2.</strong> Triangle EFG avec EF=4cm, EG=6cm et FG=3cm.</p>
+              <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex2-2" data-ex="2" data-state="hidden" onclick="toggleCorrection(this)">
+                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+                <span>Voir la correction</span>
+              </button>
+            </div>
+            <div id="c-ex2-2" data-ex="2" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-5">
+              <p class="text-xs text-slate-500">Vérification : plus grand côté EG=6cm ; EF+FG=7cm&gt;6cm ✓ constructible.</p>
+              <svg viewBox="0 0 320 240" class="w-full h-auto max-w-xs mx-auto mt-2 bg-white rounded-lg ring-1 ring-emerald-100">
+                <polygon points="42,198 217.6,198 278,80.9" fill="none" stroke="#0f172a" stroke-width="2"/>
+                <g class="fig-point">
+                  <path d="M37,193 L47,203 M37,203 L47,193" stroke-width="2"/><text x="22" y="214" class="fig-label" font-size="15">E</text>
+                  <path d="M212.6,193 L222.6,203 M212.6,203 L222.6,193" stroke-width="2"/><text x="215" y="214" class="fig-label" font-size="15">F</text>
+                  <path d="M273,75.9 L283,85.9 M273,85.9 L283,75.9" stroke-width="2"/><text x="285" y="74" class="fig-label" font-size="15">G</text>
+                </g>
+                <text x="100" y="212" font-size="11" fill="#64748b">4cm</text>
+              </svg>
+              <p class="mt-2 text-sm text-slate-700">Méthode : trace [EF]=4cm ; arc de rayon 6cm centré en E et arc de rayon 3cm centré en F ; leur intersection donne G.</p>
+            </div>
+          </article>
+
+          <!-- 2.3 -->
+          <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+            <div class="flex flex-wrap items-start justify-between gap-3 p-4 sm:p-5">
+              <p class="text-sm sm:text-base text-slate-800"><strong>3.</strong> Triangle GHI isocèle en I avec GH=7cm et HI=3cm.</p>
+              <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex2-3" data-ex="2" data-state="hidden" onclick="toggleCorrection(this)">
+                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+                <span>Voir la correction</span>
+              </button>
+            </div>
+            <div id="c-ex2-3" data-ex="2" class="correction-panel hidden border-t border-slate-100 bg-rose-50/60 p-4 sm:p-5">
+              <p class="text-sm text-slate-800">Isocèle en I signifie <strong>IG = IH = 3cm</strong>. Vérification : plus grand côté GH=7cm ; IG+IH = 3+3 = 6cm.</p>
+              <p class="mt-1 font-mono text-sm text-rose-700">6 &lt; 7 → l'inégalité triangulaire n'est pas respectée !</p>
+              <svg viewBox="0 0 320 240" class="w-full h-auto max-w-xs mx-auto mt-3 bg-white rounded-lg ring-1 ring-rose-100">
+                <line x1="42" y1="198" x2="278" y2="198" stroke="#0f172a" stroke-width="2"/>
+                <circle cx="42" cy="198" r="101.1" fill="none" stroke="#e11d48" stroke-width="1.5" stroke-dasharray="5 4"/>
+                <circle cx="278" cy="198" r="101.1" fill="none" stroke="#e11d48" stroke-width="1.5" stroke-dasharray="5 4"/>
+                <g class="fig-point">
+                  <path d="M37,193 L47,203 M37,203 L47,193" stroke-width="2"/><text x="30" y="216" class="fig-label" font-size="15">G</text>
+                  <path d="M273,193 L283,203 M273,203 L283,193" stroke-width="2"/><text x="283" y="216" class="fig-label" font-size="15">H</text>
+                </g>
+                <text x="160" y="52" text-anchor="middle" font-size="12" fill="#e11d48" font-weight="bold">Les arcs ne se touchent pas !</text>
+              </svg>
+              <p class="mt-3 inline-flex items-center gap-1.5 rounded-full bg-rose-100 text-rose-700 text-xs font-bold px-3 py-1">✗ Construction impossible</p>
+              <p class="mt-2 text-sm text-slate-700">Les deux arcs de rayon 3cm tracés depuis G et depuis H (pour placer I) ne se rencontrent jamais, car G et H sont trop éloignés (7cm &gt; 3+3cm). Il n'existe donc <strong>aucun point I</strong> possible.</p>
+            </div>
+          </article>
+
+          <!-- 2.4 -->
+          <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+            <div class="flex flex-wrap items-start justify-between gap-3 p-4 sm:p-5">
+              <p class="text-sm sm:text-base text-slate-800"><strong>4.</strong> Triangle ABC équilatéral avec BA=3cm.</p>
+              <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex2-4" data-ex="2" data-state="hidden" onclick="toggleCorrection(this)">
+                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+                <span>Voir la correction</span>
+              </button>
+            </div>
+            <div id="c-ex2-4" data-ex="2" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-5">
+              <p class="text-xs text-slate-500">Équilatéral ⟹ AB=BC=CA=3cm. Toujours constructible (3&lt;3+3).</p>
+              <svg viewBox="0 0 320 240" class="w-full h-auto max-w-xs mx-auto mt-2 bg-white rounded-lg ring-1 ring-emerald-100">
+                <polygon points="42,198 222.1,198 132.1,42" fill="none" stroke="#0f172a" stroke-width="2"/>
+                <g stroke="#0f172a" stroke-width="1.3">
+                  <line x1="127.1" y1="120" x2="134.1" y2="120.8"/>
+                  <line x1="82" y1="169" x2="88.7" y2="166"/>
+                  <line x1="177" y1="169" x2="170.3" y2="166"/>
+                </g>
+                <g class="fig-point">
+                  <path d="M37,193 L47,203 M37,203 L47,193" stroke-width="2"/><text x="22" y="214" class="fig-label" font-size="15">A</text>
+                  <path d="M217.1,193 L227.1,203 M217.1,203 L227.1,193" stroke-width="2"/><text x="220" y="214" class="fig-label" font-size="15">B</text>
+                  <path d="M127.1,37 L137.1,47 M127.1,47 L137.1,37" stroke-width="2"/><text x="132" y="30" class="fig-label" font-size="15">C</text>
+                </g>
+              </svg>
+              <p class="mt-2 text-sm text-slate-700">Méthode : trace [AB]=3cm ; arcs de rayon 3cm centrés en A et en B ; leur intersection donne C.</p>
+            </div>
+          </article>
+
+          <!-- 2.5 -->
+          <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+            <div class="flex flex-wrap items-start justify-between gap-3 p-4 sm:p-5">
+              <p class="text-sm sm:text-base text-slate-800"><strong>5.</strong> Triangle MNO rectangle en N avec MN=4cm et NO=3cm.</p>
+              <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex2-5" data-ex="2" data-state="hidden" onclick="toggleCorrection(this)">
+                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+                <span>Voir la correction</span>
+              </button>
+            </div>
+            <div id="c-ex2-5" data-ex="2" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-5">
+              <svg viewBox="0 0 320 240" class="w-full h-auto max-w-xs mx-auto mt-2 bg-white rounded-lg ring-1 ring-emerald-100">
+                <polygon points="42,198 42,42 159,198" fill="none" stroke="#0f172a" stroke-width="2"/>
+                <rect x="42" y="186" width="12" height="12" fill="none" stroke="#0f172a" stroke-width="1.3"/>
+                <g class="fig-point">
+                  <path d="M37,193 L47,203 M37,203 L47,193" stroke-width="2"/><text x="22" y="214" class="fig-label" font-size="15">N</text>
+                  <path d="M37,37 L47,47 M37,47 L47,37" stroke-width="2"/><text x="20" y="30" class="fig-label" font-size="15">M</text>
+                  <path d="M154,193 L164,203 M154,203 L164,193" stroke-width="2"/><text x="163" y="214" class="fig-label" font-size="15">O</text>
+                </g>
+                <text x="8" y="120" font-size="11" fill="#64748b">4cm</text>
+                <text x="95" y="212" font-size="11" fill="#64748b">3cm</text>
+              </svg>
+              <p class="mt-2 text-sm text-slate-700">Méthode : à l'équerre, trace l'angle droit en N ; reporte 4cm pour M et 3cm pour O ; relie M et O.</p>
+              <p class="mt-1 text-xs text-slate-500">Bonus (Pythagore) : MO = √(4²+3²) = <strong>5cm</strong> — le triangle 3-4-5 !</p>
+            </div>
+          </article>
+
+          <!-- 2.6 -->
+          <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+            <div class="flex flex-wrap items-start justify-between gap-3 p-4 sm:p-5">
+              <p class="text-sm sm:text-base text-slate-800"><strong>6.</strong> Triangle OPC rectangle en O avec OC=3cm et PC=5cm.</p>
+              <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex2-6" data-ex="2" data-state="hidden" onclick="toggleCorrection(this)">
+                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+                <span>Voir la correction</span>
+              </button>
+            </div>
+            <div id="c-ex2-6" data-ex="2" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-5">
+              <p class="text-xs text-slate-500">PC est l'hypoténuse (elle ne contient pas O). Pythagore : OP² = PC²−OC² = 25−9=16 ⟹ OP=4cm.</p>
+              <svg viewBox="0 0 320 240" class="w-full h-auto max-w-xs mx-auto mt-2 bg-white rounded-lg ring-1 ring-emerald-100">
+                <polygon points="42,198 159,198 42,42" fill="none" stroke="#0f172a" stroke-width="2"/>
+                <line x1="159" y1="198" x2="42" y2="42" stroke="#0f172a" stroke-width="2"/>
+                <rect x="42" y="186" width="12" height="12" fill="none" stroke="#0f172a" stroke-width="1.3"/>
+                <g class="fig-point">
+                  <path d="M37,193 L47,203 M37,203 L47,193" stroke-width="2"/><text x="22" y="214" class="fig-label" font-size="15">O</text>
+                  <path d="M154,193 L164,203 M154,203 L164,193" stroke-width="2"/><text x="163" y="214" class="fig-label" font-size="15">C</text>
+                  <path d="M37,37 L47,47 M37,47 L47,37" stroke-width="2"/><text x="20" y="30" class="fig-label" font-size="15">P</text>
+                </g>
+                <text x="95" y="212" font-size="11" fill="#64748b">3cm</text>
+                <text x="70" y="105" font-size="11" fill="#64748b">5cm</text>
+                <text x="8" y="120" font-size="11" fill="#64748b">4cm</text>
+              </svg>
+              <p class="mt-2 text-sm text-slate-700">Méthode : trace l'angle droit en O ; reporte OC=3cm ; trace un arc de rayon 5cm centré en C qui coupe le second côté de l'angle droit en P (ou reporte directement OP=4cm).</p>
+            </div>
+          </article>
+
+          <!-- 2.7 -->
+          <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+            <div class="flex flex-wrap items-start justify-between gap-3 p-4 sm:p-5">
+              <p class="text-sm sm:text-base text-slate-800"><strong>7.</strong> Triangle équilatéral de périmètre 15cm.</p>
+              <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex2-7" data-ex="2" data-state="hidden" onclick="toggleCorrection(this)">
+                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+                <span>Voir la correction</span>
+              </button>
+            </div>
+            <div id="c-ex2-7" data-ex="2" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-5">
+              <p class="text-sm text-slate-700">Équilatéral ⟹ les 3 côtés sont égaux. Un côté = 15cm ÷ 3 = <strong class="text-emerald-700">5cm</strong>.</p>
+              <svg viewBox="0 0 320 240" class="w-full h-auto max-w-xs mx-auto mt-2 bg-white rounded-lg ring-1 ring-emerald-100">
+                <polygon points="42,198 222.1,198 132.1,42" fill="none" stroke="#0f172a" stroke-width="2"/>
+                <g class="fig-point">
+                  <path d="M37,193 L47,203 M37,203 L47,193" stroke-width="2"/><text x="22" y="214" class="fig-label" font-size="15">A</text>
+                  <path d="M217.1,193 L227.1,203 M217.1,203 L227.1,193" stroke-width="2"/><text x="220" y="214" class="fig-label" font-size="15">B</text>
+                  <path d="M127.1,37 L137.1,47 M127.1,47 L137.1,37" stroke-width="2"/><text x="132" y="30" class="fig-label" font-size="15">C</text>
+                </g>
+                <text x="115" y="212" font-size="11" fill="#64748b">5cm</text>
+              </svg>
+              <p class="mt-2 text-sm text-slate-700">Méthode : trace un côté de 5cm ; arcs de rayon 5cm depuis chaque extrémité ; leur intersection donne le troisième sommet.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- ========== EXERCICE 3 ========== -->
+      <div id="exercice3" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-6">
+          <span class="inline-block rounded-full bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 3</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Angle-côté-côté &amp; perpendiculaire</span>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+            <div class="p-4 sm:p-6">
+              <p class="text-sm sm:text-base text-slate-800"><strong>1.</strong> Construis un triangle BAS tel que AB=4cm, AS=5cm et Â=110°.</p>
+              <p class="mt-2 text-sm sm:text-base text-slate-800 ml-4">1-1. Trace la perpendiculaire à (AS) passant par B.</p>
+            </div>
+            <div class="flex justify-end px-4 sm:px-6 pb-4">
+              <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex3-1" data-ex="3" data-state="hidden" onclick="toggleCorrection(this)">
+                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+                <span>Voir la correction</span>
+              </button>
+            </div>
+            <div id="c-ex3-1" data-ex="3" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6">
+              <p class="text-sm text-slate-700">Construction « angle-côté-côté » : trace une demi-droite [Ax) et place B tel que AB=4cm ; au rapporteur, trace la demi-droite [Ay) formant un angle de 110° avec [Ax) ; place S sur [Ay) tel que AS=5cm ; relie B et S.</p>
+              <svg viewBox="0 0 260 240" class="w-full h-auto max-w-xs mx-auto mt-3 bg-white rounded-lg ring-1 ring-emerald-100">
+                <line x1="86.6" y1="164.5" x2="220" y2="164.5" stroke="#0f172a" stroke-width="1.4" stroke-dasharray="3 3"/>
+                <line x1="86.6" y1="164.5" x2="190.9" y2="164.5" stroke="#0f172a" stroke-width="2"/>
+                <line x1="86.6" y1="164.5" x2="20" y2="164.5" stroke="#0f172a" stroke-width="1.4" stroke-dasharray="3 3"/>
+                <line x1="86.6" y1="164.5" x2="42" y2="42" stroke="#0f172a" stroke-width="1.4" stroke-dasharray="3 3"/>
+                <line x1="86.6" y1="164.5" x2="98.8" y2="198" stroke="#0f172a" stroke-width="1.4" stroke-dasharray="3 3"/>
+                <path d="M110,164.5 A23,23 0 0,0 78.5,143" fill="none" stroke="#2563eb" stroke-width="1.4"/>
+                <text x="96" y="140" fill="#2563eb" font-size="13" font-weight="bold">110°</text>
+                <line x1="190.9" y1="164.5" x2="98.8" y2="198" stroke="#0f172a" stroke-width="2"/>
+                <line x1="190.9" y1="164.5" x2="42" y2="42" stroke="#0f172a" stroke-width="2"/>
+                <path d="M96.1,190.5 L103.6,187.7 L106.3,195.3" fill="none" stroke="#0f172a" stroke-width="1.2"/>
+                <g class="fig-point">
+                  <path d="M81.6,159.5 L91.6,169.5 M81.6,169.5 L91.6,159.5" stroke-width="2"/><text x="68" y="180" class="fig-label" font-size="15">A</text>
+                  <path d="M185.9,159.5 L195.9,169.5 M185.9,169.5 L195.9,159.5" stroke-width="2"/><text x="198" y="158" class="fig-label" font-size="15">B</text>
+                  <path d="M37,37 L47,47 M37,47 L47,37" stroke-width="2"/><text x="22" y="30" class="fig-label" font-size="15">S</text>
+                  <path d="M93.8,193 L103.8,203 M93.8,203 L103.8,193" stroke-width="2.2"/><text x="106" y="212" class="fig-label" font-size="15">H</text>
+                </g>
+              </svg>
+              <p class="mt-3 text-sm text-slate-700"><strong>1-1.</strong> À l'équerre : place un côté le long de (AS) et fais glisser jusqu'à ce que l'autre côté passe par B, puis trace la droite (BH) — c'est la perpendiculaire cherchée.</p>
+              <div class="mt-2 rounded-xl border-2 border-amber-200 bg-amber-50 p-3 text-amber-900">
+                <p class="text-xs font-bold uppercase tracking-wide text-amber-600 mb-1">Remarque</p>
+                <p class="text-sm">Comme l'angle en A est <strong>obtus</strong> (110°&gt;90°), le pied H de cette perpendiculaire tombe <strong>en dehors</strong> du segment [AS], sur son prolongement au-delà de A.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+            <div class="p-4 sm:p-6">
+              <p class="text-sm sm:text-base text-slate-800"><strong>2.</strong> Construis un triangle ABC rectangle avec AB=4cm et AC=5cm.</p>
+            </div>
+            <div class="flex justify-end px-4 sm:px-6 pb-4">
+              <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex3-2" data-ex="3" data-state="hidden" onclick="toggleCorrection(this)">
+                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+                <span>Voir la correction</span>
+              </button>
+            </div>
+            <div id="c-ex3-2" data-ex="3" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6">
+              <div class="rounded-xl border-2 border-amber-200 bg-amber-50 p-3 text-amber-900 mb-3">
+                <p class="text-xs font-bold uppercase tracking-wide text-amber-600 mb-1">Remarque</p>
+                <p class="text-sm">L'énoncé ne précise pas le sommet de l'angle droit. Comme AB et AC partent toutes les deux de A (même situation qu'à l'exercice 2, question 5), on construit avec <strong>l'angle droit en A</strong>.</p>
+              </div>
+              <svg viewBox="0 0 320 240" class="w-full h-auto max-w-xs mx-auto bg-white rounded-lg ring-1 ring-emerald-100">
+                <polygon points="42,198 166.8,198 42,42" fill="none" stroke="#0f172a" stroke-width="2"/>
+                <rect x="42" y="186" width="12" height="12" fill="none" stroke="#0f172a" stroke-width="1.3"/>
+                <g class="fig-point">
+                  <path d="M37,193 L47,203 M37,203 L47,193" stroke-width="2"/><text x="22" y="214" class="fig-label" font-size="15">A</text>
+                  <path d="M161.8,193 L171.8,203 M161.8,203 L171.8,193" stroke-width="2"/><text x="170" y="214" class="fig-label" font-size="15">B</text>
+                  <path d="M37,37 L47,47 M37,47 L47,37" stroke-width="2"/><text x="20" y="30" class="fig-label" font-size="15">C</text>
+                </g>
+                <text x="95" y="212" font-size="11" fill="#64748b">4cm</text>
+                <text x="8" y="120" font-size="11" fill="#64748b">5cm</text>
+              </svg>
+              <p class="mt-2 text-sm text-slate-700">Méthode : trace l'angle droit en A à l'équerre ; reporte AB=4cm sur un côté et AC=5cm sur l'autre ; relie B et C.</p>
+              <p class="mt-1 text-xs text-slate-500">Bonus (Pythagore) : BC = √(4²+5²) = √41 ≈ 6,4cm.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- ========== EXERCICE 4 ========== -->
+      <div id="exercice4" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-6">
+          <span class="inline-block rounded-full bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 4</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Médiatrice &amp; cercle circonscrit</span>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+            <div class="p-4 sm:p-6">
+              <p class="text-sm sm:text-base text-slate-800"><strong>1.</strong> Construis un triangle CAR tel que AC=5cm, AR=4cm et CR=6cm.</p>
+              <p class="mt-2 text-sm sm:text-base text-slate-800 ml-4">1-2. Construis la médiatrice de [AR].</p>
+            </div>
+            <div class="flex justify-end px-4 sm:px-6 pb-4">
+              <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex4-1" data-ex="4" data-state="hidden" onclick="toggleCorrection(this)">
+                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+                <span>Voir la correction</span>
+              </button>
+            </div>
+            <div id="c-ex4-1" data-ex="4" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6">
+              <p class="text-xs text-slate-500">Vérification : plus grand côté CR=6cm ; AC+AR=9cm&gt;6cm ✓ constructible.</p>
+              <svg viewBox="0 0 320 240" class="w-full h-auto max-w-xs mx-auto mt-2 bg-white rounded-lg ring-1 ring-emerald-100">
+                <polygon points="42,198 238.5,198 61.7,42" fill="none" stroke="#0f172a" stroke-width="2"/>
+                <line x1="30.5" y1="139.2" x2="72.9" y2="100.8" stroke="#0f172a" stroke-width="2" stroke-dasharray="4 3"/>
+                <g stroke="#0f172a" stroke-width="1.3">
+                  <line x1="45" y1="128" x2="52" y2="124.6"/>
+                  <line x1="58.5" y1="112" x2="65.5" y2="108.6"/>
+                </g>
+                <g class="fig-point">
+                  <path d="M37,193 L47,203 M37,203 L47,193" stroke-width="2"/><text x="22" y="214" class="fig-label" font-size="15">A</text>
+                  <path d="M233.5,193 L243.5,203 M233.5,203 L243.5,193" stroke-width="2"/><text x="243" y="214" class="fig-label" font-size="15">C</text>
+                  <path d="M56.7,37 L66.7,47 M56.7,47 L66.7,37" stroke-width="2"/><text x="66" y="34" class="fig-label" font-size="15">R</text>
+                </g>
+                <text x="8" y="130" font-size="11" fill="#64748b">4cm</text>
+              </svg>
+              <p class="mt-2 text-sm text-slate-700">Méthode : trace [AC]=5cm ; arc de rayon 4cm centré en A et arc de rayon 6cm centré en C ; leur intersection donne R.</p>
+              <p class="mt-2 text-sm text-slate-700"><strong>1-2.</strong> Au compas, ouverture plus grande que la moitié de [AR] : trace un arc centré en A puis un arc de même rayon centré en R, de part et d'autre de (AR). La droite passant par les deux points d'intersection est la médiatrice de [AR] (en tirets sur la figure).</p>
+            </div>
+          </article>
+
+          <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+            <div class="p-4 sm:p-6">
+              <p class="text-sm sm:text-base text-slate-800"><strong>2.</strong> Construis un triangle TRI tel que R̂=50°, Î=40° et RI=5cm.</p>
+              <p class="mt-2 text-sm sm:text-base text-slate-800 ml-4">2-1. Construis le cercle circonscrit au triangle TRI.</p>
+            </div>
+            <div class="flex justify-end px-4 sm:px-6 pb-4">
+              <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex4-2" data-ex="4" data-state="hidden" onclick="toggleCorrection(this)">
+                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+                <span>Voir la correction</span>
+              </button>
+            </div>
+            <div id="c-ex4-2" data-ex="4" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6">
+              <div class="rounded-xl border-2 border-amber-200 bg-amber-50 p-3 text-amber-900 mb-3">
+                <p class="text-xs font-bold uppercase tracking-wide text-amber-600 mb-1">Remarque clé</p>
+                <p class="text-sm">La somme des angles d'un triangle vaut 180°, donc l'angle en T = 180°−50°−40° = <strong>90°</strong>. Le triangle TRI est rectangle en T !</p>
+              </div>
+              <svg viewBox="0 0 320 240" class="w-full h-auto max-w-xs mx-auto bg-white rounded-lg ring-1 ring-emerald-100">
+                <circle cx="160" cy="198" r="118" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <polygon points="42,198 278,198 139.5,81.8" fill="none" stroke="#0f172a" stroke-width="2"/>
+                <path d="M75,198 A33,33 0 0,0 62,172" fill="none" stroke="#7c3aed" stroke-width="1.3"/>
+                <text x="64" y="184" fill="#7c3aed" font-size="12" font-weight="bold">50°</text>
+                <path d="M245,198 A33,33 0 0,1 250,167" fill="none" stroke="#7c3aed" stroke-width="1.3"/>
+                <text x="235" y="181" fill="#7c3aed" font-size="12" font-weight="bold">40°</text>
+                <path d="M133.7,88.7 L140.6,94.5 L146.4,87.6" fill="none" stroke="#0f172a" stroke-width="1.2"/>
+                <g class="fig-point">
+                  <path d="M37,193 L47,203 M37,203 L47,193" stroke-width="2"/><text x="22" y="214" class="fig-label" font-size="15">R</text>
+                  <path d="M273,193 L283,203 M273,203 L283,193" stroke-width="2"/><text x="285" y="214" class="fig-label" font-size="15">I</text>
+                  <path d="M134.5,76.8 L144.5,86.8 M134.5,86.8 L144.5,76.8" stroke-width="2"/><text x="139" y="70" class="fig-label" font-size="15">T</text>
+                  <path d="M155,193 L165,203 M155,203 L165,193" stroke-width="2.2"/><text x="152" y="216" class="fig-label" font-size="14">O′</text>
+                </g>
+                <text x="180" y="90" fill="#2563eb" font-size="11">cercle circonscrit</text>
+              </svg>
+              <p class="mt-2 text-sm text-slate-700">Méthode : trace [RI]=5cm ; au rapporteur, à partir de R trace une demi-droite formant 50° avec (RI) et, à partir de I, une demi-droite formant 40° avec (RI), du même côté. Leur intersection donne T.</p>
+              <p class="mt-2 text-sm text-slate-700"><strong>2-1.</strong> Méthode générale : le centre du cercle circonscrit est le point de concours de deux médiatrices (par exemple celles de [TR] et de [TI]). Ici, comme le triangle est rectangle en T, un raccourci existe : <strong>le centre O′ est le milieu de l'hypoténuse [RI]</strong>, et le rayon vaut RI÷2 = <strong>2,5cm</strong>.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- ========== EXERCICE 5 ========== -->
+      <div id="exercice5" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-6">
+          <span class="inline-block rounded-full bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 5</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Hauteurs, médiatrices, bissectrices &amp; cercle circonscrit</span>
+        </div>
+
+        <div class="space-y-4">
+          <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+            <div class="flex flex-wrap items-start justify-between gap-3 p-4 sm:p-6">
+              <p class="text-sm sm:text-base text-slate-800"><strong>1.</strong> Construire deux triangles ABC et DEF. Tracer les trois <strong class="text-red-600">hauteurs en rouge</strong> et les trois <strong class="text-green-600">médiatrices en vert</strong>.</p>
+              <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex5-1" data-ex="5" data-state="hidden" onclick="toggleCorrection(this)">
+                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+                <span>Voir la correction</span>
+              </button>
+            </div>
+            <div id="c-ex5-1" data-ex="5" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6">
+              <p class="text-sm text-slate-700 mb-3"><strong>Rappel :</strong> la hauteur issue d'un sommet est la droite perpendiculaire au côté opposé, passant par ce sommet (son support peut couper le côté opposé <em>ou son prolongement</em>).</p>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3">
+                  <p class="text-center text-xs font-semibold text-slate-500 mb-1">Triangle ABC (acutangle)</p>
+                  <svg viewBox="0 0 320 260" class="w-full h-auto mx-auto">
+                    <polygon points="42,218 253.2,218 112.4,42" fill="none" stroke="#0f172a" stroke-width="2"/>
+                    <g stroke="#16a34a" stroke-width="1.5">
+                      <line x1="147.6" y1="15" x2="147.6" y2="235"/>
+                      <line x1="77.4" y1="214.5" x2="217.8" y2="101.9"/>
+                      <line x1="231.2" y1="191.7" x2="64" y2="124.7"/>
+                    </g>
+                    <g stroke="#dc2626" stroke-width="1.6">
+                      <line x1="112.4" y1="42" x2="112.4" y2="218"/>
+                      <line x1="253.2" y1="218" x2="70.2" y2="144.8"/>
+                      <line x1="42" y1="218" x2="133.5" y2="144.8"/>
+                    </g>
+                    <g class="fig-point">
+                      <path d="M37,213 L47,223 M37,223 L47,213" stroke-width="2"/><text x="22" y="234" class="fig-label" font-size="15">A</text>
+                      <path d="M248.2,213 L258.2,223 M248.2,223 L258.2,213" stroke-width="2"/><text x="257" y="234" class="fig-label" font-size="15">B</text>
+                      <path d="M107.4,37 L117.4,47 M107.4,47 L117.4,37" stroke-width="2"/><text x="112" y="30" class="fig-label" font-size="15">C</text>
+                      <path d="M107.4,156.7 L117.4,166.7 M107.4,166.7 L117.4,156.7" stroke-width="2" stroke="#dc2626"/><text x="119" y="165" class="fig-label" font-size="13" fill="#dc2626">H</text>
+                      <path d="M142.6,153.2 L152.6,163.2 M142.6,163.2 L152.6,153.2" stroke-width="2" stroke="#16a34a"/><text x="154" y="152" class="fig-label" font-size="13" fill="#16a34a">O</text>
+                    </g>
+                  </svg>
+                  <p class="mt-2 text-xs text-slate-600 text-center">H (orthocentre) et O (centre du cercle circonscrit) sont <strong>à l'intérieur</strong> du triangle.</p>
+                </div>
+                <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3">
+                  <p class="text-center text-xs font-semibold text-slate-500 mb-1">Triangle DEF (obtusangle en F)</p>
+                  <svg viewBox="0 0 320 300" class="w-full h-auto mx-auto">
+                    <polygon points="42,215.9 278,215.9 244.3,165.3" fill="none" stroke="#0f172a" stroke-width="2"/>
+                    <g stroke="#16a34a" stroke-width="1.5">
+                      <line x1="160" y1="15" x2="160" y2="290"/>
+                      <line x1="126.7" y1="280.2" x2="294.4" y2="168.4"/>
+                      <line x1="133.45" y1="151.8" x2="169.7" y2="296.8"/>
+                    </g>
+                    <g stroke="#dc2626" stroke-width="1.6">
+                      <line x1="244.3" y1="215.9" x2="244.3" y2="81"/>
+                      <line x1="42" y1="215.9" x2="305" y2="40.5"/>
+                      <line x1="278" y1="215.9" x2="234.2" y2="40.5"/>
+                    </g>
+                    <g class="fig-point">
+                      <path d="M37,210.9 L47,220.9 M37,220.9 L47,210.9" stroke-width="2"/><text x="22" y="232" class="fig-label" font-size="15">D</text>
+                      <path d="M273,210.9 L283,220.9 M273,220.9 L283,210.9" stroke-width="2"/><text x="285" y="232" class="fig-label" font-size="15">E</text>
+                      <path d="M239.3,160.3 L249.3,170.3 M239.3,170.3 L249.3,160.3" stroke-width="2"/><text x="252" y="158" class="fig-label" font-size="15">F</text>
+                      <path d="M239.3,76 L249.3,86 M239.3,86 L249.3,76" stroke-width="2" stroke="#dc2626"/><text x="252" y="80" class="fig-label" font-size="13" fill="#dc2626">H</text>
+                      <path d="M155,253 L165,263 M155,263 L165,253" stroke-width="2" stroke="#16a34a"/><text x="150" y="278" class="fig-label" font-size="13" fill="#16a34a">O</text>
+                    </g>
+                  </svg>
+                  <p class="mt-2 text-xs text-slate-600 text-center">H et O tombent tous les deux <strong>à l'extérieur</strong> du triangle (angle obtus en F).</p>
+                </div>
+              </div>
+              <div class="mt-3 rounded-xl border-2 border-amber-200 bg-amber-50 p-4 text-amber-900">
+                <p class="text-xs font-bold uppercase tracking-wide text-amber-600 mb-1">À retenir</p>
+                <p class="text-sm">Dans un triangle <strong>acutangle</strong>, l'orthocentre (hauteurs) et le centre du cercle circonscrit (médiatrices) sont à l'intérieur. Dès qu'un triangle est <strong>obtusangle</strong>, ces deux points « sortent » du triangle.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+            <div class="flex flex-wrap items-start justify-between gap-3 p-4 sm:p-6">
+              <p class="text-sm sm:text-base text-slate-800"><strong>2.</strong> Construire deux triangles ABC et DEF. Tracer les trois bissectrices et le cercle circonscrit dans chaque triangle.</p>
+              <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex5-2" data-ex="5" data-state="hidden" onclick="toggleCorrection(this)">
+                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+                <span>Voir la correction</span>
+              </button>
+            </div>
+            <div id="c-ex5-2" data-ex="5" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6">
+              <p class="text-sm text-slate-700 mb-3">On reprend les deux mêmes triangles ABC et DEF. Les 3 bissectrices (en violet) se coupent au centre du cercle inscrit ; le cercle circonscrit (en bleu, obtenu grâce aux médiatrices) passe par les 3 sommets.</p>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3">
+                  <p class="text-center text-xs font-semibold text-slate-500 mb-1">Triangle ABC (acutangle)</p>
+                  <svg viewBox="0 0 320 260" class="w-full h-auto mx-auto">
+                    <circle cx="147.6" cy="158.2" r="121.4" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="4 3"/>
+                    <polygon points="42,218 253.2,218 112.4,42" fill="none" stroke="#0f172a" stroke-width="2"/>
+                    <g stroke="#7c3aed" stroke-width="1.5">
+                      <line x1="42" y1="218" x2="179" y2="125.2"/>
+                      <line x1="253.2" y1="218" x2="76.1" y2="132.9"/>
+                      <line x1="112.4" y1="42" x2="138.5" y2="218"/>
+                    </g>
+                    <g class="fig-point">
+                      <path d="M37,213 L47,223 M37,223 L47,213" stroke-width="2"/><text x="22" y="234" class="fig-label" font-size="15">A</text>
+                      <path d="M248.2,213 L258.2,223 M248.2,223 L258.2,213" stroke-width="2"/><text x="257" y="234" class="fig-label" font-size="15">B</text>
+                      <path d="M107.4,37 L117.4,47 M107.4,47 L117.4,37" stroke-width="2"/><text x="112" y="30" class="fig-label" font-size="15">C</text>
+                      <path d="M124.7,153.6 L134.7,163.6 M124.7,163.6 L134.7,153.6" stroke-width="2" stroke="#7c3aed"/><text x="112" y="150" class="fig-label" font-size="13" fill="#7c3aed">I</text>
+                    </g>
+                  </svg>
+                  <p class="mt-2 text-xs text-slate-600 text-center">Le centre du cercle inscrit I est toujours <strong>à l'intérieur</strong>.</p>
+                </div>
+                <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3">
+                  <p class="text-center text-xs font-semibold text-slate-500 mb-1">Triangle DEF (obtusangle en F)</p>
+                  <svg viewBox="0 0 320 300" class="w-full h-auto mx-auto">
+                    <circle cx="160" cy="258" r="125.3" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="4 3"/>
+                    <polygon points="42,215.9 278,215.9 244.3,165.3" fill="none" stroke="#0f172a" stroke-width="2"/>
+                    <g stroke="#7c3aed" stroke-width="1.5">
+                      <line x1="42" y1="215.9" x2="260.1" y2="189"/>
+                      <line x1="278" y1="215.9" x2="202.9" y2="175.6"/>
+                      <line x1="244.3" y1="165.3" x2="224.7" y2="215.9"/>
+                    </g>
+                    <g class="fig-point">
+                      <path d="M37,210.9 L47,220.9 M37,220.9 L47,210.9" stroke-width="2"/><text x="22" y="232" class="fig-label" font-size="15">D</text>
+                      <path d="M273,210.9 L283,220.9 M273,220.9 L283,210.9" stroke-width="2"/><text x="285" y="232" class="fig-label" font-size="15">E</text>
+                      <path d="M239.3,160.3 L249.3,170.3 M239.3,170.3 L249.3,160.3" stroke-width="2"/><text x="252" y="158" class="fig-label" font-size="15">F</text>
+                      <path d="M228.9,187.3 L238.9,197.3 M228.9,197.3 L238.9,187.3" stroke-width="2" stroke="#7c3aed"/><text x="240" y="196" class="fig-label" font-size="13" fill="#7c3aed">I</text>
+                    </g>
+                  </svg>
+                  <p class="mt-2 text-xs text-slate-600 text-center">I reste <strong>à l'intérieur</strong>, contrairement au centre du cercle circonscrit (hors triangle).</p>
+                </div>
+              </div>
+              <div class="mt-3 rounded-xl border-2 border-amber-200 bg-amber-50 p-4 text-amber-900">
+                <p class="text-xs font-bold uppercase tracking-wide text-amber-600 mb-1">À retenir</p>
+                <p class="text-sm">Les 3 bissectrices d'un triangle se coupent <strong>toujours à l'intérieur</strong> du triangle, quel que soit son type — contrairement aux hauteurs et aux médiatrices qui peuvent sortir du triangle s'il est obtusangle.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-slate-900 text-slate-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+      <div>
+        <a href="/" class="flex items-center gap-2.5">
+          <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+          <span class="font-display font-bold text-white leading-tight">
+            <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+          </span>
+        </a>
+        <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+      </div>
+      <nav aria-label="Navigation du pied de page" class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+        <a href="#position" class="hover:text-white transition">Position d'un point</a>
+        <a href="#inegalite" class="hover:text-white transition">Inégalité triangulaire</a>
+        <a href="#mediatrice" class="hover:text-white transition">Médiatrice</a>
+        <a href="#exercices" class="hover:text-white transition">Exercices</a>
+      </nav>
+    </div>
+    <div class="mt-8 pt-6 border-t border-slate-800 text-xs text-slate-500">
+      Fiche de cours — Inégalité triangulaire et médiatrice d'un segment · Mathématiques, 1ʳᵉ année collège.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuIconOpen = document.getElementById('menuIconOpen');
+  const menuIconClose = document.getElementById('menuIconClose');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = !mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    menuIconOpen.classList.toggle('hidden');
+    menuIconClose.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', String(!isOpen));
+  });
+  document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+    menuIconOpen.classList.remove('hidden');
+    menuIconClose.classList.add('hidden');
+  }));
+
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  // Correction toggle (single)
+  function toggleCorrection(btn) {
+    const target = document.getElementById(btn.dataset.target);
+    const isHidden = target.classList.contains('hidden');
+    target.classList.toggle('hidden');
+    btn.dataset.state = isHidden ? 'shown' : 'hidden';
+    btn.querySelector('span').textContent = isHidden ? 'Masquer la correction' : 'Voir la correction';
+    btn.classList.toggle('bg-emerald-600', !isHidden);
+    btn.classList.toggle('hover:bg-emerald-700', !isHidden);
+    btn.classList.toggle('bg-slate-500', isHidden);
+    btn.classList.toggle('hover:bg-slate-600', isHidden);
+    syncMaster(btn.dataset.ex);
+  }
+
+  // Show/hide all corrections for one exercise
+  function toggleAll(masterBtn) {
+    const ex = masterBtn.dataset.exMaster;
+    const btns = document.querySelectorAll('.correction-btn[data-ex="' + ex + '"]');
+    const shouldShow = masterBtn.dataset.state !== 'shown';
+    btns.forEach(btn => {
+      const target = document.getElementById(btn.dataset.target);
+      target.classList.toggle('hidden', !shouldShow);
+      btn.dataset.state = shouldShow ? 'shown' : 'hidden';
+      btn.querySelector('span').textContent = shouldShow ? 'Masquer la correction' : 'Voir la correction';
+      btn.classList.toggle('bg-emerald-600', !shouldShow);
+      btn.classList.toggle('hover:bg-emerald-700', !shouldShow);
+      btn.classList.toggle('bg-slate-500', shouldShow);
+      btn.classList.toggle('hover:bg-slate-600', shouldShow);
+    });
+    masterBtn.dataset.state = shouldShow ? 'shown' : 'hidden';
+    masterBtn.textContent = shouldShow ? 'Masquer toutes les corrections' : 'Afficher toutes les corrections';
+  }
+
+  function syncMaster(ex) {
+    const master = document.querySelector('.master-btn[data-ex-master="' + ex + '"]');
+    if (!master) return;
+    const btns = document.querySelectorAll('.correction-btn[data-ex="' + ex + '"]');
+    const allShown = Array.from(btns).every(b => b.dataset.state === 'shown');
+    master.dataset.state = allShown ? 'shown' : 'hidden';
+    master.textContent = allShown ? 'Masquer toutes les corrections' : 'Afficher toutes les corrections';
+  }
+</script>
+
+</body>
+</html>

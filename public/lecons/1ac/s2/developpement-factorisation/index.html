@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Développement et Factorisation — Cours & Exercices | 1AC Mathématiques</title>
+<meta name="description" content="Cours complet et interactif sur le développement et la factorisation (1ère année collège) : définitions, propriétés, identités remarquables, exemples résolus et 13 exercices corrigés.">
+<meta name="theme-color" content="#0b1f3a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%90%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Poppins', 'ui-sans-serif', 'sans-serif'],
+          body: ['Inter', 'ui-sans-serif', 'sans-serif'],
+        },
+        colors: {
+          indigo: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+        },
+        boxShadow: {
+          soft: '0 10px 30px -10px rgba(44, 80, 137, 0.25)',
+        },
+      }
+    }
+  }
+</script>
+<style>
+  section[id] { scroll-margin-top: 5.5rem; }
+  .accordion-wrap { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s ease; }
+  .accordion-wrap.open { grid-template-rows: 1fr; }
+  .accordion-inner { overflow: hidden; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #c7d2fe; border-radius: 9999px; }
+  .dark ::-webkit-scrollbar-thumb { background: #4338ca; }
+
+  /* ===== Mode nuit (retrofit générique — filet de sécurité) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
+  .dark .bg-amber-50 { background-color: #3a2a0a; }
+  .dark .border-amber-400 { border-color: #92400e; }
+</style>
+</head>
+<body class="font-body antialiased bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#accueil" class="flex items-center gap-2 font-display font-bold text-lg text-indigo-700 dark:text-indigo-400">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-9 h-9 shrink-0 rounded-full">
+        <span>Maths<span class="text-amber-500">·1AC</span></span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-1">
+        <a href="/" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-indigo-700 hover:bg-indigo-50 dark:hover:bg-slate-800 dark:hover:text-indigo-400 transition">← Portail</a>
+        <a href="#developpement" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-700 hover:bg-indigo-50 dark:hover:bg-slate-800 dark:hover:text-indigo-400 transition">Développement</a>
+        <a href="#factorisation" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-emerald-700 hover:bg-emerald-50 dark:hover:bg-slate-800 dark:hover:text-emerald-400 transition">Factorisation</a>
+        <a href="#exercices" class="px-4 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-amber-700 hover:bg-amber-50 dark:hover:bg-slate-800 dark:hover:text-amber-400 transition">Exercices</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="p-2.5 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 transition">
+          <svg class="w-5 h-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m14.14-6.66l-.7.7M6.56 17.44l-.7.7m12.02 0l-.7-.7M6.56 6.56l-.7-.7M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+          <svg class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" /></svg>
+        </button>
+        <button id="menu-btn" aria-label="Ouvrir le menu" class="md:hidden p-2.5 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 transition">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden pb-4 flex flex-col gap-1">
+      <a href="/" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-500 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-slate-800">← Portail</a>
+      <a href="#developpement" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-slate-800">I. Développement</a>
+      <a href="#factorisation" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800">II. Factorisation</a>
+      <a href="#exercices" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-amber-50 dark:hover:bg-slate-800">Exercices</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<!-- ===================== HERO ===================== -->
+<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-indigo-700 via-indigo-600 to-violet-700">
+  <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1600&q=60')"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-indigo-950/70 via-indigo-800/40 to-transparent"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
+    <span class="inline-flex items-center gap-2 bg-white/10 text-indigo-100 text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full ring-1 ring-white/20">
+      Mathématiques · 1ère Année Collège
+    </span>
+    <h1 class="mt-6 font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
+      Développement <span class="text-amber-400">&</span> Factorisation
+    </h1>
+    <p class="mt-5 max-w-2xl mx-auto text-base sm:text-lg text-indigo-100">
+      Le cours complet — définitions, propriétés et identités remarquables — accompagné de
+      13 exercices avec leur <span class="font-semibold text-white">correction détaillée</span> à un clic.
+    </p>
+    <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+      <a href="#developpement" class="px-5 py-3 rounded-full bg-white text-indigo-700 font-semibold text-sm shadow-soft hover:bg-indigo-50 transition">📘 Le développement</a>
+      <a href="#factorisation" class="px-5 py-3 rounded-full bg-white/10 text-white font-semibold text-sm ring-1 ring-white/30 hover:bg-white/20 transition">✂️ La factorisation</a>
+      <a href="#exercices" class="px-5 py-3 rounded-full bg-amber-500 text-white font-semibold text-sm shadow-soft hover:bg-amber-600 transition">📝 Exercices corrigés</a>
+    </div>
+    <div class="mt-14 grid grid-cols-3 max-w-lg mx-auto gap-4 text-white">
+      <div>
+        <p class="font-display text-3xl font-extrabold">2</p>
+        <p class="text-xs text-indigo-200 mt-1">notions clés</p>
+      </div>
+      <div class="border-x border-white/20">
+        <p class="font-display text-3xl font-extrabold">13</p>
+        <p class="text-xs text-indigo-200 mt-1">exercices</p>
+      </div>
+      <div>
+        <p class="font-display text-3xl font-extrabold">100%</p>
+        <p class="text-xs text-indigo-200 mt-1">corrigés</p>
+      </div>
+    </div>
+  </div>
+  <svg class="relative block w-full text-slate-50 dark:text-slate-950" viewBox="0 0 1440 60" fill="currentColor"><path d="M0,32L1440,0L1440,60L0,60Z"></path></svg>
+</section>
+
+<!-- ===================== I. DEVELOPPEMENT ===================== -->
+<section id="developpement" class="py-16 md:py-24">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="flex items-center gap-4 mb-4">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-indigo-600 text-white font-display font-bold text-xl shadow-soft shrink-0">I</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Développement</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Transformer un produit en une somme ou une différence</p>
+      </div>
+    </div>
+
+    <!-- Définition -->
+    <div class="mb-10 rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-5 md:p-6">
+      <p class="text-xs font-bold uppercase tracking-wide text-rose-500 mb-2">1. Définition</p>
+      <p class="text-lg md:text-xl text-slate-700 dark:text-rose-100 font-medium">
+        Le <span class="font-bold text-rose-600 dark:text-rose-300">développement</span>, c'est l'écriture d'un produit en une somme ou en une différence.
+      </p>
+    </div>
+
+    <p class="text-xs font-bold uppercase tracking-wide text-indigo-500 mb-3">2. Propriétés</p>
+
+    <!-- a) somme -->
+    <div class="mb-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-6">
+      <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-3">a) Produit d'un nombre par une somme</h3>
+      <div class="rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-900 p-4 mb-4 text-center">
+        <p class="text-xs text-indigo-500 font-semibold mb-2">Soient a, b et k des nombres relatifs.</p>
+        <p class="font-serif text-lg md:text-xl text-indigo-800 dark:text-indigo-200">k×(a + b) = k×a + k×b</p>
+        <p class="font-serif text-lg md:text-xl text-indigo-800 dark:text-indigo-200">(a + b)×k = k×a + k×b</p>
+      </div>
+      <p class="text-sm font-semibold text-slate-500 mb-2">Exemples — développons puis calculons :</p>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/60 p-4 font-mono text-sm sm:text-base text-slate-700 dark:text-slate-200 overflow-x-auto">
+          <p>2 × (1 + 5) = 2×1 + 2×5</p>
+          <p class="pl-6">= 2 + 10</p>
+          <p class="pl-6 font-bold text-indigo-600 dark:text-indigo-400">= 12</p>
+        </div>
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/60 p-4 font-mono text-sm sm:text-base text-slate-700 dark:text-slate-200 overflow-x-auto">
+          <p>(-10 + 3) × (-1,5) = -1,5×(-10) + (-1,5)×3</p>
+          <p class="pl-6">= 15 + (-4,5) = 15 - 4,5</p>
+          <p class="pl-6 font-bold text-indigo-600 dark:text-indigo-400">= 10,5</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- b) difference -->
+    <div class="mb-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-6">
+      <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-3">b) Produit d'un nombre par une différence</h3>
+      <div class="rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-900 p-4 mb-4 text-center">
+        <p class="text-xs text-indigo-500 font-semibold mb-2">Soient a, b et k des nombres relatifs.</p>
+        <p class="font-serif text-lg md:text-xl text-indigo-800 dark:text-indigo-200">k×(a - b) = k×a - k×b</p>
+        <p class="font-serif text-lg md:text-xl text-indigo-800 dark:text-indigo-200">(a - b)×k = k×a - k×b</p>
+      </div>
+      <p class="text-sm font-semibold text-slate-500 mb-2">Exemples — développons puis calculons :</p>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/60 p-4 font-mono text-sm sm:text-base text-slate-700 dark:text-slate-200 overflow-x-auto">
+          <p>1,2 × (10 - 2) = 1,2×10 - 1,2×2</p>
+          <p class="pl-6">= 12 - 2,4</p>
+          <p class="pl-6 font-bold text-indigo-600 dark:text-indigo-400">= 9,6</p>
+        </div>
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/60 p-4 font-mono text-sm sm:text-base text-slate-700 dark:text-slate-200 overflow-x-auto">
+          <p>(-8 - 5) × (-4) = -4×(-8) - (-4)×5</p>
+          <p class="pl-6">= 32 - (-20) = 32 + 20</p>
+          <p class="pl-6 font-bold text-indigo-600 dark:text-indigo-400">= 52</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- c) somme x somme -->
+    <div class="mb-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-6">
+      <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-3">c) Produit de deux sommes / deux différences</h3>
+      <div class="rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-900 p-4 mb-4 text-center">
+        <p class="text-xs text-indigo-500 font-semibold mb-2">Soient a, b, c et d des nombres relatifs.</p>
+        <p class="font-serif text-lg md:text-xl text-indigo-800 dark:text-indigo-200">(a + b)×(c + d) = ac + ad + bc + bd</p>
+        <p class="font-serif text-lg md:text-xl text-indigo-800 dark:text-indigo-200">(a - b)×(c - d) = ac - ad - bc + bd</p>
+      </div>
+      <p class="text-sm font-semibold text-slate-500 mb-2">Exemples — développons puis calculons :</p>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/60 p-4 font-mono text-sm sm:text-base text-slate-700 dark:text-slate-200 overflow-x-auto">
+          <p>(2,5+10)(5+1) = 2,5×5+2,5×1+10×5+10×1</p>
+          <p class="pl-6">= 12,5+2,5+50+10</p>
+          <p class="pl-6 font-bold text-indigo-600 dark:text-indigo-400">= 75</p>
+        </div>
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/60 p-4 font-mono text-sm sm:text-base text-slate-700 dark:text-slate-200 overflow-x-auto">
+          <p>(4-12)(15-6) = 4×15-4×6-12×15+12×6</p>
+          <p class="pl-6">= 60-24-180+72 = 60+72-24-180</p>
+          <p class="pl-6 font-bold text-indigo-600 dark:text-indigo-400">= -72</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3) calcul littéral -->
+    <div class="mb-8">
+      <p class="text-xs font-bold uppercase tracking-wide text-indigo-500 mb-3">3. Développement et calcul littéral</p>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-4 font-mono text-sm sm:text-base overflow-x-auto">
+          <p class="text-slate-800 dark:text-slate-100">A = 2x(x + 1)</p>
+          <p class="pl-4 font-bold text-indigo-600 dark:text-indigo-400">= 2x<sup>2</sup> + 2x</p>
+        </div>
+        <div class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-4 font-mono text-sm sm:text-base overflow-x-auto">
+          <p class="text-slate-800 dark:text-slate-100">B = -3x(-x+1) + x(2x+4)</p>
+          <p class="pl-4 text-slate-600 dark:text-slate-300">= 3x<sup>2</sup>-3x+2x<sup>2</sup>+4x</p>
+          <p class="pl-4 font-bold text-indigo-600 dark:text-indigo-400">= 5x<sup>2</sup> + x</p>
+        </div>
+        <div class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-4 font-mono text-sm sm:text-base overflow-x-auto">
+          <p class="text-slate-800 dark:text-slate-100">C = (2x-1)(-3x-2)</p>
+          <p class="pl-4 text-slate-600 dark:text-slate-300">= 6x<sup>2</sup>-4x+3x+2</p>
+          <p class="pl-4 font-bold text-indigo-600 dark:text-indigo-400">= 6x<sup>2</sup> - x + 2</p>
+        </div>
+        <div class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-4 font-mono text-sm sm:text-base overflow-x-auto">
+          <p class="text-slate-800 dark:text-slate-100">D = 2x(-x<sup>2</sup>+3x-1) + 2x<sup>2</sup>(5x-2)</p>
+          <p class="pl-4 text-slate-600 dark:text-slate-300">= -2x<sup>3</sup>+6x<sup>2</sup>-2x+10x<sup>3</sup>-4x<sup>2</sup></p>
+          <p class="pl-4 font-bold text-indigo-600 dark:text-indigo-400">= 8x<sup>3</sup> + 2x<sup>2</sup> - 2x</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- identités remarquables -->
+    <div class="rounded-2xl bg-gradient-to-br from-indigo-600 to-violet-700 p-6 md:p-8 shadow-soft">
+      <h3 class="font-display text-xl md:text-2xl font-bold text-white mb-1">✨ Cas particuliers : les identités remarquables</h3>
+      <p class="text-indigo-100 text-sm mb-6">Trois développements à connaître par cœur, illustrés à partir des exemples du cours.</p>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="rounded-xl bg-white/95 dark:bg-slate-900/90 p-4">
+          <p class="font-serif text-center text-lg font-bold text-indigo-700 dark:text-indigo-300">(a+b)² = a²+2ab+b²</p>
+          <div class="mt-3 font-mono text-sm text-slate-600 dark:text-slate-300 border-t border-slate-200 dark:border-slate-700 pt-3">
+            <p>(2x+1)² = (2x+1)(2x+1)</p>
+            <p class="pl-4">= 4x<sup>2</sup>+2x+2x+1</p>
+            <p class="pl-4 font-bold text-indigo-600 dark:text-indigo-400">= 4x<sup>2</sup>+4x+1</p>
+          </div>
+        </div>
+        <div class="rounded-xl bg-white/95 dark:bg-slate-900/90 p-4">
+          <p class="font-serif text-center text-lg font-bold text-indigo-700 dark:text-indigo-300">(a-b)² = a²-2ab+b²</p>
+          <div class="mt-3 font-mono text-sm text-slate-600 dark:text-slate-300 border-t border-slate-200 dark:border-slate-700 pt-3">
+            <p>(3x-2)² = (3x-2)(3x-2)</p>
+            <p class="pl-4">= 9x<sup>2</sup>-6x-6x+4</p>
+            <p class="pl-4 font-bold text-indigo-600 dark:text-indigo-400">= 9x<sup>2</sup>-12x+4</p>
+          </div>
+        </div>
+        <div class="rounded-xl bg-white/95 dark:bg-slate-900/90 p-4">
+          <p class="font-serif text-center text-lg font-bold text-indigo-700 dark:text-indigo-300">(a+b)(a-b) = a²-b²</p>
+          <div class="mt-3 font-mono text-sm text-slate-600 dark:text-slate-300 border-t border-slate-200 dark:border-slate-700 pt-3">
+            <p>(4x-5)(4x+5)</p>
+            <p class="pl-4">= 16x<sup>2</sup>+20x-20x-25</p>
+            <p class="pl-4 font-bold text-indigo-600 dark:text-indigo-400">= 16x<sup>2</sup>-25</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== II. FACTORISATION ===================== -->
+<section id="factorisation" class="py-16 md:py-24 bg-emerald-50/50 dark:bg-slate-900/40">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="flex items-center gap-4 mb-4">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-emerald-600 text-white font-display font-bold text-xl shadow-soft shrink-0">II</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Factorisation</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Transformer une somme ou une différence en un produit</p>
+      </div>
+    </div>
+
+    <!-- Définition -->
+    <div class="mb-10 rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-5 md:p-6">
+      <p class="text-xs font-bold uppercase tracking-wide text-rose-500 mb-2">1. Définition</p>
+      <p class="text-lg md:text-xl text-slate-700 dark:text-rose-100 font-medium">
+        La <span class="font-bold text-rose-600 dark:text-rose-300">factorisation</span>, c'est l'écriture d'une somme ou d'une différence en un produit.
+      </p>
+    </div>
+
+    <!-- Propriétés -->
+    <div class="mb-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-6">
+      <p class="text-xs font-bold uppercase tracking-wide text-emerald-500 mb-3">2. Propriétés</p>
+      <div class="rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900 p-4 mb-4 text-center">
+        <p class="text-xs text-emerald-600 font-semibold mb-2">Soient a, b et k des nombres relatifs.</p>
+        <p class="font-serif text-lg md:text-xl text-emerald-800 dark:text-emerald-200">k×a + k×b = k×(a + b)</p>
+        <p class="font-serif text-lg md:text-xl text-emerald-800 dark:text-emerald-200">k×a - k×b = k×(a - b)</p>
+        <p class="text-sm text-emerald-600 dark:text-emerald-300 mt-2 font-semibold">k est appelé <span class="underline">facteur commun</span></p>
+      </div>
+      <div class="flex items-start gap-3 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900 p-4">
+        <span class="text-amber-500 text-lg">💡</span>
+        <p class="text-sm text-amber-700 dark:text-amber-200"><span class="font-bold">Remarque :</span> pour factoriser, on cherche d'abord le facteur commun.</p>
+      </div>
+
+      <p class="text-sm font-semibold text-slate-500 mt-5 mb-2">Exemples — factorisons puis calculons :</p>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/60 p-4 font-mono text-sm sm:text-base text-slate-700 dark:text-slate-200 overflow-x-auto">
+          <p>a = 2×7 + 2×11 = 2(7+11)</p>
+          <p class="pl-6">= 2×18</p>
+          <p class="pl-6 font-bold text-emerald-600 dark:text-emerald-400">= 36</p>
+        </div>
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/60 p-4 font-mono text-sm sm:text-base text-slate-700 dark:text-slate-200 overflow-x-auto">
+          <p>b = -5×(-10) - (-5)×22 = -5(-10-22)</p>
+          <p class="pl-6">= -5×(-32)</p>
+          <p class="pl-6 font-bold text-emerald-600 dark:text-emerald-400">= 160</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4) calcul littéral -->
+    <div>
+      <p class="text-xs font-bold uppercase tracking-wide text-emerald-500 mb-3">4. Factorisation et calcul littéral</p>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-4 font-mono text-sm sm:text-base overflow-x-auto">
+          <p class="text-slate-800 dark:text-slate-100">A = 3a<sup>3</sup>b<sup>4</sup> + 7a<sup>2</sup>b<sup>7</sup>c</p>
+          <p class="pl-4 font-bold text-emerald-600 dark:text-emerald-400">= a<sup>2</sup>b<sup>4</sup>(3a + 7b<sup>3</sup>c)</p>
+        </div>
+        <div class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-4 font-mono text-sm sm:text-base overflow-x-auto">
+          <p class="text-slate-800 dark:text-slate-100">B = 12a<sup>5</sup>b<sup>4</sup>c<sup>2</sup>+6a<sup>2</sup>b<sup>2</sup>c<sup>2</sup>-18a<sup>4</sup>b<sup>3</sup>c<sup>4</sup></p>
+          <p class="pl-4 font-bold text-emerald-600 dark:text-emerald-400">= 6a<sup>2</sup>b<sup>2</sup>c<sup>2</sup>(2a<sup>3</sup>b<sup>2</sup>+1-3a<sup>2</sup>bc<sup>2</sup>)</p>
+        </div>
+        <div class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-4 font-mono text-sm sm:text-base overflow-x-auto">
+          <p class="text-slate-800 dark:text-slate-100">C = 6x<sup>4</sup> + 4x<sup>2</sup> - 2x</p>
+          <p class="pl-4 font-bold text-emerald-600 dark:text-emerald-400">= 2x(3x<sup>3</sup> + 2x - 1)</p>
+        </div>
+        <div class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-4 font-mono text-sm sm:text-base overflow-x-auto">
+          <p class="text-slate-800 dark:text-slate-100">D = 2x(x+1) + 3(x+1)</p>
+          <p class="pl-4 font-bold text-emerald-600 dark:text-emerald-400">= (x+1)(2x+3)</p>
+        </div>
+        <div class="sm:col-span-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-4 font-mono text-sm sm:text-base overflow-x-auto">
+          <p class="text-slate-800 dark:text-slate-100">E = (2x+3)² + 3x(2x+3) - (2x+3)</p>
+          <p class="pl-4 text-slate-600 dark:text-slate-300">= (2x+3)(2x+3) + 3x(2x+3) - (2x+3)</p>
+          <p class="pl-4 text-slate-600 dark:text-slate-300">= (2x+3)(2x+3+3x-1)</p>
+          <p class="pl-4 font-bold text-emerald-600 dark:text-emerald-400">= (2x+3)(5x+2)</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== EXERCICES ===================== -->
+<section id="exercices" class="py-16 md:py-24">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="flex items-center gap-4 mb-4">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-amber-500 text-white font-display font-bold text-xl shadow-soft shrink-0">✎</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Exercices</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Calcul littéral — 13 exercices, cliquez sur « Voir la correction » pour vérifier vos réponses</p>
+      </div>
+    </div>
+
+    <div class="mb-10 flex flex-wrap gap-2">
+      <span class="text-xs font-semibold text-slate-400 mr-1 mt-1.5">Accès rapide :</span>
+      <script>document.write(Array.from({length:13},(_,i)=>`<a href="#ex-${i+1}" class="w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">${i+1}</a>`).join(''));</script>
+    </div>
+
+    <div class="space-y-6">
+
+      <!-- EXERCICE 1 -->
+      <article id="ex-1" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">1</span>
+            Exercice n°1 <span class="hidden sm:inline text-sm font-normal text-slate-400">— Réduire les expressions suivantes</span>
+          </h3>
+          <button onclick="toggleCorrection(1)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-1">Voir la correction</span>
+            <svg id="chevron-1" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="sm:hidden text-sm text-slate-400 -mt-3 mb-4">Réduire les expressions suivantes</p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 font-mono text-sm">
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">A = 4x<sup>2</sup>-5x+9-3x-7x<sup>2</sup>-2</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">B = -3+4x-9x<sup>2</sup>+5x-2x<sup>2</sup>+6</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">C = 13x-x<sup>2</sup>+12-7x+3x<sup>2</sup>-4</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">D = 3x-4-7x-2+4x-6</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">E = 2x<sup>2</sup>-x+4-x<sup>2</sup>+4x-5</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">F = -3+2x+x<sup>2</sup>-5x+4x<sup>2</sup>-1</div>
+        </div>
+
+        <div id="wrap-1" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 grid sm:grid-cols-2 lg:grid-cols-3 gap-3 font-mono text-sm">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>A = (4x<sup>2</sup>-7x<sup>2</sup>)+(-5x-3x)+(9-2)</p>
+                <p class="font-bold mt-1">= -3x<sup>2</sup>-8x+7</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>B = (-9x<sup>2</sup>-2x<sup>2</sup>)+(4x+5x)+(-3+6)</p>
+                <p class="font-bold mt-1">= -11x<sup>2</sup>+9x+3</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>C = (-x<sup>2</sup>+3x<sup>2</sup>)+(13x-7x)+(12-4)</p>
+                <p class="font-bold mt-1">= 2x<sup>2</sup>+6x+8</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>D = (3x-7x+4x)+(-4-2-6)</p>
+                <p class="font-bold mt-1">= -12 <span class="font-normal text-xs">(les x s'annulent)</span></p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>E = (2x<sup>2</sup>-x<sup>2</sup>)+(-x+4x)+(4-5)</p>
+                <p class="font-bold mt-1">= x<sup>2</sup>+3x-1</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>F = (x<sup>2</sup>+4x<sup>2</sup>)+(2x-5x)+(-3-1)</p>
+                <p class="font-bold mt-1">= 5x<sup>2</sup>-3x-4</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 2 -->
+      <article id="ex-2" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">2</span>
+            Exercice n°2 <span class="hidden sm:inline text-sm font-normal text-slate-400">— Supprimer les parenthèses, puis réduire</span>
+          </h3>
+          <button onclick="toggleCorrection(2)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-2">Voir la correction</span>
+            <svg id="chevron-2" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 font-mono text-sm">
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">A = 50-(x+20)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">B = -(10+x)+(x+5)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">C = (x<sup>2</sup>-4x)-(5x<sup>2</sup>+2x-1)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">D = -(3-x+x<sup>2</sup>)+(-2x+3x<sup>2</sup>-8)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">E = x-4-(2+x)+(x+5)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">F = -(x-8)+(x-6)-(7-x)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">G = (x<sup>2</sup>+5x-4)-(-2x<sup>2</sup>+9x-7)</div>
+        </div>
+
+        <div id="wrap-2" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 grid sm:grid-cols-2 lg:grid-cols-3 gap-3 font-mono text-sm">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>A = 50-x-20</p><p class="font-bold mt-1">= -x+30</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>B = -10-x+x+5</p><p class="font-bold mt-1">= -5</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>C = x<sup>2</sup>-4x-5x<sup>2</sup>-2x+1</p><p class="font-bold mt-1">= -4x<sup>2</sup>-6x+1</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>D = -3+x-x<sup>2</sup>-2x+3x<sup>2</sup>-8</p><p class="font-bold mt-1">= 2x<sup>2</sup>-x-11</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>E = x-4-2-x+x+5</p><p class="font-bold mt-1">= x-1</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>F = -x+8+x-6-7+x</p><p class="font-bold mt-1">= x-5</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>G = x<sup>2</sup>+5x-4+2x<sup>2</sup>-9x+7</p><p class="font-bold mt-1">= 3x<sup>2</sup>-4x+3</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 3 -->
+      <article id="ex-3" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">3</span>
+            Exercice n°3 <span class="hidden sm:inline text-sm font-normal text-slate-400">— Développer puis réduire</span>
+          </h3>
+          <button onclick="toggleCorrection(3)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-3">Voir la correction</span>
+            <svg id="chevron-3" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 font-mono text-sm">
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">A = -3x(2-x)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">B = 5x(-7-2x)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">C = -5(-7-2x)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">D = -x(-3x+4)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">E = 8x+(7-6x)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">F = -8(3x-4)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">G = 9x(-2x+3)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">H = 2x-(-4x+7)</div>
+        </div>
+
+        <div id="wrap-3" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 grid sm:grid-cols-2 lg:grid-cols-3 gap-3 font-mono text-sm">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>A = -6x+3x<sup>2</sup></p><p class="font-bold mt-1">= 3x<sup>2</sup>-6x</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>B = -35x-10x<sup>2</sup></p><p class="font-bold mt-1">= -10x<sup>2</sup>-35x</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>C = 35+10x</p><p class="font-bold mt-1">= 10x+35</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>D = 3x<sup>2</sup>-4x</p><p class="font-bold mt-1">= 3x<sup>2</sup>-4x</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>E = 8x+7-6x</p><p class="font-bold mt-1">= 2x+7</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>F = -24x+32</p><p class="font-bold mt-1">= -24x+32</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>G = -18x<sup>2</sup>+27x</p><p class="font-bold mt-1">= -18x<sup>2</sup>+27x</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>H = 2x+4x-7</p><p class="font-bold mt-1">= 6x-7</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 4 -->
+      <article id="ex-4" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">4</span>
+            Exercice n°4 <span class="hidden sm:inline text-sm font-normal text-slate-400">— Développer puis réduire</span>
+          </h3>
+          <button onclick="toggleCorrection(4)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-4">Voir la correction</span>
+            <svg id="chevron-4" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 font-mono text-sm">
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">A = 8-4(x-3)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">B = 2(3-4x)+4(1-2x)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">C = -2(3x+1)-3(x+3)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">D = 5(6x-1)-(3+8x)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">E = 2x(x+4)+x(1-x)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">F = -x(2-x)+(x<sup>2</sup>-2x)-(3x<sup>2</sup>-4)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">G = 3x<sup>2</sup>-(x<sup>2</sup>-4x+5)-4x(x-3)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">H = (2x<sup>2</sup>-7x+4)-4x(-3+2x)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">I = 5x(-3x-6)-(-15x<sup>2</sup>+18x-6)</div>
+        </div>
+
+        <div id="wrap-4" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 grid sm:grid-cols-2 lg:grid-cols-3 gap-3 font-mono text-sm">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>A = 8-4x+12</p><p class="font-bold mt-1">= -4x+20</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>B = 6-8x+4-8x</p><p class="font-bold mt-1">= -16x+10</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>C = -6x-2-3x-9</p><p class="font-bold mt-1">= -9x-11</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>D = 30x-5-3-8x</p><p class="font-bold mt-1">= 22x-8</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>E = 2x<sup>2</sup>+8x+x-x<sup>2</sup></p><p class="font-bold mt-1">= x<sup>2</sup>+9x</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>F = -2x+x<sup>2</sup>+x<sup>2</sup>-2x-3x<sup>2</sup>+4</p><p class="font-bold mt-1">= -x<sup>2</sup>-4x+4</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>G = 3x<sup>2</sup>-x<sup>2</sup>+4x-5-4x<sup>2</sup>+12x</p><p class="font-bold mt-1">= -2x<sup>2</sup>+16x-5</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>H = 2x<sup>2</sup>-7x+4+12x-8x<sup>2</sup></p><p class="font-bold mt-1">= -6x<sup>2</sup>+5x+4</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>I = -15x<sup>2</sup>-30x+15x<sup>2</sup>-18x+6</p><p class="font-bold mt-1">= -48x+6</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 5 -->
+      <article id="ex-5" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">5</span>
+            Exercice n°5 <span class="hidden sm:inline text-sm font-normal text-slate-400">— Développer puis réduire</span>
+          </h3>
+          <button onclick="toggleCorrection(5)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-5">Voir la correction</span>
+            <svg id="chevron-5" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 font-mono text-sm">
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">A = (-3x+5)(2x-3)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">B = (2x-1)(2x+1)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">C = (-2+x)(x+4)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">D = (4-3x)(x-6)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">E = (-5x-2)(3x+2)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">F = (-3-x)(2x-7)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">G = (3x-5)²</div>
+        </div>
+
+        <div id="wrap-5" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 grid sm:grid-cols-2 lg:grid-cols-3 gap-3 font-mono text-sm">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>A = -6x<sup>2</sup>+9x+10x-15</p><p class="font-bold mt-1">= -6x<sup>2</sup>+19x-15</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>B = 4x<sup>2</sup>+2x-2x-1</p><p class="font-bold mt-1">= 4x<sup>2</sup>-1</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>C = -2x-8+x<sup>2</sup>+4x</p><p class="font-bold mt-1">= x<sup>2</sup>+2x-8</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>D = 4x-24-3x<sup>2</sup>+18x</p><p class="font-bold mt-1">= -3x<sup>2</sup>+22x-24</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>E = -15x<sup>2</sup>-10x-6x-4</p><p class="font-bold mt-1">= -15x<sup>2</sup>-16x-4</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>F = -6x+21-2x<sup>2</sup>+7x</p><p class="font-bold mt-1">= -2x<sup>2</sup>+x+21</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>G = 9x<sup>2</sup>-15x-15x+25</p><p class="font-bold mt-1">= 9x<sup>2</sup>-30x+25</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 6 -->
+      <article id="ex-6" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">6</span>
+            Exercice n°6 <span class="hidden sm:inline text-sm font-normal text-slate-400">— Développer puis réduire</span>
+          </h3>
+          <button onclick="toggleCorrection(6)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-6">Voir la correction</span>
+            <svg id="chevron-6" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 font-mono text-sm">
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">A = 4x<sup>2</sup>+2x-(3x+4x<sup>2</sup>-9)+8</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">B = 8x-5x(2-x)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">C = -3(2x-5)-(-2x+7)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">D = (-4x-1)(x-9)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">E = (3x<sup>2</sup>-4x+9)-(4x<sup>2</sup>-x+1)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">F = 3(7x<sup>2</sup>-1)-4x(3-5x)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">G = (3-x)(4x-8)</div>
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-lg px-3 py-2.5 text-slate-700 dark:text-slate-200">H = 7x<sup>2</sup>-4+(3x<sup>2</sup>-5x)-2(x+3)</div>
+        </div>
+
+        <div id="wrap-6" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 grid sm:grid-cols-2 lg:grid-cols-3 gap-3 font-mono text-sm">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>A = 4x<sup>2</sup>+2x-3x-4x<sup>2</sup>+9+8</p><p class="font-bold mt-1">= -x+17</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>B = 8x-10x+5x<sup>2</sup></p><p class="font-bold mt-1">= 5x<sup>2</sup>-2x</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>C = -6x+15+2x-7</p><p class="font-bold mt-1">= -4x+8</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>D = -4x<sup>2</sup>+36x-x+9</p><p class="font-bold mt-1">= -4x<sup>2</sup>+35x+9</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>E = 3x<sup>2</sup>-4x+9-4x<sup>2</sup>+x-1</p><p class="font-bold mt-1">= -x<sup>2</sup>-3x+8</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>F = 21x<sup>2</sup>-3-12x+20x<sup>2</sup></p><p class="font-bold mt-1">= 41x<sup>2</sup>-12x-3</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>G = 12x-24-4x<sup>2</sup>+8x</p><p class="font-bold mt-1">= -4x<sup>2</sup>+20x-24</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p>H = 7x<sup>2</sup>-4+3x<sup>2</sup>-5x-2x-6</p><p class="font-bold mt-1">= 10x<sup>2</sup>-7x-10</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 7 -->
+      <article id="ex-7" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">7</span>
+            Exercice n°7 <span class="hidden sm:inline text-sm font-normal text-slate-400">— Deux programmes de calcul</span>
+          </h3>
+          <button onclick="toggleCorrection(7)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-7">Voir la correction</span>
+            <svg id="chevron-7" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <ol class="rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900 p-4 space-y-1.5 text-sm text-blue-800 dark:text-blue-200 list-decimal list-inside">
+            <li>Choisir un nombre</li>
+            <li>Multiplier par 3</li>
+            <li>Soustraire 2 au résultat</li>
+            <li>Multiplier le tout par le nombre choisi au départ</li>
+          </ol>
+          <ol class="rounded-xl bg-cyan-50 dark:bg-cyan-950/30 border border-cyan-200 dark:border-cyan-900 p-4 space-y-1.5 text-sm text-cyan-800 dark:text-cyan-200 list-decimal list-inside">
+            <li>Choisir un nombre</li>
+            <li>Calculer son carré</li>
+            <li>Multiplier le résultat par 3</li>
+            <li>Soustraire le double du nombre choisi au début</li>
+          </ol>
+        </div>
+        <ol class="mt-4 space-y-1 text-sm text-slate-600 dark:text-slate-300 list-decimal list-inside">
+          <li>Appliquer les programmes de calcul au nombre 5. Que constate-t-on ?</li>
+          <li>Prouver que les deux programmes de calcul donnent le même résultat pour n'importe quel nombre choisi au départ.</li>
+        </ol>
+
+        <div id="wrap-7" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-4 text-sm">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-4 text-emerald-800 dark:text-emerald-200">
+                <p class="font-bold mb-1">1) Avec le nombre 5 :</p>
+                <p class="font-mono">Programme 1 : 5×3 = 15 ; 15-2 = 13 ; 13×5 = <span class="font-bold">65</span></p>
+                <p class="font-mono">Programme 2 : 5<sup>2</sup> = 25 ; 25×3 = 75 ; 75-2×5 = <span class="font-bold">65</span></p>
+                <p class="mt-1">On constate que les deux programmes donnent le <span class="font-bold">même résultat : 65</span>.</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-4 text-emerald-800 dark:text-emerald-200 font-mono">
+                <p class="font-sans font-bold mb-1">2) Preuve : soit n le nombre choisi au départ.</p>
+                <p>Programme 1 : (3n - 2) × n = 3n<sup>2</sup> - 2n</p>
+                <p>Programme 2 : n<sup>2</sup>×3 - 2n = 3n<sup>2</sup> - 2n</p>
+                <p class="font-bold mt-1">Les deux expressions sont identiques : 3n<sup>2</sup>-2n = 3n<sup>2</sup>-2n.</p>
+                <p class="font-sans mt-1">Les deux programmes donnent donc toujours le même résultat, quel que soit le nombre n choisi.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 8 -->
+      <article id="ex-8" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">8</span>
+            Exercice n°8 <span class="hidden sm:inline text-sm font-normal text-slate-400">— Deux programmes de calcul</span>
+          </h3>
+          <button onclick="toggleCorrection(8)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-8">Voir la correction</span>
+            <svg id="chevron-8" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <ol class="rounded-xl bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900 p-4 space-y-1.5 text-sm text-rose-800 dark:text-rose-200 list-decimal list-inside">
+            <li>Choisir un nombre</li>
+            <li>Calculer la somme de son carré, de son double et de 1</li>
+            <li>Annoncer le résultat</li>
+          </ol>
+          <ol class="rounded-xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-900 p-4 space-y-1.5 text-sm text-violet-800 dark:text-violet-200 list-decimal list-inside">
+            <li>Choisir un nombre</li>
+            <li>Lui ajouter 1</li>
+            <li>Puis calculer le carré du résultat obtenu</li>
+            <li>Annoncer le résultat</li>
+          </ol>
+        </div>
+        <ol class="mt-4 space-y-1 text-sm text-slate-600 dark:text-slate-300 list-decimal list-inside">
+          <li>Appliquer les programmes de calcul au nombre 3. Que constate-t-on ?</li>
+          <li>Prouver que cela est vrai quelle que soit la valeur choisie.</li>
+        </ol>
+
+        <div id="wrap-8" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-4 text-sm">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-4 text-emerald-800 dark:text-emerald-200">
+                <p class="font-bold mb-1">1) Avec le nombre 3 :</p>
+                <p class="font-mono">Programme 1 : 3<sup>2</sup> + 2×3 + 1 = 9+6+1 = <span class="font-bold">16</span></p>
+                <p class="font-mono">Programme 2 : (3+1)<sup>2</sup> = 4<sup>2</sup> = <span class="font-bold">16</span></p>
+                <p class="mt-1">On constate que les deux programmes donnent le <span class="font-bold">même résultat : 16</span>.</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-4 text-emerald-800 dark:text-emerald-200 font-mono">
+                <p class="font-sans font-bold mb-1">2) Preuve : soit n le nombre choisi.</p>
+                <p>Programme 1 : n<sup>2</sup> + 2n + 1</p>
+                <p>Programme 2 : (n+1)<sup>2</sup> = n<sup>2</sup>+2n+1</p>
+                <p class="font-bold mt-1">n<sup>2</sup>+2n+1 = (n+1)<sup>2</sup> (identité remarquable)</p>
+                <p class="font-sans mt-1">Les deux programmes donnent donc toujours le même résultat, quel que soit n.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 9 -->
+      <article id="ex-9" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">9</span>
+            Exercice n°9 <span class="hidden sm:inline text-sm font-normal text-slate-400">— Aires de quatre rectangles</span>
+          </h3>
+          <button onclick="toggleCorrection(9)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-9">Voir la correction</span>
+            <svg id="chevron-9" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Calculer l'aire des quatre rectangles ci-dessous en fonction de x.</p>
+
+        <div class="max-w-sm mx-auto">
+          <div class="flex pl-9 text-[11px] font-semibold text-slate-400">
+            <span style="flex-basis:35%" class="text-center">6x</span>
+            <span style="flex-basis:65%" class="text-center">120 - 6x</span>
+          </div>
+          <div class="flex">
+            <div class="w-9 flex flex-col justify-between text-[11px] font-semibold text-slate-400 py-0" style="height:9rem">
+              <span>2x</span><span>40-2x</span>
+            </div>
+            <div class="grid flex-1 gap-0.5" style="grid-template-columns:35% 65%; grid-template-rows:40% 60%; height:9rem">
+              <div class="bg-emerald-100 dark:bg-emerald-900/40 border border-emerald-400 dark:border-emerald-700 flex items-center justify-center font-bold text-emerald-700 dark:text-emerald-300 rounded">①</div>
+              <div class="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-400 dark:border-emerald-700 flex items-center justify-center font-bold text-emerald-700 dark:text-emerald-300 rounded">②</div>
+              <div class="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-400 dark:border-emerald-700 flex items-center justify-center font-bold text-emerald-700 dark:text-emerald-300 rounded">④</div>
+              <div class="bg-emerald-100 dark:bg-emerald-900/40 border border-emerald-400 dark:border-emerald-700 flex items-center justify-center font-bold text-emerald-700 dark:text-emerald-300 rounded">③</div>
+            </div>
+          </div>
+          <p class="text-center text-[11px] text-slate-400 mt-1">Rectangle total : 120 × 40</p>
+        </div>
+
+        <div id="wrap-9" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 grid sm:grid-cols-2 gap-3 font-mono text-sm">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p class="font-sans font-bold">① (6x × 2x)</p><p class="font-bold mt-1">Aire = 12x<sup>2</sup></p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p class="font-sans font-bold">② (120-6x) × 2x</p><p>= 240x - 12x<sup>2</sup></p><p class="font-bold mt-1">Aire = -12x<sup>2</sup>+240x</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p class="font-sans font-bold">③ (120-6x) × (40-2x)</p><p>= 4800-240x-240x+12x<sup>2</sup></p><p class="font-bold mt-1">Aire = 12x<sup>2</sup>-480x+4800</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+                <p class="font-sans font-bold">④ 6x × (40-2x)</p><p>= 240x-12x<sup>2</sup></p><p class="font-bold mt-1">Aire = -12x<sup>2</sup>+240x</p>
+              </div>
+            </div>
+            <p class="mt-3 text-xs text-slate-400 font-mono">Vérification : ①+②+③+④ = 4800 = 120×40 ✓</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 10 -->
+      <article id="ex-10" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">10</span>
+            Exercice n°10 <span class="hidden sm:inline text-sm font-normal text-slate-400">— La piscine</span>
+          </h3>
+          <button onclick="toggleCorrection(10)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-10">Voir la correction</span>
+            <svg id="chevron-10" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Une piscine rectangulaire ABCD de 10 m sur 7 m a une bordure de largeur x mètres.</p>
+
+        <div class="relative mx-auto max-w-[220px] aspect-[10/7] bg-amber-300 dark:bg-amber-600/60 rounded-md p-7">
+          <span class="absolute top-1 left-1.5 text-[11px] font-bold text-amber-900 dark:text-amber-100">A</span>
+          <span class="absolute top-1 right-1.5 text-[11px] font-bold text-amber-900 dark:text-amber-100">B</span>
+          <span class="absolute bottom-1 left-1.5 text-[11px] font-bold text-amber-900 dark:text-amber-100">D</span>
+          <span class="absolute bottom-1 right-1.5 text-[11px] font-bold text-amber-900 dark:text-amber-100">C</span>
+          <div class="relative w-full h-full bg-sky-400/80 dark:bg-sky-500/70 rounded-sm flex items-center justify-center">
+            <span class="absolute top-0.5 left-0.5 text-[9px] font-bold text-sky-900 dark:text-sky-950">E</span>
+            <span class="absolute top-0.5 right-0.5 text-[9px] font-bold text-sky-900 dark:text-sky-950">F</span>
+            <span class="absolute bottom-0.5 left-0.5 text-[9px] font-bold text-sky-900 dark:text-sky-950">H</span>
+            <span class="absolute bottom-0.5 right-0.5 text-[9px] font-bold text-sky-900 dark:text-sky-950">G</span>
+            <span class="text-sky-950 dark:text-sky-950 text-[11px] font-bold">Bassin</span>
+          </div>
+        </div>
+        <p class="text-center text-xs text-slate-400 mt-2">ABCD (jaune) : 10 m × 7 m — bordure de largeur x — EFGH (bleu) : le bassin</p>
+
+        <ol class="mt-4 space-y-1 text-sm text-slate-600 dark:text-slate-300 list-decimal list-inside">
+          <li>Exprimer, en fonction de x, l'aire du bassin EFGH.</li>
+          <li>Calculer l'aire du bassin quand la bordure a une largeur de 0,75 mètres.</li>
+        </ol>
+
+        <div id="wrap-10" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-4 text-emerald-800 dark:text-emerald-200 font-mono">
+                <p class="font-sans font-bold mb-1">1) Dimensions du bassin EFGH : (10-2x) et (7-2x)</p>
+                <p>Aire(EFGH) = (10-2x)(7-2x)</p>
+                <p>= 70-20x-14x+4x<sup>2</sup></p>
+                <p class="font-bold">= 4x<sup>2</sup>-34x+70</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-4 text-emerald-800 dark:text-emerald-200 font-mono">
+                <p class="font-sans font-bold mb-1">2) Pour x = 0,75 m :</p>
+                <p>Aire = (10-2×0,75)(7-2×0,75) = 8,5 × 5,5</p>
+                <p class="font-bold">Aire = 46,75 m²</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 11 -->
+      <article id="ex-11" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">11</span>
+            Exercice n°11 <span class="hidden sm:inline text-sm font-normal text-slate-400">— Démontrer une égalité</span>
+          </h3>
+          <button onclick="toggleCorrection(11)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-11">Voir la correction</span>
+            <svg id="chevron-11" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <div class="rounded-lg bg-slate-50 dark:bg-slate-800/60 p-4 font-mono text-sm text-slate-700 dark:text-slate-200">
+          <p>A = (3x+4)(5x-2) - (20x-12)</p>
+          <p>B = 4 - 3x(2-5x)</p>
+        </div>
+        <p class="mt-3 text-sm font-semibold text-slate-600 dark:text-slate-300">Démontrer que A = B.</p>
+
+        <div id="wrap-11" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 grid sm:grid-cols-2 gap-4 font-mono text-sm">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-4 text-emerald-800 dark:text-emerald-200">
+                <p>A = 15x<sup>2</sup>-6x+20x-8-20x+12</p>
+                <p class="font-bold mt-1">A = 15x<sup>2</sup>-6x+4</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-4 text-emerald-800 dark:text-emerald-200">
+                <p>B = 4-6x+15x<sup>2</sup></p>
+                <p class="font-bold mt-1">B = 15x<sup>2</sup>-6x+4</p>
+              </div>
+              <div class="sm:col-span-2 bg-indigo-50 dark:bg-indigo-950/30 rounded-lg p-4 text-indigo-700 dark:text-indigo-300 font-sans font-bold text-center">
+                A et B sont deux écritures de la même expression 15x²-6x+4, donc A = B. ✓
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 12 -->
+      <article id="ex-12" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">12</span>
+            Exercice n°12 <span class="hidden sm:inline text-sm font-normal text-slate-400">— Deux rectangles, même aire</span>
+          </h3>
+          <button onclick="toggleCorrection(12)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-12">Voir la correction</span>
+            <svg id="chevron-12" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5">Prouver que, quelle que soit la valeur de x, les deux rectangles ABCD et EFGH ont la même aire.</p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-10">
+          <div class="text-center">
+            <p class="text-xs font-semibold text-violet-600 dark:text-violet-400 mb-1">6x + 4</p>
+            <div class="flex items-center gap-2">
+              <p class="text-xs font-semibold text-violet-600 dark:text-violet-400" style="writing-mode:vertical-rl; transform:rotate(180deg)">4x + 2</p>
+              <div class="w-28 h-20 bg-violet-100 dark:bg-violet-900/40 border-2 border-violet-400 dark:border-violet-600 rounded flex items-center justify-center font-bold text-violet-700 dark:text-violet-300 text-sm">ABCD</div>
+            </div>
+          </div>
+          <div class="text-center">
+            <p class="text-xs font-semibold text-amber-600 dark:text-amber-400 mb-1">8x + 4</p>
+            <div class="flex items-center gap-2">
+              <p class="text-xs font-semibold text-amber-600 dark:text-amber-400" style="writing-mode:vertical-rl; transform:rotate(180deg)">3x + 2</p>
+              <div class="w-36 h-16 bg-amber-100 dark:bg-amber-900/40 border-2 border-amber-400 dark:border-amber-600 rounded flex items-center justify-center font-bold text-amber-700 dark:text-amber-300 text-sm">EFGH</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="wrap-12" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 grid sm:grid-cols-2 gap-4 font-mono text-sm">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-4 text-emerald-800 dark:text-emerald-200">
+                <p class="font-sans font-bold">Aire(ABCD) = (6x+4)(4x+2)</p>
+                <p>= 24x<sup>2</sup>+12x+16x+8</p>
+                <p class="font-bold mt-1">= 24x<sup>2</sup>+28x+8</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-4 text-emerald-800 dark:text-emerald-200">
+                <p class="font-sans font-bold">Aire(EFGH) = (8x+4)(3x+2)</p>
+                <p>= 24x<sup>2</sup>+16x+12x+8</p>
+                <p class="font-bold mt-1">= 24x<sup>2</sup>+28x+8</p>
+              </div>
+              <div class="sm:col-span-2 bg-indigo-50 dark:bg-indigo-950/30 rounded-lg p-4 text-indigo-700 dark:text-indigo-300 font-sans font-bold text-center">
+                Les deux aires sont égales à 24x²+28x+8 pour toute valeur de x. ✓
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 13 -->
+      <article id="ex-13" class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">13</span>
+            Exercice n°13 <span class="hidden sm:inline text-sm font-normal text-slate-400">— Deux programmes de calcul</span>
+          </h3>
+          <button onclick="toggleCorrection(13)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-13">Voir la correction</span>
+            <svg id="chevron-13" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <ol class="rounded-xl bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900 p-4 space-y-1.5 text-sm text-rose-800 dark:text-rose-200 list-decimal list-inside">
+            <li>Choisir un nombre</li>
+            <li>Additionner son carré, son quadruple et 4</li>
+            <li>Annoncer le résultat</li>
+          </ol>
+          <ol class="rounded-xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-900 p-4 space-y-1.5 text-sm text-violet-800 dark:text-violet-200 list-decimal list-inside">
+            <li>Choisir un nombre</li>
+            <li>Lui ajouter 2</li>
+            <li>Puis calculer le carré du résultat obtenu</li>
+            <li>Annoncer le résultat</li>
+          </ol>
+        </div>
+        <ol class="mt-4 space-y-1 text-sm text-slate-600 dark:text-slate-300 list-decimal list-inside">
+          <li>Si le nombre choisi est 8, quel est le résultat de chacun des calculs ? Que constate-t-on ?</li>
+          <li>Démontrer que la remarque ci-dessus est vraie quelle que soit la valeur choisie.</li>
+        </ol>
+
+        <div id="wrap-13" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-4 text-sm">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-4 text-emerald-800 dark:text-emerald-200">
+                <p class="font-bold mb-1">1) Avec le nombre 8 :</p>
+                <p class="font-mono">Programme 1 : 8<sup>2</sup> + 4×8 + 4 = 64+32+4 = <span class="font-bold">100</span></p>
+                <p class="font-mono">Programme 2 : (8+2)<sup>2</sup> = 10<sup>2</sup> = <span class="font-bold">100</span></p>
+                <p class="mt-1">On constate que les deux programmes donnent le <span class="font-bold">même résultat : 100</span>.</p>
+              </div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-4 text-emerald-800 dark:text-emerald-200 font-mono">
+                <p class="font-sans font-bold mb-1">2) Preuve : soit n le nombre choisi.</p>
+                <p>Programme 1 : n<sup>2</sup> + 4n + 4</p>
+                <p>Programme 2 : (n+2)<sup>2</sup> = n<sup>2</sup>+2×n×2+2<sup>2</sup> = n<sup>2</sup>+4n+4</p>
+                <p class="font-bold mt-1">n<sup>2</sup>+4n+4 = (n+2)<sup>2</sup> (identité remarquable)</p>
+                <p class="font-sans mt-1">La remarque est donc vraie quelle que soit la valeur de n choisie.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-slate-900 dark:bg-black text-slate-300 mt-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid sm:grid-cols-2 gap-8">
+    <div>
+      <a href="/" class="flex items-center gap-2.5">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+        <span class="font-display font-bold text-white leading-tight">
+          <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+          <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+        </span>
+      </a>
+      <p class="text-sm text-slate-400 mt-3 leading-relaxed">Développement et factorisation — cours et exercices corrigés, pensés pour réviser efficacement sur mobile comme sur ordinateur.</p>
+      <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+    </div>
+    <div>
+      <p class="text-white font-semibold text-sm mb-3">Sommaire</p>
+      <ul class="space-y-2 text-sm text-slate-400">
+        <li><a href="#developpement" class="hover:text-white transition">I. Développement</a></li>
+        <li><a href="#factorisation" class="hover:text-white transition">II. Factorisation</a></li>
+        <li><a href="#exercices" class="hover:text-white transition">Exercices (13)</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-slate-800 py-5 text-center text-xs text-slate-500">
+    © 2026 — Développement et Factorisation · Mathématiques 1AC
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Retour en haut" class="hidden fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white shadow-soft flex items-center justify-center transition">
+  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" /></svg>
+</button>
+
+<script>
+  // Mobile menu
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+  });
+
+  // Dark mode toggle
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  // Correction accordion toggle
+  function toggleCorrection(id) {
+    const wrap = document.getElementById('wrap-' + id);
+    const chevron = document.getElementById('chevron-' + id);
+    const label = document.getElementById('label-' + id);
+    const isOpen = wrap.classList.toggle('open');
+    chevron.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+    label.textContent = isOpen ? 'Masquer la correction' : 'Voir la correction';
+  }
+
+  // Back to top button
+  const backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('hidden', window.scrollY < 500);
+  });
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+</body>
+</html>

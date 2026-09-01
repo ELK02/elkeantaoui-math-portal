@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Triangle Rectangle et Trigonométrie — Cours et Exercices Corrigés | 3ème APIC</title>
+<meta name="description" content="Cours complet et illustré sur la trigonométrie dans le triangle rectangle (cosinus, sinus, tangente, formules et angles particuliers) — niveau 3ème APIC, Collège Mhamed 9. Deux exemples résolus pas à pas et 9 exercices avec correction détaillée au clic.">
+<meta name="theme-color" content="#1e1b4b">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Triangle Rectangle et Trigonométrie — Cours et Exercices Corrigés">
+<meta property="og:description" content="Cosinus, sinus, tangente, formules trigonométriques, angles particuliers — cours illustré et 9 exercices corrigés pas à pas.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1509869175650-a1d97972541a?auto=format&fit=crop&w=1200&q=80">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M6 6 L6 26 L26 26 Z' stroke='%234f46e5' stroke-width='2' stroke-linejoin='round' fill='%23eef2ff'/%3E%3Cpath d='M12 26 A6 6 0 0 0 6 20.3' stroke='%23f59e0b' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS (CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Outfit', 'sans-serif'],
+          sans: ['Inter', 'sans-serif'],
+        },
+        colors: {
+          brand: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+          accent: {
+            50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d',
+            400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309',
+          },
+        },
+        boxShadow: {
+          soft: '0 4px 24px -4px rgb(11 31 58 / 0.12)',
+        },
+      },
+    },
+    darkMode: 'class',
+  };
+</script>
+
+<!-- KaTeX (typographie mathématique) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+
+<style>
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body { font-feature-settings: "cv02","cv03","cv04","cv11"; overflow-x: hidden; }
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal-visible { opacity: 1; transform: translateY(0); }
+  #mobile-menu.hidden { display: none; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #f1f5f9; }
+  ::-webkit-scrollbar-thumb { background: #c7d2fe; border-radius: 9999px; }
+  .config-fig { max-width: 100%; height: auto; }
+  .katex-display { overflow-x: auto; overflow-y: hidden; padding: .3rem .1rem; margin: .4rem 0; }
+  .katex { font-size: 1.05em; }
+  .chip { display: inline-block; background: #fff; border: 1px solid #e2e8f0; box-shadow: 0 1px 2px rgb(0 0 0 / 0.04); padding: .4rem .7rem; border-radius: .6rem; font-size: .92rem; line-height: 1.3; color: #334155; font-weight: 500; }
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* ===== Mode nuit (retrofit générique — cible les classes Tailwind utilisées dans la page) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white, .dark table.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .border-slate-100 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
+  .dark .text-emerald-800, .dark .text-emerald-700 { color: #6ee7a3; }
+  .dark .bg-accent-50 { background-color: #3a2a0a; }
+  .dark .border-accent-200 { border-color: #6b4d10; }
+  .dark .bg-gradient-to-br.from-accent-100.to-accent-50 { background-image: linear-gradient(to bottom right, #3a2a0a, #2a1f08); }
+  .dark .chip { background: #0b1f3a; border-color: #1c3a63; color: #cbd5e1; }
+  .dark ::-webkit-scrollbar-track { background: #12294c; }
+</style>
+</head>
+<body class="bg-slate-50 dark:bg-navy-950 text-slate-800 antialiased font-sans transition-colors">
+
+<a href="#trigonometrie" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-brand-700 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">Aller au contenu principal</a>
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="sticky top-0 z-50 bg-white/85 dark:bg-[#0b1f3ad9] backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <a href="#accueil" class="flex items-center gap-2.5 group">
+      <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-10 h-10 shrink-0 rounded-full">
+      <span class="font-display font-bold text-lg text-slate-900 dark:text-white tracking-tight">Trigo<span class="text-brand-600 dark:text-accent-400">.</span></span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-1">
+      <a href="/" class="px-4 py-2 text-sm font-semibold text-slate-500 hover:text-brand-700 hover:bg-brand-50 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white rounded-full transition-colors">← Portail</a>
+      <a href="#trigonometrie" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-brand-50 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white rounded-full transition-colors">Le cours</a>
+      <a href="#formules" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-brand-50 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white rounded-full transition-colors">Formules</a>
+      <a href="#exercices" class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-brand-700 hover:bg-brand-50 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white rounded-full transition-colors">Exercices</a>
+      <a href="#exercices" class="ml-2 px-4 py-2 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-full shadow-soft transition-colors">S'entraîner →</a>
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-brand-700 dark:hover:text-accent-400 transition-colors">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+    </div>
+
+    <div class="flex items-center gap-1 md:hidden">
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+      <button id="menu-btn" onclick="toggleMobileMenu()" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" class="p-2 -mr-2 text-slate-700 dark:text-slate-200">
+        <svg id="icon-burger" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-navy-900 px-4 py-3 space-y-1">
+    <a href="/" class="block px-3 py-2.5 rounded-lg text-slate-500 dark:text-slate-400 font-semibold hover:bg-brand-50 dark:hover:bg-white/5">← Portail</a>
+    <a href="#trigonometrie" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 dark:text-slate-200 font-semibold hover:bg-brand-50 dark:hover:bg-white/5">Le cours</a>
+    <a href="#formules" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 dark:text-slate-200 font-semibold hover:bg-brand-50 dark:hover:bg-white/5">Formules</a>
+    <a href="#exercices" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-lg text-slate-700 dark:text-slate-200 font-semibold hover:bg-brand-50 dark:hover:bg-white/5">Exercices corrigés</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section id="accueil" class="relative overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1635372722656-389f87a941b7?auto=format&fit=crop&w=1740&q=80"
+         alt="Tableau noir recouvert de formules mathématiques" class="w-full h-full object-cover" loading="eager">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-950/95 via-brand-900/90 to-brand-700/85"></div>
+  </div>
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-20 md:pt-24 md:pb-28">
+    <div class="max-w-2xl">
+      <span class="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-accent-300 text-xs sm:text-sm font-semibold px-3.5 py-1.5 rounded-full backdrop-blur-sm">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.454 1.405 1.02L10 15.591l4.069 2.485c.713.434 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.753-.382-1.83-4.401Z"/></svg>
+        Mathématiques · 3ème APIC · Collège Mhamed 9
+      </span>
+
+      <h1 class="mt-5 font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.05] tracking-tight">
+        Triangle Rectangle<br class="hidden sm:block"> et <span class="text-accent-400">Trigonométrie</span>
+      </h1>
+
+      <p class="mt-5 text-base sm:text-lg text-brand-100 leading-relaxed max-w-xl">
+        Cosinus, sinus et tangente d'un angle aigu, formules trigonométriques, angles particuliers —
+        un cours illustré, deux exemples résolus pas à pas, et
+        <strong class="text-white">9 exercices</strong> avec correction détaillée à afficher en un clic.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#trigonometrie" class="inline-flex items-center gap-2 bg-white text-brand-800 font-bold px-5 py-3 rounded-full shadow-lg hover:bg-brand-50 transition-colors">
+          Commencer le cours
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
+        <a href="#exercices" class="inline-flex items-center gap-2 bg-white/10 border border-white/25 text-white font-semibold px-5 py-3 rounded-full hover:bg-white/20 transition-colors backdrop-blur-sm">
+          Voir les exercices
+        </a>
+      </div>
+
+      <div class="mt-10 flex flex-wrap gap-x-8 gap-y-4">
+        <div>
+          <p class="font-display font-extrabold text-2xl sm:text-3xl text-white">3</p>
+          <p class="text-xs sm:text-sm text-brand-200 font-medium">rapports trigonométriques</p>
+        </div>
+        <div>
+          <p class="font-display font-extrabold text-2xl sm:text-3xl text-white">9</p>
+          <p class="text-xs sm:text-sm text-brand-200 font-medium">exercices corrigés</p>
+        </div>
+        <div>
+          <p class="font-display font-extrabold text-2xl sm:text-3xl text-white">100%</p>
+          <p class="text-xs sm:text-sm text-brand-200 font-medium">corrigés en détail</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative border-t border-white/10 bg-black/10 backdrop-blur-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap gap-2 justify-center sm:justify-start">
+      <a href="#cosinus" class="text-xs sm:text-sm font-semibold text-brand-100 hover:text-white px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">① Cosinus</a>
+      <a href="#sinus" class="text-xs sm:text-sm font-semibold text-brand-100 hover:text-white px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">② Sinus</a>
+      <a href="#tangente" class="text-xs sm:text-sm font-semibold text-brand-100 hover:text-white px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">③ Tangente</a>
+      <a href="#formules" class="text-xs sm:text-sm font-semibold text-brand-100 hover:text-white px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">④ Formules</a>
+      <a href="#angles-particuliers" class="text-xs sm:text-sm font-semibold text-brand-100 hover:text-white px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">⑤ Angles particuliers</a>
+      <a href="#exercices" class="text-xs sm:text-sm font-semibold text-brand-100 hover:text-white px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors">⑥ Exercices</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION I : COSINUS SINUS TANGENTE ============ -->
+<section id="trigonometrie" class="py-16 sm:py-20 border-b border-slate-200 scroll-mt-4">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal grid md:grid-cols-2 gap-10 items-center mb-14">
+      <div>
+        <p class="text-brand-600 font-bold text-sm tracking-wide uppercase mb-2">I. Cours</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">Cosinus, sinus et tangente d'un angle aigu dans un triangle rectangle</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">
+          Dans un triangle rectangle, on associe à chaque angle aigu trois nombres — son <strong>cosinus</strong>,
+          son <strong>sinus</strong> et sa <strong>tangente</strong> — définis comme des quotients de longueurs de côtés.
+        </p>
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow-soft">
+        <img src="https://images.unsplash.com/photo-1741181296065-8ab8a9883ffe?auto=format&fit=crop&w=1200&q=80"
+             alt="Équerre en forme de triangle rectangle" class="w-full h-56 sm:h-64 object-cover" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 1. Cosinus -->
+    <article id="cosinus" class="reveal mb-14 scroll-mt-24">
+      <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-4">1. Cosinus</h3>
+
+      <p class="font-semibold text-slate-800 mb-2">a) Propriété</p>
+      <div class="relative bg-white border-2 border-rose-200 rounded-2xl shadow-sm p-5 sm:p-6">
+        <p class="text-slate-700 leading-relaxed">
+          Dans un triangle rectangle, le cosinus d'un angle aigu est égal au <strong class="text-rose-700">quotient de la longueur
+          du côté adjacent à cet angle par la longueur de l'hypoténuse.</strong>
+        </p>
+      </div>
+
+      <p class="font-semibold text-slate-800 mt-6 mb-3">b) Vocabulaire</p>
+      <div class="grid sm:grid-cols-2 gap-6 items-center bg-white rounded-2xl border border-slate-200 shadow-soft p-5 sm:p-6">
+        <svg viewBox="0 0 300 260" class="config-fig max-w-xs mx-auto">
+          <line x1="70" y1="210" x2="260" y2="210" stroke="#334155" stroke-width="2.2"/>
+          <line x1="70" y1="210" x2="70" y2="30" stroke="#4f46e5" stroke-width="3"/>
+          <line x1="70" y1="30" x2="260" y2="210" stroke="#94a3b8" stroke-width="2.4"/>
+          <rect x="70" y="198" width="12" height="12" fill="none" stroke="#334155" stroke-width="2"/>
+          <circle cx="70" cy="30" r="4" fill="#1e293b"/>
+          <circle cx="70" cy="210" r="4" fill="#1e293b"/>
+          <circle cx="260" cy="210" r="4" fill="#1e293b"/>
+          <text x="58" y="26" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">C</text>
+          <text x="56" y="226" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">A</text>
+          <text x="272" y="226" font-weight="700" font-size="16" fill="#1e293b">B</text>
+          <circle cx="70" cy="118" r="10" fill="#4f46e5"/>
+          <text x="70" y="122" text-anchor="middle" font-size="11" font-weight="700" fill="white">①</text>
+          <circle cx="165" cy="228" r="10" fill="#f59e0b"/>
+          <text x="165" y="232" text-anchor="middle" font-size="11" font-weight="700" fill="white">②</text>
+          <circle cx="178" cy="120" r="10" fill="#94a3b8"/>
+          <text x="178" y="124" text-anchor="middle" font-size="11" font-weight="700" fill="white">③</text>
+        </svg>
+        <div class="space-y-2.5 text-sm">
+          <div class="flex gap-2.5 items-start"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-600 text-white text-[11px] font-bold flex items-center justify-center mt-0.5">①</span><span class="text-slate-700"><b>[AC]</b> est le côté adjacent à l'angle <span class="katex-angle">$\widehat{ACB}$</span></span></div>
+          <div class="flex gap-2.5 items-start"><span class="shrink-0 w-5 h-5 rounded-full bg-accent-500 text-white text-[11px] font-bold flex items-center justify-center mt-0.5">②</span><span class="text-slate-700"><b>[AB]</b> est le côté adjacent à l'angle <span class="katex-angle">$\widehat{ABC}$</span></span></div>
+          <div class="flex gap-2.5 items-start"><span class="shrink-0 w-5 h-5 rounded-full bg-slate-400 text-white text-[11px] font-bold flex items-center justify-center mt-0.5">③</span><span class="text-slate-700"><b>[BC]</b> est l'<b>hypoténuse</b></span></div>
+        </div>
+      </div>
+
+      <p class="font-semibold text-slate-800 mt-6 mb-3">c) Notations</p>
+      <div class="bg-gradient-to-br from-accent-100 to-accent-50 border border-accent-200 rounded-2xl p-5 sm:p-6">
+        <p class="text-slate-800">$ABC$ est un triangle rectangle en $A$</p>
+        <div class="mt-3 flex flex-wrap items-center gap-x-8 gap-y-3 text-lg">
+          <span>$\cos\widehat{ABC}=\dfrac{AB}{BC}$</span>
+          <span>$\cos\widehat{ACB}=\dfrac{AC}{BC}$</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. Sinus -->
+    <article id="sinus" class="reveal mb-14 scroll-mt-24">
+      <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-4">2. Sinus</h3>
+
+      <p class="font-semibold text-slate-800 mb-2">a) Propriété</p>
+      <div class="relative bg-white border-2 border-rose-200 rounded-2xl shadow-sm p-5 sm:p-6">
+        <p class="text-slate-700 leading-relaxed">
+          Dans un triangle rectangle, le sinus d'un angle aigu est égal au <strong class="text-rose-700">quotient de la longueur
+          du côté opposé à cet angle par la longueur de l'hypoténuse.</strong>
+        </p>
+      </div>
+
+      <p class="font-semibold text-slate-800 mt-6 mb-3">b) Vocabulaire</p>
+      <div class="grid sm:grid-cols-2 gap-6 items-center bg-white rounded-2xl border border-slate-200 shadow-soft p-5 sm:p-6">
+        <svg viewBox="0 0 300 260" class="config-fig max-w-xs mx-auto">
+          <line x1="70" y1="210" x2="260" y2="210" stroke="#334155" stroke-width="2.2"/>
+          <line x1="70" y1="210" x2="70" y2="30" stroke="#f59e0b" stroke-width="3"/>
+          <line x1="70" y1="30" x2="260" y2="210" stroke="#94a3b8" stroke-width="2.4"/>
+          <rect x="70" y="198" width="12" height="12" fill="none" stroke="#334155" stroke-width="2"/>
+          <circle cx="70" cy="30" r="4" fill="#1e293b"/>
+          <circle cx="70" cy="210" r="4" fill="#1e293b"/>
+          <circle cx="260" cy="210" r="4" fill="#1e293b"/>
+          <text x="58" y="26" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">C</text>
+          <text x="56" y="226" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">A</text>
+          <text x="272" y="226" font-weight="700" font-size="16" fill="#1e293b">B</text>
+          <circle cx="70" cy="118" r="10" fill="#f59e0b"/>
+          <text x="70" y="122" text-anchor="middle" font-size="11" font-weight="700" fill="white">①</text>
+          <circle cx="165" cy="228" r="10" fill="#4f46e5"/>
+          <text x="165" y="232" text-anchor="middle" font-size="11" font-weight="700" fill="white">②</text>
+          <circle cx="178" cy="120" r="10" fill="#94a3b8"/>
+          <text x="178" y="124" text-anchor="middle" font-size="11" font-weight="700" fill="white">③</text>
+        </svg>
+        <div class="space-y-2.5 text-sm">
+          <div class="flex gap-2.5 items-start"><span class="shrink-0 w-5 h-5 rounded-full bg-accent-500 text-white text-[11px] font-bold flex items-center justify-center mt-0.5">①</span><span class="text-slate-700"><b>[AC]</b> est le côté opposé à l'angle <span class="katex-angle">$\widehat{ABC}$</span></span></div>
+          <div class="flex gap-2.5 items-start"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-600 text-white text-[11px] font-bold flex items-center justify-center mt-0.5">②</span><span class="text-slate-700"><b>[AB]</b> est le côté opposé à l'angle <span class="katex-angle">$\widehat{ACB}$</span></span></div>
+          <div class="flex gap-2.5 items-start"><span class="shrink-0 w-5 h-5 rounded-full bg-slate-400 text-white text-[11px] font-bold flex items-center justify-center mt-0.5">③</span><span class="text-slate-700"><b>[BC]</b> est l'<b>hypoténuse</b></span></div>
+        </div>
+      </div>
+
+      <p class="font-semibold text-slate-800 mt-6 mb-3">c) Notations</p>
+      <div class="bg-gradient-to-br from-accent-100 to-accent-50 border border-accent-200 rounded-2xl p-5 sm:p-6">
+        <p class="text-slate-800">$ABC$ est un triangle rectangle en $A$</p>
+        <div class="mt-3 flex flex-wrap items-center gap-x-8 gap-y-3 text-lg">
+          <span>$\sin\widehat{ABC}=\dfrac{AC}{BC}$</span>
+          <span>$\sin\widehat{ACB}=\dfrac{AB}{BC}$</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. Tangente -->
+    <article id="tangente" class="reveal mb-14 scroll-mt-24">
+      <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-4">3. Tangente</h3>
+
+      <p class="font-semibold text-slate-800 mb-2">a) Propriété</p>
+      <div class="relative bg-white border-2 border-rose-200 rounded-2xl shadow-sm p-5 sm:p-6">
+        <p class="text-slate-700 leading-relaxed">
+          Dans un triangle rectangle, la tangente d'un angle aigu est égale au <strong class="text-rose-700">quotient de la longueur
+          du côté opposé à cet angle par la longueur de son côté adjacent.</strong>
+        </p>
+      </div>
+
+      <p class="font-semibold text-slate-800 mt-6 mb-3">b) Vocabulaire</p>
+      <div class="grid sm:grid-cols-2 gap-6 items-center bg-white rounded-2xl border border-slate-200 shadow-soft p-5 sm:p-6">
+        <svg viewBox="0 0 300 260" class="config-fig max-w-xs mx-auto">
+          <line x1="70" y1="210" x2="260" y2="210" stroke="#334155" stroke-width="2.2"/>
+          <line x1="70" y1="210" x2="70" y2="30" stroke="#4f46e5" stroke-width="3"/>
+          <line x1="70" y1="30" x2="260" y2="210" stroke="#94a3b8" stroke-width="2.4"/>
+          <rect x="70" y="198" width="12" height="12" fill="none" stroke="#334155" stroke-width="2"/>
+          <circle cx="70" cy="30" r="4" fill="#1e293b"/>
+          <circle cx="70" cy="210" r="4" fill="#1e293b"/>
+          <circle cx="260" cy="210" r="4" fill="#1e293b"/>
+          <text x="58" y="26" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">C</text>
+          <text x="56" y="226" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">A</text>
+          <text x="272" y="226" font-weight="700" font-size="16" fill="#1e293b">B</text>
+          <circle cx="70" cy="118" r="10" fill="#4f46e5"/>
+          <text x="70" y="122" text-anchor="middle" font-size="11" font-weight="700" fill="white">①</text>
+          <circle cx="165" cy="228" r="10" fill="#f59e0b"/>
+          <text x="165" y="232" text-anchor="middle" font-size="11" font-weight="700" fill="white">②</text>
+        </svg>
+        <div class="space-y-2.5 text-sm">
+          <div class="flex gap-2.5 items-start"><span class="shrink-0 w-5 h-5 rounded-full bg-brand-600 text-white text-[11px] font-bold flex items-center justify-center mt-0.5">①</span><span class="text-slate-700"><b>[AC]</b> : opposé à <span class="katex-angle">$\widehat{ABC}$</span> et adjacent à <span class="katex-angle">$\widehat{ACB}$</span></span></div>
+          <div class="flex gap-2.5 items-start"><span class="shrink-0 w-5 h-5 rounded-full bg-accent-500 text-white text-[11px] font-bold flex items-center justify-center mt-0.5">②</span><span class="text-slate-700"><b>[AB]</b> : opposé à <span class="katex-angle">$\widehat{ACB}$</span> et adjacent à <span class="katex-angle">$\widehat{ABC}$</span></span></div>
+        </div>
+      </div>
+
+      <p class="font-semibold text-slate-800 mt-6 mb-3">c) Notations</p>
+      <div class="bg-gradient-to-br from-accent-100 to-accent-50 border border-accent-200 rounded-2xl p-5 sm:p-6">
+        <p class="text-slate-800">$ABC$ est un triangle rectangle en $A$</p>
+        <div class="mt-3 flex flex-wrap items-center gap-x-8 gap-y-3 text-lg">
+          <span>$\tan\widehat{ABC}=\dfrac{AC}{AB}$</span>
+          <span>$\tan\widehat{ACB}=\dfrac{AB}{AC}$</span>
+        </div>
+      </div>
+
+      <p class="font-semibold text-slate-800 mt-8 mb-3">4. Propriété</p>
+      <div class="relative bg-white border-2 border-rose-200 rounded-2xl shadow-sm p-5 sm:p-6">
+        <p class="text-slate-700 leading-relaxed">Si $x$ désigne la mesure d'un angle aigu non nul, alors :</p>
+        <p class="mt-3 text-center text-lg font-semibold text-brand-700">$0<\cos x<1$ &nbsp; et &nbsp; $0<\sin x<1$</p>
+      </div>
+    </article>
+
+    <!-- Exercice d'application section I -->
+    <article id="exemple1" class="reveal scroll-mt-24">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">✓</span>
+        <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900">Exercice d'application</h3>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <p class="font-semibold text-slate-800 mb-3">Énoncé</p>
+          <p class="text-slate-600 leading-relaxed">
+            Soit $ABC$ un triangle rectangle en $B$ tel que : $AB=6\ \text{cm}$ et $BC=8\ \text{cm}$.
+          </p>
+          <ol class="mt-3 space-y-1.5 text-slate-600 list-decimal list-inside">
+            <li>Tracer la figure.</li>
+            <li>Calculer $\cos\widehat{ACB}$, $\sin\widehat{ACB}$ et $\tan\widehat{ACB}$.</li>
+          </ol>
+
+          <div class="mt-6 grid sm:grid-cols-2 gap-6 items-center">
+            <div class="bg-slate-50 rounded-xl border border-slate-200 p-4">
+              <svg viewBox="0 0 300 260" class="config-fig">
+                <line x1="70" y1="60" x2="70" y2="220" stroke="#334155" stroke-width="2.2"/>
+                <line x1="70" y1="220" x2="270" y2="220" stroke="#334155" stroke-width="2.2"/>
+                <line x1="70" y1="60" x2="270" y2="220" stroke="#4f46e5" stroke-width="2.6"/>
+                <rect x="70" y="208" width="12" height="12" fill="none" stroke="#334155" stroke-width="2"/>
+                <circle cx="70" cy="60" r="4" fill="#1e293b"/>
+                <circle cx="70" cy="220" r="4" fill="#1e293b"/>
+                <circle cx="270" cy="220" r="4" fill="#1e293b"/>
+                <text x="58" y="56" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">A</text>
+                <text x="56" y="238" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">B</text>
+                <text x="282" y="238" font-weight="700" font-size="16" fill="#1e293b">C</text>
+                <text x="40" y="144" text-anchor="middle" font-size="13.5" fill="#64748b" font-style="italic" transform="rotate(-90 40 144)">6 cm</text>
+                <text x="170" y="238" text-anchor="middle" font-size="13.5" fill="#64748b" font-style="italic">8 cm</text>
+              </svg>
+            </div>
+            <div class="flex flex-wrap gap-2 content-start">
+              <span class="chip">$ABC$ rectangle en $B$</span>
+              <span class="chip">$AB = 6$ cm</span>
+              <span class="chip">$BC = 8$ cm</span>
+            </div>
+          </div>
+
+          <button onclick="toggleCorrection('sol-ex1', this)" aria-expanded="false" aria-controls="sol-ex1"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la solution</span>
+          </button>
+        </div>
+
+        <div id="sol-ex1" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-4">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+            <div>
+              <p class="font-semibold text-slate-800">Calcul de $AC$ (nécessaire pour l'hypoténuse)</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">$ABC$ est rectangle en $B$, donc d'après le théorème de Pythagore : $AC^2=AB^2+BC^2=6^2+8^2=36+64=100$. Or $AC>0$, donc $AC=\sqrt{100}=10\ \text{cm}$.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-slate-800">$\cos\widehat{ACB}$</p>
+              <p class="mt-1 text-slate-700">On a $\cos\widehat{ACB}=\dfrac{BC}{AC}=\dfrac{8}{10}$, d'où $\boxed{\cos\widehat{ACB}=0,8}$</p>
+            </div>
+            <div>
+              <p class="font-semibold text-slate-800">$\sin\widehat{ACB}$</p>
+              <p class="mt-1 text-slate-700">On a $\sin\widehat{ACB}=\dfrac{AB}{AC}=\dfrac{6}{10}$, d'où $\boxed{\sin\widehat{ACB}=0,6}$</p>
+            </div>
+            <div>
+              <p class="font-semibold text-slate-800">$\tan\widehat{ACB}$</p>
+              <p class="mt-1 text-slate-700">On a $\tan\widehat{ACB}=\dfrac{AB}{BC}=\dfrac{6}{8}$, d'où $\boxed{\tan\widehat{ACB}=0,75}$</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ SECTION II : FORMULES TRIGONOMETRIQUES ============ -->
+<section id="formules" class="py-16 sm:py-20 border-b border-slate-200 bg-white scroll-mt-4">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal grid md:grid-cols-2 gap-10 items-center mb-14">
+      <div class="order-2 md:order-1 rounded-2xl overflow-hidden shadow-soft">
+        <img src="https://images.unsplash.com/photo-1615988938302-bd2a5a7023bc?auto=format&fit=crop&w=1200&q=80"
+             alt="Rapporteur, règle et outils de géométrie utilisés pour mesurer des angles" class="w-full h-56 sm:h-64 object-cover" loading="lazy">
+      </div>
+      <div class="order-1 md:order-2">
+        <p class="text-brand-600 font-bold text-sm tracking-wide uppercase mb-2">II. Cours</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">Formules trigonométriques</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">
+          Deux propriétés relient entre eux le cosinus, le sinus et la tangente d'un même angle, ou de deux angles
+          complémentaires. Elles permettent de calculer un rapport sans connaître les longueurs du triangle.
+        </p>
+      </div>
+    </div>
+
+    <!-- Propriété 1 -->
+    <article id="formule1" class="reveal mb-12 scroll-mt-24">
+      <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-4">1. Propriété 1</h3>
+      <div class="relative bg-gradient-to-br from-brand-700 to-brand-900 rounded-2xl shadow-soft p-6 sm:p-8 text-white">
+        <svg class="absolute top-4 right-4 w-10 h-10 text-white/15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2 2 21h20L12 2z"/></svg>
+        <p class="leading-relaxed text-brand-50">Si $x$ désigne la mesure d'un angle aigu non nul, alors :</p>
+        <div class="mt-4 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 bg-white/10 rounded-xl py-5 px-4 text-xl sm:text-2xl">
+          <span>$\cos^2x+\sin^2x=1$</span>
+          <span>$\tan x=\dfrac{\sin x}{\cos x}$</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Propriété 2 -->
+    <article id="formule2" class="reveal mb-12 scroll-mt-24">
+      <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-4">2. Propriété 2</h3>
+      <div class="relative bg-gradient-to-br from-slate-800 to-slate-950 rounded-2xl shadow-soft p-6 sm:p-8 text-white">
+        <p class="leading-relaxed text-slate-200">Si $x$ et $y$ désignent les mesures d'angles aigus non nuls tels que $x+y=90^\circ$, alors :</p>
+        <div class="mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 bg-white/10 rounded-xl py-5 px-4 text-lg sm:text-xl">
+          <span>$\cos x=\sin y$</span>
+          <span>$\sin x=\cos y$</span>
+          <span>$\tan x=\dfrac{1}{\tan y}$</span>
+        </div>
+      </div>
+      <div class="mt-5 flex gap-3 bg-accent-50 border border-accent-200 rounded-xl p-4">
+        <svg class="w-5 h-5 shrink-0 text-accent-600 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 1 1 4.243 0M9.879 17h4.242"/></svg>
+        <p class="text-sm text-slate-700"><b>Remarque :</b> dans un triangle rectangle, les deux angles aigus sont toujours complémentaires (leur somme vaut $90^\circ$) — cette propriété s'y applique donc systématiquement.</p>
+      </div>
+    </article>
+
+    <!-- Angles particuliers -->
+    <article id="angles-particuliers" class="reveal mb-14 scroll-mt-24">
+      <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-4">3. Angles particuliers</h3>
+      <div class="table-wrap rounded-2xl border border-slate-200 shadow-soft">
+        <table class="w-full min-w-[560px] border-collapse text-center bg-white">
+          <thead>
+            <tr class="bg-slate-800 text-white">
+              <th class="py-3 px-4 font-display font-semibold text-left sm:text-center">$x$</th>
+              <th class="py-3 px-4 font-display font-semibold">$0^\circ$</th>
+              <th class="py-3 px-4 font-display font-semibold">$30^\circ$</th>
+              <th class="py-3 px-4 font-display font-semibold">$45^\circ$</th>
+              <th class="py-3 px-4 font-display font-semibold">$60^\circ$</th>
+              <th class="py-3 px-4 font-display font-semibold">$90^\circ$</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200">
+            <tr>
+              <td class="py-3.5 px-4 font-bold text-slate-700 bg-slate-50 text-left sm:text-center">$\sin x$</td>
+              <td class="py-3.5 px-4">$0$</td>
+              <td class="py-3.5 px-4">$\dfrac12$</td>
+              <td class="py-3.5 px-4">$\dfrac{\sqrt2}{2}$</td>
+              <td class="py-3.5 px-4">$\dfrac{\sqrt3}{2}$</td>
+              <td class="py-3.5 px-4">$1$</td>
+            </tr>
+            <tr>
+              <td class="py-3.5 px-4 font-bold text-slate-700 bg-slate-50 text-left sm:text-center">$\cos x$</td>
+              <td class="py-3.5 px-4">$1$</td>
+              <td class="py-3.5 px-4">$\dfrac{\sqrt3}{2}$</td>
+              <td class="py-3.5 px-4">$\dfrac{\sqrt2}{2}$</td>
+              <td class="py-3.5 px-4">$\dfrac12$</td>
+              <td class="py-3.5 px-4">$0$</td>
+            </tr>
+            <tr>
+              <td class="py-3.5 px-4 font-bold text-slate-700 bg-slate-50 text-left sm:text-center">$\tan x$</td>
+              <td class="py-3.5 px-4">$0$</td>
+              <td class="py-3.5 px-4">$\dfrac{\sqrt3}{3}$</td>
+              <td class="py-3.5 px-4">$1$</td>
+              <td class="py-3.5 px-4">$\sqrt3$</td>
+              <td class="py-3.5 px-4 text-rose-600 font-semibold text-sm">Indéterminé</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-400 mt-2 italic">Faites défiler horizontalement sur mobile pour voir tout le tableau.</p>
+    </article>
+
+    <!-- Exercice d'application section II -->
+    <article id="exemple2" class="reveal scroll-mt-24">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">✓</span>
+        <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900">Exercice d'application</h3>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <p class="font-semibold text-slate-800 mb-3">Énoncé — Calculer :</p>
+          <div class="grid sm:grid-cols-3 gap-3">
+            <p class="bg-slate-50 border border-slate-200 rounded-lg py-3 px-3 text-center">$A=2\cos15^\circ+\cos^236^\circ-2\sin75^\circ+\cos^254^\circ$</p>
+            <p class="bg-slate-50 border border-slate-200 rounded-lg py-3 px-3 text-center">$B=\tan73^\circ\times\tan17^\circ-\sin^240^\circ-\sin^250^\circ$</p>
+            <p class="bg-slate-50 border border-slate-200 rounded-lg py-3 px-3 text-center">$C=\sqrt2\cos45^\circ+\sin^230^\circ+\sin^260^\circ+\sqrt3\tan30^\circ$</p>
+          </div>
+
+          <button onclick="toggleCorrection('sol-ex2', this)" aria-expanded="false" aria-controls="sol-ex2"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la solution</span>
+          </button>
+        </div>
+
+        <div id="sol-ex2" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-5">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+            <div>
+              <p class="font-semibold text-slate-800">Calcul de $A$</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">On a $15^\circ+75^\circ=90^\circ$ et $36^\circ+54^\circ=90^\circ$, donc $\cos15^\circ=\sin75^\circ$ et $\cos36^\circ=\sin54^\circ$.</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">D'où : $A=2\sin75^\circ+\sin^254^\circ-2\sin75^\circ+\cos^254^\circ=\left(\sin^254^\circ+\cos^254^\circ\right)=1$</p>
+              <p class="mt-2 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">$A=1$</p>
+            </div>
+            <div>
+              <p class="font-semibold text-slate-800">Calcul de $B$</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">On a $73^\circ+17^\circ=90^\circ$ et $40^\circ+50^\circ=90^\circ$, donc $\tan73^\circ=\dfrac{1}{\tan17^\circ}$ et $\sin40^\circ=\cos50^\circ$.</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">D'où : $B=\dfrac{1}{\tan17^\circ}\times\tan17^\circ-\cos^250^\circ-\sin^250^\circ=1-\left(\cos^250^\circ+\sin^250^\circ\right)=1-1$</p>
+              <p class="mt-2 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">$B=0$</p>
+            </div>
+            <div>
+              <p class="font-semibold text-slate-800">Calcul de $C$</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">On sait que $\cos45^\circ=\dfrac{\sqrt2}{2}$, $\sin30^\circ=\dfrac12$, $\sin60^\circ=\dfrac{\sqrt3}{2}$ et $\tan30^\circ=\dfrac{\sqrt3}{3}$.</p>
+              <p class="mt-1 text-slate-700 leading-relaxed">D'où : $C=\sqrt2\times\dfrac{\sqrt2}{2}+\left(\dfrac12\right)^2+\left(\dfrac{\sqrt3}{2}\right)^2+\sqrt3\times\dfrac{\sqrt3}{3}=\dfrac22+\dfrac14+\dfrac34+\dfrac33=1+1+1$</p>
+              <p class="mt-2 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">$C=3$</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ SECTION III : EXERCICES ============ -->
+<section id="exercices" class="py-16 sm:py-20 scroll-mt-4">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal grid md:grid-cols-2 gap-10 items-center mb-6">
+      <div>
+        <p class="text-brand-600 font-bold text-sm tracking-wide uppercase mb-2">III. Entraînement</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">9 exercices corrigés</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">
+          Cherchez chaque exercice au brouillon, puis cliquez sur
+          <span class="font-semibold text-accent-600">« Voir la correction »</span> pour vérifier votre réponse
+          étape par étape.
+        </p>
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow-soft">
+        <img src="https://images.unsplash.com/photo-1617118602031-1edde7582212?auto=format&fit=crop&w=1200&q=80"
+             alt="Mètre pliant formant un angle pour mesurer une maquette" class="w-full h-56 sm:h-64 object-cover" loading="lazy">
+      </div>
+    </div>
+
+    <div class="reveal flex flex-wrap gap-2 mb-12">
+      <span class="text-xs font-bold text-slate-500 uppercase tracking-wide mt-1.5 mr-1">Accès rapide :</span>
+      <a href="#ex1" class="text-xs font-semibold bg-white border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">01</a>
+      <a href="#ex2" class="text-xs font-semibold bg-white border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">02</a>
+      <a href="#ex3" class="text-xs font-semibold bg-white border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">03</a>
+      <a href="#ex4" class="text-xs font-semibold bg-white border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">04</a>
+      <a href="#ex5" class="text-xs font-semibold bg-white border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">05</a>
+      <a href="#ex6" class="text-xs font-semibold bg-white border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">06</a>
+      <a href="#ex7" class="text-xs font-semibold bg-white border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">07</a>
+      <a href="#ex8" class="text-xs font-semibold bg-white border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">08</a>
+      <a href="#ex9" class="text-xs font-semibold bg-white border border-slate-200 hover:border-brand-400 hover:text-brand-700 text-slate-600 px-3 py-1.5 rounded-full transition-colors">09</a>
+    </div>
+
+    <div class="space-y-8">
+
+      <!-- EXERCICE 01 -->
+      <article id="ex1" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">1</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Exercice 01</h3>
+            <span class="text-xs font-semibold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full">Cosinus, sinus, tangente</span>
+          </div>
+          <p class="text-slate-600 leading-relaxed">$ABC$ est un triangle rectangle en $A$.</p>
+
+          <div class="mt-5 bg-slate-50 rounded-xl border border-slate-200 p-4 flex justify-center">
+            <svg viewBox="0 0 300 260" class="config-fig max-w-[220px]">
+              <line x1="70" y1="210" x2="260" y2="210" stroke="#334155" stroke-width="2.2"/>
+              <line x1="70" y1="210" x2="70" y2="30" stroke="#334155" stroke-width="2.2"/>
+              <line x1="70" y1="30" x2="260" y2="210" stroke="#4f46e5" stroke-width="2.6"/>
+              <rect x="70" y="198" width="12" height="12" fill="none" stroke="#334155" stroke-width="2"/>
+              <circle cx="70" cy="30" r="4" fill="#1e293b"/>
+              <circle cx="70" cy="210" r="4" fill="#1e293b"/>
+              <circle cx="260" cy="210" r="4" fill="#1e293b"/>
+              <text x="58" y="26" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">C</text>
+              <text x="56" y="228" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">A</text>
+              <text x="272" y="228" font-weight="700" font-size="16" fill="#1e293b">B</text>
+            </svg>
+          </div>
+
+          <div class="mt-6 grid sm:grid-cols-2 gap-3">
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <p class="text-xs font-bold text-brand-600 uppercase mb-1">1)</p>
+              <p class="text-slate-700 text-sm">On donne : $AB=3$ et $BC=5$.<br>Calculer $AC$ ; $\cos\widehat{ABC}$ ; $\sin\widehat{ABC}$ ; $\tan\widehat{ABC}$.</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <p class="text-xs font-bold text-brand-600 uppercase mb-1">2)</p>
+              <p class="text-slate-700 text-sm">On donne : $AC=7$ et $BC=9$.<br>Calculer $AB$ ; $\cos\widehat{ACB}$ ; $\sin\widehat{ACB}$ ; $\tan\widehat{ACB}$.</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <p class="text-xs font-bold text-brand-600 uppercase mb-1">3)</p>
+              <p class="text-slate-700 text-sm">On donne : $AB=1$ et $AC=\sqrt3$.<br>Calculer $BC$ ; $\cos\widehat{ABC}$ ; $\sin\widehat{ABC}$ ; $\tan\widehat{ABC}$.</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+              <p class="text-xs font-bold text-brand-600 uppercase mb-1">4)</p>
+              <p class="text-slate-700 text-sm">On donne : $BC=8$ et $\cos\widehat{ABC}=\dfrac16$.<br>Calculer $AB$ ; $AC$ ; $\sin\widehat{ABC}$ ; $\tan\widehat{ABC}$.</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 sm:col-span-2">
+              <p class="text-xs font-bold text-brand-600 uppercase mb-1">5)</p>
+              <p class="text-slate-700 text-sm">On donne : $AB=7$ et $\tan\widehat{ABC}=2$.<br>Calculer $BC$ ; $AC$ ; $\sin\widehat{ACB}$ ; $\cos\widehat{ACB}$.</p>
+            </div>
+          </div>
+
+          <button onclick="toggleCorrection('sol-1', this)" aria-expanded="false" aria-controls="sol-1"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <div id="sol-1" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-4">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">1) $AB=3$, $BC=5$</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Pythagore : $AC^2=BC^2-AB^2=25-9=16$, donc $AC=4$ cm (car $AC>0$).</p>
+              <p class="text-slate-700 text-sm mt-1">$\cos\widehat{ABC}=\dfrac{AB}{BC}=\dfrac35=0,6$ &nbsp;•&nbsp; $\sin\widehat{ABC}=\dfrac{AC}{BC}=\dfrac45=0,8$ &nbsp;•&nbsp; $\tan\widehat{ABC}=\dfrac{AC}{AB}=\dfrac43$</p>
+            </div>
+
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">2) $AC=7$, $BC=9$</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Pythagore : $AB^2=BC^2-AC^2=81-49=32$, donc $AB=\sqrt{32}=4\sqrt2$ cm.</p>
+              <p class="text-slate-700 text-sm mt-1">$\cos\widehat{ACB}=\dfrac{AC}{BC}=\dfrac79$ &nbsp;•&nbsp; $\sin\widehat{ACB}=\dfrac{AB}{BC}=\dfrac{4\sqrt2}{9}$ &nbsp;•&nbsp; $\tan\widehat{ACB}=\dfrac{AB}{AC}=\dfrac{4\sqrt2}{7}$</p>
+            </div>
+
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">3) $AB=1$, $AC=\sqrt3$</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Pythagore : $BC^2=AB^2+AC^2=1+3=4$, donc $BC=2$ cm.</p>
+              <p class="text-slate-700 text-sm mt-1">$\cos\widehat{ABC}=\dfrac{AB}{BC}=\dfrac12$ &nbsp;•&nbsp; $\sin\widehat{ABC}=\dfrac{AC}{BC}=\dfrac{\sqrt3}{2}$ &nbsp;•&nbsp; $\tan\widehat{ABC}=\dfrac{AC}{AB}=\sqrt3$</p>
+            </div>
+
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">4) $BC=8$, $\cos\widehat{ABC}=\dfrac16$</p>
+              <p class="text-slate-700 text-sm leading-relaxed">$\cos\widehat{ABC}=\dfrac{AB}{BC}\Rightarrow AB=BC\times\cos\widehat{ABC}=8\times\dfrac16=\dfrac43$ cm.</p>
+              <p class="text-slate-700 text-sm mt-1">Pythagore : $AC^2=BC^2-AB^2=64-\dfrac{16}{9}=\dfrac{560}{9}$, donc $AC=\dfrac{4\sqrt{35}}{3}$ cm.</p>
+              <p class="text-slate-700 text-sm mt-1">$\sin\widehat{ABC}=\dfrac{AC}{BC}=\dfrac{\sqrt{35}}{6}$ &nbsp;•&nbsp; $\tan\widehat{ABC}=\dfrac{AC}{AB}=\sqrt{35}$</p>
+            </div>
+
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">5) $AB=7$, $\tan\widehat{ABC}=2$</p>
+              <p class="text-slate-700 text-sm leading-relaxed">$\tan\widehat{ABC}=\dfrac{AC}{AB}\Rightarrow AC=AB\times\tan\widehat{ABC}=7\times2=14$ cm.</p>
+              <p class="text-slate-700 text-sm mt-1">Pythagore : $BC^2=AB^2+AC^2=49+196=245$, donc $BC=\sqrt{245}=7\sqrt5$ cm.</p>
+              <p class="text-slate-700 text-sm mt-1">$\sin\widehat{ACB}=\dfrac{AB}{BC}=\dfrac{7}{7\sqrt5}=\dfrac{\sqrt5}{5}$ &nbsp;•&nbsp; $\cos\widehat{ACB}=\dfrac{AC}{BC}=\dfrac{14}{7\sqrt5}=\dfrac{2\sqrt5}{5}$</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 02 -->
+      <article id="ex2" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">2</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Exercice 02</h3>
+            <span class="text-xs font-semibold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full">Identité trigonométrique</span>
+          </div>
+          <p class="text-slate-600 leading-relaxed">$\alpha$ est un angle aigu.</p>
+
+          <div class="mt-4 grid sm:grid-cols-2 gap-3">
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4"><p class="text-xs font-bold text-brand-600 uppercase mb-1">1)</p><p class="text-slate-700 text-sm">Calculer $\sin\alpha$ et $\tan\alpha$ sachant que $\cos\alpha=\dfrac13$.</p></div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4"><p class="text-xs font-bold text-brand-600 uppercase mb-1">2)</p><p class="text-slate-700 text-sm">Calculer $\sin\alpha$ et $\tan\alpha$ sachant que $\cos\alpha=\dfrac{\sqrt5}{3}$.</p></div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4"><p class="text-xs font-bold text-brand-600 uppercase mb-1">3)</p><p class="text-slate-700 text-sm">Calculer $\cos\alpha$ et $\tan\alpha$ sachant que $\sin\alpha=\dfrac{\sqrt2}{3}$.</p></div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4"><p class="text-xs font-bold text-brand-600 uppercase mb-1">4)</p><p class="text-slate-700 text-sm">Calculer $\sin\alpha$ et $\tan\alpha$ sachant que $\cos\alpha=\dfrac{\sqrt3}{5}$.</p></div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4"><p class="text-xs font-bold text-brand-600 uppercase mb-1">5)</p><p class="text-slate-700 text-sm">Calculer $\sin\alpha$ et $\cos\alpha$ sachant que $\tan\alpha=\sqrt6$.</p></div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4"><p class="text-xs font-bold text-brand-600 uppercase mb-1">6)</p><p class="text-slate-700 text-sm">Calculer $\sin\alpha$ et $\cos\alpha$ sachant que $\tan\alpha=\sqrt{11}$.</p></div>
+          </div>
+
+          <button onclick="toggleCorrection('sol-2', this)" aria-expanded="false" aria-controls="sol-2"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <div id="sol-2" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-4">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+            <p class="text-slate-700 text-sm">On utilise à chaque fois $\sin^2\alpha=1-\cos^2\alpha$ (ou $\cos^2\alpha=1-\sin^2\alpha$), avec $\sin\alpha>0$ et $\cos\alpha>0$ car $\alpha$ est aigu, puis $\tan\alpha=\dfrac{\sin\alpha}{\cos\alpha}$.</p>
+
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="bg-white rounded-lg border border-emerald-300 p-4">
+                <p class="font-semibold text-slate-800 mb-1">1) $\cos\alpha=\dfrac13$</p>
+                <p class="text-slate-700 text-sm">$\sin^2\alpha=1-\dfrac19=\dfrac89 \Rightarrow \sin\alpha=\dfrac{2\sqrt2}{3}$</p>
+                <p class="text-slate-700 text-sm">$\tan\alpha=\dfrac{2\sqrt2/3}{1/3}=2\sqrt2$</p>
+              </div>
+              <div class="bg-white rounded-lg border border-emerald-300 p-4">
+                <p class="font-semibold text-slate-800 mb-1">2) $\cos\alpha=\dfrac{\sqrt5}{3}$</p>
+                <p class="text-slate-700 text-sm">$\sin^2\alpha=1-\dfrac59=\dfrac49 \Rightarrow \sin\alpha=\dfrac23$</p>
+                <p class="text-slate-700 text-sm">$\tan\alpha=\dfrac{2/3}{\sqrt5/3}=\dfrac{2\sqrt5}{5}$</p>
+              </div>
+              <div class="bg-white rounded-lg border border-emerald-300 p-4">
+                <p class="font-semibold text-slate-800 mb-1">3) $\sin\alpha=\dfrac{\sqrt2}{3}$</p>
+                <p class="text-slate-700 text-sm">$\cos^2\alpha=1-\dfrac29=\dfrac79 \Rightarrow \cos\alpha=\dfrac{\sqrt7}{3}$</p>
+                <p class="text-slate-700 text-sm">$\tan\alpha=\dfrac{\sqrt2/3}{\sqrt7/3}=\dfrac{\sqrt{14}}{7}$</p>
+              </div>
+              <div class="bg-white rounded-lg border border-emerald-300 p-4">
+                <p class="font-semibold text-slate-800 mb-1">4) $\cos\alpha=\dfrac{\sqrt3}{5}$</p>
+                <p class="text-slate-700 text-sm">$\sin^2\alpha=1-\dfrac{3}{25}=\dfrac{22}{25} \Rightarrow \sin\alpha=\dfrac{\sqrt{22}}{5}$</p>
+                <p class="text-slate-700 text-sm">$\tan\alpha=\dfrac{\sqrt{22}/5}{\sqrt3/5}=\dfrac{\sqrt{66}}{3}$</p>
+              </div>
+              <div class="bg-white rounded-lg border border-emerald-300 p-4">
+                <p class="font-semibold text-slate-800 mb-1">5) $\tan\alpha=\sqrt6$</p>
+                <p class="text-slate-700 text-sm">$1+\tan^2\alpha=\dfrac{1}{\cos^2\alpha}\Rightarrow\cos^2\alpha=\dfrac{1}{7} \Rightarrow \cos\alpha=\dfrac{\sqrt7}{7}$</p>
+                <p class="text-slate-700 text-sm">$\sin^2\alpha=1-\dfrac17=\dfrac67 \Rightarrow \sin\alpha=\dfrac{\sqrt{42}}{7}$</p>
+              </div>
+              <div class="bg-white rounded-lg border border-emerald-300 p-4">
+                <p class="font-semibold text-slate-800 mb-1">6) $\tan\alpha=\sqrt{11}$</p>
+                <p class="text-slate-700 text-sm">$\cos^2\alpha=\dfrac{1}{1+11}=\dfrac{1}{12} \Rightarrow \cos\alpha=\dfrac{\sqrt3}{6}$</p>
+                <p class="text-slate-700 text-sm">$\sin^2\alpha=1-\dfrac1{12}=\dfrac{11}{12} \Rightarrow \sin\alpha=\dfrac{\sqrt{33}}{6}$</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 03 -->
+      <article id="ex3" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">3</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Exercice 03</h3>
+            <span class="text-xs font-semibold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full">Angles complémentaires</span>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">Calculer :</p>
+          <div class="grid sm:grid-cols-3 gap-3">
+            <p class="bg-slate-50 border border-slate-200 rounded-lg py-3 px-3 text-center text-sm">$A=\cos^235^\circ+\sin^233^\circ+\sin^235^\circ+\cos^233^\circ$</p>
+            <p class="bg-slate-50 border border-slate-200 rounded-lg py-3 px-3 text-center text-sm">$B=\cos^215^\circ+\cos^275^\circ-2\tan35^\circ\times\tan55^\circ$</p>
+            <p class="bg-slate-50 border border-slate-200 rounded-lg py-3 px-3 text-center text-sm">$C=\sin25^\circ-\sin65^\circ+\cos25^\circ-\cos65^\circ$</p>
+          </div>
+
+          <button onclick="toggleCorrection('sol-3', this)" aria-expanded="false" aria-controls="sol-3"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <div id="sol-3" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-4">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800">Calcul de $A$</p>
+              <p class="text-slate-700 text-sm mt-1">On regroupe : $A=\left(\cos^235^\circ+\sin^235^\circ\right)+\left(\sin^233^\circ+\cos^233^\circ\right)=1+1$</p>
+              <p class="mt-2 text-center bg-emerald-50 inline-block px-4 py-1.5 rounded-lg border border-emerald-300 font-bold text-emerald-700">$A=2$</p>
+            </div>
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800">Calcul de $B$</p>
+              <p class="text-slate-700 text-sm mt-1">$15^\circ+75^\circ=90^\circ \Rightarrow \cos75^\circ=\sin15^\circ$, donc $\cos^215^\circ+\cos^275^\circ=\cos^215^\circ+\sin^215^\circ=1$.</p>
+              <p class="text-slate-700 text-sm mt-1">$35^\circ+55^\circ=90^\circ \Rightarrow \tan55^\circ=\dfrac{1}{\tan35^\circ}$, donc $\tan35^\circ\times\tan55^\circ=1$.</p>
+              <p class="text-slate-700 text-sm mt-1">D'où $B=1-2\times1=1-2$</p>
+              <p class="mt-2 text-center bg-emerald-50 inline-block px-4 py-1.5 rounded-lg border border-emerald-300 font-bold text-emerald-700">$B=-1$</p>
+            </div>
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800">Calcul de $C$</p>
+              <p class="text-slate-700 text-sm mt-1">$25^\circ+65^\circ=90^\circ \Rightarrow \sin65^\circ=\cos25^\circ$ et $\cos65^\circ=\sin25^\circ$.</p>
+              <p class="text-slate-700 text-sm mt-1">D'où $C=\sin25^\circ-\cos25^\circ+\cos25^\circ-\sin25^\circ$</p>
+              <p class="mt-2 text-center bg-emerald-50 inline-block px-4 py-1.5 rounded-lg border border-emerald-300 font-bold text-emerald-700">$C=0$</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 04 -->
+      <article id="ex4" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">4</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Exercice 04</h3>
+            <span class="text-xs font-semibold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full">Simplification</span>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">$\alpha$ est un angle aigu. Simplifier :</p>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <p class="bg-slate-50 border border-slate-200 rounded-lg py-3 px-3 text-center text-sm">$A=(\cos\alpha+\sin\alpha)^2+(\cos\alpha-\sin\alpha)^2$</p>
+            <p class="bg-slate-50 border border-slate-200 rounded-lg py-3 px-3 text-center text-sm">$B=2\cos^2\alpha+3\sin^2\alpha-2$</p>
+            <p class="bg-slate-50 border border-slate-200 rounded-lg py-3 px-3 text-center text-sm">$C=\dfrac{1}{1+\cos\alpha}+\dfrac{1}{1-\cos\alpha}-\dfrac{2}{\sin^2\alpha}$</p>
+            <p class="bg-slate-50 border border-slate-200 rounded-lg py-3 px-3 text-center text-sm">$D=\sin\alpha\sqrt{1-\cos\alpha}\sqrt{1+\cos\alpha}+\cos\alpha\sqrt{1+\sin\alpha}\sqrt{1-\sin\alpha}$</p>
+          </div>
+
+          <button onclick="toggleCorrection('sol-4', this)" aria-expanded="false" aria-controls="sol-4"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <div id="sol-4" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-4">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800">$A=(\cos\alpha+\sin\alpha)^2+(\cos\alpha-\sin\alpha)^2$</p>
+              <p class="text-slate-700 text-sm mt-1">En développant les identités remarquables : $A=\left(\cos^2\alpha+2\sin\alpha\cos\alpha+\sin^2\alpha\right)+\left(\cos^2\alpha-2\sin\alpha\cos\alpha+\sin^2\alpha\right)=2\cos^2\alpha+2\sin^2\alpha=2\left(\cos^2\alpha+\sin^2\alpha\right)$</p>
+              <p class="mt-2 text-center bg-emerald-50 inline-block px-4 py-1.5 rounded-lg border border-emerald-300 font-bold text-emerald-700">$A=2$</p>
+            </div>
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800">$B=2\cos^2\alpha+3\sin^2\alpha-2$</p>
+              <p class="text-slate-700 text-sm mt-1">$B=2\left(\cos^2\alpha+\sin^2\alpha\right)+\sin^2\alpha-2=2+\sin^2\alpha-2$</p>
+              <p class="mt-2 text-center bg-emerald-50 inline-block px-4 py-1.5 rounded-lg border border-emerald-300 font-bold text-emerald-700">$B=\sin^2\alpha$</p>
+            </div>
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800">$C=\dfrac{1}{1+\cos\alpha}+\dfrac{1}{1-\cos\alpha}-\dfrac{2}{\sin^2\alpha}$</p>
+              <p class="text-slate-700 text-sm mt-1">Au même dénominateur : $\dfrac{(1-\cos\alpha)+(1+\cos\alpha)}{(1+\cos\alpha)(1-\cos\alpha)}=\dfrac{2}{1-\cos^2\alpha}=\dfrac{2}{\sin^2\alpha}$, donc $C=\dfrac{2}{\sin^2\alpha}-\dfrac{2}{\sin^2\alpha}$</p>
+              <p class="mt-2 text-center bg-emerald-50 inline-block px-4 py-1.5 rounded-lg border border-emerald-300 font-bold text-emerald-700">$C=0$</p>
+            </div>
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800">$D=\sin\alpha\sqrt{1-\cos\alpha}\sqrt{1+\cos\alpha}+\cos\alpha\sqrt{1+\sin\alpha}\sqrt{1-\sin\alpha}$</p>
+              <p class="text-slate-700 text-sm mt-1">$\sqrt{1-\cos\alpha}\sqrt{1+\cos\alpha}=\sqrt{1-\cos^2\alpha}=\sqrt{\sin^2\alpha}=\sin\alpha$ (car $\sin\alpha>0$), de même $\sqrt{1+\sin\alpha}\sqrt{1-\sin\alpha}=\sqrt{\cos^2\alpha}=\cos\alpha$.</p>
+              <p class="text-slate-700 text-sm mt-1">D'où $D=\sin\alpha\times\sin\alpha+\cos\alpha\times\cos\alpha=\sin^2\alpha+\cos^2\alpha$</p>
+              <p class="mt-2 text-center bg-emerald-50 inline-block px-4 py-1.5 rounded-lg border border-emerald-300 font-bold text-emerald-700">$D=1$</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 05 -->
+      <article id="ex5" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">5</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Exercice 05</h3>
+            <span class="text-xs font-semibold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full">Démonstration</span>
+          </div>
+          <p class="text-slate-600 leading-relaxed">$\alpha$ est un angle aigu. Montrer que :</p>
+          <p class="mt-4 text-center bg-slate-50 border border-slate-200 rounded-lg py-4 px-3 text-lg">$\cos^2\alpha=\dfrac{1}{1+\tan^2\alpha}$</p>
+
+          <button onclick="toggleCorrection('sol-5', this)" aria-expanded="false" aria-controls="sol-5"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <div id="sol-5" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-3">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+            <p class="text-slate-700 leading-relaxed">Comme $\alpha$ est aigu, $\cos\alpha\neq0$ et $\tan\alpha=\dfrac{\sin\alpha}{\cos\alpha}$ est bien défini. Partons du membre de droite :</p>
+            <p class="text-center eq-chip text-slate-800 bg-white rounded-lg border border-emerald-300 py-2">$1+\tan^2\alpha=1+\dfrac{\sin^2\alpha}{\cos^2\alpha}=\dfrac{\cos^2\alpha+\sin^2\alpha}{\cos^2\alpha}$</p>
+            <p class="text-slate-700 leading-relaxed">Or $\cos^2\alpha+\sin^2\alpha=1$, donc :</p>
+            <p class="text-center eq-chip text-slate-800 bg-white rounded-lg border border-emerald-300 py-2">$1+\tan^2\alpha=\dfrac{1}{\cos^2\alpha}$</p>
+            <p class="text-slate-700 leading-relaxed">En prenant l'inverse des deux membres (tous deux non nuls) :</p>
+            <p class="mt-1 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">$\dfrac{1}{1+\tan^2\alpha}=\cos^2\alpha$</p>
+            <p class="text-slate-700 leading-relaxed">D'où l'égalité demandée. $\blacksquare$</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 06 -->
+      <article id="ex6" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">6</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Exercice 06</h3>
+            <span class="text-xs font-semibold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full">Problème — bissectrice &amp; Thalès</span>
+          </div>
+          <p class="text-slate-600 leading-relaxed">
+            Soit $ABC$ un triangle rectangle et isocèle en $A$ tel que $AB=x$. La bissectrice intérieure de l'angle
+            $\widehat{ABC}$ coupe la droite $(AC)$ en point $D$. La parallèle à $(BD)$ passant par le point $A$ coupe
+            la droite $(BC)$ en point $E$.
+          </p>
+
+          <div class="mt-5 grid sm:grid-cols-2 gap-6 items-center">
+            <div class="bg-slate-50 rounded-xl border border-slate-200 p-4 flex justify-center">
+              <svg viewBox="0 0 540 500" class="config-fig max-w-sm">
+                <line x1="90" y1="70" x2="499" y2="462" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="5,4"/>
+                <line x1="90" y1="300" x2="330" y2="300" stroke="#334155" stroke-width="2.2"/>
+                <line x1="90" y1="300" x2="90" y2="70" stroke="#334155" stroke-width="2.2"/>
+                <line x1="330" y1="300" x2="90" y2="70" stroke="#4f46e5" stroke-width="2.4"/>
+                <line x1="330" y1="300" x2="90" y2="205" stroke="#f59e0b" stroke-width="2.2" stroke-dasharray="6,4"/>
+                <line x1="90" y1="300" x2="499" y2="462" stroke="#10b981" stroke-width="2.2" stroke-dasharray="6,4"/>
+                <rect x="90" y="288" width="12" height="12" fill="none" stroke="#334155" stroke-width="2"/>
+                <circle cx="90" cy="70" r="4" fill="#1e293b"/>
+                <circle cx="90" cy="300" r="4" fill="#1e293b"/>
+                <circle cx="330" cy="300" r="4" fill="#1e293b"/>
+                <circle cx="90" cy="205" r="4.5" fill="#f59e0b"/>
+                <circle cx="499" cy="462" r="4.5" fill="#10b981"/>
+                <text x="76" y="60" text-anchor="middle" font-weight="700" font-size="17" fill="#1e293b">C</text>
+                <text x="74" y="322" text-anchor="middle" font-weight="700" font-size="17" fill="#1e293b">A</text>
+                <text x="345" y="308" font-weight="700" font-size="17" fill="#1e293b">B</text>
+                <text x="72" y="209" text-anchor="middle" font-weight="700" font-size="15" fill="#b45309">D</text>
+                <text x="512" y="466" font-weight="700" font-size="15" fill="#047857">E</text>
+                <text x="200" y="290" text-anchor="middle" font-size="13" fill="#64748b" font-style="italic">x</text>
+                <text x="60" y="185" text-anchor="middle" font-size="13" fill="#64748b" font-style="italic" transform="rotate(-90 60 185)">x</text>
+              </svg>
+            </div>
+            <div class="space-y-2.5 text-sm">
+              <div class="flex gap-2.5 items-start"><span class="shrink-0 w-2.5 h-2.5 rounded-full bg-brand-600 mt-1.5"></span><span class="text-slate-700">$(BC)$ : hypoténuse</span></div>
+              <div class="flex gap-2.5 items-start"><span class="shrink-0 w-2.5 h-2.5 rounded-full bg-accent-500 mt-1.5"></span><span class="text-slate-700">$(BD)$ : bissectrice de $\widehat{ABC}$</span></div>
+              <div class="flex gap-2.5 items-start"><span class="shrink-0 w-2.5 h-2.5 rounded-full bg-emerald-500 mt-1.5"></span><span class="text-slate-700">$(AE)$ : parallèle à $(BD)$</span></div>
+              <div class="flex gap-2.5 items-start"><span class="shrink-0 w-2.5 h-2.5 rounded-full bg-slate-300 mt-1.5"></span><span class="text-slate-700">$(CE)$ : droite $(BC)$ prolongée</span></div>
+              <p class="text-xs text-slate-400 italic pt-1">Figure illustrative, non à l'échelle.</p>
+            </div>
+          </div>
+
+          <ol class="mt-5 space-y-2">
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">1</span><span class="text-slate-700">Montrer que $DC=\dfrac{x\sqrt2}{\sqrt2+1}$.</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">2</span><span class="text-slate-700">Calculer en fonction de $x$ les distances $AD$ et $BD$.</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">3</span><span class="text-slate-700">Déduire $\cos(22{,}5^\circ)$ et $\sin(22{,}5^\circ)$.</span></li>
+          </ol>
+
+          <button onclick="toggleCorrection('sol-6', this)" aria-expanded="false" aria-controls="sol-6"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <div id="sol-6" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-4">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">1) Montrons que $DC=\dfrac{x\sqrt2}{\sqrt2+1}$</p>
+              <p class="text-slate-700 text-sm leading-relaxed">$ABC$ est rectangle isocèle en $A$ avec $AB=AC=x$, donc par Pythagore $BC=x\sqrt2$, et $\widehat{ABC}=\widehat{ACB}=45^\circ$. La bissectrice $(BD)$ partage $\widehat{ABC}$ en deux angles de $22{,}5^\circ$ : $\widehat{ABD}=\widehat{DBC}=22{,}5^\circ$.</p>
+              <p class="text-slate-700 text-sm leading-relaxed mt-1">Comme $(AE)\parallel(BD)$ : les angles alternes-internes (sécante $(AB)$) donnent $\widehat{BAE}=\widehat{ABD}$, et les angles correspondants (sécante $(BC)$) donnent $\widehat{AEB}=\widehat{DBC}$. Or $\widehat{ABD}=\widehat{DBC}$, donc $\widehat{BAE}=\widehat{AEB}$ : le triangle $ABE$ est isocèle en $B$, d'où $BE=AB=x$.</p>
+              <p class="text-slate-700 text-sm leading-relaxed mt-1">Dans le triangle $CEA$, on a $D\in(CA)$, $B\in(CE)$ et $(BD)\parallel(EA)$. D'après le théorème de Thalès : $\dfrac{CD}{CA}=\dfrac{CB}{CE}$. Or $CE=CB+BE=x\sqrt2+x=x(\sqrt2+1)$, donc :</p>
+              <p class="text-center bg-emerald-50 rounded-lg border border-emerald-300 py-2 mt-1">$\dfrac{CD}{x}=\dfrac{x\sqrt2}{x(\sqrt2+1)}=\dfrac{\sqrt2}{\sqrt2+1}$</p>
+              <p class="mt-2 text-center bg-emerald-50 inline-block px-4 py-1.5 rounded-lg border border-emerald-300 font-bold text-emerald-700">$DC=\dfrac{x\sqrt2}{\sqrt2+1}$ ✓</p>
+            </div>
+
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">2) Distances $AD$ et $BD$</p>
+              <p class="text-slate-700 text-sm leading-relaxed">En rationalisant, $DC=\dfrac{x\sqrt2}{\sqrt2+1}=\dfrac{x\sqrt2(\sqrt2-1)}{1}=x(2-\sqrt2)$. Donc $AD=AC-DC=x-x(2-\sqrt2)=x(\sqrt2-1)$.</p>
+              <p class="mt-2 text-center bg-emerald-50 inline-block px-4 py-1.5 rounded-lg border border-emerald-300 font-bold text-emerald-700">$AD=x(\sqrt2-1)$</p>
+              <p class="text-slate-700 text-sm leading-relaxed mt-2">Le triangle $ABD$ est rectangle en $A$ (car $D\in(AC)$). D'après Pythagore : $BD^2=AB^2+AD^2=x^2+x^2(\sqrt2-1)^2=x^2\left[1+(3-2\sqrt2)\right]=x^2(4-2\sqrt2)$.</p>
+              <p class="mt-2 text-center bg-emerald-50 inline-block px-4 py-1.5 rounded-lg border border-emerald-300 font-bold text-emerald-700">$BD=x\sqrt{4-2\sqrt2}$</p>
+            </div>
+
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">3) Déduction de $\cos(22{,}5^\circ)$ et $\sin(22{,}5^\circ)$</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Dans le triangle $ABD$ rectangle en $A$, $\widehat{ABD}=22{,}5^\circ$, donc $\cos(22{,}5^\circ)=\dfrac{AB}{BD}=\dfrac{1}{\sqrt{4-2\sqrt2}}$. En élevant au carré puis en multipliant par le conjugué $(4+2\sqrt2)$ :</p>
+              <p class="text-center bg-emerald-50 rounded-lg border border-emerald-300 py-2 mt-1">$\cos^2(22{,}5^\circ)=\dfrac{1}{4-2\sqrt2}=\dfrac{4+2\sqrt2}{(4-2\sqrt2)(4+2\sqrt2)}=\dfrac{4+2\sqrt2}{8}=\dfrac{2+\sqrt2}{4}$</p>
+              <p class="text-slate-700 text-sm leading-relaxed">De même $\sin(22{,}5^\circ)=\dfrac{AD}{BD}$, et $\sin^2(22{,}5^\circ)=\dfrac{(\sqrt2-1)^2}{4-2\sqrt2}=\dfrac{3-2\sqrt2}{4-2\sqrt2}=\dfrac{2-\sqrt2}{4}$ (même méthode).</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Comme $22{,}5^\circ$ est aigu, cosinus et sinus sont positifs :</p>
+              <p class="mt-2 text-center bg-emerald-50 inline-block px-5 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">$\cos(22{,}5^\circ)=\dfrac{\sqrt{2+\sqrt2}}{2}\approx0,924$ &nbsp;&nbsp; $\sin(22{,}5^\circ)=\dfrac{\sqrt{2-\sqrt2}}{2}\approx0,383$</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 07 -->
+      <article id="ex7" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">7</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Exercice 07</h3>
+            <span class="text-xs font-semibold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full">Problème concret</span>
+          </div>
+          <p class="text-slate-600 leading-relaxed">Déterminer la hauteur $EC$ (l'arbre est planté au point $E$, à la verticale).</p>
+
+          <div class="mt-5 bg-slate-50 rounded-xl border border-slate-200 p-4 flex justify-center">
+            <svg viewBox="0 0 480 320" class="config-fig max-w-md">
+              <line x1="40" y1="270" x2="440" y2="270" stroke="#334155" stroke-width="2.2"/>
+              <line x1="60" y1="270" x2="400" y2="60" stroke="#4f46e5" stroke-width="2.2"/>
+              <line x1="180" y1="270" x2="400" y2="60" stroke="#4f46e5" stroke-width="2.2"/>
+              <line x1="400" y1="270" x2="400" y2="60" stroke="#16a34a" stroke-width="4"/>
+              <circle cx="400" cy="72" r="26" fill="#86efac" fill-opacity="0.55" stroke="#16a34a" stroke-width="1.5"/>
+              <rect x="392" y="256" width="12" height="12" fill="none" stroke="#334155" stroke-width="2"/>
+              <circle cx="60" cy="270" r="4.5" fill="#f59e0b"/>
+              <circle cx="180" cy="270" r="4.5" fill="#f59e0b"/>
+              <circle cx="400" cy="270" r="4" fill="#1e293b"/>
+              <circle cx="400" cy="60" r="4" fill="#1e293b"/>
+              <text x="60" y="292" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">B</text>
+              <text x="180" y="292" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">A</text>
+              <text x="404" y="292" font-weight="700" font-size="16" fill="#1e293b">E</text>
+              <text x="416" y="56" font-weight="700" font-size="16" fill="#1e293b">C</text>
+              <text x="120" y="290" text-anchor="middle" font-size="13" fill="#64748b" font-style="italic">30 m</text>
+              <text x="88" y="255" text-anchor="middle" font-size="13.5" fill="#4338ca" font-weight="600">29°</text>
+              <text x="205" y="255" text-anchor="middle" font-size="13.5" fill="#4338ca" font-weight="600">43°</text>
+            </svg>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 justify-center">
+            <span class="chip">$BA=30$ m</span>
+            <span class="chip">$\widehat{CBE}=29^\circ$</span>
+            <span class="chip">$\widehat{CAE}=43^\circ$</span>
+            <span class="chip">$(CE)\perp(BE)$</span>
+          </div>
+
+          <button onclick="toggleCorrection('sol-7', this)" aria-expanded="false" aria-controls="sol-7"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <div id="sol-7" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-3">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+            <p class="text-slate-700 leading-relaxed">Notons $EC=h$ et $AE=d$. Les points $B$, $A$, $E$ sont alignés avec $BE=BA+AE=30+d$.</p>
+            <p class="text-slate-700 leading-relaxed">Le triangle $AEC$ est rectangle en $E$ : $\tan43^\circ=\dfrac{EC}{AE}=\dfrac{h}{d}$, donc $h=d\tan43^\circ$.</p>
+            <p class="text-slate-700 leading-relaxed">Le triangle $BEC$ est rectangle en $E$ : $\tan29^\circ=\dfrac{EC}{BE}=\dfrac{h}{d+30}$, donc $h=(d+30)\tan29^\circ$.</p>
+            <p class="text-slate-700 leading-relaxed">En égalant les deux expressions de $h$ :</p>
+            <p class="text-center eq-chip text-slate-800 bg-white rounded-lg border border-emerald-300 py-2">$d\tan43^\circ=(d+30)\tan29^\circ \;\Longrightarrow\; d=\dfrac{30\tan29^\circ}{\tan43^\circ-\tan29^\circ}$</p>
+            <p class="text-slate-700 leading-relaxed">Numériquement : $\tan29^\circ\approx0,554$ et $\tan43^\circ\approx0,933$, donc $d\approx\dfrac{30\times0,554}{0,933-0,554}\approx44,0$ m.</p>
+            <p class="text-slate-700 leading-relaxed">D'où $h=d\times\tan43^\circ\approx44,0\times0,933\approx41,0$ m.</p>
+            <p class="mt-2 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">$EC\approx41,0$ m</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 08 -->
+      <article id="ex8" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">8</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Exercice 08</h3>
+            <span class="text-xs font-semibold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full">Problème — figure composée</span>
+          </div>
+          <p class="text-slate-600 leading-relaxed">
+            On donne $BD=4$ cm ; $BA=6$ cm et $\widehat{DBC}=60^\circ$, avec $D$, $B$, $A$ alignés et $(DC)\perp(DA)$.
+            On ne demande pas de faire une figure en vraie grandeur.
+          </p>
+
+          <div class="mt-5 grid sm:grid-cols-2 gap-6 items-center">
+            <div class="bg-slate-50 rounded-xl border border-slate-200 p-4 flex justify-center">
+              <svg viewBox="0 0 460 260" class="config-fig max-w-sm">
+                <line x1="60" y1="220" x2="420" y2="220" stroke="#334155" stroke-width="2.2"/>
+                <line x1="60" y1="220" x2="60" y2="40" stroke="#334155" stroke-width="2.2"/>
+                <line x1="60" y1="40" x2="180" y2="220" stroke="#4f46e5" stroke-width="2.4"/>
+                <line x1="60" y1="40" x2="420" y2="220" stroke="#94a3b8" stroke-width="2.2"/>
+                <rect x="60" y="208" width="12" height="12" fill="none" stroke="#334155" stroke-width="2"/>
+                <circle cx="60" cy="40" r="4" fill="#1e293b"/>
+                <circle cx="60" cy="220" r="4" fill="#1e293b"/>
+                <circle cx="180" cy="220" r="4" fill="#1e293b"/>
+                <circle cx="420" cy="220" r="4" fill="#1e293b"/>
+                <text x="46" y="36" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">C</text>
+                <text x="46" y="240" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">D</text>
+                <text x="180" y="240" text-anchor="middle" font-weight="700" font-size="16" fill="#1e293b">B</text>
+                <text x="432" y="240" font-weight="700" font-size="16" fill="#1e293b">A</text>
+                <text x="120" y="240" text-anchor="middle" font-size="13" fill="#64748b" font-style="italic">4 cm</text>
+                <text x="300" y="240" text-anchor="middle" font-size="13" fill="#64748b" font-style="italic">6 cm</text>
+                <text x="130" y="205" text-anchor="middle" font-size="13.5" fill="#4338ca" font-weight="600">60°</text>
+              </svg>
+            </div>
+            <div class="flex flex-wrap gap-2 content-start">
+              <span class="chip">$BD=4$ cm</span>
+              <span class="chip">$BA=6$ cm</span>
+              <span class="chip">$\widehat{DBC}=60^\circ$</span>
+              <span class="chip">$\widehat{BDC}=90^\circ$</span>
+            </div>
+          </div>
+
+          <ol class="mt-5 space-y-2">
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">1</span><span class="text-slate-700">Montrer que $BC=8$ cm.</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">2</span><span class="text-slate-700">Calculer $CD$. Donner la valeur arrondie au dixième.</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">3</span><span class="text-slate-700">Calculer $AC$.</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">4</span><span class="text-slate-700">Quelle est la valeur de $\tan\widehat{BAC}$ ?</span></li>
+            <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white text-xs font-bold flex items-center justify-center mt-0.5">5</span><span class="text-slate-700">En déduire la valeur arrondie au degré de $\widehat{BAC}$.</span></li>
+          </ol>
+
+          <button onclick="toggleCorrection('sol-8', this)" aria-expanded="false" aria-controls="sol-8"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <div id="sol-8" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-4">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">1) $BC=8$ cm</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Le triangle $BDC$ est rectangle en $D$, avec $\widehat{DBC}=60^\circ$ et $BD$ adjacent à cet angle : $\cos\widehat{DBC}=\dfrac{BD}{BC}$, donc $BC=\dfrac{BD}{\cos60^\circ}=\dfrac{4}{1/2}=8$ cm. ✓</p>
+            </div>
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">2) Calcul de $CD$</p>
+              <p class="text-slate-700 text-sm leading-relaxed">$\sin\widehat{DBC}=\dfrac{CD}{BC}\Rightarrow CD=BC\times\sin60^\circ=8\times\dfrac{\sqrt3}{2}=4\sqrt3$</p>
+              <p class="mt-2 text-center bg-emerald-50 inline-block px-4 py-1.5 rounded-lg border border-emerald-300 font-bold text-emerald-700">$CD=4\sqrt3\approx6,9$ cm</p>
+            </div>
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">3) Calcul de $AC$</p>
+              <p class="text-slate-700 text-sm leading-relaxed">$D$, $B$, $A$ sont alignés, donc $DA=DB+BA=4+6=10$ cm, et comme $(DC)\perp(DA)$, le triangle $DCA$ est rectangle en $D$. D'après Pythagore : $AC^2=DA^2+DC^2=10^2+\left(4\sqrt3\right)^2=100+48=148$.</p>
+              <p class="mt-2 text-center bg-emerald-50 inline-block px-4 py-1.5 rounded-lg border border-emerald-300 font-bold text-emerald-700">$AC=\sqrt{148}=2\sqrt{37}\approx12,2$ cm</p>
+            </div>
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">4) Valeur de $\tan\widehat{BAC}$</p>
+              <p class="text-slate-700 text-sm leading-relaxed">Comme $B\in[DA]$, les demi-droites $[AB)$ et $[AD)$ sont confondues, donc $\widehat{BAC}=\widehat{DAC}$. Dans le triangle $DCA$ rectangle en $D$ : $\tan\widehat{DAC}=\dfrac{DC}{DA}=\dfrac{4\sqrt3}{10}$</p>
+              <p class="mt-2 text-center bg-emerald-50 inline-block px-4 py-1.5 rounded-lg border border-emerald-300 font-bold text-emerald-700">$\tan\widehat{BAC}=\dfrac{2\sqrt3}{5}\approx0,693$</p>
+            </div>
+            <div class="bg-white rounded-lg border border-emerald-300 p-4">
+              <p class="font-semibold text-slate-800 mb-1">5) Valeur arrondie de $\widehat{BAC}$</p>
+              <p class="text-slate-700 text-sm leading-relaxed">À la calculatrice : $\widehat{BAC}=\arctan(0,693\ldots)\approx34,7^\circ$.</p>
+              <p class="mt-2 text-center bg-emerald-50 inline-block px-4 py-1.5 rounded-lg border border-emerald-300 font-bold text-emerald-700">$\widehat{BAC}\approx35^\circ$</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 09 -->
+      <article id="ex9" class="reveal scroll-mt-24 bg-white rounded-2xl border border-slate-200 shadow-soft overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="w-9 h-9 rounded-full bg-brand-600 text-white font-display font-bold flex items-center justify-center shrink-0">9</span>
+            <h3 class="font-display font-bold text-xl text-slate-900">Exercice 09</h3>
+            <span class="text-xs font-semibold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-full">Démonstration — inégalité</span>
+          </div>
+          <p class="text-slate-600 leading-relaxed">Soient $a$ et $b$ deux nombres réels. $\alpha$ est un angle aigu. Montrer que :</p>
+          <p class="mt-4 text-center bg-slate-50 border border-slate-200 rounded-lg py-4 px-3 text-lg">$(a\times\sin\alpha+b\times\cos\alpha)^2\leqslant a^2+b^2$</p>
+
+          <button onclick="toggleCorrection('sol-9', this)" aria-expanded="false" aria-controls="sol-9"
+            class="corr-btn mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
+            <svg class="btn-icon w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+        </div>
+
+        <div id="sol-9" class="hidden px-6 sm:px-8 pb-8">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5 sm:p-6 space-y-3">
+            <p class="font-bold text-emerald-800 flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16Zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5Z" clip-rule="evenodd"/></svg>Correction</p>
+            <p class="text-slate-700 leading-relaxed">Il suffit de montrer que la différence $a^2+b^2-(a\sin\alpha+b\cos\alpha)^2$ est positive ou nulle. Développons :</p>
+            <p class="text-center eq-chip text-slate-800 bg-white rounded-lg border border-emerald-300 py-2">$(a\sin\alpha+b\cos\alpha)^2=a^2\sin^2\alpha+2ab\sin\alpha\cos\alpha+b^2\cos^2\alpha$</p>
+            <p class="text-slate-700 leading-relaxed">Donc, en utilisant $\sin^2\alpha=1-\cos^2\alpha$ et $\cos^2\alpha=1-\sin^2\alpha$ :</p>
+            <div class="bg-white rounded-lg border border-emerald-300 p-4 text-sm text-slate-700 space-y-1.5">
+              <p>$a^2+b^2-(a\sin\alpha+b\cos\alpha)^2$</p>
+              <p>$=a^2+b^2-a^2\sin^2\alpha-2ab\sin\alpha\cos\alpha-b^2\cos^2\alpha$</p>
+              <p>$=a^2(1-\sin^2\alpha)+b^2(1-\cos^2\alpha)-2ab\sin\alpha\cos\alpha$</p>
+              <p>$=a^2\cos^2\alpha+b^2\sin^2\alpha-2ab\sin\alpha\cos\alpha$</p>
+              <p>$=(a\cos\alpha-b\sin\alpha)^2$</p>
+            </div>
+            <p class="text-slate-700 leading-relaxed">Un carré étant toujours positif ou nul : $(a\cos\alpha-b\sin\alpha)^2\geqslant0$, donc $a^2+b^2-(a\sin\alpha+b\cos\alpha)^2\geqslant0$.</p>
+            <p class="mt-1 text-center bg-white inline-block px-4 py-2 rounded-lg border border-emerald-300 font-bold text-emerald-700">$(a\sin\alpha+b\cos\alpha)^2\leqslant a^2+b^2$</p>
+            <p class="text-slate-700 leading-relaxed">avec égalité si et seulement si $a\cos\alpha=b\sin\alpha$. $\blacksquare$</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- CTA récap -->
+    <div class="reveal mt-14 bg-gradient-to-br from-brand-600 to-brand-800 rounded-2xl p-8 sm:p-10 text-center shadow-soft">
+      <h3 class="font-display font-bold text-2xl text-white">Bravo, vous avez terminé les exercices !</h3>
+      <p class="mt-2 text-brand-100 max-w-xl mx-auto">Relisez les définitions du cosinus, du sinus et de la tangente autant de fois que nécessaire — c'est en pratiquant sur des figures variées qu'on les retient le mieux.</p>
+      <a href="#trigonometrie" class="mt-6 inline-flex items-center gap-2 bg-white text-brand-700 font-bold px-6 py-3 rounded-full shadow-lg hover:bg-brand-50 transition-colors">
+        Revoir le cours
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-slate-950 text-slate-400">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid sm:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="flex items-center gap-2.5">
+          <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-10 h-10 shrink-0 rounded-full">
+          <span class="font-display font-bold text-white leading-tight">
+            <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-accent-400">Mathématiques</span>
+          </span>
+        </a>
+        <p class="mt-3 text-sm leading-relaxed">Cours de mathématiques — Niveau 3ème APIC / Collège. Triangle rectangle et trigonométrie : cosinus, sinus, tangente, formules et exercices corrigés.</p>
+        <a href="/" class="mt-3 inline-block text-sm font-semibold text-accent-400 hover:text-accent-300">← Retour au portail</a>
+      </div>
+      <div>
+        <p class="font-semibold text-white text-sm uppercase tracking-wide mb-3">Sommaire</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#cosinus" class="hover:text-white transition-colors">Cosinus</a></li>
+          <li><a href="#sinus" class="hover:text-white transition-colors">Sinus</a></li>
+          <li><a href="#tangente" class="hover:text-white transition-colors">Tangente</a></li>
+          <li><a href="#formules" class="hover:text-white transition-colors">Formules trigonométriques</a></li>
+          <li><a href="#angles-particuliers" class="hover:text-white transition-colors">Angles particuliers</a></li>
+          <li><a href="#exercices" class="hover:text-white transition-colors">Exercices corrigés</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white text-sm uppercase tracking-wide mb-3">Exercices</p>
+        <ul class="space-y-2 text-sm grid grid-cols-2 gap-x-4">
+          <li><a href="#ex1" class="hover:text-white transition-colors">Exercice 01</a></li>
+          <li><a href="#ex2" class="hover:text-white transition-colors">Exercice 02</a></li>
+          <li><a href="#ex3" class="hover:text-white transition-colors">Exercice 03</a></li>
+          <li><a href="#ex4" class="hover:text-white transition-colors">Exercice 04</a></li>
+          <li><a href="#ex5" class="hover:text-white transition-colors">Exercice 05</a></li>
+          <li><a href="#ex6" class="hover:text-white transition-colors">Exercice 06</a></li>
+          <li><a href="#ex7" class="hover:text-white transition-colors">Exercice 07</a></li>
+          <li><a href="#ex8" class="hover:text-white transition-colors">Exercice 08</a></li>
+          <li><a href="#ex9" class="hover:text-white transition-colors">Exercice 09</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-10 pt-6 border-t border-slate-800 text-xs text-slate-500 flex flex-col sm:flex-row justify-between gap-2">
+      <p>Contenu pédagogique basé sur le cours du Collège Mhamed 9 (3ème APIC).</p>
+      <p>Page réalisée pour un usage pédagogique.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut"
+  class="hidden fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-brand-600 hover:bg-brand-700 text-white shadow-lg items-center justify-center transition-colors">
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+</button>
+
+<script>
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const burger = document.getElementById('icon-burger');
+    const close = document.getElementById('icon-close');
+    const btn = document.getElementById('menu-btn');
+    const isHidden = menu.classList.contains('hidden');
+    menu.classList.toggle('hidden');
+    burger.classList.toggle('hidden');
+    close.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobile-menu').classList.add('hidden');
+    document.getElementById('icon-burger').classList.remove('hidden');
+    document.getElementById('icon-close').classList.add('hidden');
+    document.getElementById('menu-btn').setAttribute('aria-expanded', 'false');
+  }
+
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  function toggleCorrection(id, btn) {
+    const panel = document.getElementById(id);
+    const isHidden = panel.classList.contains('hidden');
+    const label = btn.querySelector('.btn-label');
+    const icon = btn.querySelector('.btn-icon');
+
+    panel.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+
+    if (isHidden) {
+      label.textContent = label.textContent.includes('solution') ? 'Masquer la solution' : 'Masquer la correction';
+      icon.classList.add('rotate-180');
+      btn.classList.remove('bg-accent-500', 'hover:bg-accent-600');
+      btn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+      setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
+    } else {
+      label.textContent = label.textContent.includes('solution') ? 'Voir la solution' : 'Voir la correction';
+      icon.classList.remove('rotate-180');
+      btn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
+      btn.classList.add('bg-accent-500', 'hover:bg-accent-600');
+    }
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Back to top visibility
+  const backBtn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 500) {
+      backBtn.classList.remove('hidden');
+      backBtn.classList.add('flex');
+    } else {
+      backBtn.classList.add('hidden');
+      backBtn.classList.remove('flex');
+    }
+  }, { passive: true });
+
+  // Rendu KaTeX
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

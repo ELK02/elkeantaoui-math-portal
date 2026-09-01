@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Triangle Rectangle et Cercle — 2ème Année Collège</title>
+<meta name="description" content="Cours complet et exercices corrigés sur le triangle rectangle et le cercle circonscrit, le théorème de Pythagore et le cosinus, pour la 2ème année collège (APIC).">
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          brand: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da', 400: '#6089bd',
+            500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63', 800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+          accent: {
+            50: '#fffbeb',
+            100: '#fef3c7',
+            200: '#fde68a',
+            300: '#fcd34d',
+            400: '#fbbf24',
+            500: '#f59e0b',
+            600: '#d97706',
+            700: '#b45309',
+          }
+        }
+      }
+    }
+  }
+</script>
+
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- MathJax for clean math rendering -->
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Poppins', sans-serif; }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .chevron { transform: rotate(180deg); }
+  .chevron { transition: transform 0.3s ease; }
+  details .correction-panel {
+    animation: fadeSlide 0.35s ease;
+  }
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .def-box {
+    border-left: 4px solid #f59e0b;
+    background: #fffbeb;
+  }
+  .prop-box {
+    border-left: 4px solid #2c5089;
+    background: #eef3fb;
+  }
+  .thm-box {
+    border-left: 4px solid #16a34a;
+    background: #f0fdf4;
+  }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #f1f5f9; }
+  ::-webkit-scrollbar-thumb { background: #8fb0da; border-radius: 10px; }
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -4px;
+    width: 0; height: 2px;
+    background: #f59e0b;
+    transition: width 0.25s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
+  .dark .bg-amber-50, .dark .bg-accent-50 { background-color: #3a2a0a; }
+  .dark .border-amber-400, .dark .border-accent-200 { border-color: #92400e; }
+  .dark .prop-box { background-color: #12294c; border-left-color: #3f6a9c; }
+  .dark .def-box { background-color: #3a2a0a; border-left-color: #b45309; }
+  .dark .thm-box { background-color: #0d2818; border-left-color: #16a34a; }
+  .dark ::-webkit-scrollbar-track { background: #0b1f3a; }
+  .dark ::-webkit-scrollbar-thumb { background: #1c3a63; }
+</style>
+</head>
+
+<body class="bg-slate-50 dark:bg-[#071528] text-slate-800 antialiased">
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#accueil" class="flex items-center gap-2 font-bold text-brand-700 dark:text-white text-lg">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-9 h-9 shrink-0 rounded-full">
+        <span class="hidden sm:inline">Triangle&nbsp;Rectangle&nbsp;&amp;&nbsp;Cercle</span>
+        <span class="sm:hidden">Tri.&nbsp;&amp;&nbsp;Cercle</span>
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="/" class="nav-link hover:text-brand-700 dark:hover:text-white">← Portail</a>
+        <a href="#accueil" class="nav-link hover:text-brand-700 dark:hover:text-white">Accueil</a>
+        <a href="#cours" class="nav-link hover:text-brand-700 dark:hover:text-white">Cours</a>
+        <a href="#exercices" class="nav-link hover:text-brand-700 dark:hover:text-white">Exercices</a>
+        <a href="#exercices" class="ml-2 px-4 py-2 rounded-full bg-brand-600 text-white hover:bg-brand-700 transition">Commencer</a>
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-brand-700 dark:hover:text-accent-400 transition-colors">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </div>
+      <div class="flex items-center gap-1 md:hidden">
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+        <button id="menuBtn" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5" aria-label="Ouvrir le menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-slate-700 dark:text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden pb-4 flex flex-col gap-3 text-sm font-medium text-slate-600 dark:text-slate-300">
+      <a href="/" class="hover:text-brand-700 dark:hover:text-white">← Portail</a>
+      <a href="#accueil" class="hover:text-brand-700 dark:hover:text-white">Accueil</a>
+      <a href="#cours" class="hover:text-brand-700 dark:hover:text-white">Cours</a>
+      <a href="#exercices" class="hover:text-brand-700 dark:hover:text-white">Exercices</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-brand-700 via-brand-600 to-accent-500 text-white">
+  <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_20%,white,transparent_35%),radial-gradient(circle_at_80%_60%,white,transparent_30%)]"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 grid md:grid-cols-2 gap-10 items-center relative">
+    <div>
+      <span class="inline-block px-4 py-1.5 rounded-full bg-white/15 text-xs sm:text-sm font-semibold tracking-wide backdrop-blur-sm mb-5">
+        Collège Mhamed 9 · 2ème année APIC
+      </span>
+      <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight mb-4">
+        Triangle Rectangle et Cercle
+      </h1>
+      <p class="text-brand-100 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
+        Milieu de l'hypoténuse, cercle circonscrit, théorème de Pythagore et cosinus d'un angle aigu : le cours complet, illustré de figures et d'exemples, suivi de 7 exercices entièrement corrigés.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#cours" class="px-6 py-3 rounded-full bg-white text-brand-700 font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition">
+          Consulter le cours
+        </a>
+        <a href="#exercices" class="px-6 py-3 rounded-full bg-accent-500 hover:bg-accent-600 font-semibold shadow-lg hover:-translate-y-0.5 transition">
+          S'entraîner — Exercices
+        </a>
+      </div>
+    </div>
+    <div class="relative">
+      <div class="rounded-3xl shadow-2xl ring-4 ring-white/20 w-full h-72 sm:h-96 bg-gradient-to-br from-brand-800/60 to-accent-500/40 backdrop-blur-sm flex items-center justify-center overflow-hidden">
+        <svg viewBox="0 0 320 260" class="w-full h-full p-6 sm:p-10">
+          <circle cx="160" cy="130" r="105" fill="none" stroke="white" stroke-width="2.5" opacity="0.85"/>
+          <polygon points="80,55 260,95 105,222" fill="white" fill-opacity="0.08" stroke="white" stroke-width="3"/>
+          <path d="M80,55 L98,73 L118,64" fill="none" stroke="white" stroke-width="2.5"/>
+          <circle cx="160" cy="130" r="4" fill="white"/>
+          <circle cx="80" cy="55" r="4.5" fill="white"/>
+          <circle cx="260" cy="95" r="4.5" fill="white"/>
+          <circle cx="105" cy="222" r="4.5" fill="white"/>
+          <text x="65" y="48" font-size="17" font-weight="700" fill="white">A</text>
+          <text x="272" y="90" font-size="17" font-weight="700" fill="white">B</text>
+          <text x="95" y="242" font-size="17" font-weight="700" fill="white">C</text>
+          <text x="163" y="150" font-size="14" font-weight="600" fill="white" opacity="0.9">O</text>
+        </svg>
+      </div>
+      <div class="absolute -bottom-6 -left-6 bg-white text-slate-800 rounded-2xl shadow-xl px-5 py-4 hidden sm:block">
+        <p class="text-xs text-slate-500 font-medium">Théorème de Pythagore</p>
+        <p class="font-semibold text-brand-700">\(BC^2=AB^2+AC^2\)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+
+<!-- ============ COURS ============ -->
+<section id="cours" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+  <div class="text-center max-w-2xl mx-auto mb-14">
+    <span class="text-accent-600 font-semibold tracking-wide text-sm uppercase">Cours</span>
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Triangle Rectangle et Cercle</h2>
+    <p class="text-slate-500 mt-4">Trois grandes parties : le triangle rectangle et son cercle circonscrit, le théorème de Pythagore, et le cosinus d'un angle aigu.</p>
+  </div>
+
+  <!-- I. TRIANGLE RECTANGLE ET CERCLE -->
+  <article id="partie1" class="mb-16">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-brand-600 text-white font-bold">I</span>
+      <h3 class="text-2xl font-bold text-slate-900">Triangle rectangle et cercle</h3>
+    </div>
+
+    <!-- 1) Milieu de l'hypoténuse -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 mb-6">
+      <h4 class="text-lg font-bold text-brand-700 mb-4">1) Milieu de l'hypoténuse d'un triangle rectangle</h4>
+      <div class="grid lg:grid-cols-3 gap-6 items-center">
+        <div class="lg:col-span-2 space-y-4">
+          <div class="prop-box rounded-r-xl p-4 text-sm sm:text-base">
+            <p class="font-semibold text-brand-700 mb-1">Propriété</p>
+            <p>Le milieu de l'hypoténuse d'un triangle rectangle est <strong>équidistant</strong> de ses sommets.</p>
+          </div>
+          <div class="text-sm sm:text-base">
+            <p class="font-semibold text-slate-700 mb-1">Exemple :</p>
+            <p>\(ABC\) est un triangle rectangle en \(A\), et \(I\) le milieu du segment \([BC]\).</p>
+            <p class="mt-1">Donc : \(IA=IB=IC\)</p>
+          </div>
+          <div class="prop-box rounded-r-xl p-4 text-sm sm:text-base">
+            <p class="font-semibold text-brand-700 mb-1">Propriété réciproque</p>
+            <p>\(ABC\) est un triangle et \(I\) le milieu du segment \([BC]\).</p>
+            <p class="mt-1">Si \(IA=IB=IC\) alors \(ABC\) est un triangle rectangle en \(A\).</p>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <svg viewBox="0 0 300 240" class="w-full max-w-[260px]">
+            <polygon points="150,30 270,190 40,170" fill="none" stroke="#334155" stroke-width="2.5"/>
+            <path d="M150,30 L165,52 L143,58 Z" fill="none" stroke="#334155" stroke-width="2"/>
+            <line x1="150" y1="30" x2="155" y2="180" stroke="#4f46e5" stroke-width="2.5"/>
+            <circle cx="155" cy="180" r="3.5" fill="#4f46e5"/>
+            <text x="150" y="20" text-anchor="middle" font-size="16" font-weight="600" fill="#0f172a">A</text>
+            <text x="25" y="175" text-anchor="middle" font-size="16" font-weight="600" fill="#0f172a">C</text>
+            <text x="282" y="195" text-anchor="middle" font-size="16" font-weight="600" fill="#0f172a">B</text>
+            <text x="155" y="200" text-anchor="middle" font-size="15" font-weight="600" fill="#4f46e5">I</text>
+            <line x1="90" y1="175" x2="100" y2="173" stroke="#334155" stroke-width="1.5"/>
+            <line x1="93" y1="180" x2="103" y2="178" stroke="#334155" stroke-width="1.5"/>
+            <line x1="210" y1="181" x2="220" y2="184" stroke="#334155" stroke-width="1.5"/>
+            <line x1="207" y1="186" x2="217" y2="189" stroke="#334155" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2) Cercle circonscrit -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8">
+      <h4 class="text-lg font-bold text-brand-700 mb-4">2) Cercle circonscrit à un triangle rectangle</h4>
+      <div class="grid lg:grid-cols-3 gap-6 items-center">
+        <div class="lg:col-span-2 space-y-4">
+          <div class="prop-box rounded-r-xl p-4 text-sm sm:text-base">
+            <p class="font-semibold text-brand-700 mb-1">Propriété</p>
+            <p>Si un triangle est rectangle, alors le milieu de l'hypoténuse est le centre de son <strong>cercle circonscrit</strong>.</p>
+          </div>
+          <div class="text-sm sm:text-base">
+            <p class="font-semibold text-slate-700 mb-1">Exemple :</p>
+            <p>\(ABC\) est un triangle rectangle en \(A\), et \(I\) le milieu du segment \([BC]\).</p>
+            <p class="mt-1">Donc : \(IA=IB=IC\), alors \(I\) est le centre du cercle circonscrit au triangle \(ABC\).</p>
+          </div>
+          <div class="prop-box rounded-r-xl p-4 text-sm sm:text-base">
+            <p class="font-semibold text-brand-700 mb-1">Propriété réciproque</p>
+            <p>Si le milieu d'un côté d'un triangle est le centre de son cercle circonscrit, alors ce triangle est rectangle et a pour hypoténuse ce côté.</p>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <svg viewBox="0 0 260 260" class="w-full max-w-[240px]">
+            <circle cx="130" cy="130" r="95" fill="none" stroke="#4f46e5" stroke-width="2"/>
+            <polygon points="90,45 214,150 42,140" fill="none" stroke="#334155" stroke-width="2.5"/>
+            <path d="M90,45 L104,64 L82,71 Z" fill="none" stroke="#334155" stroke-width="2"/>
+            <circle cx="130" cy="130" r="3.5" fill="#4f46e5"/>
+            <text x="90" y="35" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">A</text>
+            <text x="27" y="140" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">C</text>
+            <text x="228" y="155" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">B</text>
+            <text x="130" y="150" text-anchor="middle" font-size="14" font-weight="600" fill="#4f46e5">I</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- II. THEOREME DE PYTHAGORE -->
+  <article id="partie2" class="mb-16">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-brand-600 text-white font-bold">II</span>
+      <h3 class="text-2xl font-bold text-slate-900">Théorème de Pythagore</h3>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 space-y-5 text-sm sm:text-base">
+        <div class="thm-box rounded-r-xl p-4">
+          <p class="font-semibold text-green-700 mb-1">Théorème</p>
+          <p>Si un triangle est <em>rectangle</em> alors le <em>carré</em> de la longueur de <em>l'hypoténuse</em> est <em>égal à la somme des carrés</em> des longueurs des <em>deux autres côtés</em>.</p>
+        </div>
+
+        <div>
+          <p class="font-semibold text-brand-700 mb-2">Exemple : \(ABC\) est un triangle rectangle en \(A\) tel que \(AB=8\ cm\) ; \(AC=6\ cm\). Calculer \(BC\).</p>
+          <p>➜ On a : \(ABC\) est un triangle rectangle en \(A\).</p>
+          <p>Donc, d'après le théorème de Pythagore : \(BC^2=AB^2+AC^2\)</p>
+          <p>C'est-à-dire : \(BC^2=8^2+6^2\)</p>
+          <p>C'est-à-dire : \(BC^2=64+36\)</p>
+          <p>C'est-à-dire : \(BC^2=100\)</p>
+          <p>C'est-à-dire : \(BC^2=10^2\) (car \(BC>0\))</p>
+          <p class="font-semibold">Donc : \(BC=10\ cm\)</p>
+        </div>
+
+        <div class="border-t border-slate-100 pt-4">
+          <p class="font-semibold text-accent-700 mb-1">Remarque</p>
+          <p>\(ABC\) est un triangle rectangle en \(A\) :</p>
+          <p>Donc \(AB^2=BC^2-AC^2\) &nbsp;et&nbsp; \(AC^2=BC^2-AB^2\)</p>
+        </div>
+      </div>
+
+      <div class="flex justify-center items-center bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+        <svg viewBox="0 0 240 220" class="w-full max-w-[220px]">
+          <polygon points="120,30 210,190 30,190" fill="none" stroke="#334155" stroke-width="2.5"/>
+          <path d="M120,30 L133,50 L113,57 Z" fill="none" stroke="#334155" stroke-width="2"/>
+          <text x="120" y="20" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">A</text>
+          <text x="18" y="205" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">B</text>
+          <text x="222" y="205" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">C</text>
+          <text x="65" y="105" text-anchor="middle" font-size="13" fill="#4f46e5">8 cm</text>
+          <text x="180" y="105" text-anchor="middle" font-size="13" fill="#4f46e5">6 cm</text>
+          <text x="120" y="212" text-anchor="middle" font-size="13" fill="#ea580c">10 cm</text>
+        </svg>
+      </div>
+    </div>
+  </article>
+
+  <!-- III. COSINUS D'UN ANGLE AIGU -->
+  <article id="partie3">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-10 h-10 flex items-center justify-center rounded-xl bg-brand-600 text-white font-bold">III</span>
+      <h3 class="text-2xl font-bold text-slate-900">Cosinus d'un angle aigu</h3>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 space-y-5 text-sm sm:text-base">
+        <div class="def-box rounded-r-xl p-4">
+          <p class="font-semibold text-accent-700 mb-1">Définition</p>
+          <p>Le cosinus d'un angle aigu est le <em>quotient</em> de la <em>longueur du côté adjacent</em> à cet angle par <em>la longueur de l'hypoténuse</em>.</p>
+        </div>
+
+        <div>
+          <p class="font-semibold text-brand-700 mb-2">Exemple : \(ABC\) est un triangle rectangle en \(C\) tel que : \(AC=3\ cm\) et \(AB=5\ cm\).</p>
+          <p class="text-center py-2">\[\cos\widehat{A}=\dfrac{\text{Côté adjacent à l'angle }\widehat{A}}{\text{L'hypoténuse}}=\dfrac{AC}{AB}=\dfrac{3}{5}\]</p>
+        </div>
+
+        <div class="border-t border-slate-100 pt-4">
+          <p class="font-semibold text-accent-700 mb-1">Remarque</p>
+          <p>Puisque l'hypoténuse est le plus grand côté d'un triangle rectangle, alors le cosinus d'un angle aigu est compris entre \(0\) et \(1\).</p>
+        </div>
+      </div>
+
+      <div class="flex justify-center items-center bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+        <svg viewBox="0 0 240 220" class="w-full max-w-[220px]">
+          <polygon points="35,175 225,60 190,175" fill="none" stroke="#334155" stroke-width="2.5"/>
+          <path d="M190,175 L177,163 L165,175 Z" fill="none" stroke="#334155" stroke-width="2"/>
+          <path d="M62,170 A 30 30 0 0 1 55,150" fill="none" stroke="#f97316" stroke-width="2"/>
+          <text x="25" y="190" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">A</text>
+          <text x="232" y="60" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">B</text>
+          <text x="198" y="195" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">C</text>
+          <text x="115" y="108" text-anchor="middle" font-size="12" fill="#4f46e5">Hypoténuse</text>
+          <text x="118" y="192" text-anchor="middle" font-size="12" fill="#4f46e5">Côté adjacent</text>
+        </svg>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ EXERCICES ============ -->
+<section id="exercices" class="bg-gradient-to-b from-slate-100 to-slate-50 border-t border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="text-accent-600 font-semibold tracking-wide text-sm uppercase">S'entraîner</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Exercices — Triangle Rectangle et Cercle</h2>
+      <p class="text-slate-500 mt-4">Cliquez sur « Voir la correction » pour vérifier chaque exercice.</p>
+    </div>
+
+    <div class="space-y-8">
+
+      <!-- EXERCICE 1 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">1</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 1</h3>
+          </div>
+          <div class="grid lg:grid-cols-3 gap-6 items-center bg-slate-50 rounded-xl p-4 sm:p-5">
+            <div class="lg:col-span-2 text-sm sm:text-base space-y-3">
+              <p>\(ABC\) est un triangle rectangle en \(A\), tel que \(BC=5\ cm\). \(O\) est le milieu de \([BC]\).</p>
+              <p><strong>a.</strong> Quel est le centre du cercle circonscrit à ce triangle (citer la propriété) ?</p>
+              <p><strong>b.</strong> En déduire l'égalité de 3 longueurs.</p>
+              <p><strong>c.</strong> Combien mesure le segment \([AO]\) ? Expliquer.</p>
+            </div>
+            <div class="flex justify-center">
+              <svg viewBox="0 0 220 190" class="w-full max-w-[190px]">
+                <polygon points="120,25 200,140 30,120" fill="none" stroke="#334155" stroke-width="2.2"/>
+                <path d="M120,25 L133,44 L112,50 Z" fill="none" stroke="#334155" stroke-width="1.8"/>
+                <line x1="120" y1="25" x2="115" y2="130" stroke="#4f46e5" stroke-width="2"/>
+                <circle cx="115" cy="130" r="3" fill="#4f46e5"/>
+                <text x="120" y="15" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">A</text>
+                <text x="18" y="128" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">C</text>
+                <text x="212" y="145" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">B</text>
+                <text x="112" y="148" text-anchor="middle" font-size="13" font-weight="600" fill="#4f46e5">O</text>
+                <text x="75" y="132" text-anchor="middle" font-size="11" fill="#64748b">5 cm</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-3">
+            <p><strong>a.</strong> <strong>PUISQUE</strong> \(ABC\) est un triangle rectangle en \(A\) et \(O\) est le milieu de l'hypoténuse \([BC]\),</p>
+            <p><strong>ALORS</strong> \(O\) est le centre du cercle circonscrit au triangle \(ABC\) (le milieu de l'hypoténuse d'un triangle rectangle est le centre de son cercle circonscrit).</p>
+            <p><strong>b.</strong> \(OA=OB=OC\)</p>
+            <p><strong>c.</strong> \(O\) étant le centre du cercle circonscrit, \(OA\) est un rayon, donc \(OA=OB=OC=\dfrac{BC}{2}=\dfrac{5}{2}=2{,}5\ cm\).</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 2 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">2</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 2</h3>
+          </div>
+          <div class="grid lg:grid-cols-3 gap-6 items-center bg-slate-50 rounded-xl p-4 sm:p-5">
+            <div class="lg:col-span-2 text-sm sm:text-base">
+              <p>\(DEF\) est un triangle rectangle en \(E\). Le point \(I\) est le milieu de l'hypoténuse. La médiane \([EI]\) mesure \(5\ cm\).</p>
+              <p class="mt-2">Combien mesure l'hypoténuse ? Expliquer.</p>
+            </div>
+            <div class="flex justify-center">
+              <svg viewBox="0 0 220 160" class="w-full max-w-[190px]">
+                <polygon points="30,20 30,140 200,140" fill="none" stroke="#334155" stroke-width="2.2"/>
+                <path d="M30,120 L50,120 L50,140" fill="none" stroke="#334155" stroke-width="1.8"/>
+                <line x1="30" y1="20" x2="115" y2="140" stroke="#4f46e5" stroke-width="2"/>
+                <circle cx="115" cy="140" r="3" fill="#4f46e5"/>
+                <text x="18" y="18" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">F</text>
+                <text x="18" y="150" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">E</text>
+                <text x="210" y="150" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">D</text>
+                <text x="105" y="115" text-anchor="middle" font-size="13" font-weight="600" fill="#4f46e5">I</text>
+                <text x="55" y="90" text-anchor="middle" font-size="11" fill="#64748b">5 cm</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-2">
+            <p>➜ On a : \(DEF\) est un triangle rectangle en \(E\) et \(I\) est le milieu de l'hypoténuse \([DF]\).</p>
+            <p>Donc, d'après la propriété du milieu de l'hypoténuse : \(EI=DI=FI=\dfrac{DF}{2}\)</p>
+            <p>C'est-à-dire : \(DF=2\times EI=2\times5\)</p>
+            <p class="font-semibold">Donc : \(DF=10\ cm\)</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 3 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">3</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 3</h3>
+          </div>
+          <div class="grid lg:grid-cols-3 gap-6 items-center bg-slate-50 rounded-xl p-4 sm:p-5">
+            <div class="lg:col-span-2 text-sm sm:text-base space-y-2">
+              <p>\(O\) est le milieu d'un segment \([IJ]\) et \(K\) est un point du plan tel que \(OK=OJ\).</p>
+              <p>On veut démontrer que le triangle \(IJK\) est rectangle en \(K\).</p>
+              <p><strong>a.</strong> Placer les points \(O\) et \(K\).</p>
+              <p><strong>b.</strong> Pourquoi les points \(I\), \(J\) et \(K\) appartiennent-ils au même cercle ?</p>
+              <p><strong>c.</strong> Citer la caractérisation d'un triangle rectangle appliquée à cet énoncé.</p>
+            </div>
+            <div class="flex justify-center">
+              <svg viewBox="0 0 220 120" class="w-full max-w-[190px]">
+                <line x1="20" y1="30" x2="200" y2="95" stroke="#334155" stroke-width="2"/>
+                <text x="12" y="25" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">I</text>
+                <text x="210" y="100" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">J</text>
+                <circle cx="20" cy="30" r="2.5" fill="#334155"/>
+                <circle cx="200" cy="95" r="2.5" fill="#334155"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-3">
+            <p><strong>a.</strong> \(O\) est placé au milieu de \([IJ]\). \(K\) est un point tel que \(OK=OJ\) : il se trouve donc sur le cercle de centre \(O\) et de rayon \(OJ\).</p>
+            <p><strong>b.</strong> \(O\) est le milieu de \([IJ]\) donc \(OI=OJ\). Or \(OK=OJ\) (donné). Donc \(OI=OJ=OK\) : les points \(I\), \(J\) et \(K\) sont à la même distance de \(O\), ils appartiennent donc au même cercle, de centre \(O\) et de rayon \(OI=OJ=OK\).</p>
+            <p><strong>c.</strong> <strong>PUISQUE</strong> \(O\) est le milieu de \([IJ]\) et \(O\) est équidistant de \(I\), \(J\) et \(K\) (\(OI=OJ=OK\)),</p>
+            <p><strong>ALORS</strong> le triangle \(IJK\) est rectangle en \(K\), d'hypoténuse \([IJ]\) (propriété réciproque : si le milieu d'un côté d'un triangle est le centre de son cercle circonscrit, alors ce triangle est rectangle et a pour hypoténuse ce côté).</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 4 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">4</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 4</h3>
+          </div>
+          <div class="bg-slate-50 rounded-xl p-4 sm:p-5 text-sm sm:text-base">
+            <p>\(DEF\) est un triangle isocèle en \(D\). \(E'\) est le symétrique de \(E\) par rapport à \(D\).</p>
+            <p class="mt-2">Démontrer que le triangle \(EFE'\) est rectangle en \(F\).</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-2">
+            <p>➜ \(E'\) est le symétrique de \(E\) par rapport à \(D\), donc \(D\) est le milieu de \([EE']\).</p>
+            <p>➜ \(DEF\) est isocèle en \(D\), donc \(DE=DF\).</p>
+            <p>➜ \(D\) est le milieu de \([EE']\), donc \(DE=DE'\).</p>
+            <p>➜ On obtient donc : \(DE=DF=DE'\), c'est-à-dire que \(D\) est équidistant des points \(E\), \(F\) et \(E'\).</p>
+            <p><strong>PUISQUE</strong> \(D\) est le milieu de \([EE']\) et \(D\) est équidistant de \(E\), \(F\) et \(E'\),</p>
+            <p><strong>ALORS</strong> le triangle \(EFE'\) est rectangle en \(F\), d'hypoténuse \([EE']\) (propriété réciproque du cercle circonscrit).</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 5 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">5</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 5</h3>
+          </div>
+          <div class="bg-slate-50 rounded-xl p-4 sm:p-5 text-sm sm:text-base space-y-2">
+            <p>\((C)\) est un cercle de centre \(O\). \(A\) et \(M\) sont deux points de \((C)\) non diamétralement opposés. La perpendiculaire en \(M\) à \((AM)\) recoupe \((C)\) en \(B\).</p>
+            <p><strong>a.</strong> Faire une figure.</p>
+            <p><strong>b.</strong> Démontrer que \(O\) est le milieu de \([AB]\).</p>
+            <p>\(N\) est un autre point du cercle \((C)\).</p>
+            <p><strong>c.</strong> Démontrer que \(ANB\) est un triangle rectangle.</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-4">
+            <div class="flex justify-center mb-2">
+              <svg viewBox="0 0 260 220" class="w-full max-w-[240px]">
+                <circle cx="130" cy="110" r="95" fill="none" stroke="#4f46e5" stroke-width="2"/>
+                <circle cx="130" cy="110" r="2.5" fill="#4f46e5"/>
+                <text x="130" y="100" text-anchor="middle" font-size="12" fill="#4f46e5">O</text>
+                <polygon points="60,60 190,70 90,205" fill="none" stroke="#334155" stroke-width="2"/>
+                <path d="M90,190 L104,193 L107,179" fill="none" stroke="#334155" stroke-width="1.8"/>
+                <circle cx="180" cy="150" r="2.5" fill="#16a34a"/>
+                <line x1="60" y1="60" x2="180" y2="150" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <line x1="90" y1="205" x2="180" y2="150" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <text x="50" y="55" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">A</text>
+                <text x="200" y="68" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">M</text>
+                <text x="85" y="220" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">B</text>
+                <text x="192" y="150" text-anchor="middle" font-size="14" font-weight="600" fill="#16a34a">N</text>
+              </svg>
+            </div>
+            <p><strong>b.</strong> Le triangle \(AMB\) est rectangle en \(M\) car \((BM)\perp(AM)\). Les points \(A\), \(M\), \(B\) appartiennent au cercle \((C)\) de centre \(O\) : \((C)\) est donc le cercle circonscrit au triangle \(AMB\).</p>
+            <p>Or le centre du cercle circonscrit à un triangle rectangle est le milieu de son hypoténuse. Comme le cercle circonscrit à un triangle est unique, \(O\) est donc le milieu de l'hypoténuse \([AB]\).</p>
+            <p><strong>c.</strong> \(O\) est le milieu de \([AB]\) et \(N\) appartient au cercle \((C)\), donc \(ON=OA=OB\) (rayons du cercle).</p>
+            <p>Donc \(O\), milieu de \([AB]\), est équidistant de \(A\), \(N\) et \(B\).</p>
+            <p><strong>ALORS</strong>, d'après la propriété réciproque, le triangle \(ANB\) est rectangle en \(N\).</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 6 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">6</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 6 — Construction</h3>
+          </div>
+          <div class="bg-slate-50 rounded-xl p-4 sm:p-5 text-sm sm:text-base">
+            <p>Sans utiliser l'équerre, construire un triangle \(ABC\) rectangle en \(A\) tel que \(BC=12\ cm\) et \(\widehat{ABC}=45°\).</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-3">
+            <p><strong>Analyse :</strong> le triangle \(ABC\) est rectangle en \(A\), avec \(\widehat{B}=45°\). Donc \(\widehat{C}=180°-90°-45°=45°\) : le triangle est donc isocèle en \(A\) (\(AB=AC\)). Le point \(A\) est ainsi à la fois sur le cercle de diamètre \([BC]\) (Thalès) et sur la médiatrice de \([BC]\).</p>
+            <p class="font-semibold text-brand-700">Programme de construction (règle et compas uniquement) :</p>
+            <ol class="list-decimal list-inside space-y-1.5">
+              <li>Tracer un segment \([BC]\) de longueur \(12\ cm\).</li>
+              <li>Construire la médiatrice de \([BC]\) au compas : elle coupe \([BC]\) en son milieu \(O\).</li>
+              <li>Tracer le cercle de centre \(O\) et de rayon \(OB=6\ cm\) (cercle de diamètre \([BC]\)).</li>
+              <li>La médiatrice de \([BC]\) coupe ce cercle en deux points : choisir l'un d'eux et le nommer \(A\).</li>
+            </ol>
+            <p>Comme \(A\) appartient au cercle de diamètre \([BC]\), le triangle \(ABC\) est rectangle en \(A\) (propriété réciproque). Comme \(A\) appartient à la médiatrice de \([BC]\), on a \(AB=AC\), donc le triangle est isocèle en \(A\) et ses angles \(\widehat{B}\) et \(\widehat{C}\) mesurent chacun \(45°\).</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- EXERCICE 7 -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-100 text-brand-700 font-bold text-sm">7</span>
+            <h3 class="text-xl font-bold text-slate-900">Exercice 7 — Construction</h3>
+          </div>
+          <div class="bg-slate-50 rounded-xl p-4 sm:p-5 text-sm sm:text-base space-y-2">
+            <p><strong>a.</strong> Tracer un segment \([BC]\) de longueur \(6\ cm\).</p>
+            <p><strong>b.</strong> En utilisant la règle graduée et le compas, marquer un point \(A\) tel que le triangle \(ABC\) soit rectangle en \(A\) et tel que \(AB=4\ cm\).</p>
+            <p><strong>c.</strong> Y a-t-il plusieurs emplacements possibles pour le point \(A\) ?</p>
+          </div>
+        </div>
+        <details class="border-t border-slate-100">
+          <summary class="flex items-center justify-between px-6 sm:px-8 py-4 bg-brand-50 hover:bg-brand-100 transition font-semibold text-brand-700">
+            <span class="flex items-center gap-2">✅ Voir la correction</span>
+            <svg class="chevron w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="correction-panel px-6 sm:px-8 py-6 text-sm sm:text-base bg-white space-y-3">
+            <p><strong>b.</strong> Puisque \(ABC\) doit être rectangle en \(A\), le point \(A\) doit appartenir au cercle de diamètre \([BC]\) (propriété réciproque du cercle circonscrit). Puisque \(AB=4\ cm\), \(A\) doit aussi appartenir au cercle de centre \(B\) et de rayon \(4\ cm\).</p>
+            <p class="font-semibold text-brand-700">Programme de construction :</p>
+            <ol class="list-decimal list-inside space-y-1.5">
+              <li>Construire le cercle de diamètre \([BC]\) : centre \(O\) milieu de \([BC]\), rayon \(3\ cm\).</li>
+              <li>Construire le cercle de centre \(B\) et de rayon \(4\ cm\).</li>
+              <li>Les points d'intersection de ces deux cercles donnent les emplacements possibles du point \(A\).</li>
+            </ol>
+            <p>Vérification : \(AB^2+AC^2=BC^2\) donne \(AC^2=6^2-4^2=36-16=20\), donc \(AC=\sqrt{20}\approx4{,}47\ cm\) : la construction est bien possible.</p>
+            <p><strong>c.</strong> Oui : les deux cercles se coupent en <strong>deux points</strong>, symétriques par rapport à la droite \((BC)\). Il y a donc deux emplacements possibles pour \(A\), donnant deux triangles symétriques (donc superposables, isométriques).</p>
+          </div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-slate-900 text-slate-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid sm:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="flex items-center gap-2.5">
+          <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-10 h-10 shrink-0 rounded-full">
+          <span class="font-bold text-white leading-tight">
+            <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-accent-400">Mathématiques</span>
+          </span>
+        </a>
+        <p class="text-sm text-slate-400 mt-3">Cours et exercices corrigés — 2ème année collège (APIC), Collège Mhamed 9.</p>
+        <a href="/" class="mt-3 inline-block text-sm font-semibold text-accent-400 hover:text-accent-300">← Retour au portail</a>
+      </div>
+      <div>
+        <p class="font-semibold text-white mb-3 text-sm">Navigation</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#accueil" class="hover:text-white transition">Accueil</a></li>
+          <li><a href="#cours" class="hover:text-white transition">Cours</a></li>
+          <li><a href="#exercices" class="hover:text-white transition">Exercices</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white mb-3 text-sm">Au programme</p>
+        <ul class="space-y-2 text-sm text-slate-400">
+          <li>Milieu de l'hypoténuse</li>
+          <li>Cercle circonscrit au triangle rectangle</li>
+          <li>Théorème de Pythagore</li>
+          <li>Cosinus d'un angle aigu</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-slate-800 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-400">
+      <p>&copy; 2026 Triangle Rectangle et Cercle — Tous droits réservés.</p>
+      <p class="font-semibold text-white">Prof : LAHBIB ELKEANTAOUI</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+  });
+
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+</script>
+
+</body>
+</html>

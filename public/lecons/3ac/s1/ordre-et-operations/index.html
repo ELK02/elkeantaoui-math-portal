@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Ordre et Opérations — Cours 3ème APIC | Collège Mhamed 9</title>
+<meta name="description" content="Cours complet et interactif sur l'ordre et les opérations : comparaison de deux réels, ordre et addition/soustraction/multiplication/inverse/carré/racine carrée, encadrements. Niveau 3ème APIC — Collège Mhamed 9. Avec 5 exercices corrigés pas à pas.">
+<meta name="theme-color" content="#1e1b4b">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ordre et Opérations — Cours 3ème APIC | Collège Mhamed 9">
+<meta property="og:description" content="Comparaison de réels, ordre et opérations, encadrements — cours illustré et 5 exercices corrigés en un clic.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f46e5'/%3E%3Ctext x='16' y='21.5' font-family='Arial' font-weight='700' font-size='13' fill='white' text-anchor='middle'%3EM9%3C/text%3E%3C/svg%3E">
+
+<!-- Tailwind CSS (CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          heading: ['Lexend', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          indigo: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+        },
+      }
+    }
+  }
+</script>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lexend:wght@600;700;800&display=swap" rel="stylesheet">
+
+<!-- KaTeX (typographie mathématique) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+
+<style>
+  body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+  .font-heading { font-family: 'Lexend', ui-sans-serif, system-ui, sans-serif; }
+  .katex-display { overflow-x: auto; overflow-y: hidden; padding: .35rem .125rem; margin: 0; }
+  .katex { font-size: 1.05em; }
+  ::selection { background: #fde68a; color: #1e1b4b; }
+  #mobile-menu.hidden { display: none; }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
+  .dark .bg-amber-50 { background-color: #3a2a0a; }
+  .dark .border-amber-200, .dark .border-amber-300, .dark .border-amber-400 { border-color: #92400e; }
+  .dark .text-amber-700 { color: #fcd34d; }
+  .dark .bg-sky-50 { background-color: #082234; }
+  .dark .border-sky-200 { border-color: #0e4a63; }
+  .dark .text-sky-900, .dark .text-sky-600 { color: #7dd3fc; }
+  .dark .bg-rose-50 { background-color: #3a0d18; }
+  .dark .border-rose-200 { border-color: #7a2138; }
+  .dark .text-rose-600, .dark .text-rose-700 { color: #fb7185; }
+  .dark .bg-indigo-50 { background-color: #12294c; }
+  .dark .ring-indigo-100 { --tw-ring-color: #1c3a63; }
+  .dark .text-indigo-900, .dark .text-indigo-500 { color: #b8cfec; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased transition-colors">
+
+<a href="#definition" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-indigo-700 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">Aller au contenu principal</a>
+
+<!-- ===================== HEADER ===================== -->
+<header class="sticky top-0 z-50 bg-white/85 dark:bg-[#0b1f3ad9] backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 sm:h-[70px]">
+      <a href="#top" class="flex items-center gap-3 group">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 sm:h-11 sm:w-11 shrink-0 rounded-full">
+        <span class="leading-tight">
+          <span class="block text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-slate-400">Collège Mhamed 9</span>
+          <span class="block text-sm sm:text-base font-heading font-bold text-indigo-950 dark:text-white">Ordre et Opérations</span>
+        </span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-6" aria-label="Navigation principale">
+        <a href="/" class="nav-link text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-indigo-700 dark:hover:text-white transition-colors">← Portail</a>
+        <a href="#comparaison" class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-white transition-colors">Comparaison</a>
+        <a href="#operations" class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-white transition-colors">Ordre &amp; opérations</a>
+        <a href="#encadrements" class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-white transition-colors">Encadrements</a>
+        <a href="#exercices" class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-white transition-colors">Exercices</a>
+        <a href="#memo" class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-white transition-colors">Fiche mémo</a>
+      </nav>
+
+      <div class="hidden lg:flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5 rounded-full bg-indigo-50 dark:bg-indigo-900 px-3 py-1.5 text-xs font-bold text-indigo-700 dark:text-indigo-200 ring-1 ring-indigo-100 dark:ring-indigo-700">3ème APIC</span>
+        <button onclick="window.print()" class="print:hidden inline-flex items-center gap-1.5 rounded-full border border-slate-200 dark:border-slate-700 px-3 py-1.5 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+          Imprimer
+        </button>
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-amber-400 transition-colors">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </div>
+
+      <div class="flex items-center gap-1 lg:hidden">
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+        <button id="menu-btn" aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu" class="inline-flex items-center justify-center h-10 w-10 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5">
+          <svg id="icon-open" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7" stroke-linecap="round"/><line x1="4" y1="12" x2="20" y2="12" stroke-linecap="round"/><line x1="4" y1="17" x2="20" y2="17" stroke-linecap="round"/></svg>
+          <svg id="icon-close" class="hidden h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round"/><line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0b1f3a]">
+    <nav class="flex flex-col px-4 py-3 gap-1" aria-label="Navigation mobile">
+      <a href="/" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-500 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">← Portail</a>
+      <a href="#comparaison" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">Comparaison de deux réels</a>
+      <a href="#operations" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">Ordre et opérations</a>
+      <a href="#encadrements" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">Encadrements</a>
+      <a href="#exercices" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">Exercices</a>
+      <a href="#memo" class="mobile-link px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">Fiche mémo</a>
+      <span class="mt-2 inline-flex w-fit items-center gap-1.5 rounded-full bg-indigo-50 dark:bg-indigo-900 px-3 py-1.5 text-xs font-bold text-indigo-700 dark:text-indigo-200 ring-1 ring-indigo-100 dark:ring-indigo-700">3ème APIC · Semestre 1</span>
+    </nav>
+  </div>
+
+  <div class="h-[3px] w-full bg-slate-100">
+    <div id="scroll-progress" class="h-full w-0 bg-gradient-to-r from-amber-400 via-amber-500 to-indigo-600"></div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- ===================== HERO ===================== -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-indigo-950 via-indigo-900 to-blue-900 text-white">
+    <div class="pointer-events-none absolute -top-24 -left-24 h-96 w-96 rounded-full bg-indigo-500/30 blur-3xl"></div>
+    <div class="pointer-events-none absolute top-1/3 -right-32 h-96 w-96 rounded-full bg-amber-400/20 blur-3xl"></div>
+    <div class="pointer-events-none absolute inset-0 opacity-[0.06]" style="background-image:radial-gradient(circle, #fff 1px, transparent 1px); background-size: 26px 26px;"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20 sm:pt-16 sm:pb-24 lg:pt-20 lg:pb-28">
+      <div class="grid lg:grid-cols-2 gap-14 items-center">
+        <div>
+          <p class="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-amber-300 mb-4">Collège Mhamed 9 · Mathématiques · Semestre 1</p>
+          <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white">Ordre et<br>Opérations</h1>
+          <p class="mt-5 text-base sm:text-lg text-indigo-100 max-w-xl leading-relaxed">
+            Comment comparer deux nombres réels, comment l'ordre se comporte face à l'addition, la multiplication,
+            l'inverse, le carré et la racine carrée, puis comment <strong class="text-white">encadrer</strong> le
+            résultat d'une opération — illustré par des exemples résolus pas à pas.
+          </p>
+
+          <div class="mt-6 flex flex-wrap items-center gap-2.5">
+            <span class="inline-flex items-center rounded-full bg-white/10 backdrop-blur px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-white ring-1 ring-white/20">Niveau 3ème APIC</span>
+            <span class="inline-flex items-center rounded-full bg-white/10 backdrop-blur px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-white ring-1 ring-white/20">Prof. ELK.H</span>
+            <span class="inline-flex items-center rounded-full bg-amber-400 px-3.5 py-1.5 text-xs sm:text-sm font-bold text-indigo-950">Calcul numérique</span>
+          </div>
+
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a href="#comparaison" class="inline-flex items-center gap-2 rounded-xl bg-amber-400 hover:bg-amber-300 px-6 py-3.5 text-sm font-bold text-indigo-950 shadow-lg shadow-amber-900/20 transition-colors">
+              Commencer le cours
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#exercices" class="inline-flex items-center gap-2 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur px-6 py-3.5 text-sm font-bold text-white ring-1 ring-white/25 transition-colors">
+              Voir les exercices corrigés
+            </a>
+          </div>
+
+          <dl class="mt-12 grid grid-cols-3 gap-4 max-w-md border-t border-white/10 pt-6">
+            <div>
+              <dt class="text-2xl sm:text-3xl font-heading font-extrabold text-white">3</dt>
+              <dd class="text-xs text-indigo-200 mt-0.5">Grandes parties</dd>
+            </div>
+            <div>
+              <dt class="text-2xl sm:text-3xl font-heading font-extrabold text-white">9</dt>
+              <dd class="text-xs text-indigo-200 mt-0.5">Propriétés à connaître</dd>
+            </div>
+            <div>
+              <dt class="text-2xl sm:text-3xl font-heading font-extrabold text-white">5</dt>
+              <dd class="text-xs text-indigo-200 mt-0.5">Exercices corrigés</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="relative hidden lg:block">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+            <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80" alt="Tableau noir recouvert de formules mathématiques" class="h-[420px] w-full object-cover" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-indigo-950/70 via-transparent to-transparent"></div>
+          </div>
+          <div class="absolute -bottom-6 -left-8 rounded-2xl bg-white text-indigo-950 shadow-2xl p-5 w-64">
+            <p class="text-xs font-bold uppercase tracking-wide text-indigo-400 mb-1.5">La règle d'or du chapitre</p>
+            <p class="text-center text-lg">$$a-b\geq0 \Longleftrightarrow a\geq b$$</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 text-slate-50 leading-[0]">
+      <svg viewBox="0 0 1440 60" class="w-full h-8 sm:h-12" preserveAspectRatio="none"><path fill="currentColor" d="M0,32L80,28C160,24,320,16,480,18.7C640,21,800,35,960,37.3C1120,40,1280,32,1360,28L1440,24L1440,60L0,60Z"></path></svg>
+    </div>
+  </section>
+
+  <!-- ===================== QUICK NAV CHIPS ===================== -->
+  <div class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 overflow-x-auto">
+      <div class="flex items-center gap-2 w-max sm:w-full sm:flex-wrap">
+        <a href="#comparaison" class="flex-shrink-0 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs sm:text-sm font-semibold text-slate-600 hover:border-indigo-300 hover:text-indigo-700 hover:bg-indigo-50 transition-colors">① Comparaison</a>
+        <a href="#operations" class="flex-shrink-0 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs sm:text-sm font-semibold text-slate-600 hover:border-indigo-300 hover:text-indigo-700 hover:bg-indigo-50 transition-colors">② Ordre &amp; opérations</a>
+        <a href="#encadrements" class="flex-shrink-0 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs sm:text-sm font-semibold text-slate-600 hover:border-indigo-300 hover:text-indigo-700 hover:bg-indigo-50 transition-colors">③ Encadrements</a>
+        <a href="#exercices" class="flex-shrink-0 rounded-full border border-emerald-300 bg-emerald-50 px-4 py-2 text-xs sm:text-sm font-bold text-emerald-700 hover:bg-emerald-100 transition-colors">④ Exercices</a>
+        <a href="#memo" class="flex-shrink-0 rounded-full border border-amber-300 bg-amber-50 px-4 py-2 text-xs sm:text-sm font-bold text-amber-700 hover:bg-amber-100 transition-colors">★ Mémo</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PARTIE 1 : COMPARAISON ===================== -->
+  <section id="comparaison" class="scroll-mt-24 py-16 sm:py-20 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="max-w-2xl mb-14">
+        <p class="text-sm font-bold uppercase tracking-[0.15em] text-indigo-600 mb-3">Partie 01</p>
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">Comparaison de deux nombres réels</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">Toute la comparaison de deux réels repose sur une seule idée&nbsp;: étudier le signe de leur différence.</p>
+      </div>
+
+      <!-- 1a. Règle -->
+      <div id="definition" class="scroll-mt-24 mb-16">
+        <h3 class="font-heading text-xl sm:text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-bold">1</span>
+          La règle
+        </h3>
+        <p class="text-sm text-slate-500 mb-6 ml-11">Pour comparer deux nombres réels, on étudie le signe de leur différence.</p>
+
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-10 mb-6">
+          <p class="text-slate-600 text-sm sm:text-base mb-5">Soient $a$ et $b$ deux nombres réels&nbsp;:</p>
+          <div class="rounded-xl bg-amber-50 ring-1 ring-amber-200 py-6 px-4 sm:px-8 text-center space-y-2">
+            <p class="text-lg sm:text-xl">Si $a-b\geq0$ alors $\boxed{a\geq b}$</p>
+            <p class="text-lg sm:text-xl">Si $a-b\leq0$ alors $\boxed{a\leq b}$</p>
+          </div>
+          <p class="mt-5 text-center text-indigo-700 font-semibold text-sm sm:text-base">C'est-à-dire&nbsp;: pour comparer deux nombres réels, on étudie le signe de leur différence.</p>
+        </div>
+
+        <div class="flex items-start gap-3 rounded-xl bg-sky-50 border border-sky-200 p-4 sm:p-5">
+          <svg class="h-5 w-5 flex-shrink-0 text-sky-600 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11.5" stroke-linecap="round"/><circle cx="12" cy="8.2" r="0.75" fill="currentColor" stroke="none"/></svg>
+          <p class="text-sm text-sky-900"><strong>Remarque&nbsp;:</strong> cette règle reste vraie avec les symboles $\gt$ et $\lt$.</p>
+        </div>
+      </div>
+
+      <!-- 1b. Exemples -->
+      <div id="exemples-comparaison" class="scroll-mt-24">
+        <h3 class="font-heading text-xl sm:text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-600 text-white text-sm font-bold">✓</span>
+          Exemples résolus
+        </h3>
+        <p class="text-sm text-slate-500 mb-6 ml-11">Deux applications directes de la règle du signe de la différence.</p>
+
+        <div class="grid md:grid-cols-2 gap-5">
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6">
+            <p class="text-xs font-bold uppercase tracking-wide text-slate-400 mb-3">Exemple 1</p>
+            <p class="text-slate-700 mb-4">Comparons les nombres $2\sqrt3-4$ et $\sqrt3-5$&nbsp;:</p>
+            <div class="space-y-1.5 text-slate-700 bg-slate-50 rounded-xl p-4">
+              <p>On a&nbsp;: $\left(2\sqrt3-4\right)-\left(\sqrt3-5\right)=2\sqrt3-4-\sqrt3+5$</p>
+              <p>$=\sqrt3+1$</p>
+              <p>Or&nbsp;: $\sqrt3+1\geq0$</p>
+              <p>Donc&nbsp;: $\left(2\sqrt3-4\right)-\left(\sqrt3-5\right)\geq0$</p>
+            </div>
+            <p class="mt-4 text-center bg-white inline-block px-4 py-2 rounded-lg border-2 border-indigo-200 font-bold text-indigo-700">D'où&nbsp;: $2\sqrt3-4\geq\sqrt3-5$</p>
+          </div>
+
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6">
+            <p class="text-xs font-bold uppercase tracking-wide text-slate-400 mb-3">Exemple 2</p>
+            <p class="text-slate-700 mb-4">Comparons les réels $x$ et $y$ tels que $x=y-3$&nbsp;:</p>
+            <div class="space-y-1.5 text-slate-700 bg-slate-50 rounded-xl p-4">
+              <p>On a&nbsp;: $x-y=\left(y-3\right)-y$</p>
+              <p>$=y-3-y$</p>
+              <p>$=-3$</p>
+              <p>Or&nbsp;: $-3\leq0$ &nbsp;&nbsp;Donc&nbsp;: $x-y\leq0$</p>
+            </div>
+            <p class="mt-4 text-center bg-white inline-block px-4 py-2 rounded-lg border-2 border-indigo-200 font-bold text-indigo-700">D'où&nbsp;: $x\leq y$</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== PARTIE 2 : ORDRE ET OPERATIONS ===================== -->
+  <section id="operations" class="scroll-mt-24 py-16 sm:py-20 lg:py-24 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="max-w-2xl mb-14">
+        <p class="text-sm font-bold uppercase tracking-[0.15em] text-indigo-600 mb-3">Partie 02</p>
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">Ordre et opérations</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">Comment une inégalité se transforme lorsqu'on ajoute, multiplie, inverse, met au carré ou prend la racine carrée des deux côtés.</p>
+      </div>
+
+      <!-- 2a. Addition / soustraction -->
+      <div id="addition" class="scroll-mt-24 mb-16">
+        <h3 class="font-heading text-xl sm:text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-bold">2a</span>
+          Ordre et addition, ordre et soustraction
+        </h3>
+        <p class="text-sm text-slate-500 mb-6 ml-11">On peut ajouter (ou soustraire) un même nombre aux deux membres sans changer le sens de l'inégalité.</p>
+
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-10 mb-6">
+          <p class="text-slate-600 text-sm sm:text-base mb-5">Soient $a$, $b$ et $k$ trois nombres réels&nbsp;:</p>
+          <div class="rounded-xl bg-amber-50 ring-1 ring-amber-200 py-6 px-4 sm:px-8 text-center space-y-2">
+            <p class="text-base sm:text-lg">$a\leq b$ équivaut à $a+k\leq b+k$ &nbsp;et&nbsp; $a-k\leq b-k$</p>
+            <p class="text-base sm:text-lg">$a\geq b$ équivaut à $a+k\geq b+k$ &nbsp;et&nbsp; $a-k\geq b-k$</p>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5 mb-6">
+          <div class="rounded-xl bg-slate-50 p-5">
+            <p class="text-slate-700 text-sm mb-2">Soit $x$ tel que $x\leq3$. Comparons $8$ et $x+5$&nbsp;:</p>
+            <p class="text-slate-700 text-sm">On sait que $x\leq3$ signifie que $x+5\leq3+5$.</p>
+            <p class="mt-2 font-bold text-indigo-700 text-center">D'où&nbsp;: $x+5\leq8$</p>
+          </div>
+          <div class="rounded-xl bg-slate-50 p-5">
+            <p class="text-slate-700 text-sm mb-2">Soit $x$ tel que $2x-3\geq x+2$. Montrons que $x\geq5$&nbsp;:</p>
+            <p class="text-slate-700 text-sm">$2x-3+3\geq x+2+3 \Rightarrow 2x\geq x+5 \Rightarrow 2x-x\geq x-x+5$</p>
+            <p class="mt-2 font-bold text-indigo-700 text-center">D'où&nbsp;: $x\geq5$</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3 rounded-xl bg-sky-50 border border-sky-200 p-4 sm:p-5">
+          <svg class="h-5 w-5 flex-shrink-0 text-sky-600 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11.5" stroke-linecap="round"/><circle cx="12" cy="8.2" r="0.75" fill="currentColor" stroke="none"/></svg>
+          <p class="text-sm text-sky-900"><strong>Remarque&nbsp;:</strong> cette propriété reste vraie avec les symboles $\gt$ et $\lt$.</p>
+        </div>
+      </div>
+
+      <!-- 2b. Opposé -->
+      <div id="oppose" class="scroll-mt-24 mb-16">
+        <h3 class="font-heading text-xl sm:text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-bold">2b</span>
+          Ordre et opposé
+        </h3>
+        <p class="text-sm text-slate-500 mb-6 ml-11">Passer à l'opposé <strong>inverse le sens</strong> de l'inégalité.</p>
+
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-10 mb-6">
+          <p class="text-slate-600 text-sm sm:text-base mb-5">Soient $a$ et $b$ deux nombres réels&nbsp;:</p>
+          <div class="rounded-xl bg-amber-50 ring-1 ring-amber-200 py-6 px-4 sm:px-8 text-center space-y-2">
+            <p class="text-base sm:text-lg">$a\leq b$ équivaut à $-a\geq-b$</p>
+            <p class="text-base sm:text-lg">$a\geq b$ équivaut à $-a\leq-b$</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6">
+          <div class="rounded-lg bg-slate-50 px-3 py-4 text-center text-sm">$12\geq9 \Rightarrow -12\leq-9$</div>
+          <div class="rounded-lg bg-slate-50 px-3 py-4 text-center text-sm">$47\geq-213 \Rightarrow -47\leq213$</div>
+          <div class="rounded-lg bg-slate-50 px-3 py-4 text-center text-sm">$-25\leq-2 \Rightarrow 25\geq2$</div>
+          <div class="rounded-lg bg-slate-50 px-3 py-4 text-center text-sm">$-452\leq12 \Rightarrow 452\geq-12$</div>
+        </div>
+
+        <div class="flex items-start gap-3 rounded-xl bg-sky-50 border border-sky-200 p-4 sm:p-5">
+          <svg class="h-5 w-5 flex-shrink-0 text-sky-600 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11.5" stroke-linecap="round"/><circle cx="12" cy="8.2" r="0.75" fill="currentColor" stroke="none"/></svg>
+          <p class="text-sm text-sky-900"><strong>Remarque&nbsp;:</strong> cette propriété reste vraie avec les symboles $\gt$ et $\lt$.</p>
+        </div>
+      </div>
+
+      <!-- 2c. Multiplication -->
+      <div id="multiplication" class="scroll-mt-24 mb-16">
+        <h3 class="font-heading text-xl sm:text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-bold">2c</span>
+          Ordre et multiplication
+        </h3>
+        <p class="text-sm text-slate-500 mb-6 ml-11">Le signe du facteur $k$ décide si l'inégalité garde son sens ou s'inverse.</p>
+
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-10 mb-6">
+          <p class="text-slate-600 text-sm sm:text-base mb-5">Soient $a$, $b$ et $k$ trois nombres réels&nbsp;:</p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="rounded-xl bg-emerald-50 ring-1 ring-emerald-200 py-5 px-4 text-center space-y-2">
+              <p class="text-xs font-bold uppercase text-emerald-600 mb-1">Si $k\gt0$</p>
+              <p class="text-sm sm:text-base">$a\leq b \Rightarrow a\times k\leq b\times k$</p>
+              <p class="text-sm sm:text-base">$a\geq b \Rightarrow a\times k\geq b\times k$</p>
+              <p class="text-xs text-emerald-700 mt-1">le sens ne change pas</p>
+            </div>
+            <div class="rounded-xl bg-rose-50 ring-1 ring-rose-200 py-5 px-4 text-center space-y-2">
+              <p class="text-xs font-bold uppercase text-rose-600 mb-1">Si $k\lt0$</p>
+              <p class="text-sm sm:text-base">$a\leq b \Rightarrow a\times k\geq b\times k$</p>
+              <p class="text-sm sm:text-base">$a\geq b \Rightarrow a\times k\leq b\times k$</p>
+              <p class="text-xs text-rose-700 mt-1">le sens s'inverse</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4 mb-6">
+          <div class="rounded-lg bg-slate-50 px-4 py-4 text-center text-sm sm:text-base">$45\leq100 \Rightarrow 3\times45\leq3\times100 \Rightarrow 135\leq300$</div>
+          <div class="rounded-lg bg-slate-50 px-4 py-4 text-center text-sm sm:text-base">$-15\geq-25 \Rightarrow -15\times(-\sqrt2)\leq-25\times(-\sqrt2) \Rightarrow 15\sqrt2\leq25\sqrt2$</div>
+        </div>
+
+        <div class="flex items-start gap-3 rounded-xl bg-sky-50 border border-sky-200 p-4 sm:p-5">
+          <svg class="h-5 w-5 flex-shrink-0 text-sky-600 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11.5" stroke-linecap="round"/><circle cx="12" cy="8.2" r="0.75" fill="currentColor" stroke="none"/></svg>
+          <p class="text-sm text-sky-900"><strong>Remarque&nbsp;:</strong> cette propriété reste vraie avec les symboles $\gt$ et $\lt$.</p>
+        </div>
+      </div>
+
+      <!-- 2d. Inverse -->
+      <div id="inverse" class="scroll-mt-24 mb-16">
+        <h3 class="font-heading text-xl sm:text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-bold">2d</span>
+          Ordre et inverse
+        </h3>
+        <p class="text-sm text-slate-500 mb-6 ml-11">Passer à l'inverse <strong>inverse le sens</strong> de l'inégalité — à condition d'être de même signe.</p>
+
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-10 mb-6">
+          <p class="text-slate-600 text-sm sm:text-base mb-5">Soient $a$ et $b$ deux nombres réels <strong>non nuls et de même signe</strong>&nbsp;:</p>
+          <div class="rounded-xl bg-amber-50 ring-1 ring-amber-200 py-6 px-4 sm:px-8 text-center space-y-2">
+            <p class="text-base sm:text-lg">$a\leq b$ équivaut à $\dfrac1a\geq\dfrac1b$</p>
+            <p class="text-base sm:text-lg">$a\geq b$ équivaut à $\dfrac1a\leq\dfrac1b$</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-6">
+          <div class="rounded-lg bg-slate-50 px-3 py-4 text-center text-sm">$15\geq10 \Rightarrow \dfrac1{15}\leq\dfrac1{10}$</div>
+          <div class="rounded-lg bg-slate-50 px-3 py-4 text-center text-sm">$11\leq25 \Rightarrow \dfrac1{11}\geq\dfrac1{25}$</div>
+          <div class="rounded-lg bg-slate-50 px-3 py-4 text-center text-sm">$-42\leq-2 \Rightarrow \dfrac{-1}{42}\geq\dfrac{-1}2$</div>
+          <div class="rounded-lg bg-slate-50 px-3 py-4 text-center text-sm">$-30\geq-124 \Rightarrow \dfrac{-1}{30}\leq\dfrac{-1}{124}$</div>
+        </div>
+
+        <div class="flex items-start gap-3 rounded-xl bg-sky-50 border border-sky-200 p-4 sm:p-5">
+          <svg class="h-5 w-5 flex-shrink-0 text-sky-600 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11.5" stroke-linecap="round"/><circle cx="12" cy="8.2" r="0.75" fill="currentColor" stroke="none"/></svg>
+          <p class="text-sm text-sky-900"><strong>Remarque&nbsp;:</strong> cette propriété reste vraie avec les symboles $\gt$ et $\lt$.</p>
+        </div>
+      </div>
+
+      <!-- 2e. Carré -->
+      <div id="carre" class="scroll-mt-24 mb-16">
+        <h3 class="font-heading text-xl sm:text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-bold">2e</span>
+          Ordre et carré
+        </h3>
+        <p class="text-sm text-slate-500 mb-6 ml-11">Le carré conserve l'ordre pour deux positifs, et l'inverse pour deux négatifs.</p>
+
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-10 mb-6">
+          <p class="text-slate-600 text-sm sm:text-base mb-5">Soient $a$ et $b$ deux nombres réels&nbsp;:</p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="rounded-xl bg-emerald-50 ring-1 ring-emerald-200 py-5 px-4 text-center">
+              <p class="text-xs font-bold uppercase text-emerald-600 mb-2">Si $a\gt0$ et $b\gt0$</p>
+              <p class="text-base sm:text-lg">$a\leq b \Leftrightarrow a^2\leq b^2$</p>
+            </div>
+            <div class="rounded-xl bg-rose-50 ring-1 ring-rose-200 py-5 px-4 text-center">
+              <p class="text-xs font-bold uppercase text-rose-600 mb-2">Si $a\lt0$ et $b\lt0$</p>
+              <p class="text-base sm:text-lg">$a\leq b \Leftrightarrow a^2\geq b^2$</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4 mb-6">
+          <div class="rounded-lg bg-slate-50 px-4 py-4 text-center text-sm sm:text-base">$5\leq11 \Rightarrow 5^2\leq11^2 \Rightarrow 25\leq121$</div>
+          <div class="rounded-lg bg-slate-50 px-4 py-4 text-center text-sm sm:text-base">$-2\geq-20 \Rightarrow (-2)^2\leq(-20)^2 \Rightarrow 4\leq400$</div>
+          <div class="rounded-lg bg-slate-50 px-4 py-4 text-sm sm:text-base sm:col-span-2">
+            <p class="text-slate-600 mb-1">Comparons $2\sqrt3$ et $3\sqrt7$&nbsp;: on a $(2\sqrt3)^2=12$ et $(3\sqrt7)^2=63$, donc $(2\sqrt3)^2\leq(3\sqrt7)^2$.</p>
+            <p class="text-center font-semibold text-indigo-700 mt-2">Puisque $2\sqrt3\gt0$ et $3\sqrt7\gt0$, alors $2\sqrt3\leq3\sqrt7$.</p>
+          </div>
+          <div class="rounded-lg bg-slate-50 px-4 py-4 text-sm sm:text-base sm:col-span-2">
+            <p class="text-slate-600 mb-1">Comparons $-\sqrt{11}$ et $-2\sqrt5$&nbsp;: on a $(-\sqrt{11})^2=11$ et $(-2\sqrt5)^2=20$, donc $(-\sqrt{11})^2\leq(-2\sqrt5)^2$.</p>
+            <p class="text-center font-semibold text-indigo-700 mt-2">Puisque $-\sqrt{11}\lt0$ et $-2\sqrt5\lt0$, alors $-\sqrt{11}\geq-2\sqrt5$.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3 rounded-xl bg-sky-50 border border-sky-200 p-4 sm:p-5">
+          <svg class="h-5 w-5 flex-shrink-0 text-sky-600 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11.5" stroke-linecap="round"/><circle cx="12" cy="8.2" r="0.75" fill="currentColor" stroke="none"/></svg>
+          <p class="text-sm text-sky-900"><strong>Remarque&nbsp;:</strong> cette propriété reste vraie avec les symboles $\gt$ et $\lt$.</p>
+        </div>
+      </div>
+
+      <!-- 2f. Racine carrée -->
+      <div id="racine" class="scroll-mt-24">
+        <h3 class="font-heading text-xl sm:text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-bold">2f</span>
+          Ordre et racine carrée
+        </h3>
+        <p class="text-sm text-slate-500 mb-6 ml-11">Pour deux réels positifs, la racine carrée conserve toujours l'ordre.</p>
+
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-10 mb-6">
+          <p class="text-slate-600 text-sm sm:text-base mb-5">Soient $a$ et $b$ deux nombres réels <strong>positifs</strong>&nbsp;:</p>
+          <div class="rounded-xl bg-amber-50 ring-1 ring-amber-200 py-6 px-4 sm:px-8 text-center space-y-2">
+            <p class="text-base sm:text-lg">$a\leq b$ équivaut à $\sqrt a\leq\sqrt b$</p>
+            <p class="text-base sm:text-lg">$a\geq b$ équivaut à $\sqrt a\geq\sqrt b$</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 mb-6">
+          <div class="rounded-lg bg-slate-50 px-4 py-4 text-center text-sm sm:text-base">$12\geq7 \Rightarrow \sqrt{12}\geq\sqrt7$</div>
+          <div class="rounded-lg bg-slate-50 px-4 py-4 text-center text-sm sm:text-base">$5\leq23 \Rightarrow \sqrt5\leq\sqrt{23}$</div>
+        </div>
+
+        <div class="flex items-start gap-3 rounded-xl bg-sky-50 border border-sky-200 p-4 sm:p-5">
+          <svg class="h-5 w-5 flex-shrink-0 text-sky-600 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11.5" stroke-linecap="round"/><circle cx="12" cy="8.2" r="0.75" fill="currentColor" stroke="none"/></svg>
+          <p class="text-sm text-sky-900"><strong>Remarque&nbsp;:</strong> cette propriété reste vraie avec les symboles $\gt$ et $\lt$.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== PARTIE 3 : ENCADREMENTS ===================== -->
+  <section id="encadrements" class="scroll-mt-24 py-16 sm:py-20 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="max-w-2xl mb-14">
+        <p class="text-sm font-bold uppercase tracking-[0.15em] text-indigo-600 mb-3">Partie 03</p>
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">Encadrements</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">Encadrer un nombre, puis encadrer le résultat d'une opération effectuée à partir de plusieurs encadrements.</p>
+      </div>
+
+      <!-- 3a. Définition -->
+      <div id="def-encadrement" class="scroll-mt-24 mb-16">
+        <h3 class="font-heading text-xl sm:text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-bold">3a</span>
+          Définition
+        </h3>
+        <p class="text-sm text-slate-500 mb-6 ml-11">Un encadrement place un nombre entre deux bornes.</p>
+
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-10 mb-6">
+          <p class="text-slate-600 text-sm sm:text-base mb-5">Soient $a$, $b$ et $x$ trois nombres réels tels que $a\leq b$&nbsp;:</p>
+          <div class="rounded-xl bg-amber-50 ring-1 ring-amber-200 py-6 px-4 sm:px-8 text-center">
+            <p class="text-base sm:text-lg">On appelle <strong>encadrement</strong> de $x$ par $a$ et $b$ toute écriture de la forme $a\leq x\leq b$.</p>
+          </div>
+        </div>
+
+        <div class="rounded-xl bg-indigo-50 ring-1 ring-indigo-100 p-5 sm:p-6 text-center mb-6">
+          <p class="text-sm text-indigo-500 font-semibold mb-2">Exemple — on utilisera ces 4 encadrements dans toute la suite&nbsp;:</p>
+          <p class="text-base sm:text-lg text-indigo-900">$3\leq x\leq11 \quad;\quad -11\leq y\leq-3 \quad;\quad -25\leq z\leq2 \quad;\quad 4\leq t\leq9$</p>
+        </div>
+
+        <div class="flex items-start gap-3 rounded-xl bg-sky-50 border border-sky-200 p-4 sm:p-5">
+          <svg class="h-5 w-5 flex-shrink-0 text-sky-600 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="11.5" stroke-linecap="round"/><circle cx="12" cy="8.2" r="0.75" fill="currentColor" stroke="none"/></svg>
+          <p class="text-sm text-sky-900"><strong>Remarque&nbsp;:</strong> cette définition reste vraie avec le symbole $\lt$.</p>
+        </div>
+      </div>
+
+      <!-- 3b. Encadrement et opérations -->
+      <div id="encadrement-operations" class="scroll-mt-24">
+        <h3 class="font-heading text-xl sm:text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-bold">3b</span>
+          Encadrement et opérations
+        </h3>
+        <p class="text-sm text-slate-500 mb-6 ml-11">On combine les encadrements de $x,y,z,t$ ci-dessus pour encadrer chaque expression.</p>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 shadow-sm p-5">
+            <p class="text-xs font-bold uppercase text-indigo-500 mb-2">Encadrons $x+y$ (addition)</p>
+            <p class="text-sm text-slate-600">$3\leq x\leq11$ et $-11\leq y\leq-3$</p>
+            <p class="text-sm text-slate-600">Donc&nbsp;: $3-11\leq x+y\leq11-3$</p>
+            <p class="mt-2 text-center font-bold text-indigo-700">D'où&nbsp;: $-8\leq x+y\leq8$</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 shadow-sm p-5">
+            <p class="text-xs font-bold uppercase text-indigo-500 mb-2">Encadrons $x-z$ (soustraction)</p>
+            <p class="text-sm text-slate-600">$3\leq x\leq11$ et $-2\leq-z\leq25$</p>
+            <p class="text-sm text-slate-600">Donc&nbsp;: $3-2\leq x-z\leq11+25$</p>
+            <p class="mt-2 text-center font-bold text-indigo-700">D'où&nbsp;: $1\leq x-z\leq36$</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 shadow-sm p-5">
+            <p class="text-xs font-bold uppercase text-indigo-500 mb-2">Encadrons $x\times t$</p>
+            <p class="text-sm text-slate-600">$3\leq x\leq11$ et $4\leq t\leq9$</p>
+            <p class="text-sm text-slate-600">Donc&nbsp;: $3\times4\leq x\times t\leq11\times9$</p>
+            <p class="mt-2 text-center font-bold text-indigo-700">D'où&nbsp;: $12\leq x\times t\leq99$</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 shadow-sm p-5">
+            <p class="text-xs font-bold uppercase text-indigo-500 mb-2">Encadrons $x\times y$</p>
+            <p class="text-sm text-slate-600">$3\leq x\leq11$ et $3\leq-y\leq11$</p>
+            <p class="text-sm text-slate-600">Donc&nbsp;: $9\leq-x\times y\leq121$</p>
+            <p class="mt-2 text-center font-bold text-indigo-700">D'où&nbsp;: $-121\leq x\times y\leq-9$</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 shadow-sm p-5">
+            <p class="text-xs font-bold uppercase text-indigo-500 mb-2">Encadrons $\dfrac xt$ (on pose $\dfrac xt=x\times\dfrac1t$)</p>
+            <p class="text-sm text-slate-600">$3\leq x\leq11$ et $\dfrac19\leq\dfrac1t\leq\dfrac14$</p>
+            <p class="text-sm text-slate-600">Donc&nbsp;: $3\times\dfrac19\leq x\times\dfrac1t\leq11\times\dfrac14$</p>
+            <p class="mt-2 text-center font-bold text-indigo-700">D'où&nbsp;: $\dfrac13\leq\dfrac xt\leq\dfrac{11}4$</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 shadow-sm p-5">
+            <p class="text-xs font-bold uppercase text-indigo-500 mb-2">Encadrons $x^2$ puis $y^2$</p>
+            <p class="text-sm text-slate-600">$3\leq x\leq11 \Rightarrow 3^2\leq x^2\leq11^2$</p>
+            <p class="text-sm text-slate-600">$-11\leq y\leq-3 \Rightarrow (-3)^2\leq y^2\leq(-11)^2$</p>
+            <p class="mt-2 text-center font-bold text-indigo-700">D'où&nbsp;: $9\leq x^2\leq121$ et $9\leq y^2\leq121$</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 shadow-sm p-5">
+            <p class="text-xs font-bold uppercase text-indigo-500 mb-2">Encadrons $\sqrt t$</p>
+            <p class="text-sm text-slate-600">$4\leq t\leq9$</p>
+            <p class="text-sm text-slate-600">Donc&nbsp;: $\sqrt4\leq\sqrt t\leq\sqrt9$</p>
+            <p class="mt-2 text-center font-bold text-indigo-700">D'où&nbsp;: $2\leq\sqrt t\leq3$</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 shadow-sm p-5">
+            <p class="text-xs font-bold uppercase text-indigo-500 mb-2">Encadrons $6x$ puis $-7z$</p>
+            <p class="text-sm text-slate-600">$3\leq x\leq11 \Rightarrow 6\times3\leq6x\leq6\times11$</p>
+            <p class="text-sm text-slate-600">$-25\leq z\leq2 \Rightarrow -7\times2\leq-7z\leq-7\times(-25)$</p>
+            <p class="mt-2 text-center font-bold text-indigo-700">D'où&nbsp;: $18\leq6x\leq66$ et $-14\leq-7z\leq175$</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== FICHE MEMO ===================== -->
+  <section id="memo" class="scroll-mt-24 py-16 sm:py-20 lg:py-24 bg-indigo-950 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-10">
+        <p class="text-sm font-bold uppercase tracking-[0.15em] text-amber-300 mb-3">★ Fiche mémo express</p>
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white">Les 9 propriétés à connaître par cœur</h2>
+        <p class="mt-4 text-indigo-200 leading-relaxed">Un aide-mémoire compact avant un contrôle&nbsp;: relisez chaque ligne à voix haute.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="rounded-xl bg-white/5 ring-1 ring-white/10 p-5">
+          <p class="text-xs font-bold uppercase text-amber-300 mb-2">Comparaison</p>
+          <p class="text-sm text-indigo-100">$a-b\geq0 \Leftrightarrow a\geq b$</p>
+        </div>
+        <div class="rounded-xl bg-white/5 ring-1 ring-white/10 p-5">
+          <p class="text-xs font-bold uppercase text-amber-300 mb-2">Addition / soustraction</p>
+          <p class="text-sm text-indigo-100">$a\leq b \Leftrightarrow a+k\leq b+k$</p>
+        </div>
+        <div class="rounded-xl bg-white/5 ring-1 ring-white/10 p-5">
+          <p class="text-xs font-bold uppercase text-amber-300 mb-2">Opposé</p>
+          <p class="text-sm text-indigo-100">$a\leq b \Leftrightarrow -a\geq-b$</p>
+        </div>
+        <div class="rounded-xl bg-white/5 ring-1 ring-white/10 p-5">
+          <p class="text-xs font-bold uppercase text-amber-300 mb-2">Multiplication par $k\gt0$</p>
+          <p class="text-sm text-indigo-100">$a\leq b \Leftrightarrow ak\leq bk$</p>
+        </div>
+        <div class="rounded-xl bg-white/5 ring-1 ring-white/10 p-5">
+          <p class="text-xs font-bold uppercase text-amber-300 mb-2">Multiplication par $k\lt0$</p>
+          <p class="text-sm text-indigo-100">$a\leq b \Leftrightarrow ak\geq bk$ &nbsp;(inversé)</p>
+        </div>
+        <div class="rounded-xl bg-white/5 ring-1 ring-white/10 p-5">
+          <p class="text-xs font-bold uppercase text-amber-300 mb-2">Inverse (même signe)</p>
+          <p class="text-sm text-indigo-100">$a\leq b \Leftrightarrow \dfrac1a\geq\dfrac1b$ &nbsp;(inversé)</p>
+        </div>
+        <div class="rounded-xl bg-white/5 ring-1 ring-white/10 p-5">
+          <p class="text-xs font-bold uppercase text-amber-300 mb-2">Carré ($a,b\gt0$)</p>
+          <p class="text-sm text-indigo-100">$a\leq b \Leftrightarrow a^2\leq b^2$</p>
+        </div>
+        <div class="rounded-xl bg-white/5 ring-1 ring-white/10 p-5">
+          <p class="text-xs font-bold uppercase text-amber-300 mb-2">Carré ($a,b\lt0$)</p>
+          <p class="text-sm text-indigo-100">$a\leq b \Leftrightarrow a^2\geq b^2$ &nbsp;(inversé)</p>
+        </div>
+        <div class="rounded-xl bg-white/5 ring-1 ring-white/10 p-5">
+          <p class="text-xs font-bold uppercase text-amber-300 mb-2">Racine carrée ($a,b\geq0$)</p>
+          <p class="text-sm text-indigo-100">$a\leq b \Leftrightarrow \sqrt a\leq\sqrt b$</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXERCICES ===================== -->
+  <section id="exercices" class="scroll-mt-24 py-16 sm:py-20 lg:py-24 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="max-w-2xl mb-4">
+        <p class="text-sm font-bold uppercase tracking-[0.15em] text-emerald-600 mb-3">Entraînement</p>
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">4 Exercices — Ordre et opérations</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">Cherchez chaque exercice sur une feuille, puis cliquez sur « Voir la correction » pour vérifier votre réponse, étape par étape.</p>
+        <p class="mt-3 text-xs text-slate-400 italic">Exercices officiels — Lycée collégial Mohammed ELQOURI, Direction provinciale de Khemisset, Prof. Yassin LAHSAINI (année scolaire 2019/2020). Corrections rédigées pas à pas pour cette page.</p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2.5 mb-12">
+        <span class="inline-flex items-center rounded-full bg-emerald-600 px-3.5 py-1.5 text-xs sm:text-sm font-bold text-white">3APIC</span>
+        <span class="inline-flex items-center rounded-full bg-white px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-slate-600 ring-1 ring-slate-200">4 exercices</span>
+        <span class="inline-flex items-center rounded-full bg-white px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-slate-600 ring-1 ring-slate-200">Comparaison · Encadrement · Pythagore</span>
+      </div>
+
+      <div class="space-y-6">
+
+        <!-- Exercice 1 -->
+        <div class="exercise-card rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-7">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+            <div class="flex items-center gap-3">
+              <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-600 text-white text-sm font-bold">1</span>
+              <h3 class="font-heading font-bold text-slate-900 text-base sm:text-lg">Exercice 1 — Comparer par la différence</h3>
+            </div>
+          </div>
+
+          <div class="space-y-5 text-slate-700 text-sm sm:text-base">
+            <div>
+              <p class="mb-2">1) Comparer $a$ et $b$ pour chacun des cas suivants&nbsp;:</p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                <div class="rounded-lg bg-slate-50 py-3 text-center text-sm">$a=\dfrac45$ et $b=\dfrac{-3}2$</div>
+                <div class="rounded-lg bg-slate-50 py-3 text-center text-sm">$a=\dfrac{-5}7$ et $b=\dfrac37$</div>
+                <div class="rounded-lg bg-slate-50 py-3 text-center text-sm">$a=\dfrac86$ et $b=\dfrac83$</div>
+                <div class="rounded-lg bg-slate-50 py-3 text-center text-sm">$a=\dfrac37$ et $b=\dfrac49$</div>
+              </div>
+            </div>
+            <p>2) Soit $a-b=-\sqrt2$. Comparer $a$ et $b$ ($a$ et $b$ sont des réels non nuls).</p>
+            <div>
+              <p>3) Soient $a=\dfrac37$ et $b=\dfrac49$.</p>
+              <p class="ml-4">a- Calculer $a-b$ et déduire la comparaison de $a$ et $b$.</p>
+              <p class="ml-4">b- Rendre au même dénominateur $a$ et $b$ et déduire la comparaison de $a$ et $b$.</p>
+            </div>
+            <div>
+              <p>4) Soient $a=2\sqrt3$ et $b=\sqrt{11}$.</p>
+              <p class="ml-4">a- Calculer $a^2$ et $b^2$ et déduire la comparaison de $a$ et $b$.</p>
+              <p class="ml-4">b- Montrer que $a-b=\dfrac1{2\sqrt3+\sqrt{11}}$, déduire la comparaison de $a$ et $b$.</p>
+            </div>
+          </div>
+
+          <button type="button" class="correction-toggle mt-6 inline-flex items-center gap-2 rounded-xl border-2 border-emerald-600 px-5 py-2.5 text-sm font-bold text-emerald-700 hover:bg-emerald-600 hover:text-white transition-colors">
+            <svg class="chevron h-4 w-4 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+
+          <div class="exo-correction hidden mt-6 rounded-xl bg-emerald-50 border border-emerald-200 p-5 sm:p-6 space-y-5 text-sm sm:text-base text-slate-700">
+            <div>
+              <p class="font-bold text-emerald-800 mb-2">1) On étudie le signe de $a-b$ à chaque fois&nbsp;:</p>
+              <div class="grid sm:grid-cols-2 gap-3">
+                <div class="bg-white rounded-lg p-3"><p>$a-b=\dfrac45+\dfrac32=\dfrac{23}{10}\geq0$</p><p class="font-semibold text-emerald-700 mt-1">donc $a\geq b$</p></div>
+                <div class="bg-white rounded-lg p-3"><p>$a-b=\dfrac{-5}7-\dfrac37=\dfrac{-8}7\leq0$</p><p class="font-semibold text-emerald-700 mt-1">donc $a\leq b$</p></div>
+                <div class="bg-white rounded-lg p-3"><p>$a-b=\dfrac86-\dfrac{16}6=\dfrac{-8}6\leq0$</p><p class="font-semibold text-emerald-700 mt-1">donc $a\leq b$</p></div>
+                <div class="bg-white rounded-lg p-3"><p>$a-b=\dfrac{27}{63}-\dfrac{28}{63}=\dfrac{-1}{63}\leq0$</p><p class="font-semibold text-emerald-700 mt-1">donc $a\leq b$</p></div>
+              </div>
+            </div>
+            <div>
+              <p class="font-bold text-emerald-800 mb-1">2) </p>
+              <p>On a directement $a-b=-\sqrt2$, or $-\sqrt2\leq0$, donc $a-b\leq0$.</p>
+              <p class="font-semibold text-emerald-700">D'où&nbsp;: $a\leq b$</p>
+            </div>
+            <div>
+              <p class="font-bold text-emerald-800 mb-1">3) $a=\dfrac37$, $b=\dfrac49$</p>
+              <p class="ml-4">a- $a-b=\dfrac{27}{63}-\dfrac{28}{63}=\dfrac{-1}{63}\leq0$, donc $a\leq b$.</p>
+              <p class="ml-4">b- Au même dénominateur&nbsp;: $a=\dfrac{27}{63}$ et $b=\dfrac{28}{63}$. Comme $27\lt28$, on a $\dfrac{27}{63}\lt\dfrac{28}{63}$, donc $a\leq b$ — on retrouve le même résultat.</p>
+            </div>
+            <div>
+              <p class="font-bold text-emerald-800 mb-1">4) $a=2\sqrt3$, $b=\sqrt{11}$</p>
+              <p class="ml-4">a- $a^2=(2\sqrt3)^2=12$ et $b^2=(\sqrt{11})^2=11$. Comme $a\gt0$, $b\gt0$ et $a^2\geq b^2$ (ordre et carré), alors $a\geq b$.</p>
+              <p class="ml-4">b- $a-b=\dfrac{(2\sqrt3-\sqrt{11})(2\sqrt3+\sqrt{11})}{2\sqrt3+\sqrt{11}}=\dfrac{12-11}{2\sqrt3+\sqrt{11}}=\dfrac1{2\sqrt3+\sqrt{11}}$. Or $2\sqrt3+\sqrt{11}\gt0$, donc $a-b\gt0$&nbsp;: on retrouve $a\geq b$.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Exercice 2 -->
+        <div class="exercise-card rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-7">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+            <div class="flex items-center gap-3">
+              <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-600 text-white text-sm font-bold">2</span>
+              <h3 class="font-heading font-bold text-slate-900 text-base sm:text-lg">Exercice 2 — Racines carrées et inverses</h3>
+            </div>
+          </div>
+
+          <div class="space-y-5 text-slate-700 text-sm sm:text-base">
+            <div>
+              <p class="mb-2">1) Comparer $a$ et $b$ pour chacun des cas suivants&nbsp;:</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <div class="rounded-lg bg-slate-50 py-3 px-3 text-center text-sm">$a=2\sqrt3+\sqrt{10}$ et $b=\sqrt{11}+\sqrt{10}$</div>
+                <div class="rounded-lg bg-slate-50 py-3 px-3 text-center text-sm">$a=\sqrt{2\sqrt3+\sqrt{10}}$ et $b=\sqrt{\sqrt{11}+\sqrt{10}}$</div>
+                <div class="rounded-lg bg-slate-50 py-3 px-3 text-center text-sm">$a=2\sqrt3-7$ et $b=\sqrt{11}-7$</div>
+                <div class="rounded-lg bg-slate-50 py-3 px-3 text-center text-sm">$a=4\sqrt3$ et $b=4\sqrt5$</div>
+                <div class="rounded-lg bg-slate-50 py-3 px-3 text-center text-sm sm:col-span-2">$a=-5\sqrt5$ et $b=-5\sqrt5$</div>
+              </div>
+            </div>
+            <div>
+              <p>2) Soient $a=7\sqrt2$ et $b=5\sqrt3$.</p>
+              <p class="ml-4">a- Comparer $a$ et $b$.</p>
+              <p class="ml-4">b- Déduire la comparaison de $7\sqrt2+9$ et $5\sqrt3+9$.</p>
+              <p class="ml-4">c- Déduire la comparaison de $\dfrac1{7\sqrt2+9}$ et $\dfrac1{5\sqrt3+9}$.</p>
+            </div>
+            <p>3) Comparer $-5\sqrt2$ et $-4\sqrt2$&nbsp;; déduire la comparaison de $\dfrac1{-5\sqrt2}$ et $\dfrac1{-4\sqrt2}$.</p>
+          </div>
+
+          <button type="button" class="correction-toggle mt-6 inline-flex items-center gap-2 rounded-xl border-2 border-emerald-600 px-5 py-2.5 text-sm font-bold text-emerald-700 hover:bg-emerald-600 hover:text-white transition-colors">
+            <svg class="chevron h-4 w-4 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+
+          <div class="exo-correction hidden mt-6 rounded-xl bg-emerald-50 border border-emerald-200 p-5 sm:p-6 space-y-5 text-sm sm:text-base text-slate-700">
+            <div>
+              <p class="font-bold text-emerald-800 mb-2">1)</p>
+              <div class="space-y-2">
+                <p class="bg-white rounded-lg p-3">$2\sqrt3=\sqrt{12}$ et $12\gt11$, donc (ordre et racine carrée) $\sqrt{12}\gt\sqrt{11}$&nbsp;; en ajoutant $\sqrt{10}$&nbsp;: <span class="font-semibold text-emerald-700">$a\gt b$</span></p>
+                <p class="bg-white rounded-lg p-3">On vient de montrer $2\sqrt3+\sqrt{10}\gt\sqrt{11}+\sqrt{10}\gt0$, donc par passage à la racine carrée&nbsp;: <span class="font-semibold text-emerald-700">$a\gt b$</span></p>
+                <p class="bg-white rounded-lg p-3">$a-b=2\sqrt3-\sqrt{11}=\sqrt{12}-\sqrt{11}\gt0$ (comme ci-dessus)&nbsp;: <span class="font-semibold text-emerald-700">$a\gt b$</span></p>
+                <p class="bg-white rounded-lg p-3">$\sqrt3\lt\sqrt5$ (car $3\lt5$) et $4\gt0$, donc (ordre et multiplication)&nbsp;: <span class="font-semibold text-emerald-700">$a\lt b$</span></p>
+                <p class="bg-white rounded-lg p-3">$a-b=-5\sqrt5-(-5\sqrt5)=0$&nbsp;: <span class="font-semibold text-emerald-700">$a=b$</span> (cas d'égalité)</p>
+              </div>
+            </div>
+            <div>
+              <p class="font-bold text-emerald-800 mb-1">2) $a=7\sqrt2$, $b=5\sqrt3$</p>
+              <p class="ml-4">a- $a^2=98$ et $b^2=75$. Comme $a\gt0$, $b\gt0$ et $98\gt75$&nbsp;: <span class="font-semibold text-emerald-700">$a\gt b$</span> (ordre et carré)</p>
+              <p class="ml-4">b- (ordre et addition, $+9$)&nbsp;: <span class="font-semibold text-emerald-700">$7\sqrt2+9\gt5\sqrt3+9$</span></p>
+              <p class="ml-4">c- $7\sqrt2+9$ et $5\sqrt3+9$ sont non nuls, de même signe (positif) — (ordre et inverse, le sens s'inverse)&nbsp;: <span class="font-semibold text-emerald-700">$\dfrac1{7\sqrt2+9}\lt\dfrac1{5\sqrt3+9}$</span></p>
+            </div>
+            <div>
+              <p class="font-bold text-emerald-800 mb-1">3)</p>
+              <p>$\sqrt2\gt0$ et $-5\lt-4$, donc en multipliant par $\sqrt2\gt0$ (ordre et multiplication)&nbsp;: $-5\sqrt2\lt-4\sqrt2$.</p>
+              <p>$-5\sqrt2$ et $-4\sqrt2$ sont non nuls, de même signe (négatif) — (ordre et inverse, le sens s'inverse)&nbsp;:</p>
+              <p class="font-semibold text-emerald-700">$\dfrac1{-5\sqrt2}\gt\dfrac1{-4\sqrt2}$</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Exercice 3 -->
+        <div class="exercise-card rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-7">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+            <div class="flex items-center gap-3">
+              <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-600 text-white text-sm font-bold">3</span>
+              <h3 class="font-heading font-bold text-slate-900 text-base sm:text-lg">Exercice 3 — Encadrements</h3>
+            </div>
+          </div>
+
+          <div class="space-y-3 text-slate-700 text-sm sm:text-base">
+            <p>1) $x$ et $y$ deux nombres réels non nuls tels que $4\lt x\lt5$ et $-3\lt y\lt-2$.</p>
+            <p class="ml-4">a- Encadrer&nbsp;: $2x\;;\;-2x\;;\;3y\;;\;-3y\;;\;x^2\;;\;y^2\;;\;x+y\;;\;x-y\;;\;xy\;;\;3x-5y$</p>
+            <p class="ml-4">b- Montrer que $6\lt(x+y)(x-y)\lt24$.</p>
+            <p class="ml-4">c- $z$ est un réel tel que $3\leq5z-2\leq8$. Montrer que $1\leq z\leq2$.</p>
+          </div>
+
+          <button type="button" class="correction-toggle mt-6 inline-flex items-center gap-2 rounded-xl border-2 border-emerald-600 px-5 py-2.5 text-sm font-bold text-emerald-700 hover:bg-emerald-600 hover:text-white transition-colors">
+            <svg class="chevron h-4 w-4 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+
+          <div class="exo-correction hidden mt-6 rounded-xl bg-emerald-50 border border-emerald-200 p-5 sm:p-6 space-y-5 text-sm sm:text-base text-slate-700">
+            <div>
+              <p class="font-bold text-emerald-800 mb-2">a- On combine $4\lt x\lt5$ et $-3\lt y\lt-2$&nbsp;:</p>
+              <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+                <div class="bg-white rounded-lg p-2.5 text-center"><p class="text-xs text-slate-400">$2x$</p><p class="font-semibold text-emerald-700">$8\lt2x\lt10$</p></div>
+                <div class="bg-white rounded-lg p-2.5 text-center"><p class="text-xs text-slate-400">$-2x$</p><p class="font-semibold text-emerald-700">$-10\lt{-2x}\lt-8$</p></div>
+                <div class="bg-white rounded-lg p-2.5 text-center"><p class="text-xs text-slate-400">$3y$</p><p class="font-semibold text-emerald-700">$-9\lt3y\lt-6$</p></div>
+                <div class="bg-white rounded-lg p-2.5 text-center"><p class="text-xs text-slate-400">$-3y$</p><p class="font-semibold text-emerald-700">$6\lt{-3y}\lt9$</p></div>
+                <div class="bg-white rounded-lg p-2.5 text-center"><p class="text-xs text-slate-400">$x^2$</p><p class="font-semibold text-emerald-700">$16\lt x^2\lt25$</p></div>
+                <div class="bg-white rounded-lg p-2.5 text-center"><p class="text-xs text-slate-400">$y^2$</p><p class="font-semibold text-emerald-700">$4\lt y^2\lt9$</p></div>
+                <div class="bg-white rounded-lg p-2.5 text-center"><p class="text-xs text-slate-400">$x+y$</p><p class="font-semibold text-emerald-700">$1\lt x+y\lt3$</p></div>
+                <div class="bg-white rounded-lg p-2.5 text-center"><p class="text-xs text-slate-400">$x-y$</p><p class="font-semibold text-emerald-700">$6\lt x-y\lt8$</p></div>
+                <div class="bg-white rounded-lg p-2.5 text-center"><p class="text-xs text-slate-400">$xy$</p><p class="font-semibold text-emerald-700">$-15\lt xy\lt-8$</p></div>
+                <div class="bg-white rounded-lg p-2.5 text-center"><p class="text-xs text-slate-400">$3x-5y$</p><p class="font-semibold text-emerald-700">$22\lt3x-5y\lt30$</p></div>
+              </div>
+            </div>
+            <div>
+              <p class="font-bold text-emerald-800 mb-1">b- Montrons que $6\lt(x+y)(x-y)\lt24$</p>
+              <p>D'après a-, on a $1\lt x+y\lt3$ et $6\lt x-y\lt8$&nbsp;: ce sont deux encadrements <strong>positifs</strong>, on peut donc multiplier membre à membre&nbsp;:</p>
+              <p>$1\times6\lt(x+y)(x-y)\lt3\times8$</p>
+              <p class="font-semibold text-emerald-700">D'où&nbsp;: $6\lt(x+y)(x-y)\lt24$ ✓</p>
+            </div>
+            <div>
+              <p class="font-bold text-emerald-800 mb-1">c- $3\leq5z-2\leq8$</p>
+              <p>On ajoute $2$&nbsp;: $3+2\leq5z-2+2\leq8+2 \Rightarrow 5\leq5z\leq10$</p>
+              <p>On divise par $5\gt0$&nbsp;:</p>
+              <p class="font-semibold text-emerald-700">D'où&nbsp;: $1\leq z\leq2$ ✓</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Exercice 4 -->
+        <div class="exercise-card rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-6 sm:p-7">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+            <div class="flex items-center gap-3">
+              <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-600 text-white text-sm font-bold">4</span>
+              <h3 class="font-heading font-bold text-slate-900 text-base sm:text-lg">Exercice 4 — Inégalités classiques &amp; Pythagore</h3>
+            </div>
+          </div>
+
+          <div class="space-y-3 text-slate-700 text-sm sm:text-base">
+            <p>$a$, $b$ et $m$ des nombres réels tels que $a\gt0$, $b\gt0$ et $m\lt0$.</p>
+            <p>1) Comparer $a+m$ et $m$&nbsp;;&nbsp; $a+m$ et $a-m$.</p>
+            <p>2) Comparer $\dfrac ab+\dfrac ba$ et $2$&nbsp;;&nbsp; $a+b$ et $2\sqrt{ab}$&nbsp;;&nbsp; $\dfrac1{a^2}+a^2$ et $2$&nbsp;;&nbsp; $a^2+b^2$ et $2ab$.</p>
+            <p>3) $ABC$ est un triangle rectangle en $A$ tel que $2.999\lt AB\lt3.001$ et $1.999\lt AC\lt2.001$. Montrer que $3.604\lt BC\lt3.607$.</p>
+          </div>
+
+          <button type="button" class="correction-toggle mt-6 inline-flex items-center gap-2 rounded-xl border-2 border-emerald-600 px-5 py-2.5 text-sm font-bold text-emerald-700 hover:bg-emerald-600 hover:text-white transition-colors">
+            <svg class="chevron h-4 w-4 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="btn-label">Voir la correction</span>
+          </button>
+
+          <div class="exo-correction hidden mt-6 rounded-xl bg-emerald-50 border border-emerald-200 p-5 sm:p-6 space-y-5 text-sm sm:text-base text-slate-700">
+            <div>
+              <p class="font-bold text-emerald-800 mb-1">1)</p>
+              <p>$(a+m)-m=a$. Or $a\gt0$, donc&nbsp;: <span class="font-semibold text-emerald-700">$a+m\gt m$</span></p>
+              <p>$(a+m)-(a-m)=2m$. Or $m\lt0 \Rightarrow 2m\lt0$, donc&nbsp;: <span class="font-semibold text-emerald-700">$a+m\lt a-m$</span></p>
+            </div>
+            <div>
+              <p class="font-bold text-emerald-800 mb-1">2) Une même méthode à chaque fois&nbsp;: on calcule la différence et on la factorise en carré.</p>
+              <div class="space-y-2">
+                <p class="bg-white rounded-lg p-3">$\dfrac ab+\dfrac ba-2=\dfrac{a^2+b^2-2ab}{ab}=\dfrac{(a-b)^2}{ab}$. Comme $a\gt0,b\gt0 \Rightarrow ab\gt0$ et $(a-b)^2\geq0$, ce quotient est $\geq0$. D'où&nbsp;: <span class="font-semibold text-emerald-700">$\dfrac ab+\dfrac ba\geq2$</span></p>
+                <p class="bg-white rounded-lg p-3">$(a+b)^2-\left(2\sqrt{ab}\right)^2=a^2+2ab+b^2-4ab=(a-b)^2\geq0$. Comme $a+b\gt0$ et $2\sqrt{ab}\gt0$ (ordre et carré)&nbsp;: <span class="font-semibold text-emerald-700">$a+b\geq2\sqrt{ab}$</span></p>
+                <p class="bg-white rounded-lg p-3">$\dfrac1{a^2}+a^2-2=\dfrac{\left(a^2-1\right)^2}{a^2}\geq0$ (même principe, avec $a^2$ à la place de $a$)&nbsp;: <span class="font-semibold text-emerald-700">$\dfrac1{a^2}+a^2\geq2$</span></p>
+                <p class="bg-white rounded-lg p-3">$a^2+b^2-2ab=(a-b)^2\geq0$&nbsp;: <span class="font-semibold text-emerald-700">$a^2+b^2\geq2ab$</span></p>
+              </div>
+            </div>
+            <div>
+              <p class="font-bold text-emerald-800 mb-1">3) $ABC$ rectangle en $A$&nbsp;: Pythagore donne $BC^2=AB^2+AC^2$.</p>
+              <p>$2.999\lt AB\lt3.001 \Rightarrow 8.994001\lt AB^2\lt9.006001$</p>
+              <p>$1.999\lt AC\lt2.001 \Rightarrow 3.996001\lt AC^2\lt4.004001$</p>
+              <p>En additionnant (encadrement et addition)&nbsp;: $12.990002\lt BC^2\lt13.010002$</p>
+              <p>Or $3.604^2=12.988816\lt12.990002$ et $3.607^2=13.010449\gt13.010002$, donc (ordre et racine carrée)&nbsp;:</p>
+              <p class="font-semibold text-emerald-700">$3.604\lt BC\lt3.607$ ✓ CQFD</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-indigo-950 text-indigo-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+    <div class="lg:col-span-2">
+      <a href="/" class="flex items-center gap-2.5">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+        <span class="font-heading font-bold text-white leading-tight">
+          <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+          <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+        </span>
+      </a>
+      <p class="mt-4 text-sm text-indigo-300 max-w-sm leading-relaxed">Support de cours de mathématiques — Chapitre « Ordre et Opérations », destiné aux élèves de 3ème APIC&nbsp;: comparaison de réels, ordre et opérations, encadrements, et des exercices corrigés.</p>
+      <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+    </div>
+    <div>
+      <h5 class="font-heading font-bold text-white text-sm uppercase tracking-wide mb-4">Sommaire</h5>
+      <ul class="space-y-2.5 text-sm">
+        <li><a href="#comparaison" class="hover:text-amber-300 transition-colors">Comparaison de réels</a></li>
+        <li><a href="#operations" class="hover:text-amber-300 transition-colors">Ordre et opérations</a></li>
+        <li><a href="#encadrements" class="hover:text-amber-300 transition-colors">Encadrements</a></li>
+        <li><a href="#exercices" class="hover:text-amber-300 transition-colors">Exercices</a></li>
+        <li><a href="#memo" class="hover:text-amber-300 transition-colors">Fiche mémo</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-indigo-400">
+      <p>© 2026 Collège Mhamed 9 — Tous droits réservés.</p>
+      <p>Document pédagogique numérisé par ELK.H</p>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Retour en haut de page" class="print:hidden fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-indigo-700 text-white shadow-lg shadow-indigo-900/30 opacity-0 pointer-events-none translate-y-3 transition-all duration-300 hover:bg-indigo-600">
+  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script>
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  // Menu mobile
+  var menuBtn = document.getElementById('menu-btn');
+  var mobileMenu = document.getElementById('mobile-menu');
+  var iconOpen = document.getElementById('icon-open');
+  var iconClose = document.getElementById('icon-close');
+  menuBtn.addEventListener('click', function () {
+    var isHidden = mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', String(isHidden));
+  });
+  document.querySelectorAll('#mobile-menu a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      mobileMenu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Barre de progression de lecture
+  var progress = document.getElementById('scroll-progress');
+  function updateProgress() {
+    var h = document.documentElement;
+    var scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight || 1);
+    progress.style.width = Math.min(Math.max(scrolled * 100, 0), 100) + '%';
+  }
+  document.addEventListener('scroll', updateProgress, { passive: true });
+
+  // Bouton retour en haut
+  var backToTop = document.getElementById('back-to-top');
+  function toggleBackToTop() {
+    if (window.scrollY > 480) {
+      backToTop.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
+    } else {
+      backToTop.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
+    }
+  }
+  document.addEventListener('scroll', toggleBackToTop, { passive: true });
+  backToTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Navigation active
+  var navLinks = document.querySelectorAll('.nav-link');
+  var trackedIds = ['comparaison', 'operations', 'encadrements', 'exercices', 'memo'];
+  var sections = trackedIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var navObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        navLinks.forEach(function (l) { l.classList.remove('text-indigo-700'); l.classList.add('text-slate-600'); });
+        var match = document.querySelector('.nav-link[href="#' + entry.target.id + '"]');
+        if (match) { match.classList.remove('text-slate-600'); match.classList.add('text-indigo-700'); }
+      }
+    });
+  }, { rootMargin: '-45% 0px -45% 0px' });
+  sections.forEach(function (s) { navObserver.observe(s); });
+
+  // Corrections des exercices (un panneau par exercice)
+  document.querySelectorAll('.correction-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('.exercise-card');
+      if (!card) return;
+      var panel = card.querySelector('.exo-correction');
+      if (!panel) return;
+      var willShow = panel.classList.contains('hidden');
+      panel.classList.toggle('hidden', !willShow);
+      btn.querySelector('.btn-label').textContent = willShow ? 'Masquer la correction' : 'Voir la correction';
+      btn.classList.toggle('bg-emerald-600', willShow);
+      btn.classList.toggle('text-white', willShow);
+      btn.classList.toggle('text-emerald-700', !willShow);
+      var chevron = btn.querySelector('.chevron');
+      if (chevron) chevron.classList.toggle('rotate-180', willShow);
+      if (willShow) { setTimeout(function () { panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 60); }
+    });
+  });
+
+  // Rendu KaTeX
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) {
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false }
+        ],
+        throwOnError: false
+      });
+    }
+  });
+</script>
+</body>
+</html>

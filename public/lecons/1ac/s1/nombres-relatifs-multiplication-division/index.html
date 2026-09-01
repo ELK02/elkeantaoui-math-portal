@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Les nombres relatifs : Multiplication et division – Cours &amp; Exercices corrigés | 1AC</title>
+<meta name="description" content="Cours complet (règles de signes pour la multiplication et la division, produit de plusieurs facteurs) et 7 exercices corrigés pas à pas sur les nombres relatifs — 1ère année collège." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          display: ['Lexend', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          teal: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+        },
+      }
+    }
+  }
+</script>
+<style>
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .text-slate-300 { color: #cbd5e1; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .ring-emerald-100 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800, .dark .text-emerald-600 { color: #6ee7a3; }
+  .dark .bg-rose-50 { background-color: #3a0d18; }
+  .dark .border-rose-400, .dark .ring-rose-100 { border-color: #7a2138; }
+  .dark .text-rose-600, .dark .text-rose-700 { color: #fb7185; }
+  .dark .bg-amber-50 { background-color: #3a2a0a; }
+  .dark .border-amber-400 { border-color: #92400e; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased transition-colors">
+
+<a href="#contenu" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow-lg">Aller au contenu</a>
+
+<!-- ===================== HEADER ===================== -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur border-b border-slate-200 dark:border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#accueil" class="flex items-center gap-2 font-display font-bold text-lg text-teal-700 dark:text-white">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-9 w-9 shrink-0 rounded-full">
+        <span class="hidden xs:inline sm:inline">Nombres relatifs</span>
+      </a>
+      <nav aria-label="Navigation principale" class="hidden md:flex items-center gap-1 text-sm font-medium">
+        <a href="/" class="nav-link px-3 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-teal-50 dark:hover:bg-white/5 hover:text-teal-700 dark:hover:text-white transition">← Portail</a>
+        <a href="#multiplication" class="nav-link px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-teal-50 dark:hover:bg-white/5 hover:text-teal-700 dark:hover:text-white transition">Multiplication</a>
+        <a href="#division" class="nav-link px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-teal-50 dark:hover:bg-white/5 hover:text-teal-700 dark:hover:text-white transition">Division</a>
+        <a href="#exercices" class="nav-link ml-2 px-4 py-2 rounded-lg bg-teal-600 text-white hover:bg-teal-700 transition">Exercices</a>
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-teal-700 dark:hover:text-amber-400 transition-colors">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </nav>
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="md:hidden mr-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+      <button id="menuBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu" class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5">
+        <svg id="menuIconOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75Zm0 5A.75.75 0 0 1 2.75 9h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 9.75Zm0 5a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd"/></svg>
+        <svg id="menuIconClose" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z"/></svg>
+      </button>
+    </div>
+    <nav id="mobileMenu" aria-label="Navigation mobile" class="hidden md:hidden pb-4 flex flex-col gap-1 text-sm font-medium">
+      <a href="/" class="nav-link px-3 py-2.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-teal-50 dark:hover:bg-white/5">← Portail</a>
+      <a href="#multiplication" class="nav-link px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-teal-50 dark:hover:bg-white/5">Multiplication</a>
+      <a href="#division" class="nav-link px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-teal-50 dark:hover:bg-white/5">Division</a>
+      <a href="#exercices" class="nav-link px-3 py-2.5 rounded-lg bg-teal-600 text-white text-center">Exercices corrigés</a>
+    </nav>
+  </div>
+  <!-- Sommaire pills -->
+  <nav aria-label="Sommaire du cours" class="border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-teal-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto">
+      <ul class="flex gap-2 py-3 text-xs sm:text-sm font-medium whitespace-nowrap">
+        <li><a href="#multiplication" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-teal-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-teal-300 hover:text-teal-700 dark:hover:text-white transition">01 · Multiplication</a></li>
+        <li><a href="#division" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-teal-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-teal-300 hover:text-teal-700 dark:hover:text-white transition">02 · Division</a></li>
+        <li><a href="#exercices" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-teal-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-teal-300 hover:text-teal-700 dark:hover:text-white transition">03 · Exercices corrigés</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main id="contenu">
+
+  <!-- ===================== HERO ===================== -->
+  <section id="accueil" aria-label="Présentation" class="relative overflow-hidden bg-gradient-to-br from-teal-950 via-teal-800 to-teal-600 text-white scroll-mt-28">
+    <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1920&q=80" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-20 mix-blend-overlay" />
+    <div class="absolute inset-0 opacity-[0.15] [background-image:radial-gradient(white_1px,transparent_1px)] [background-size:22px_22px]" aria-hidden="true"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <p class="inline-block rounded-full bg-white/10 px-4 py-1 text-xs sm:text-sm font-semibold tracking-wide uppercase mb-4 ring-1 ring-white/25">1ʳᵉ Année Collège · Mathématiques</p>
+      <h1 class="font-display text-3xl sm:text-5xl font-extrabold leading-tight max-w-3xl">Les nombres relatifs</h1>
+      <p class="mt-1 text-xl sm:text-2xl font-display font-semibold text-teal-100">Multiplication et division</p>
+      <p class="mt-4 max-w-2xl text-teal-100 text-base sm:text-lg">La règle des signes pour multiplier et diviser des nombres relatifs, le produit de plusieurs facteurs — accompagnés de 7 exercices corrigés pas à pas.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#multiplication" class="rounded-xl bg-white text-teal-700 px-5 py-3 font-semibold shadow hover:bg-teal-50 transition">Commencer le cours</a>
+        <a href="#exercices" class="rounded-xl bg-white/10 ring-1 ring-white/30 px-5 py-3 font-semibold hover:bg-white/20 transition">Voir les exercices</a>
+      </div>
+      <dl class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-2xl">
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-teal-200">Notions</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">Mult. &amp; Div.</dd>
+        </div>
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-teal-200">Cours</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">4 règles</dd>
+        </div>
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-teal-200">Entraînement</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">7 exercices</dd>
+        </div>
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-teal-200">Questions</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">42 corrigées</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ===================== I. MULTIPLICATION ===================== -->
+  <section id="multiplication" aria-labelledby="multiplication-heading" class="scroll-mt-28 py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-12">
+        <span class="text-teal-600 font-semibold text-sm uppercase tracking-wide">Partie I</span>
+        <h2 id="multiplication-heading" class="font-display text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Multiplication de nombres relatifs</h2>
+        <p class="mt-3 text-slate-600">Deux règles suffisent pour déterminer le signe d'un produit, plus une propriété pour zéro et une méthode pour les produits de plusieurs facteurs.</p>
+      </div>
+
+      <div class="grid gap-6">
+
+        <!-- Règle 1 -->
+        <article class="rounded-2xl bg-slate-50 ring-1 ring-slate-100 p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal-600 text-white font-bold text-sm">1</span>
+            <h3 class="font-display font-bold text-slate-900">Règle 1 — Produit de deux nombres relatifs de même signe</h3>
+          </div>
+          <blockquote class="rounded-xl border-l-4 border-amber-400 bg-amber-50 p-4 text-sm sm:text-base text-slate-700">Le produit de deux nombres relatifs de <strong>même signe</strong> est un nombre <strong>positif</strong>, égal au produit de leurs distances à zéro.</blockquote>
+          <div class="mt-6 grid sm:grid-cols-2 gap-4">
+            <div class="rounded-xl bg-white ring-1 ring-slate-100 p-4 font-mono text-sm leading-relaxed">
+              (+4) × (+7) = <span class="font-semibold text-teal-700">+28</span>
+            </div>
+            <div class="rounded-xl bg-white ring-1 ring-slate-100 p-4 font-mono text-sm leading-relaxed">
+              (−4) × (−7) = <span class="font-semibold text-teal-700">+28</span>
+            </div>
+            <div class="rounded-xl bg-white ring-1 ring-slate-100 p-4 font-mono text-sm leading-relaxed">
+              (−12) × (−0,5) = <span class="font-semibold text-teal-700">+6</span>
+            </div>
+            <div class="rounded-xl bg-white ring-1 ring-slate-100 p-4 font-mono text-sm leading-relaxed">
+              9 × 9 = <span class="font-semibold text-teal-700">+81</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Règle 2 -->
+        <article class="rounded-2xl bg-slate-50 ring-1 ring-slate-100 p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal-600 text-white font-bold text-sm">2</span>
+            <h3 class="font-display font-bold text-slate-900">Règle 2 — Produit de deux nombres relatifs de signes contraires</h3>
+          </div>
+          <blockquote class="rounded-xl border-l-4 border-amber-400 bg-amber-50 p-4 text-sm sm:text-base text-slate-700">Le produit de deux nombres relatifs de <strong>signes contraires</strong> est un nombre <strong>négatif</strong>, égal au produit de leurs distances à zéro.</blockquote>
+          <div class="mt-6 grid sm:grid-cols-2 gap-4">
+            <div class="rounded-xl bg-white ring-1 ring-slate-100 p-4 font-mono text-sm leading-relaxed">
+              (+5) × (−3) = <span class="font-semibold text-teal-700">−15</span>
+            </div>
+            <div class="rounded-xl bg-white ring-1 ring-slate-100 p-4 font-mono text-sm leading-relaxed">
+              (−8) × (+2) = <span class="font-semibold text-teal-700">−16</span>
+            </div>
+            <div class="rounded-xl bg-white ring-1 ring-slate-100 p-4 font-mono text-sm leading-relaxed">
+              6 × (−5) = <span class="font-semibold text-teal-700">−30</span>
+            </div>
+            <div class="rounded-xl bg-white ring-1 ring-slate-100 p-4 font-mono text-sm leading-relaxed">
+              −2 × 7 = <span class="font-semibold text-teal-700">−14</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Grille des signes -->
+        <article class="rounded-2xl bg-teal-600 text-white p-6 sm:p-8">
+          <p class="text-xs text-teal-100 font-bold uppercase tracking-wide mb-4">À retenir — la grille des signes</p>
+          <div class="grid grid-cols-2 sm:w-2/3 gap-3 font-mono text-center">
+            <div class="rounded-xl bg-white/10 ring-1 ring-white/20 p-4">(+) × (+) = <strong>+</strong></div>
+            <div class="rounded-xl bg-white/10 ring-1 ring-white/20 p-4">(+) × (−) = <strong>−</strong></div>
+            <div class="rounded-xl bg-white/10 ring-1 ring-white/20 p-4">(−) × (+) = <strong>−</strong></div>
+            <div class="rounded-xl bg-white/10 ring-1 ring-white/20 p-4">(−) × (−) = <strong>+</strong></div>
+          </div>
+        </article>
+
+        <!-- Propriété zéro -->
+        <article class="rounded-2xl bg-slate-50 ring-1 ring-slate-100 p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal-600 text-white font-bold text-sm">3</span>
+            <h3 class="font-display font-bold text-slate-900">Propriété — Produit par zéro</h3>
+          </div>
+          <blockquote class="rounded-xl border-l-4 border-amber-400 bg-amber-50 p-4 text-sm sm:text-base text-slate-700">Le produit de n'importe quel nombre relatif par <strong>0</strong> est égal à <strong>0</strong> : <span class="font-mono font-semibold">a × 0 = 0</span> et <span class="font-mono font-semibold">0 × a = 0</span>.</blockquote>
+          <div class="mt-6 grid grid-cols-2 gap-4 max-w-xl">
+            <div class="rounded-xl bg-white ring-1 ring-slate-100 p-4 font-mono text-sm">−1547 × 0 = <span class="font-semibold text-teal-700">0</span></div>
+            <div class="rounded-xl bg-white ring-1 ring-slate-100 p-4 font-mono text-sm">0 × 25,3 = <span class="font-semibold text-teal-700">0</span></div>
+          </div>
+        </article>
+
+        <!-- Règle 3 (produit de n facteurs) -->
+        <article class="rounded-2xl bg-slate-50 ring-1 ring-slate-100 p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal-600 text-white font-bold text-sm">4</span>
+            <h3 class="font-display font-bold text-slate-900">Règle 3 — Produit de plusieurs facteurs non nuls</h3>
+          </div>
+          <blockquote class="rounded-xl border-l-4 border-amber-400 bg-amber-50 p-4 text-sm sm:text-base text-slate-700">Pour connaître le signe d'un produit de plusieurs facteurs non nuls, on compte le nombre de facteurs négatifs :</blockquote>
+          <div class="mt-4 grid sm:grid-cols-2 gap-4">
+            <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-4">
+              <p class="text-xs font-bold uppercase tracking-wide text-emerald-600 mb-1">Nombre PAIR de facteurs négatifs</p>
+              <p class="text-sm text-slate-700">Le produit est <strong class="text-emerald-700">positif</strong>.</p>
+            </div>
+            <div class="rounded-xl bg-white ring-1 ring-rose-100 p-4">
+              <p class="text-xs font-bold uppercase tracking-wide text-rose-600 mb-1">Nombre IMPAIR de facteurs négatifs</p>
+              <p class="text-sm text-slate-700">Le produit est <strong class="text-rose-700">négatif</strong>.</p>
+            </div>
+          </div>
+          <div class="mt-4 rounded-xl bg-white ring-1 ring-slate-100 p-4 font-mono text-sm leading-relaxed">
+            4 × (−7) × (−6) × 5 × 3 : deux facteurs négatifs (−7 et −6) → nombre <strong class="text-emerald-700">pair</strong> → produit <span class="font-semibold text-emerald-700">positif</span>.
+          </div>
+          <p class="mt-3 text-sm text-slate-600">Si <strong>l'un des facteurs est nul</strong>, le produit est nul, quels que soient les autres facteurs.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== II. DIVISION ===================== -->
+  <section id="division" aria-labelledby="division-heading" class="scroll-mt-28 py-16 sm:py-24 bg-white border-y border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-12">
+        <span class="text-teal-600 font-semibold text-sm uppercase tracking-wide">Partie II</span>
+        <h2 id="division-heading" class="font-display text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Division de nombres relatifs</h2>
+        <p class="mt-3 text-slate-600">Les mêmes règles de signes que pour la multiplication s'appliquent au quotient.</p>
+      </div>
+
+      <div class="grid gap-6">
+
+        <!-- Règle 1 -->
+        <article class="rounded-2xl bg-slate-50 ring-1 ring-slate-100 p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal-600 text-white font-bold text-sm">1</span>
+            <h3 class="font-display font-bold text-slate-900">Règle 1 — Quotient de deux nombres relatifs de même signe</h3>
+          </div>
+          <blockquote class="rounded-xl border-l-4 border-amber-400 bg-amber-50 p-4 text-sm sm:text-base text-slate-700">Le quotient de deux nombres relatifs de <strong>même signe</strong> est un nombre <strong>positif</strong>.</blockquote>
+          <div class="mt-6 grid sm:grid-cols-2 gap-4">
+            <div class="rounded-xl bg-white ring-1 ring-slate-100 p-4 font-mono text-sm leading-relaxed">
+              (−55) ÷ (−2) = <span class="font-semibold text-teal-700">+27,5</span>
+            </div>
+            <div class="rounded-xl bg-white ring-1 ring-slate-100 p-4 font-mono text-sm leading-relaxed">
+              12 ÷ 6 = <span class="font-semibold text-teal-700">+2</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Règle 2 -->
+        <article class="rounded-2xl bg-slate-50 ring-1 ring-slate-100 p-6 sm:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal-600 text-white font-bold text-sm">2</span>
+            <h3 class="font-display font-bold text-slate-900">Règle 2 — Quotient de deux nombres relatifs de signes contraires</h3>
+          </div>
+          <blockquote class="rounded-xl border-l-4 border-amber-400 bg-amber-50 p-4 text-sm sm:text-base text-slate-700">Le quotient de deux nombres relatifs de <strong>signes contraires</strong> est un nombre <strong>négatif</strong>.</blockquote>
+          <div class="mt-6 grid sm:grid-cols-2 gap-4">
+            <div class="rounded-xl bg-white ring-1 ring-slate-100 p-4 font-mono text-sm leading-relaxed">
+              −120 ÷ 10 = <span class="font-semibold text-teal-700">−12</span>
+            </div>
+            <div class="rounded-xl bg-white ring-1 ring-slate-100 p-4 font-mono text-sm leading-relaxed">
+              250 ÷ (−25) = <span class="font-semibold text-teal-700">−10</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Remarque -->
+        <article class="rounded-2xl bg-teal-600 text-white p-6 sm:p-8">
+          <p class="text-xs text-teal-100 font-bold uppercase tracking-wide mb-2">Remarque</p>
+          <p class="text-sm sm:text-base leading-relaxed">Pour tout nombre relatif <span class="font-mono">a</span> non nul, <span class="font-mono font-semibold">0 ÷ a = 0</span>. En revanche, la <strong>division par 0 est impossible</strong> (interdite).</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXERCICES ===================== -->
+  <section id="exercices" aria-labelledby="exercices-heading" class="scroll-mt-28 py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-6">
+        <span class="text-teal-600 font-semibold text-sm uppercase tracking-wide">Partie III</span>
+        <h2 id="exercices-heading" class="font-display text-2xl sm:text-3xl font-bold text-slate-900 mt-1">7 exercices corrigés</h2>
+        <p class="mt-3 text-slate-600">Calcule sur ton cahier, puis clique sur « Voir la correction » pour vérifier chaque exercice.</p>
+      </div>
+
+      <div class="flex flex-wrap gap-2 mb-12">
+        <a href="#exercice1" class="rounded-full bg-slate-100 hover:bg-teal-100 hover:text-teal-700 px-4 py-2 text-sm font-semibold transition">Ex. 01</a>
+        <a href="#exercice2" class="rounded-full bg-slate-100 hover:bg-teal-100 hover:text-teal-700 px-4 py-2 text-sm font-semibold transition">Ex. 02</a>
+        <a href="#exercice3" class="rounded-full bg-slate-100 hover:bg-teal-100 hover:text-teal-700 px-4 py-2 text-sm font-semibold transition">Ex. 03</a>
+        <a href="#exercice4" class="rounded-full bg-slate-100 hover:bg-teal-100 hover:text-teal-700 px-4 py-2 text-sm font-semibold transition">Ex. 04</a>
+        <a href="#exercice5" class="rounded-full bg-slate-100 hover:bg-teal-100 hover:text-teal-700 px-4 py-2 text-sm font-semibold transition">Ex. 05</a>
+        <a href="#exercice6" class="rounded-full bg-slate-100 hover:bg-teal-100 hover:text-teal-700 px-4 py-2 text-sm font-semibold transition">Ex. 06</a>
+        <a href="#exercice7" class="rounded-full bg-slate-100 hover:bg-teal-100 hover:text-teal-700 px-4 py-2 text-sm font-semibold transition">Ex. 07</a>
+      </div>
+
+      <!-- ========== EXERCICE 1 ========== -->
+      <div id="exercice1" class="scroll-mt-28 mb-16">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="inline-block rounded-full bg-teal-100 text-teal-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 1</span>
+              <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Calcul mental</span>
+            </div>
+            <h3 class="mt-2 font-display font-bold text-lg text-slate-900">Calculer mentalement les produits suivants</h3>
+          </div>
+          <button class="correction-btn shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700 transition" data-state="hidden" onclick="toggleCorrection('exercice1', this)">
+            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+            <span>Voir la correction</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">a.</span> −4 × 6</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= −24</span></p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">b.</span> 6 × (−5)</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= −30</span></p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">c.</span> 4 × (−3)</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= −12</span></p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">d.</span> −1 × 3</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= −3</span></p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">e.</span> −5 × (−1)</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= +5</span></p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">f.</span> −2 × 7</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= −14</span></p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">g.</span> 9 × (−9)</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= −81</span></p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">h.</span> −6 × (−7)</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= +42</span></p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">i.</span> −8 × 4</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= −32</span></p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">j.</span> −1547 × 0</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= 0</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== EXERCICE 2 ========== -->
+      <div id="exercice2" class="scroll-mt-28 mb-16">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="inline-block rounded-full bg-teal-100 text-teal-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 2</span>
+              <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Calcul mental — décimaux</span>
+            </div>
+            <h3 class="mt-2 font-display font-bold text-lg text-slate-900">Calculer mentalement les produits suivants</h3>
+          </div>
+          <button class="correction-btn shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700 transition" data-state="hidden" onclick="toggleCorrection('exercice2', this)">
+            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+            <span>Voir la correction</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">a.</span> −25 × 4</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= −100</span></p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">b.</span> −0,5 × (−8)</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= +4</span></p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">c.</span> 0,2 × (−45)</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= −9</span></p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">d.</span> −1000 × 1,234</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= −1234</span></p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">e.</span> −0,001 × (−100)</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= +0,1</span></p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">f.</span> 4 × (−125)</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= −500</span></p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">g.</span> 0,25 × (−12)</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= −3</span></p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">h.</span> −9,8 × 100</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= −980</span></p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">i.</span> −0,1 × (−987)</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= +98,7</span></p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 text-center font-mono text-sm">
+            <p class="text-slate-800"><span class="font-bold text-teal-600">j.</span> 0,01 × (−2015)</p>
+            <p class="mt-1"><span class="qa-prompt text-slate-300">= …</span><span class="qa-answer hidden font-bold text-emerald-700">= −20,15</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== EXERCICE 3 ========== -->
+      <div id="exercice3" class="scroll-mt-28 mb-16">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="inline-block rounded-full bg-teal-100 text-teal-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 3</span>
+              <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Signe d'un produit</span>
+            </div>
+            <h3 class="mt-2 font-display font-bold text-lg text-slate-900">Quel est le signe de chacun de ces produits ?</h3>
+            <p class="mt-1 text-slate-600 text-sm sm:text-base max-w-2xl">Le calcul n'est pas demandé : compte simplement les facteurs négatifs.</p>
+          </div>
+          <button class="correction-btn shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700 transition" data-state="hidden" onclick="toggleCorrection('exercice3', this)">
+            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+            <span>Voir la correction</span>
+          </button>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1.5">
+            <p class="text-slate-800"><span class="font-bold text-teal-700">a.</span> 4 × (−7) × (−6) × 5 × 3</p>
+            <p class="qa-prompt text-slate-300">→ …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">→ 2 facteurs négatifs (pair)</p>
+            <p class="qa-answer hidden font-bold text-emerald-700">Signe : positif</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1.5">
+            <p class="text-slate-800 overflow-x-auto whitespace-nowrap"><span class="font-bold text-teal-700">b.</span> 1,5 × (−1,6) × (−1,9) × 1,1 × (−1,4)</p>
+            <p class="qa-prompt text-slate-300">→ …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">→ 3 facteurs négatifs (impair)</p>
+            <p class="qa-answer hidden font-bold text-rose-700">Signe : négatif</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1.5">
+            <p class="text-slate-800 overflow-x-auto whitespace-nowrap"><span class="font-bold text-teal-700">c.</span> 1 × (−2) × 3 × (−4) × 5 × (−6) × 7</p>
+            <p class="qa-prompt text-slate-300">→ …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">→ 3 facteurs négatifs (impair)</p>
+            <p class="qa-answer hidden font-bold text-rose-700">Signe : négatif</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1.5">
+            <p class="text-slate-800 overflow-x-auto whitespace-nowrap"><span class="font-bold text-teal-700">d.</span> −6 × (−8) × (−7) × (−6) × (−5)</p>
+            <p class="qa-prompt text-slate-300">→ …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">→ 5 facteurs négatifs (impair)</p>
+            <p class="qa-answer hidden font-bold text-rose-700">Signe : négatif</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1.5">
+            <p class="text-slate-800 overflow-x-auto whitespace-nowrap"><span class="font-bold text-teal-700">e.</span> −9 × 9 × (−9) × 9 × 9 × 9 × (−9)</p>
+            <p class="qa-prompt text-slate-300">→ …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">→ 3 facteurs négatifs (impair)</p>
+            <p class="qa-answer hidden font-bold text-rose-700">Signe : négatif</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1.5">
+            <p class="text-slate-800 overflow-x-auto whitespace-nowrap"><span class="font-bold text-teal-700">f.</span> −7 × 6 × 5 × 4 × 3 × 2 × 1 × 0</p>
+            <p class="qa-prompt text-slate-300">→ …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">→ l'un des facteurs est 0</p>
+            <p class="qa-answer hidden font-bold text-slate-700">Produit nul (ni positif ni négatif)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== EXERCICE 4 ========== -->
+      <div id="exercice4" class="scroll-mt-28 mb-16">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="inline-block rounded-full bg-teal-100 text-teal-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 4</span>
+              <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Produits en chaîne</span>
+            </div>
+            <h3 class="mt-2 font-display font-bold text-lg text-slate-900">Calculer mentalement les produits suivants</h3>
+          </div>
+          <button class="correction-btn shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700 transition" data-state="hidden" onclick="toggleCorrection('exercice4', this)">
+            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+            <span>Voir la correction</span>
+          </button>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1">
+            <p class="text-slate-800"><span class="font-bold text-teal-700">a.</span> −2 × 3 × (−5) × 8</p>
+            <p class="qa-prompt text-slate-300">= …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">→ 2 facteurs négatifs (pair)</p>
+            <p class="qa-answer hidden font-bold text-emerald-700">= +240</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1">
+            <p class="text-slate-800 overflow-x-auto whitespace-nowrap"><span class="font-bold text-teal-700">b.</span> −6 × (−1) × 2 × (−1) × (−5) × 7</p>
+            <p class="qa-prompt text-slate-300">= …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">→ 4 facteurs négatifs (pair)</p>
+            <p class="qa-answer hidden font-bold text-emerald-700">= +420</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1">
+            <p class="text-slate-800 overflow-x-auto whitespace-nowrap"><span class="font-bold text-teal-700">c.</span> (−10) × 2 × (−2) × 5 × (−3) × (−5)</p>
+            <p class="qa-prompt text-slate-300">= …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">→ 4 facteurs négatifs (pair)</p>
+            <p class="qa-answer hidden font-bold text-emerald-700">= +3 000</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1">
+            <p class="text-slate-800"><span class="font-bold text-teal-700">d.</span> −1 × (−2) × (−3) × 5 × 10</p>
+            <p class="qa-prompt text-slate-300">= …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">→ 3 facteurs négatifs (impair)</p>
+            <p class="qa-answer hidden font-bold text-rose-700">= −300</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1 sm:col-span-2">
+            <p class="text-slate-800 overflow-x-auto whitespace-nowrap"><span class="font-bold text-teal-700">e.</span> 10 × (−0,1) × (−1000) − 0,01 × (−100)</p>
+            <p class="qa-prompt text-slate-300">= …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">= 1000 − (−1)</p>
+            <p class="qa-answer hidden font-bold text-emerald-700">= +1 001</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== EXERCICE 5 ========== -->
+      <div id="exercice5" class="scroll-mt-28 mb-16">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="inline-block rounded-full bg-teal-100 text-teal-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 5</span>
+              <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Priorités opératoires</span>
+            </div>
+            <h3 class="mt-2 font-display font-bold text-lg text-slate-900">Calculer, en respectant les étapes</h3>
+          </div>
+          <button class="correction-btn shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700 transition" data-state="hidden" onclick="toggleCorrection('exercice5', this)">
+            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+            <span>Voir la correction</span>
+          </button>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1">
+            <p class="text-slate-800"><span class="font-bold text-teal-700">A =</span> (−6 + 9) × (5 − 12)</p>
+            <p class="qa-prompt text-slate-300">= …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">= (3) × (−7)</p>
+            <p class="qa-answer hidden font-bold text-emerald-700">A = −21</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1">
+            <p class="text-slate-800"><span class="font-bold text-teal-700">B =</span> 6 × [3 × (−8)]</p>
+            <p class="qa-prompt text-slate-300">= …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">= 6 × (−24)</p>
+            <p class="qa-answer hidden font-bold text-rose-700">B = −144</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1">
+            <p class="text-slate-800"><span class="font-bold text-teal-700">C =</span> −4 × 7 − (−2) × (−8)</p>
+            <p class="qa-prompt text-slate-300">= …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">= −28 − 16</p>
+            <p class="qa-answer hidden font-bold text-rose-700">C = −44</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1">
+            <p class="text-slate-800"><span class="font-bold text-teal-700">D =</span> −7 × 5 − 3 × 11</p>
+            <p class="qa-prompt text-slate-300">= …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">= −35 − 33</p>
+            <p class="qa-answer hidden font-bold text-rose-700">D = −68</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1">
+            <p class="text-slate-800"><span class="font-bold text-teal-700">E =</span> −5 × (7 − 13 + 2)</p>
+            <p class="qa-prompt text-slate-300">= …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">= −5 × (−4)</p>
+            <p class="qa-answer hidden font-bold text-emerald-700">E = +20</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1">
+            <p class="text-slate-800"><span class="font-bold text-teal-700">F =</span> 25 − (−2) × (−9) × 3</p>
+            <p class="qa-prompt text-slate-300">= …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">= 25 − 54</p>
+            <p class="qa-answer hidden font-bold text-rose-700">F = −29</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== EXERCICE 6 ========== -->
+      <div id="exercice6" class="scroll-mt-28 mb-16">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="inline-block rounded-full bg-teal-100 text-teal-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 6</span>
+              <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Parenthèses et crochets</span>
+            </div>
+            <h3 class="mt-2 font-display font-bold text-lg text-slate-900">Calculer, en respectant les étapes</h3>
+          </div>
+          <button class="correction-btn shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700 transition" data-state="hidden" onclick="toggleCorrection('exercice6', this)">
+            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+            <span>Voir la correction</span>
+          </button>
+        </div>
+
+        <div class="grid gap-4">
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1">
+            <p class="text-slate-800 overflow-x-auto whitespace-nowrap"><span class="font-bold text-teal-700">A =</span> (−8 + 12 − 5 + 7) × (11 − 13 − 7 − 2)</p>
+            <p class="qa-prompt text-slate-300">= …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">= (6) × (−11)</p>
+            <p class="qa-answer hidden font-bold text-rose-700">A = −66</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1">
+            <p class="text-slate-800 overflow-x-auto whitespace-nowrap"><span class="font-bold text-teal-700">B =</span> −7 × 3 − 9 × (−5) + (−4) × 9 − 7</p>
+            <p class="qa-prompt text-slate-300">= …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">= −21 + 45 − 36 − 7</p>
+            <p class="qa-answer hidden font-bold text-rose-700">B = −19</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1">
+            <p class="text-slate-800 overflow-x-auto whitespace-nowrap"><span class="font-bold text-teal-700">C =</span> 6 − [−4 × (−3) + 5 × (−2)] × (−4)</p>
+            <p class="qa-prompt text-slate-300">= …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">= 6 − [12 − 10] × (−4) = 6 − [2] × (−4) = 6 − (−8)</p>
+            <p class="qa-answer hidden font-bold text-emerald-700">C = +14</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== EXERCICE 7 ========== -->
+      <div id="exercice7" class="scroll-mt-28">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="inline-block rounded-full bg-teal-100 text-teal-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 7</span>
+              <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Substitution</span>
+            </div>
+            <h3 class="mt-2 font-display font-bold text-lg text-slate-900">Remplacer x et y par leur valeur pour calculer chaque expression</h3>
+          </div>
+          <button class="correction-btn shrink-0 self-start sm:self-auto inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700 transition" data-state="hidden" onclick="toggleCorrection('exercice7', this)">
+            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+            <span>Voir la correction</span>
+          </button>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1">
+            <p class="text-slate-800"><span class="font-bold text-teal-700">a.</span> 3 × x + 5 × y</p>
+            <p class="text-xs text-slate-500">pour x = −8 et y = −2</p>
+            <p class="qa-prompt text-slate-300">= …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">= 3 × (−8) + 5 × (−2) = −24 + (−10)</p>
+            <p class="qa-answer hidden font-bold text-rose-700">= −34</p>
+          </div>
+          <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 font-mono text-sm space-y-1">
+            <p class="text-slate-800"><span class="font-bold text-teal-700">b.</span> −9 × x + 4 × y</p>
+            <p class="text-xs text-slate-500">pour x = 7 et y = −4</p>
+            <p class="qa-prompt text-slate-300">= …</p>
+            <p class="qa-answer hidden text-slate-500 text-xs sm:text-sm">= −9 × 7 + 4 × (−4) = −63 + (−16)</p>
+            <p class="qa-answer hidden font-bold text-rose-700">= −79</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-slate-900 text-slate-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid gap-8 sm:grid-cols-2">
+    <div>
+      <a href="/" class="flex items-center gap-2.5">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+        <span class="font-display font-bold text-white leading-tight">
+          <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+          <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+        </span>
+      </a>
+      <p class="mt-3 text-sm text-slate-400">Cours de mathématiques — 1ère année collège. Multiplication et division de nombres relatifs.</p>
+      <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+    </div>
+    <div>
+      <h4 class="text-white font-semibold text-sm uppercase tracking-wide">Sommaire</h4>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li><a href="#multiplication" class="hover:text-white transition">Multiplication</a></li>
+        <li><a href="#division" class="hover:text-white transition">Division</a></li>
+        <li><a href="#exercices" class="hover:text-white transition">Exercices corrigés</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+    Page réalisée à partir du cours « Les nombres relatifs : Multiplication et division » — usage pédagogique, 1AC.
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button id="backToTop" aria-label="Retour en haut de page" class="fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-teal-600 text-white shadow-lg opacity-0 pointer-events-none transition hover:bg-teal-700">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 3a.75.75 0 0 1 .53.22l6 6a.75.75 0 1 1-1.06 1.06L10.75 5.56V16.25a.75.75 0 0 1-1.5 0V5.56L4.53 10.28a.75.75 0 0 1-1.06-1.06l6-6A.75.75 0 0 1 10 3Z" clip-rule="evenodd"/></svg>
+</button>
+
+<script>
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuIconOpen = document.getElementById('menuIconOpen');
+  const menuIconClose = document.getElementById('menuIconClose');
+  menuBtn.addEventListener('click', () => {
+    const isHidden = mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    menuIconOpen.classList.toggle('hidden');
+    menuIconClose.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', String(isHidden));
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+    menuIconOpen.classList.remove('hidden');
+    menuIconClose.classList.add('hidden');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  // Correction toggles (one button reveals every answer inside its exercise container)
+  const eyeIcon = '<svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>';
+  const eyeOffIcon = '<svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3.28 2.22a.75.75 0 0 0-1.06 1.06l14.5 14.5a.75.75 0 1 0 1.06-1.06l-1.85-1.85c1.44-1.02 2.61-2.42 3.36-4.06a.75.75 0 0 0 0-.62C17.68 6.1 14.14 3.5 10 3.5c-1.53 0-2.96.35-4.22.98L3.28 2.22ZM10 6.25c.36 0 .71.04 1.05.11l1.2 1.2a2.25 2.25 0 0 0-2.79 2.79l-1.2-1.2A3.75 3.75 0 0 1 10 6.25Zm-6.53.6 1.7 1.7a3.75 3.75 0 0 0 5.03 5.03l1.2 1.2c-.78.2-1.6.3-2.4.3-4.14 0-7.68-2.6-9.06-6.25a.75.75 0 0 1 0-.5c.4-1.06.98-2.02 1.7-2.84Z" clip-rule="evenodd"/></svg>';
+
+  function setButtonState(btn, shown) {
+    btn.dataset.state = shown ? 'shown' : 'hidden';
+    btn.innerHTML = shown
+      ? eyeOffIcon + '<span>Masquer la correction</span>'
+      : eyeIcon + '<span>Voir la correction</span>';
+    btn.classList.toggle('bg-emerald-600', !shown);
+    btn.classList.toggle('hover:bg-emerald-700', !shown);
+    btn.classList.toggle('bg-slate-600', shown);
+    btn.classList.toggle('hover:bg-slate-700', shown);
+  }
+
+  function toggleCorrection(exerciseId, btn) {
+    const container = document.getElementById(exerciseId);
+    const show = btn.dataset.state !== 'shown';
+    container.querySelectorAll('.qa-answer').forEach(el => el.classList.toggle('hidden', !show));
+    container.querySelectorAll('.qa-prompt').forEach(el => el.classList.toggle('hidden', show));
+    setButtonState(btn, show);
+  }
+
+  // Back to top button
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    const visible = window.scrollY > 400;
+    backToTop.classList.toggle('opacity-0', !visible);
+    backToTop.classList.toggle('pointer-events-none', !visible);
+  });
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Active nav link highlighting
+  const sections = document.querySelectorAll('main section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          const active = link.getAttribute('href') === `#${entry.target.id}`;
+          link.classList.toggle('text-teal-700', active);
+          link.classList.toggle('bg-teal-50', active);
+        });
+      }
+    });
+  }, { rootMargin: '-45% 0px -45% 0px' });
+  sections.forEach(s => sectionObserver.observe(s));
+</script>
+
+</body>
+</html>

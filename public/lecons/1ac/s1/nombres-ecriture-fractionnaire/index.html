@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Nombres en écriture fractionnaire — Cours et exercices corrigés | 1AC Maths</title>
+<meta name="description" content="Cours complet et interactif sur les nombres en écriture fractionnaire pour la 1ère année collège : définitions, règles de comparaison, réduction au même dénominateur, simplification et 18 exercices corrigés (Exercice 1 : Comparer).">
+<meta name="theme-color" content="#4f46e5">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%234f46e5'/%3E%3Ctext x='50' y='40' font-family='Arial,sans-serif' font-size='34' font-weight='700' fill='white' text-anchor='middle'%3Ea%3C/text%3E%3Cline x1='26' y1='50' x2='74' y2='50' stroke='white' stroke-width='7' stroke-linecap='round'/%3E%3Ctext x='50' y='86' font-family='Arial,sans-serif' font-size='34' font-weight='700' fill='white' text-anchor='middle'%3Eb%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          display: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          indigo: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+  body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+  .font-display { font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif; }
+
+  /* Fraction component */
+  .frac { display: inline-flex; flex-direction: column; text-align: center; vertical-align: middle; margin: 0 .22em; line-height: 1.15; font-variant-numeric: tabular-nums; }
+  .frac .num, .frac .den { display: block; padding: 0 .35em; }
+  .frac .num { border-bottom: 2px solid currentColor; padding-bottom: 1px; }
+  .frac .den { padding-top: 1px; }
+  .frac-sm { font-size: .85em; }
+  .frac-lg { font-size: 1.2em; }
+
+  .eq-row { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .6rem; }
+
+  /* Compact comparison-row card, reused across many exercises */
+  .card-row { border-radius: .75rem; border: 1px solid rgb(226 232 240); background: rgb(248 250 252); padding: .6rem .9rem; }
+
+  /* Details/summary correction toggle (no JS required) */
+  summary { list-style: none; cursor: pointer; }
+  summary::-webkit-details-marker { display: none; }
+  .chevron { transition: transform .25s ease; }
+  details[open] > summary .chevron { transform: rotate(180deg); }
+  details[open] > summary .label-closed { display: none; }
+  details:not([open]) > summary .label-open { display: none; }
+  .corr-panel { animation: fadeIn .3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .anchor-offset { scroll-margin-top: 96px; }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .text-slate-300 { color: #cbd5e1; }
+  .dark .border-slate-100, .dark .border-slate-200, .dark .border-slate-300 { border-color: #1c3a63; }
+  .dark .card-row { background: #0d2145; border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .bg-emerald-100\/60 { background-color: rgb(16 59 38 / 0.6); }
+  .dark .border-emerald-200, .dark .border-emerald-400 { border-color: #1e5631; }
+  .dark .text-emerald-700 { color: #6ee7a3; }
+  .dark .bg-rose-50 { background-color: #3a0d18; }
+  .dark .border-rose-400 { border-color: #7a2138; }
+  .dark .text-rose-600, .dark .text-rose-700 { color: #fb7185; }
+  .dark .bg-violet-50 { background-color: #241a3d; }
+  .dark .bg-violet-100 { background-color: #2f2151; }
+  .dark .text-violet-600, .dark .text-violet-700 { color: #c4b5fd; }
+  .dark .bg-blue-50 { background-color: #0c2340; }
+  .dark .border-blue-400 { border-color: #1d4ed8; }
+  .dark .text-blue-500, .dark .text-blue-700 { color: #93c5fd; }
+  .dark .bg-sky-50 { background-color: #082f3d; }
+  .dark .border-sky-400 { border-color: #0ea5e9; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased transition-colors">
+
+<!-- ===================== HEADER ===================== -->
+<header class="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur">
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+    <a href="#accueil" class="flex items-center gap-2.5">
+      <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+      <span class="leading-tight">
+        <span class="block font-display text-sm font-bold text-slate-900 dark:text-white sm:text-base">Nombres en écriture fractionnaire</span>
+        <span class="block text-[11px] font-medium text-slate-400 sm:text-xs">Mathématiques · 1AC · Chapitre N2</span>
+      </span>
+    </a>
+
+    <nav aria-label="Navigation principale" class="hidden items-center gap-1 md:flex">
+      <a href="/" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">← Portail</a>
+      <a href="#accueil" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">Accueil</a>
+      <a href="#sommaire" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">Le cours</a>
+      <a href="#exercices" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">Exercices</a>
+      <a href="#exercices" class="ml-2 inline-flex items-center gap-1.5 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700">
+        S'entraîner
+        <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+      </a>
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-amber-400 transition-colors">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+    </nav>
+
+    <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="md:hidden mr-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+      <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+      <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+    </button>
+    <button id="menu-btn" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu" class="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 md:hidden">
+      <svg id="icon-open" viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      <svg id="icon-close" viewBox="0 0 24 24" class="hidden h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-indigo-900 px-4 py-3 md:hidden">
+    <nav aria-label="Navigation mobile" class="flex flex-col gap-1">
+      <a href="/" class="rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5">← Portail</a>
+      <a href="#accueil" class="rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5">Accueil</a>
+      <a href="#sommaire" class="rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5">Le cours</a>
+      <a href="#exercices" class="rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5">Exercices corrigés</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ===================== HERO ===================== -->
+<section id="accueil" class="anchor-offset relative overflow-hidden bg-gradient-to-b from-indigo-50 via-white to-white">
+  <div class="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:py-20 lg:px-8">
+    <div>
+      <span class="inline-flex items-center gap-2 rounded-full bg-indigo-100 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wide text-indigo-700">
+        Chapitre N2 · Mathématiques · 1ʳᵉ Année Collège
+      </span>
+      <h1 class="mt-5 font-display text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl lg:text-5xl">
+        Nombres en écriture fractionnaire
+      </h1>
+      <p class="mt-4 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
+        Écritures fractionnaires, fractions, transformation, simplification, réduction au même dénominateur et comparaison :
+        toutes les règles du cours expliquées simplement, avec des exemples résolus et
+        <strong class="text-slate-800">18 exercices corrigés</strong> pour t'entraîner.
+      </p>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a href="#sommaire" class="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-md shadow-indigo-200 hover:bg-indigo-700">
+          Commencer le cours
+          <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+        <a href="#exercices" class="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50">
+          Faire les exercices
+        </a>
+      </div>
+
+      <dl class="mt-9 grid max-w-md grid-cols-3 gap-4">
+        <div class="rounded-xl border border-slate-200 bg-white/70 p-3 text-center shadow-sm">
+          <dt class="font-display text-xl font-extrabold text-indigo-600">5</dt>
+          <dd class="mt-0.5 text-[11px] font-semibold text-slate-500">parties de cours</dd>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-white/70 p-3 text-center shadow-sm">
+          <dt class="font-display text-xl font-extrabold text-indigo-600">4</dt>
+          <dd class="mt-0.5 text-[11px] font-semibold text-slate-500">règles de comparaison</dd>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-white/70 p-3 text-center shadow-sm">
+          <dt class="font-display text-xl font-extrabold text-indigo-600">18</dt>
+          <dd class="mt-0.5 text-[11px] font-semibold text-slate-500">exercices corrigés</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="relative">
+      <div class="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-indigo-200 via-violet-100 to-transparent blur-2xl"></div>
+      <img src="https://images.unsplash.com/photo-1635372722656-389f87a941b7?auto=format&fit=crop&w=1200&q=80"
+           alt="Illustration : équations et fractions écrites au tableau (image d'illustration)"
+           class="aspect-[4/3] w-full rounded-3xl border border-white object-cover shadow-2xl shadow-indigo-200/60">
+      <div class="absolute -bottom-5 -left-5 hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-xl sm:block">
+        <div class="eq-row text-lg font-semibold text-slate-700">
+          <span class="frac"><span class="num">a</span><span class="den">b</span></span>
+          <span class="text-slate-400">&lt;</span>
+          <span class="frac"><span class="num">c</span><span class="den">b</span></span>
+        </div>
+        <p class="mt-1 text-[11px] font-semibold text-slate-400">Comparer deux écritures fractionnaires</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SOMMAIRE / TOC ===================== -->
+<section id="sommaire" class="anchor-offset border-t border-slate-200 bg-white py-14">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-display text-2xl font-extrabold text-slate-900 sm:text-3xl">Sommaire du chapitre</h2>
+      <p class="mt-2 text-slate-500">Clique sur une partie pour y accéder directement.</p>
+    </div>
+
+    <div class="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <a href="#section-1" class="group rounded-2xl border border-slate-200 p-5 transition hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-lg">
+        <span class="font-display text-sm font-extrabold text-indigo-500">I</span>
+        <h3 class="mt-1 font-display font-bold text-slate-900">Écriture fractionnaire et fraction</h3>
+        <p class="mt-1.5 text-sm text-slate-500">Définitions, exemples, remarques et transformation en fraction.</p>
+      </a>
+      <a href="#section-2" class="group rounded-2xl border border-slate-200 p-5 transition hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-lg">
+        <span class="font-display text-sm font-extrabold text-indigo-500">II</span>
+        <h3 class="mt-1 font-display font-bold text-slate-900">Égalité de deux quotients</h3>
+        <p class="mt-1.5 text-sm text-slate-500">Multiplier ou diviser numérateur et dénominateur par un même nombre.</p>
+      </a>
+      <a href="#section-3" class="group rounded-2xl border border-slate-200 p-5 transition hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-lg">
+        <span class="font-display text-sm font-extrabold text-indigo-500">III</span>
+        <h3 class="mt-1 font-display font-bold text-slate-900">Simplification d'une fraction</h3>
+        <p class="mt-1.5 text-sm text-slate-500">Diviser par le plus grand diviseur commun (PGDC).</p>
+      </a>
+      <a href="#section-4" class="group rounded-2xl border border-slate-200 p-5 transition hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-lg">
+        <span class="font-display text-sm font-extrabold text-indigo-500">IV</span>
+        <h3 class="mt-1 font-display font-bold text-slate-900">Réduire au même dénominateur</h3>
+        <p class="mt-1.5 text-sm text-slate-500">Chercher le plus petit multiple commun (PPMC) des dénominateurs.</p>
+      </a>
+      <a href="#section-5" class="group rounded-2xl border border-slate-200 p-5 transition hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-lg">
+        <span class="font-display text-sm font-extrabold text-indigo-500">V</span>
+        <h3 class="mt-1 font-display font-bold text-slate-900">Comparer deux nombres fractionnaires</h3>
+        <p class="mt-1.5 text-sm text-slate-500">4 règles : même dénominateur, même numérateur, cas général, comparaison à 1.</p>
+      </a>
+      <a href="#exercices" class="group rounded-2xl border-2 border-indigo-200 bg-indigo-50/50 p-5 transition hover:-translate-y-0.5 hover:border-indigo-400 hover:shadow-lg">
+        <span class="font-display text-sm font-extrabold text-indigo-600">✓</span>
+        <h3 class="mt-1 font-display font-bold text-slate-900">Exercice 1 — Comparer</h3>
+        <p class="mt-1.5 text-sm text-slate-500">18 exercices corrigés, du plus simple au plus complexe.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION I ===================== -->
+<section id="section-1" class="anchor-offset border-t border-slate-200 py-14">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+
+    <div class="flex items-center gap-3">
+      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-600 font-display text-lg font-bold text-white">I</span>
+      <h2 class="font-display text-2xl font-extrabold text-slate-900 sm:text-3xl">Écriture fractionnaire et fraction</h2>
+    </div>
+
+    <!-- 1. Écriture fractionnaire -->
+    <h3 class="mt-9 font-display text-lg font-bold text-slate-800">1. Écriture fractionnaire</h3>
+    <div class="mt-3 rounded-2xl border-l-4 border-blue-400 bg-blue-50 p-5">
+      <span class="text-xs font-bold uppercase tracking-wide text-blue-500">Définition et vocabulaire</span>
+      <p class="mt-2 leading-relaxed text-slate-700">
+        L'écriture fractionnaire, c'est le quotient d'un nombre décimal <em>a</em> par un nombre décimal non nul <em>b</em>,
+        notée : <span class="frac frac-lg align-middle"><span class="num">a</span><span class="den">b</span></span>.
+        <em>a</em> est le <strong>numérateur</strong> et <em>b</em> est le <strong>dénominateur</strong>.
+      </p>
+    </div>
+    <p class="mt-4 text-sm font-semibold text-slate-500">Exemples d'écritures fractionnaires :</p>
+    <div class="mt-2 flex flex-wrap gap-3">
+      <span class="card-row frac frac-lg">‎<span class="num">2,5</span><span class="den">4</span></span>
+      <span class="card-row frac frac-lg">‎<span class="num">11</span><span class="den">3,7</span></span>
+      <span class="card-row frac frac-lg">‎<span class="num">0,12</span><span class="den">5,4</span></span>
+      <span class="card-row frac frac-lg">‎<span class="num">11</span><span class="den">27</span></span>
+    </div>
+
+    <!-- 2. Fraction -->
+    <h3 class="mt-8 font-display text-lg font-bold text-slate-800">2. Fraction</h3>
+    <div class="mt-3 rounded-2xl border-l-4 border-blue-400 bg-blue-50 p-5">
+      <span class="text-xs font-bold uppercase tracking-wide text-blue-500">Définition et vocabulaire</span>
+      <p class="mt-2 leading-relaxed text-slate-700">
+        Une fraction, c'est le quotient d'un nombre <strong>entier</strong> <em>a</em> par un nombre <strong>entier</strong> non nul <em>b</em>,
+        notée : <span class="frac frac-lg align-middle"><span class="num">a</span><span class="den">b</span></span>.
+        <em>a</em> est le <strong>numérateur</strong> et <em>b</em> est le <strong>dénominateur</strong>.
+      </p>
+    </div>
+    <p class="mt-4 text-sm font-semibold text-slate-500">Exemples de fractions :</p>
+    <div class="mt-2 flex flex-wrap gap-3">
+      <span class="card-row frac frac-lg">‎<span class="num">21</span><span class="den">4</span></span>
+      <span class="card-row frac frac-lg">‎<span class="num">31</span><span class="den">7</span></span>
+      <span class="card-row frac frac-lg">‎<span class="num">12</span><span class="den">54</span></span>
+      <span class="card-row frac frac-lg">‎<span class="num">11</span><span class="den">27</span></span>
+    </div>
+
+    <!-- Remarques -->
+    <h3 class="mt-8 font-display text-lg font-bold text-slate-800">Remarques importantes</h3>
+    <div class="mt-3 grid gap-3">
+      <div class="flex gap-3 rounded-2xl border-l-4 border-sky-400 bg-sky-50 p-4">
+        <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sky-400 text-xs font-bold text-white">1</span>
+        <p class="text-slate-700"><strong>Toute fraction est une écriture fractionnaire.</strong>
+          Exemple : <span class="frac align-middle"><span class="num">2</span><span class="den">5</span></span> est à la fois une fraction <em>et</em> une écriture fractionnaire.</p>
+      </div>
+      <div class="flex gap-3 rounded-2xl border-l-4 border-sky-400 bg-sky-50 p-4">
+        <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sky-400 text-xs font-bold text-white">2</span>
+        <p class="text-slate-700"><strong>Une écriture fractionnaire n'est pas toujours une fraction.</strong>
+          Exemple : <span class="frac align-middle"><span class="num">2,5</span><span class="den">7</span></span> est une écriture fractionnaire mais pas une fraction (2,5 n'est pas un entier).</p>
+      </div>
+      <div class="flex gap-3 rounded-2xl border-l-4 border-sky-400 bg-sky-50 p-4">
+        <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sky-400 text-xs font-bold text-white">3</span>
+        <p class="text-slate-700"><strong>Un quotient peut être une fraction, une écriture fractionnaire, ou les deux à la fois.</strong>
+          Exemples :
+          <span class="frac align-middle"><span class="num">2</span><span class="den">9</span></span>,
+          <span class="frac align-middle"><span class="num">2,5</span><span class="den">3,7</span></span>,
+          <span class="frac align-middle"><span class="num">1</span><span class="den">2,5</span></span>,
+          <span class="frac align-middle"><span class="num">3,8</span><span class="den">7</span></span>.</p>
+      </div>
+    </div>
+
+    <!-- 3. Transformer -->
+    <h3 class="mt-8 font-display text-lg font-bold text-slate-800">3. Transformer une écriture fractionnaire en fraction</h3>
+    <div class="mt-3 rounded-2xl border-l-4 border-amber-400 bg-amber-50 p-5">
+      <span class="text-xs font-bold uppercase tracking-wide text-amber-600">Règle</span>
+      <p class="mt-2 leading-relaxed text-slate-700">
+        Pour transformer une écriture fractionnaire en fraction, on multiplie le numérateur et le dénominateur par
+        <strong>10, 100, 1000…</strong> (selon le nombre de chiffres après la virgule) jusqu'à obtenir des nombres entiers.
+      </p>
+    </div>
+    <div class="mt-3 grid gap-3 sm:grid-cols-2">
+      <div class="card-row eq-row text-lg">
+        <span class="frac"><span class="num">2,5</span><span class="den">5</span></span><span>=</span>
+        <span class="frac frac-sm"><span class="num">2,5×10</span><span class="den">5×10</span></span><span>=</span>
+        <span class="frac"><span class="num">25</span><span class="den">50</span></span>
+      </div>
+      <div class="card-row eq-row text-lg">
+        <span class="frac"><span class="num">7</span><span class="den">0,02</span></span><span>=</span>
+        <span class="frac frac-sm"><span class="num">7×100</span><span class="den">0,02×100</span></span><span>=</span>
+        <span class="frac"><span class="num">700</span><span class="den">2</span></span>
+      </div>
+      <div class="card-row eq-row text-lg">
+        <span class="frac"><span class="num">3,12</span><span class="den">1,5</span></span><span>=</span>
+        <span class="frac frac-sm"><span class="num">3,12×100</span><span class="den">1,5×100</span></span><span>=</span>
+        <span class="frac"><span class="num">312</span><span class="den">150</span></span>
+      </div>
+      <div class="card-row eq-row text-lg">
+        <span class="frac"><span class="num">3,12</span><span class="den">0,453</span></span><span>=</span>
+        <span class="frac frac-sm"><span class="num">3,12×1000</span><span class="den">0,453×1000</span></span><span>=</span>
+        <span class="frac"><span class="num">3120</span><span class="den">453</span></span>
+      </div>
+    </div>
+
+    <a href="#sommaire" class="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-800">
+      <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18"/></svg>
+      Retour au sommaire
+    </a>
+  </div>
+</section>
+
+<!-- ===================== SECTION II ===================== -->
+<section id="section-2" class="anchor-offset border-t border-slate-200 bg-white py-14">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center gap-3">
+      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-600 font-display text-lg font-bold text-white">II</span>
+      <h2 class="font-display text-2xl font-extrabold text-slate-900 sm:text-3xl">Égalité de deux quotients</h2>
+    </div>
+
+    <div class="mt-6 rounded-2xl border-l-4 border-amber-400 bg-amber-50 p-5">
+      <span class="text-xs font-bold uppercase tracking-wide text-amber-600">Règle</span>
+      <p class="mt-2 leading-relaxed text-slate-700">
+        Un quotient <span class="frac align-middle"><span class="num">a</span><span class="den">b</span></span> (avec <em>b</em>≠0) ne change pas si l'on
+        multiplie ou si l'on divise son numérateur <strong>et</strong> son dénominateur par un même nombre <em>k</em> non nul.
+      </p>
+      <div class="eq-row mt-3 justify-center text-lg font-semibold text-amber-800">
+        <span class="frac"><span class="num">a</span><span class="den">b</span></span><span>=</span>
+        <span class="frac"><span class="num">a×k</span><span class="den">b×k</span></span>
+        <span class="mx-3 text-amber-300">|</span>
+        <span class="frac"><span class="num">a</span><span class="den">b</span></span><span>=</span>
+        <span class="frac"><span class="num">a÷k</span><span class="den">b÷k</span></span>
+      </div>
+    </div>
+
+    <p class="mt-5 text-sm font-semibold text-slate-500">Exemples :</p>
+    <div class="mt-2 grid gap-3 sm:grid-cols-2">
+      <div class="card-row eq-row text-lg">
+        <span class="frac"><span class="num">11</span><span class="den">3</span></span><span>=</span>
+        <span class="frac frac-sm"><span class="num">11×5</span><span class="den">3×5</span></span><span>=</span>
+        <span class="frac"><span class="num">55</span><span class="den">15</span></span>
+      </div>
+      <div class="card-row eq-row text-lg">
+        <span class="frac"><span class="num">24</span><span class="den">27</span></span><span>=</span>
+        <span class="frac frac-sm"><span class="num">24÷3</span><span class="den">27÷3</span></span><span>=</span>
+        <span class="frac"><span class="num">8</span><span class="den">9</span></span>
+      </div>
+    </div>
+
+    <a href="#sommaire" class="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-800">
+      <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18"/></svg>
+      Retour au sommaire
+    </a>
+  </div>
+</section>
+
+<!-- ===================== SECTION III ===================== -->
+<section id="section-3" class="anchor-offset border-t border-slate-200 py-14">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center gap-3">
+      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-600 font-display text-lg font-bold text-white">III</span>
+      <h2 class="font-display text-2xl font-extrabold text-slate-900 sm:text-3xl">Simplification d'une fraction</h2>
+    </div>
+
+    <div class="mt-6 rounded-2xl border-l-4 border-amber-400 bg-amber-50 p-5">
+      <span class="text-xs font-bold uppercase tracking-wide text-amber-600">Règle</span>
+      <p class="mt-2 leading-relaxed text-slate-700">
+        Pour simplifier une fraction, on divise son numérateur et son dénominateur par leur
+        <strong>plus grand diviseur commun</strong> (PGDC).
+      </p>
+    </div>
+
+    <p class="mt-5 text-sm font-semibold text-slate-500">Exemples :</p>
+    <div class="mt-2 grid gap-3 sm:grid-cols-3">
+      <div class="card-row eq-row justify-center text-lg">
+        <span class="frac"><span class="num">15</span><span class="den">20</span></span><span>=</span>
+        <span class="frac frac-sm"><span class="num">15÷5</span><span class="den">20÷5</span></span><span>=</span>
+        <span class="frac"><span class="num">3</span><span class="den">4</span></span>
+      </div>
+      <div class="card-row eq-row justify-center text-lg">
+        <span class="frac"><span class="num">75</span><span class="den">50</span></span><span>=</span>
+        <span class="frac frac-sm"><span class="num">75÷25</span><span class="den">50÷25</span></span><span>=</span>
+        <span class="frac"><span class="num">3</span><span class="den">2</span></span>
+      </div>
+      <div class="card-row eq-row justify-center text-lg">
+        <span class="frac"><span class="num">2,5</span><span class="den">10</span></span><span>=</span>
+        <span class="frac frac-sm"><span class="num">25</span><span class="den">100</span></span><span>=</span>
+        <span class="frac"><span class="num">1</span><span class="den">4</span></span>
+      </div>
+    </div>
+
+    <a href="#sommaire" class="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-800">
+      <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18"/></svg>
+      Retour au sommaire
+    </a>
+  </div>
+</section>
+
+<!-- ===================== SECTION IV ===================== -->
+<section id="section-4" class="anchor-offset border-t border-slate-200 bg-white py-14">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center gap-3">
+      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-600 font-display text-lg font-bold text-white">IV</span>
+      <h2 class="font-display text-2xl font-extrabold text-slate-900 sm:text-3xl">Réduire au même dénominateur</h2>
+    </div>
+
+    <div class="mt-6 rounded-2xl border-l-4 border-amber-400 bg-amber-50 p-5">
+      <span class="text-xs font-bold uppercase tracking-wide text-amber-600">Règle</span>
+      <p class="mt-2 leading-relaxed text-slate-700">
+        Pour réduire des fractions au même dénominateur, on cherche le <strong>plus petit multiple commun</strong> (PPMC)
+        de leurs dénominateurs.
+      </p>
+    </div>
+
+    <div class="mt-5 grid gap-4 sm:grid-cols-2">
+      <div class="rounded-2xl border border-slate-200 p-4">
+        <p class="text-sm text-slate-500">Réduisons au même dénominateur :
+          <span class="frac align-middle"><span class="num">3</span><span class="den">8</span></span> et
+          <span class="frac align-middle"><span class="num">11</span><span class="den">12</span></span>
+          <span class="ml-1 text-xs text-slate-400">(PPMC(8,12) = 24)</span>
+        </p>
+        <div class="mt-2 space-y-1.5">
+          <div class="eq-row text-lg"><span class="frac"><span class="num">3</span><span class="den">8</span></span><span>=</span><span class="frac frac-sm"><span class="num">3×3</span><span class="den">8×3</span></span><span>=</span><span class="frac"><span class="num">9</span><span class="den">24</span></span></div>
+          <div class="eq-row text-lg"><span class="frac"><span class="num">11</span><span class="den">12</span></span><span>=</span><span class="frac frac-sm"><span class="num">11×2</span><span class="den">12×2</span></span><span>=</span><span class="frac"><span class="num">22</span><span class="den">24</span></span></div>
+        </div>
+      </div>
+
+      <div class="rounded-2xl border border-slate-200 p-4">
+        <p class="text-sm text-slate-500">Réduisons au même dénominateur :
+          <span class="frac align-middle"><span class="num">7</span><span class="den">8</span></span> et
+          <span class="frac align-middle"><span class="num">13</span><span class="den">4</span></span>
+          <span class="ml-1 text-xs text-slate-400">(8 est un multiple de 4 → dénominateur commun 8)</span>
+        </p>
+        <div class="mt-2 space-y-1.5">
+          <div class="eq-row text-lg"><span class="frac"><span class="num">7</span><span class="den">8</span></span><span>=</span><span class="frac frac-sm"><span class="num">7×1</span><span class="den">8×1</span></span><span>=</span><span class="frac"><span class="num">7</span><span class="den">8</span></span></div>
+          <div class="eq-row text-lg"><span class="frac"><span class="num">13</span><span class="den">4</span></span><span>=</span><span class="frac frac-sm"><span class="num">13×2</span><span class="den">4×2</span></span><span>=</span><span class="frac"><span class="num">26</span><span class="den">8</span></span></div>
+        </div>
+      </div>
+
+      <div class="rounded-2xl border border-slate-200 p-4">
+        <p class="text-sm text-slate-500">Réduisons au même dénominateur :
+          <span class="frac align-middle"><span class="num">7</span><span class="den">5</span></span>,
+          <span class="frac align-middle"><span class="num">13</span><span class="den">15</span></span> et
+          <span class="frac align-middle"><span class="num">5</span><span class="den">9</span></span>
+          <span class="ml-1 text-xs text-slate-400">(PPMC(5,15,9) = 45)</span>
+        </p>
+        <div class="mt-2 space-y-1.5">
+          <div class="eq-row text-lg"><span class="frac"><span class="num">7</span><span class="den">5</span></span><span>=</span><span class="frac frac-sm"><span class="num">7×9</span><span class="den">5×9</span></span><span>=</span><span class="frac"><span class="num">63</span><span class="den">45</span></span></div>
+          <div class="eq-row text-lg"><span class="frac"><span class="num">13</span><span class="den">15</span></span><span>=</span><span class="frac frac-sm"><span class="num">13×3</span><span class="den">15×3</span></span><span>=</span><span class="frac"><span class="num">39</span><span class="den">45</span></span></div>
+          <div class="eq-row text-lg"><span class="frac"><span class="num">5</span><span class="den">9</span></span><span>=</span><span class="frac frac-sm"><span class="num">5×5</span><span class="den">9×5</span></span><span>=</span><span class="frac"><span class="num">25</span><span class="den">45</span></span></div>
+        </div>
+      </div>
+
+      <div class="rounded-2xl border border-slate-200 p-4">
+        <p class="text-sm text-slate-500">Réduisons au même dénominateur :
+          <span class="frac align-middle"><span class="num">3</span><span class="den">27</span></span>,
+          <span class="frac align-middle"><span class="num">1</span><span class="den">3</span></span> et
+          <span class="frac align-middle"><span class="num">7</span><span class="den">9</span></span>
+          <span class="ml-1 text-xs text-slate-400">(27 multiple de 3 et de 9 → dénominateur commun 27)</span>
+        </p>
+        <div class="mt-2 space-y-1.5">
+          <div class="eq-row text-lg"><span class="frac"><span class="num">3</span><span class="den">27</span></span><span>=</span><span class="frac frac-sm"><span class="num">3×1</span><span class="den">27×1</span></span><span>=</span><span class="frac"><span class="num">3</span><span class="den">27</span></span></div>
+          <div class="eq-row text-lg"><span class="frac"><span class="num">1</span><span class="den">3</span></span><span>=</span><span class="frac frac-sm"><span class="num">1×9</span><span class="den">3×9</span></span><span>=</span><span class="frac"><span class="num">9</span><span class="den">27</span></span></div>
+          <div class="eq-row text-lg"><span class="frac"><span class="num">7</span><span class="den">9</span></span><span>=</span><span class="frac frac-sm"><span class="num">7×3</span><span class="den">9×3</span></span><span>=</span><span class="frac"><span class="num">21</span><span class="den">27</span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#sommaire" class="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-800">
+      <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18"/></svg>
+      Retour au sommaire
+    </a>
+  </div>
+</section>
+
+<!-- ===================== SECTION V ===================== -->
+<section id="section-5" class="anchor-offset border-t border-slate-200 bg-white py-14">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center gap-3">
+      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-600 font-display text-lg font-bold text-white">V</span>
+      <h2 class="font-display text-2xl font-extrabold text-slate-900 sm:text-3xl">Comparer deux nombres en écriture fractionnaire</h2>
+    </div>
+
+    <!-- V.1 -->
+    <h3 class="mt-9 font-display text-lg font-bold text-slate-800">1. Fractions ayant le même dénominateur</h3>
+    <div class="mt-3 rounded-2xl border-l-4 border-amber-400 bg-amber-50 p-5">
+      <span class="text-xs font-bold uppercase tracking-wide text-amber-600">Règle 1</span>
+      <p class="mt-2 leading-relaxed text-slate-700">
+        Soient <span class="frac align-middle"><span class="num">a</span><span class="den">b</span></span> et
+        <span class="frac align-middle"><span class="num">c</span><span class="den">b</span></span> deux nombres en écriture fractionnaire (<em>b</em>≠0) :
+      </p>
+      <div class="eq-row mt-2 text-base font-semibold text-amber-800">
+        <span>Si a &gt; c, alors</span>
+        <span class="frac"><span class="num">a</span><span class="den">b</span></span><span>&gt;</span><span class="frac"><span class="num">c</span><span class="den">b</span></span>
+        <span class="mx-2 text-amber-300">/</span>
+        <span>Si a &lt; c, alors</span>
+        <span class="frac"><span class="num">a</span><span class="den">b</span></span><span>&lt;</span><span class="frac"><span class="num">c</span><span class="den">b</span></span>
+      </div>
+    </div>
+    <div class="mt-3 grid gap-3 sm:grid-cols-2">
+      <div class="card-row eq-row text-lg">
+        <span class="frac"><span class="num">11</span><span class="den">7</span></span><span class="font-bold text-indigo-600">&lt;</span>
+        <span class="frac"><span class="num">13</span><span class="den">7</span></span>
+        <span class="ml-auto text-sm font-normal text-slate-400">car 11 &lt; 13</span>
+      </div>
+      <div class="card-row eq-row text-lg">
+        <span class="frac"><span class="num">17</span><span class="den">5</span></span><span class="font-bold text-indigo-600">&gt;</span>
+        <span class="frac"><span class="num">9</span><span class="den">5</span></span>
+        <span class="ml-auto text-sm font-normal text-slate-400">car 17 &gt; 9</span>
+      </div>
+    </div>
+
+    <!-- V.2 -->
+    <h3 class="mt-8 font-display text-lg font-bold text-slate-800">2. Fractions ayant le même numérateur</h3>
+    <div class="mt-3 rounded-2xl border-l-4 border-amber-400 bg-amber-50 p-5">
+      <span class="text-xs font-bold uppercase tracking-wide text-amber-600">Règle 2</span>
+      <p class="mt-2 leading-relaxed text-slate-700">
+        Soient <span class="frac align-middle"><span class="num">a</span><span class="den">b</span></span> et
+        <span class="frac align-middle"><span class="num">a</span><span class="den">c</span></span> deux nombres en écriture fractionnaire (<em>b</em>≠0 et <em>c</em>≠0) :
+      </p>
+      <div class="eq-row mt-2 text-base font-semibold text-amber-800">
+        <span>Si b &gt; c, alors</span>
+        <span class="frac"><span class="num">a</span><span class="den">b</span></span><span>&lt;</span><span class="frac"><span class="num">a</span><span class="den">c</span></span>
+        <span class="mx-2 text-amber-300">/</span>
+        <span>Si b &lt; c, alors</span>
+        <span class="frac"><span class="num">a</span><span class="den">b</span></span><span>&gt;</span><span class="frac"><span class="num">a</span><span class="den">c</span></span>
+      </div>
+    </div>
+    <div class="mt-3 grid gap-3 sm:grid-cols-2">
+      <div class="card-row eq-row text-lg">
+        <span class="frac"><span class="num">11</span><span class="den">10</span></span><span class="font-bold text-indigo-600">&lt;</span>
+        <span class="frac"><span class="num">11</span><span class="den">9</span></span>
+        <span class="ml-auto text-sm font-normal text-slate-400">car 10 &gt; 9</span>
+      </div>
+      <div class="card-row eq-row text-lg">
+        <span class="frac"><span class="num">7</span><span class="den">15</span></span><span class="font-bold text-indigo-600">&gt;</span>
+        <span class="frac"><span class="num">7</span><span class="den">29</span></span>
+        <span class="ml-auto text-sm font-normal text-slate-400">car 15 &lt; 29</span>
+      </div>
+    </div>
+
+    <!-- V.3 -->
+    <h3 class="mt-8 font-display text-lg font-bold text-slate-800">3. Ni même dénominateur, ni même numérateur</h3>
+    <div class="mt-3 rounded-2xl border-l-4 border-amber-400 bg-amber-50 p-5">
+      <span class="text-xs font-bold uppercase tracking-wide text-amber-600">Règle 3</span>
+      <p class="mt-2 leading-relaxed text-slate-700">
+        Pour comparer deux nombres en écriture fractionnaire n'ayant ni le même dénominateur ni le même numérateur,
+        on les réduit d'abord au même dénominateur, puis on applique la <strong>Règle 1</strong>.
+      </p>
+    </div>
+    <div class="mt-3 grid gap-4 sm:grid-cols-2">
+      <div class="rounded-2xl border border-slate-200 p-4">
+        <p class="text-sm text-slate-500">Comparons
+          <span class="frac align-middle"><span class="num">11</span><span class="den">5</span></span> et
+          <span class="frac align-middle"><span class="num">7</span><span class="den">10</span></span> :</p>
+        <div class="mt-2 space-y-1.5 text-lg">
+          <div class="eq-row"><span class="frac"><span class="num">11</span><span class="den">5</span></span><span>=</span><span class="frac frac-sm"><span class="num">11×2</span><span class="den">5×2</span></span><span>=</span><span class="frac"><span class="num">22</span><span class="den">10</span></span></div>
+          <div class="eq-row"><span class="frac"><span class="num">7</span><span class="den">10</span></span><span>=</span><span class="frac"><span class="num">7</span><span class="den">10</span></span></div>
+        </div>
+        <p class="mt-2 text-sm text-slate-600">Donc <span class="frac align-middle frac-sm"><span class="num">22</span><span class="den">10</span></span> &gt; <span class="frac align-middle frac-sm"><span class="num">7</span><span class="den">10</span></span> car 22 &gt; 7.
+          D'où <strong class="text-indigo-700">11/5 &gt; 7/10</strong>.</p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-4">
+        <p class="text-sm text-slate-500">Comparons
+          <span class="frac align-middle"><span class="num">13</span><span class="den">7</span></span> et
+          <span class="frac align-middle"><span class="num">17</span><span class="den">5</span></span> :</p>
+        <div class="mt-2 space-y-1.5 text-lg">
+          <div class="eq-row"><span class="frac"><span class="num">13</span><span class="den">7</span></span><span>=</span><span class="frac frac-sm"><span class="num">13×5</span><span class="den">7×5</span></span><span>=</span><span class="frac"><span class="num">65</span><span class="den">35</span></span></div>
+          <div class="eq-row"><span class="frac"><span class="num">17</span><span class="den">5</span></span><span>=</span><span class="frac frac-sm"><span class="num">17×7</span><span class="den">5×7</span></span><span>=</span><span class="frac"><span class="num">119</span><span class="den">35</span></span></div>
+        </div>
+        <p class="mt-2 text-sm text-slate-600">Donc <span class="frac align-middle frac-sm"><span class="num">65</span><span class="den">35</span></span> &lt; <span class="frac align-middle frac-sm"><span class="num">119</span><span class="den">35</span></span> car 65 &lt; 119.
+          D'où <strong class="text-indigo-700">13/7 &lt; 17/5</strong>.</p>
+      </div>
+    </div>
+
+    <!-- V.4 -->
+    <h3 class="mt-8 font-display text-lg font-bold text-slate-800">4. Comparer un nombre en écriture fractionnaire à 1</h3>
+    <div class="mt-3 rounded-2xl border-l-4 border-amber-400 bg-amber-50 p-5">
+      <span class="text-xs font-bold uppercase tracking-wide text-amber-600">Règle 4</span>
+      <p class="mt-2 leading-relaxed text-slate-700">
+        Soit <span class="frac align-middle"><span class="num">a</span><span class="den">b</span></span> un nombre en écriture fractionnaire (<em>b</em>≠0) :
+      </p>
+      <div class="eq-row mt-2 text-base font-semibold text-amber-800">
+        <span>Si a &gt; b, alors</span> <span class="frac"><span class="num">a</span><span class="den">b</span></span><span>&gt; 1</span>
+        <span class="mx-2 text-amber-300">/</span>
+        <span>Si a &lt; b, alors</span> <span class="frac"><span class="num">a</span><span class="den">b</span></span><span>&lt; 1</span>
+      </div>
+    </div>
+    <div class="mt-3 grid gap-3 sm:grid-cols-2">
+      <div class="card-row eq-row text-lg">
+        <span class="frac"><span class="num">17</span><span class="den">9</span></span><span class="font-bold text-indigo-600">&gt; 1</span>
+        <span class="ml-auto text-sm font-normal text-slate-400">car 17 &gt; 9</span>
+      </div>
+      <div class="card-row eq-row text-lg">
+        <span class="frac"><span class="num">7</span><span class="den">19</span></span><span class="font-bold text-indigo-600">&lt; 1</span>
+        <span class="ml-auto text-sm font-normal text-slate-400">car 7 &lt; 19</span>
+      </div>
+    </div>
+
+    <a href="#sommaire" class="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-800">
+      <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18"/></svg>
+      Retour au sommaire
+    </a>
+  </div>
+</section>
+
+<!-- ===================== EXERCICES ===================== -->
+<section id="exercices" class="anchor-offset border-t border-slate-200 bg-gradient-to-b from-slate-100 to-slate-50 py-14">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+
+    <div class="overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600 to-violet-600 shadow-xl">
+      <div class="grid gap-6 p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div>
+          <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wide text-white">
+            Exercice 1
+          </span>
+          <h2 class="mt-3 font-display text-2xl font-extrabold text-white sm:text-3xl">Comparer — 18 exercices corrigés</h2>
+          <p class="mt-2 max-w-2xl text-indigo-100">
+            Essaie chaque exercice sur ton cahier, puis clique sur le bouton pour afficher la correction détaillée et vérifier ta réponse.
+          </p>
+        </div>
+        <button id="toggle-all" type="button" class="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-bold text-indigo-700 shadow-md hover:bg-indigo-50">
+          <span id="toggle-all-label">Afficher toutes les corrections</span>
+        </button>
+      </div>
+    </div>
+
+    <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1400&q=80"
+         alt="Illustration : cahiers et matériel de travail (image d'illustration)"
+         class="mt-6 h-40 w-full rounded-2xl object-cover shadow-md sm:h-48">
+
+    <!-- Divider: Application -->
+    <div class="mt-10 mb-5 flex items-center gap-3">
+      <span class="h-px flex-1 bg-slate-300"></span>
+      <span class="rounded-full bg-slate-200 px-4 py-1 text-xs font-bold uppercase tracking-wide text-slate-500">Les exercices d'application</span>
+      <span class="h-px flex-1 bg-slate-300"></span>
+    </div>
+
+    <div class="space-y-5">
+
+      <!-- EX 1 -->
+      <article id="ex-1" class="anchor-offset rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-600 font-display font-bold text-white">1</span>
+          <div class="min-w-0 flex-1">
+            <p class="font-medium text-slate-800">Range (entoure) chaque quotient selon qu'il est inférieur à 1, égal à 1, ou supérieur à 1 :</p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="card-row frac">‎<span class="num">28</span><span class="den">13</span></span>
+              <span class="card-row frac">‎<span class="num">12,9</span><span class="den">12,9</span></span>
+              <span class="card-row frac">‎<span class="num">285698</span><span class="den">286598</span></span>
+              <span class="card-row frac">‎<span class="num">1287</span><span class="den">128</span></span>
+              <span class="card-row frac">‎<span class="num">0,03</span><span class="den">0,3</span></span>
+              <span class="card-row frac">‎<span class="num">90,02</span><span class="den">90,20</span></span>
+              <span class="card-row frac">‎<span class="num">2,8</span><span class="den">1</span></span>
+              <span class="card-row frac">‎<span class="num">3,2</span><span class="den">32</span></span>
+              <span class="card-row frac">‎<span class="num">8</span><span class="den">1</span></span>
+            </div>
+          </div>
+        </div>
+        <details class="corr mt-4">
+          <summary class="inline-flex items-center gap-2 rounded-lg bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700 hover:bg-indigo-100">
+            <svg viewBox="0 0 20 20" class="chevron h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            <span class="label-closed">Afficher la correction</span><span class="label-open">Masquer la correction</span>
+          </summary>
+          <div class="corr-panel mt-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:p-5">
+            <div class="mb-3 flex flex-wrap gap-4 text-xs font-semibold text-slate-500">
+              <span class="flex items-center gap-1.5"><span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span>inférieur à 1</span>
+              <span class="flex items-center gap-1.5"><span class="h-2.5 w-2.5 rounded-full bg-blue-500"></span>égal à 1</span>
+              <span class="flex items-center gap-1.5"><span class="h-2.5 w-2.5 rounded-full bg-rose-500"></span>supérieur à 1</span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="frac rounded-lg border-2 border-rose-400 bg-rose-50 px-3 py-1.5 text-rose-700">‎<span class="num">28</span><span class="den">13</span></span>
+              <span class="frac rounded-lg border-2 border-blue-400 bg-blue-50 px-3 py-1.5 text-blue-700">‎<span class="num">12,9</span><span class="den">12,9</span></span>
+              <span class="frac rounded-lg border-2 border-emerald-400 bg-emerald-100/60 px-3 py-1.5 text-emerald-700">‎<span class="num">285698</span><span class="den">286598</span></span>
+              <span class="frac rounded-lg border-2 border-rose-400 bg-rose-50 px-3 py-1.5 text-rose-700">‎<span class="num">1287</span><span class="den">128</span></span>
+              <span class="frac rounded-lg border-2 border-emerald-400 bg-emerald-100/60 px-3 py-1.5 text-emerald-700">‎<span class="num">0,03</span><span class="den">0,3</span></span>
+              <span class="frac rounded-lg border-2 border-emerald-400 bg-emerald-100/60 px-3 py-1.5 text-emerald-700">‎<span class="num">90,02</span><span class="den">90,20</span></span>
+              <span class="frac rounded-lg border-2 border-rose-400 bg-rose-50 px-3 py-1.5 text-rose-700">‎<span class="num">2,8</span><span class="den">1</span></span>
+              <span class="frac rounded-lg border-2 border-emerald-400 bg-emerald-100/60 px-3 py-1.5 text-emerald-700">‎<span class="num">3,2</span><span class="den">32</span></span>
+              <span class="frac rounded-lg border-2 border-rose-400 bg-rose-50 px-3 py-1.5 text-rose-700">‎<span class="num">8</span><span class="den">1</span></span>
+            </div>
+            <p class="mt-3 text-sm text-slate-600">Méthode (Règle 4) : on compare le numérateur au dénominateur. Numérateur &lt; dénominateur → quotient &lt; 1 ; numérateur = dénominateur → quotient = 1 ; numérateur &gt; dénominateur → quotient &gt; 1.</p>
+          </div>
+        </details>
+      </article>
+
+      <!-- EX 2 -->
+      <article id="ex-2" class="anchor-offset rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-600 font-display font-bold text-white">2</span>
+          <div class="min-w-0 flex-1">
+            <p class="font-medium text-slate-800">On compare les deux fractions
+              A = <span class="frac align-middle"><span class="num">128</span><span class="den">157</span></span> et
+              B = <span class="frac align-middle"><span class="num">172</span><span class="den">113</span></span>.</p>
+            <ol class="mt-2 list-inside list-decimal space-y-1 text-slate-600">
+              <li>Compare A et B à 1.</li>
+              <li>Déduis-en une comparaison entre A et B.</li>
+            </ol>
+          </div>
+        </div>
+        <details class="corr mt-4">
+          <summary class="inline-flex items-center gap-2 rounded-lg bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700 hover:bg-indigo-100">
+            <svg viewBox="0 0 20 20" class="chevron h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            <span class="label-closed">Afficher la correction</span><span class="label-open">Masquer la correction</span>
+          </summary>
+          <div class="corr-panel mt-4 space-y-2 rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:p-5 text-slate-700">
+            <p><strong>a.</strong> 128 &lt; 157 donc A &lt; 1. &nbsp;&nbsp; 172 &gt; 113 donc B &gt; 1.</p>
+            <p><strong>b.</strong> Comme A &lt; 1 &lt; B, on déduit que <strong class="text-indigo-700">A &lt; B</strong>.</p>
+          </div>
+        </details>
+      </article>
+
+      <!-- EX 3 -->
+      <article id="ex-3" class="anchor-offset rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-600 font-display font-bold text-white">3</span>
+          <div class="min-w-0 flex-1">
+            <p class="font-medium text-slate-800">Sans utiliser de calculatrice, compare les nombres suivants :</p>
+            <div class="mt-3 grid gap-2 sm:grid-cols-2">
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">a.</span><span class="frac">‎<span class="num">154</span><span class="den">125</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">158</span><span class="den">189</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">e.</span><span class="frac">‎<span class="num">51,54</span><span class="den">60</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">60</span><span class="den">51,54</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">b.</span><span class="frac">‎<span class="num">678</span><span class="den">987</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">998</span><span class="den">679</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">f.</span><span class="frac">‎<span class="num">5,89</span><span class="den">5,98</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">3,52</span><span class="den">3,25</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">c.</span><span class="frac">‎<span class="num">4</span><span class="den">3</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">3</span><span class="den">4</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">g.</span><span class="frac">‎<span class="num">3,2</span><span class="den">13</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">32</span><span class="den">13</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">d.</span><span>6</span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">1</span><span class="den">6</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">h.</span><span class="frac">‎<span class="num">1,01</span><span class="den">1,010</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">1,001</span><span class="den">1,010</span></span></div>
+            </div>
+          </div>
+        </div>
+        <details class="corr mt-4">
+          <summary class="inline-flex items-center gap-2 rounded-lg bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700 hover:bg-indigo-100">
+            <svg viewBox="0 0 20 20" class="chevron h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            <span class="label-closed">Afficher la correction</span><span class="label-open">Masquer la correction</span>
+          </summary>
+          <div class="corr-panel mt-4 grid gap-2 rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:grid-cols-2 sm:p-5">
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">a.</span><span class="frac">‎<span class="num">154</span><span class="den">125</span></span><span class="font-bold text-indigo-600">&gt;</span><span class="frac">‎<span class="num">158</span><span class="den">189</span></span></div><p class="mt-1 pl-7 text-xs text-slate-500">154&gt;125 → &gt;1 ; 158&lt;189 → &lt;1</p></div>
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">e.</span><span class="frac">‎<span class="num">51,54</span><span class="den">60</span></span><span class="font-bold text-indigo-600">&lt;</span><span class="frac">‎<span class="num">60</span><span class="den">51,54</span></span></div><p class="mt-1 pl-7 text-xs text-slate-500">51,54&lt;60 → &lt;1 ; 60&gt;51,54 → &gt;1</p></div>
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">b.</span><span class="frac">‎<span class="num">678</span><span class="den">987</span></span><span class="font-bold text-indigo-600">&lt;</span><span class="frac">‎<span class="num">998</span><span class="den">679</span></span></div><p class="mt-1 pl-7 text-xs text-slate-500">678&lt;987 → &lt;1 ; 998&gt;679 → &gt;1</p></div>
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">f.</span><span class="frac">‎<span class="num">5,89</span><span class="den">5,98</span></span><span class="font-bold text-indigo-600">&lt;</span><span class="frac">‎<span class="num">3,52</span><span class="den">3,25</span></span></div><p class="mt-1 pl-7 text-xs text-slate-500">5,89&lt;5,98 → &lt;1 ; 3,52&gt;3,25 → &gt;1</p></div>
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">c.</span><span class="frac">‎<span class="num">4</span><span class="den">3</span></span><span class="font-bold text-indigo-600">&gt;</span><span class="frac">‎<span class="num">3</span><span class="den">4</span></span></div><p class="mt-1 pl-7 text-xs text-slate-500">4/3&gt;1 (Règle 4) et 3/4&lt;1</p></div>
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">g.</span><span class="frac">‎<span class="num">3,2</span><span class="den">13</span></span><span class="font-bold text-indigo-600">&lt;</span><span class="frac">‎<span class="num">32</span><span class="den">13</span></span></div><p class="mt-1 pl-7 text-xs text-slate-500">Même dénominateur (Règle 1) : 3,2&lt;32</p></div>
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">d.</span><span>6</span><span class="font-bold text-indigo-600">&gt;</span><span class="frac">‎<span class="num">1</span><span class="den">6</span></span></div><p class="mt-1 pl-7 text-xs text-slate-500">6 &gt; 1 et 1/6 &lt; 1</p></div>
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">h.</span><span class="frac">‎<span class="num">1,01</span><span class="den">1,010</span></span><span class="font-bold text-indigo-600">&gt;</span><span class="frac">‎<span class="num">1,001</span><span class="den">1,010</span></span></div><p class="mt-1 pl-7 text-xs text-slate-500">Même dénominateur (Règle 1) : 1,010&gt;1,001</p></div>
+          </div>
+        </details>
+      </article>
+
+      <!-- EX 4 -->
+      <article id="ex-4" class="anchor-offset rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-600 font-display font-bold text-white">4</span>
+          <div class="min-w-0 flex-1">
+            <p class="font-medium text-slate-800">Compare les quotients suivants (même dénominateur → Règle 1) :</p>
+            <div class="mt-3 grid gap-2 sm:grid-cols-2">
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">a.</span><span class="frac">‎<span class="num">2</span><span class="den">3</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">4</span><span class="den">3</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">f.</span><span class="frac">‎<span class="num">3,2</span><span class="den">13</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">3,02</span><span class="den">13</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">b.</span><span class="frac">‎<span class="num">7</span><span class="den">5</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">8</span><span class="den">5</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">g.</span><span class="frac">‎<span class="num">0,3</span><span class="den">47</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">0,31</span><span class="den">47</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">c.</span><span class="frac">‎<span class="num">45</span><span class="den">16</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">54</span><span class="den">16</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">h.</span><span class="frac">‎<span class="num">0,7</span><span class="den">12</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">0,08</span><span class="den">12</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">d.</span><span class="frac">‎<span class="num">28</span><span class="den">1</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">0,5</span><span class="den">1</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">i.</span><span class="frac">‎<span class="num">1,82</span><span class="den">12</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">1,802</span><span class="den">12</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">e.</span><span class="frac">‎<span class="num">29</span><span class="den">29</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">28,99</span><span class="den">29</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">j.</span><span class="frac">‎<span class="num">0,02</span><span class="den">0,07</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">0,2</span><span class="den">0,07</span></span></div>
+            </div>
+          </div>
+        </div>
+        <details class="corr mt-4">
+          <summary class="inline-flex items-center gap-2 rounded-lg bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700 hover:bg-indigo-100">
+            <svg viewBox="0 0 20 20" class="chevron h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            <span class="label-closed">Afficher la correction</span><span class="label-open">Masquer la correction</span>
+          </summary>
+          <div class="corr-panel mt-4 grid gap-2 rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:grid-cols-2 sm:p-5 text-sm">
+            <div class="card-row bg-white flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">a.</span><span class="frac">‎<span class="num">2</span><span class="den">3</span></span><span class="font-bold text-indigo-600">&lt;</span><span class="frac">‎<span class="num">4</span><span class="den">3</span></span></div>
+            <div class="card-row bg-white flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">f.</span><span class="frac">‎<span class="num">3,2</span><span class="den">13</span></span><span class="font-bold text-indigo-600">&gt;</span><span class="frac">‎<span class="num">3,02</span><span class="den">13</span></span></div>
+            <div class="card-row bg-white flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">b.</span><span class="frac">‎<span class="num">7</span><span class="den">5</span></span><span class="font-bold text-indigo-600">&lt;</span><span class="frac">‎<span class="num">8</span><span class="den">5</span></span></div>
+            <div class="card-row bg-white flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">g.</span><span class="frac">‎<span class="num">0,3</span><span class="den">47</span></span><span class="font-bold text-indigo-600">&lt;</span><span class="frac">‎<span class="num">0,31</span><span class="den">47</span></span></div>
+            <div class="card-row bg-white flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">c.</span><span class="frac">‎<span class="num">45</span><span class="den">16</span></span><span class="font-bold text-indigo-600">&lt;</span><span class="frac">‎<span class="num">54</span><span class="den">16</span></span></div>
+            <div class="card-row bg-white flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">h.</span><span class="frac">‎<span class="num">0,7</span><span class="den">12</span></span><span class="font-bold text-indigo-600">&gt;</span><span class="frac">‎<span class="num">0,08</span><span class="den">12</span></span></div>
+            <div class="card-row bg-white flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">d.</span><span class="frac">‎<span class="num">28</span><span class="den">1</span></span><span class="font-bold text-indigo-600">&gt;</span><span class="frac">‎<span class="num">0,5</span><span class="den">1</span></span></div>
+            <div class="card-row bg-white flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">i.</span><span class="frac">‎<span class="num">1,82</span><span class="den">12</span></span><span class="font-bold text-indigo-600">&gt;</span><span class="frac">‎<span class="num">1,802</span><span class="den">12</span></span></div>
+            <div class="card-row bg-white flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">e.</span><span class="frac">‎<span class="num">29</span><span class="den">29</span></span><span class="font-bold text-indigo-600">&gt;</span><span class="frac">‎<span class="num">28,99</span><span class="den">29</span></span></div>
+            <div class="card-row bg-white flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">j.</span><span class="frac">‎<span class="num">0,02</span><span class="den">0,07</span></span><span class="font-bold text-indigo-600">&lt;</span><span class="frac">‎<span class="num">0,2</span><span class="den">0,07</span></span></div>
+            <p class="sm:col-span-2 mt-1 text-xs text-slate-500">Toutes ces paires ont le même dénominateur : on compare directement les numérateurs (Règle 1).</p>
+          </div>
+        </details>
+      </article>
+
+      <!-- EX 5 -->
+      <article id="ex-5" class="anchor-offset rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-600 font-display font-bold text-white">5</span>
+          <div class="min-w-0 flex-1">
+            <p class="font-medium text-slate-800">Sur un axe gradué :</p>
+            <ol class="mt-2 list-inside list-decimal space-y-1 text-slate-600">
+              <li>Place les points A, B, C, D et E d'abscisses respectives
+                <span class="frac align-middle frac-sm"><span class="num">12</span><span class="den">9</span></span>,
+                <span class="frac align-middle frac-sm"><span class="num">5</span><span class="den">9</span></span>,
+                <span class="frac align-middle frac-sm"><span class="num">15</span><span class="den">9</span></span>,
+                <span class="frac align-middle frac-sm"><span class="num">1</span><span class="den">9</span></span> et
+                <span class="frac align-middle frac-sm"><span class="num">8</span><span class="den">9</span></span>.</li>
+              <li>Range ces fractions dans l'ordre croissant.</li>
+            </ol>
+          </div>
+        </div>
+        <details class="corr mt-4">
+          <summary class="inline-flex items-center gap-2 rounded-lg bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700 hover:bg-indigo-100">
+            <svg viewBox="0 0 20 20" class="chevron h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            <span class="label-closed">Afficher la correction</span><span class="label-open">Masquer la correction</span>
+          </summary>
+          <div class="corr-panel mt-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:p-5">
+            <div class="w-full overflow-x-auto">
+              <svg viewBox="0 0 600 130" class="mx-auto h-32 w-full max-w-2xl">
+                <line x1="30" y1="70" x2="590" y2="70" stroke="#475569" stroke-width="2"/>
+                <polygon points="590,70 578,64 578,76" fill="#475569"/>
+                <line x1="30" y1="62" x2="30" y2="78" stroke="#475569" stroke-width="2"/>
+                <text x="30" y="98" text-anchor="middle" font-size="14" fill="#475569">0</text>
+                <line x1="280" y1="62" x2="280" y2="78" stroke="#475569" stroke-width="2"/>
+                <text x="280" y="98" text-anchor="middle" font-size="14" fill="#475569">1</text>
+                <line x1="530" y1="62" x2="530" y2="78" stroke="#475569" stroke-width="2"/>
+                <text x="530" y="98" text-anchor="middle" font-size="14" fill="#475569">2</text>
+
+                <circle cx="58" cy="70" r="5" fill="#4f46e5"/>
+                <text x="58" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="#4f46e5">D</text>
+                <text x="58" y="118" text-anchor="middle" font-size="11" fill="#64748b">1/9</text>
+
+                <circle cx="169" cy="70" r="5" fill="#4f46e5"/>
+                <text x="169" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="#4f46e5">B</text>
+                <text x="169" y="118" text-anchor="middle" font-size="11" fill="#64748b">5/9</text>
+
+                <circle cx="252" cy="70" r="5" fill="#4f46e5"/>
+                <text x="252" y="42" text-anchor="middle" font-size="13" font-weight="700" fill="#4f46e5">E</text>
+                <text x="252" y="118" text-anchor="middle" font-size="11" fill="#64748b">8/9</text>
+
+                <circle cx="363" cy="70" r="5" fill="#e11d48"/>
+                <text x="363" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="#e11d48">A</text>
+                <text x="363" y="118" text-anchor="middle" font-size="11" fill="#64748b">12/9</text>
+
+                <circle cx="447" cy="70" r="5" fill="#e11d48"/>
+                <text x="447" y="42" text-anchor="middle" font-size="13" font-weight="700" fill="#e11d48">C</text>
+                <text x="447" y="118" text-anchor="middle" font-size="11" fill="#64748b">15/9</text>
+              </svg>
+            </div>
+            <p class="mt-3 text-slate-700">Comme les cinq fractions ont le même dénominateur (9), on les classe selon leur numérateur (Règle 1) :</p>
+            <p class="mt-2 text-center text-lg font-semibold text-indigo-700">D &lt; B &lt; E &lt; A &lt; C</p>
+            <p class="text-center text-sm text-slate-500">soit 1/9 &lt; 5/9 &lt; 8/9 &lt; 12/9 &lt; 15/9</p>
+          </div>
+        </details>
+      </article>
+
+      <!-- EX 6 -->
+      <article id="ex-6" class="anchor-offset rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-600 font-display font-bold text-white">6</span>
+          <div class="min-w-0 flex-1">
+            <p class="font-medium text-slate-800">Range les quotients suivants dans l'ordre <strong>croissant</strong> :</p>
+            <div class="mt-2 space-y-2 text-slate-600">
+              <p><strong>a.</strong> <span class="frac align-middle"><span class="num">5</span><span class="den">13</span></span> ; <span class="frac align-middle"><span class="num">7</span><span class="den">13</span></span> ; <span class="frac align-middle"><span class="num">3</span><span class="den">13</span></span> ; <span class="frac align-middle"><span class="num">14</span><span class="den">13</span></span> ; <span class="frac align-middle"><span class="num">12</span><span class="den">13</span></span></p>
+              <p><strong>b.</strong> <span class="frac align-middle"><span class="num">1,2</span><span class="den">13</span></span> ; <span class="frac align-middle"><span class="num">4,5</span><span class="den">13</span></span> ; <span class="frac align-middle"><span class="num">1,7</span><span class="den">13</span></span> ; <span class="frac align-middle"><span class="num">4,52</span><span class="den">13</span></span> ; <span class="frac align-middle"><span class="num">4</span><span class="den">13</span></span></p>
+            </div>
+          </div>
+        </div>
+        <details class="corr mt-4">
+          <summary class="inline-flex items-center gap-2 rounded-lg bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700 hover:bg-indigo-100">
+            <svg viewBox="0 0 20 20" class="chevron h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            <span class="label-closed">Afficher la correction</span><span class="label-open">Masquer la correction</span>
+          </summary>
+          <div class="corr-panel mt-4 space-y-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:p-5">
+            <p><strong>a.</strong> Même dénominateur → on classe les numérateurs 3&lt;5&lt;7&lt;12&lt;14 :</p>
+            <p class="text-indigo-700 font-semibold">3/13 &lt; 5/13 &lt; 7/13 &lt; 12/13 &lt; 14/13</p>
+            <p><strong>b.</strong> Même dénominateur → on classe les numérateurs 1,2&lt;1,7&lt;4&lt;4,5&lt;4,52 :</p>
+            <p class="text-indigo-700 font-semibold">1,2/13 &lt; 1,7/13 &lt; 4/13 &lt; 4,5/13 &lt; 4,52/13</p>
+          </div>
+        </details>
+      </article>
+
+      <!-- EX 7 -->
+      <article id="ex-7" class="anchor-offset rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-600 font-display font-bold text-white">7</span>
+          <div class="min-w-0 flex-1">
+            <p class="font-medium text-slate-800">Range les quotients suivants dans l'ordre <strong>décroissant</strong> :</p>
+            <div class="mt-2 space-y-2 text-slate-600">
+              <p><strong>a.</strong> <span class="frac align-middle"><span class="num">7</span><span class="den">15</span></span> ; <span class="frac align-middle"><span class="num">17</span><span class="den">15</span></span> ; <span class="frac align-middle"><span class="num">2</span><span class="den">15</span></span> ; <span class="frac align-middle"><span class="num">37</span><span class="den">15</span></span> ; <span class="frac align-middle"><span class="num">12</span><span class="den">15</span></span></p>
+              <p><strong>b.</strong> <span class="frac align-middle"><span class="num">3,8</span><span class="den">15</span></span> ; <span class="frac align-middle"><span class="num">17,1</span><span class="den">15</span></span> ; <span class="frac align-middle"><span class="num">17,02</span><span class="den">15</span></span> ; <span class="frac align-middle"><span class="num">3,07</span><span class="den">15</span></span> ; <span class="frac align-middle"><span class="num">17,002</span><span class="den">15</span></span></p>
+            </div>
+          </div>
+        </div>
+        <details class="corr mt-4">
+          <summary class="inline-flex items-center gap-2 rounded-lg bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700 hover:bg-indigo-100">
+            <svg viewBox="0 0 20 20" class="chevron h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            <span class="label-closed">Afficher la correction</span><span class="label-open">Masquer la correction</span>
+          </summary>
+          <div class="corr-panel mt-4 space-y-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:p-5">
+            <p><strong>a.</strong> Numérateurs 37&gt;17&gt;12&gt;7&gt;2 :</p>
+            <p class="text-indigo-700 font-semibold">37/15 &gt; 17/15 &gt; 12/15 &gt; 7/15 &gt; 2/15</p>
+            <p><strong>b.</strong> Numérateurs 17,1&gt;17,02&gt;17,002&gt;3,8&gt;3,07 :</p>
+            <p class="text-indigo-700 font-semibold">17,1/15 &gt; 17,02/15 &gt; 17,002/15 &gt; 3,8/15 &gt; 3,07/15</p>
+          </div>
+        </details>
+      </article>
+
+      <!-- EX 8 -->
+      <article id="ex-8" class="anchor-offset rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-600 font-display font-bold text-white">8</span>
+          <div class="min-w-0 flex-1">
+            <p class="font-medium text-slate-800">Compare en réduisant au même dénominateur (méthode guidée) :</p>
+            <div class="mt-2 grid gap-2 text-sm text-slate-500 sm:grid-cols-2">
+              <p><strong>a.</strong> 2/3 et 9/12</p>
+              <p><strong>b.</strong> 4/25 et 1/5</p>
+              <p><strong>c.</strong> 6/9 et 24,2/36</p>
+              <p><strong>d.</strong> 19/7 et 3</p>
+            </div>
+          </div>
+        </div>
+        <details class="corr mt-4">
+          <summary class="inline-flex items-center gap-2 rounded-lg bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700 hover:bg-indigo-100">
+            <svg viewBox="0 0 20 20" class="chevron h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            <span class="label-closed">Afficher la correction</span><span class="label-open">Masquer la correction</span>
+          </summary>
+          <div class="corr-panel mt-4 grid gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:grid-cols-2 sm:p-5">
+            <div class="card-row bg-white">
+              <p class="text-sm font-semibold text-slate-500">a. 2/3 et 9/12</p>
+              <div class="eq-row mt-1 text-lg"><span class="frac"><span class="num">2</span><span class="den">3</span></span><span>=</span><span class="frac frac-sm"><span class="num">2×4</span><span class="den">3×4</span></span><span>=</span><span class="frac"><span class="num">8</span><span class="den">12</span></span></div>
+              <p class="mt-1 text-sm text-slate-600">8/12 &lt; 9/12 donc <strong class="text-indigo-700">2/3 &lt; 9/12</strong></p>
+            </div>
+            <div class="card-row bg-white">
+              <p class="text-sm font-semibold text-slate-500">b. 4/25 et 1/5</p>
+              <div class="eq-row mt-1 text-lg"><span class="frac"><span class="num">1</span><span class="den">5</span></span><span>=</span><span class="frac frac-sm"><span class="num">1×5</span><span class="den">5×5</span></span><span>=</span><span class="frac"><span class="num">5</span><span class="den">25</span></span></div>
+              <p class="mt-1 text-sm text-slate-600">4/25 &lt; 5/25 donc <strong class="text-indigo-700">4/25 &lt; 1/5</strong></p>
+            </div>
+            <div class="card-row bg-white">
+              <p class="text-sm font-semibold text-slate-500">c. 6/9 et 24,2/36</p>
+              <div class="eq-row mt-1 text-lg"><span class="frac"><span class="num">6</span><span class="den">9</span></span><span>=</span><span class="frac frac-sm"><span class="num">6×4</span><span class="den">9×4</span></span><span>=</span><span class="frac"><span class="num">24</span><span class="den">36</span></span></div>
+              <p class="mt-1 text-sm text-slate-600">24/36 &lt; 24,2/36 donc <strong class="text-indigo-700">6/9 &lt; 24,2/36</strong></p>
+            </div>
+            <div class="card-row bg-white">
+              <p class="text-sm font-semibold text-slate-500">d. 19/7 et 3</p>
+              <div class="eq-row mt-1 text-lg"><span>3</span><span>=</span><span class="frac frac-sm"><span class="num">3×7</span><span class="den">1×7</span></span><span>=</span><span class="frac"><span class="num">21</span><span class="den">7</span></span></div>
+              <p class="mt-1 text-sm text-slate-600">19/7 &lt; 21/7 donc <strong class="text-indigo-700">19/7 &lt; 3</strong></p>
+            </div>
+          </div>
+        </details>
+      </article>
+
+      <!-- EX 9 -->
+      <article id="ex-9" class="anchor-offset rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-600 font-display font-bold text-white">9</span>
+          <div class="min-w-0 flex-1">
+            <p class="font-medium text-slate-800">Compare mentalement les nombres suivants :</p>
+            <div class="mt-3 grid gap-2 sm:grid-cols-2">
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">a.</span><span class="frac">‎<span class="num">9</span><span class="den">4</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">6</span><span class="den">2</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">e.</span><span class="frac">‎<span class="num">3,2</span><span class="den">5</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">6,04</span><span class="den">10</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">b.</span><span class="frac">‎<span class="num">8</span><span class="den">9</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">2</span><span class="den">3</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">f.</span><span class="frac">‎<span class="num">10</span><span class="den">210</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">3</span><span class="den">420</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">c.</span><span class="frac">‎<span class="num">45</span><span class="den">16</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">10</span><span class="den">4</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">g.</span><span class="frac">‎<span class="num">0,7</span><span class="den">12</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">2,4</span><span class="den">36</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">d.</span><span class="frac">‎<span class="num">35</span><span class="den">63</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">5</span><span class="den">7</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">h.</span><span class="frac">‎<span class="num">2</span><span class="den">12</span></span><span class="text-slate-300">…</span><span>6</span></div>
+            </div>
+          </div>
+        </div>
+        <details class="corr mt-4">
+          <summary class="inline-flex items-center gap-2 rounded-lg bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700 hover:bg-indigo-100">
+            <svg viewBox="0 0 20 20" class="chevron h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            <span class="label-closed">Afficher la correction</span><span class="label-open">Masquer la correction</span>
+          </summary>
+          <div class="corr-panel mt-4 grid gap-2 rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:grid-cols-2 sm:p-5 text-sm">
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="frac">‎<span class="num">9</span><span class="den">4</span></span><span class="font-bold text-indigo-600">&lt;</span><span class="frac">‎<span class="num">6</span><span class="den">2</span></span></div><p class="mt-1 text-xs text-slate-500">6/2 = 3 = 12/4, et 9/4 &lt; 12/4</p></div>
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="frac">‎<span class="num">3,2</span><span class="den">5</span></span><span class="font-bold text-indigo-600">&gt;</span><span class="frac">‎<span class="num">6,04</span><span class="den">10</span></span></div><p class="mt-1 text-xs text-slate-500">3,2/5 = 6,4/10, et 6,4/10 &gt; 6,04/10</p></div>
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="frac">‎<span class="num">8</span><span class="den">9</span></span><span class="font-bold text-indigo-600">&gt;</span><span class="frac">‎<span class="num">2</span><span class="den">3</span></span></div><p class="mt-1 text-xs text-slate-500">2/3 = 6/9, et 8/9 &gt; 6/9</p></div>
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="frac">‎<span class="num">10</span><span class="den">210</span></span><span class="font-bold text-indigo-600">&gt;</span><span class="frac">‎<span class="num">3</span><span class="den">420</span></span></div><p class="mt-1 text-xs text-slate-500">10/210 = 20/420, et 20/420 &gt; 3/420</p></div>
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="frac">‎<span class="num">45</span><span class="den">16</span></span><span class="font-bold text-indigo-600">&gt;</span><span class="frac">‎<span class="num">10</span><span class="den">4</span></span></div><p class="mt-1 text-xs text-slate-500">10/4 = 40/16, et 45/16 &gt; 40/16</p></div>
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="frac">‎<span class="num">0,7</span><span class="den">12</span></span><span class="font-bold text-indigo-600">&lt;</span><span class="frac">‎<span class="num">2,4</span><span class="den">36</span></span></div><p class="mt-1 text-xs text-slate-500">2,4/36 = 0,8/12, et 0,7/12 &lt; 0,8/12</p></div>
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="frac">‎<span class="num">35</span><span class="den">63</span></span><span class="font-bold text-indigo-600">&lt;</span><span class="frac">‎<span class="num">5</span><span class="den">7</span></span></div><p class="mt-1 text-xs text-slate-500">35/63 = 5/9 (simplifiée), et 5/9 &lt; 5/7 (Règle 2)</p></div>
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="frac">‎<span class="num">2</span><span class="den">12</span></span><span class="font-bold text-indigo-600">&lt;</span><span>6</span></div><p class="mt-1 text-xs text-slate-500">6 = 72/12, et 2/12 &lt; 72/12</p></div>
+          </div>
+        </details>
+      </article>
+
+      <!-- EX 10 -->
+      <article id="ex-10" class="anchor-offset rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-600 font-display font-bold text-white">10</span>
+          <div class="min-w-0 flex-1">
+            <p class="font-medium text-slate-800">Réduction – Comparaison. On donne
+              A = <span class="frac align-middle"><span class="num">1</span><span class="den">2</span></span>,
+              B = <span class="frac align-middle"><span class="num">4</span><span class="den">6</span></span>,
+              C = <span class="frac align-middle"><span class="num">4</span><span class="den">3</span></span>,
+              D = <span class="frac align-middle"><span class="num">3</span><span class="den">12</span></span>,
+              E = <span class="frac align-middle"><span class="num">8</span><span class="den">24</span></span>.</p>
+            <ol class="mt-2 list-inside list-decimal space-y-1 text-slate-600">
+              <li>Écris ces nombres sous forme de fractions de dénominateur 24.</li>
+              <li>Range-les dans l'ordre croissant, puis déduis-en le classement de A, B, C, D, E.</li>
+            </ol>
+          </div>
+        </div>
+        <details class="corr mt-4">
+          <summary class="inline-flex items-center gap-2 rounded-lg bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700 hover:bg-indigo-100">
+            <svg viewBox="0 0 20 20" class="chevron h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            <span class="label-closed">Afficher la correction</span><span class="label-open">Masquer la correction</span>
+          </summary>
+          <div class="corr-panel mt-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:p-5">
+            <div class="grid grid-cols-2 gap-2 sm:grid-cols-5">
+              <div class="card-row bg-white text-center"><p class="text-xs font-semibold text-slate-400">A</p><div class="eq-row justify-center text-base"><span class="frac"><span class="num">1</span><span class="den">2</span></span><span>=</span><span class="frac"><span class="num">12</span><span class="den">24</span></span></div></div>
+              <div class="card-row bg-white text-center"><p class="text-xs font-semibold text-slate-400">B</p><div class="eq-row justify-center text-base"><span class="frac"><span class="num">4</span><span class="den">6</span></span><span>=</span><span class="frac"><span class="num">16</span><span class="den">24</span></span></div></div>
+              <div class="card-row bg-white text-center"><p class="text-xs font-semibold text-slate-400">C</p><div class="eq-row justify-center text-base"><span class="frac"><span class="num">4</span><span class="den">3</span></span><span>=</span><span class="frac"><span class="num">32</span><span class="den">24</span></span></div></div>
+              <div class="card-row bg-white text-center"><p class="text-xs font-semibold text-slate-400">D</p><div class="eq-row justify-center text-base"><span class="frac"><span class="num">3</span><span class="den">12</span></span><span>=</span><span class="frac"><span class="num">6</span><span class="den">24</span></span></div></div>
+              <div class="card-row bg-white text-center"><p class="text-xs font-semibold text-slate-400">E</p><div class="eq-row justify-center text-base"><span class="frac"><span class="num">8</span><span class="den">24</span></span><span>=</span><span class="frac"><span class="num">8</span><span class="den">24</span></span></div></div>
+            </div>
+            <p class="mt-3 text-slate-700">Numérateurs sur 24 : 6 &lt; 8 &lt; 12 &lt; 16 &lt; 32, donc :</p>
+            <p class="mt-1 text-center text-lg font-semibold text-indigo-700">D &lt; E &lt; A &lt; B &lt; C</p>
+          </div>
+        </details>
+      </article>
+    </div>
+
+    <!-- Divider: Pour chercher -->
+    <div class="mt-10 mb-5 flex items-center gap-3">
+      <span class="h-px flex-1 bg-slate-300"></span>
+      <span class="rounded-full bg-violet-100 px-4 py-1 text-xs font-bold uppercase tracking-wide text-violet-600">Pour chercher</span>
+      <span class="h-px flex-1 bg-slate-300"></span>
+    </div>
+
+    <div class="space-y-5">
+
+      <!-- EX 11 -->
+      <article id="ex-11" class="anchor-offset rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-violet-600 font-display font-bold text-white">11</span>
+          <div class="min-w-0 flex-1">
+            <p class="font-medium text-slate-800">Compare les nombres suivants (même numérateur → Règle 2) :</p>
+            <div class="mt-3 grid gap-2 sm:grid-cols-2">
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">a.</span><span class="frac">‎<span class="num">9</span><span class="den">4</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">9</span><span class="den">7</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">d.</span><span class="frac">‎<span class="num">10</span><span class="den">5</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">10</span><span class="den">4</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">b.</span><span class="frac">‎<span class="num">8</span><span class="den">9</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">8</span><span class="den">2</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">e.</span><span class="frac">‎<span class="num">5,5</span><span class="den">21</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">5,5</span><span class="den">19</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">c.</span><span class="frac">‎<span class="num">1</span><span class="den">17</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">1</span><span class="den">7</span></span></div>
+              <div class="card-row flex items-center gap-2"><span class="w-5 font-semibold text-slate-400">f.</span><span class="frac">‎<span class="num">8,2</span><span class="den">3,25</span></span><span class="text-slate-300">…</span><span class="frac">‎<span class="num">8,2</span><span class="den">3,52</span></span></div>
+            </div>
+          </div>
+        </div>
+        <details class="corr mt-4">
+          <summary class="inline-flex items-center gap-2 rounded-lg bg-violet-50 px-4 py-2 text-sm font-semibold text-violet-700 hover:bg-violet-100">
+            <svg viewBox="0 0 20 20" class="chevron h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            <span class="label-closed">Afficher la correction</span><span class="label-open">Masquer la correction</span>
+          </summary>
+          <div class="corr-panel mt-4 grid gap-2 rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:grid-cols-2 sm:p-5 text-sm">
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="frac">‎<span class="num">9</span><span class="den">4</span></span><span class="font-bold text-indigo-600">&gt;</span><span class="frac">‎<span class="num">9</span><span class="den">7</span></span></div><p class="mt-1 text-xs text-slate-500">Même numérateur : 4 &lt; 7</p></div>
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="frac">‎<span class="num">10</span><span class="den">5</span></span><span class="font-bold text-indigo-600">&lt;</span><span class="frac">‎<span class="num">10</span><span class="den">4</span></span></div><p class="mt-1 text-xs text-slate-500">Même numérateur : 5 &gt; 4</p></div>
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="frac">‎<span class="num">8</span><span class="den">9</span></span><span class="font-bold text-indigo-600">&lt;</span><span class="frac">‎<span class="num">8</span><span class="den">2</span></span></div><p class="mt-1 text-xs text-slate-500">Même numérateur : 9 &gt; 2</p></div>
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="frac">‎<span class="num">5,5</span><span class="den">21</span></span><span class="font-bold text-indigo-600">&lt;</span><span class="frac">‎<span class="num">5,5</span><span class="den">19</span></span></div><p class="mt-1 text-xs text-slate-500">Même numérateur : 21 &gt; 19</p></div>
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="frac">‎<span class="num">1</span><span class="den">17</span></span><span class="font-bold text-indigo-600">&lt;</span><span class="frac">‎<span class="num">1</span><span class="den">7</span></span></div><p class="mt-1 text-xs text-slate-500">Même numérateur : 17 &gt; 7</p></div>
+            <div class="card-row bg-white"><div class="flex items-center gap-2"><span class="frac">‎<span class="num">8,2</span><span class="den">3,25</span></span><span class="font-bold text-indigo-600">&gt;</span><span class="frac">‎<span class="num">8,2</span><span class="den">3,52</span></span></div><p class="mt-1 text-xs text-slate-500">Même numérateur : 3,25 &lt; 3,52</p></div>
+          </div>
+        </details>
+      </article>
+
+      <!-- EX 12 -->
+      <article id="ex-12" class="anchor-offset rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-violet-600 font-display font-bold text-white">12</span>
+          <div class="min-w-0 flex-1">
+            <p class="font-medium text-slate-800">Dans chaque suite, un quotient est l'intrus (il casse l'ordre). Trouve-le :</p>
+            <div class="mt-2 space-y-2 text-sm text-slate-600">
+              <p><strong>a.</strong> 12/17 &lt; 13/17 &lt; 18/17 &lt; 25/17 &lt; 2,7/17 &lt; 28/17 &lt; 30/17</p>
+              <p><strong>b.</strong> 28/20 &lt; 28/19 &lt; 28/21 &lt; 28/14 &lt; 28/11 &lt; 28/9 &lt; 28/5</p>
+              <p><strong>c.</strong> 0/3 &lt; 12/17 &lt; 15/21 &lt; 17/19 &lt; 74/82 &lt; 19/18 &lt; 25/27 &lt; 14/15</p>
+            </div>
+          </div>
+        </div>
+        <details class="corr mt-4">
+          <summary class="inline-flex items-center gap-2 rounded-lg bg-violet-50 px-4 py-2 text-sm font-semibold text-violet-700 hover:bg-violet-100">
+            <svg viewBox="0 0 20 20" class="chevron h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            <span class="label-closed">Afficher la correction</span><span class="label-open">Masquer la correction</span>
+          </summary>
+          <div class="corr-panel mt-4 space-y-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:p-5 text-sm text-slate-700">
+            <p><strong>a.</strong> Même dénominateur (17) : les numérateurs doivent croître : 12, 13, 18, 25, <s class="text-rose-600">2,7</s>, 28, 30. L'intrus est <strong class="text-rose-600">2,7/17</strong> (2,7 casse la croissance après 25).</p>
+            <p><strong>b.</strong> Même numérateur (28) : la valeur augmente quand le dénominateur diminue : 20, 19, <s class="text-rose-600">21</s>, 14, 11, 9, 5. L'intrus est <strong class="text-rose-600">28/21</strong> (21 &gt; 19 casse la décroissance).</p>
+            <p><strong>c.</strong> En comparant chaque quotient à 1 : tous sont &lt; 1 sauf <strong class="text-rose-600">19/18</strong> (19 &gt; 18, donc &gt; 1), qui casse l'ordre croissant. L'intrus est <strong class="text-rose-600">19/18</strong>.</p>
+          </div>
+        </details>
+      </article>
+
+      <!-- EX 13 -->
+      <article id="ex-13" class="anchor-offset rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-violet-600 font-display font-bold text-white">13</span>
+          <div class="min-w-0 flex-1">
+            <p class="font-medium text-slate-800">Intercale des quotients écrits sous forme fractionnaire dans les inégalités suivantes :</p>
+            <div class="mt-2 space-y-2 text-sm text-slate-600">
+              <p><strong>a.</strong> 3,82/7 &lt; … &lt; 3,83/7 &lt; … &lt; 3,831/7</p>
+              <p><strong>b.</strong> 3,8/12 &lt; … &lt; 3,8/10 &lt; … &lt; 3,8/7 &lt; … &lt; 3,8/6,9</p>
+            </div>
+          </div>
+        </div>
+        <details class="corr mt-4">
+          <summary class="inline-flex items-center gap-2 rounded-lg bg-violet-50 px-4 py-2 text-sm font-semibold text-violet-700 hover:bg-violet-100">
+            <svg viewBox="0 0 20 20" class="chevron h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            <span class="label-closed">Afficher la correction</span><span class="label-open">Masquer la correction</span>
+          </summary>
+          <div class="corr-panel mt-4 space-y-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:p-5 text-sm text-slate-700">
+            <p class="text-xs italic text-slate-500">Il existe plusieurs réponses possibles ; en voici un exemple valide pour chaque cas.</p>
+            <p><strong>a.</strong> <span class="text-indigo-700 font-semibold">3,82/7 &lt; 3,825/7 &lt; 3,83/7 &lt; 3,8305/7 &lt; 3,831/7</span></p>
+            <p><strong>b.</strong> <span class="text-indigo-700 font-semibold">3,8/12 &lt; 3,8/11 &lt; 3,8/10 &lt; 3,8/8 &lt; 3,8/7 &lt; 3,8/6,95 &lt; 3,8/6,9</span></p>
+            <p class="text-xs text-slate-500">Même numérateur : plus le dénominateur choisi est petit (tout en restant entre les deux bornes), plus le quotient est grand.</p>
+          </div>
+        </details>
+      </article>
+
+      <!-- EX 14 -->
+      <article id="ex-14" class="anchor-offset rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-violet-600 font-display font-bold text-white">14</span>
+          <div class="min-w-0 flex-1">
+            <p class="font-medium text-slate-800">Décompose chaque fraction en somme d'un entier et d'une fraction inférieure à 1.</p>
+            <p class="mt-1 text-sm text-slate-500">Exemple : <span class="frac align-middle frac-sm"><span class="num">27</span><span class="den">4</span></span> = 6 + <span class="frac align-middle frac-sm"><span class="num">3</span><span class="den">4</span></span></p>
+            <div class="mt-2 grid grid-cols-2 gap-2 text-slate-600 sm:grid-cols-4">
+              <p><strong>a.</strong> 22/7</p>
+              <p><strong>b.</strong> 38/5</p>
+              <p><strong>c.</strong> 65/9</p>
+              <p><strong>d.</strong> 46/7</p>
+            </div>
+          </div>
+        </div>
+        <details class="corr mt-4">
+          <summary class="inline-flex items-center gap-2 rounded-lg bg-violet-50 px-4 py-2 text-sm font-semibold text-violet-700 hover:bg-violet-100">
+            <svg viewBox="0 0 20 20" class="chevron h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            <span class="label-closed">Afficher la correction</span><span class="label-open">Masquer la correction</span>
+          </summary>
+          <div class="corr-panel mt-4 grid gap-2 rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:grid-cols-4 sm:p-5">
+            <div class="card-row bg-white text-center"><p class="text-xs font-semibold text-slate-400">a.</p><div class="eq-row justify-center text-lg"><span class="frac"><span class="num">22</span><span class="den">7</span></span><span>= 3 +</span><span class="frac"><span class="num">1</span><span class="den">7</span></span></div></div>
+            <div class="card-row bg-white text-center"><p class="text-xs font-semibold text-slate-400">b.</p><div class="eq-row justify-center text-lg"><span class="frac"><span class="num">38</span><span class="den">5</span></span><span>= 7 +</span><span class="frac"><span class="num">3</span><span class="den">5</span></span></div></div>
+            <div class="card-row bg-white text-center"><p class="text-xs font-semibold text-slate-400">c.</p><div class="eq-row justify-center text-lg"><span class="frac"><span class="num">65</span><span class="den">9</span></span><span>= 7 +</span><span class="frac"><span class="num">2</span><span class="den">9</span></span></div></div>
+            <div class="card-row bg-white text-center"><p class="text-xs font-semibold text-slate-400">d.</p><div class="eq-row justify-center text-lg"><span class="frac"><span class="num">46</span><span class="den">7</span></span><span>= 6 +</span><span class="frac"><span class="num">4</span><span class="den">7</span></span></div></div>
+          </div>
+        </details>
+      </article>
+
+      <!-- EX 15 -->
+      <article id="ex-15" class="anchor-offset rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-violet-600 font-display font-bold text-white">15</span>
+          <div class="min-w-0 flex-1">
+            <p class="font-medium text-slate-800">Encadre par deux entiers consécutifs les fractions suivantes :</p>
+            <div class="mt-2 grid grid-cols-2 gap-2 text-slate-600 sm:grid-cols-4">
+              <p><strong>a.</strong> … &lt; 2/3 &lt; …</p>
+              <p><strong>b.</strong> … &lt; 10/3 &lt; …</p>
+              <p><strong>c.</strong> … &lt; 22/7 &lt; …</p>
+              <p><strong>d.</strong> … &lt; 230/3 &lt; …</p>
+            </div>
+          </div>
+        </div>
+        <details class="corr mt-4">
+          <summary class="inline-flex items-center gap-2 rounded-lg bg-violet-50 px-4 py-2 text-sm font-semibold text-violet-700 hover:bg-violet-100">
+            <svg viewBox="0 0 20 20" class="chevron h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            <span class="label-closed">Afficher la correction</span><span class="label-open">Masquer la correction</span>
+          </summary>
+          <div class="corr-panel mt-4 grid gap-2 rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:grid-cols-4 sm:p-5 text-center">
+            <div class="card-row bg-white"><p class="text-xs font-semibold text-slate-400">a.</p><p class="font-semibold text-indigo-700">0 &lt; 2/3 &lt; 1</p></div>
+            <div class="card-row bg-white"><p class="text-xs font-semibold text-slate-400">b.</p><p class="font-semibold text-indigo-700">3 &lt; 10/3 &lt; 4</p></div>
+            <div class="card-row bg-white"><p class="text-xs font-semibold text-slate-400">c.</p><p class="font-semibold text-indigo-700">3 &lt; 22/7 &lt; 4</p></div>
+            <div class="card-row bg-white"><p class="text-xs font-semibold text-slate-400">d.</p><p class="font-semibold text-indigo-700">76 &lt; 230/3 &lt; 77</p></div>
+          </div>
+        </details>
+      </article>
+
+      <!-- EX 16 -->
+      <article id="ex-16" class="anchor-offset rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-violet-600 font-display font-bold text-white">16</span>
+          <div class="min-w-0 flex-1">
+            <p class="font-medium text-slate-800">Trois chaînes de télévision comparent l'audimat de leurs émissions du samedi soir. La chaîne A estime avoir réuni 7/17 des téléspectateurs, la chaîne B annonce 20/51, et la chaîne C prétend avoir rassemblé 39/34 des téléspectateurs.</p>
+            <ol class="mt-2 list-inside list-decimal space-y-1 text-slate-600">
+              <li>Quelle chaîne ment assurément ?</li>
+              <li>Entre les deux autres, laquelle a la meilleure audience ?</li>
+            </ol>
+          </div>
+        </div>
+        <details class="corr mt-4">
+          <summary class="inline-flex items-center gap-2 rounded-lg bg-violet-50 px-4 py-2 text-sm font-semibold text-violet-700 hover:bg-violet-100">
+            <svg viewBox="0 0 20 20" class="chevron h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            <span class="label-closed">Afficher la correction</span><span class="label-open">Masquer la correction</span>
+          </summary>
+          <div class="corr-panel mt-4 space-y-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:p-5 text-slate-700">
+            <p><strong>1.</strong> Une proportion de téléspectateurs ne peut pas dépasser 1 (100%). Or 39/34 &gt; 1 (car 39 &gt; 34) : c'est impossible. <strong class="text-rose-600">La chaîne C ment assurément.</strong></p>
+            <p><strong>2.</strong> Comparons A = 7/17 et B = 20/51 : comme 51 = 3×17,</p>
+            <div class="eq-row text-lg"><span class="frac"><span class="num">7</span><span class="den">17</span></span><span>=</span><span class="frac frac-sm"><span class="num">7×3</span><span class="den">17×3</span></span><span>=</span><span class="frac"><span class="num">21</span><span class="den">51</span></span></div>
+            <p>21/51 &gt; 20/51 (car 21 &gt; 20) donc 7/17 &gt; 20/51. <strong class="text-indigo-700">La chaîne A a réalisé la meilleure audience.</strong></p>
+          </div>
+        </details>
+      </article>
+
+      <!-- EX 17 -->
+      <article id="ex-17" class="anchor-offset rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-violet-600 font-display font-bold text-white">17</span>
+          <div class="min-w-0 flex-1">
+            <p class="font-medium text-slate-800">Problème de voitures. Un constructeur crée 4 voitures : plus le rapport chevaux/poids est élevé, plus la voiture est rapide.</p>
+            <div class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+              <div class="rounded-xl bg-slate-50 p-3 text-center text-sm"><p class="font-bold text-slate-700">Voiture A</p><p class="text-slate-500">780 kg · 78 ch</p></div>
+              <div class="rounded-xl bg-slate-50 p-3 text-center text-sm"><p class="font-bold text-slate-700">Voiture B</p><p class="text-slate-500">854 kg · 185 ch</p></div>
+              <div class="rounded-xl bg-slate-50 p-3 text-center text-sm"><p class="font-bold text-slate-700">Voiture C</p><p class="text-slate-500">996 kg · 156 ch</p></div>
+              <div class="rounded-xl bg-slate-50 p-3 text-center text-sm"><p class="font-bold text-slate-700">Voiture D</p><p class="text-slate-500">1,135 t · 122 ch</p></div>
+            </div>
+            <p class="mt-2 text-slate-600">Classe ces voitures de la plus lente à la plus rapide.</p>
+          </div>
+        </div>
+        <details class="corr mt-4">
+          <summary class="inline-flex items-center gap-2 rounded-lg bg-violet-50 px-4 py-2 text-sm font-semibold text-violet-700 hover:bg-violet-100">
+            <svg viewBox="0 0 20 20" class="chevron h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            <span class="label-closed">Afficher la correction</span><span class="label-open">Masquer la correction</span>
+          </summary>
+          <div class="corr-panel mt-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:p-5">
+            <p class="text-slate-700">On calcule le rapport <em>chevaux ÷ poids</em> pour chaque voiture (poids en kg) :</p>
+            <div class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+              <div class="card-row bg-white text-center"><p class="text-xs font-semibold text-slate-400">A</p><div class="eq-row justify-center"><span class="frac"><span class="num">78</span><span class="den">780</span></span></div><p class="mt-1 font-bold text-indigo-700">= 0,100</p></div>
+              <div class="card-row bg-white text-center"><p class="text-xs font-semibold text-slate-400">D</p><div class="eq-row justify-center"><span class="frac"><span class="num">122</span><span class="den">1135</span></span></div><p class="mt-1 font-bold text-indigo-700">≈ 0,107</p></div>
+              <div class="card-row bg-white text-center"><p class="text-xs font-semibold text-slate-400">C</p><div class="eq-row justify-center"><span class="frac"><span class="num">156</span><span class="den">996</span></span></div><p class="mt-1 font-bold text-indigo-700">≈ 0,157</p></div>
+              <div class="card-row bg-white text-center"><p class="text-xs font-semibold text-slate-400">B</p><div class="eq-row justify-center"><span class="frac"><span class="num">185</span><span class="den">854</span></span></div><p class="mt-1 font-bold text-indigo-700">≈ 0,217</p></div>
+            </div>
+            <p class="mt-3 text-slate-500 text-sm">(1,135 tonne = 1135 kg pour la voiture D)</p>
+            <p class="mt-2 text-center text-lg font-semibold text-indigo-700">A &lt; D &lt; C &lt; B</p>
+            <p class="text-center text-sm text-slate-500">de la plus lente (A) à la plus rapide (B)</p>
+          </div>
+        </details>
+      </article>
+
+      <!-- EX 18 -->
+      <article id="ex-18" class="anchor-offset rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-violet-600 font-display font-bold text-white">18</span>
+          <div class="min-w-0 flex-1">
+            <p class="font-medium text-slate-800">Sans calculatrice, range les écritures fractionnaires suivantes dans l'ordre croissant :</p>
+            <div class="mt-2 space-y-2 text-sm text-slate-600">
+              <p><strong>a.</strong> 12/17 ; 12,01/17 ; 11,99/17 ; 12,2/17 ; 11,099/17</p>
+              <p><strong>b.</strong> 12/17 ; 7/5 ; 8/17 ; 16/17 ; 12/5 ; 14/5 ; 5/5 ; 7/17</p>
+              <p><strong>c.</strong> 4512,376/356298 ; 388542/4,523 ; 128,56/128,56</p>
+              <p><strong>d.</strong> 0,93/2 ; 4,88/8 ; 9,3/32 ; 47,96/16 ; 2,45/4</p>
+            </div>
+          </div>
+        </div>
+        <details class="corr mt-4">
+          <summary class="inline-flex items-center gap-2 rounded-lg bg-violet-50 px-4 py-2 text-sm font-semibold text-violet-700 hover:bg-violet-100">
+            <svg viewBox="0 0 20 20" class="chevron h-4 w-4" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            <span class="label-closed">Afficher la correction</span><span class="label-open">Masquer la correction</span>
+          </summary>
+          <div class="corr-panel mt-4 space-y-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4 sm:p-5 text-slate-700">
+            <div>
+              <p><strong>a.</strong> Même dénominateur (17) → on compare les numérateurs : 11,099 &lt; 11,99 &lt; 12 &lt; 12,01 &lt; 12,2.</p>
+              <p class="mt-1 font-semibold text-indigo-700">11,099/17 &lt; 11,99/17 &lt; 12/17 &lt; 12,01/17 &lt; 12,2/17</p>
+            </div>
+            <div>
+              <p><strong>b.</strong> Les fractions de dénominateur 17 ont toutes un numérateur &lt; 17, donc elles sont toutes &lt; 1 (Règle 4). Les fractions de dénominateur 5 ont toutes un numérateur ≥ 5, donc toutes ≥ 1. On classe chaque groupe (Règle 1), puis on les assemble :</p>
+              <p class="mt-1 font-semibold text-indigo-700">7/17 &lt; 8/17 &lt; 12/17 &lt; 16/17 &lt; 5/5 &lt; 7/5 &lt; 12/5 &lt; 14/5</p>
+            </div>
+            <div>
+              <p><strong>c.</strong> On compare chaque écriture à 1 (Règle 4) : 4512,376 &lt; 356298 → &lt;1 ; 128,56 = 128,56 → =1 ; 388542 &gt; 4,523 → &gt;1.</p>
+              <p class="mt-1 font-semibold text-indigo-700">4512,376/356298 &lt; 128,56/128,56 &lt; 388542/4,523</p>
+            </div>
+            <div>
+              <p><strong>d.</strong> On réduit tout au même dénominateur 32 :</p>
+              <div class="mt-1 grid gap-1.5 sm:grid-cols-2">
+                <div class="eq-row text-base"><span class="frac"><span class="num">0,93</span><span class="den">2</span></span><span>=</span><span class="frac"><span class="num">14,88</span><span class="den">32</span></span></div>
+                <div class="eq-row text-base"><span class="frac"><span class="num">4,88</span><span class="den">8</span></span><span>=</span><span class="frac"><span class="num">19,52</span><span class="den">32</span></span></div>
+                <div class="eq-row text-base"><span class="frac"><span class="num">2,45</span><span class="den">4</span></span><span>=</span><span class="frac"><span class="num">19,6</span><span class="den">32</span></span></div>
+                <div class="eq-row text-base"><span class="frac"><span class="num">47,96</span><span class="den">16</span></span><span>=</span><span class="frac"><span class="num">95,92</span><span class="den">32</span></span></div>
+              </div>
+              <p class="mt-2">Numérateurs sur 32 : 9,3 &lt; 14,88 &lt; 19,52 &lt; 19,6 &lt; 95,92, donc :</p>
+              <p class="mt-1 font-semibold text-indigo-700">9,3/32 &lt; 0,93/2 &lt; 4,88/8 &lt; 2,45/4 &lt; 47,96/16</p>
+            </div>
+          </div>
+        </details>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="border-t border-slate-200 bg-slate-900 text-slate-300">
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="grid gap-8 sm:grid-cols-2">
+      <div>
+        <a href="/" class="flex items-center gap-2.5">
+          <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+          <span class="font-display font-bold text-white leading-tight">
+            <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+          </span>
+        </a>
+        <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+        <p class="mt-3 text-sm leading-relaxed text-slate-400">
+          Fiche de cours et exercices corrigés — Mathématiques, 1ʳᵉ Année Collège, chapitre N2.
+        </p>
+      </div>
+      <div>
+        <p class="font-display text-sm font-bold text-white">Navigation</p>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li><a href="#accueil" class="hover:text-white">Accueil</a></li>
+          <li><a href="#sommaire" class="hover:text-white">Sommaire du cours</a></li>
+          <li><a href="#exercices" class="hover:text-white">Exercices corrigés</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-10 border-t border-slate-800 pt-6 text-center text-xs text-slate-500">
+      Page réalisée à partir des documents de cours et des exercices — usage pédagogique.
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" type="button" aria-label="Retour en haut" class="fixed bottom-6 right-6 z-40 hidden h-11 w-11 items-center justify-center rounded-full bg-indigo-600 text-white shadow-lg hover:bg-indigo-700">
+  <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18"/></svg>
+</button>
+
+<script>
+  // Mobile menu toggle
+  var menuBtn = document.getElementById('menu-btn');
+  var mobileMenu = document.getElementById('mobile-menu');
+  var iconOpen = document.getElementById('icon-open');
+  var iconClose = document.getElementById('icon-close');
+  menuBtn.addEventListener('click', function () {
+    var isHidden = mobileMenu.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', String(!isHidden));
+    iconOpen.classList.toggle('hidden', !isHidden);
+    iconClose.classList.toggle('hidden', isHidden);
+  });
+  mobileMenu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      mobileMenu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Toggle all corrections in the exercises section
+  var toggleAllBtn = document.getElementById('toggle-all');
+  var toggleAllLabel = document.getElementById('toggle-all-label');
+  var allOpen = false;
+  toggleAllBtn.addEventListener('click', function () {
+    allOpen = !allOpen;
+    document.querySelectorAll('#exercices details.corr').forEach(function (d) { d.open = allOpen; });
+    toggleAllLabel.textContent = allOpen ? 'Masquer toutes les corrections' : 'Afficher toutes les corrections';
+  });
+
+  // Back-to-top button
+  var backBtn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 500) {
+      backBtn.classList.remove('hidden');
+      backBtn.classList.add('flex');
+    } else {
+      backBtn.classList.add('hidden');
+      backBtn.classList.remove('flex');
+    }
+  });
+  backBtn.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>

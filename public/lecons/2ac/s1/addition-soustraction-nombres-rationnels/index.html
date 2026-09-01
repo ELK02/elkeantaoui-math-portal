@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Nombres rationnels : Addition et soustraction — 2AC</title>
+<meta name="description" content="Fiche de cours et exercices corrigés sur l'addition et la soustraction des nombres rationnels — Niveau 2ème année collège.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Poppins','ui-sans-serif','system-ui'] },
+        colors: {
+          brand: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+          indigo: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          }
+        }
+      }
+    }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Poppins', ui-sans-serif, system-ui; }
+  sup, sub { line-height: 0; }
+  .frac-eq sup { font-weight: 700; }
+  ::selection { background: #c9c0ff; }
+  .bg-hero {
+    background-image: linear-gradient(135deg, rgba(18,41,76,0.92), rgba(63,106,156,0.85)), url('https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1600&q=60');
+    background-size: cover; background-position: center;
+  }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100">
+
+<header class="bg-hero text-white">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+    <a href="#top" class="flex items-center gap-2 text-lg font-extrabold tracking-tight">
+      <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-9 w-9 shrink-0 rounded-full">
+      <span>Nombres rationnels</span>
+    </a>
+    <div class="flex items-center gap-1 sm:hidden">
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="rounded-lg p-2 hover:bg-white/10">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+      <button id="menu-btn" class="rounded-lg p-2 hover:bg-white/10" aria-label="Ouvrir le menu" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+      </button>
+    </div>
+    <ul class="hidden gap-6 text-sm font-semibold sm:flex sm:items-center">
+      <li><a href="/" class="transition hover:text-brand-200">← Portail</a></li>
+      <li><a href="#fiche" class="transition hover:text-brand-200">Fiche</a></li>
+      <li><a href="#cours" class="transition hover:text-brand-200">Cours</a></li>
+      <li><a href="#exercices" class="transition hover:text-brand-200">Exercices</a></li>
+      <li>
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="w-9 h-9 flex items-center justify-center rounded-full border border-white/25 hover:bg-white/10 transition-colors">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </li>
+    </ul>
+  </nav>
+  <div id="mobile-nav" class="hidden border-t border-white/10 px-4 pb-4 sm:hidden">
+    <ul class="flex flex-col gap-3 pt-3 text-sm font-semibold">
+      <li><a href="/">← Portail</a></li>
+      <li><a href="#fiche">Fiche</a></li>
+      <li><a href="#cours">Cours</a></li>
+      <li><a href="#exercices">Exercices</a></li>
+    </ul>
+  </div>
+
+  <div id="top" class="mx-auto max-w-6xl px-4 pb-16 pt-6 text-center sm:px-6 sm:pb-24 lg:px-8">
+    <span class="inline-block rounded-full bg-white/15 px-4 py-1 text-xs font-bold uppercase tracking-widest">Maths · 2ème Année Collège</span>
+    <h1 class="mt-4 text-3xl font-extrabold leading-tight sm:text-5xl">Les nombres rationnels :<br class="hidden sm:block"> l'addition et la soustraction</h1>
+    <p class="mx-auto mt-4 max-w-2xl text-sm text-brand-100 sm:text-base">Fiche pédagogique complète, règles de cours illustrées d'exemples, et des exercices corrigés pour s'entraîner pas à pas.</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href="#cours" class="rounded-full bg-white px-6 py-3 text-sm font-bold text-brand-700 shadow-lg transition hover:scale-105">Voir le cours</a>
+      <a href="#exercices" class="rounded-full bg-brand-800/60 px-6 py-3 text-sm font-bold text-white ring-1 ring-white/40 transition hover:scale-105 hover:bg-brand-800/80">S'entraîner (Exercice N°3)</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ===================== FICHE PEDAGOGIQUE ===================== -->
+<section id="fiche" class="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
+  <div class="mb-10 text-center">
+    <h2 class="text-2xl font-extrabold text-brand-700 dark:text-brand-300 sm:text-3xl">Fiche pédagogique</h2>
+    <p class="mt-2 text-slate-500 dark:text-slate-400">Durée indicative : 6 heures</p>
+  </div>
+  <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+    <article class="rounded-2xl border border-amber-200 bg-amber-50 p-6 shadow-sm dark:border-amber-900 dark:bg-amber-950/30">
+      <h3 class="mb-3 flex items-center gap-2 text-lg font-bold text-amber-700 dark:text-amber-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        Compétences exigibles
+      </h3>
+      <ul class="list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+        <li>Savoir calculer la somme et la soustraction des nombres rationnels dans des situations simples et complexes.</li>
+        <li>Savoir utiliser la somme et la soustraction dans des problèmes mathématiques.</li>
+      </ul>
+    </article>
+    <article class="rounded-2xl border border-sky-200 bg-sky-50 p-6 shadow-sm dark:border-sky-900 dark:bg-sky-950/30">
+      <h3 class="mb-3 flex items-center gap-2 text-lg font-bold text-sky-700 dark:text-sky-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/></svg>
+        Orientations pédagogiques
+      </h3>
+      <ul class="list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+        <li>La notation ℚ (ensemble des nombres rationnels) est hors programme.</li>
+        <li>Se concentrer sur des activités simples et variées.</li>
+        <li>La somme et la soustraction prolongent les opérations sur les entiers relatifs et les décimaux relatifs.</li>
+      </ul>
+    </article>
+    <article class="rounded-2xl border border-rose-200 bg-rose-50 p-6 shadow-sm dark:border-rose-900 dark:bg-rose-950/30">
+      <h3 class="mb-3 flex items-center gap-2 text-lg font-bold text-rose-700 dark:text-rose-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.497-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z" clip-rule="evenodd"/></svg>
+        Extensions
+      </h3>
+      <ul class="list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+        <li>Les nombres réels</li>
+        <li>Les équations et les inégalités</li>
+        <li>Les problèmes</li>
+      </ul>
+    </article>
+    <article class="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 shadow-sm dark:border-emerald-900 dark:bg-emerald-950/30">
+      <h3 class="mb-3 flex items-center gap-2 text-lg font-bold text-emerald-700 dark:text-emerald-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" clip-rule="evenodd"/></svg>
+        Pré-requis
+      </h3>
+      <ul class="list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+        <li>Les nombres décimaux relatifs</li>
+        <li>Simplification des écritures fractionnaires</li>
+        <li>La somme et la soustraction des écritures fractionnaires</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<!-- ===================== COURS ===================== -->
+<section id="cours" class="bg-white py-14 dark:bg-slate-800/40">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-10 text-center">
+      <h2 class="text-2xl font-extrabold text-brand-700 dark:text-brand-300 sm:text-3xl">Cours</h2>
+      <p class="mt-2 text-slate-500 dark:text-slate-400">Règles, exemples et applications</p>
+    </div>
+
+    <!-- I. Reduire au meme denominateur -->
+    <article class="mb-12">
+      <h3 class="mb-4 flex items-center gap-3 text-xl font-bold text-slate-800 dark:text-slate-100">
+        <span class="flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white">I</span>
+        Réduire au même dénominateur
+      </h3>
+      <div class="rounded-2xl bg-rose-50 p-5 text-sm leading-relaxed text-rose-900 ring-1 ring-rose-100 dark:bg-rose-950/30 dark:text-rose-200 dark:ring-rose-900">
+        <strong>Règle :</strong> Réduire au même dénominateur des nombres rationnels, c'est écrire chacun d'eux sous forme de fraction à dénominateurs égaux.
+      </div>
+      <div class="mt-4 rounded-2xl border border-slate-200 p-5 text-sm dark:border-slate-700">
+        <p class="mb-2 font-semibold text-slate-600 dark:text-slate-300">Exemple : réduire au même dénominateur <sup>7</sup>&frasl;<sub>8</sub> et <sup>3</sup>&frasl;<sub>11</sub></p>
+        <p class="font-mono text-slate-800 dark:text-slate-100">Dénominateur commun de 8 et 11 : 88</p>
+        <p class="mt-1 font-mono text-slate-800 dark:text-slate-100"><sup>7</sup>&frasl;<sub>8</sub> = <sup>7×11</sup>&frasl;<sub>8×11</sub> = <sup>77</sup>&frasl;<sub>88</sub> &nbsp;&nbsp;|&nbsp;&nbsp; <sup>3</sup>&frasl;<sub>11</sub> = <sup>3×8</sup>&frasl;<sub>11×8</sub> = <sup>24</sup>&frasl;<sub>88</sub></p>
+      </div>
+    </article>
+
+    <!-- II. Addition -->
+    <article class="mb-12">
+      <h3 class="mb-4 flex items-center gap-3 text-xl font-bold text-slate-800 dark:text-slate-100">
+        <span class="flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white">II</span>
+        Addition des nombres rationnels
+      </h3>
+
+      <h4 class="mb-2 mt-4 font-bold text-brand-700 dark:text-brand-300">1) Même dénominateur</h4>
+      <div class="rounded-2xl bg-rose-50 p-5 text-sm leading-relaxed text-rose-900 ring-1 ring-rose-100 dark:bg-rose-950/30 dark:text-rose-200 dark:ring-rose-900">
+        Pour additionner deux nombres rationnels ayant le même dénominateur, on conserve le dénominateur commun et on additionne les numérateurs entre eux :
+        <span class="mt-2 block font-mono text-base"><sup>a</sup>&frasl;<sub>b</sub> + <sup>c</sup>&frasl;<sub>b</sub> = <sup>a + c</sup>&frasl;<sub>b</sub></span>
+      </div>
+      <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700"><sup>6</sup>&frasl;<sub>7</sub> + <sup>8</sup>&frasl;<sub>7</sub> = <sup>14</sup>&frasl;<sub>7</sub> = 2</div>
+        <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700"><sup>1,3</sup>&frasl;<sub>9</sub> + <sup>1,7</sup>&frasl;<sub>9</sub> = <sup>3</sup>&frasl;<sub>9</sub> = <sup>1</sup>&frasl;<sub>3</sub></div>
+      </div>
+
+      <h4 class="mb-2 mt-8 font-bold text-brand-700 dark:text-brand-300">2) Dénominateurs différents</h4>
+      <div class="rounded-2xl bg-rose-50 p-5 text-sm leading-relaxed text-rose-900 ring-1 ring-rose-100 dark:bg-rose-950/30 dark:text-rose-200 dark:ring-rose-900">
+        On commence par réduire au même dénominateur, puis on applique la règle précédente :
+        <span class="mt-2 block font-mono text-base"><sup>a</sup>&frasl;<sub>b</sub> + <sup>c</sup>&frasl;<sub>d</sub> = <sup>ad</sup>&frasl;<sub>bd</sub> + <sup>bc</sup>&frasl;<sub>bd</sub> = <sup>ad + bc</sup>&frasl;<sub>bd</sub></span>
+      </div>
+      <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700"><sup>5</sup>&frasl;<sub>6</sub> + <sup>3</sup>&frasl;<sub>4</sub> = <sup>10</sup>&frasl;<sub>12</sub> + <sup>9</sup>&frasl;<sub>12</sub> = <sup>19</sup>&frasl;<sub>12</sub></div>
+        <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700"><sup>3</sup>&frasl;<sub>5</sub> + (<sup>−4</sup>&frasl;<sub>3</sub>) = <sup>9 + (−20)</sup>&frasl;<sub>15</sub> = <sup>−11</sup>&frasl;<sub>15</sub></div>
+      </div>
+
+      <h4 class="mb-2 mt-8 font-bold text-brand-700 dark:text-brand-300">3) Cas particulier — dénominateur multiple de l'autre</h4>
+      <div class="rounded-2xl bg-rose-50 p-5 text-sm leading-relaxed text-rose-900 ring-1 ring-rose-100 dark:bg-rose-950/30 dark:text-rose-200 dark:ring-rose-900">
+        Quand le dénominateur de l'un est multiple de l'autre, on réduit au plus grand des deux dénominateurs.
+      </div>
+      <div class="mt-4 rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700"><sup>1,2</sup>&frasl;<sub>5</sub> + <sup>0,7</sup>&frasl;<sub>10</sub> = <sup>2,4</sup>&frasl;<sub>10</sub> + <sup>0,7</sup>&frasl;<sub>10</sub> = <sup>3,1</sup>&frasl;<sub>10</sub> = <sup>31</sup>&frasl;<sub>100</sub></div>
+
+      <div class="mt-8 rounded-2xl border-2 border-dashed border-brand-300 bg-brand-50/50 p-5 dark:border-brand-800 dark:bg-brand-950/20">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <h4 class="text-lg font-bold text-brand-700 dark:text-brand-300">📘 Application — Exercice 1 : additions</h4>
+          <button type="button" onclick="toggleCorrection('cex1', this)" class="mb-4 inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+  <span data-label>Voir la correction</span>
+</button>
+        </div>
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3" data-group="cex1">
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">1</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>−11</sup>&frasl;<sub>25</sub> + <sup>15</sup>&frasl;<sub>5</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>64</sup>&frasl;<sub>25</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">2</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>25</sup>&frasl;<sub>7</sub> + (−<sup>6</sup>&frasl;<sub>35</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>17</sup>&frasl;<sub>5</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">3</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>22</sup>&frasl;<sub>3</sub> + (−<sup>2</sup>&frasl;<sub>−9</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>68</sup>&frasl;<sub>9</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">4</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>2</sup>&frasl;<sub>−13</sub> + <sup>10</sup>&frasl;<sub>13</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>8</sup>&frasl;<sub>13</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">5</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>324</sup>&frasl;<sub>42</sub> + <sup>26</sup>&frasl;<sub>7</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>80</sup>&frasl;<sub>7</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">6</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">3,5 + <sup>5</sup>&frasl;<sub>2</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 6</p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">7</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>−9</sup>&frasl;<sub>13</sub> + <sup>6</sup>&frasl;<sub>26</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−6</sup>&frasl;<sub>13</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">8</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>25</sup>&frasl;<sub>16</sub> + <sup>15</sup>&frasl;<sub>16</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>5</sup>&frasl;<sub>2</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">9</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>8</sup>&frasl;<sub>2</sub> + (−<sup>8</sup>&frasl;<sub>2</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 0</p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">10</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>8</sup>&frasl;<sub>7</sub> + <sup>13</sup>&frasl;<sub>7</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 3</p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">11</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>2</sup>&frasl;<sub>11</sub> + −<sup>4</sup>&frasl;<sub>11</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−2</sup>&frasl;<sub>11</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">12</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>1,5</sup>&frasl;<sub>9</sub> + <sup>6,5</sup>&frasl;<sub>9</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>8</sup>&frasl;<sub>9</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">13</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">−<sup>5</sup>&frasl;<sub>7</sub> + <sup>1</sup>&frasl;<sub>28</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−19</sup>&frasl;<sub>28</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">14</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>8</sup>&frasl;<sub>3</sub> + (<sup>2</sup>&frasl;<sub>3</sub> + 3) + <sup>10</sup>&frasl;<sub>6</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 8</p>
+</div>
+</div>
+      </div>
+    </article>
+
+    <!-- III. Soustraction -->
+    <article>
+      <h3 class="mb-4 flex items-center gap-3 text-xl font-bold text-slate-800 dark:text-slate-100">
+        <span class="flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white">III</span>
+        Soustraction des nombres rationnels
+      </h3>
+
+      <h4 class="mb-2 mt-4 font-bold text-brand-700 dark:text-brand-300">1) Opposé d'un nombre rationnel</h4>
+      <div class="rounded-2xl bg-rose-50 p-5 text-sm leading-relaxed text-rose-900 ring-1 ring-rose-100 dark:bg-rose-950/30 dark:text-rose-200 dark:ring-rose-900">
+        <strong>Définition :</strong> Deux nombres rationnels sont dits opposés lorsque leur somme est égale à zéro.
+      </div>
+      <p class="mt-3 font-mono text-sm text-slate-700 dark:text-slate-300">Exemple : l'opposé de <sup>1</sup>&frasl;<sub>2</sub> est <sup>−1</sup>&frasl;<sub>2</sub>, donc <sup>1</sup>&frasl;<sub>2</sub> + <sup>−1</sup>&frasl;<sub>2</sub> = 0</p>
+
+      <h4 class="mb-2 mt-8 font-bold text-brand-700 dark:text-brand-300">2) Même dénominateur</h4>
+      <div class="rounded-2xl bg-rose-50 p-5 text-sm leading-relaxed text-rose-900 ring-1 ring-rose-100 dark:bg-rose-950/30 dark:text-rose-200 dark:ring-rose-900">
+        Soustraire un nombre rationnel revient à additionner son opposé. Pour soustraire deux nombres rationnels de même dénominateur, on conserve le dénominateur et on soustrait les numérateurs :
+        <span class="mt-2 block font-mono text-base"><sup>e</sup>&frasl;<sub>k</sub> − <sup>f</sup>&frasl;<sub>k</sub> = <sup>e − f</sup>&frasl;<sub>k</sub></span>
+      </div>
+      <div class="mt-4 rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700"><sup>−11</sup>&frasl;<sub>5</sub> − <sup>4</sup>&frasl;<sub>5</sub> = <sup>−15</sup>&frasl;<sub>5</sub> = −3</div>
+
+      <div class="mt-8 rounded-2xl border-2 border-dashed border-brand-300 bg-brand-50/50 p-5 dark:border-brand-800 dark:bg-brand-950/20">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <h4 class="text-lg font-bold text-brand-700 dark:text-brand-300">📘 Application — Exercice 2 : soustractions (même dénominateur)</h4>
+          <button type="button" onclick="toggleCorrection('cex2a', this)" class="mb-4 inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+  <span data-label>Voir la correction</span>
+</button>
+        </div>
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3" data-group="cex2a">
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">1</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>25</sup>&frasl;<sub>16</sub> − <sup>15</sup>&frasl;<sub>16</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>5</sup>&frasl;<sub>8</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">2</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">−<sup>5</sup>&frasl;<sub>6</sub> − −<sup>10</sup>&frasl;<sub>12</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 0</p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">3</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>8</sup>&frasl;<sub>2</sub> − (−<sup>8</sup>&frasl;<sub>2</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 8</p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">4</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>1</sup>&frasl;<sub>9</sub> − <sup>1</sup>&frasl;<sub>3</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−2</sup>&frasl;<sub>9</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">5</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>5</sup>&frasl;<sub>7</sub> − <sup>−3</sup>&frasl;<sub>−5</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>4</sup>&frasl;<sub>35</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">6</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>7</sup>&frasl;<sub>9</sub> − <sup>40</sup>&frasl;<sub>24</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−8</sup>&frasl;<sub>9</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">7</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>-1,5</sup>&frasl;<sub>3</sub> − <sup>4,5</sup>&frasl;<sub>5</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−7</sup>&frasl;<sub>5</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">8</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>−1</sup>&frasl;<sub>25</sub> − <sup>15</sup>&frasl;<sub>5</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−76</sup>&frasl;<sub>25</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">9</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>5</sup>&frasl;<sub>7</sub> − (−<sup>6</sup>&frasl;<sub>5</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>67</sup>&frasl;<sub>35</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">10</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>2</sup>&frasl;<sub>3</sub> − (−<sup>2</sup>&frasl;<sub>−9</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>4</sup>&frasl;<sub>9</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">11</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>2</sup>&frasl;<sub>−13</sub> − −<sup>10</sup>&frasl;<sub>13</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>8</sup>&frasl;<sub>13</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">12</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>3</sup>&frasl;<sub>2</sub> − −<sup>6</sup>&frasl;<sub>7</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>33</sup>&frasl;<sub>14</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">13</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">3,5 − <sup>5</sup>&frasl;<sub>2</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 1</p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">14</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>−9</sup>&frasl;<sub>13</sub> − <sup>6</sup>&frasl;<sub>26</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−12</sup>&frasl;<sub>13</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">15</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>2</sup>&frasl;<sub>7</sub> − <sup>4</sup>&frasl;<sub>3</sub> − (<sup>5</sup>&frasl;<sub>3</sub> + <sup>2</sup>&frasl;<sub>7</sub> − 1)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= −2</p>
+</div>
+</div>
+      </div>
+
+      <h4 class="mb-2 mt-10 font-bold text-brand-700 dark:text-brand-300">3) Dénominateurs différents</h4>
+      <div class="rounded-2xl bg-rose-50 p-5 text-sm leading-relaxed text-rose-900 ring-1 ring-rose-100 dark:bg-rose-950/30 dark:text-rose-200 dark:ring-rose-900">
+        On réduit au même dénominateur, puis on applique la règle précédente :
+        <span class="mt-2 block font-mono text-base"><sup>a</sup>&frasl;<sub>b</sub> − <sup>c</sup>&frasl;<sub>d</sub> = <sup>ad</sup>&frasl;<sub>bd</sub> + <sup>cb</sup>&frasl;<sub>bd</sub> = <sup>ad − cb</sup>&frasl;<sub>bd</sub></span>
+      </div>
+      <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700"><sup>8</sup>&frasl;<sub>12</sub> − <sup>−7</sup>&frasl;<sub>6</sub></div>
+        <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">0,25 − <sup>1</sup>&frasl;<sub>4</sub> &nbsp;·&nbsp; 3 − <sup>1</sup>&frasl;<sub>8</sub></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ===================== EXERCICES ===================== -->
+<section id="exercices" class="py-14">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-4 flex flex-col items-center gap-2 text-center">
+      <span class="rounded-full bg-brand-100 px-4 py-1 text-xs font-bold uppercase tracking-widest text-brand-700 dark:bg-brand-900 dark:text-brand-200">Exercice N°3</span>
+      <h2 class="text-2xl font-extrabold text-brand-700 dark:text-brand-300 sm:text-3xl">Somme et différence des nombres rationnels</h2>
+      <p class="max-w-2xl text-sm text-slate-500 dark:text-slate-400">Prof : Y. EL BASBASSI · Niveau : 2APIC · Calculer et donner le résultat sous la forme la plus simple possible. Cliquez sur « Voir la correction » pour vérifier vos réponses.</p>
+    </div>
+
+    <!-- Exercice 1 -->
+    <div class="mt-10 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+      <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+          <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-600 text-white">1</span>
+          Exercice 1 — Additions
+        </h3>
+        <button type="button" onclick="toggleCorrection('ex1', this)" class="mb-4 inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+  <span data-label>Voir la correction</span>
+</button>
+      </div>
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3" data-group="ex1">
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">1</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">−<sup>7</sup>&frasl;<sub>15</sub> + <sup>22</sup>&frasl;<sub>−15</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−29</sup>&frasl;<sub>15</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">2</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>14</sup>&frasl;<sub>−6</sub> + <sup>4</sup>&frasl;<sub>6</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−5</sup>&frasl;<sub>3</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">3</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>15</sup>&frasl;<sub>8</sub> + <sup>−5</sup>&frasl;<sub>8</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>5</sup>&frasl;<sub>4</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">4</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">−<sup>14</sup>&frasl;<sub>17</sub> + <sup>23</sup>&frasl;<sub>17</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>9</sup>&frasl;<sub>17</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">5</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>12</sup>&frasl;<sub>9</sub> + <sup>3</sup>&frasl;<sub>9</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>5</sup>&frasl;<sub>3</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">6</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>7</sup>&frasl;<sub>11</sub> + <sup>15</sup>&frasl;<sub>11</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 2</p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">7</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">−<sup>9</sup>&frasl;<sub>6</sub> + (−<sup>5</sup>&frasl;<sub>9</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−37</sup>&frasl;<sub>18</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">8</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>6</sup>&frasl;<sub>8</sub> + (−<sup>5</sup>&frasl;<sub>12</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>1</sup>&frasl;<sub>3</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">9</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">−<sup>11</sup>&frasl;<sub>25</sub> + (−<sup>4</sup>&frasl;<sub>75</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−37</sup>&frasl;<sub>75</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">10</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>15</sup>&frasl;<sub>−3</sub> + <sup>1</sup>&frasl;<sub>9</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−44</sup>&frasl;<sub>9</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">11</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>13</sup>&frasl;<sub>12</sub> + (−<sup>8</sup>&frasl;<sub>3</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−19</sup>&frasl;<sub>12</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">12</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>15</sup>&frasl;<sub>21</sub> + −<sup>5</sup>&frasl;<sub>7</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 0</p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">13</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">−<sup>12</sup>&frasl;<sub>5</sub> + <sup>−8</sup>&frasl;<sub>−6</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−16</sup>&frasl;<sub>15</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">14</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">−<sup>7</sup>&frasl;<sub>11</sub> + (−<sup>5</sup>&frasl;<sub>2</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−69</sup>&frasl;<sub>22</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">15</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>9</sup>&frasl;<sub>2</sub> + −<sup>5</sup>&frasl;<sub>3</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>17</sup>&frasl;<sub>6</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">16</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>5</sup>&frasl;<sub>11</sub> + −<sup>2</sup>&frasl;<sub>9</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>23</sup>&frasl;<sub>99</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">17</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">−3,5 + (−<sup>5</sup>&frasl;<sub>3</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−31</sup>&frasl;<sub>6</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">18</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>5</sup>&frasl;<sub>8</sub> + 2,2</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>113</sup>&frasl;<sub>40</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">19</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">−4,5 + −<sup>1</sup>&frasl;<sub>2</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= −5</p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">20</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">−<sup>5</sup>&frasl;<sub>7</sub> + (−2,5)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−45</sup>&frasl;<sub>14</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">21</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">−5 + <sup>11</sup>&frasl;<sub>7</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−24</sup>&frasl;<sub>7</sub></p>
+</div>
+</div>
+    </div>
+
+    <!-- Exercice 2 -->
+    <div class="mt-10 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+      <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+          <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-600 text-white">2</span>
+          Exercice 2 — Soustractions
+        </h3>
+        <button type="button" onclick="toggleCorrection('ex2', this)" class="mb-4 inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+  <span data-label>Voir la correction</span>
+</button>
+      </div>
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3" data-group="ex2">
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">1</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>8</sup>&frasl;<sub>9</sub> − (−<sup>1</sup>&frasl;<sub>9</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 1</p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">2</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>11</sup>&frasl;<sub>7</sub> − <sup>−5</sup>&frasl;<sub>−7</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>6</sup>&frasl;<sub>7</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">3</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>−14</sup>&frasl;<sub>−6</sub> − <sup>8</sup>&frasl;<sub>−6</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>11</sup>&frasl;<sub>3</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">4</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>3</sup>&frasl;<sub>−5</sub> − <sup>12</sup>&frasl;<sub>5</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= −3</p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">5</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">−<sup>5</sup>&frasl;<sub>11</sub> − −<sup>9</sup>&frasl;<sub>11</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>4</sup>&frasl;<sub>11</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">6</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>2</sup>&frasl;<sub>7</sub> − <sup>11</sup>&frasl;<sub>7</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−9</sup>&frasl;<sub>7</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">7</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>7</sup>&frasl;<sub>15</sub> − <sup>8</sup>&frasl;<sub>9</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−19</sup>&frasl;<sub>45</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">8</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>3</sup>&frasl;<sub>9</sub> − −<sup>11</sup>&frasl;<sub>6</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>13</sup>&frasl;<sub>6</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">9</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">−<sup>3</sup>&frasl;<sub>8</sub> − (−<sup>5</sup>&frasl;<sub>6</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>11</sup>&frasl;<sub>24</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">10</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>8</sup>&frasl;<sub>12</sub> − (−<sup>5</sup>&frasl;<sub>6</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>3</sup>&frasl;<sub>2</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">11</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">−<sup>13</sup>&frasl;<sub>7</sub> − <sup>5</sup>&frasl;<sub>14</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−31</sup>&frasl;<sub>14</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">12</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>5</sup>&frasl;<sub>16</sub> − <sup>11</sup>&frasl;<sub>4</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−39</sup>&frasl;<sub>16</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">13</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>1</sup>&frasl;<sub>2</sub> − <sup>1</sup>&frasl;<sub>3</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>1</sup>&frasl;<sub>6</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">14</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>−3</sup>&frasl;<sub>−2</sub> − <sup>−7</sup>&frasl;<sub>−5</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>1</sup>&frasl;<sub>10</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">15</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">−<sup>7</sup>&frasl;<sub>4</sub> − (−<sup>6</sup>&frasl;<sub>3</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>1</sup>&frasl;<sub>4</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">16</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>17</sup>&frasl;<sub>8</sub> − (−<sup>1</sup>&frasl;<sub>3</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>59</sup>&frasl;<sub>24</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">17</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>11</sup>&frasl;<sub>−3</sub> − <sup>−8</sup>&frasl;<sub>−4</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−17</sup>&frasl;<sub>3</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">18</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">−<sup>3</sup>&frasl;<sub>5</sub> − <sup>7</sup>&frasl;<sub>2</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−41</sup>&frasl;<sub>10</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">19</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">0,5 − <sup>1</sup>&frasl;<sub>2</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 0</p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">20</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">5,5 − <sup>−1</sup>&frasl;<sub>−2</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 5</p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">21</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100"><sup>5</sup>&frasl;<sub>8</sub> − (−3)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>29</sup>&frasl;<sub>8</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">22</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">−<sup>11</sup>&frasl;<sub>4</sub> − (−1,2)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−31</sup>&frasl;<sub>20</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">23</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">5 − −<sup>7</sup>&frasl;<sub>4</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>27</sup>&frasl;<sub>4</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">24</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">−2,5 − <sup>1</sup>&frasl;<sub>2</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= −3</p>
+</div>
+</div>
+    </div>
+
+    <!-- Exercice 3 -->
+    <div class="mt-10 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+      <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+          <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-600 text-white">3</span>
+          Exercice 3 — Sommes à trois termes
+        </h3>
+        <button type="button" onclick="toggleCorrection('ex3', this)" class="mb-4 inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+  <span data-label>Voir la correction</span>
+</button>
+      </div>
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3" data-group="ex3">
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">1</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">A = <sup>1</sup>&frasl;<sub>2</sub> + <sup>5</sup>&frasl;<sub>2</sub> + −<sup>9</sup>&frasl;<sub>2</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−3</sup>&frasl;<sub>2</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">2</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">B = <sup>4</sup>&frasl;<sub>3</sub> + −<sup>5</sup>&frasl;<sub>6</sub> + <sup>2</sup>&frasl;<sub>3</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>7</sup>&frasl;<sub>6</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">3</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">C = −<sup>5</sup>&frasl;<sub>8</sub> + −<sup>7</sup>&frasl;<sub>4</sub> + <sup>3</sup>&frasl;<sub>2</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−7</sup>&frasl;<sub>8</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">4</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">D = <sup>−5</sup>&frasl;<sub>7</sub> + <sup>3</sup>&frasl;<sub>−7</sub> + <sup>−1</sup>&frasl;<sub>−7</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= −1</p>
+</div>
+</div>
+    </div>
+
+    <!-- Exercice 4 -->
+    <div class="mt-10 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+      <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+          <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-600 text-white">4</span>
+          Exercice 4 — Nombres décimaux et fractions
+        </h3>
+        <button type="button" onclick="toggleCorrection('ex4', this)" class="mb-4 inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+  <span data-label>Voir la correction</span>
+</button>
+      </div>
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3" data-group="ex4">
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">1</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">A = <sup>1</sup>&frasl;<sub>2</sub> + 5 − <sup>3</sup>&frasl;<sub>4</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>19</sup>&frasl;<sub>4</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">2</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">B = −<sup>3</sup>&frasl;<sub>5</sub> − 2 + <sup>1</sup>&frasl;<sub>5</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−12</sup>&frasl;<sub>5</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">3</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">C = −2,5 + −<sup>2</sup>&frasl;<sub>5</sub> − <sup>1</sup>&frasl;<sub>2</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−17</sup>&frasl;<sub>5</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">4</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">D = 1 + (−<sup>4</sup>&frasl;<sub>3</sub>) − <sup>7</sup>&frasl;<sub>2</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−23</sup>&frasl;<sub>6</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">5</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">E = 1 + (−<sup>1</sup>&frasl;<sub>2</sub>) + <sup>1</sup>&frasl;<sub>3</sub> + (−<sup>1</sup>&frasl;<sub>4</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>7</sup>&frasl;<sub>12</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">6</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">F = −0,25 + <sup>1</sup>&frasl;<sub>50</sub> + −<sup>2</sup>&frasl;<sub>5</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−63</sup>&frasl;<sub>100</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">7</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">G = <sup>−2</sup>&frasl;<sub>−7</sub> + <sup>−4</sup>&frasl;<sub>−3</sub> + (−<sup>1</sup>&frasl;<sub>9</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>95</sup>&frasl;<sub>63</sub></p>
+</div>
+</div>
+    </div>
+
+    <!-- Exercice 5 -->
+    <div class="mt-10 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+      <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+          <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-600 text-white">5</span>
+          Exercice 5 — Expressions avec parenthèses
+        </h3>
+        <button type="button" onclick="toggleCorrection('ex5', this)" class="mb-4 inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+  <span data-label>Voir la correction</span>
+</button>
+      </div>
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3" data-group="ex5">
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">1</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">A = <sup>1</sup>&frasl;<sub>2</sub> − (<sup>3</sup>&frasl;<sub>4</sub> + <sup>5</sup>&frasl;<sub>2</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−11</sup>&frasl;<sub>4</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">2</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">B = (−<sup>2</sup>&frasl;<sub>5</sub> + 1) − 1,5</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−9</sup>&frasl;<sub>10</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">3</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">C = (−<sup>9</sup>&frasl;<sub>7</sub> + 2) + (1 − <sup>3</sup>&frasl;<sub>7</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>9</sup>&frasl;<sub>7</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">4</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">D = 0,5 + (−<sup>1</sup>&frasl;<sub>2</sub> + 3) − <sup>1</sup>&frasl;<sub>2</sub></p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>5</sup>&frasl;<sub>2</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">5</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">E = (<sup>2</sup>&frasl;<sub>3</sub> − 1) + (2 + <sup>3</sup>&frasl;<sub>2</sub>) − (<sup>1</sup>&frasl;<sub>2</sub> + <sup>1</sup>&frasl;<sub>3</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>7</sup>&frasl;<sub>3</sub></p>
+</div>
+</div>
+    </div>
+
+    <!-- Exercice 6 -->
+    <div class="mt-10 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+      <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+          <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-600 text-white">6</span>
+          Exercice 6 — Expressions avec crochets
+        </h3>
+        <button type="button" onclick="toggleCorrection('ex6', this)" class="mb-4 inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+  <span data-label>Voir la correction</span>
+</button>
+      </div>
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3" data-group="ex6">
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">1</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">A = (−<sup>1</sup>&frasl;<sub>2</sub> − <sup>1</sup>&frasl;<sub>3</sub>) + (1 − <sup>5</sup>&frasl;<sub>3</sub>) + (<sup>1</sup>&frasl;<sub>2</sub> + 1)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 0</p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">2</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">B = 4 − [(1 − <sup>2</sup>&frasl;<sub>3</sub>) − (<sup>5</sup>&frasl;<sub>2</sub> + 1 − <sup>6</sup>&frasl;<sub>3</sub>)] − (<sup>1</sup>&frasl;<sub>3</sub> + <sup>20</sup>&frasl;<sub>5</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>5</sup>&frasl;<sub>6</sub></p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">3</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">C = (<sup>2</sup>&frasl;<sub>3</sub> + <sup>5</sup>&frasl;<sub>2</sub>) − (<sup>4</sup>&frasl;<sub>6</sub> − <sup>1</sup>&frasl;<sub>2</sub>) − 3</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 0</p>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+  <div class="flex items-start gap-2">
+    <span class="mt-0.5 inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200">4</span>
+    <p class="font-mono text-base text-slate-800 dark:text-slate-100">D = 2 − [(1 − <sup>5</sup>&frasl;<sub>3</sub>) − (<sup>2</sup>&frasl;<sub>5</sub> + 1 − <sup>8</sup>&frasl;<sub>3</sub>)] − (<sup>1</sup>&frasl;<sub>2</sub> + <sup>18</sup>&frasl;<sub>6</sub>)</p>
+  </div>
+  <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>−21</sup>&frasl;<sub>10</sub></p>
+</div>
+</div>
+    </div>
+
+    <div class="mt-10 rounded-2xl bg-brand-700 p-6 text-center text-white">
+      <p class="text-sm">
+        <span class="font-bold">ℚ</span> : Ensemble des nombres rationnels &nbsp;·&nbsp; <span class="font-bold">≠</span> : Différent
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="bg-slate-900 text-slate-300">
+  <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+    <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2.5">
+          <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+          <span class="font-display font-bold text-white leading-tight">
+            <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+          </span>
+        </a>
+        <div class="hidden sm:block border-l border-slate-700 pl-3 ml-1">
+          <p class="font-bold text-white">Nombres rationnels : Addition et soustraction</p>
+          <p class="text-xs text-slate-400">Matière : Mathématiques · Niveau : 2ème Année Collège</p>
+        </div>
+      </div>
+      <nav class="flex gap-5 text-sm font-semibold">
+        <a href="#fiche" class="hover:text-white">Fiche</a>
+        <a href="#cours" class="hover:text-white">Cours</a>
+        <a href="#exercices" class="hover:text-white">Exercices</a>
+      </nav>
+    </div>
+    <div class="mt-8 border-t border-slate-800 pt-6 text-center text-sm">
+      <p class="font-semibold text-white">Prof : LAHBIB ELKEANTAOUI</p>
+      <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+      <p class="mt-1 text-xs text-slate-500">© 2026 — Page réalisée à des fins pédagogiques.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  function toggleCorrection(groupId, btn) {
+    var container = document.querySelector('[data-group="' + groupId + '"]');
+    if (!container) return;
+    var answers = container.querySelectorAll('.corr');
+    var label = btn.querySelector('[data-label]');
+    var isHidden = answers[0] && answers[0].classList.contains('hidden');
+    answers.forEach(function(el) {
+      el.classList.toggle('hidden', !isHidden ? true : false);
+    });
+    if (isHidden) {
+      label.textContent = 'Masquer la correction';
+      btn.classList.remove('bg-indigo-600','hover:bg-indigo-700');
+      btn.classList.add('bg-rose-600','hover:bg-rose-700');
+    } else {
+      label.textContent = 'Voir la correction';
+      btn.classList.remove('bg-rose-600','hover:bg-rose-700');
+      btn.classList.add('bg-indigo-600','hover:bg-indigo-700');
+    }
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Statistiques — Cours & Exercices | 1AC Mathématiques</title>
+<meta name="description" content="Cours complet et interactif sur les statistiques (1ère année collège) : effectif, effectif total, fréquence, tableaux, diagramme en bâtons, histogramme, diagrammes circulaires — accompagné de 27 exercices corrigés et d'un QCM.">
+<meta name="theme-color" content="#0b1f3a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%8A%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Poppins', 'ui-sans-serif', 'sans-serif'],
+          body: ['Inter', 'ui-sans-serif', 'sans-serif'],
+        },
+        colors: {
+          teal: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+        },
+        boxShadow: {
+          soft: '0 10px 30px -10px rgba(44, 80, 137, 0.25)',
+        },
+      }
+    }
+  }
+</script>
+<style>
+  section[id] { scroll-margin-top: 5.5rem; }
+  .accordion-wrap { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s ease; }
+  .accordion-wrap.open { grid-template-rows: 1fr; }
+  .accordion-inner { overflow: hidden; }
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #99f6e4; border-radius: 9999px; }
+  .dark ::-webkit-scrollbar-thumb { background: #115e59; }
+  table.stat th, table.stat td { border: 1px solid; }
+  .pie { border-radius: 9999px; }
+  .qcm-pill { transition: all .2s ease; }
+
+  /* ===== Mode nuit (retrofit générique — filet de sécurité) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
+  .dark .bg-amber-50 { background-color: #3a2a0a; }
+  .dark .border-amber-400 { border-color: #92400e; }
+</style>
+</head>
+<body class="font-body antialiased bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#accueil" class="flex items-center gap-2 font-display font-bold text-lg text-teal-700 dark:text-teal-400 shrink-0">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="w-9 h-9 shrink-0 rounded-full">
+        <span>Maths<span class="text-amber-500">·1AC</span></span>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-0.5">
+        <a href="/" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-teal-700 hover:bg-teal-50 dark:hover:bg-slate-800 dark:hover:text-teal-400 transition">← Portail</a>
+        <a href="#vocabulaire" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-teal-700 hover:bg-teal-50 dark:hover:bg-slate-800 dark:hover:text-teal-400 transition">Vocabulaire</a>
+        <a href="#representation" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-cyan-700 hover:bg-cyan-50 dark:hover:bg-slate-800 dark:hover:text-cyan-400 transition">Représentations</a>
+        <a href="#exercices" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-amber-700 hover:bg-amber-50 dark:hover:bg-slate-800 dark:hover:text-amber-400 transition">Exercices</a>
+        <a href="#qcm" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-fuchsia-700 hover:bg-fuchsia-50 dark:hover:bg-slate-800 dark:hover:text-fuchsia-400 transition">QCM</a>
+        <a href="#plus-loin" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-violet-700 hover:bg-violet-50 dark:hover:bg-slate-800 dark:hover:text-violet-400 transition">Aller plus loin</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="p-2.5 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 transition">
+          <svg class="w-5 h-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m14.14-6.66l-.7.7M6.56 17.44l-.7.7m12.02 0l-.7-.7M6.56 6.56l-.7-.7M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+          <svg class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" /></svg>
+        </button>
+        <button id="menu-btn" aria-label="Ouvrir le menu" class="lg:hidden p-2.5 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 transition">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden pb-4 flex flex-col gap-1">
+      <a href="/" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-500 dark:text-slate-400 hover:bg-teal-50 dark:hover:bg-slate-800">← Portail</a>
+      <a href="#vocabulaire" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-teal-50 dark:hover:bg-slate-800">I. Vocabulaire des statistiques</a>
+      <a href="#representation" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-cyan-50 dark:hover:bg-slate-800">II. Tableaux & représentations</a>
+      <a href="#exercices" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-amber-50 dark:hover:bg-slate-800">27 Exercices</a>
+      <a href="#qcm" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-fuchsia-50 dark:hover:bg-slate-800">Se tester avec le QCM</a>
+      <a href="#plus-loin" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-violet-50 dark:hover:bg-slate-800">Pour aller plus loin</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<!-- ===================== HERO ===================== -->
+<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-teal-700 via-teal-600 to-cyan-700">
+  <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=60')"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-teal-950/70 via-teal-800/40 to-transparent"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
+    <span class="inline-flex items-center gap-2 bg-white/10 text-teal-100 text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full ring-1 ring-white/20">
+      Mathématiques · 1ère Année Collège
+    </span>
+    <h1 class="mt-6 font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
+      Les <span class="text-amber-400">Statistiques</span>
+    </h1>
+    <p class="mt-5 max-w-2xl mx-auto text-base sm:text-lg text-teal-100">
+      Le cours complet — effectif, effectif total, fréquence, tableaux et diagrammes — accompagné de
+      <span class="font-semibold text-white">27 exercices</span> et d'un <span class="font-semibold text-white">QCM</span>, tous avec leur correction détaillée à un clic.
+    </p>
+    <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+      <a href="#vocabulaire" class="px-5 py-3 rounded-full bg-white text-teal-700 font-semibold text-sm shadow-soft hover:bg-teal-50 transition">📊 Découvrir le cours</a>
+      <a href="#exercices" class="px-5 py-3 rounded-full bg-amber-500 text-white font-semibold text-sm shadow-soft hover:bg-amber-600 transition">📝 Exercices corrigés</a>
+      <a href="#qcm" class="px-5 py-3 rounded-full bg-white/10 text-white font-semibold text-sm ring-1 ring-white/30 hover:bg-white/20 transition">✅ QCM</a>
+    </div>
+    <div class="mt-14 grid grid-cols-3 max-w-lg mx-auto gap-4 text-white">
+      <div>
+        <p class="font-display text-3xl font-extrabold">2</p>
+        <p class="text-xs text-teal-200 mt-1">parties de cours</p>
+      </div>
+      <div class="border-x border-white/20">
+        <p class="font-display text-3xl font-extrabold">27</p>
+        <p class="text-xs text-teal-200 mt-1">exercices corrigés</p>
+      </div>
+      <div>
+        <p class="font-display text-3xl font-extrabold">8</p>
+        <p class="text-xs text-teal-200 mt-1">questions de QCM</p>
+      </div>
+    </div>
+  </div>
+  <svg class="relative block w-full text-slate-50 dark:text-slate-950" viewBox="0 0 1440 60" fill="currentColor"><path d="M0,32L1440,0L1440,60L0,60Z"></path></svg>
+</section>
+
+<!-- ===================== I. VOCABULAIRE ===================== -->
+<section id="vocabulaire" class="py-16 md:py-24">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal flex items-center gap-4 mb-8">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-teal-600 text-white font-display font-bold text-xl shadow-soft shrink-0">I</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Vocabulaire des statistiques</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Effectif, effectif total et fréquence d'une donnée</p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5 mb-8">
+      <div class="reveal rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-5">
+        <p class="text-xs font-bold uppercase tracking-wide text-rose-500 mb-2">1. Effectif</p>
+        <p class="text-sm text-slate-700 dark:text-rose-100 leading-relaxed">L'<b>effectif</b> d'une donnée est le <b>nombre de fois</b> que cette donnée apparaît.</p>
+      </div>
+      <div class="reveal rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-5">
+        <p class="text-xs font-bold uppercase tracking-wide text-rose-500 mb-2">2. Effectif total</p>
+        <p class="text-sm text-slate-700 dark:text-rose-100 leading-relaxed">L'<b>effectif total</b> est la somme des effectifs des données, noté <b>N</b>.</p>
+      </div>
+      <div class="reveal rounded-2xl border-2 border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/30 p-5">
+        <p class="text-xs font-bold uppercase tracking-wide text-rose-500 mb-2">3. Fréquence</p>
+        <p class="text-sm text-slate-700 dark:text-rose-100 leading-relaxed">La <b>fréquence</b> d'une donnée est le <b>quotient de son effectif par l'effectif total</b>.</p>
+      </div>
+    </div>
+
+    <div class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7 mb-6">
+      <p class="text-xs font-bold uppercase tracking-wide text-teal-500 mb-3">4. Exemple</p>
+      <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Après avoir corrigé un contrôle, le professeur a présenté les notes suivantes de sa classe :</p>
+      <div class="rounded-xl bg-teal-50 dark:bg-teal-950/30 border border-teal-200 dark:border-teal-900 p-4 font-mono text-sm text-teal-800 dark:text-teal-200 text-center mb-4">
+        10 ; 12 ; 12 ; 10 ; 16 ; 8 ; 9 ; 8 ; 9 ; 10 &nbsp;·&nbsp; 8 ; 10 ; 8 ; 10 ; 16 ; 12 ; 10 ; 12 ; 12 ; 16
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-4">
+          <p class="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2">Choisissons la note <b>10</b> :</p>
+          <ul class="text-sm text-slate-600 dark:text-slate-300 space-y-1">
+            <li>Effectif de la note 10 : <b>6</b></li>
+            <li>Effectif total : <b>20</b> (nombre d'élèves)</li>
+            <li>Fréquence de la note 10 : 6/20 = <b>0,3</b></li>
+          </ul>
+        </div>
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-4">
+          <p class="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2">Choisissons la note <b>12</b> :</p>
+          <ul class="text-sm text-slate-600 dark:text-slate-300 space-y-1">
+            <li>Effectif de la note 12 : <b>5</b></li>
+            <li>Effectif total : <b>20</b> (nombre d'élèves)</li>
+            <li>Fréquence de la note 12 : 5/20 = <b>0,25</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7 mb-6">
+      <p class="text-xs font-bold uppercase tracking-wide text-teal-500 mb-3">5. Tableau d'effectifs et de fréquences</p>
+      <div class="overflow-x-auto">
+        <table class="stat w-full text-center text-sm border-collapse mx-auto max-w-xl border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200">
+          <tbody>
+            <tr><td class="p-2 font-semibold bg-slate-100 dark:bg-slate-800">Données (notes)</td><td class="p-2">8</td><td class="p-2">9</td><td class="p-2">10</td><td class="p-2">12</td><td class="p-2">16</td></tr>
+            <tr><td class="p-2 font-semibold bg-slate-100 dark:bg-slate-800">Effectifs</td><td class="p-2">4</td><td class="p-2">2</td><td class="p-2">6</td><td class="p-2">5</td><td class="p-2">3</td></tr>
+            <tr class="bg-teal-50 dark:bg-teal-950/30"><td class="p-2 font-semibold bg-slate-100 dark:bg-slate-800">Fréquences</td><td class="p-2">0,2</td><td class="p-2">0,1</td><td class="p-2">0,3</td><td class="p-2">0,25</td><td class="p-2">0,15</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="reveal rounded-2xl border-2 border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/20 p-5">
+      <p class="text-xs font-bold uppercase tracking-wide text-amber-600 mb-2">Remarques</p>
+      <ul class="text-sm text-slate-700 dark:text-amber-100 space-y-1 list-disc list-inside">
+        <li>Une fréquence est toujours comprise entre <b>0</b> et <b>1</b>.</li>
+        <li>La somme des fréquences des données est toujours égale à <b>1</b>.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== II. TABLEAUX ET REPRESENTATIONS ===================== -->
+<section id="representation" class="py-16 md:py-24 bg-cyan-50/50 dark:bg-slate-900/40">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal flex items-center gap-4 mb-8">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-cyan-600 text-white font-display font-bold text-xl shadow-soft shrink-0">II</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Représentation des données</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Diagramme en bâtons et diagramme à barres (histogramme)</p>
+      </div>
+    </div>
+
+    <p class="reveal text-sm text-slate-600 dark:text-slate-300 mb-6">On reprend le tableau précédent :</p>
+    <div class="reveal overflow-x-auto mb-8">
+      <table class="stat w-full text-center text-sm border-collapse mx-auto max-w-xl border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200">
+        <tbody>
+          <tr><td class="p-2 font-semibold bg-slate-100 dark:bg-slate-800">Données (notes)</td><td class="p-2">8</td><td class="p-2">9</td><td class="p-2">10</td><td class="p-2">12</td><td class="p-2">16</td></tr>
+          <tr><td class="p-2 font-semibold bg-slate-100 dark:bg-slate-800">Effectifs</td><td class="p-2">4</td><td class="p-2">2</td><td class="p-2">6</td><td class="p-2">5</td><td class="p-2">3</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-8">
+      <div class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-6">
+        <h3 class="font-display text-lg font-bold text-slate-800 dark:text-white mb-4">1. Diagramme en bâtons</h3>
+        <div class="flex items-end justify-center gap-4 h-44 border-b-2 border-l-2 border-slate-300 dark:border-slate-600 px-3 pb-1">
+          <div class="flex flex-col items-center justify-end h-full gap-1"><span class="text-xs font-semibold text-cyan-700 dark:text-cyan-300">4</span><div class="w-1.5 bg-cyan-500 rounded-t" style="height:67%"></div><span class="text-[10px] text-slate-500 dark:text-slate-400">8</span></div>
+          <div class="flex flex-col items-center justify-end h-full gap-1"><span class="text-xs font-semibold text-cyan-700 dark:text-cyan-300">2</span><div class="w-1.5 bg-cyan-500 rounded-t" style="height:33%"></div><span class="text-[10px] text-slate-500 dark:text-slate-400">9</span></div>
+          <div class="flex flex-col items-center justify-end h-full gap-1"><span class="text-xs font-semibold text-cyan-700 dark:text-cyan-300">6</span><div class="w-1.5 bg-cyan-500 rounded-t" style="height:100%"></div><span class="text-[10px] text-slate-500 dark:text-slate-400">10</span></div>
+          <div class="flex flex-col items-center justify-end h-full gap-1"><span class="text-xs font-semibold text-cyan-700 dark:text-cyan-300">5</span><div class="w-1.5 bg-cyan-500 rounded-t" style="height:83%"></div><span class="text-[10px] text-slate-500 dark:text-slate-400">12</span></div>
+          <div class="flex flex-col items-center justify-end h-full gap-1"><span class="text-xs font-semibold text-cyan-700 dark:text-cyan-300">3</span><div class="w-1.5 bg-cyan-500 rounded-t" style="height:50%"></div><span class="text-[10px] text-slate-500 dark:text-slate-400">16</span></div>
+        </div>
+        <p class="text-xs text-center text-slate-500 dark:text-slate-400 mt-3">Un trait fin (bâton) par donnée, de hauteur égale à l'effectif.</p>
+      </div>
+      <div class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-6">
+        <h3 class="font-display text-lg font-bold text-slate-800 dark:text-white mb-4">2. Diagramme à barres (histogramme)</h3>
+        <div class="flex items-end justify-center gap-2 h-44 border-b-2 border-l-2 border-slate-300 dark:border-slate-600 px-3 pb-1">
+          <div class="flex flex-col items-center justify-end h-full gap-1"><span class="text-xs font-semibold text-cyan-700 dark:text-cyan-300">4</span><div class="w-8 bg-cyan-500 rounded-t" style="height:67%"></div><span class="text-[10px] text-slate-500 dark:text-slate-400">8</span></div>
+          <div class="flex flex-col items-center justify-end h-full gap-1"><span class="text-xs font-semibold text-cyan-700 dark:text-cyan-300">2</span><div class="w-8 bg-cyan-500 rounded-t" style="height:33%"></div><span class="text-[10px] text-slate-500 dark:text-slate-400">9</span></div>
+          <div class="flex flex-col items-center justify-end h-full gap-1"><span class="text-xs font-semibold text-cyan-700 dark:text-cyan-300">6</span><div class="w-8 bg-cyan-500 rounded-t" style="height:100%"></div><span class="text-[10px] text-slate-500 dark:text-slate-400">10</span></div>
+          <div class="flex flex-col items-center justify-end h-full gap-1"><span class="text-xs font-semibold text-cyan-700 dark:text-cyan-300">5</span><div class="w-8 bg-cyan-500 rounded-t" style="height:83%"></div><span class="text-[10px] text-slate-500 dark:text-slate-400">12</span></div>
+          <div class="flex flex-col items-center justify-end h-full gap-1"><span class="text-xs font-semibold text-cyan-700 dark:text-cyan-300">3</span><div class="w-8 bg-cyan-500 rounded-t" style="height:50%"></div><span class="text-[10px] text-slate-500 dark:text-slate-400">16</span></div>
+        </div>
+        <p class="text-xs text-center text-slate-500 dark:text-slate-400 mt-3"><b>Remarque :</b> les barres ont toutes la même largeur.</p>
+      </div>
+    </div>
+
+    <div class="reveal rounded-2xl border-2 border-dashed border-violet-300 dark:border-violet-800 bg-violet-50 dark:bg-violet-950/20 p-5 md:p-6">
+      <p class="text-xs font-bold uppercase tracking-wide text-violet-600 mb-2">💡 Complément utile pour les exercices — diagrammes circulaires</p>
+      <p class="text-sm text-slate-700 dark:text-violet-100 leading-relaxed mb-3">De nombreux exercices utilisent aussi le <b>diagramme circulaire</b> (camembert) et le <b>diagramme semi-circulaire</b> : chaque catégorie y est représentée par une portion d'angle proportionnel à sa fréquence.</p>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="rounded-xl bg-white/70 dark:bg-slate-900/50 border border-violet-200 dark:border-violet-900 p-4 text-center">
+          <p class="text-sm font-semibold text-violet-700 dark:text-violet-300 mb-1">Diagramme circulaire</p>
+          <p class="font-mono text-sm text-slate-700 dark:text-slate-200">angle = fréquence × 360°</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">(le disque entier = 360° = 100 %)</p>
+        </div>
+        <div class="rounded-xl bg-white/70 dark:bg-slate-900/50 border border-violet-200 dark:border-violet-900 p-4 text-center">
+          <p class="text-sm font-semibold text-violet-700 dark:text-violet-300 mb-1">Diagramme semi-circulaire</p>
+          <p class="font-mono text-sm text-slate-700 dark:text-slate-200">angle = fréquence × 180°</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">(le demi-disque = 180° = 100 %)</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ===================== EXERCICES ===================== -->
+<section id="exercices" class="py-16 md:py-24">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal flex items-center gap-4 mb-3">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-amber-500 text-white font-display font-bold text-xl shadow-soft shrink-0">✎</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">27 Exercices</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Statistiques — cliquez sur « Voir la correction » pour vérifier vos réponses</p>
+      </div>
+    </div>
+
+    <p class="reveal text-xs text-slate-400 dark:text-slate-500 mb-6">Exercice N°9 · Statistiques · Niveau 1APIC</p>
+
+    <div class="reveal mb-10 flex flex-wrap gap-1.5">
+      <span class="text-xs font-semibold text-slate-400 mr-1 mt-1.5">Accès rapide :</span>
+      <a href="#ex-1" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">1</a>
+      <a href="#ex-2" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">2</a>
+      <a href="#ex-3" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">3</a>
+      <a href="#ex-4" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">4</a>
+      <a href="#ex-5" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">5</a>
+      <a href="#ex-6" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">6</a>
+      <a href="#ex-7" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">7</a>
+      <a href="#ex-8" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">8</a>
+      <a href="#ex-9" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">9</a>
+      <a href="#ex-10" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">10</a>
+      <a href="#ex-11" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">11</a>
+      <a href="#ex-12" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">12</a>
+      <a href="#ex-13" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">13</a>
+      <a href="#ex-14" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">14</a>
+      <a href="#ex-15" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">15</a>
+      <a href="#ex-16" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">16</a>
+      <a href="#ex-17" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">17</a>
+      <a href="#ex-18" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">18</a>
+      <a href="#ex-19" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">19</a>
+      <a href="#ex-20" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">20</a>
+      <a href="#ex-21" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">21</a>
+      <a href="#ex-22" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">22</a>
+      <a href="#ex-23" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">23</a>
+      <a href="#ex-24" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">24</a>
+      <a href="#ex-25" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">25</a>
+      <a href="#ex-26" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">26</a>
+      <a href="#ex-27" class="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">27</a>
+    </div>
+
+    <div class="space-y-6">
+
+      <!-- EXERCICE 1 -->
+      <article id="ex-1" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">1</span>
+            Le concessionnaire automobile
+          </h3>
+          <button onclick="toggleCorrection(1)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-1">Voir la correction</span>
+            <svg id="chevron-1" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Un concessionnaire a vendu ce mois-ci 85 véhicules. Complète le tableau au fur et à mesure des questions :</p>
+        <div class="overflow-x-auto mb-3">
+          <table class="stat w-full text-center text-xs sm:text-sm border-collapse border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200">
+            <tbody>
+              <tr><td class="p-1.5 font-semibold bg-slate-100 dark:bg-slate-800">Vendeurs</td><td class="p-1.5 font-semibold bg-slate-100 dark:bg-slate-800">Citadines</td><td class="p-1.5 font-semibold bg-slate-100 dark:bg-slate-800">Sportives</td><td class="p-1.5 font-semibold bg-slate-100 dark:bg-slate-800">Routières</td><td class="p-1.5 font-semibold bg-slate-100 dark:bg-slate-800">Totaux</td></tr>
+              <tr><td class="p-1.5">Paul</td><td class="p-1.5">3</td><td class="p-1.5">5</td><td class="p-1.5">?</td><td class="p-1.5">17</td></tr>
+              <tr><td class="p-1.5">Denis</td><td class="p-1.5">4</td><td class="p-1.5">?</td><td class="p-1.5">6</td><td class="p-1.5">15</td></tr>
+              <tr><td class="p-1.5">Henri</td><td class="p-1.5">3</td><td class="p-1.5">?</td><td class="p-1.5">8</td><td class="p-1.5">?</td></tr>
+              <tr><td class="p-1.5">Steeve</td><td class="p-1.5">?</td><td class="p-1.5">4</td><td class="p-1.5">?</td><td class="p-1.5">18</td></tr>
+              <tr><td class="p-1.5">Eliess</td><td class="p-1.5">5</td><td class="p-1.5">?</td><td class="p-1.5">2</td><td class="p-1.5">16</td></tr>
+              <tr class="bg-amber-50 dark:bg-amber-950/30"><td class="p-1.5 font-semibold">Totaux</td><td class="p-1.5">?</td><td class="p-1.5">31</td><td class="p-1.5">30</td><td class="p-1.5">85</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300">a. Voitures de Henri ? b. Citadines vendues ? c. Meilleur vendeur en sportives ? d. Denis a-t-il vendu autant de sportives que de routières ? e. Meilleur vendeur ? f. Type le plus vendu ?</p>
+        <div id="wrap-1" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Total citadines = 85 − 31 − 30 = <b>24</b>. On en déduit : Paul routières = 17−3−5=<b>9</b> ; Denis sportives = 15−4−6=<b>5</b> ; Steeve citadines = 24−3−4−3−5=<b>9</b> puis routières = 18−9−4=<b>5</b> ; Eliess sportives = 16−5−2=<b>9</b> ; Henri sportives = 31−(5+5+4+9)=<b>8</b> puis total = 3+8+8=<b>19</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>a.</b> Henri a vendu <b>19</b> voitures. &nbsp; <b>b.</b> <b>24</b> citadines ont été vendues. &nbsp; <b>c.</b> Eliess a vendu le plus de sportives (<b>9</b>).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>d.</b> Non : Denis a vendu 5 sportives et 6 routières, ce n'est pas autant. &nbsp; <b>e.</b> Henri est le meilleur vendeur (19 ventes). &nbsp; <b>f.</b> Les sportives sont le type le plus vendu (31).</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 2 -->
+      <article id="ex-2" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">2</span>
+            Les groupes sanguins
+          </h3>
+          <button onclick="toggleCorrection(2)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-2">Voir la correction</span>
+            <svg id="chevron-2" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Voici la répartition en groupes sanguins des salariés d'une entreprise :</p>
+        <div class="flex items-end justify-center gap-2 h-40 border-b-2 border-l-2 border-slate-300 dark:border-slate-600 px-2 pb-1 mb-3 overflow-x-auto">
+          <div class="flex flex-col items-center justify-end h-full gap-1 shrink-0"><span class="text-[10px] font-semibold text-slate-600 dark:text-slate-300">160</span><div class="w-6 bg-sky-500 rounded-t" style="height:94%"></div><span class="text-[10px] text-slate-500 dark:text-slate-400">O+</span></div>
+          <div class="flex flex-col items-center justify-end h-full gap-1 shrink-0"><span class="text-[10px] font-semibold text-slate-600 dark:text-slate-300">30</span><div class="w-6 bg-rose-500 rounded-t" style="height:18%"></div><span class="text-[10px] text-slate-500 dark:text-slate-400">O-</span></div>
+          <div class="flex flex-col items-center justify-end h-full gap-1 shrink-0"><span class="text-[10px] font-semibold text-slate-600 dark:text-slate-300">170</span><div class="w-6 bg-amber-400 rounded-t" style="height:100%"></div><span class="text-[10px] text-slate-500 dark:text-slate-400">A+</span></div>
+          <div class="flex flex-col items-center justify-end h-full gap-1 shrink-0"><span class="text-[10px] font-semibold text-slate-600 dark:text-slate-300">25</span><div class="w-6 bg-emerald-500 rounded-t" style="height:15%"></div><span class="text-[10px] text-slate-500 dark:text-slate-400">A-</span></div>
+          <div class="flex flex-col items-center justify-end h-full gap-1 shrink-0"><span class="text-[10px] font-semibold text-slate-600 dark:text-slate-300">25</span><div class="w-6 bg-fuchsia-500 rounded-t" style="height:15%"></div><span class="text-[10px] text-slate-500 dark:text-slate-400">B+</span></div>
+          <div class="flex flex-col items-center justify-end h-full gap-1 shrink-0"><span class="text-[10px] font-semibold text-slate-600 dark:text-slate-300">10</span><div class="w-6 bg-cyan-400 rounded-t" style="height:6%"></div><span class="text-[10px] text-slate-500 dark:text-slate-400">B-</span></div>
+          <div class="flex flex-col items-center justify-end h-full gap-1 shrink-0"><span class="text-[10px] font-semibold text-slate-600 dark:text-slate-300">15</span><div class="w-6 bg-slate-500 rounded-t" style="height:9%"></div><span class="text-[10px] text-slate-500 dark:text-slate-400">AB+</span></div>
+          <div class="flex flex-col items-center justify-end h-full gap-1 shrink-0"><span class="text-[10px] font-semibold text-slate-600 dark:text-slate-300">5</span><div class="w-6 bg-lime-400 rounded-t" style="height:3%"></div><span class="text-[10px] text-slate-500 dark:text-slate-400">AB-</span></div>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300">a. Groupe le plus/moins répandu ? b. Réalise un tableau à partir du graphique.</p>
+        <div id="wrap-2" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Lecture du graphique (valeurs approchées) : O+≈160 ; O-≈30 ; A+≈170 ; A-≈25 ; B+≈25 ; B-≈10 ; AB+≈15 ; AB-≈5. Effectif total ≈ <b>440</b> salariés.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>a.</b> Le plus répandu : <b>A+</b>. Le moins répandu : <b>AB-</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>b.</b> Tableau des fréquences (effectif ÷ 440) : O+ 0,36 · O- 0,07 · A+ 0,39 · A- 0,06 · B+ 0,06 · B- 0,02 · AB+ 0,03 · AB- 0,01 (somme ≈ 1).</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 3 -->
+      <article id="ex-3" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">3</span>
+            Plein champ
+          </h3>
+          <button onclick="toggleCorrection(3)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-3">Voir la correction</span>
+            <svg id="chevron-3" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-4">Un agriculteur a réalisé le diagramme circulaire suivant illustrant l'utilisation des terres de son exploitation :</p>
+        <div class="flex flex-col sm:flex-row items-center gap-6 mb-3">
+          <div class="pie w-40 h-40 shrink-0" style="background:conic-gradient(#7c3aed 0% 50%, #0ea5e9 50% 74%, #22c55e 74% 84%, #f59e0b 84% 91%, #eab308 91% 98%, #ec4899 98% 100%)"></div>
+          <ul class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-1">
+            <li><span class="inline-block w-3 h-3 rounded-sm bg-violet-600 mr-2"></span>Vigne <span class="font-semibold text-slate-800 dark:text-slate-100">— 50 %</span></li>
+            <li><span class="inline-block w-3 h-3 rounded-sm bg-sky-500 mr-2"></span>Blé <span class="font-semibold text-slate-800 dark:text-slate-100">— 24 %</span></li>
+            <li><span class="inline-block w-3 h-3 rounded-sm bg-green-500 mr-2"></span>Fruitiers <span class="font-semibold text-slate-800 dark:text-slate-100">— 10 %</span></li>
+            <li><span class="inline-block w-3 h-3 rounded-sm bg-amber-500 mr-2"></span>Betteraves <span class="font-semibold text-slate-800 dark:text-slate-100">— 7 %</span></li>
+            <li><span class="inline-block w-3 h-3 rounded-sm bg-yellow-500 mr-2"></span>Pommes de terre <span class="font-semibold text-slate-800 dark:text-slate-100">— 7 %</span></li>
+            <li><span class="inline-block w-3 h-3 rounded-sm bg-pink-500 mr-2"></span>Asperges <span class="font-semibold text-slate-800 dark:text-slate-100">— 2 %</span></li>
+          </ul>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300">a. Culture occupant la moitié des terres ? b. La moins répandue ? c. Le quart des terres ? d. Cultures de même surface ?</p>
+        <div id="wrap-3" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>a.</b> La <b>vigne</b> occupe la moitié des terres (50 %). &nbsp; <b>b.</b> Les <b>asperges</b> sont la culture la moins répandue (2 %).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>c.</b> Le <b>blé</b> occupe environ un quart des terres (24 %). &nbsp; <b>d.</b> Les <b>betteraves</b> et les <b>pommes de terre</b> occupent la même surface (7 % chacune).</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 4 -->
+      <article id="ex-4" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">4</span>
+            Le concours de lancer de javelot
+          </h3>
+          <button onclick="toggleCorrection(4)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-4">Voir la correction</span>
+            <svg id="chevron-4" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Distances (en m) atteintes par 21 élèves : 9,1 · 6,5 · 9,8 · 13,6 · 11,9 · 14,5 · 8 · 11 · 13,1 · 13,7 · 8,7 · 6,1 · 11,9 · 10 · 9,1 · 8,3 · 8 · 12,1 · 13,7 · 9,4 · 8,1</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300">a. Combien ont lancé à 12 m ou plus ? b. À 8,9 m ou moins ? c. Complète le tableau par classes. d. À 9 m ou plus ?</p>
+        <div class="overflow-x-auto mt-3">
+          <table class="stat w-full text-center text-xs sm:text-sm border-collapse max-w-md border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200">
+            <tbody>
+              <tr><td class="p-1.5 font-semibold bg-slate-100 dark:bg-slate-800">Performance</td><td class="p-1.5">De 6 à 8,9 m</td><td class="p-1.5">De 9 à 11,9 m</td><td class="p-1.5">De 12 à 14,9 m</td></tr>
+              <tr><td class="p-1.5 font-semibold bg-slate-100 dark:bg-slate-800">Nombre de lancers</td><td class="p-1.5">?</td><td class="p-1.5">?</td><td class="p-1.5">?</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="wrap-4" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>a.</b> 6 élèves ont lancé à 12 m ou plus (13,6 ; 14,5 ; 13,1 ; 13,7 ; 12,1 ; 13,7). &nbsp; <b>b.</b> 7 élèves ont lancé à 8,9 m ou moins (6,5 ; 8 ; 8,7 ; 6,1 ; 8,3 ; 8 ; 8,1).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>c.</b> Tableau complété : De 6 à 8,9 m → <b>7</b> ; De 9 à 11,9 m → <b>8</b> ; De 12 à 14,9 m → <b>6</b> (total 7+8+6 = 21 ✓).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>d.</b> À 9 m ou plus : 8 + 6 = <b>14</b> élèves.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 5 -->
+      <article id="ex-5" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">5</span>
+            Recensement départemental
+          </h3>
+          <button onclick="toggleCorrection(5)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-5">Voir la correction</span>
+            <svg id="chevron-5" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300">a. Télécharge le fichier tableur donnant la population des départements. b. Trie du moins peuplé au plus peuplé. c. Construis un tableau de classes (moins de 200 000 hab., entre 200 000 et 399 999, etc.). d. Combien de départements ont plus d'un million d'habitants ?</p>
+        <div id="wrap-5" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-sky-900 dark:text-sky-100">
+              <div class="bg-sky-50 dark:bg-sky-950/30 rounded-lg p-3.5">📎 <b>Activité pratique (tableur)</b> : cet exercice nécessite un fichier de données réelles et n'a pas une réponse numérique unique. <b>Méthode :</b> b. utilise la fonction « Trier » du tableur sur la colonne population. c. Compte, avec la fonction NB.SI, le nombre de départements dans chaque intervalle de 200 000 habitants. d. Filtre ou trie pour compter les départements dont la population dépasse 1 000 000.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 6 -->
+      <article id="ex-6" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">6</span>
+            Le fabricant de reblochons
+          </h3>
+          <button onclick="toggleCorrection(6)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-6">Voir la correction</span>
+            <svg id="chevron-6" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">63 fromages sont pesés (théoriquement 250 g). Il décide de vendre : au marché ceux entre 243 g et 247 g (bénéfice 1,50 € / fromage) ; à un supermarché ceux entre 248 g et 252 g (0,90 €) ; les autres à des fromagers (1,20 €).</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300">a. Tableau à trois classes indiquant combien de fromages pour chaque possibilité. b. Quel bénéfice total ?</p>
+        <div id="wrap-6" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>a.</b> En classant les 63 pesées : entre 243 g et 247 g → <b>20</b> fromages (marché) ; entre 248 g et 252 g → <b>28</b> fromages (supermarché) ; entre 253 g et 257 g → <b>15</b> fromages (fromagers). Total : 20+28+15 = 63 ✓.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>b.</b> Bénéfice = 20×1,50 + 28×0,90 + 15×1,20 = 30 + 25,20 + 18 = <b>73,20 €</b>.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 7 -->
+      <article id="ex-7" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">7</span>
+            « Se Canto »
+          </h3>
+          <button onclick="toggleCorrection(7)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-7">Voir la correction</span>
+            <svg id="chevron-7" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300">« Se Canto » est une chanson provençale dont on donne la partition. Quelle est la fréquence (arrondie au dixième) d'apparition de chaque note ?</p>
+        <div id="wrap-7" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-sky-900 dark:text-sky-100">
+              <div class="bg-sky-50 dark:bg-sky-950/30 rounded-lg p-3.5">📎 <b>Activité pratique (lecture de partition)</b> : sans la partition en main, on ne peut pas donner un résultat numérique unique. <b>Méthode :</b> compte le nombre total de notes N, puis pour chaque note (do, ré, mi…) compte son effectif ; la fréquence de chaque note = son effectif ÷ N, arrondie au dixième. Vérifie que la somme des fréquences fait environ 1.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 8 -->
+      <article id="ex-8" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">8</span>
+            Les carottes
+          </h3>
+          <button onclick="toggleCorrection(8)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-8">Voir la correction</span>
+            <svg id="chevron-8" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300">Deux cinquièmes des légumes produits par un maraîcher sont des carottes. Exprime cette fréquence sous forme d'un nombre puis en pourcentage.</p>
+        <div id="wrap-8" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">2/5 = <b>0,4</b> sous forme de nombre, soit <b>40 %</b> en pourcentage.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 9 -->
+      <article id="ex-9" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">9</span>
+            Comparer des fréquences
+          </h3>
+          <button onclick="toggleCorrection(9)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-9">Voir la correction</span>
+            <svg id="chevron-9" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300">a. Abdel trouve une fréquence de 1/4 et Alice trouve 0,25. Ont-ils le même résultat ? b. Pour un autre exercice, Abdel trouve 1/5, Alice 0,1 et François 17 %. Compare ces trois fréquences.</p>
+        <div id="wrap-9" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>a.</b> Oui : 1/4 = 0,25, ils ont trouvé le <b>même résultat</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>b.</b> On convertit tout dans la même forme (en %) : Abdel = 1/5 = 0,2 = <b>20 %</b> ; Alice = 0,1 = <b>10 %</b> ; François = <b>17 %</b>. Donc Abdel &gt; François &gt; Alice.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 10 -->
+      <article id="ex-10" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">10</span>
+            Le rayon peinture
+          </h3>
+          <button onclick="toggleCorrection(10)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-10">Voir la correction</span>
+            <svg id="chevron-10" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Un magasin a en stock : 221 pots de 0,5 L, 272 pots de 1 L, 170 pots de 2 L et 187 pots de 5 L.</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300">a. Complète le tableau. b. Combien de pots au total ? c./d. Fréquence et fréquence en %. e. Les pots ≥ 2 L représentent-ils moins de 50 % du total ?</p>
+        <div id="wrap-10" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>b.</b> Total = 221+272+170+187 = <b>850</b> pots.</div>
+              <div class="overflow-x-auto"><table class="stat w-full text-center text-xs border-collapse border-slate-300 dark:border-emerald-800 mb-1"><tbody>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Contenance</td><td class="p-1.5">0,5 L</td><td class="p-1.5">1 L</td><td class="p-1.5">2 L</td><td class="p-1.5">5 L</td><td class="p-1.5">Total</td></tr>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Effectif</td><td class="p-1.5">221</td><td class="p-1.5">272</td><td class="p-1.5">170</td><td class="p-1.5">187</td><td class="p-1.5">850</td></tr>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Fréquence</td><td class="p-1.5">0,26</td><td class="p-1.5">0,32</td><td class="p-1.5">0,20</td><td class="p-1.5">0,22</td><td class="p-1.5">1</td></tr>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Fréquence %</td><td class="p-1.5">26</td><td class="p-1.5">32</td><td class="p-1.5">20</td><td class="p-1.5">22</td><td class="p-1.5">100</td></tr>
+              </tbody></table></div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>e.</b> Pots ≥ 2 L : 170+187=357, soit 357/850 = <b>42 %</b> &lt; 50 %. Oui, ils représentent moins de la moitié.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 11 -->
+      <article id="ex-11" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">11</span>
+            La feuille de calcul
+          </h3>
+          <button onclick="toggleCorrection(11)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-11">Voir la correction</span>
+            <svg id="chevron-11" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Feuille de calcul incomplète : B1..E1 = classes « Entre 1 et 5 », « 6 et 10 », « 11 et 15 », « 16 et 20 » ; B2=4, C2=8, D2=11, E2=5, F2 = SOMME(B2:E2) ; B3 = B2/F2 ; B4 = B3*100.</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300">a. Contenu de A1 et A2 ? b. Que calculent F2, B3, B4 ? c. Propositions pour F1, A3, A4 ? d. Complète la feuille.</p>
+        <div id="wrap-11" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>a.</b> A1 = « Classe » ; A2 = « Effectif ». &nbsp; <b>c.</b> F1 = « Total » ; A3 = « Fréquence » ; A4 = « Fréquence en % ».</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>b.</b> F2 calcule l'effectif total ; B3 calcule la fréquence de la classe « 1 à 5 » ; B4 calcule cette fréquence en pourcentage.</div>
+              <div class="overflow-x-auto"><table class="stat w-full text-center text-xs border-collapse border-slate-300 dark:border-emerald-800"><tbody>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Classe</td><td class="p-1.5">1 à 5</td><td class="p-1.5">6 à 10</td><td class="p-1.5">11 à 15</td><td class="p-1.5">16 à 20</td><td class="p-1.5">Total</td></tr>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Effectif</td><td class="p-1.5">4</td><td class="p-1.5">8</td><td class="p-1.5">11</td><td class="p-1.5">5</td><td class="p-1.5">28</td></tr>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Fréquence</td><td class="p-1.5">0,14</td><td class="p-1.5">0,29</td><td class="p-1.5">0,39</td><td class="p-1.5">0,18</td><td class="p-1.5">1</td></tr>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Fréquence %</td><td class="p-1.5">14</td><td class="p-1.5">29</td><td class="p-1.5">39</td><td class="p-1.5">18</td><td class="p-1.5">100</td></tr>
+              </tbody></table></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 12 -->
+      <article id="ex-12" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">12</span>
+            Retour sur les groupes sanguins
+          </h3>
+          <button onclick="toggleCorrection(12)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-12">Voir la correction</span>
+            <svg id="chevron-12" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300">Reporte-toi au graphique de l'exercice 2. a. Calcule la fréquence pour chaque groupe sanguin. b. A-t-on des résultats analogues pour l'ensemble de la population française ?</p>
+        <div id="wrap-12" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>a.</b> (voir tableau des fréquences de l'exercice 2) O+ 36 % · O- 7 % · A+ 39 % · A- 6 % · B+ 6 % · B- 2 % · AB+ 3 % · AB- 1 %.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>b.</b> Oui, ces proportions sont assez proches de celles de la population française réelle, où <b>O+</b> et <b>A+</b> sont largement majoritaires et <b>AB-</b> est le groupe le plus rare.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 13 -->
+      <article id="ex-13" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">13</span>
+            La Tour Eiffel
+          </h3>
+          <button onclick="toggleCorrection(13)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-13">Voir la correction</span>
+            <svg id="chevron-13" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Tarifs des visiteurs pendant une heure — fréquences : Adultes 0,45 ; Enfants ? ; Étudiants 0,1 ; Groupes 0,2.</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300">a. Complète. b. Ajoute la fréquence en %. c. Calcule les effectifs sachant qu'il y a eu 1 700 visiteurs.</p>
+        <div id="wrap-13" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>a.</b> La somme des fréquences vaut 1 : Enfants = 1 − 0,45 − 0,1 − 0,2 = <b>0,25</b>.</div>
+              <div class="overflow-x-auto"><table class="stat w-full text-center text-xs border-collapse border-slate-300 dark:border-emerald-800"><tbody>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Origine</td><td class="p-1.5">Adultes</td><td class="p-1.5">Enfants</td><td class="p-1.5">Étudiants</td><td class="p-1.5">Groupes</td></tr>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Fréquence</td><td class="p-1.5">0,45</td><td class="p-1.5">0,25</td><td class="p-1.5">0,1</td><td class="p-1.5">0,2</td></tr>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Fréquence %</td><td class="p-1.5">45</td><td class="p-1.5">25</td><td class="p-1.5">10</td><td class="p-1.5">20</td></tr>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Effectif</td><td class="p-1.5">765</td><td class="p-1.5">425</td><td class="p-1.5">170</td><td class="p-1.5">340</td></tr>
+              </tbody></table></div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>c.</b> Effectifs = fréquence × 1700 : 765+425+170+340 = <b>1700</b> ✓.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 14 -->
+      <article id="ex-14" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">14</span>
+            Diagramme des ventes
+          </h3>
+          <button onclick="toggleCorrection(14)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-14">Voir la correction</span>
+            <svg id="chevron-14" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300">Reporte-toi au tableau de l'exercice 1. Construis un diagramme en barres représentant le total des ventes pour chaque vendeur.</p>
+        <div id="wrap-14" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Totaux (ex. 1) : Paul 17 · Denis 15 · Henri 19 · Steeve 18 · Eliess 16.</div>
+              <div class="flex items-end justify-center gap-3 h-32 border-b-2 border-l-2 border-emerald-300 dark:border-emerald-700 px-2 pb-1">
+                <div class="flex flex-col items-center justify-end h-full gap-1"><span class="text-[10px] font-semibold">17</span><div class="w-7 bg-amber-500 rounded-t" style="height:89%"></div><span class="text-[10px]">Paul</span></div>
+                <div class="flex flex-col items-center justify-end h-full gap-1"><span class="text-[10px] font-semibold">15</span><div class="w-7 bg-amber-500 rounded-t" style="height:79%"></div><span class="text-[10px]">Denis</span></div>
+                <div class="flex flex-col items-center justify-end h-full gap-1"><span class="text-[10px] font-semibold">19</span><div class="w-7 bg-amber-500 rounded-t" style="height:100%"></div><span class="text-[10px]">Henri</span></div>
+                <div class="flex flex-col items-center justify-end h-full gap-1"><span class="text-[10px] font-semibold">18</span><div class="w-7 bg-amber-500 rounded-t" style="height:95%"></div><span class="text-[10px]">Steeve</span></div>
+                <div class="flex flex-col items-center justify-end h-full gap-1"><span class="text-[10px] font-semibold">16</span><div class="w-7 bg-amber-500 rounded-t" style="height:84%"></div><span class="text-[10px]">Eliess</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 15 -->
+      <article id="ex-15" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">15</span>
+            Le sondage télévisé
+          </h3>
+          <button onclick="toggleCorrection(15)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-15">Voir la correction</span>
+            <svg id="chevron-15" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300">50 % ont répondu « oui », 25 % « non », 25 % ne se sont pas prononcées. Sans aucun calcul, représente ces résultats à l'aide d'un diagramme circulaire.</p>
+        <div id="wrap-15" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">50 % = un <b>demi-disque</b> ; 25 % = un <b>quart de disque</b> (×2, pour « non » et « indécis »). Pas de calcul d'angle nécessaire : on partage directement le disque en 2 puis en 4.</div>
+              <div class="flex justify-center"><div class="pie w-32 h-32" style="background:conic-gradient(#0d9488 0% 50%, #f59e0b 50% 75%, #64748b 75% 100%)"></div></div>
+              <p class="text-center text-xs text-slate-500 dark:text-slate-400">Oui (teal, moitié) · Non (ambre, quart) · Sans opinion (gris, quart)</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 16 -->
+      <article id="ex-16" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">16</span>
+            Le stock de canapés
+          </h3>
+          <button onclick="toggleCorrection(16)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-16">Voir la correction</span>
+            <svg id="chevron-16" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Stock : 2 places 18 · 3 places 14 · Clic-clac 42 · BZ 9. a. Total de canapés ? b. Diagramme en barres (1 cm = 5 canapés). c. Tableau des angles. d. Diagramme circulaire.</p>
+        <div id="wrap-16" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>a.</b> Total = 18+14+42+9 = <b>83</b> canapés.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>b.</b> Hauteurs de barres (÷5) : 2 places 3,6 cm · 3 places 2,8 cm · Clic-clac 8,4 cm · BZ 1,8 cm.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>c.</b> Angle = effectif/83 × 360° : 2 places ≈ 78,1° · 3 places ≈ 60,7° · Clic-clac ≈ 182,2° · BZ ≈ 39,0° (somme ≈ 360°).</div>
+              <div class="flex justify-center"><div class="pie w-32 h-32" style="background:conic-gradient(#0ea5e9 0% 21.7%, #f59e0b 21.7% 38.6%, #dc2626 38.6% 89.2%, #64748b 89.2% 100%)"></div></div>
+              <p class="text-center text-xs text-slate-500 dark:text-slate-400">2 places (bleu) · 3 places (ambre) · Clic-clac (rouge) · BZ (gris)</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 17 -->
+      <article id="ex-17" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">17</span>
+            Le vote de l'assemblée
+          </h3>
+          <button onclick="toggleCorrection(17)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-17">Voir la correction</span>
+            <svg id="chevron-17" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Résultats : 96 voix M. Marcel · 72 voix Mme Samia · 60 voix M. Brandon · 156 voix M. David · 48 abstentions. Réalise un tableau puis un diagramme semi-circulaire.</p>
+        <div id="wrap-17" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Total = 96+72+60+156+48 = <b>432</b> votants.</div>
+              <div class="overflow-x-auto"><table class="stat w-full text-center text-xs border-collapse border-slate-300 dark:border-emerald-800"><tbody>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Résultat</td><td class="p-1.5">Marcel</td><td class="p-1.5">Samia</td><td class="p-1.5">Brandon</td><td class="p-1.5">David</td><td class="p-1.5">Abst.</td></tr>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Effectif</td><td class="p-1.5">96</td><td class="p-1.5">72</td><td class="p-1.5">60</td><td class="p-1.5">156</td><td class="p-1.5">48</td></tr>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Angle (demi-cercle)</td><td class="p-1.5">40°</td><td class="p-1.5">30°</td><td class="p-1.5">25°</td><td class="p-1.5">65°</td><td class="p-1.5">20°</td></tr>
+              </tbody></table></div>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Angle = (effectif/432) × 180° ; somme = 40+30+25+65+20 = 180° ✓.</p>
+              <div class="flex justify-center"><div class="pie w-32 h-32" style="background:conic-gradient(#0d9488 0% 22.2%, #0ea5e9 22.2% 38.9%, #f59e0b 38.9% 52.8%, #dc2626 52.8% 88.9%, #64748b 88.9% 100%)"></div></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 18 -->
+      <article id="ex-18" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">18</span>
+            Retour sur la feuille de calcul
+          </h3>
+          <button onclick="toggleCorrection(18)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-18">Voir la correction</span>
+            <svg id="chevron-18" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300">Reporte-toi au tableau de l'exercice 11. Construis un diagramme en barres puis un diagramme circulaire.</p>
+        <div id="wrap-18" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Effectifs (total 28) : 1-5→4 ; 6-10→8 ; 11-15→11 ; 16-20→5. Angles = effectif/28×360° : <b>51,4° ; 102,9° ; 141,4° ; 64,3°</b> (somme = 360°).</div>
+              <div class="flex justify-center"><div class="pie w-32 h-32" style="background:conic-gradient(#0ea5e9 0% 14.3%, #f59e0b 14.3% 42.9%, #dc2626 42.9% 82.1%, #64748b 82.1% 100%)"></div></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 19 -->
+      <article id="ex-19" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">19</span>
+            Les vendanges
+          </h3>
+          <button onclick="toggleCorrection(19)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-19">Voir la correction</span>
+            <svg id="chevron-19" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">48 tombereaux sont pesés (en kg), de 264 kg à 1 243 kg. Regroupe ces données en quatre classes de même amplitude puis réalise l'histogramme correspondant.</p>
+        <div id="wrap-19" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Minimum 264 kg, maximum 1 243 kg → on choisit 4 classes d'amplitude <b>400 kg</b> : [0 ; 400[, [400 ; 800[, [800 ; 1200[, [1200 ; 1600[.</div>
+              <div class="overflow-x-auto"><table class="stat w-full text-center text-xs border-collapse border-slate-300 dark:border-emerald-800"><tbody>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Masse (kg)</td><td class="p-1.5">[0;400[</td><td class="p-1.5">[400;800[</td><td class="p-1.5">[800;1200[</td><td class="p-1.5">[1200;1600[</td></tr>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Effectif</td><td class="p-1.5">6</td><td class="p-1.5">26</td><td class="p-1.5">12</td><td class="p-1.5">4</td></tr>
+              </tbody></table></div>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Total : 6+26+12+4 = 48 ✓</p>
+              <div class="flex items-end justify-center gap-2 h-28 border-b-2 border-l-2 border-emerald-300 dark:border-emerald-700 px-2 pb-1">
+                <div class="flex flex-col items-center justify-end h-full gap-1"><span class="text-[10px] font-semibold">6</span><div class="w-9 bg-emerald-500 rounded-t" style="height:23%"></div></div>
+                <div class="flex flex-col items-center justify-end h-full gap-1"><span class="text-[10px] font-semibold">26</span><div class="w-9 bg-emerald-500 rounded-t" style="height:100%"></div></div>
+                <div class="flex flex-col items-center justify-end h-full gap-1"><span class="text-[10px] font-semibold">12</span><div class="w-9 bg-emerald-500 rounded-t" style="height:46%"></div></div>
+                <div class="flex flex-col items-center justify-end h-full gap-1"><span class="text-[10px] font-semibold">4</span><div class="w-9 bg-emerald-500 rounded-t" style="height:15%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 20 -->
+      <article id="ex-20" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">20</span>
+            La population française par âge
+          </h3>
+          <button onclick="toggleCorrection(20)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-20">Voir la correction</span>
+            <svg id="chevron-20" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Diagramme semi-circulaire (INSEE 2008) : Moins de 20 ans 44,7° · Entre 20 et 59 ans 96,4° · Entre 60 et 75 ans 23,6° · Plus de 75 ans 15,3°. Population totale ≈ 63,7 millions.</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300">a. Construis le tableau des effectifs (au dixième de million). b. Construis un diagramme circulaire.</p>
+        <div id="wrap-20" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>a.</b> Effectif = (angle/180) × 63,7 : Moins de 20 ans ≈ <b>15,8 M</b> ; 20-59 ans ≈ <b>34,1 M</b> ; 60-75 ans ≈ <b>8,4 M</b> ; Plus de 75 ans ≈ <b>5,4 M</b> (somme ≈ 63,7 M ✓).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>b.</b> Pour le diagramme circulaire (360°), on double chaque angle : 89,4° · 192,8° · 47,2° · 30,6°.</div>
+              <div class="flex justify-center"><div class="pie w-32 h-32" style="background:conic-gradient(#0d9488 0% 24.8%, #dc2626 24.8% 78.4%, #f59e0b 78.4% 91.5%, #64748b 91.5% 100%)"></div></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 21 -->
+      <article id="ex-21" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">21</span>
+            Question de proportions
+          </h3>
+          <button onclick="toggleCorrection(21)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-21">Voir la correction</span>
+            <svg id="chevron-21" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <div class="overflow-x-auto mb-3">
+          <table class="stat w-full text-center text-xs sm:text-sm border-collapse border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200">
+            <tbody>
+              <tr><td class="p-1.5 font-semibold bg-slate-100 dark:bg-slate-800">Ingrédients</td><td class="p-1.5">Farine</td><td class="p-1.5">Sucre</td><td class="p-1.5">Beurre</td><td class="p-1.5">Œufs</td></tr>
+              <tr><td class="p-1.5 font-semibold bg-slate-100 dark:bg-slate-800">Recette 1</td><td class="p-1.5">135 g</td><td class="p-1.5">135 g</td><td class="p-1.5">150 g</td><td class="p-1.5">4</td></tr>
+              <tr><td class="p-1.5 font-semibold bg-slate-100 dark:bg-slate-800">Recette 2</td><td class="p-1.5">150 g</td><td class="p-1.5">110 g</td><td class="p-1.5">130 g</td><td class="p-1.5">3</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300">a. Compare le beurre puis le sucre. b. Calcule la proportion de chaque ingrédient (un œuf ≈ 60 g). c. Recette la moins grasse ? la moins sucrée ? d. Compare a. et c.</p>
+        <div id="wrap-21" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>a.</b> Recette 1 contient plus de beurre (150 g &gt; 130 g) et plus de sucre (135 g &gt; 110 g) que la recette 2.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>b.</b> Masse totale : R1 = 135+135+150+4×60 = <b>660 g</b> ; R2 = 150+110+130+3×60 = <b>570 g</b>.<br>Proportions R1 : farine 20,5 % · sucre 20,5 % · beurre 22,7 % · œufs 36,4 %.<br>Proportions R2 : farine 26,3 % · sucre 19,3 % · beurre 22,8 % · œufs 31,6 %.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>c.</b> Moins grasse : R1 (22,7 % &lt; 22,8 %, très proche). Moins sucrée : R2 (19,3 % &lt; 20,5 %).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>d.</b> En grammes bruts, R1 semble « plus riche » (a.), mais en <b>proportion</b> les deux recettes sont presque aussi grasses, et R2 est même moins sucrée en proportion : comparer des masses brutes de recettes de tailles différentes peut être trompeur, il faut comparer des <b>fréquences</b>.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 22 -->
+      <article id="ex-22" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">22</span>
+            Sur autoroute
+          </h3>
+          <button onclick="toggleCorrection(22)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-22">Voir la correction</span>
+            <svg id="chevron-22" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Lundi, effectifs par classe (1 à 5) : 681, 171, 255, 336, 57. Dimanche, pourcentages : 55, 11, 15, 3, 16 (total 1 200 véhicules).</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300">a. Total lundi ? b. Pourcentages lundi ? c. Véhicules classe 3 dimanche ? d. Plus de classe 1 : lundi ou dimanche ? e. Plus de chances d'être classe 1 quel jour ?</p>
+        <div id="wrap-22" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>a.</b> Total lundi = 681+171+255+336+57 = <b>1500</b> véhicules.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>b.</b> Pourcentages lundi : classe1 45,4 % · classe2 11,4 % · classe3 17 % · classe4 22,4 % · classe5 3,8 %.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>c.</b> Dimanche, classe 3 = 15 % × 1200 = <b>180</b> véhicules.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>d.</b> Lundi classe1 = 681 ; dimanche classe1 = 55 %×1200 = 660. <b>Lundi</b> (681 &gt; 660) a eu le plus de véhicules classe 1.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>e.</b> En fréquence, lundi = 45,4 % et dimanche = 55 % : on a plus de chances de tomber sur un véhicule classe 1 un <b>dimanche</b>.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 23 -->
+      <article id="ex-23" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">23</span>
+            L'élection de délégués
+          </h3>
+          <button onclick="toggleCorrection(23)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-23">Voir la correction</span>
+            <svg id="chevron-23" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300">Ahmed a obtenu 40 % des voix. a. Peut-on connaître le nombre de personnes qui ont voté pour lui ? b. Peut-on représenter sa part sur un diagramme semi-circulaire ? c. A-t-il la majorité ? Peut-on le lire sur un diagramme circulaire ou en barres ?</p>
+        <div id="wrap-23" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>a.</b> <b>Non</b> : un pourcentage seul ne donne pas un effectif ; il manque l'effectif total (le nombre de votants).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>b.</b> <b>Oui</b>, une fréquence se représente toujours (même sans effectif total) : angle = 40 % × 180° = <b>72°</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>c.</b> Non, 40 % &lt; 50 % : pas de majorité. Oui, cela se lit sur les deux diagrammes : sur le circulaire, la portion ne dépasse pas la moitié du disque ; sur le diagramme en barres, la barre ne dépasse pas 50 % de l'axe.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 24 -->
+      <article id="ex-24" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">24</span>
+            Les poubelles de la famille
+          </h3>
+          <button onclick="toggleCorrection(24)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-24">Voir la correction</span>
+            <svg id="chevron-24" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <div class="overflow-x-auto mb-3">
+          <table class="stat w-full text-center text-xs sm:text-sm border-collapse border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200">
+            <tbody>
+              <tr><td class="p-1.5 font-semibold bg-slate-100 dark:bg-slate-800">Masse (kg)</td><td class="p-1.5">0 à 14</td><td class="p-1.5">15 à 29</td><td class="p-1.5">30 à 44</td><td class="p-1.5">45 à 60</td></tr>
+              <tr><td class="p-1.5 font-semibold bg-slate-100 dark:bg-slate-800">Effectif</td><td class="p-1.5">6</td><td class="p-1.5">17</td><td class="p-1.5">22</td><td class="p-1.5">7</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300">a. Combien de semaines ≥ 30 kg ? b. Combien de semaines &lt; 7 kg ? c. Avantages/inconvénients d'une répartition en classes ?</p>
+        <div id="wrap-24" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>a.</b> ≥ 30 kg : 22+7 = <b>29</b> semaines.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>b.</b> <b>Impossible à déterminer précisément</b> : les données sont regroupées par classes de 15 kg ; on sait seulement qu'il y a 6 semaines entre 0 et 14 kg, mais pas combien précisément sont en dessous de 7 kg.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>c.</b> <b>Avantage :</b> une répartition en classes résume une grande quantité de données (52 semaines) en une vue d'ensemble claire. <b>Inconvénient :</b> on perd les valeurs exactes à l'intérieur de chaque classe (voir b.).</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 25 -->
+      <article id="ex-25" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">25</span>
+            La forêt française
+          </h3>
+          <button onclick="toggleCorrection(25)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-25">Voir la correction</span>
+            <svg id="chevron-25" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Barres (en millions de m³) : Chênes 672 · Hêtres 264 · Autres feuillus 576 · Sapins-Épicéas 360 · Pins maritimes 168 · Autres conifères 360. Cercle (%) : 28, 11, 24, 15, 7, 15.</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300">a. Volume total ? Quel graphique utiliser ? b. Chênes : plus ou moins du quart ? c. Comment Leïla trouve le total avec le circulaire + une valeur des barres ?</p>
+        <div id="wrap-25" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>a.</b> Total = 672+264+576+360+168+360 = <b>2400</b> millions de m³. On utilise le diagramme en <b>barres</b> (valeurs absolues additionnables ; le circulaire ne donne que des %).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>b.</b> Chênes = 28 % &gt; 25 % : un peu <b>plus</b> du quart. Le diagramme <b>circulaire</b> permet de répondre facilement (comparaison directe des %).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>c.</b> Elle prend une valeur connue en barres (ex. Chênes = 672 correspond à 28 % du cercle), donc total = 672 ÷ 0,28 = <b>2400</b> millions de m³.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 26 -->
+      <article id="ex-26" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">26</span>
+            À table !
+          </h3>
+          <button onclick="toggleCorrection(26)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-26">Voir la correction</span>
+            <svg id="chevron-26" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">État des tables du collège : 132 neuves, 231 en bon état, 99 passables, 55 à réparer, 33 à changer. Feuille de calcul avec colonnes A à G (lignes Nombre, Fréquence, Fréquence %, Angle).</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300">b. Formule de G2 ? c. Formule de B3 ? d. Valeur de G4 ? g. Valeur de G5 ? h. Angles ? i. Ligne 4 → ligne 5 ? k. Pour un diagramme semi-circulaire ?</p>
+        <div id="wrap-26" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>a.</b> Total = 132+231+99+55+33 = <b>550</b> tables.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>b.</b> G2 = <span class="font-mono">SOMME(B2:F2)</span> = nombre total de tables (550).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>c.</b> B3 = <span class="font-mono">B2/G2</span> (fréquence des tables neuves) ; puis on recopie sur C3..F3.</div>
+              <div class="overflow-x-auto"><table class="stat w-full text-center text-xs border-collapse border-slate-300 dark:border-emerald-800"><tbody>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40"></td><td class="p-1.5">Neuves</td><td class="p-1.5">Bon état</td><td class="p-1.5">Passables</td><td class="p-1.5">À réparer</td><td class="p-1.5">À changer</td><td class="p-1.5">Total</td></tr>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Nombre</td><td class="p-1.5">132</td><td class="p-1.5">231</td><td class="p-1.5">99</td><td class="p-1.5">55</td><td class="p-1.5">33</td><td class="p-1.5">550</td></tr>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Fréquence</td><td class="p-1.5">0,24</td><td class="p-1.5">0,42</td><td class="p-1.5">0,18</td><td class="p-1.5">0,1</td><td class="p-1.5">0,06</td><td class="p-1.5">1</td></tr>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Fréquence %</td><td class="p-1.5">24</td><td class="p-1.5">42</td><td class="p-1.5">18</td><td class="p-1.5">10</td><td class="p-1.5">6</td><td class="p-1.5">100</td></tr>
+                <tr><td class="p-1.5 font-semibold bg-emerald-100 dark:bg-emerald-900/40">Angle</td><td class="p-1.5">86,4°</td><td class="p-1.5">151,2°</td><td class="p-1.5">64,8°</td><td class="p-1.5">36°</td><td class="p-1.5">21,6°</td><td class="p-1.5">360°</td></tr>
+              </tbody></table></div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>d.</b> G4 = <b>100</b> (100 %). &nbsp; <b>g.</b> G5 = <b>360</b> (360°, un disque complet). &nbsp; <b>e.</b> Fréquence en % = fréquence × 100.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>i.</b> On passe de la ligne 4 à la ligne 5 en multipliant la <b>fréquence</b> (ligne 3, pas le %) par 360 au lieu de 100 — ou en multipliant le pourcentage par 3,6.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>k.</b> Pour un diagramme <b>semi-circulaire</b>, il suffit de changer la seule valeur de <b>G5</b> (360 → 180) : toutes les formules recalculent automatiquement les nouveaux angles.</div>
+              <div class="flex justify-center"><div class="pie w-32 h-32" style="background:conic-gradient(#0d9488 0% 24%, #0ea5e9 24% 66%, #f59e0b 66% 84%, #dc2626 84% 94%, #64748b 94% 100%)"></div></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 27 -->
+      <article id="ex-27" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">27</span>
+            Pêche en haute mer
+          </h3>
+          <button onclick="toggleCorrection(27)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-27">Voir la correction</span>
+            <svg id="chevron-27" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300">Un poissonnier achète en Bretagne deux fois plus de poissons qu'en Vendée et quatre fois plus qu'en Mer du Nord ; en Méditerranée, autant qu'en Mer du Nord. a. Pourcentage de chaque commande. b. Diagramme circulaire. c. Sachant qu'il a acheté 45 t l'an dernier, quantité par fournisseur ?</p>
+        <div id="wrap-27" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">En notant x = part « Mer du Nord » : Bretagne = 4x, Vendée = 2x, Méditerranée = x. Total = 8x.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>a.</b> Bretagne = 4/8 = <b>50 %</b> ; Vendée = 2/8 = <b>25 %</b> ; Mer du Nord = 1/8 = <b>12,5 %</b> ; Méditerranée = 1/8 = <b>12,5 %</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>c.</b> Pour 45 t : Bretagne = 22,5 t ; Vendée = 11,25 t ; Mer du Nord = 5,625 t ; Méditerranée = 5,625 t (somme = 45 t ✓).</div>
+              <div class="flex justify-center"><div class="pie w-32 h-32" style="background:conic-gradient(#0d9488 0% 50%, #f59e0b 50% 75%, #0ea5e9 75% 87.5%, #dc2626 87.5% 100%)"></div></div>
+              <p class="text-center text-xs text-slate-500 dark:text-slate-400">Bretagne (teal) · Vendée (ambre) · Mer du Nord (bleu) · Méditerranée (rouge)</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+<!-- ===================== QCM ===================== -->
+<section id="qcm" class="py-16 md:py-24 bg-fuchsia-50/50 dark:bg-slate-900/40">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal flex items-center gap-4 mb-8">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-fuchsia-600 text-white font-display font-bold text-xl shadow-soft shrink-0">✓</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Se tester avec le QCM</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">8 questions à choix multiples — pour chacune, une ou plusieurs réponses parmi R1 à R4 sont correctes</p>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+
+      <!-- QCM 1 -->
+      <article class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5">
+        <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+          <p class="text-sm text-slate-700 dark:text-slate-200 flex-1"><b>1.</b> Notes à l'oral d'histoire des arts : 8-15-17-10-9-8-5-17-20-8-12-9-14-18-14-14-10-8-12-15-6-11-13-7-9. <b>L'effectif total est…</b></p>
+          <button onclick="toggleCorrection('qcm1')" class="correction-btn shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white text-xs font-semibold shadow-sm transition"><span id="label-qcm1">Voir la réponse</span></button>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs font-semibold">
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R1 : 100</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R2 : 20</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R3 : 25</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R4 : 180</span>
+        </div>
+        <div id="wrap-qcm1" class="accordion-wrap"><div class="accordion-inner">
+          <div class="mt-4 pt-4 border-t border-dashed border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 text-sm text-emerald-900 dark:text-emerald-100">✅ <b>R3 : 25.</b> En comptant les 25 notes de la liste, on trouve un effectif total N = 25.</div>
+        </div></div>
+      </article>
+
+      <!-- QCM 2 -->
+      <article class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5">
+        <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+          <p class="text-sm text-slate-700 dark:text-slate-200 flex-1"><b>2.</b> Avec la même série de 25 notes, réparties en classes 1-4 / 5-9 / 10-14 / 15-20, <b>quelles sont les répartitions possibles ?</b></p>
+          <button onclick="toggleCorrection('qcm2')" class="correction-btn shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white text-xs font-semibold shadow-sm transition"><span id="label-qcm2">Voir la réponse</span></button>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs font-semibold">
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R1 : 0,9,10,6</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R2 : 0,10,9,6</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R3 : (5 classes)</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R4 : (5 classes)</span>
+        </div>
+        <div id="wrap-qcm2" class="accordion-wrap"><div class="accordion-inner">
+          <div class="mt-4 pt-4 border-t border-dashed border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 text-sm text-emerald-900 dark:text-emerald-100">✅ <b>R2.</b> En comptant : classe 1-4 → 0 ; classe 5-9 → 10 ; classe 10-14 → 9 ; classe 15-20 → 6 (total 0+10+9+6 = 25 ✓).</div>
+        </div></div>
+      </article>
+
+      <!-- QCM 3 -->
+      <article class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5">
+        <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+          <p class="text-sm text-slate-700 dark:text-slate-200 flex-1"><b>3.</b> Toujours avec cette série de 25 notes, <b>quelles affirmations sont vraies ?</b></p>
+          <button onclick="toggleCorrection('qcm3')" class="correction-btn shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white text-xs font-semibold shadow-sm transition"><span id="label-qcm3">Voir la réponse</span></button>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs font-semibold">
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R1 : fréq(17)=0,08</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R2 : fréq(8)=1/5</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R3 : fréq(15)=2/25</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R4 : 15% ont 14</span>
+        </div>
+        <div id="wrap-qcm3" class="accordion-wrap"><div class="accordion-inner">
+          <div class="mt-4 pt-4 border-t border-dashed border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 text-sm text-emerald-900 dark:text-emerald-100">✅ <b>R1 et R3.</b> Le 17 apparaît 2 fois : 2/25 = 0,08 (R1 vraie). Le 15 apparaît 2 fois : 2/25 (R3 vraie). Le 8 apparaît 4 fois : 4/25 = 0,16 ≠ 1/5=0,2 (R2 fausse). Le 14 apparaît 3 fois : 3/25 = 12 % ≠ 15 % (R4 fausse).</div>
+        </div></div>
+      </article>
+
+      <!-- QCM 4 -->
+      <article class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5">
+        <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+          <p class="text-sm text-slate-700 dark:text-slate-200 flex-1"><b>4.</b> Zoo — fréquences : reptiles 13 %, mammifères 60 %, poissons 9 %. <b>La fréquence d'oiseaux est…</b></p>
+          <button onclick="toggleCorrection('qcm4')" class="correction-btn shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white text-xs font-semibold shadow-sm transition"><span id="label-qcm4">Voir la réponse</span></button>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs font-semibold">
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R1 : 0,18</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R2 : 8 %</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R3 : 18 %</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R4 : 82 %</span>
+        </div>
+        <div id="wrap-qcm4" class="accordion-wrap"><div class="accordion-inner">
+          <div class="mt-4 pt-4 border-t border-dashed border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 text-sm text-emerald-900 dark:text-emerald-100">✅ <b>R1 : 0,18</b> (soit R3 : 18 % en pourcentage — même valeur, deux écritures). Oiseaux = 100 % − 13 % − 60 % − 9 % = 18 % = 0,18.</div>
+        </div></div>
+      </article>
+
+      <!-- QCM 5 -->
+      <article class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5">
+        <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+          <p class="text-sm text-slate-700 dark:text-slate-200 flex-1"><b>5.</b> <b>La mesure de l'angle d'un diagramme semi-circulaire correspondant aux poissons (9 %) est…</b></p>
+          <button onclick="toggleCorrection('qcm5')" class="correction-btn shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white text-xs font-semibold shadow-sm transition"><span id="label-qcm5">Voir la réponse</span></button>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs font-semibold">
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R1 : 9°</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R2 : 18°</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R3 : 16,2°</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R4 : 14,4°</span>
+        </div>
+        <div id="wrap-qcm5" class="accordion-wrap"><div class="accordion-inner">
+          <div class="mt-4 pt-4 border-t border-dashed border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 text-sm text-emerald-900 dark:text-emerald-100">✅ <b>R3 : 16,2°.</b> Angle = fréquence × 180° = 0,09 × 180 = 16,2°.</div>
+        </div></div>
+      </article>
+
+      <!-- QCM 6 -->
+      <article class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5">
+        <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+          <p class="text-sm text-slate-700 dark:text-slate-200 flex-1"><b>6.</b> <b>Il y a 27 poissons…</b></p>
+          <button onclick="toggleCorrection('qcm6')" class="correction-btn shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white text-xs font-semibold shadow-sm transition"><span id="label-qcm6">Voir la réponse</span></button>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs font-semibold">
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R1 : et 120 mammifères</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R2 : et 39 reptiles</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R3 : et 17 reptiles</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R4 : et 69 mammifères</span>
+        </div>
+        <div id="wrap-qcm6" class="accordion-wrap"><div class="accordion-inner">
+          <div class="mt-4 pt-4 border-t border-dashed border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 text-sm text-emerald-900 dark:text-emerald-100">✅ <b>R2 : et 39 reptiles.</b> 27 poissons = 9 % de l'effectif total → total = 27 ÷ 0,09 = 300. Reptiles = 13 % × 300 = 39.</div>
+        </div></div>
+      </article>
+
+      <!-- QCM 7 -->
+      <article class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5">
+        <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+          <p class="text-sm text-slate-700 dark:text-slate-200 flex-1"><b>7.</b> <b>La répartition (reptiles 13 %, oiseaux 18 %, mammifères 60 %, poissons 9 %) peut être représentée par les deux graphiques…</b></p>
+          <button onclick="toggleCorrection('qcm7')" class="correction-btn shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white text-xs font-semibold shadow-sm transition"><span id="label-qcm7">Voir la réponse</span></button>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs font-semibold">
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R1 : cercle A</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R2 : cercle B</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R3 : barres A</span>
+          <span class="qcm-pill px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">R4 : barres B</span>
+        </div>
+        <div id="wrap-qcm7" class="accordion-wrap"><div class="accordion-inner">
+          <div class="mt-4 pt-4 border-t border-dashed border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 text-sm text-emerald-900 dark:text-emerald-100">✅ <b>R1 (cercle A) et R4 (barres B).</b> Dans le graphique en barres correct, la barre « poissons » doit être petite (9, pas 27) : c'est le cas de la version B.</div>
+        </div></div>
+      </article>
+
+      <!-- QCM 8 -->
+      <article class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5">
+        <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+          <p class="text-sm text-slate-700 dark:text-slate-200 flex-1"><b>8.</b> <b>Quelles sont les affirmations vraies ?</b></p>
+          <button onclick="toggleCorrection('qcm8')" class="correction-btn shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white text-xs font-semibold shadow-sm transition"><span id="label-qcm8">Voir la réponse</span></button>
+        </div>
+        <div class="flex flex-col gap-1.5 text-xs">
+          <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300"><b>R1 :</b> la fréquence d'une valeur est un nombre compris entre 0 et 1</span>
+          <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300"><b>R2 :</b> la fréquence 0,5 correspond à 5 %</span>
+          <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300"><b>R3 :</b> dans un diagramme circulaire, la fréquence 100 % correspond à 100°</span>
+          <span class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300"><b>R4 :</b> dans un diagramme semi-circulaire, un angle droit correspond à une fréquence de 0,25</span>
+        </div>
+        <div id="wrap-qcm8" class="accordion-wrap"><div class="accordion-inner">
+          <div class="mt-4 pt-4 border-t border-dashed border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 text-sm text-emerald-900 dark:text-emerald-100">✅ <b>Seule R1 est vraie</b> (c'est la définition). R2 est fausse (0,5 = 50 %, pas 5 %). R3 est fausse (100 % correspond à 360° dans un cercle complet). R4 est un piège : dans un <b>demi</b>-cercle (180°), un angle droit (90°) correspond à 90/180 = <b>0,5</b>, pas 0,25 (0,25 serait correct seulement pour un cercle complet de 360°).</div>
+        </div></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+<!-- ===================== POUR ALLER PLUS LOIN ===================== -->
+<section id="plus-loin" class="py-16 md:py-24 bg-violet-50/50 dark:bg-slate-900/40">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal flex items-center gap-4 mb-8">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-violet-600 text-white font-display font-bold text-xl shadow-soft shrink-0">★</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Pour aller plus loin</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Une activité corrigée sur π, et deux projets à mener en groupe</p>
+      </div>
+    </div>
+
+    <!-- Activité pi -->
+    <article class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7 mb-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+        <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+          <span class="w-9 h-9 rounded-full bg-violet-600 text-white flex items-center justify-center text-sm font-bold shrink-0">π</span>
+          Les mystères du nombre π
+        </h3>
+        <button onclick="toggleCorrection('pi')" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold shadow-sm transition">
+          <span id="label-pi">Voir la correction</span>
+          <svg id="chevron-pi" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+        </button>
+      </div>
+      <p class="text-sm text-slate-600 dark:text-slate-300 mb-2">Voici les 60 premières décimales de 22/7 et de π :</p>
+      <div class="rounded-xl bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-900 p-4 font-mono text-xs text-violet-800 dark:text-violet-200 space-y-1 mb-3 break-all">
+        <p>22/7 ≈ 3,142857 142857 142857 142857 142857 142857 142857 142857 142857 142857</p>
+        <p>π ≈ 3,141592 653589 793238 462643 383279 502884 197169 399375 105820 974944</p>
+      </div>
+      <p class="text-sm text-slate-600 dark:text-slate-300">a. Que dire des parties décimales de ces deux nombres ? b. Calcule la fréquence d'apparition de chaque chiffre pour les 60 premières décimales. Que remarques-tu ? c. Quel monument de Paris contient une salle avec les décimales de π ? Combien en connaît-on aujourd'hui ?</p>
+      <div id="wrap-pi" class="accordion-wrap">
+        <div class="accordion-inner">
+          <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+            <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>a.</b> 22/7 est un nombre <b>rationnel</b> : ses décimales sont <b>périodiques</b> (le motif « 142857 » se répète indéfiniment). π est <b>irrationnel</b> : ses décimales ne se répètent jamais et semblent aléatoires — bien que 22/7 soit une approximation courante de π, leur nature est très différente.</div>
+            <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>b.</b> Pour 22/7 : sur 60 décimales (10 cycles complets de « 142857 »), seuls les chiffres <b>1, 2, 4, 5, 7, 8</b> apparaissent, chacun exactement 10 fois (fréquence 1/6 ≈ 16,7 %) ; les chiffres <b>0, 3, 6, 9</b> n'apparaissent <b>jamais</b>.<br>Pour π : les 10 chiffres apparaissent tous, avec des fréquences assez proches de 10 % chacun (entre 5 % et 16,7 % sur cet échantillon), sans motif répétitif.</div>
+            <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>Remarque :</b> cette différence illustre le caractère périodique de 22/7 (nombre rationnel) contre le caractère irrégulier de π (nombre irrationnel).</div>
+            <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>c.</b> Le <b>Palais de la Découverte</b>, à Paris, possède une salle circulaire (la « salle π ») où sont inscrites plusieurs centaines de décimales de π sur les murs. Aujourd'hui, grâce aux supercalculateurs, on en connaît plusieurs dizaines de <b>milliers de milliards</b> — un record en constante évolution.</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Travailler en groupe -->
+    <div class="reveal rounded-2xl border-2 border-dashed border-orange-300 dark:border-orange-800 bg-orange-50 dark:bg-orange-950/20 p-5 md:p-7">
+      <p class="text-xs font-bold uppercase tracking-wide text-orange-600 mb-3">🤝 Travailler en groupe — deux projets sans correction type (activités ouvertes)</p>
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="rounded-xl bg-white/70 dark:bg-slate-900/50 border border-orange-200 dark:border-orange-900 p-4">
+          <p class="text-sm font-bold text-orange-700 dark:text-orange-300 mb-2">1. Menez l'enquête…</p>
+          <p class="text-sm text-slate-700 dark:text-slate-200">Élaborez en groupe un questionnaire de deux questions (une qualitative, une quantitative), distribuez-le à la classe, dépouillez les réponses, puis construisez un diagramme circulaire et un histogramme pour présenter vos résultats.</p>
+        </div>
+        <div class="rounded-xl bg-white/70 dark:bg-slate-900/50 border border-orange-200 dark:border-orange-900 p-4">
+          <p class="text-sm font-bold text-orange-700 dark:text-orange-300 mb-2">2. Du côté de Monte-Carlo…</p>
+          <p class="text-sm text-slate-700 dark:text-slate-200">À l'aide d'un simulateur de tirs aléatoires sur une cible, estimez l'aire d'une figure à partir de la fréquence de réussite : Aire estimée ≈ Aire de la cible × fréquence de tirs dans la figure. Comparez avec l'aire calculée par la formule.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-slate-900 dark:bg-black text-slate-300 mt-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid sm:grid-cols-2 gap-8">
+    <div>
+      <a href="/" class="flex items-center gap-2.5">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+        <span class="font-display font-bold text-white leading-tight">
+          <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+          <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+        </span>
+      </a>
+      <p class="text-sm text-slate-400 mt-3 leading-relaxed">Les statistiques — cours et exercices corrigés, pensés pour réviser efficacement sur mobile comme sur ordinateur.</p>
+      <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+    </div>
+    <div>
+      <p class="text-white font-semibold text-sm mb-3">Sommaire</p>
+      <ul class="space-y-2 text-sm text-slate-400">
+        <li><a href="#vocabulaire" class="hover:text-white transition">I. Vocabulaire des statistiques</a></li>
+        <li><a href="#representation" class="hover:text-white transition">II. Tableaux & représentations</a></li>
+        <li><a href="#exercices" class="hover:text-white transition">27 Exercices</a></li>
+        <li><a href="#qcm" class="hover:text-white transition">Se tester avec le QCM</a></li>
+        <li><a href="#plus-loin" class="hover:text-white transition">Pour aller plus loin</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-slate-800 py-5 flex items-center justify-center gap-2 text-xs text-slate-400">
+    <span class="flex items-center justify-center w-6 h-6 rounded-md bg-teal-600 shrink-0">
+      <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 19h16M7 15v4M11 10v9M15 6v13M19 3v16" />
+      </svg>
+    </span>
+    <span>Maths · 1AC</span>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Retour en haut" class="hidden fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-teal-600 hover:bg-teal-700 text-white shadow-soft flex items-center justify-center transition">
+  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" /></svg>
+</button>
+
+<script>
+  // Mobile menu
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+  });
+
+  // Dark mode toggle
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  // Correction accordion toggle
+  document.querySelectorAll('[id^="label-qcm"]').forEach(el => { el.dataset.suffix = ' la réponse'; });
+  function toggleCorrection(id) {
+    const wrap = document.getElementById('wrap-' + id);
+    const chevron = document.getElementById('chevron-' + id);
+    const label = document.getElementById('label-' + id);
+    const isOpen = wrap.classList.toggle('open');
+    if (chevron) chevron.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+    const suffix = label.dataset.suffix || ' la correction';
+    label.textContent = (isOpen ? 'Masquer' : 'Voir') + suffix;
+  }
+
+  // Back to top button
+  const backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('hidden', window.scrollY < 500);
+  });
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

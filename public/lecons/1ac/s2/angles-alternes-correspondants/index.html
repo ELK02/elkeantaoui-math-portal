@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Angles Alternes Internes & Angles Correspondants — Cours & Exercices | 1AC Mathématiques</title>
+<meta name="description" content="Cours complet et interactif sur les angles alternes-internes et les angles correspondants (1ère année collège) : définitions, propriétés directes et réciproques, applications, avec 6 exercices corrigés en détail.">
+<meta name="theme-color" content="#2c5089">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%88%A0%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Poppins', 'ui-sans-serif', 'sans-serif'],
+          body: ['Inter', 'ui-sans-serif', 'sans-serif'],
+        },
+        boxShadow: {
+          soft: '0 10px 30px -10px rgba(13, 148, 136, 0.25)',
+        },
+        colors: {
+          indigo: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+        },
+      }
+    }
+  }
+</script>
+<style>
+  section[id] { scroll-margin-top: 5.5rem; }
+  .accordion-wrap { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s ease; }
+  .accordion-wrap.open { grid-template-rows: 1fr; }
+  .accordion-inner { overflow: hidden; }
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #99f6e4; border-radius: 9999px; }
+  .dark ::-webkit-scrollbar-thumb { background: #0f766e; }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .border-emerald-300 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
+  .dark .bg-amber-50 { background-color: #3a2a0a; }
+  .dark .border-amber-400 { border-color: #92400e; }
+</style>
+</head>
+<body class="font-body antialiased bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
+
+<!-- ===================== HEADER / NAV ===================== -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#accueil" class="flex items-center gap-2 font-display font-bold text-lg text-indigo-700 dark:text-indigo-400 shrink-0">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-9 w-9 shrink-0 rounded-full">
+        <span>Maths<span class="text-amber-500">·1AC</span></span>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-0.5">
+        <a href="/" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-indigo-700 hover:bg-indigo-50 dark:hover:bg-slate-800 dark:hover:text-indigo-400 transition">← Portail</a>
+        <a href="#alternes-internes" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-teal-700 hover:bg-teal-50 dark:hover:bg-slate-800 dark:hover:text-teal-400 transition">Alternes-internes</a>
+        <a href="#correspondants" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-fuchsia-700 hover:bg-fuchsia-50 dark:hover:bg-slate-800 dark:hover:text-fuchsia-400 transition">Correspondants</a>
+        <a href="#memo" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-indigo-700 hover:bg-indigo-50 dark:hover:bg-slate-800 dark:hover:text-indigo-400 transition">Fiche mémo</a>
+        <a href="#exercices" class="px-3 py-2 rounded-full text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-amber-700 hover:bg-amber-50 dark:hover:bg-slate-800 dark:hover:text-amber-400 transition">Exercices</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="theme-toggle" aria-label="Basculer le mode sombre" class="p-2.5 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 transition">
+          <svg class="w-5 h-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m14.14-6.66l-.7.7M6.56 17.44l-.7.7m12.02 0l-.7-.7M6.56 6.56l-.7-.7M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+          <svg class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" /></svg>
+        </button>
+        <button id="menu-btn" aria-label="Ouvrir le menu" class="lg:hidden p-2.5 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 transition">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden pb-4 flex flex-col gap-1">
+      <a href="/" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-500 dark:text-slate-400 hover:bg-teal-50 dark:hover:bg-slate-800">← Portail</a>
+      <a href="#alternes-internes" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-teal-50 dark:hover:bg-slate-800">I. Angles alternes-internes</a>
+      <a href="#correspondants" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-fuchsia-50 dark:hover:bg-slate-800">II. Angles correspondants</a>
+      <a href="#memo" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-slate-800">Fiche mémo</a>
+      <a href="#exercices" class="mobile-link px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-amber-50 dark:hover:bg-slate-800">Exercices</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<!-- ===================== HERO ===================== -->
+<section id="accueil" class="relative overflow-hidden bg-gradient-to-br from-teal-700 via-cyan-700 to-fuchsia-700">
+  <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1600&q=60')"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-fuchsia-950/70 via-slate-900/40 to-transparent"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
+    <span class="inline-flex items-center gap-2 bg-white/10 text-teal-100 text-xs font-semibold tracking-wide uppercase px-4 py-1.5 rounded-full ring-1 ring-white/20">
+      Mathématiques · 1ère Année Collège
+    </span>
+    <h1 class="mt-6 font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
+      Angles Alternes-Internes <span class="text-amber-400">&</span> Angles Correspondants
+    </h1>
+    <p class="mt-5 max-w-2xl mx-auto text-base sm:text-lg text-teal-50">
+      Deux droites coupées par une sécante : reconnaître les angles en <b class="text-white">Z</b> et en <b class="text-white">F</b>, appliquer leurs propriétés directes et réciproques —
+      accompagné de 6 exercices avec leur <span class="font-semibold text-white">correction détaillée</span> à un clic.
+    </p>
+    <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+      <a href="#alternes-internes" class="px-5 py-3 rounded-full bg-white text-teal-700 font-semibold text-sm shadow-soft hover:bg-teal-50 transition">▰ Découvrir le cours</a>
+      <a href="#memo" class="px-5 py-3 rounded-full bg-white/10 text-white font-semibold text-sm ring-1 ring-white/30 hover:bg-white/20 transition">🗂️ Fiche mémo</a>
+      <a href="#exercices" class="px-5 py-3 rounded-full bg-amber-500 text-white font-semibold text-sm shadow-soft hover:bg-amber-600 transition">📝 Exercices corrigés</a>
+    </div>
+    <div class="mt-14 grid grid-cols-3 max-w-lg mx-auto gap-4 text-white">
+      <div>
+        <p class="font-display text-3xl font-extrabold">2</p>
+        <p class="text-xs text-teal-100 mt-1">types d'angles</p>
+      </div>
+      <div class="border-x border-white/20">
+        <p class="font-display text-3xl font-extrabold">6</p>
+        <p class="text-xs text-teal-100 mt-1">exercices</p>
+      </div>
+      <div>
+        <p class="font-display text-3xl font-extrabold">100%</p>
+        <p class="text-xs text-teal-100 mt-1">corrigés</p>
+      </div>
+    </div>
+  </div>
+  <svg class="relative block w-full text-slate-50 dark:text-slate-950" viewBox="0 0 1440 60" fill="currentColor"><path d="M0,32L1440,0L1440,60L0,60Z"></path></svg>
+</section>
+
+<!-- ===================== I. ANGLES ALTERNES-INTERNES ===================== -->
+<section id="alternes-internes" class="py-16 md:py-24">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal flex items-center gap-4 mb-8">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-teal-600 text-white font-display font-bold text-xl shadow-soft shrink-0">I</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Angles alternes-internes</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Deux droites, une sécante — la configuration en « Z »</p>
+      </div>
+    </div>
+
+    <!-- 1. Exemple / définition -->
+    <div class="reveal mb-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+      <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-1">1. Exemple</h3>
+      <p class="text-sm text-slate-500 dark:text-slate-400 mb-5">On considère deux droites distinctes (D) et (D′), coupées par une sécante (Δ) aux points A et B.</p>
+
+      <svg viewBox="0 0 380 260" class="w-full h-auto max-w-sm mx-auto mb-5">
+        <line x1="30" y1="80" x2="345" y2="80" class="stroke-teal-600 dark:stroke-teal-400" stroke-width="2.25"/>
+        <line x1="30" y1="190" x2="345" y2="190" class="stroke-teal-600 dark:stroke-teal-400" stroke-width="2.25"/>
+        <line x1="122" y1="20" x2="265" y2="245" class="stroke-slate-500 dark:stroke-slate-400" stroke-width="2"/>
+        <polygon points="160,80 136,80 173,100" class="fill-teal-400/40 dark:fill-teal-400/25"/>
+        <polygon points="230,190 217,170 254,190" class="fill-teal-400/40 dark:fill-teal-400/25"/>
+        <circle cx="160" cy="80" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+        <circle cx="230" cy="190" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+        <circle cx="60" cy="80" r="3.5" class="fill-slate-400"/>
+        <circle cx="320" cy="80" r="3.5" class="fill-slate-400"/>
+        <circle cx="60" cy="190" r="3.5" class="fill-slate-400"/>
+        <circle cx="320" cy="190" r="3.5" class="fill-slate-400"/>
+        <text x="128" y="14" font-size="14" class="fill-slate-500 dark:fill-slate-400 italic">(Δ)</text>
+        <text x="322" y="100" font-size="14" class="fill-teal-700 dark:fill-teal-300 font-semibold italic">(D)</text>
+        <text x="322" y="174" font-size="14" class="fill-teal-700 dark:fill-teal-300 font-semibold italic">(D′)</text>
+        <text x="44" y="72" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">E</text>
+        <text x="326" y="72" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">F</text>
+        <text x="44" y="206" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">G</text>
+        <text x="326" y="206" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">H</text>
+        <text x="166" y="70" font-size="15" class="fill-teal-700 dark:fill-teal-300 font-bold">A</text>
+        <text x="236" y="202" font-size="15" class="fill-teal-700 dark:fill-teal-300 font-bold">B</text>
+      </svg>
+
+      <div class="grid sm:grid-cols-2 gap-3">
+        <div class="rounded-xl bg-teal-50 dark:bg-teal-950/30 border border-teal-200 dark:border-teal-900 p-4">
+          <p class="text-sm text-teal-900 dark:text-teal-100 text-center">Les angles <b>EÂB</b> et <b>AB̂H</b> sont des angles <b>alternes-internes</b> <span class="text-xs text-teal-600 dark:text-teal-400">(zone teintée)</span>.</p>
+        </div>
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 p-4">
+          <p class="text-sm text-slate-700 dark:text-slate-300 text-center">De même, <b>AB̂G</b> et <b>FÂB</b> forment un second couple d'angles alternes-internes.</p>
+        </div>
+      </div>
+      <p class="text-xs text-slate-400 dark:text-slate-500 text-center mt-3">Ils sont « internes » (entre les deux droites) et « alternes » (de part et d'autre de la sécante) — repérables par la forme d'un <b>Z</b>.</p>
+    </div>
+
+    <!-- 2a. Propriété directe -->
+    <div class="reveal mb-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+      <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-1">2. Propriétés</h3>
+      <p class="text-xs font-bold uppercase tracking-wide text-teal-500 mb-2 mt-4">a) Propriété directe</p>
+      <div class="rounded-xl bg-teal-50 dark:bg-teal-950/30 border border-teal-200 dark:border-teal-900 p-4">
+        <p class="text-sm text-teal-900 dark:text-teal-100 text-center font-medium">Si deux droites sont <b>parallèles</b>, alors elles déterminent avec toute sécante des angles alternes-internes <b>isométriques</b> (égaux).</p>
+      </div>
+
+      <p class="text-xs font-bold uppercase tracking-wide text-indigo-500 mb-3 mt-6">✎ Application</p>
+      <div class="grid md:grid-cols-2 gap-6 items-center">
+        <div>
+          <p class="text-sm text-slate-600 dark:text-slate-300 mb-3"><b>ABC</b> est un triangle équilatéral et <b>(EC) ∥ (AB)</b>, avec E un point tel que C soit entre B et E sur cette parallèle.</p>
+          <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">Calculons AĈE.</p>
+        </div>
+        <svg viewBox="0 0 300 220" class="w-full h-auto max-w-xs mx-auto">
+          <polygon points="150,30 60,180 240,180" class="fill-teal-50 dark:fill-teal-950/30 stroke-teal-600 dark:stroke-teal-400" stroke-width="2.25"/>
+          <line x1="240" y1="180" x2="276" y2="120" stroke-dasharray="5,4" class="stroke-violet-500 dark:stroke-violet-400" stroke-width="1.75"/>
+          <g class="stroke-slate-600 dark:stroke-slate-300" stroke-width="1.75">
+            <line x1="98" y1="101" x2="112" y2="109"/>
+            <line x1="150" y1="176" x2="150" y2="184"/>
+            <line x1="188" y1="109" x2="202" y2="101"/>
+          </g>
+          <circle cx="150" cy="30" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+          <circle cx="60" cy="180" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+          <circle cx="240" cy="180" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+          <circle cx="276" cy="120" r="4.5" class="fill-violet-500 dark:fill-violet-400"/>
+          <text x="142" y="20" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+          <text x="42" y="200" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+          <text x="246" y="200" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+          <text x="282" y="116" font-size="15" class="fill-violet-600 dark:fill-violet-400 font-bold">E</text>
+        </svg>
+      </div>
+
+      <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+        <p class="text-xs font-bold uppercase tracking-wide text-emerald-500">✓ Solution</p>
+        <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">On considère les parallèles <b>(AB)</b> et <b>(EC)</b>, et la sécante <b>(AC)</b>.</div>
+        <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">On a : <b>BÂC</b> et <b>ACÊ</b> sont deux angles alternes-internes, donc <b>BÂC = ACÊ</b>.</div>
+        <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Or ABC est équilatéral, donc <b>BÂC = 60°</b>.</div>
+        <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 font-bold">D'où : ACÊ = 60°.</div>
+      </div>
+    </div>
+
+    <!-- 2b. Propriété réciproque -->
+    <div class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+      <p class="text-xs font-bold uppercase tracking-wide text-teal-500 mb-2">b) Propriété réciproque</p>
+      <div class="rounded-xl bg-teal-50 dark:bg-teal-950/30 border border-teal-200 dark:border-teal-900 p-4">
+        <p class="text-sm text-teal-900 dark:text-teal-100 text-center font-medium">Si deux droites déterminent avec une sécante deux angles alternes-internes <b>isométriques</b> (égaux), alors elles sont <b>parallèles</b>.</p>
+      </div>
+
+      <p class="text-xs font-bold uppercase tracking-wide text-indigo-500 mb-3 mt-6">✎ Application</p>
+      <div class="grid md:grid-cols-2 gap-6 items-center">
+        <div>
+          <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">On considère la figure ci-contre telle que : <b>AB̂C = 50°</b> et <b>BĈD = 50°</b>.</p>
+          <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">Montrons que (AB) ∥ (CD).</p>
+        </div>
+        <svg viewBox="0 0 320 220" class="w-full h-auto max-w-xs mx-auto">
+          <line x1="40" y1="40" x2="180" y2="60" class="stroke-teal-600 dark:stroke-teal-400" stroke-width="2.25"/>
+          <line x1="180" y1="60" x2="150" y2="170" class="stroke-slate-500 dark:stroke-slate-400" stroke-width="2"/>
+          <line x1="150" y1="170" x2="295" y2="190" class="stroke-teal-600 dark:stroke-teal-400" stroke-width="2.25"/>
+          <circle cx="180" cy="60" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+          <circle cx="150" cy="170" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+          <circle cx="40" cy="40" r="4" class="fill-slate-400"/>
+          <circle cx="295" cy="190" r="4" class="fill-slate-400"/>
+          <text x="24" y="34" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+          <text x="188" y="52" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+          <text x="126" y="172" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+          <text x="300" y="200" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">D</text>
+          <text x="146" y="82" font-size="13" class="fill-teal-700 dark:fill-teal-300 font-bold">50°</text>
+          <text x="152" y="152" font-size="13" class="fill-teal-700 dark:fill-teal-300 font-bold">50°</text>
+        </svg>
+      </div>
+
+      <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+        <p class="text-xs font-bold uppercase tracking-wide text-emerald-500">✓ Solution</p>
+        <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">On considère les droites <b>(AB)</b> et <b>(CD)</b>, et la sécante <b>(BC)</b>.</div>
+        <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">On a : <b>AB̂C</b> et <b>BĈD</b> sont deux angles alternes-internes.</div>
+        <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Or AB̂C = 50° et BĈD = 50°, donc <b>AB̂C = BĈD</b>.</div>
+        <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 font-bold">D'après la propriété réciproque des angles alternes-internes : (AB) ∥ (CD).</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== II. ANGLES CORRESPONDANTS ===================== -->
+<section id="correspondants" class="py-16 md:py-24 bg-slate-100/70 dark:bg-slate-900/40">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal flex items-center gap-4 mb-8">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-fuchsia-600 text-white font-display font-bold text-xl shadow-soft shrink-0">II</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Angles correspondants</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Deux droites, une sécante — la configuration en « F »</p>
+      </div>
+    </div>
+
+    <!-- 1. Exemple / définition -->
+    <div class="reveal mb-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+      <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-1">1. Exemple</h3>
+      <p class="text-sm text-slate-500 dark:text-slate-400 mb-5">On reprend (D) et (D′), coupées par la sécante (Δ) aux points A et B, prolongée jusqu'aux points M et N.</p>
+
+      <svg viewBox="0 0 380 260" class="w-full h-auto max-w-sm mx-auto mb-5">
+        <line x1="30" y1="80" x2="345" y2="80" class="stroke-fuchsia-600 dark:stroke-fuchsia-400" stroke-width="2.25"/>
+        <line x1="30" y1="190" x2="345" y2="190" class="stroke-fuchsia-600 dark:stroke-fuchsia-400" stroke-width="2.25"/>
+        <line x1="122" y1="20" x2="265" y2="245" class="stroke-slate-500 dark:stroke-slate-400" stroke-width="2"/>
+        <polygon points="160,80 136,80 173,100" class="fill-fuchsia-400/40 dark:fill-fuchsia-400/25"/>
+        <polygon points="230,190 206,190 243,210" class="fill-fuchsia-400/40 dark:fill-fuchsia-400/25"/>
+        <circle cx="160" cy="80" r="5" class="fill-fuchsia-600 dark:fill-fuchsia-400"/>
+        <circle cx="230" cy="190" r="5" class="fill-fuchsia-600 dark:fill-fuchsia-400"/>
+        <circle cx="60" cy="80" r="3.5" class="fill-slate-400"/>
+        <circle cx="320" cy="80" r="3.5" class="fill-slate-400"/>
+        <circle cx="60" cy="190" r="3.5" class="fill-slate-400"/>
+        <circle cx="320" cy="190" r="3.5" class="fill-slate-400"/>
+        <circle cx="122" cy="20" r="3.5" class="fill-slate-400"/>
+        <circle cx="265" cy="245" r="3.5" class="fill-slate-400"/>
+        <text x="108" y="14" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">M</text>
+        <text x="271" y="248" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">N</text>
+        <text x="322" y="100" font-size="14" class="fill-fuchsia-700 dark:fill-fuchsia-300 font-semibold italic">(D)</text>
+        <text x="322" y="174" font-size="14" class="fill-fuchsia-700 dark:fill-fuchsia-300 font-semibold italic">(D′)</text>
+        <text x="44" y="72" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">E</text>
+        <text x="326" y="72" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">F</text>
+        <text x="44" y="206" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">G</text>
+        <text x="326" y="206" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">H</text>
+        <text x="166" y="70" font-size="15" class="fill-fuchsia-700 dark:fill-fuchsia-300 font-bold">A</text>
+        <text x="236" y="202" font-size="15" class="fill-fuchsia-700 dark:fill-fuchsia-300 font-bold">B</text>
+      </svg>
+
+      <div class="grid sm:grid-cols-2 gap-3">
+        <div class="rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/30 border border-fuchsia-200 dark:border-fuchsia-900 p-4">
+          <p class="text-sm text-fuchsia-900 dark:text-fuchsia-100 text-center">Les angles <b>EÂB</b> et <b>GB̂N</b> sont des angles <b>correspondants</b> <span class="text-xs text-fuchsia-600 dark:text-fuchsia-400">(zone teintée)</span>.</p>
+        </div>
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 p-4">
+          <p class="text-sm text-slate-700 dark:text-slate-300 text-center">De même : <b>MÂF</b> et <b>AB̂H</b> ; ainsi que <b>FÂB</b> et <b>HB̂N</b> ; et <b>MÂE</b> et <b>AB̂G</b>.</p>
+        </div>
+      </div>
+      <p class="text-xs text-slate-400 dark:text-slate-500 text-center mt-3">Ils occupent la <b>même position</b> à chacun des deux points d'intersection — repérables par la forme d'un <b>F</b>.</p>
+    </div>
+
+    <!-- 2a. Propriété directe -->
+    <div class="reveal mb-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+      <h3 class="font-display text-xl font-bold text-slate-800 dark:text-white mb-1">2. Propriétés</h3>
+      <p class="text-xs font-bold uppercase tracking-wide text-fuchsia-500 mb-2 mt-4">a) Propriété directe</p>
+      <div class="rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/30 border border-fuchsia-200 dark:border-fuchsia-900 p-4">
+        <p class="text-sm text-fuchsia-900 dark:text-fuchsia-100 text-center font-medium">Si deux droites sont <b>parallèles</b>, alors elles déterminent avec toute sécante des angles correspondants <b>isométriques</b> (égaux).</p>
+      </div>
+
+      <p class="text-xs font-bold uppercase tracking-wide text-indigo-500 mb-3 mt-6">✎ Application</p>
+      <div class="grid md:grid-cols-2 gap-6 items-center">
+        <div>
+          <p class="text-sm text-slate-600 dark:text-slate-300 mb-3"><b>ABC</b> est un triangle rectangle en <b>A</b>, et <b>(EF) ∥ (AB)</b> avec E sur [CA] et F sur [CB].</p>
+          <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">Montrons que le triangle CEF est rectangle en E.</p>
+        </div>
+        <svg viewBox="0 0 300 220" class="w-full h-auto max-w-xs mx-auto">
+          <polygon points="70,30 70,180 260,180" class="fill-fuchsia-50 dark:fill-fuchsia-950/30 stroke-fuchsia-600 dark:stroke-fuchsia-400" stroke-width="2.25"/>
+          <line x1="70" y1="110" x2="171.3" y2="110" stroke-dasharray="5,4" class="stroke-violet-500 dark:stroke-violet-400" stroke-width="1.75"/>
+          <path d="M70,168 L82,168 L82,180" fill="none" class="stroke-slate-600 dark:stroke-slate-300" stroke-width="1.75"/>
+          <circle cx="70" cy="30" r="5" class="fill-fuchsia-600 dark:fill-fuchsia-400"/>
+          <circle cx="70" cy="180" r="5" class="fill-fuchsia-600 dark:fill-fuchsia-400"/>
+          <circle cx="260" cy="180" r="5" class="fill-fuchsia-600 dark:fill-fuchsia-400"/>
+          <circle cx="70" cy="110" r="4.5" class="fill-violet-500 dark:fill-violet-400"/>
+          <circle cx="171.3" cy="110" r="4.5" class="fill-violet-500 dark:fill-violet-400"/>
+          <text x="62" y="20" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+          <text x="52" y="200" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+          <text x="266" y="200" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+          <text x="50" y="106" font-size="14" class="fill-violet-600 dark:fill-violet-400 font-bold">E</text>
+          <text x="177" y="106" font-size="14" class="fill-violet-600 dark:fill-violet-400 font-bold">F</text>
+        </svg>
+      </div>
+
+      <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+        <p class="text-xs font-bold uppercase tracking-wide text-emerald-500">✓ Solution</p>
+        <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">On considère les parallèles <b>(AB)</b> et <b>(EF)</b>, et la sécante <b>(AC)</b>.</div>
+        <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">On a : <b>CÊF</b> et <b>CÂB</b> sont deux angles correspondants, donc <b>CÊF = CÂB</b>.</div>
+        <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Or CÂB est un angle droit (ABC rectangle en A), donc <b>CÊF</b> est aussi un angle droit.</div>
+        <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 font-bold">D'où : le triangle CEF est rectangle en E.</div>
+      </div>
+    </div>
+
+    <!-- 2b. Propriété réciproque -->
+    <div class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+      <p class="text-xs font-bold uppercase tracking-wide text-fuchsia-500 mb-2">b) Propriété réciproque</p>
+      <div class="rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/30 border border-fuchsia-200 dark:border-fuchsia-900 p-4">
+        <p class="text-sm text-fuchsia-900 dark:text-fuchsia-100 text-center font-medium">Si deux droites déterminent avec une sécante deux angles correspondants <b>isométriques</b> (égaux), alors elles sont <b>parallèles</b>.</p>
+      </div>
+
+      <p class="text-xs font-bold uppercase tracking-wide text-indigo-500 mb-3 mt-6">✎ Application</p>
+      <div class="grid md:grid-cols-2 gap-6 items-center">
+        <div>
+          <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">On considère la figure ci-contre telle que : <b>AÊF = 60°</b> et <b>EB̂C = 60°</b>.</p>
+          <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">Montrons que (EF) ∥ (BC).</p>
+        </div>
+        <svg viewBox="0 0 300 220" class="w-full h-auto max-w-xs mx-auto">
+          <line x1="150" y1="30" x2="50" y2="190" class="stroke-slate-500 dark:stroke-slate-400" stroke-width="2"/>
+          <line x1="150" y1="30" x2="250" y2="190" class="stroke-slate-500 dark:stroke-slate-400" stroke-width="2"/>
+          <line x1="50" y1="190" x2="250" y2="190" class="stroke-fuchsia-600 dark:stroke-fuchsia-400" stroke-width="2.25"/>
+          <line x1="95" y1="118" x2="205" y2="118" class="stroke-fuchsia-600 dark:stroke-fuchsia-400" stroke-width="2.25"/>
+          <circle cx="150" cy="30" r="5" class="fill-slate-600 dark:fill-slate-300"/>
+          <circle cx="50" cy="190" r="5" class="fill-fuchsia-600 dark:fill-fuchsia-400"/>
+          <circle cx="250" cy="190" r="5" class="fill-fuchsia-600 dark:fill-fuchsia-400"/>
+          <circle cx="95" cy="118" r="5" class="fill-fuchsia-600 dark:fill-fuchsia-400"/>
+          <circle cx="205" cy="118" r="5" class="fill-fuchsia-600 dark:fill-fuchsia-400"/>
+          <text x="142" y="20" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+          <text x="34" y="208" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+          <text x="256" y="208" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+          <text x="79" y="112" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">E</text>
+          <text x="211" y="112" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">F</text>
+          <text x="108" y="103" font-size="12" class="fill-fuchsia-700 dark:fill-fuchsia-300 font-bold">60°</text>
+          <text x="60" y="175" font-size="12" class="fill-fuchsia-700 dark:fill-fuchsia-300 font-bold">60°</text>
+        </svg>
+      </div>
+
+      <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+        <p class="text-xs font-bold uppercase tracking-wide text-emerald-500">✓ Solution</p>
+        <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">On considère les droites <b>(EF)</b> et <b>(BC)</b>, et la sécante <b>(AB)</b>.</div>
+        <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">On a : <b>AÊF</b> et <b>EB̂C</b> sont deux angles correspondants.</div>
+        <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Or AÊF = 60° et EB̂C = 60°, donc <b>AÊF = EB̂C</b>.</div>
+        <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 font-bold">D'après la propriété réciproque des angles correspondants : (EF) ∥ (BC).</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== FICHE MEMO ===================== -->
+<section id="memo" class="py-16 md:py-24">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal flex items-center gap-4 mb-8">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-indigo-600 text-white font-display font-bold text-xl shadow-soft shrink-0">✓</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Fiche mémo</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Les deux couples d'angles en un coup d'œil, pour réviser vite</p>
+      </div>
+    </div>
+
+    <div class="reveal grid sm:grid-cols-2 gap-4">
+      <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-teal-100 dark:bg-teal-950/40 text-teal-600 dark:text-teal-400 text-lg font-bold shrink-0">Z</span>
+          <h3 class="font-display font-bold text-slate-800 dark:text-white">Alternes-internes</h3>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300"><b>Position :</b> entre les deux droites, de part et d'autre de la sécante.</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1"><b>Directe :</b> droites ∥ ⟹ angles égaux.</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1"><b>Réciproque :</b> angles égaux ⟹ droites ∥.</p>
+      </div>
+
+      <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-fuchsia-100 dark:bg-fuchsia-950/40 text-fuchsia-600 dark:text-fuchsia-400 text-lg font-bold shrink-0">F</span>
+          <h3 class="font-display font-bold text-slate-800 dark:text-white">Correspondants</h3>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-300"><b>Position :</b> même position relative aux deux points d'intersection.</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1"><b>Directe :</b> droites ∥ ⟹ angles égaux.</p>
+        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1"><b>Réciproque :</b> angles égaux ⟹ droites ∥.</p>
+      </div>
+
+      <div class="rounded-2xl bg-gradient-to-r from-teal-50 via-indigo-50 to-fuchsia-50 dark:from-teal-950/30 dark:via-[#07152833] dark:to-fuchsia-950/30 border border-indigo-200 dark:border-indigo-900 shadow-sm p-5 sm:col-span-2">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-indigo-600 text-white text-lg font-bold shrink-0">💡</span>
+          <h3 class="font-display font-bold text-slate-800 dark:text-white">Méthode pour une démonstration</h3>
+        </div>
+        <ol class="text-sm text-slate-600 dark:text-slate-300 list-decimal list-inside space-y-1">
+          <li><b>Pour prouver deux angles égaux :</b> nommer les deux droites et la sécante, identifier le type d'angles (alternes-internes ou correspondants), citer la <b>propriété directe</b> en précisant que les droites sont parallèles.</li>
+          <li><b>Pour prouver deux droites parallèles :</b> nommer les deux droites et la sécante, montrer que les deux angles (alternes-internes ou correspondants) sont égaux, puis citer la <b>propriété réciproque</b>.</li>
+        </ol>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== EXERCICES ===================== -->
+<section id="exercices" class="py-16 md:py-24 bg-amber-50/40 dark:bg-slate-900/40">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal flex items-center gap-4 mb-3">
+      <span class="flex items-center justify-center w-12 h-12 rounded-2xl bg-amber-500 text-white font-display font-bold text-xl shadow-soft shrink-0">✎</span>
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Exercices</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Deux parallèles et une sécante — cliquez sur « Voir la correction » pour vérifier vos réponses</p>
+      </div>
+    </div>
+
+    <p class="reveal text-xs text-slate-400 dark:text-slate-500 mb-6">Exercice N°6 · Deux parallèles et une sécante · Niveau 1APIC</p>
+
+    <div class="reveal mb-10 flex flex-wrap gap-2">
+      <span class="text-xs font-semibold text-slate-400 mr-1 mt-1.5">Accès rapide :</span>
+      <a href="#ex-1" class="w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">1</a>
+      <a href="#ex-2" class="w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">2</a>
+      <a href="#ex-3" class="w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">3</a>
+      <a href="#ex-4" class="w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">4</a>
+      <a href="#ex-5" class="w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">5</a>
+      <a href="#ex-6" class="w-8 h-8 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-500 dark:text-slate-300 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition">6</a>
+      <button onclick="toggleAllCorrections()" class="ml-auto inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-800 dark:bg-slate-700 hover:bg-slate-700 dark:hover:bg-slate-600 text-white text-xs font-semibold transition">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        <span id="toggle-all-label" data-state="closed">Tout afficher</span>
+      </button>
+    </div>
+
+    <div class="space-y-6">
+
+      <!-- EXERCICE 1 -->
+      <article id="ex-1" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">1</span>
+            Exercice n°1
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-teal-100 text-teal-700 dark:bg-teal-950/40 dark:text-teal-300">Réciproque</span>
+          </h3>
+          <button onclick="toggleCorrection(1)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-1">Voir la correction</span>
+            <svg id="chevron-1" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-2">Soit la figure ci-dessous, où <b>(AO)</b> est une sécante commune à <b>(d₁)</b> et <b>(d₂)</b> :</p>
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 p-4 mb-3">
+          <svg viewBox="0 0 320 220" class="w-full h-auto max-w-xs mx-auto">
+            <line x1="50" y1="50" x2="250" y2="50" class="stroke-teal-600 dark:stroke-teal-400" stroke-width="2.25"/>
+            <line x1="150" y1="50" x2="150" y2="180" class="stroke-slate-500 dark:stroke-slate-400" stroke-width="2"/>
+            <line x1="30" y1="180" x2="280" y2="180" class="stroke-teal-600 dark:stroke-teal-400" stroke-width="2.25"/>
+            <path d="M210,150 L202,145" fill="none" class="stroke-slate-400 dark:stroke-slate-500" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <line x1="150" y1="180" x2="210" y2="150" class="stroke-slate-400 dark:stroke-slate-500" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <path d="M136,50 L136,64 L150,64" fill="none" class="stroke-slate-600 dark:stroke-slate-300" stroke-width="1.75"/>
+            <circle cx="150" cy="50" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+            <circle cx="150" cy="180" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+            <circle cx="70" cy="50" r="4" class="fill-slate-400"/>
+            <circle cx="270" cy="180" r="4" class="fill-slate-400"/>
+            <text x="156" y="42" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+            <text x="54" y="42" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+            <text x="132" y="200" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">O</text>
+            <text x="274" y="176" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+            <text x="255" y="46" font-size="14" class="fill-teal-700 dark:fill-teal-300 italic">(d₁)</text>
+            <text x="255" y="200" font-size="14" class="fill-teal-700 dark:fill-teal-300 italic">(d₂)</text>
+            <text x="163" y="140" font-size="13" class="fill-slate-600 dark:fill-slate-300 font-bold">60°</text>
+            <text x="188" y="172" font-size="13" class="fill-slate-600 dark:fill-slate-300 font-bold">30°</text>
+          </svg>
+        </div>
+        <p class="text-xs text-slate-400 dark:text-slate-500 mb-3">(BA) ⊥ (AO) en A ; l'angle AÔC est partagé en deux angles adjacents de 60° et 30°.</p>
+        <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">Montrer que (d₁) ∥ (d₂).</p>
+
+        <div id="wrap-1" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">On considère les droites <b>(d₁)</b> et <b>(d₂)</b>, et la sécante <b>(AO)</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">BÂO et AÔC sont deux angles <b>alternes-internes</b> (B et C de part et d'autre de la sécante (AO)).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Or <b>BÂO = 90°</b> (angle droit donné), et <b>AÔC = 60° + 30° = 90°</b> (somme des deux angles adjacents donnés).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Donc <b>BÂO = AÔC</b> (= 90°).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 font-bold">D'après la propriété réciproque des angles alternes-internes : (d₁) ∥ (d₂).</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 2 -->
+      <article id="ex-2" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">2</span>
+            Exercice n°2
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-teal-100 text-teal-700 dark:bg-teal-950/40 dark:text-teal-300">Directe</span>
+          </h3>
+          <button onclick="toggleCorrection(2)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-2">Voir la correction</span>
+            <svg id="chevron-2" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-2">Les droites <b>(AB)</b> et <b>(CD)</b> sont parallèles. Le point <b>M</b> appartient à la demi-droite [CD) hors du segment [CD] (voir figure).</p>
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 p-4 mb-3">
+          <svg viewBox="0 0 360 230" class="w-full h-auto max-w-xs mx-auto">
+            <line x1="50" y1="50" x2="280" y2="50" class="stroke-teal-600 dark:stroke-teal-400" stroke-width="2.25"/>
+            <line x1="90" y1="190" x2="340" y2="190" class="stroke-teal-600 dark:stroke-teal-400" stroke-width="2.25"/>
+            <line x1="70" y1="50" x2="150" y2="190" class="stroke-slate-500 dark:stroke-slate-400" stroke-width="2"/>
+            <circle cx="70" cy="50" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+            <circle cx="260" cy="50" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+            <circle cx="150" cy="190" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+            <circle cx="320" cy="190" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+            <circle cx="110" cy="190" r="5" class="fill-fuchsia-500 dark:fill-fuchsia-400"/>
+            <text x="56" y="42" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+            <text x="266" y="42" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+            <text x="152" y="212" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">D</text>
+            <text x="326" y="212" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+            <text x="98" y="212" font-size="15" class="fill-fuchsia-600 dark:fill-fuchsia-400 font-bold">M</text>
+          </svg>
+        </div>
+        <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">Montrer que BÂD = AD̂M.</p>
+
+        <div id="wrap-2" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">On considère les parallèles <b>(AB)</b> et <b>(CD)</b>, et la sécante <b>(AD)</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">On a : <b>BÂD</b> et <b>AD̂M</b> sont deux angles <b>alternes-internes</b> (B et M de part et d'autre de la sécante (AD), entre les deux parallèles).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Or (AB) ∥ (CD) (donné).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 font-bold">D'après la propriété directe des angles alternes-internes : BÂD = AD̂M.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 3 -->
+      <article id="ex-3" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">3</span>
+            Exercice n°3
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-fuchsia-100 text-fuchsia-700 dark:bg-fuchsia-950/40 dark:text-fuchsia-300">Directe</span>
+          </h3>
+          <button onclick="toggleCorrection(3)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-3">Voir la correction</span>
+            <svg id="chevron-3" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-2"><b>ABC</b> est un triangle équilatéral et <b>(AF)</b> est une droite passant par A et parallèle à <b>(BC)</b>. E est un point de la demi-droite [BA) hors du segment [AB].</p>
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 p-4 mb-3">
+          <svg viewBox="0 0 320 260" class="w-full h-auto max-w-xs mx-auto">
+            <polygon points="175,83 90,230 260,230" class="fill-fuchsia-50 dark:fill-fuchsia-950/30 stroke-fuchsia-600 dark:stroke-fuchsia-400" stroke-width="2.25"/>
+            <line x1="110" y1="83" x2="255" y2="83" class="stroke-teal-600 dark:stroke-teal-400" stroke-width="2.25"/>
+            <line x1="175" y1="83" x2="205" y2="31" class="stroke-slate-500 dark:stroke-slate-400" stroke-width="2"/>
+            <g class="stroke-slate-600 dark:stroke-slate-300" stroke-width="1.75">
+              <line x1="126" y1="153" x2="139" y2="160"/>
+              <line x1="175" y1="225" x2="175" y2="235"/>
+              <line x1="211" y1="160" x2="224" y2="153"/>
+            </g>
+            <circle cx="175" cy="83" r="5" class="fill-fuchsia-600 dark:fill-fuchsia-400"/>
+            <circle cx="90" cy="230" r="5" class="fill-fuchsia-600 dark:fill-fuchsia-400"/>
+            <circle cx="260" cy="230" r="5" class="fill-fuchsia-600 dark:fill-fuchsia-400"/>
+            <circle cx="255" cy="83" r="4.5" class="fill-teal-600 dark:fill-teal-400"/>
+            <circle cx="205" cy="31" r="4.5" class="fill-violet-500 dark:fill-violet-400"/>
+            <text x="167" y="73" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+            <text x="72" y="250" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+            <text x="266" y="250" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+            <text x="261" y="79" font-size="14" class="fill-teal-700 dark:fill-teal-400 font-bold">F</text>
+            <text x="210" y="25" font-size="14" class="fill-violet-600 dark:fill-violet-400 font-bold">E</text>
+          </svg>
+        </div>
+        <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">Calculer la mesure de l'angle EÂF.</p>
+
+        <div id="wrap-3" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">On considère les parallèles <b>(AF)</b> et <b>(BC)</b>, et la sécante <b>(BE)</b> [prolongement de (BA)].</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">On a : <b>EÂF</b> et <b>AB̂C</b> sont deux angles <b>correspondants</b> (E prolonge la demi-droite [BA) au-delà de A, F et C du même côté).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Or (AF) ∥ (BC), donc, d'après la propriété directe des angles correspondants : <b>EÂF = AB̂C</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Or ABC est équilatéral, donc <b>AB̂C = 60°</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 font-bold">D'où : EÂF = 60°.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 4 -->
+      <article id="ex-4" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">4</span>
+            Exercice n°4
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-teal-100 text-teal-700 dark:bg-teal-950/40 dark:text-teal-300">Réciproque</span>
+          </h3>
+          <button onclick="toggleCorrection(4)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-4">Voir la correction</span>
+            <svg id="chevron-4" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-2"><b>ABC</b> est un triangle isocèle en A tel que <b>BÂC = 80°</b>. [AE) est une demi-droite telle que les angles <b>CÂB</b> et <b>BÂE</b> soient adjacents, avec <b>BÂE = 50°</b>.</p>
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 p-4 mb-3">
+          <svg viewBox="0 0 320 220" class="w-full h-auto max-w-xs mx-auto">
+            <polygon points="175,40 66,170 284,170" class="fill-teal-50 dark:fill-teal-950/30 stroke-teal-600 dark:stroke-teal-400" stroke-width="2.25"/>
+            <line x1="175" y1="40" x2="45" y2="40" class="stroke-slate-500 dark:stroke-slate-400" stroke-width="2"/>
+            <circle cx="175" cy="40" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+            <circle cx="66" cy="170" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+            <circle cx="284" cy="170" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+            <circle cx="45" cy="40" r="4.5" class="fill-violet-500 dark:fill-violet-400"/>
+            <text x="180" y="30" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+            <text x="50" y="192" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+            <text x="290" y="192" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+            <text x="30" y="34" font-size="15" class="fill-violet-600 dark:fill-violet-400 font-bold">E</text>
+            <text x="130" y="60" font-size="12" class="fill-violet-700 dark:fill-violet-300 font-bold">50°</text>
+            <text x="172" y="85" font-size="12" class="fill-teal-700 dark:fill-teal-300 font-bold">80°</text>
+          </svg>
+        </div>
+        <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">Montrer que (AE) ∥ (BC).</p>
+
+        <div id="wrap-4" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">ABC est isocèle en A avec BÂC = 80°, donc ses angles à la base sont égaux : <b>AB̂C = AĈB = (180° − 80°) ∶ 2 = 50°</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">On considère les droites <b>(AE)</b> et <b>(BC)</b>, et la sécante <b>(AB)</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">On a : <b>EÂB</b> et <b>AB̂C</b> sont deux angles <b>alternes-internes</b> (E et C de part et d'autre de la sécante (AB)).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Or EÂB = 50° (donné) et AB̂C = 50° (calculé), donc <b>EÂB = AB̂C</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 font-bold">D'après la propriété réciproque des angles alternes-internes : (AE) ∥ (BC).</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 5 -->
+      <article id="ex-5" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">5</span>
+            Exercice n°5
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-700 dark:bg-[#07152866] dark:text-indigo-300">Grand classique</span>
+          </h3>
+          <button onclick="toggleCorrection(5)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-5">Voir la correction</span>
+            <svg id="chevron-5" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-2"><b>ABC</b> est un triangle et <b>(D)</b> est une droite passant par A et parallèle à <b>(BC)</b>, avec F et E deux points de (D) de part et d'autre de A.</p>
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 p-4 mb-3">
+          <svg viewBox="0 0 340 240" class="w-full h-auto max-w-xs mx-auto">
+            <line x1="40" y1="50" x2="310" y2="50" class="stroke-indigo-600 dark:stroke-indigo-400" stroke-width="2.25"/>
+            <polygon points="175,50 80,210 270,210" class="fill-indigo-50 dark:fill-[#0715284d] stroke-slate-600 dark:stroke-slate-300" stroke-width="2.25"/>
+            <circle cx="175" cy="50" r="5" class="fill-indigo-600 dark:fill-indigo-400"/>
+            <circle cx="80" cy="210" r="5" class="fill-slate-600 dark:fill-slate-300"/>
+            <circle cx="270" cy="210" r="5" class="fill-slate-600 dark:fill-slate-300"/>
+            <circle cx="60" cy="50" r="4.5" class="fill-indigo-500 dark:fill-indigo-400"/>
+            <circle cx="290" cy="50" r="4.5" class="fill-indigo-500 dark:fill-indigo-400"/>
+            <text x="180" y="40" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+            <text x="64" y="230" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+            <text x="276" y="230" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">C</text>
+            <text x="44" y="42" font-size="15" class="fill-indigo-700 dark:fill-indigo-300 font-bold">F</text>
+            <text x="296" y="42" font-size="15" class="fill-indigo-700 dark:fill-indigo-300 font-bold">E</text>
+            <text x="330" y="46" font-size="13" class="fill-indigo-700 dark:fill-indigo-300 italic">(D)</text>
+          </svg>
+        </div>
+        <ol class="space-y-1.5 text-sm text-slate-700 dark:text-slate-200 list-decimal list-inside">
+          <li>Montrer que AĈB = EÂC.</li>
+          <li>Montrer que AB̂C = FÂB.</li>
+          <li>Déduire que AB̂C + AĈB + BÂC = 180°.</li>
+          <li>Cela vous rappelle quelle propriété ?</li>
+        </ol>
+
+        <div id="wrap-5" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>1)</b> On considère les parallèles (D) [=(AE)] et (BC), et la sécante (AC). <b>AĈB</b> et <b>EÂC</b> sont des angles alternes-internes (B et E de part et d'autre de (AC)). Or (D) ∥ (BC), donc <b>AĈB = EÂC</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>2)</b> On considère les parallèles (D) [=(AF)] et (BC), et la sécante (AB). <b>AB̂C</b> et <b>FÂB</b> sont des angles alternes-internes (C et F de part et d'autre de (AB)). Or (D) ∥ (BC), donc <b>AB̂C = FÂB</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5"><b>3)</b> F, A, E sont alignés sur (D), donc <b>FÂB + BÂC + EÂC = 180°</b> (angles adjacents formant un angle plat). Or, d'après 2) FÂB = AB̂C, et d'après 1) EÂC = AĈB. En remplaçant : <b>AB̂C + BÂC + AĈB = 180°</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 font-bold"><b>4)</b> Cela rappelle la propriété : la somme des mesures des angles d'un triangle est égale à 180°.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- EXERCICE 6 -->
+      <article id="ex-6" class="reveal rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-5 md:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h3 class="flex items-center gap-3 font-display text-lg font-bold text-slate-800 dark:text-white">
+            <span class="w-9 h-9 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold shrink-0">6</span>
+            Exercice n°6
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-teal-100 text-teal-700 dark:bg-teal-950/40 dark:text-teal-300">Directe</span>
+          </h3>
+          <button onclick="toggleCorrection(6)" class="correction-btn shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-sm transition">
+            <span id="label-6">Voir la correction</span>
+            <svg id="chevron-6" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+        </div>
+
+        <p class="text-sm text-slate-600 dark:text-slate-300 mb-2">Soit la figure ci-dessous, avec les informations codées : <b>(AB) ∥ (ED)</b>.</p>
+        <div class="rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 p-4 mb-3">
+          <svg viewBox="0 0 320 200" class="w-full h-auto max-w-xs mx-auto">
+            <line x1="150" y1="40" x2="280" y2="40" class="stroke-teal-600 dark:stroke-teal-400" stroke-width="2.25"/>
+            <line x1="150" y1="40" x2="150" y2="150" class="stroke-slate-500 dark:stroke-slate-400" stroke-width="2"/>
+            <line x1="40" y1="150" x2="150" y2="150" class="stroke-teal-600 dark:stroke-teal-400" stroke-width="2.25"/>
+            <line x1="280" y1="40" x2="40" y2="150" class="stroke-slate-500 dark:stroke-slate-400" stroke-width="2"/>
+            <path d="M164,40 L164,54 L150,54" fill="none" class="stroke-slate-600 dark:stroke-slate-300" stroke-width="1.75"/>
+            <path d="M150,136 L136,136 L136,150" fill="none" class="stroke-slate-600 dark:stroke-slate-300" stroke-width="1.75"/>
+            <circle cx="150" cy="40" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+            <circle cx="280" cy="40" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+            <circle cx="150" cy="150" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+            <circle cx="40" cy="150" r="5" class="fill-teal-600 dark:fill-teal-400"/>
+            <circle cx="150" cy="100" r="5" class="fill-fuchsia-500 dark:fill-fuchsia-400"/>
+            <text x="132" y="32" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">A</text>
+            <text x="286" y="36" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">B</text>
+            <text x="132" y="170" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">E</text>
+            <text x="24" y="170" font-size="15" class="fill-slate-700 dark:fill-slate-200 font-bold">D</text>
+            <text x="158" y="98" font-size="15" class="fill-fuchsia-600 dark:fill-fuchsia-400 font-bold">C</text>
+            <text x="248" y="60" font-size="13" class="fill-teal-700 dark:fill-teal-300 font-bold">40°</text>
+          </svg>
+        </div>
+        <p class="text-xs text-slate-400 dark:text-slate-500 mb-3">C est le point d'intersection de (AE) et (BD) ; AB̂D = 40° ; angle droit en A et en E.</p>
+        <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">Déterminer la mesure de l'angle EĈD.</p>
+
+        <div id="wrap-6" class="accordion-wrap">
+          <div class="accordion-inner">
+            <div class="mt-5 pt-5 border-t border-dashed border-slate-200 dark:border-slate-700 space-y-3 text-sm text-emerald-900 dark:text-emerald-100">
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">On considère les parallèles <b>(AB)</b> et <b>(ED)</b>, et la sécante <b>(BD)</b> [qui passe par C].</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">On a : <b>AB̂D</b> (soit AB̂C) et <b>ED̂B</b> (soit ED̂C) sont deux angles <b>alternes-internes</b> (A et E de part et d'autre de la sécante (BD)).</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Or (AB) ∥ (ED), donc <b>ED̂C = AB̂D = 40°</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5">Dans le triangle ECD, l'angle en E est droit : <b>DÊC = 90°</b>. La somme des angles du triangle vaut 180°, donc <b>EĈD = 180° − 90° − 40°</b>.</div>
+              <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-3.5 font-bold">D'où : EĈD = 50°.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-slate-900 dark:bg-black text-slate-300 mt-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid sm:grid-cols-2 gap-8">
+    <div>
+      <a href="/" class="flex items-center gap-2.5">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+        <span class="font-display font-bold text-white leading-tight">
+          <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+          <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+        </span>
+      </a>
+      <p class="text-sm text-slate-400 mt-3 leading-relaxed">Angles alternes-internes et angles correspondants — cours et exercices corrigés, pensés pour réviser efficacement sur mobile comme sur ordinateur.</p>
+      <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+    </div>
+    <div>
+      <p class="text-white font-semibold text-sm mb-3">Sommaire</p>
+      <ul class="space-y-2 text-sm text-slate-400">
+        <li><a href="#alternes-internes" class="hover:text-white transition">I. Angles alternes-internes</a></li>
+        <li><a href="#correspondants" class="hover:text-white transition">II. Angles correspondants</a></li>
+        <li><a href="#memo" class="hover:text-white transition">Fiche mémo</a></li>
+        <li><a href="#exercices" class="hover:text-white transition">Exercices (6)</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-slate-800 py-5 text-center text-xs text-slate-500">
+    © 2026 — Angles Alternes-Internes & Angles Correspondants · Mathématiques 1AC
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Retour en haut" class="hidden fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white shadow-soft flex items-center justify-center transition">
+  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" /></svg>
+</button>
+
+<script>
+  // Mobile menu
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+  });
+
+  // Dark mode toggle
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+  });
+
+  // Correction accordion toggle
+  function toggleCorrection(id) {
+    const wrap = document.getElementById('wrap-' + id);
+    const chevron = document.getElementById('chevron-' + id);
+    const label = document.getElementById('label-' + id);
+    const isOpen = wrap.classList.toggle('open');
+    chevron.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+    label.textContent = isOpen ? 'Masquer la correction' : 'Voir la correction';
+  }
+
+  // Show all / hide all corrections
+  function toggleAllCorrections() {
+    const allBtn = document.getElementById('toggle-all-label');
+    const shouldOpen = allBtn.dataset.state !== 'open';
+    for (let i = 1; i <= 6; i++) {
+      const wrap = document.getElementById('wrap-' + i);
+      const chevron = document.getElementById('chevron-' + i);
+      const label = document.getElementById('label-' + i);
+      wrap.classList.toggle('open', shouldOpen);
+      chevron.style.transform = shouldOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+      label.textContent = shouldOpen ? 'Masquer la correction' : 'Voir la correction';
+    }
+    allBtn.dataset.state = shouldOpen ? 'open' : 'closed';
+    allBtn.textContent = shouldOpen ? 'Tout masquer' : 'Tout afficher';
+  }
+
+  // Back to top button
+  const backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('hidden', window.scrollY < 500);
+  });
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

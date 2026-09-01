@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Proportionnalité — 2ème APIC | Collège Mhamed 9</title>
+<meta name="description" content="Cours complet et exercices corrigés sur la proportionnalité — 2ème année APIC.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          heading: ['Poppins', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          brand: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da', 400: '#6089bd',
+            500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63', 800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+        },
+        boxShadow: {
+          soft: '0 10px 30px -12px rgba(18, 41, 76, 0.25)',
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; }
+  h1, h2, h3, h4, .font-heading { font-family: 'Poppins', sans-serif; }
+
+  /* Fraction display for formulas */
+  .frac {
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 0.25em;
+    line-height: 1.15;
+  }
+  .frac .num, .frac .den {
+    display: block;
+    padding: 0 0.35em;
+  }
+  .frac .num {
+    border-bottom: 2px solid currentColor;
+  }
+
+  /* Correction panel animation */
+  .correction-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s ease;
+  }
+  .correction-panel.open {
+    grid-template-rows: 1fr;
+  }
+  .correction-inner {
+    overflow: hidden;
+  }
+  .chevron {
+    transition: transform 0.3s ease;
+  }
+  .chevron.open {
+    transform: rotate(180deg);
+  }
+
+  .star {
+    color: #f59e0b;
+  }
+
+  #topnav.scrolled {
+    box-shadow: 0 8px 24px -12px rgba(0,0,0,0.15);
+  }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-100, .dark .border-emerald-200 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
+  .dark .bg-amber-50 { background-color: #3a2a0a; }
+  .dark .border-amber-400 { border-color: #92400e; }
+  .dark .bg-rose-50 { background-color: #3a0d18; }
+  .dark .border-rose-100 { border-color: #7a2138; }
+  .dark .text-rose-600, .dark .text-rose-700 { color: #fb7185; }
+  .dark .bg-brand-50 { background-color: #12294c; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+<header id="topnav" class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur border-b border-slate-100 dark:border-slate-800 transition-shadow">
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+    <a href="#top" class="flex items-center gap-2.5 font-heading font-extrabold text-brand-700 dark:text-white">
+      <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-9 w-9 shrink-0 rounded-full">
+      <span class="leading-tight text-sm sm:text-base">
+        Collège Mhamed 9<br class="sm:hidden">
+        <span class="text-slate-400 font-medium text-xs sm:text-sm"> · Proportionnalité</span>
+      </span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-1">
+      <a href="/" class="px-4 py-2 rounded-lg text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-brand-700 hover:bg-brand-50 dark:hover:bg-white/5 dark:hover:text-white transition">← Portail</a>
+      <a href="#cours" class="px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-700 hover:bg-brand-50 dark:hover:bg-white/5 dark:hover:text-white transition">Cours</a>
+      <a href="#graphique" class="px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-700 hover:bg-brand-50 dark:hover:bg-white/5 dark:hover:text-white transition">Graphiques</a>
+      <a href="#applications" class="px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-700 hover:bg-brand-50 dark:hover:bg-white/5 dark:hover:text-white transition">Applications</a>
+      <a href="#exercices" class="ml-2 px-4 py-2 rounded-lg text-sm font-bold text-white bg-brand-600 hover:bg-brand-700 transition shadow-soft">Exercices</a>
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-brand-700 dark:hover:text-amber-400 transition-colors">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+    </div>
+
+    <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="md:hidden mr-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+      <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+      <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+    </button>
+    <button id="menuBtn" class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5" aria-label="Ouvrir le menu">
+      <svg id="menuIconOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+      <svg id="menuIconClose" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+    </button>
+  </nav>
+
+  <div id="mobileMenu" class="hidden md:hidden border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-[#0b1f3a] px-4 py-3 space-y-1">
+    <a href="/" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-500 dark:text-slate-400 hover:bg-brand-50 dark:hover:bg-white/5">← Portail</a>
+    <a href="#cours" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-white/5">I · Situations de proportionnalité</a>
+    <a href="#graphique" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-white/5">II · Représentation graphique</a>
+    <a href="#applications" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-white/5">III · Applications</a>
+    <a href="#exercices" class="block px-3 py-2 rounded-lg text-sm font-bold text-brand-700 dark:text-white bg-brand-50 dark:bg-white/5">Exercices</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-brand-700 via-brand-600 to-indigo-500 text-white">
+    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image:radial-gradient(circle at 20% 20%, white 1px, transparent 1px);background-size:26px 26px;"></div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 relative">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="inline-flex items-center gap-2 bg-white/15 border border-white/25 text-white text-xs sm:text-sm font-semibold px-3 py-1.5 rounded-full mb-5">
+            2<sup>ème</sup> APIC · Chapitre 06
+          </span>
+          <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-5">
+            Proportionnalité
+          </h1>
+          <p class="text-brand-50/90 text-base sm:text-lg leading-relaxed max-w-xl">
+            Tableaux de proportionnalité, quatrième proportionnelle, représentation graphique, pourcentages, échelles et vitesse moyenne — cours complet et exercices corrigés.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#cours" class="px-5 py-3 rounded-xl bg-white text-brand-700 font-bold text-sm hover:bg-brand-50 transition shadow-soft">Commencer le cours</a>
+            <a href="#exercices" class="px-5 py-3 rounded-xl bg-white/10 border border-white/30 text-white font-bold text-sm hover:bg-white/20 transition">Voir les exercices</a>
+          </div>
+        </div>
+        <div class="relative hidden lg:block">
+          <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=1000&auto=format&fit=crop"
+               alt="Illustration mathématique - tableaux et graphiques"
+               class="rounded-2xl shadow-2xl ring-1 ring-white/20 object-cover w-full h-80">
+          <div class="absolute -bottom-5 -left-5 bg-white text-slate-800 rounded-xl shadow-soft px-4 py-3 text-sm font-heading font-bold">
+            <span class="text-brand-600">y = k × x</span>
+            <p class="text-xs font-medium text-slate-400 mt-0.5">coefficient de proportionnalité</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION I -->
+  <section id="cours" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 scroll-mt-16">
+    <div class="mb-10">
+      <span class="text-brand-600 font-bold text-sm tracking-wide uppercase">Partie I</span>
+      <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">Situations de proportionnalité</h2>
+    </div>
+
+    <article class="grid lg:grid-cols-2 gap-6 mb-6">
+      <div class="bg-white rounded-2xl shadow-soft ring-1 ring-slate-100 p-6 sm:p-8">
+        <h3 class="font-heading text-xl font-bold text-slate-900 mb-3 flex items-center gap-2">
+          <span class="w-8 h-8 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center text-sm font-black">1.1</span>
+          Définition
+        </h3>
+        <p class="text-slate-600 leading-relaxed">
+          Une situation est dite <strong class="text-slate-900">de proportionnalité</strong> lorsque deux grandeurs (2 séries de nombres) sont reliées par un même <strong class="text-brand-700">coefficient multiplicateur</strong>, appelé coefficient de proportionnalité.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-soft ring-1 ring-slate-100 p-6 sm:p-8">
+        <h3 class="font-heading text-xl font-bold text-slate-900 mb-3 flex items-center gap-2">
+          <span class="w-8 h-8 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center text-sm font-black">1.2</span>
+          Tableau de proportionnalité
+        </h3>
+        <p class="text-slate-600 leading-relaxed">
+          Un tableau (2 lignes) est dit de proportionnalité quand il existe un coefficient multiplicateur qui permet de passer d'une ligne à l'autre. Ce coefficient est appelé <strong class="text-brand-700">coefficient de proportionnalité</strong>.
+        </p>
+      </div>
+    </article>
+
+    <article class="bg-white rounded-2xl shadow-soft ring-1 ring-slate-100 p-6 sm:p-8 mb-6">
+      <h4 class="font-heading font-bold text-brand-700 mb-4 flex items-center gap-2">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Exemple
+      </h4>
+      <div class="overflow-x-auto rounded-xl ring-1 ring-slate-200">
+        <table class="w-full text-center border-collapse min-w-[420px]">
+          <tbody>
+            <tr class="bg-slate-50">
+              <td class="px-4 py-3 font-semibold text-slate-600 text-left border-b border-slate-200">Ligne 1</td>
+              <td class="px-4 py-3 border-b border-l border-slate-200">0,2</td>
+              <td class="px-4 py-3 border-b border-l border-slate-200">4</td>
+              <td class="px-4 py-3 border-b border-l border-slate-200">7</td>
+              <td class="px-4 py-3 border-b border-l border-slate-200">11</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 font-semibold text-slate-600 text-left">Ligne 2</td>
+              <td class="px-4 py-3 border-l border-slate-200">1</td>
+              <td class="px-4 py-3 border-l border-slate-200">20</td>
+              <td class="px-4 py-3 border-l border-slate-200">35</td>
+              <td class="px-4 py-3 border-l border-slate-200">55</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-slate-600 leading-relaxed mt-4">
+        On a :
+        <span class="frac"><span class="num">1</span><span class="den">0,2</span></span> =
+        <span class="frac"><span class="num">20</span><span class="den">4</span></span> =
+        <span class="frac"><span class="num">35</span><span class="den">7</span></span> =
+        <span class="frac"><span class="num">55</span><span class="den">11</span></span> = <strong class="text-brand-700">5</strong>
+      </p>
+      <p class="mt-3 inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 text-sm font-semibold px-4 py-2 rounded-lg">
+        Donc ce tableau est un tableau de proportionnalité, le coefficient de proportionnalité est 5.
+      </p>
+    </article>
+
+    <article class="bg-gradient-to-br from-brand-50 to-white rounded-2xl ring-1 ring-brand-100 p-6 sm:p-8">
+      <h3 class="font-heading text-xl font-bold text-slate-900 mb-3 flex items-center gap-2">
+        <span class="w-8 h-8 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center text-sm font-black">1.3</span>
+        Quatrième proportionnelle
+      </h3>
+      <p class="text-slate-600 leading-relaxed mb-5">
+        La quatrième proportionnelle des nombres <em>a</em>, <em>b</em> et <em>c</em> est la valeur du nombre <em>x</em> telle que le tableau suivant soit un tableau de proportionnalité :
+      </p>
+      <div class="flex flex-col sm:flex-row items-center gap-6">
+        <div class="overflow-x-auto rounded-xl ring-1 ring-slate-200 bg-white">
+          <table class="text-center border-collapse">
+            <tbody>
+              <tr>
+                <td class="px-8 py-3 border-b border-slate-200 font-semibold text-slate-700">a</td>
+                <td class="px-8 py-3 border-b border-l border-slate-200 font-semibold text-slate-700">b</td>
+              </tr>
+              <tr>
+                <td class="px-8 py-3 font-semibold text-slate-700">c</td>
+                <td class="px-8 py-3 border-l border-slate-200 font-semibold text-brand-700">x</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="text-2xl font-heading font-bold text-brand-700 bg-white rounded-xl px-6 py-4 ring-1 ring-brand-100 shadow-soft">
+          x = <span class="frac"><span class="num">b × c</span><span class="den">a</span></span>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- SECTION II -->
+  <section id="graphique" class="bg-white border-y border-slate-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 scroll-mt-16">
+      <div class="mb-10">
+        <span class="text-brand-600 font-bold text-sm tracking-wide uppercase">Partie II</span>
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">Représentation graphique d'une situation de proportionnalité</h2>
+      </div>
+
+      <article class="bg-slate-50 rounded-2xl ring-1 ring-slate-100 p-6 sm:p-8 mb-8">
+        <h3 class="font-heading text-xl font-bold text-slate-900 mb-3">2.1 Propriété</h3>
+        <p class="text-slate-600 leading-relaxed">
+          Dans un repère du plan, si on représente une situation de proportionnalité, alors on obtient des points <strong class="text-slate-900">alignés avec l'origine</strong> du repère.
+        </p>
+        <p class="text-slate-600 leading-relaxed mt-2">
+          Réciproquement, si on a des points alignés avec l'origine du repère, alors cette représentation graphique illustre une situation de proportionnalité.
+        </p>
+      </article>
+
+      <article class="mb-8">
+        <h3 class="font-heading text-xl font-bold text-slate-900 mb-4">2.2 Exemple</h3>
+        <div class="grid lg:grid-cols-2 gap-6 items-center">
+          <div class="overflow-x-auto rounded-xl ring-1 ring-slate-200">
+            <table class="w-full text-center border-collapse min-w-[320px]">
+              <tbody>
+                <tr class="bg-brand-600 text-white">
+                  <td class="px-4 py-3 font-bold text-left">Grandeur 1</td>
+                  <td class="px-4 py-3 border-l border-brand-500">10</td>
+                  <td class="px-4 py-3 border-l border-brand-500">20</td>
+                  <td class="px-4 py-3 border-l border-brand-500">25</td>
+                </tr>
+                <tr class="bg-brand-50">
+                  <td class="px-4 py-3 font-bold text-left text-brand-800">Grandeur 2</td>
+                  <td class="px-4 py-3 border-l border-brand-100">4</td>
+                  <td class="px-4 py-3 border-l border-brand-100">8</td>
+                  <td class="px-4 py-3 border-l border-brand-100">10</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="bg-white rounded-xl ring-1 ring-slate-200 p-4">
+            <svg viewBox="0 0 380 260" class="w-full h-auto">
+              <line x1="40" y1="10" x2="40" y2="230" stroke="#cbd5e1" stroke-width="1.5"/>
+              <line x1="40" y1="230" x2="360" y2="230" stroke="#cbd5e1" stroke-width="1.5"/>
+              <g stroke="#e2e8f0" stroke-width="1">
+                <line x1="86" y1="10" x2="86" y2="230"/><line x1="132" y1="10" x2="132" y2="230"/>
+                <line x1="178" y1="10" x2="178" y2="230"/><line x1="224" y1="10" x2="224" y2="230"/>
+                <line x1="270" y1="10" x2="270" y2="230"/><line x1="316" y1="10" x2="316" y2="230"/>
+                <line x1="40" y1="194" x2="360" y2="194"/><line x1="40" y1="158" x2="360" y2="158"/>
+                <line x1="40" y1="122" x2="360" y2="122"/><line x1="40" y1="86" x2="360" y2="86"/>
+                <line x1="40" y1="50" x2="360" y2="50"/>
+              </g>
+              <line x1="40" y1="230" x2="330" y2="14" stroke="#3a66f5" stroke-width="2.5"/>
+              <circle cx="132" cy="158" r="5" fill="#2748d6"/>
+              <circle cx="178" cy="122" r="5" fill="#2748d6"/>
+              <circle cx="201" cy="104" r="5" fill="#2748d6"/>
+              <text x="140" y="150" font-size="11" fill="#1c2f86" font-weight="600">(10,4)</text>
+              <text x="186" y="114" font-size="11" fill="#1c2f86" font-weight="600">(20,8)</text>
+              <text x="208" y="96" font-size="11" fill="#1c2f86" font-weight="600">(25,10)</text>
+              <text x="335" y="245" font-size="11" fill="#64748b">Grandeur 1</text>
+              <text x="8" y="15" font-size="11" fill="#64748b">Grandeur 2</text>
+              <text x="30" y="243" font-size="10" fill="#94a3b8">0</text>
+            </svg>
+          </div>
+        </div>
+        <p class="text-slate-600 leading-relaxed mt-4">
+          Cette situation de proportionnalité est représentée graphiquement dans un repère par des points alignés avec l'origine.
+        </p>
+      </article>
+
+      <article class="grid sm:grid-cols-2 gap-6">
+        <div class="bg-emerald-50 rounded-2xl ring-1 ring-emerald-100 p-5">
+          <svg viewBox="0 0 200 160" class="w-full h-auto bg-white rounded-lg ring-1 ring-emerald-100">
+            <line x1="25" y1="10" x2="25" y2="140" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="25" y1="140" x2="185" y2="140" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="25" y1="140" x2="175" y2="18" stroke="#10b981" stroke-width="3"/>
+            <circle cx="65" cy="112" r="4" fill="#047857"/>
+            <circle cx="105" cy="84" r="4" fill="#047857"/>
+            <circle cx="150" cy="52" r="4" fill="#047857"/>
+            <text x="18" y="153" font-size="10" fill="#64748b">O</text>
+          </svg>
+          <p class="text-center text-emerald-700 font-bold text-sm mt-3">✓ C'est une situation de proportionnalité</p>
+          <p class="text-center text-emerald-600/80 text-xs mt-1">Les points sont alignés et passent par l'origine.</p>
+        </div>
+        <div class="bg-rose-50 rounded-2xl ring-1 ring-rose-100 p-5">
+          <svg viewBox="0 0 200 160" class="w-full h-auto bg-white rounded-lg ring-1 ring-rose-100">
+            <line x1="25" y1="10" x2="25" y2="140" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="25" y1="140" x2="185" y2="140" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="45" y1="118" x2="175" y2="38" stroke="#f43f5e" stroke-width="3"/>
+            <circle cx="65" cy="105" r="4" fill="#be123c"/>
+            <circle cx="105" cy="80" r="4" fill="#be123c"/>
+            <circle cx="150" cy="52" r="4" fill="#be123c"/>
+            <text x="18" y="153" font-size="10" fill="#64748b">O</text>
+          </svg>
+          <p class="text-center text-rose-700 font-bold text-sm mt-3">✗ Ce n'est pas une situation de proportionnalité</p>
+          <p class="text-center text-rose-600/80 text-xs mt-1">La droite ne passe pas par l'origine.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- SECTION III -->
+  <section id="applications" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 scroll-mt-16">
+    <div class="mb-10">
+      <span class="text-brand-600 font-bold text-sm tracking-wide uppercase">Partie III</span>
+      <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">Exemples de situations de proportionnalité</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <article class="bg-white rounded-2xl shadow-soft ring-1 ring-slate-100 p-6 sm:p-8">
+        <h3 class="font-heading text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <span class="text-2xl">📊</span> 3.1 Pourcentage
+        </h3>
+
+        <div class="mb-5">
+          <p class="text-sm font-bold text-brand-700 uppercase tracking-wide mb-2">Exemple 1</p>
+          <p class="text-slate-600 leading-relaxed mb-3">Dans une classe de 25 élèves, seulement 20 ont obtenu la moyenne au dernier devoir. Quel est le pourcentage des élèves de cette classe qui ont la moyenne ?</p>
+          <div class="overflow-x-auto rounded-xl ring-1 ring-slate-200">
+            <table class="w-full text-center border-collapse text-sm">
+              <tbody>
+                <tr class="bg-slate-50"><td class="px-3 py-2 text-left font-medium">Nombre d'élèves qui ont la moyenne</td><td class="px-3 py-2 border-l border-slate-200 font-semibold">20</td><td class="px-3 py-2 border-l border-slate-200 font-semibold text-brand-700">x</td></tr>
+                <tr><td class="px-3 py-2 text-left font-medium">Nombre total des élèves</td><td class="px-3 py-2 border-l border-slate-200 font-semibold">25</td><td class="px-3 py-2 border-l border-slate-200 font-semibold">100</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-sm font-bold text-brand-700 uppercase tracking-wide mb-2">Exemple 2</p>
+          <p class="text-slate-600 leading-relaxed mb-3">Dans un magasin, tous les prix sont augmentés de 20%. Calculer le prix d'un article qui coûtait 13,5 dh.</p>
+          <div class="overflow-x-auto rounded-xl ring-1 ring-slate-200">
+            <table class="w-full text-center border-collapse text-sm">
+              <tbody>
+                <tr class="bg-slate-50"><td class="px-3 py-2 text-left font-medium">Ancien prix en dh</td><td class="px-3 py-2 border-l border-slate-200 font-semibold">100</td><td class="px-3 py-2 border-l border-slate-200 font-semibold">13,5</td></tr>
+                <tr><td class="px-3 py-2 text-left font-medium">Augmentation en dh</td><td class="px-3 py-2 border-l border-slate-200 font-semibold">20</td><td class="px-3 py-2 border-l border-slate-200 font-semibold text-brand-700">x</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </article>
+
+      <div class="flex flex-col gap-6">
+        <article class="bg-white rounded-2xl shadow-soft ring-1 ring-slate-100 p-6 sm:p-8">
+          <h3 class="font-heading text-xl font-bold text-slate-900 mb-3 flex items-center gap-2">
+            <span class="text-2xl">🗺️</span> 3.2 Échelle
+          </h3>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            Lorsqu'on agrandit ou réduit une figure géométrique, les longueurs de la figure obtenue sont proportionnelles à celles de la figure de départ. Le coefficient d'agrandissement ou de réduction est aussi appelé <strong class="text-slate-900">échelle</strong>.
+          </p>
+          <div class="bg-brand-50 rounded-xl p-4 text-center font-heading font-bold text-brand-700">
+            e = <span class="frac"><span class="num">Longueur sur le plan</span><span class="den">Longueur réelle</span></span>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-2xl shadow-soft ring-1 ring-slate-100 p-6 sm:p-8">
+          <h3 class="font-heading text-xl font-bold text-slate-900 mb-3 flex items-center gap-2">
+            <span class="text-2xl">🚗</span> 3.3 Mouvement uniforme, vitesse moyenne
+          </h3>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            Le mouvement est dit <strong class="text-slate-900">uniforme</strong> si la durée du parcours est proportionnelle à la distance parcourue. Le coefficient de proportionnalité est alors appelé <strong class="text-slate-900">vitesse moyenne</strong> du mobile.
+          </p>
+          <p class="text-slate-600 mb-3">Si <em>d</em> = distance, <em>t</em> = durée, <em>v</em> = vitesse moyenne :</p>
+          <div class="flex flex-wrap gap-3 justify-center">
+            <span class="bg-brand-50 rounded-lg px-4 py-2 font-heading font-bold text-brand-700 text-sm">d = v × t</span>
+            <span class="bg-brand-50 rounded-lg px-4 py-2 font-heading font-bold text-brand-700 text-sm">v = <span class="frac"><span class="num">d</span><span class="den">t</span></span></span>
+            <span class="bg-brand-50 rounded-lg px-4 py-2 font-heading font-bold text-brand-700 text-sm">t = <span class="frac"><span class="num">d</span><span class="den">v</span></span></span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXERCICES -->
+  <section id="exercices" class="bg-slate-900 scroll-mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+      <div class="mb-10 text-center">
+        <span class="text-brand-300 font-bold text-sm tracking-wide uppercase">Exercice n°7 · Niveau 2APIC</span>
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-white mt-1">Exercices sur la proportionnalité</h2>
+        <p class="text-slate-400 mt-3 max-w-2xl mx-auto">Clique sur « Voir la correction » pour vérifier ta réponse après avoir cherché chaque exercice.</p>
+      </div>
+
+      <div class="grid gap-6">
+
+        <!-- EX 1 -->
+        <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+          <div class="p-6 sm:p-8">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h3 class="font-heading text-lg font-bold text-slate-900">Exercice 1</h3>
+              <span class="star text-sm shrink-0">★★★</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed mb-4">Les tableaux suivants sont-ils des tableaux de proportionnalité ? Si oui, donnez le coefficient de proportionnalité.</p>
+            <div class="grid sm:grid-cols-3 gap-4">
+              <table class="w-full text-center border-collapse ring-1 ring-slate-200 rounded-lg overflow-hidden text-sm">
+                <tbody><tr class="bg-slate-50"><td class="px-3 py-2 border-b border-slate-200">3,5</td><td class="px-3 py-2 border-b border-l border-slate-200">8</td></tr><tr><td class="px-3 py-2">7</td><td class="px-3 py-2 border-l border-slate-200">15</td></tr></tbody>
+              </table>
+              <table class="w-full text-center border-collapse ring-1 ring-slate-200 rounded-lg overflow-hidden text-sm">
+                <tbody><tr class="bg-slate-50"><td class="px-3 py-2 border-b border-slate-200">2,4</td><td class="px-3 py-2 border-b border-l border-slate-200">88</td></tr><tr><td class="px-3 py-2">1,5</td><td class="px-3 py-2 border-l border-slate-200">55</td></tr></tbody>
+              </table>
+              <table class="w-full text-center border-collapse ring-1 ring-slate-200 rounded-lg overflow-hidden text-sm">
+                <tbody><tr class="bg-slate-50"><td class="px-3 py-2 border-b border-slate-200">5,6</td><td class="px-3 py-2 border-b border-l border-slate-200">7</td><td class="px-3 py-2 border-b border-l border-slate-200">9</td></tr><tr><td class="px-3 py-2">8</td><td class="px-3 py-2 border-l border-slate-200">10</td><td class="px-3 py-2 border-l border-slate-200">13</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+          <button onclick="toggleCorrection('c1', this)" class="w-full flex items-center justify-center gap-2 bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold text-sm py-3.5 transition">
+            <span class="btn-label">Voir la correction</span>
+            <svg class="chevron w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="c1" class="correction-panel">
+            <div class="correction-inner bg-emerald-50 px-6 sm:px-8">
+              <div class="py-6 space-y-2 text-sm text-slate-700 leading-relaxed border-t border-emerald-100">
+                <p><strong>Tableau 1 :</strong> 7 ÷ 3,5 = 2 et 15 ÷ 8 = 1,875 → les coefficients sont différents → <strong class="text-rose-600">ce n'est pas</strong> un tableau de proportionnalité.</p>
+                <p><strong>Tableau 2 :</strong> 1,5 ÷ 2,4 = 0,625 et 55 ÷ 88 = 0,625 → même coefficient → <strong class="text-emerald-700">c'est</strong> un tableau de proportionnalité, coefficient = <strong>0,625</strong>.</p>
+                <p><strong>Tableau 3 :</strong> 8 ÷ 5,6 ≈ 1,43 ; 10 ÷ 7 ≈ 1,43 ; mais 13 ÷ 9 ≈ 1,44 → coefficient non constant → <strong class="text-rose-600">ce n'est pas</strong> un tableau de proportionnalité.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- EX 2 -->
+        <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+          <div class="p-6 sm:p-8">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h3 class="font-heading text-lg font-bold text-slate-900">Exercice 2</h3>
+              <span class="star text-sm shrink-0">★★★</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed mb-4">Compléter les tableaux de proportionnalité suivants. Indiquer les coefficients de proportionnalité par une flèche.</p>
+            <div class="space-y-4">
+              <div class="overflow-x-auto rounded-lg ring-1 ring-slate-200">
+                <table class="w-full text-center border-collapse text-sm min-w-[380px]">
+                  <tbody>
+                    <tr class="bg-slate-50"><td class="px-3 py-2 border-b border-slate-200">25</td><td class="px-3 py-2 border-b border-l border-slate-200">32</td><td class="px-3 py-2 border-b border-l border-slate-200 text-slate-300">?</td><td class="px-3 py-2 border-b border-l border-slate-200">50</td><td class="px-3 py-2 border-b border-l border-slate-200 text-slate-300">?</td></tr>
+                    <tr><td class="px-3 py-2">10</td><td class="px-3 py-2 border-l border-slate-200 text-slate-300">?</td><td class="px-3 py-2 border-l border-slate-200">47</td><td class="px-3 py-2 border-l border-slate-200 text-slate-300">?</td><td class="px-3 py-2 border-l border-slate-200">4,7</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="overflow-x-auto rounded-lg ring-1 ring-slate-200">
+                <table class="w-full text-center border-collapse text-sm min-w-[380px]">
+                  <tbody>
+                    <tr class="bg-slate-50"><td class="px-3 py-2 border-b border-slate-200 text-slate-300">?</td><td class="px-3 py-2 border-b border-l border-slate-200">12</td><td class="px-3 py-2 border-b border-l border-slate-200 text-slate-300">?</td><td class="px-3 py-2 border-b border-l border-slate-200">90</td><td class="px-3 py-2 border-b border-l border-slate-200">240</td></tr>
+                    <tr><td class="px-3 py-2">0,1</td><td class="px-3 py-2 border-l border-slate-200">0,2</td><td class="px-3 py-2 border-l border-slate-200">1</td><td class="px-3 py-2 border-l border-slate-200 text-slate-300">?</td><td class="px-3 py-2 border-l border-slate-200 text-slate-300">?</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <button onclick="toggleCorrection('c2', this)" class="w-full flex items-center justify-center gap-2 bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold text-sm py-3.5 transition">
+            <span class="btn-label">Voir la correction</span>
+            <svg class="chevron w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="c2" class="correction-panel">
+            <div class="correction-inner bg-emerald-50 px-6 sm:px-8">
+              <div class="py-6 space-y-3 text-sm text-slate-700 leading-relaxed border-t border-emerald-100">
+                <p><strong>Tableau 1 :</strong> coefficient = 10 ÷ 25 = <strong>0,4</strong> (ligne 2 = ligne 1 × 0,4)</p>
+                <div class="overflow-x-auto rounded-lg ring-1 ring-emerald-200 bg-white">
+                  <table class="w-full text-center border-collapse text-sm min-w-[380px]">
+                    <tbody>
+                      <tr class="bg-emerald-100/50 font-semibold"><td class="px-3 py-2 border-b border-emerald-100">25</td><td class="px-3 py-2 border-b border-l border-emerald-100">32</td><td class="px-3 py-2 border-b border-l border-emerald-100 text-emerald-700">117,5</td><td class="px-3 py-2 border-b border-l border-emerald-100">50</td><td class="px-3 py-2 border-b border-l border-emerald-100 text-emerald-700">11,75</td></tr>
+                      <tr class="font-semibold"><td class="px-3 py-2">10</td><td class="px-3 py-2 border-l border-emerald-100 text-emerald-700">12,8</td><td class="px-3 py-2 border-l border-emerald-100">47</td><td class="px-3 py-2 border-l border-emerald-100 text-emerald-700">20</td><td class="px-3 py-2 border-l border-emerald-100">4,7</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="pt-2"><strong>Tableau 2 :</strong> coefficient = 0,2 ÷ 12 = 1/60 (ligne 1 = ligne 2 × 60)</p>
+                <div class="overflow-x-auto rounded-lg ring-1 ring-emerald-200 bg-white">
+                  <table class="w-full text-center border-collapse text-sm min-w-[380px]">
+                    <tbody>
+                      <tr class="bg-emerald-100/50 font-semibold"><td class="px-3 py-2 border-b border-emerald-100 text-emerald-700">6</td><td class="px-3 py-2 border-b border-l border-emerald-100">12</td><td class="px-3 py-2 border-b border-l border-emerald-100 text-emerald-700">60</td><td class="px-3 py-2 border-b border-l border-emerald-100">90</td><td class="px-3 py-2 border-b border-l border-emerald-100">240</td></tr>
+                      <tr class="font-semibold"><td class="px-3 py-2">0,1</td><td class="px-3 py-2 border-l border-emerald-100">0,2</td><td class="px-3 py-2 border-l border-emerald-100">1</td><td class="px-3 py-2 border-l border-emerald-100 text-emerald-700">1,5</td><td class="px-3 py-2 border-l border-emerald-100 text-emerald-700">4</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- EX 3 -->
+        <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+          <div class="p-6 sm:p-8">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h3 class="font-heading text-lg font-bold text-slate-900">Exercice 3</h3>
+              <span class="star text-sm shrink-0">★★★</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed mb-3">2 kg de bananes coûtent 16 DH.</p>
+            <ol class="list-decimal list-inside text-slate-600 space-y-1.5">
+              <li>Quel est le prix au kilo ? (Combien coûte 1 kg de banane ?)</li>
+              <li>Combien coûtent 3,5 kg de bananes ?</li>
+              <li>Quelle masse de bananes puis-je acheter avec 58 DH ?</li>
+            </ol>
+          </div>
+          <button onclick="toggleCorrection('c3', this)" class="w-full flex items-center justify-center gap-2 bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold text-sm py-3.5 transition">
+            <span class="btn-label">Voir la correction</span>
+            <svg class="chevron w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="c3" class="correction-panel">
+            <div class="correction-inner bg-emerald-50 px-6 sm:px-8">
+              <ol class="list-decimal list-inside py-6 space-y-2 text-sm text-slate-700 leading-relaxed border-t border-emerald-100">
+                <li>Prix au kilo = 16 ÷ 2 = <strong>8 DH/kg</strong></li>
+                <li>Prix de 3,5 kg = 3,5 × 8 = <strong>28 DH</strong></li>
+                <li>Masse pour 58 DH = 58 ÷ 8 = <strong>7,25 kg</strong></li>
+              </ol>
+            </div>
+          </div>
+        </article>
+
+        <!-- EX 4 -->
+        <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+          <div class="p-6 sm:p-8">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h3 class="font-heading text-lg font-bold text-slate-900">Exercice 4</h3>
+              <span class="star text-sm shrink-0">★★★</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed mb-3">Il faut 20 L de lait pour faire 3 L de crème.</p>
+            <ol class="list-decimal list-inside text-slate-600 space-y-1.5">
+              <li>Combien faut-il de lait pour faire 4,5 L de crème ?</li>
+              <li>Combien de litres de crème peut-on faire avec 1,5 L de lait ?</li>
+            </ol>
+          </div>
+          <button onclick="toggleCorrection('c4', this)" class="w-full flex items-center justify-center gap-2 bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold text-sm py-3.5 transition">
+            <span class="btn-label">Voir la correction</span>
+            <svg class="chevron w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="c4" class="correction-panel">
+            <div class="correction-inner bg-emerald-50 px-6 sm:px-8">
+              <div class="py-6 space-y-2 text-sm text-slate-700 leading-relaxed border-t border-emerald-100">
+                <p>Coefficient (crème / lait) = 3 ÷ 20 = <strong>0,15</strong></p>
+                <ol class="list-decimal list-inside space-y-1.5">
+                  <li>Lait pour 4,5 L de crème = 4,5 ÷ 0,15 = <strong>30 L</strong></li>
+                  <li>Crème avec 1,5 L de lait = 1,5 × 0,15 = <strong>0,225 L</strong></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- EX 5 -->
+        <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+          <div class="p-6 sm:p-8">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h3 class="font-heading text-lg font-bold text-slate-900">Exercice 5</h3>
+              <span class="star text-sm shrink-0">★★★</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed">Dans un collège, 300 élèves sont inscrits à l'AS (Association sportive). 40% de ces 300 élèves pratiquent la boxe. Quel est le nombre d'élèves pratiquant la boxe dans ce collège ?</p>
+          </div>
+          <button onclick="toggleCorrection('c5', this)" class="w-full flex items-center justify-center gap-2 bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold text-sm py-3.5 transition">
+            <span class="btn-label">Voir la correction</span>
+            <svg class="chevron w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="c5" class="correction-panel">
+            <div class="correction-inner bg-emerald-50 px-6 sm:px-8">
+              <div class="py-6 text-sm text-slate-700 leading-relaxed border-t border-emerald-100">
+                <p>Nombre d'élèves pratiquant la boxe = 300 × 40 ÷ 100 = 300 × 0,40 = <strong>120 élèves</strong></p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- EX 6 -->
+        <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+          <div class="p-6 sm:p-8">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h3 class="font-heading text-lg font-bold text-slate-900">Exercice 6</h3>
+              <span class="star text-sm shrink-0">★★★</span>
+            </div>
+            <ol class="list-decimal list-inside text-slate-600 space-y-2">
+              <li>Transformer les vitesses ci-dessous en km/h : 20 m/s ;; 14 m/s ;; 200 m/s</li>
+              <li>Transformer les vitesses ci-dessous en m/s : 90 km/h ;; 5 km/h ;; 1200 km/h</li>
+            </ol>
+          </div>
+          <button onclick="toggleCorrection('c6', this)" class="w-full flex items-center justify-center gap-2 bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold text-sm py-3.5 transition">
+            <span class="btn-label">Voir la correction</span>
+            <svg class="chevron w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="c6" class="correction-panel">
+            <div class="correction-inner bg-emerald-50 px-6 sm:px-8">
+              <div class="py-6 space-y-3 text-sm text-slate-700 leading-relaxed border-t border-emerald-100">
+                <p><strong>1. m/s → km/h</strong> (on multiplie par 3,6) :<br>
+                  20 × 3,6 = <strong>72 km/h</strong> ;; 14 × 3,6 = <strong>50,4 km/h</strong> ;; 200 × 3,6 = <strong>720 km/h</strong>
+                </p>
+                <p><strong>2. km/h → m/s</strong> (on divise par 3,6) :<br>
+                  90 ÷ 3,6 = <strong>25 m/s</strong> ;; 5 ÷ 3,6 ≈ <strong>1,39 m/s</strong> ;; 1200 ÷ 3,6 ≈ <strong>333,33 m/s</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- EX 7 -->
+        <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+          <div class="p-6 sm:p-8">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h3 class="font-heading text-lg font-bold text-slate-900">Exercice 7</h3>
+              <span class="star text-sm shrink-0">★★★</span>
+            </div>
+            <ol class="list-decimal list-inside text-slate-600 space-y-2">
+              <li>Dans une classe de 30 élèves, il y a 18 filles. Quel est le pourcentage de filles dans cette classe ?</li>
+              <li>Un fromage pesant 500 g compte 40% de matière grasse. Quelle est la masse de matière grasse dans ce fromage ?</li>
+              <li>Les personnes de plus de 65 ans ne payent que 75% du prix d'un billet de train. M. Dupont a 70 ans et a payé son billet Paris–Strasbourg 34,35 €. Quel est le prix tarif plein de ce billet ?</li>
+            </ol>
+          </div>
+          <button onclick="toggleCorrection('c7', this)" class="w-full flex items-center justify-center gap-2 bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold text-sm py-3.5 transition">
+            <span class="btn-label">Voir la correction</span>
+            <svg class="chevron w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="c7" class="correction-panel">
+            <div class="correction-inner bg-emerald-50 px-6 sm:px-8">
+              <ol class="list-decimal list-inside py-6 space-y-2 text-sm text-slate-700 leading-relaxed border-t border-emerald-100">
+                <li>Pourcentage de filles = 18 ÷ 30 × 100 = <strong>60%</strong></li>
+                <li>Masse de matière grasse = 500 × 40 ÷ 100 = <strong>200 g</strong></li>
+                <li>Prix tarif plein = 34,35 ÷ 75 × 100 = 34,35 ÷ 0,75 = <strong>45,80 €</strong></li>
+              </ol>
+            </div>
+          </div>
+        </article>
+
+        <!-- EX 8 -->
+        <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+          <div class="p-6 sm:p-8">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h3 class="font-heading text-lg font-bold text-slate-900">Exercice 8</h3>
+              <span class="star text-sm shrink-0">★★★</span>
+            </div>
+            <p class="text-slate-600 leading-relaxed">Le 16 août 2009, aux championnats du monde d'athlétisme de Berlin, Usain Bolt a établi le nouveau record du 100 m en 9,58 s. Quatre jours plus tard, il a battu le record du 200 m en 19,19 s. Usain Bolt court-il plus vite le 100 m ou le 200 m ?</p>
+          </div>
+          <button onclick="toggleCorrection('c8', this)" class="w-full flex items-center justify-center gap-2 bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold text-sm py-3.5 transition">
+            <span class="btn-label">Voir la correction</span>
+            <svg class="chevron w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="c8" class="correction-panel">
+            <div class="correction-inner bg-emerald-50 px-6 sm:px-8">
+              <div class="py-6 space-y-2 text-sm text-slate-700 leading-relaxed border-t border-emerald-100">
+                <p>Vitesse moyenne sur 100 m : v = 100 ÷ 9,58 ≈ <strong>10,44 m/s</strong></p>
+                <p>Vitesse moyenne sur 200 m : v = 200 ÷ 19,19 ≈ <strong>10,42 m/s</strong></p>
+                <p class="pt-1">Comme 10,44 &gt; 10,42, <strong class="text-emerald-700">Usain Bolt a couru plus vite le 100 m</strong> que le 200 m.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="bg-slate-950 text-slate-400">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div>
+        <a href="/" class="flex items-center gap-2.5 justify-center sm:justify-start">
+          <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+          <span class="font-heading font-bold text-white leading-tight">
+            <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+          </span>
+        </a>
+        <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+        <p class="text-xs text-slate-500 mt-2">2ème APIC · Chapitre 06 — Proportionnalité · Collège Mhamed 9</p>
+      </div>
+      <p class="text-sm text-slate-400">
+        Prof : <span class="font-bold text-white">LAHBIB ELKEANTAOUI</span>
+      </p>
+    </div>
+    <div class="border-t border-slate-800 mt-6 pt-6 text-center text-xs text-slate-600">
+      © 2026 — Cours et exercices de mathématiques, proportionnalité.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const iconOpen = document.getElementById('menuIconOpen');
+  const iconClose = document.getElementById('menuIconClose');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+  }));
+
+  // Sticky nav shadow
+  window.addEventListener('scroll', () => {
+    document.getElementById('topnav').classList.toggle('scrolled', window.scrollY > 8);
+  });
+
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  // Correction toggle
+  function toggleCorrection(id, btn) {
+    const panel = document.getElementById(id);
+    const chevron = btn.querySelector('.chevron');
+    const label = btn.querySelector('.btn-label');
+    const isOpen = panel.classList.toggle('open');
+    chevron.classList.toggle('open', isOpen);
+    label.textContent = isOpen ? 'Masquer la correction' : 'Voir la correction';
+  }
+</script>
+
+</body>
+</html>

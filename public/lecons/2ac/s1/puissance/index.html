@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Les Puissances &mdash; 2AC</title>
+<meta name="description" content="Fiche de cours compl&egrave;te et s&eacute;rie d'exercices corrig&eacute;s sur les puissances des nombres rationnels &mdash; Niveau 2&egrave;me ann&eacute;e coll&egrave;ge.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Poppins','ui-sans-serif','system-ui'] },
+        colors: {
+          brand: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+          indigo: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+          sun: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' }
+        }
+      }
+    }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Poppins', ui-sans-serif, system-ui; }
+  sup, sub { line-height: 0; }
+  ::selection { background: #c7d2fe; }
+  .bg-hero {
+    background-image: linear-gradient(135deg, rgba(18,41,76,0.92), rgba(63,106,156,0.85)), url('https://images.unsplash.com/photo-1509869175650-a1d97972541a?q=80&w=1200&auto=format&fit=crop');
+    background-size: cover; background-position: center;
+  }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100">
+
+<header class="bg-hero text-white">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+    <a href="#top" class="flex items-center gap-2 text-lg font-extrabold tracking-tight">
+      <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-9 w-9 shrink-0 rounded-full">
+      <span>Les Puissances</span>
+    </a>
+    <div class="flex items-center gap-1 sm:hidden">
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="rounded-lg p-2 hover:bg-white/10">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+      <button id="menu-btn" class="rounded-lg p-2 hover:bg-white/10" aria-label="Ouvrir le menu" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+      </button>
+    </div>
+    <ul class="hidden gap-6 text-sm font-semibold sm:flex sm:items-center">
+      <li><a href="/" class="transition hover:text-brand-200">← Portail</a></li>
+      <li><a href="#fiche" class="transition hover:text-brand-200">Fiche</a></li>
+      <li><a href="#cours" class="transition hover:text-brand-200">Cours</a></li>
+      <li><a href="#exercices" class="transition hover:text-brand-200">S&eacute;rie d'exercices</a></li>
+      <li>
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="w-9 h-9 flex items-center justify-center rounded-full border border-white/25 hover:bg-white/10 transition-colors">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </li>
+    </ul>
+  </nav>
+  <div id="mobile-nav" class="hidden border-t border-white/10 px-4 pb-4 sm:hidden">
+    <ul class="flex flex-col gap-3 pt-3 text-sm font-semibold">
+      <li><a href="/">← Portail</a></li>
+      <li><a href="#fiche">Fiche</a></li>
+      <li><a href="#cours">Cours</a></li>
+      <li><a href="#exercices">S&eacute;rie d'exercices</a></li>
+    </ul>
+  </div>
+
+  <div id="top" class="mx-auto max-w-6xl px-4 pb-16 pt-6 text-center sm:px-6 sm:pb-24 lg:px-8">
+    <span class="inline-block rounded-full bg-white/15 px-4 py-1 text-xs font-bold uppercase tracking-widest">Maths &middot; 2&egrave;me Ann&eacute;e Coll&egrave;ge</span>
+    <h1 class="mt-4 text-3xl font-extrabold leading-tight sm:text-5xl">Les Puissances<br class="hidden sm:block"> d'un nombre rationnel</h1>
+    <p class="mx-auto mt-4 max-w-2xl text-sm text-brand-100 sm:text-base">Fiche p&eacute;dagogique compl&egrave;te &mdash; exposants positifs et n&eacute;gatifs, op&eacute;rations sur les puissances, &eacute;criture scientifique &mdash; suivie d'une s&eacute;rie de 14 exercices enti&egrave;rement corrig&eacute;s.</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href="#cours" class="rounded-full bg-white px-6 py-3 text-sm font-bold text-brand-700 shadow-lg transition hover:scale-105">Voir le cours</a>
+      <a href="#exercices" class="rounded-full bg-brand-800/60 px-6 py-3 text-sm font-bold text-white ring-1 ring-white/40 transition hover:scale-105 hover:bg-brand-800/80">S'entra&icirc;ner (S&eacute;rie 7)</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ===================== FICHE PEDAGOGIQUE ===================== -->
+<section id="fiche" class="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
+  <div class="mb-10 text-center">
+    <h2 class="text-2xl font-extrabold text-brand-700 dark:text-brand-300 sm:text-3xl">Fiche p&eacute;dagogique</h2>
+    <p class="mt-2 text-slate-500 dark:text-slate-400">Chapitre 7 &middot; Les puissances</p>
+  </div>
+  <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+    <article class="rounded-2xl border border-amber-200 bg-amber-50 p-6 shadow-sm dark:border-amber-900 dark:bg-amber-950/30">
+      <h3 class="mb-3 flex items-center gap-2 text-lg font-bold text-amber-700 dark:text-amber-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        Objectifs d'apprentissage
+      </h3>
+      <ul class="list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+        <li>Conna&icirc;tre et utiliser la puissance d'un nombre rationnel &agrave; exposant positif ou n&eacute;gatif.</li>
+        <li>D&eacute;terminer le signe d'une puissance d'un nombre n&eacute;gatif.</li>
+        <li>Ma&icirc;triser les op&eacute;rations sur les puissances (produit, quotient, puissance d'une puissance).</li>
+        <li>&Eacute;crire un nombre en notation scientifique.</li>
+      </ul>
+    </article>
+    <article class="rounded-2xl border border-sky-200 bg-sky-50 p-6 shadow-sm dark:border-sky-900 dark:bg-sky-950/30">
+      <h3 class="mb-3 flex items-center gap-2 text-lg font-bold text-sky-700 dark:text-sky-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/></svg>
+        Pr&eacute;requis
+      </h3>
+      <ul class="list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+        <li>Op&eacute;rations (addition, soustraction, multiplication, division) sur les nombres rationnels.</li>
+        <li>Notion de puissance vue en 1&egrave;re ann&eacute;e coll&egrave;ge (exposant entier naturel).</li>
+        <li>Simplification et comparaison de fractions.</li>
+      </ul>
+    </article>
+    <article class="rounded-2xl border border-rose-200 bg-rose-50 p-6 shadow-sm dark:border-rose-900 dark:bg-rose-950/30">
+      <h3 class="mb-3 flex items-center gap-2 text-lg font-bold text-rose-700 dark:text-rose-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg>
+        Plan du chapitre
+      </h3>
+      <p class="text-sm leading-relaxed text-slate-700 dark:text-slate-300">I. Puissance d'un nombre rationnel &middot; II. Op&eacute;rations sur les puissances &middot; III. L'&eacute;criture scientifique.</p>
+    </article>
+    <article class="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 shadow-sm dark:border-emerald-900 dark:bg-emerald-950/30">
+      <h3 class="mb-3 flex items-center gap-2 text-lg font-bold text-emerald-700 dark:text-emerald-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/></svg>
+        S&eacute;rie d'entra&icirc;nement
+      </h3>
+      <p class="text-sm leading-relaxed text-slate-700 dark:text-slate-300">14 exercices progressifs, tous corrig&eacute;s en un clic pour s'auto-&eacute;valuer.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ===================== COURS ===================== -->
+<section id="cours" class="bg-white py-14 dark:bg-slate-800/40">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-10 text-center">
+      <h2 class="text-2xl font-extrabold text-brand-700 dark:text-brand-300 sm:text-3xl">Cours</h2>
+      <p class="mt-2 text-slate-500 dark:text-slate-400">R&egrave;gles, exemples et applications</p>
+    </div>
+
+<!-- I. Puissance d'un nombre rationnel -->
+<article class="mb-14">
+  <h3 class="mb-4 flex items-center gap-3 text-xl font-bold text-slate-800 dark:text-slate-100">
+    <span class="flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white">I</span>
+    Puissance d'un nombre rationnel
+  </h3>
+
+  <h4 class="mb-2 mt-4 font-bold text-brand-700 dark:text-brand-300">1) Puissances &agrave; exposant positif</h4>
+  <div class="rounded-2xl bg-rose-50 p-5 text-sm leading-relaxed text-rose-900 ring-1 ring-rose-100 dark:bg-rose-950/30 dark:text-rose-200 dark:ring-rose-900">
+    <strong>D&eacute;finition&nbsp;:</strong> Soient <em>a</em> un nombre rationnel et <em>n</em> un nombre entier strictement sup&eacute;rieur &agrave; 1.
+    <span class="mt-2 block font-mono text-base">a<sup>n</sup> = a &times; a &times; a &times; ... &times; a &nbsp;(<em>n</em> facteurs)</span>
+  </div>
+  <div class="mt-4 rounded-2xl border border-sky-200 bg-sky-50 p-5 text-sm leading-relaxed text-sky-900 dark:border-sky-900 dark:bg-sky-950/20 dark:text-sky-200">
+    <strong>Vocabulaire&nbsp;:</strong>
+    <ul class="mt-2 list-disc space-y-1 pl-5">
+      <li>a<sup>n</sup> est une puissance du nombre <em>a</em> et se lit &laquo;&nbsp;<em>a</em> exposant <em>n</em>&nbsp;&raquo; ou &laquo;&nbsp;<em>a</em> puissance <em>n</em>&nbsp;&raquo;. Le nombre <em>n</em> est appel&eacute; <strong>exposant</strong>.</li>
+      <li>a<sup>2</sup> se lit &laquo;&nbsp;<em>a</em> au carr&eacute;&nbsp;&raquo; &nbsp;&middot;&nbsp; a<sup>3</sup> se lit &laquo;&nbsp;<em>a</em> au cube&nbsp;&raquo;.</li>
+    </ul>
+  </div>
+  <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">11<sup>3</sup> = 11 &times; 11 &times; 11</div>
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">(&minus;5)<sup>2</sup> = (&minus;5) &times; (&minus;5)</div>
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">(<sup>7</sup>&frasl;<sub>9</sub>)<sup>4</sup> = <sup>7</sup>&frasl;<sub>9</sub> &times; <sup>7</sup>&frasl;<sub>9</sub> &times; <sup>7</sup>&frasl;<sub>9</sub> &times; <sup>7</sup>&frasl;<sub>9</sub></div>
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">(<sup>&minus;13</sup>&frasl;<sub>6</sub>)<sup>3</sup> = <sup>&minus;13</sup>&frasl;<sub>6</sub> &times; <sup>&minus;13</sup>&frasl;<sub>6</sub> &times; <sup>&minus;13</sup>&frasl;<sub>6</sub></div>
+  </div>
+
+  <div class="mt-6 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm leading-relaxed text-amber-900 dark:border-amber-900 dark:bg-amber-950/20 dark:text-amber-200">
+    <strong>Cas particulier&nbsp;:</strong> Si <em>a</em> est un nombre rationnel non nul, alors&nbsp;:
+    <span class="mt-2 block font-mono text-base">a<sup>0</sup> = 1 &nbsp;&nbsp;et&nbsp;&nbsp; a<sup>1</sup> = a</span>
+    <p class="mt-2">Exemples&nbsp;: 14<sup>0</sup> = 1&nbsp;;&nbsp; (&minus;15)<sup>0</sup> = 1&nbsp;;&nbsp; 17<sup>1</sup> = 17&nbsp;;&nbsp; (&minus;25)<sup>1</sup> = &minus;25.</p>
+    <p class="mt-2 font-bold">Remarque&nbsp;: la puissance 0<sup>0</sup> n'existe pas.</p>
+  </div>
+
+  <h4 class="mb-2 mt-10 font-bold text-brand-700 dark:text-brand-300">2) Puissances &agrave; exposant n&eacute;gatif</h4>
+  <div class="rounded-2xl bg-rose-50 p-5 text-sm leading-relaxed text-rose-900 ring-1 ring-rose-100 dark:bg-rose-950/30 dark:text-rose-200 dark:ring-rose-900">
+    <strong>D&eacute;finition&nbsp;:</strong> Soient <em>x</em> et <sup>a</sup>&frasl;<sub>b</sub> deux nombres rationnels non nuls et <em>n</em> un entier positif.
+    <span class="mt-2 block font-mono text-base">x<sup>&minus;n</sup> = <sup>1</sup>&frasl;<sub>x<sup>n</sup></sub> &nbsp;&nbsp;et&nbsp;&nbsp; (<sup>a</sup>&frasl;<sub>b</sub>)<sup>&minus;n</sup> = (<sup>b</sup>&frasl;<sub>a</sub>)<sup>n</sup></span>
+  </div>
+  <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">5<sup>&minus;3</sup> = <sup>1</sup>&frasl;<sub>5<sup>3</sup></sub></div>
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">(&minus;11)<sup>&minus;9</sup> = <sup>1</sup>&frasl;<sub>(&minus;11)<sup>9</sup></sub></div>
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">(<sup>5</sup>&frasl;<sub>7</sub>)<sup>&minus;11</sup> = (<sup>7</sup>&frasl;<sub>5</sub>)<sup>11</sup></div>
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">(<sup>&minus;13</sup>&frasl;<sub>25</sub>)<sup>&minus;2</sup> = (<sup>&minus;25</sup>&frasl;<sub>13</sub>)<sup>2</sup></div>
+  </div>
+
+  <h4 class="mb-2 mt-10 font-bold text-brand-700 dark:text-brand-300">3) Le signe d'une puissance d'un nombre n&eacute;gatif</h4>
+  <div class="rounded-2xl border border-sky-200 bg-sky-50 p-5 text-sm leading-relaxed text-sky-900 dark:border-sky-900 dark:bg-sky-950/20 dark:text-sky-200">
+    <strong>Propri&eacute;t&eacute;&nbsp;:</strong> Une puissance d'un nombre rationnel n&eacute;gatif est&nbsp;:
+    <ul class="mt-2 list-disc space-y-1 pl-5">
+      <li><strong>Positive</strong>, si son exposant est un nombre pair.</li>
+      <li><strong>N&eacute;gative</strong>, si son exposant est un nombre impair.</li>
+    </ul>
+  </div>
+  <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">(&minus;125)<sup>12</sup> est <strong class="text-emerald-600">positif</strong>, car 12 est pair.</div>
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">(<sup>&minus;117</sup>&frasl;<sub>19</sub>)<sup>31</sup> est <strong class="text-rose-600">n&eacute;gatif</strong>, car 31 est impair.</div>
+  </div>
+  <div class="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm leading-relaxed text-amber-900 dark:border-amber-900 dark:bg-amber-950/20 dark:text-amber-200">
+    <strong>Remarques importantes&nbsp;:</strong>
+    <p class="mt-2 font-mono">1) (&minus;5)<sup>2</sup> &ne; &minus;5<sup>2</sup> &nbsp;car&nbsp; (&minus;5)<sup>2</sup> = 25 (positif) alors que &minus;5<sup>2</sup> = &minus;25 (n&eacute;gatif, c'est l'oppos&eacute; d'une puissance).</p>
+    <p class="mt-2 font-mono">2) (&minus;5)<sup>3</sup> = &minus;5<sup>3</sup> &nbsp;car les deux valent &minus;125.</p>
+  </div>
+
+  <div class="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+    <h5 class="mb-3 flex items-center gap-2 text-base font-extrabold text-slate-800 dark:text-slate-100">
+      <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-600 text-xs text-white">Ex</span>
+      Exercice d'application &mdash; Calculer
+    </h5>
+    <p class="font-mono text-sm text-slate-700 dark:text-slate-300">25<sup>2</sup> &nbsp;;&nbsp; (<sup>3</sup>&frasl;<sub>4</sub>)<sup>&minus;3</sup> &nbsp;;&nbsp; (<sup>&minus;7</sup>&frasl;<sub>5</sub>)<sup>&minus;3</sup> &nbsp;;&nbsp; (<sup>&minus;9</sup>&frasl;<sub>7</sub>)<sup>&minus;2</sup> &nbsp;;&nbsp; (<sup>&minus;1</sup>&frasl;<sub>2</sub>)<sup>5</sup></p>
+    <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">25<sup>2</sup> = 625</div>
+      <div class="rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">(<sup>3</sup>&frasl;<sub>4</sub>)<sup>&minus;3</sup> = (<sup>4</sup>&frasl;<sub>3</sub>)<sup>3</sup> = <sup>64</sup>&frasl;<sub>27</sub></div>
+      <div class="rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">(<sup>&minus;7</sup>&frasl;<sub>5</sub>)<sup>&minus;3</sup> = (<sup>&minus;5</sup>&frasl;<sub>7</sub>)<sup>3</sup> = <sup>&minus;125</sup>&frasl;<sub>343</sub></div>
+      <div class="rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">(<sup>&minus;9</sup>&frasl;<sub>7</sub>)<sup>&minus;2</sup> = (<sup>&minus;7</sup>&frasl;<sub>9</sub>)<sup>2</sup> = <sup>49</sup>&frasl;<sub>81</sub></div>
+      <div class="rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">(<sup>&minus;1</sup>&frasl;<sub>2</sub>)<sup>5</sup> = <sup>&minus;1</sup>&frasl;<sub>32</sub></div>
+    </div>
+  </div>
+</article>
+
+<!-- II. Les opérations sur les puissances -->
+<article class="mb-14">
+  <h3 class="mb-4 flex items-center gap-3 text-xl font-bold text-slate-800 dark:text-slate-100">
+    <span class="flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white">II</span>
+    Les op&eacute;rations sur les puissances
+  </h3>
+
+  <h4 class="mb-2 mt-4 font-bold text-brand-700 dark:text-brand-300">1) Produit de deux puissances d'un m&ecirc;me nombre</h4>
+  <div class="rounded-2xl bg-rose-50 p-5 text-sm leading-relaxed text-rose-900 ring-1 ring-rose-100 dark:bg-rose-950/30 dark:text-rose-200 dark:ring-rose-900">
+    Soit <em>a</em> un nombre rationnel non nul et <em>m</em>, <em>n</em> deux entiers relatifs.
+    <span class="mt-2 block font-mono text-base">a<sup>n</sup> &times; a<sup>m</sup> = a<sup>n+m</sup></span>
+  </div>
+  <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">11<sup>14</sup> &times; 11<sup>8</sup> = 11<sup>22</sup></div>
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">17<sup>&minus;5</sup> &times; 17<sup>&minus;10</sup> = 17<sup>&minus;15</sup></div>
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">(<sup>&minus;7</sup>&frasl;<sub>5</sub>)<sup>11</sup> &times; (<sup>&minus;7</sup>&frasl;<sub>5</sub>)<sup>&minus;20</sup> = (<sup>&minus;7</sup>&frasl;<sub>5</sub>)<sup>&minus;9</sup></div>
+  </div>
+
+  <h4 class="mb-2 mt-10 font-bold text-brand-700 dark:text-brand-300">2) Produit de deux puissances de m&ecirc;me exposant</h4>
+  <div class="rounded-2xl bg-rose-50 p-5 text-sm leading-relaxed text-rose-900 ring-1 ring-rose-100 dark:bg-rose-950/30 dark:text-rose-200 dark:ring-rose-900">
+    Soient <em>a</em>, <em>b</em> deux nombres rationnels non nuls et <em>n</em> un entier relatif.
+    <span class="mt-2 block font-mono text-base">a<sup>n</sup> &times; b<sup>n</sup> = (a &times; b)<sup>n</sup></span>
+  </div>
+  <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">25<sup>14</sup> &times; 10<sup>14</sup> = 250<sup>14</sup></div>
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">30<sup>&minus;5</sup> &times; 2<sup>&minus;5</sup> = 60<sup>&minus;5</sup></div>
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">(<sup>&minus;5</sup>&frasl;<sub>11</sub>)<sup>11</sup> &times; (<sup>2</sup>&frasl;<sub>7</sub>)<sup>11</sup> = (<sup>&minus;10</sup>&frasl;<sub>77</sub>)<sup>11</sup></div>
+  </div>
+
+  <h4 class="mb-2 mt-10 font-bold text-brand-700 dark:text-brand-300">3) Quotient de deux puissances d'un m&ecirc;me nombre</h4>
+  <div class="rounded-2xl bg-rose-50 p-5 text-sm leading-relaxed text-rose-900 ring-1 ring-rose-100 dark:bg-rose-950/30 dark:text-rose-200 dark:ring-rose-900">
+    Soit <em>a</em> un nombre rationnel non nul et <em>m</em>, <em>n</em> deux entiers relatifs.
+    <span class="mt-2 block font-mono text-base"><sup>a<sup>m</sup></sup>&frasl;<sub>a<sup>n</sup></sub> = a<sup>m&minus;n</sup></span>
+  </div>
+  <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700"><sup>12<sup>23</sup></sup>&frasl;<sub>12<sup>15</sup></sub> = 12<sup>8</sup></div>
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700"><sup>(&minus;9)<sup>&minus;14</sup></sup>&frasl;<sub>(&minus;9)<sup>30</sup></sub> = (&minus;9)<sup>&minus;44</sup></div>
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700"><sup>(7/11)<sup>&minus;17</sup></sup>&frasl;<sub>(7/11)<sup>&minus;20</sup></sub> = (<sup>7</sup>&frasl;<sub>11</sub>)<sup>3</sup></div>
+  </div>
+
+  <h4 class="mb-2 mt-10 font-bold text-brand-700 dark:text-brand-300">4) Quotient de deux puissances de m&ecirc;me exposant</h4>
+  <div class="rounded-2xl bg-rose-50 p-5 text-sm leading-relaxed text-rose-900 ring-1 ring-rose-100 dark:bg-rose-950/30 dark:text-rose-200 dark:ring-rose-900">
+    Soient <em>a</em>, <em>b</em> deux nombres rationnels non nuls et <em>n</em> un entier relatif.
+    <span class="mt-2 block font-mono text-base"><sup>a<sup>n</sup></sup>&frasl;<sub>b<sup>n</sup></sub> = (<sup>a</sup>&frasl;<sub>b</sub>)<sup>n</sup></span>
+  </div>
+  <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700"><sup>16<sup>25</sup></sup>&frasl;<sub>12<sup>25</sup></sub> = (<sup>4</sup>&frasl;<sub>3</sub>)<sup>25</sup></div>
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700"><sup>(&minus;27)<sup>&minus;15</sup></sup>&frasl;<sub>18<sup>&minus;15</sup></sub> = (<sup>&minus;3</sup>&frasl;<sub>2</sub>)<sup>&minus;15</sup></div>
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700"><sup>(2/5)<sup>3</sup></sup>&frasl;<sub>(&minus;1/3)<sup>3</sup></sub> = (<sup>&minus;6</sup>&frasl;<sub>5</sub>)<sup>3</sup></div>
+  </div>
+
+  <h4 class="mb-2 mt-10 font-bold text-brand-700 dark:text-brand-300">5) Puissance d'une puissance</h4>
+  <div class="rounded-2xl bg-rose-50 p-5 text-sm leading-relaxed text-rose-900 ring-1 ring-rose-100 dark:bg-rose-950/30 dark:text-rose-200 dark:ring-rose-900">
+    Soit <em>a</em> un nombre rationnel non nul et <em>m</em>, <em>n</em> deux entiers relatifs.
+    <span class="mt-2 block font-mono text-base">(a<sup>m</sup>)<sup>n</sup> = a<sup>m&times;n</sup></span>
+  </div>
+  <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">(12<sup>&minus;5</sup>)<sup>4</sup> = 12<sup>&minus;20</sup></div>
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">((<sup>&minus;7</sup>&frasl;<sub>6</sub>)<sup>11</sup>)<sup>&minus;6</sup> = (<sup>&minus;7</sup>&frasl;<sub>6</sub>)<sup>&minus;66</sup></div>
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">((&minus;17)<sup>&minus;10</sup>)<sup>&minus;9</sup> = (&minus;17)<sup>90</sup></div>
+  </div>
+
+  <div class="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+    <h5 class="mb-3 flex items-center gap-2 text-base font-extrabold text-slate-800 dark:text-slate-100">
+      <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-600 text-xs text-white">Ex&nbsp;1</span>
+      Ecrire sous la forme a<sup>n</sup> avec n diff&eacute;rent de 1 et &minus;1
+    </h5>
+    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <div class="rounded-xl border border-slate-200 p-4 dark:border-slate-700">
+        <p class="font-mono text-sm">A = <sup>&minus;1</sup>&frasl;<sub>2</sub> &times; (<sup>&minus;1</sup>&frasl;<sub>2</sub>)<sup>2</sup></p>
+        <p class="mt-2 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= (<sup>&minus;1</sup>&frasl;<sub>2</sub>)<sup>3</sup> = <sup>&minus;1</sup>&frasl;<sub>8</sub></p>
+      </div>
+      <div class="rounded-xl border border-slate-200 p-4 dark:border-slate-700">
+        <p class="font-mono text-sm">B = (<sup>11</sup>&frasl;<sub>7</sub>)<sup>11</sup> &times; (<sup>11</sup>&frasl;<sub>7</sub>)<sup>&minus;11</sup></p>
+        <p class="mt-2 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= (<sup>11</sup>&frasl;<sub>7</sub>)<sup>0</sup> = 1</p>
+      </div>
+      <div class="rounded-xl border border-slate-200 p-4 dark:border-slate-700">
+        <p class="font-mono text-sm">C = <sup>5<sup>7</sup></sup>&frasl;<sub>5<sup>6</sup>&times;((5)<sup>2</sup>)<sup>&minus;1</sup></sub></p>
+        <p class="mt-2 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>5<sup>7</sup></sup>&frasl;<sub>5<sup>4</sup></sub> = 5<sup>3</sup> = 125</p>
+      </div>
+      <div class="rounded-xl border border-slate-200 p-4 dark:border-slate-700">
+        <p class="font-mono text-sm">D = <sup>(2/3)<sup>6</sup></sup>&frasl;<sub>((2/3)<sup>2</sup>)<sup>3</sup></sub></p>
+        <p class="mt-2 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= (<sup>2</sup>&frasl;<sub>3</sub> &times; <sup>3</sup>&frasl;<sub>2</sub>)<sup>6</sup> = 1<sup>6</sup> = 1</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+    <h5 class="mb-3 flex items-center gap-2 text-base font-extrabold text-slate-800 dark:text-slate-100">
+      <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-600 text-xs text-white">Ex&nbsp;2</span>
+      Soient a et b deux nombres rationnels non nuls &mdash; transformer en une seule puissance
+    </h5>
+    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <div class="rounded-xl border border-slate-200 p-4 dark:border-slate-700">
+        <p class="font-mono text-sm">x = a<sup>&minus;3</sup> &times; a<sup>4</sup> &times; <sup>1</sup>&frasl;<sub>a<sup>7</sup></sub></p>
+        <p class="mt-2 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= a<sup>&minus;3+4&minus;7</sup> = a<sup>&minus;6</sup></p>
+      </div>
+      <div class="rounded-xl border border-slate-200 p-4 dark:border-slate-700">
+        <p class="font-mono text-sm">y = <sup>(a<sup>5</sup>&times;a)<sup>&minus;2</sup></sup>&frasl;<sub>a<sup>3</sup></sub></p>
+        <p class="mt-2 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>a<sup>&minus;12</sup></sup>&frasl;<sub>a<sup>3</sup></sub> = a<sup>&minus;15</sup></p>
+      </div>
+      <div class="rounded-xl border border-slate-200 p-4 dark:border-slate-700">
+        <p class="font-mono text-sm">z = <sup>(a&times;b<sup>2</sup>)<sup>&minus;3</sup>&times;a</sup>&frasl;<sub>a<sup>&minus;5</sup>&times;b<sup>&minus;3</sup></sub></p>
+        <p class="mt-2 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= a<sup>&minus;2+5</sup> &times; b<sup>&minus;6+3</sup> = a<sup>3</sup> &times; b<sup>&minus;3</sup></p>
+      </div>
+      <div class="rounded-xl border border-slate-200 p-4 dark:border-slate-700">
+        <p class="font-mono text-sm">t = (<sup>a</sup>&frasl;<sub>b</sub>)<sup>&minus;3</sup> &times; a<sup>5</sup> &times; (<sup>1</sup>&frasl;<sub>b</sub>)<sup>5</sup></p>
+        <p class="mt-2 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= (<sup>a</sup>&frasl;<sub>b</sub>)<sup>&minus;3</sup> &times; (<sup>a</sup>&frasl;<sub>b</sub>)<sup>5</sup> = (<sup>a</sup>&frasl;<sub>b</sub>)<sup>2</sup></p>
+      </div>
+      <div class="rounded-xl border border-slate-200 p-4 dark:border-slate-700 sm:col-span-2">
+        <p class="font-mono text-sm">u = <sup>(a<sup>2</sup>)<sup>&minus;3</sup>&times;a<sup>&minus;5</sup></sup>&frasl;<sub>(1/b)&times;(b<sup>5</sup>)<sup>&minus;2</sup></sub></p>
+        <p class="mt-2 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>a<sup>&minus;11</sup></sup>&frasl;<sub>b<sup>&minus;11</sup></sub> = (<sup>a</sup>&frasl;<sub>b</sub>)<sup>&minus;11</sup></p>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- III. L'écriture scientifique -->
+<article>
+  <h3 class="mb-4 flex items-center gap-3 text-xl font-bold text-slate-800 dark:text-slate-100">
+    <span class="flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white">III</span>
+    L'&eacute;criture scientifique
+  </h3>
+
+  <h4 class="mb-2 mt-4 font-bold text-brand-700 dark:text-brand-300">1) Puissance de 10</h4>
+  <div class="rounded-2xl bg-rose-50 p-5 text-sm leading-relaxed text-rose-900 ring-1 ring-rose-100 dark:bg-rose-950/30 dark:text-rose-200 dark:ring-rose-900">
+    Soit <em>n</em> un nombre entier naturel non nul.
+    <span class="mt-2 block font-mono text-base">10<sup>n</sup> = 1000...0 (<em>n</em> z&eacute;ros) &nbsp;&nbsp;et&nbsp;&nbsp; 10<sup>&minus;n</sup> = 0,000...01 (<em>n</em> z&eacute;ros)</span>
+  </div>
+  <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">10<sup>5</sup> = 100 000 &nbsp;&middot;&nbsp; 10 000 000 000 = 10<sup>10</sup></div>
+    <div class="rounded-xl border border-slate-200 p-4 font-mono text-sm dark:border-slate-700">10<sup>&minus;7</sup> = 0,000000 1 &nbsp;&middot;&nbsp; 0,000...0 = 10<sup>&minus;13</sup></div>
+  </div>
+
+  <h4 class="mb-2 mt-10 font-bold text-brand-700 dark:text-brand-300">2) &Eacute;criture scientifique</h4>
+  <div class="rounded-2xl bg-rose-50 p-5 text-sm leading-relaxed text-rose-900 ring-1 ring-rose-100 dark:bg-rose-950/30 dark:text-rose-200 dark:ring-rose-900">
+    <strong>D&eacute;finition&nbsp;:</strong> Soient <em>a</em> un nombre d&eacute;cimal et <em>n</em> un entier relatif non nul. Toute &eacute;criture de la forme x = a &times; 10<sup>n</sup> ou x = &minus;a &times; 10<sup>n</sup> avec <strong>1 &le; a &lt; 10</strong> s'appelle l'&eacute;criture scientifique de x.
+  </div>
+  <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+    <div class="rounded-xl border border-slate-200 p-4 text-sm dark:border-slate-700"><span class="font-mono">a = 3452</span><br>&rArr; &eacute;criture scientifique&nbsp;: <span class="font-mono font-bold text-brand-700 dark:text-brand-300">3,452 &times; 10<sup>3</sup></span></div>
+    <div class="rounded-xl border border-slate-200 p-4 text-sm dark:border-slate-700"><span class="font-mono">b = &minus;0,000 002 34</span><br>&rArr; <span class="font-mono font-bold text-brand-700 dark:text-brand-300">&minus;2,34 &times; 10<sup>&minus;6</sup></span></div>
+    <div class="rounded-xl border border-slate-200 p-4 text-sm dark:border-slate-700"><span class="font-mono">c = 678,25 &times; 10<sup>5</sup></span><br>= 6,7825 &times; 10<sup>2</sup> &times; 10<sup>5</sup> &rArr; <span class="font-mono font-bold text-brand-700 dark:text-brand-300">6,7825 &times; 10<sup>7</sup></span></div>
+    <div class="rounded-xl border border-slate-200 p-4 text-sm dark:border-slate-700"><span class="font-mono">d = &minus;0,000254 &times; 10<sup>&minus;9</sup></span><br>= &minus;2,54 &times; 10<sup>&minus;4</sup> &times; 10<sup>&minus;9</sup> &rArr; <span class="font-mono font-bold text-brand-700 dark:text-brand-300">&minus;2,54 &times; 10<sup>&minus;13</sup></span></div>
+    <div class="rounded-xl border border-slate-200 p-4 text-sm dark:border-slate-700"><span class="font-mono">e = &minus;24,5 &times; 10<sup>&minus;11</sup> &times; 1,2 &times; 10<sup>3</sup></span><br>= &minus;29,4 &times; 10<sup>&minus;8</sup> &rArr; <span class="font-mono font-bold text-brand-700 dark:text-brand-300">&minus;2,94 &times; 10<sup>&minus;7</sup></span></div>
+    <div class="rounded-xl border border-slate-200 p-4 text-sm dark:border-slate-700"><span class="font-mono">f = &minus;113 &times; 10<sup>5</sup> + 7,2 &times; 10<sup>7</sup></span><br>= 607 &times; 10<sup>5</sup> &rArr; <span class="font-mono font-bold text-brand-700 dark:text-brand-300">6,07 &times; 10<sup>7</sup></span></div>
+  </div>
+</article>
+
+  </div>
+</section>
+
+<!-- ===================== EXERCICES ===================== -->
+<section id="exercices" class="py-14">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-4 flex flex-col items-center gap-2 text-center">
+      <span class="inline-block rounded-full bg-brand-100 px-4 py-1 text-xs font-bold uppercase tracking-widest text-brand-700 dark:bg-brand-900 dark:text-brand-200">S&eacute;rie n&deg;7 &mdash; Les puissances</span>
+      <h2 class="text-2xl font-extrabold text-brand-700 dark:text-brand-300 sm:text-3xl">S&eacute;rie d'exercices</h2>
+      <p class="max-w-2xl text-sm text-slate-500 dark:text-slate-400">14 exercices &mdash; cliquez sur <span class="font-semibold text-indigo-600 dark:text-indigo-300">Voir la correction</span> pour v&eacute;rifier chaque exercice.</p>
+    </div>
+
+<!-- EXERCICE 1 -->
+<div class="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+  <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+    <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+      <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-white">1</span>
+      Exercice 1 &mdash; &Eacute;criture fractionnaire
+    </h3>
+    <button type="button" onclick="toggleCorrection('e1', this)" class="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+      <span data-label>Voir la correction</span>
+    </button>
+  </div>
+  <p class="mb-4 text-sm text-slate-500 dark:text-slate-400">Exprime sous la forme d'une fraction ou d'une &eacute;criture fractionnaire.</p>
+  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3" data-group="e1">
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">2<sup>&minus;3</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>1</sup>&frasl;<sub>8</sub></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">(&minus;5)<sup>&minus;3</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>&minus;1</sup>&frasl;<sub>125</sub></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">3<sup>&minus;2</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>1</sup>&frasl;<sub>9</sub></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">7<sup>&minus;1</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>1</sup>&frasl;<sub>7</sub></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">10<sup>&minus;3</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>1</sup>&frasl;<sub>1000</sub></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">(2,5)<sup>&minus;4</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= (<sup>2</sup>&frasl;<sub>5</sub>)<sup>4</sup> = <sup>16</sup>&frasl;<sub>625</sub></p>
+    </div>
+  </div>
+</div>
+
+<!-- EXERCICE 2 -->
+<div class="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+  <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+    <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+      <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-white">2</span>
+      Exercice 2 &mdash; Entier ou fraction irr&eacute;ductible
+    </h3>
+    <button type="button" onclick="toggleCorrection('e2', this)" class="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+      <span data-label>Voir la correction</span>
+    </button>
+  </div>
+  <p class="mb-4 text-sm text-slate-500 dark:text-slate-400">Exprime chaque puissance sous la forme d'un entier ou d'une fraction irr&eacute;ductible.</p>
+  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4" data-group="e2">
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">(<sup>3</sup>&frasl;<sub>4</sub>)<sup>&minus;2</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>16</sup>&frasl;<sub>9</sub></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">(<sup>9</sup>&frasl;<sub>5</sub>)<sup>&minus;4</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>625</sup>&frasl;<sub>6561</sub></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">(<sup>&minus;1</sup>&frasl;<sub>2</sub>)<sup>&minus;3</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= &minus;8</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">&minus;(<sup>11</sup>&frasl;<sub>20</sub>)<sup>&minus;2</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>&minus;400</sup>&frasl;<sub>121</sub></p>
+    </div>
+  </div>
+</div>
+
+<!-- EXERCICE 3 -->
+<div class="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+  <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+    <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+      <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-white">3</span>
+      Exercice 3 &mdash; Le signe des nombres
+    </h3>
+    <button type="button" onclick="toggleCorrection('e3', this)" class="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+      <span data-label>Voir la correction</span>
+    </button>
+  </div>
+  <p class="mb-4 text-sm text-slate-500 dark:text-slate-400">Coche pour donner le signe des nombres (positif / n&eacute;gatif).</p>
+  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3" data-group="e3">
+    <div class="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">(&minus;3)<sup>7</sup></p>
+      <p class="corr hidden rounded-full bg-rose-100 px-3 py-1 text-xs font-bold text-rose-700 dark:bg-rose-900/40 dark:text-rose-300">N&eacute;gatif</p>
+    </div>
+    <div class="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">(&minus;5,4)<sup>&minus;4</sup></p>
+      <p class="corr hidden rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">Positif</p>
+    </div>
+    <div class="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">&minus;3<sup>126</sup></p>
+      <p class="corr hidden rounded-full bg-rose-100 px-3 py-1 text-xs font-bold text-rose-700 dark:bg-rose-900/40 dark:text-rose-300">N&eacute;gatif</p>
+    </div>
+    <div class="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">(<sup>&minus;1</sup>&frasl;<sub>3</sub>)<sup>&minus;11</sup></p>
+      <p class="corr hidden rounded-full bg-rose-100 px-3 py-1 text-xs font-bold text-rose-700 dark:bg-rose-900/40 dark:text-rose-300">N&eacute;gatif</p>
+    </div>
+    <div class="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">(<sup>&minus;1</sup>&frasl;<sub>9</sub>)<sup>&minus;14</sup></p>
+      <p class="corr hidden rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">Positif</p>
+    </div>
+    <div class="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">(<sup>22</sup>&frasl;<sub>23</sub>)<sup>&minus;1</sup></p>
+      <p class="corr hidden rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">Positif</p>
+    </div>
+    <div class="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">(<sup>&minus;3</sup>&frasl;<sub>4</sub>)<sup>5</sup></p>
+      <p class="corr hidden rounded-full bg-rose-100 px-3 py-1 text-xs font-bold text-rose-700 dark:bg-rose-900/40 dark:text-rose-300">N&eacute;gatif</p>
+    </div>
+    <div class="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">(&minus;3)<sup>&minus;78</sup></p>
+      <p class="corr hidden rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">Positif</p>
+    </div>
+    <div class="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">(&minus;1)<sup>&minus;1</sup></p>
+      <p class="corr hidden rounded-full bg-rose-100 px-3 py-1 text-xs font-bold text-rose-700 dark:bg-rose-900/40 dark:text-rose-300">N&eacute;gatif</p>
+    </div>
+    <div class="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">5,4<sup>&minus;4</sup></p>
+      <p class="corr hidden rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">Positif</p>
+    </div>
+    <div class="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">&minus;(<sup>22</sup>&frasl;<sub>23</sub>)<sup>&minus;2</sup></p>
+      <p class="corr hidden rounded-full bg-rose-100 px-3 py-1 text-xs font-bold text-rose-700 dark:bg-rose-900/40 dark:text-rose-300">N&eacute;gatif</p>
+    </div>
+    <div class="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">(<sup>&minus;5</sup>&frasl;<sub>3</sub>)<sup>6</sup></p>
+      <p class="corr hidden rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">Positif</p>
+    </div>
+    <div class="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">(<sup>&minus;2</sup>&frasl;<sub>7</sub>)<sup>8</sup></p>
+      <p class="corr hidden rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">Positif</p>
+    </div>
+    <div class="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">(<sup>&minus;5</sup>&frasl;<sub>3</sub>)<sup>&minus;6</sup></p>
+      <p class="corr hidden rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">Positif</p>
+    </div>
+  </div>
+</div>
+
+<!-- EXERCICE 4 -->
+<div class="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+  <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+    <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+      <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-white">4</span>
+      Exercice 4 &mdash; Forme a<sup>n</sup> avec n n&eacute;gatif
+    </h3>
+    <button type="button" onclick="toggleCorrection('e4', this)" class="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+      <span data-label>Voir la correction</span>
+    </button>
+  </div>
+  <p class="mb-4 text-sm text-slate-500 dark:text-slate-400">&Eacute;cris chaque nombre sous la forme a<sup>n</sup> o&ugrave; n est un nombre entier n&eacute;gatif.</p>
+  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4" data-group="e4">
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base"><sup>1</sup>&frasl;<sub>8</sub></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 2<sup>&minus;3</sup></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base"><sup>4</sup>&frasl;<sub>9</sub></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= (<sup>3</sup>&frasl;<sub>2</sub>)<sup>&minus;2</sup></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base"><sup>&minus;1</sup>&frasl;<sub>8</sub></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= (&minus;2)<sup>&minus;3</sup></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base"><sup>9</sup>&frasl;<sub>4</sub></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= (<sup>2</sup>&frasl;<sub>3</sub>)<sup>&minus;2</sup></p>
+    </div>
+  </div>
+</div>
+
+<!-- EXERCICE 5 -->
+<div class="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+  <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+    <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+      <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-white">5</span>
+      Exercice 5 &mdash; Puissance d'un nombre
+    </h3>
+    <button type="button" onclick="toggleCorrection('e5', this)" class="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+      <span data-label>Voir la correction</span>
+    </button>
+  </div>
+  <p class="mb-4 text-sm text-slate-500 dark:text-slate-400">&Eacute;cris chaque nombre sous la forme d'une puissance d'un nombre.</p>
+  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4" data-group="e5">
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base"><sup>1</sup>&frasl;<sub>5<sup>&minus;12</sup></sub></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 5<sup>12</sup></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base"><sup>1</sup>&frasl;<sub>(&minus;2)<sup>&minus;2</sup></sub></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= (&minus;2)<sup>2</sup></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base"><sup>1</sup>&frasl;<sub>(&minus;2)<sup>&minus;6</sup></sub></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= (&minus;2)<sup>6</sup></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base"><sup>&minus;1</sup>&frasl;<sub>(&minus;5)<sup>&minus;1</sup></sub></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= &minus;(&minus;5)<sup>1</sup> = 5</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base"><sup>1</sup>&frasl;<sub>3<sup>&minus;1</sup></sub></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 3<sup>1</sup> = 3</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base"><sup>1</sup>&frasl;<sub>a<sup>&minus;7</sup></sub></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= a<sup>7</sup></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base"><sup>1</sup>&frasl;<sub>(&minus;3)<sup>6</sup></sub></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= (&minus;3)<sup>&minus;6</sup></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base"><sup>&minus;1</sup>&frasl;<sub>(&minus;a)<sup>&minus;3</sup></sub></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= &minus;(&minus;a)<sup>3</sup> = a<sup>3</sup></p>
+    </div>
+  </div>
+</div>
+
+<!-- EXERCICE 6 -->
+<div class="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+  <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+    <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+      <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-white">6</span>
+      Exercice 6 &mdash; Effectue les calculs
+    </h3>
+    <button type="button" onclick="toggleCorrection('e6', this)" class="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+      <span data-label>Voir la correction</span>
+    </button>
+  </div>
+  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3" data-group="e6">
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">A = 2 + 3 &times; 5<sup>4</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">A = 1877</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">B = 5 &minus; 3 &times; 2<sup>3</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">B = &minus;19</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">C = 3&times;2<sup>2</sup> + 4&times;5<sup>2</sup> &minus; 3<sup>2</sup>&times;2<sup>3</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">C = 40</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">D = 2 &times; (5 + 4)<sup>2</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">D = 162</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">E = <sup>16</sup>&frasl;<sub>(3&minus;1)<sup>2</sup></sub></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">E = 4</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">F = 2 &times; (1 &minus; 5)<sup>3</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">F = &minus;128</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">G = [2 + 2&times;(&minus;3)]<sup>4</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">G = 256</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">H = [2+(&minus;2)<sup>4</sup>&times;3]&times;(3<sup>3</sup>&minus;1)</p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">H = 1300</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">I = 3&times;(1&minus;3)<sup>5</sup> &minus; 2<sup>2</sup>&times;(3+2)</p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">I = &minus;116</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:col-span-2 lg:col-span-3">
+      <p class="font-mono text-base">L = <sup>(5&minus;2&times;3)<sup>4</sup></sup>&frasl;<sub>(2&minus;3)<sup>5</sup></sub></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">L = <sup>(&minus;1)<sup>4</sup></sup>&frasl;<sub>(&minus;1)<sup>5</sup></sub> = <sup>1</sup>&frasl;<sub>&minus;1</sub> = &minus;1</p>
+    </div>
+  </div>
+</div>
+
+<!-- EXERCICE 7 -->
+<div class="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+  <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+    <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+      <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-white">7</span>
+      Exercice 7 &mdash; Fraction irr&eacute;ductible
+    </h3>
+    <button type="button" onclick="toggleCorrection('e7', this)" class="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+      <span data-label>Voir la correction</span>
+    </button>
+  </div>
+  <p class="mb-4 text-sm text-slate-500 dark:text-slate-400">Effectue les calculs suivants et donne le r&eacute;sultat sous la forme d'une fraction irr&eacute;ductible.</p>
+  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4" data-group="e7">
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">A = 5&times;2<sup>&minus;1</sup> &minus; 3<sup>&minus;2</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">A = <sup>43</sup>&frasl;<sub>18</sub></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">B = 3&times;2<sup>&minus;2</sup> + 5&times;2<sup>&minus;3</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">B = <sup>11</sup>&frasl;<sub>8</sub></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">(<sup>3</sup>&frasl;<sub>4</sub>)<sup>2</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>9</sup>&frasl;<sub>16</sub></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">(<sup>10</sup>&frasl;<sub>3</sub>)<sup>5</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= <sup>100000</sup>&frasl;<sub>243</sub></p>
+    </div>
+  </div>
+</div>
+
+<!-- EXERCICE 8 -->
+<div class="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+  <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+    <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+      <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-white">8</span>
+      Exercice 8 &mdash; Calcul litt&eacute;ral
+    </h3>
+    <button type="button" onclick="toggleCorrection('e8', this)" class="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+      <span data-label>Voir la correction</span>
+    </button>
+  </div>
+  <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
+    <div class="rounded-xl bg-slate-50 p-4 text-sm leading-relaxed text-slate-700 dark:bg-slate-900/40 dark:text-slate-300"><strong>1.</strong> Calcule A lorsque x = &minus;3.<br><span class="font-mono">A = 2x<sup>2</sup> &minus; 4x + 1</span></div>
+    <div class="rounded-xl bg-slate-50 p-4 text-sm leading-relaxed text-slate-700 dark:bg-slate-900/40 dark:text-slate-300"><strong>2.</strong> Calcule B lorsque a = 2 et b = &minus;4.<br><span class="font-mono">B = 2(a+b)<sup>2</sup> &minus; ab<sup>2</sup></span></div>
+    <div class="rounded-xl bg-slate-50 p-4 text-sm leading-relaxed text-slate-700 dark:bg-slate-900/40 dark:text-slate-300"><strong>3.</strong> Calcule C pour x = <sup>2</sup>&frasl;<sub>3</sub>.<br><span class="font-mono">C = 3x<sup>3</sup> &minus; 2x<sup>2</sup> &minus; 4</span></div>
+  </div>
+  <div class="corr hidden mt-4 grid grid-cols-1 gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm leading-relaxed text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-200 sm:grid-cols-3" data-group="e8">
+    <p><strong>A</strong> = 2&times;(&minus;3)<sup>2</sup> &minus; 4&times;(&minus;3) + 1 = 18 + 12 + 1 = <strong>31</strong></p>
+    <p><strong>B</strong> = 2&times;(&minus;2)<sup>2</sup> &minus; 2&times;16 = 8 &minus; 32 = <strong>&minus;24</strong></p>
+    <p><strong>C</strong> = 3&times;<sup>8</sup>&frasl;<sub>27</sub> &minus; 2&times;<sup>4</sup>&frasl;<sub>9</sub> &minus; 4 = <sup>8</sup>&frasl;<sub>9</sub> &minus; <sup>8</sup>&frasl;<sub>9</sub> &minus; 4 = <strong>&minus;4</strong></p>
+  </div>
+</div>
+
+<!-- EXERCICE 9 -->
+<div class="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+  <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+    <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+      <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-white">9</span>
+      Exercice 9 &mdash; Calcul astucieux
+    </h3>
+    <button type="button" onclick="toggleCorrection('e9', this)" class="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+      <span data-label>Voir la correction</span>
+    </button>
+  </div>
+  <div class="rounded-xl bg-slate-50 p-4 text-sm leading-relaxed text-slate-700 dark:bg-slate-900/40 dark:text-slate-300">En remarquant que 2<sup>19</sup> = 2<sup>4</sup> &times; 2<sup>15</sup>, calcule 2<sup>19</sup> &times; 5<sup>15</sup> sans utiliser ta calculatrice.</div>
+  <div class="corr hidden mt-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm leading-relaxed text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-200" data-group="e9">
+    <p class="font-mono">2<sup>19</sup> &times; 5<sup>15</sup> = 2<sup>4</sup> &times; 2<sup>15</sup> &times; 5<sup>15</sup> = 16 &times; (2&times;5)<sup>15</sup> = 16 &times; 10<sup>15</sup></p>
+    <p class="mt-2 font-bold">= 16 000 000 000 000 000 = 1,6 &times; 10<sup>16</sup></p>
+  </div>
+</div>
+
+<!-- EXERCICE 10 -->
+<div class="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+  <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+    <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+      <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-white">10</span>
+      Exercice 10 &mdash; Puissances de 2
+    </h3>
+    <button type="button" onclick="toggleCorrection('e10', this)" class="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+      <span data-label>Voir la correction</span>
+    </button>
+  </div>
+  <div class="rounded-xl bg-slate-50 p-4 text-sm leading-relaxed text-slate-700 dark:bg-slate-900/40 dark:text-slate-300">
+    <p><strong>1.</strong> On donne A = 2<sup>31</sup> + 2<sup>30</sup> + 2<sup>29</sup>. &Eacute;cris A sous la forme a &times; 2<sup>30</sup> o&ugrave; a est un nombre d&eacute;cimal &agrave; d&eacute;terminer.</p>
+    <p class="mt-2"><strong>2.</strong> On donne B = 4<sup>15</sup>. &Eacute;cris B sous la forme 2<sup>n</sup> o&ugrave; n est un nombre entier &agrave; d&eacute;terminer.</p>
+    <p class="mt-2"><strong>3.</strong> Trouve le nombre entier x tel que <sup>A</sup>&frasl;<sub>x</sub> = <sup>B</sup>&frasl;<sub>2</sub>.</p>
+  </div>
+  <div class="corr hidden mt-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm leading-relaxed text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-200" data-group="e10">
+    <p><strong>1)</strong> A = 4&times;2<sup>29</sup> + 2&times;2<sup>29</sup> + 2<sup>29</sup> = 7&times;2<sup>29</sup> = 3,5&times;2<sup>30</sup>. Donc <strong>a = 3,5</strong>.</p>
+    <p class="mt-2"><strong>2)</strong> B = 4<sup>15</sup> = (2<sup>2</sup>)<sup>15</sup> = 2<sup>30</sup>. Donc <strong>n = 30</strong>.</p>
+    <p class="mt-2"><strong>3)</strong> x = <sup>2A</sup>&frasl;<sub>B</sub> = 2&times;<sup>3,5&times;2<sup>30</sup></sup>&frasl;<sub>2<sup>30</sup></sub> = 2&times;3,5 = <strong>7</strong>.</p>
+  </div>
+</div>
+
+<!-- EXERCICE 11 -->
+<div class="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+  <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+    <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+      <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-white">11</span>
+      Exercice 11 &mdash; &Eacute;criture d&eacute;cimale
+    </h3>
+    <button type="button" onclick="toggleCorrection('e11', this)" class="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+      <span data-label>Voir la correction</span>
+    </button>
+  </div>
+  <p class="mb-4 text-sm text-slate-500 dark:text-slate-400">Donne l'&eacute;criture d&eacute;cimale de chaque nombre.</p>
+  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3" data-group="e11">
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">1,35 &times; 10<sup>5</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 135 000</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">0,006 05 &times; 10<sup>2</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 0,605</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">45 200 &times; 10<sup>&minus;5</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 0,452</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">2 &times; 10<sup>&minus;4</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 0,0002</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">0,05 &times; 10<sup>4</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 500</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">13,45 &times; 10<sup>&minus;3</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 0,013 45</p>
+    </div>
+  </div>
+</div>
+
+<!-- EXERCICE 12 -->
+<div class="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+  <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+    <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+      <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-white">12</span>
+      Exercice 12 &mdash; Compl&egrave;te
+    </h3>
+    <button type="button" onclick="toggleCorrection('e12', this)" class="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+      <span data-label>Voir la correction</span>
+    </button>
+  </div>
+  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2" data-group="e12">
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">1,45 &times; 10<sup>...</sup> = 14 500</p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">exposant = 4</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">... &times; 10<sup>&minus;2</sup> = 85</p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 8 500</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">45 &times; 10<sup>...</sup> = 0,045</p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">exposant = &minus;3</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">... &times; 10<sup>4</sup> = 7,1</p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 0,000 71</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">6,3 &times; 10<sup>...</sup> = 6 300</p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">exposant = 3</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">... &times; 10<sup>&minus;3</sup> = &minus;0,063</p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= &minus;63</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:col-span-2">
+      <p class="font-mono text-base">45 324 = 45,324 &times; 10<sup>...</sup> = 4,532 4 &times; 10<sup>...</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">exposants = 3 puis 4</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:col-span-2">
+      <p class="font-mono text-base">20,07 = 2 007 &times; 10<sup>...</sup> = 0,200 7 &times; 10<sup>...</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">exposants = &minus;2 puis 2</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:col-span-2">
+      <p class="font-mono text-base">&minus;917,2 = ... &times; 10<sup>2</sup> = ... &times; 10<sup>&minus;4</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= &minus;9,172 puis &minus;9 172 000</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:col-span-2">
+      <p class="font-mono text-base">&minus;0,003 1 = ... &times; 10<sup>3</sup> = ... &times; 10<sup>&minus;1</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= &minus;0,000 003 1 puis &minus;0,031</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:col-span-2">
+      <p class="font-mono text-base">0,021 35 = ... &times; 10<sup>&minus;3</sup> = 2 135 &times; 10<sup>...</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 21,35 puis exposant &minus;5</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:col-span-2">
+      <p class="font-mono text-base">&minus;4 245 000 = ... &times; 10<sup>5</sup> = &minus;4 245 &times; 10<sup>...</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= &minus;42,45 puis exposant 3</p>
+    </div>
+  </div>
+</div>
+
+<!-- EXERCICE 13 -->
+<div class="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+  <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+    <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+      <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-white">13</span>
+      Exercice 13 &mdash; Notation scientifique&nbsp;?
+    </h3>
+    <button type="button" onclick="toggleCorrection('e13', this)" class="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+      <span data-label>Voir la correction</span>
+    </button>
+  </div>
+  <p class="mb-4 text-sm text-slate-500 dark:text-slate-400">Entoure les nombres &eacute;crits en notation scientifique dans la liste ci-dessous (rappel&nbsp;: forme a&times;10<sup>n</sup> avec 1 &le; a &lt; 10).</p>
+  <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4" data-group="e13">
+    <div class="rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-sm">56 &times; 10<sup>&minus;5</sup></p>
+      <p class="corr hidden mt-2 rounded-full bg-rose-100 px-2 py-1 text-xs font-bold text-rose-700 dark:bg-rose-900/40 dark:text-rose-300">Non (56 &ge; 10)</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-sm">8,7 &times; 10<sup>12</sup></p>
+      <p class="corr hidden mt-2 rounded-full bg-emerald-100 px-2 py-1 text-xs font-bold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">Oui &#10003;</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-sm">0,97</p>
+      <p class="corr hidden mt-2 rounded-full bg-rose-100 px-2 py-1 text-xs font-bold text-rose-700 dark:bg-rose-900/40 dark:text-rose-300">Non (&lt; 1)</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-sm">&minus;13,4 &times; 10<sup>10</sup></p>
+      <p class="corr hidden mt-2 rounded-full bg-rose-100 px-2 py-1 text-xs font-bold text-rose-700 dark:bg-rose-900/40 dark:text-rose-300">Non (13,4 &ge; 10)</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-sm">0,56 &times; 10<sup>&minus;1</sup></p>
+      <p class="corr hidden mt-2 rounded-full bg-rose-100 px-2 py-1 text-xs font-bold text-rose-700 dark:bg-rose-900/40 dark:text-rose-300">Non (&lt; 1)</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-sm">10 &times; 10<sup>5</sup></p>
+      <p class="corr hidden mt-2 rounded-full bg-rose-100 px-2 py-1 text-xs font-bold text-rose-700 dark:bg-rose-900/40 dark:text-rose-300">Non (10 &ge; 10)</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-sm">&minus;1,32 &times; 10<sup>0</sup></p>
+      <p class="corr hidden mt-2 rounded-full bg-emerald-100 px-2 py-1 text-xs font-bold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">Oui &#10003;</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-sm">8,71 &times; 10<sup>&minus;15</sup></p>
+      <p class="corr hidden mt-2 rounded-full bg-emerald-100 px-2 py-1 text-xs font-bold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">Oui &#10003;</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-sm">&minus;3 &times; 10<sup>&minus;7</sup></p>
+      <p class="corr hidden mt-2 rounded-full bg-emerald-100 px-2 py-1 text-xs font-bold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">Oui &#10003;</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-sm">5,98</p>
+      <p class="corr hidden mt-2 rounded-full bg-rose-100 px-2 py-1 text-xs font-bold text-rose-700 dark:bg-rose-900/40 dark:text-rose-300">Non (pas de &times;10<sup>n</sup>)</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-sm">&pi; &times; 10<sup>4</sup></p>
+      <p class="corr hidden mt-2 rounded-full bg-rose-100 px-2 py-1 text-xs font-bold text-rose-700 dark:bg-rose-900/40 dark:text-rose-300">Non (&pi; n'est pas d&eacute;cimal)</p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-sm">&minus;9,9 &times; 10</p>
+      <p class="corr hidden mt-2 rounded-full bg-emerald-100 px-2 py-1 text-xs font-bold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">Oui &#10003; (= &times;10<sup>1</sup>)</p>
+    </div>
+  </div>
+</div>
+
+<!-- EXERCICE 14 -->
+<div class="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 sm:p-8">
+  <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+    <h3 class="flex items-center gap-2 text-lg font-extrabold text-slate-800 dark:text-slate-100">
+      <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-white">14</span>
+      Exercice 14 &mdash; &Eacute;criture scientifique
+    </h3>
+    <button type="button" onclick="toggleCorrection('e14', this)" class="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow transition hover:bg-indigo-700 active:scale-95">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+      <span data-label>Voir la correction</span>
+    </button>
+  </div>
+  <p class="mb-4 text-sm text-slate-500 dark:text-slate-400">&Eacute;cris chaque nombre relatif en notation scientifique.</p>
+  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3" data-group="e14">
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">6 540</p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 6,54 &times; 10<sup>3</sup></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">0,003 2</p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 3,2 &times; 10<sup>&minus;3</sup></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">&minus;1 475,2</p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= &minus;1,4752 &times; 10<sup>3</sup></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">23,45</p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 2,345 &times; 10<sup>1</sup></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">&minus;34,3</p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= &minus;3,43 &times; 10<sup>1</sup></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">&minus;0,001</p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= &minus;1 &times; 10<sup>&minus;3</sup></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">645,3 &times; 10<sup>&minus;15</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 6,453 &times; 10<sup>&minus;13</sup></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">0,056 &times; 10<sup>17</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= 5,6 &times; 10<sup>15</sup></p>
+    </div>
+    <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+      <p class="font-mono text-base">&minus;13,6 &times; 10<sup>&minus;9</sup></p>
+      <p class="corr hidden mt-3 rounded-lg bg-emerald-50 px-3 py-2 font-mono text-sm font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">= &minus;1,36 &times; 10<sup>&minus;8</sup></p>
+    </div>
+  </div>
+</div>
+
+    <div class="mt-12 rounded-2xl bg-brand-700 p-6 text-center text-white">
+      <p class="text-sm">
+        <span class="font-bold">a<sup>n</sup></span> : puissance &nbsp;&middot;&nbsp; <span class="font-bold">a<sup>&minus;n</sup> = <sup>1</sup>&frasl;<sub>a<sup>n</sup></sub></span> &nbsp;&middot;&nbsp; <span class="font-bold">a &times; 10<sup>n</sup></span> : &eacute;criture scientifique (1 &le; a &lt; 10)
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="bg-slate-900 text-slate-300">
+  <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+    <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2.5">
+          <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+          <span class="font-display font-bold text-white leading-tight">
+            <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+          </span>
+        </a>
+        <div class="hidden sm:block border-l border-slate-700 pl-3 ml-1">
+          <p class="font-bold text-white">Les Puissances</p>
+          <p class="text-xs text-slate-400">Mati&egrave;re : Math&eacute;matiques &middot; Niveau : 2&egrave;me Ann&eacute;e Coll&egrave;ge</p>
+        </div>
+      </div>
+      <nav class="flex gap-5 text-sm font-semibold">
+        <a href="#fiche" class="hover:text-white">Fiche</a>
+        <a href="#cours" class="hover:text-white">Cours</a>
+        <a href="#exercices" class="hover:text-white">Exercices</a>
+      </nav>
+    </div>
+    <div class="mt-8 border-t border-slate-800 pt-6 text-center text-sm">
+      <p class="font-semibold text-white">Prof : LAHBIB ELKEANTAOUI</p>
+      <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+      <p class="mt-1 text-xs text-slate-500">&copy; 2026 &mdash; Page r&eacute;alis&eacute;e &agrave; des fins p&eacute;dagogiques.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  function toggleCorrection(groupId, btn) {
+    var containers = document.querySelectorAll('[data-group="' + groupId + '"]');
+    if (!containers.length) return;
+    var isHidden = false;
+    containers.forEach(function(container) {
+      var answers = container.classList.contains('corr') ? [container] : container.querySelectorAll('.corr');
+      answers.forEach(function(el) {
+        if (el.classList.contains('hidden')) isHidden = true;
+      });
+    });
+    var label = btn.querySelector('[data-label]');
+    containers.forEach(function(container) {
+      var answers = container.classList.contains('corr') ? [container] : container.querySelectorAll('.corr');
+      answers.forEach(function(el) {
+        el.classList.toggle('hidden', !isHidden);
+      });
+    });
+    if (isHidden) {
+      label.textContent = 'Masquer la correction';
+      btn.classList.remove('bg-indigo-600','hover:bg-indigo-700');
+      btn.classList.add('bg-rose-600','hover:bg-rose-700');
+    } else {
+      label.textContent = 'Voir la correction';
+      btn.classList.remove('bg-rose-600','hover:bg-rose-700');
+      btn.classList.add('bg-indigo-600','hover:bg-indigo-700');
+    }
+  }
+</script>
+</body>
+</html>

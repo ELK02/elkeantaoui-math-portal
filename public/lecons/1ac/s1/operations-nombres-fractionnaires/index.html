@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Opérations sur les nombres en écriture fractionnaire — Cours et exercices corrigés | 1AC Maths</title>
+<meta name="description" content="Cours complet et interactif sur les opérations (addition, soustraction, multiplication, division) sur les nombres en écriture fractionnaire pour la 1ère année collège : propriétés, méthodes de simplification et 34 exercices corrigés.">
+<meta name="theme-color" content="#4f46e5">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%234f46e5'/%3E%3Ctext x='50' y='40' font-family='Arial,sans-serif' font-size='34' font-weight='700' fill='white' text-anchor='middle'%3Ea%3C/text%3E%3Cline x1='26' y1='50' x2='74' y2='50' stroke='white' stroke-width='7' stroke-linecap='round'/%3E%3Ctext x='50' y='86' font-family='Arial,sans-serif' font-size='34' font-weight='700' fill='white' text-anchor='middle'%3Eb%3C/text%3E%3Ccircle cx='82' cy='20' r='17' fill='%23fbbf24'/%3E%3Ctext x='82' y='27' font-family='Arial,sans-serif' font-size='19' font-weight='800' fill='%234338ca' text-anchor='middle'%3Ex%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          display: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          indigo: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+  body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+  .font-display { font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif; }
+
+  /* Fraction component */
+  .frac { display: inline-flex; flex-direction: column; text-align: center; vertical-align: middle; margin: 0 .22em; line-height: 1.15; font-variant-numeric: tabular-nums; }
+  .frac .num, .frac .den { display: block; padding: 0 .35em; }
+  .frac .num { border-bottom: 2px solid currentColor; padding-bottom: 1px; }
+  .frac .den { padding-top: 1px; }
+  .frac-sm { font-size: .85em; }
+  .frac-lg { font-size: 1.2em; }
+
+  .eq-row { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .6rem; }
+
+  /* Compact comparison-row card, reused across many exercises */
+  .card-row { border-radius: .75rem; border: 1px solid rgb(226 232 240); background: rgb(248 250 252); padding: .6rem .9rem; }
+
+  /* Details/summary correction toggle (no JS required) */
+  summary { list-style: none; cursor: pointer; }
+  summary::-webkit-details-marker { display: none; }
+  .chevron { transition: transform .25s ease; }
+  details[open] > summary .chevron { transform: rotate(180deg); }
+  details[open] > summary .label-closed { display: none; }
+  details:not([open]) > summary .label-open { display: none; }
+  .corr-panel { animation: fadeIn .3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .anchor-offset { scroll-margin-top: 96px; }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .text-slate-300 { color: #cbd5e1; }
+  .dark .border-slate-100, .dark .border-slate-200, .dark .border-slate-300 { border-color: #1c3a63; }
+  .dark .card-row { background: #0d2145; border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200 { border-color: #1e5631; }
+  .dark .text-emerald-700 { color: #6ee7a3; }
+  .dark .bg-violet-50 { background-color: #241a3d; }
+  .dark .ring-violet-100 { --tw-ring-color: #4c3575; }
+  .dark .text-violet-500, .dark .text-violet-800 { color: #c4b5fd; }
+  .dark .border-violet-400 { border-color: #6d4fc9; }
+  .dark .bg-amber-50 { background-color: #3a2a0a; }
+  .dark .border-amber-400 { border-color: #92400e; }
+  .dark .bg-blue-50 { background-color: #0c2340; }
+  .dark .border-blue-400 { border-color: #1d4ed8; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased transition-colors">
+
+<!-- ===================== HEADER ===================== -->
+<header class="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur">
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+    <a href="#accueil" class="flex items-center gap-2.5">
+      <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+      <span class="leading-tight">
+        <span class="block font-display text-sm font-bold text-slate-900 dark:text-white sm:text-base">Opérations sur les fractions</span>
+        <span class="block text-[11px] font-medium text-slate-400 sm:text-xs">Mathématiques · 1AC · Chapitre N3</span>
+      </span>
+    </a>
+
+    <nav aria-label="Navigation principale" class="hidden items-center gap-1 md:flex">
+      <a href="/" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">← Portail</a>
+      <a href="#accueil" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">Accueil</a>
+      <a href="#sommaire" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">Le cours</a>
+      <a href="#exercices" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white">Exercices</a>
+      <a href="#exercices" class="ml-2 inline-flex items-center gap-1.5 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700">
+        S'entraîner
+        <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+      </a>
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-amber-400 transition-colors">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+    </nav>
+
+    <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="md:hidden mr-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+      <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+      <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+    </button>
+    <button id="menu-btn" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu" class="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 md:hidden">
+      <svg id="icon-open" viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      <svg id="icon-close" viewBox="0 0 24 24" class="hidden h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-indigo-900 px-4 py-3 md:hidden">
+    <nav aria-label="Navigation mobile" class="flex flex-col gap-1">
+      <a href="/" class="rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5">← Portail</a>
+      <a href="#accueil" class="rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5">Accueil</a>
+      <a href="#sommaire" class="rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5">Le cours</a>
+      <a href="#exercices" class="rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5">Exercices corrigés</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ===================== HERO ===================== -->
+<section id="accueil" class="anchor-offset relative overflow-hidden bg-gradient-to-b from-indigo-50 via-white to-white">
+  <div class="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:py-20 lg:px-8">
+    <div>
+      <span class="inline-flex items-center gap-2 rounded-full bg-indigo-100 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wide text-indigo-700">
+        Chapitre N3 · Mathématiques · 1ʳᵉ Année Collège
+      </span>
+      <h1 class="mt-5 font-display text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl lg:text-5xl">
+        Opérations sur les nombres en écriture fractionnaire
+      </h1>
+      <p class="mt-4 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
+        Addition, soustraction, multiplication et division des nombres en écriture fractionnaire : les propriétés du cours
+        expliquées simplement, les méthodes de simplification, et
+        <strong class="text-slate-800">34 exercices corrigés</strong> pour t'entraîner pas à pas.
+      </p>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a href="#sommaire" class="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-md shadow-indigo-200 hover:bg-indigo-700">
+          Commencer le cours
+          <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+        <a href="#exercices" class="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50">
+          Faire les exercices
+        </a>
+      </div>
+
+      <dl class="mt-9 grid max-w-md grid-cols-3 gap-4">
+        <div class="rounded-xl border border-slate-200 bg-white/70 p-3 text-center shadow-sm">
+          <dt class="font-display text-xl font-extrabold text-indigo-600">3</dt>
+          <dd class="mt-0.5 text-[11px] font-semibold text-slate-500">parties de cours</dd>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-white/70 p-3 text-center shadow-sm">
+          <dt class="font-display text-xl font-extrabold text-indigo-600">4</dt>
+          <dd class="mt-0.5 text-[11px] font-semibold text-slate-500">propriétés clés</dd>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-white/70 p-3 text-center shadow-sm">
+          <dt class="font-display text-xl font-extrabold text-indigo-600">34</dt>
+          <dd class="mt-0.5 text-[11px] font-semibold text-slate-500">exercices corrigés</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="relative">
+      <div class="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-indigo-200 via-violet-100 to-transparent blur-2xl"></div>
+      <img src="https://images.unsplash.com/photo-1635372722656-389f87a941b7?auto=format&fit=crop&w=1200&q=80"
+           alt="Illustration : équations et fractions écrites au tableau (image d'illustration)"
+           class="aspect-[4/3] w-full rounded-3xl border border-white object-cover shadow-2xl shadow-indigo-200/60">
+      <div class="absolute -bottom-5 -left-5 hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-xl sm:block">
+        <div class="eq-row text-lg font-semibold text-slate-700">
+          <span class="frac">‎<span class="num">a</span><span class="den">b</span></span><span>+</span><span class="frac">‎<span class="num">c</span><span class="den">b</span></span><span>=</span><span class="frac">‎<span class="num">a+c</span><span class="den">b</span></span>
+        </div>
+        <p class="mt-1 text-[11px] font-semibold text-slate-400">Additionner deux nombres de même dénominateur</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SOMMAIRE / TOC ===================== -->
+<section id="sommaire" class="anchor-offset border-t border-slate-200 bg-white py-14">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-display text-2xl font-extrabold text-slate-900 sm:text-3xl">Sommaire du chapitre</h2>
+      <p class="mt-2 text-slate-500">Clique sur une partie pour y accéder directement.</p>
+    </div>
+
+    <div class="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <a href="#section-1" class="group rounded-2xl border border-slate-200 p-5 transition hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-lg">
+        <span class="font-display text-sm font-extrabold text-indigo-500">I</span>
+        <h3 class="mt-1 font-display font-bold text-slate-900">Addition et soustraction</h3>
+        <p class="mt-1.5 text-sm text-slate-500">Dénominateurs identiques ou différents.</p>
+      </a>
+      <a href="#section-2" class="group rounded-2xl border border-slate-200 p-5 transition hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-lg">
+        <span class="font-display text-sm font-extrabold text-indigo-500">II</span>
+        <h3 class="mt-1 font-display font-bold text-slate-900">Multiplication et division</h3>
+        <p class="mt-1.5 text-sm text-slate-500">Produit, inverse d'un nombre et division.</p>
+      </a>
+      <a href="#section-3" class="group rounded-2xl border border-slate-200 p-5 transition hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-lg">
+        <span class="font-display text-sm font-extrabold text-indigo-500">III</span>
+        <h3 class="mt-1 font-display font-bold text-slate-900">Les méthodes</h3>
+        <p class="mt-1.5 text-sm text-slate-500">Simplifier avant de calculer : verticalement ou diagonalement.</p>
+      </a>
+      <a href="#exercices" class="group rounded-2xl border-2 border-indigo-200 bg-indigo-50/50 p-5 transition hover:-translate-y-0.5 hover:border-indigo-400 hover:shadow-lg">
+        <span class="font-display text-sm font-extrabold text-indigo-600">✓</span>
+        <h3 class="mt-1 font-display font-bold text-slate-900">4 Exercices</h3>
+        <p class="mt-1.5 text-sm text-slate-500">34 exercices corrigés, du plus simple au plus complet.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION I : ADDITION ET SOUSTRACTION ===================== -->
+<section id="section-1" class="anchor-offset border-t border-slate-200 py-14">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+
+    <div class="flex items-center gap-3">
+      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-600 font-display text-lg font-bold text-white">I</span>
+      <h2 class="font-display text-2xl font-extrabold text-slate-900 sm:text-3xl">Addition et soustraction de nombres en écriture fractionnaire</h2>
+    </div>
+
+    <!-- 1. Denominateurs identiques -->
+    <h3 class="mt-9 font-display text-lg font-bold text-slate-800">1. Les dénominateurs sont les mêmes</h3>
+    <div class="mt-3 rounded-2xl border-l-4 border-violet-400 bg-violet-50 p-5">
+      <span class="text-xs font-bold uppercase tracking-wide text-violet-500">Propriété 1</span>
+      <p class="mt-2 leading-relaxed text-slate-700">
+        Soient <span class="frac">‎<span class="num">a</span><span class="den">b</span></span> et <span class="frac">‎<span class="num">c</span><span class="den">b</span></span> deux nombres en écriture fractionnaire (<em>b</em> ≠ 0).
+      </p>
+      <div class="mt-4 grid gap-3 sm:grid-cols-2">
+        <div class="eq-row justify-center rounded-xl bg-white p-3 text-lg font-semibold text-violet-800 ring-1 ring-violet-100">
+          <span class="frac">‎<span class="num">a</span><span class="den">b</span></span><span>+</span><span class="frac">‎<span class="num">c</span><span class="den">b</span></span><span>=</span><span class="frac">‎<span class="num">a+c</span><span class="den">b</span></span>
+        </div>
+        <div class="eq-row justify-center rounded-xl bg-white p-3 text-lg font-semibold text-violet-800 ring-1 ring-violet-100">
+          <span class="frac">‎<span class="num">a</span><span class="den">b</span></span><span>−</span><span class="frac">‎<span class="num">c</span><span class="den">b</span></span><span>=</span><span class="frac">‎<span class="num">a−c</span><span class="den">b</span></span>
+        </div>
+      </div>
+      <p class="mt-3 text-xs text-violet-500">(avec <em>a</em> supérieur ou égal à <em>c</em> pour la soustraction)</p>
+    </div>
+
+    <p class="mt-4 text-sm font-semibold text-slate-500">Exemples :</p>
+    <div class="mt-2 grid gap-3 sm:grid-cols-2">
+      <div class="card-row eq-row text-base">
+        <span class="frac">‎<span class="num">11</span><span class="den">5</span></span><span>+</span><span class="frac">‎<span class="num">17</span><span class="den">5</span></span><span>=</span><span class="frac">‎<span class="num">11+17</span><span class="den">5</span></span><span>=</span><span class="font-bold text-indigo-700"><span class="frac">‎<span class="num">28</span><span class="den">5</span></span></span>
+      </div>
+      <div class="card-row eq-row text-base">
+        <span class="frac">‎<span class="num">5,6</span><span class="den">11</span></span><span>−</span><span class="frac">‎<span class="num">2,3</span><span class="den">11</span></span><span>=</span><span class="frac">‎<span class="num">5,6−2,3</span><span class="den">11</span></span><span>=</span><span class="font-bold text-indigo-700"><span class="frac">‎<span class="num">3,3</span><span class="den">11</span></span></span>
+      </div>
+    </div>
+
+    <!-- 2. Denominateurs differents -->
+    <h3 class="mt-10 font-display text-lg font-bold text-slate-800">2. Les dénominateurs ne sont pas les mêmes</h3>
+    <div class="mt-3 rounded-2xl border-l-4 border-violet-400 bg-violet-50 p-5">
+      <span class="text-xs font-bold uppercase tracking-wide text-violet-500">Propriété 2</span>
+      <p class="mt-2 leading-relaxed text-slate-700">
+        Pour additionner ou soustraire deux nombres en écriture fractionnaire n'ayant pas le même dénominateur,
+        on les réduit au même dénominateur puis on applique la propriété 1.
+      </p>
+    </div>
+
+    <p class="mt-4 text-sm font-semibold text-slate-500">Exemples :</p>
+    <div class="mt-2 grid gap-3 sm:grid-cols-2">
+      <div class="card-row eq-row text-base">
+        <span class="frac">‎<span class="num">4</span><span class="den">7</span></span><span>+</span><span class="frac">‎<span class="num">3</span><span class="den">14</span></span><span>=</span><span class="frac">‎<span class="num">4×2</span><span class="den">14</span></span><span>+</span><span class="frac">‎<span class="num">3</span><span class="den">14</span></span><span>=</span><span class="frac">‎<span class="num">8</span><span class="den">14</span></span><span>+</span><span class="frac">‎<span class="num">3</span><span class="den">14</span></span><span>=</span><span class="font-bold text-indigo-700"><span class="frac">‎<span class="num">11</span><span class="den">14</span></span></span>
+      </div>
+      <div class="card-row eq-row text-base">
+        <span class="frac">‎<span class="num">2,5</span><span class="den">3</span></span><span>−</span><span class="frac">‎<span class="num">1</span><span class="den">9</span></span><span>=</span><span class="frac">‎<span class="num">2,5×3</span><span class="den">9</span></span><span>−</span><span class="frac">‎<span class="num">1</span><span class="den">9</span></span><span>=</span><span class="frac">‎<span class="num">7,5</span><span class="den">9</span></span><span>−</span><span class="frac">‎<span class="num">1</span><span class="den">9</span></span><span>=</span><span class="font-bold text-indigo-700"><span class="frac">‎<span class="num">6,5</span><span class="den">9</span></span></span>
+      </div>
+      <div class="card-row eq-row text-base">
+        7<span>+</span><span class="frac">‎<span class="num">3</span><span class="den">5</span></span><span>=</span><span class="frac">‎<span class="num">35</span><span class="den">5</span></span><span>+</span><span class="frac">‎<span class="num">3</span><span class="den">5</span></span><span>=</span><span class="font-bold text-indigo-700"><span class="frac">‎<span class="num">38</span><span class="den">5</span></span></span>
+      </div>
+      <div class="card-row eq-row text-base">
+        <span class="frac">‎<span class="num">7</span><span class="den">6</span></span><span>−</span><span class="frac">‎<span class="num">2</span><span class="den">5</span></span><span>=</span><span class="frac">‎<span class="num">35</span><span class="den">30</span></span><span>−</span><span class="frac">‎<span class="num">12</span><span class="den">30</span></span><span>=</span><span class="font-bold text-indigo-700"><span class="frac">‎<span class="num">23</span><span class="den">30</span></span></span>
+      </div>
+      <div class="card-row eq-row text-base">
+        <span class="frac">‎<span class="num">5</span><span class="den">8</span></span><span>+</span><span class="frac">‎<span class="num">11</span><span class="den">6</span></span><span>=</span><span class="frac">‎<span class="num">15</span><span class="den">24</span></span><span>+</span><span class="frac">‎<span class="num">44</span><span class="den">24</span></span><span>=</span><span class="font-bold text-indigo-700"><span class="frac">‎<span class="num">59</span><span class="den">24</span></span></span>
+      </div>
+      <div class="card-row eq-row text-base">
+        <span class="frac">‎<span class="num">10</span><span class="den">9</span></span><span>−</span><span class="frac">‎<span class="num">5</span><span class="den">6</span></span><span>=</span><span class="frac">‎<span class="num">20</span><span class="den">18</span></span><span>−</span><span class="frac">‎<span class="num">15</span><span class="den">18</span></span><span>=</span><span class="font-bold text-indigo-700"><span class="frac">‎<span class="num">5</span><span class="den">18</span></span></span>
+      </div>
+    </div>
+
+    <a href="#sommaire" class="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-800">
+      <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18"/></svg>
+      Retour au sommaire
+    </a>
+  </div>
+</section>
+
+<!-- ===================== SECTION II : MULTIPLICATION ET DIVISION ===================== -->
+<section id="section-2" class="anchor-offset border-t border-slate-200 bg-white py-14">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+
+    <div class="flex items-center gap-3">
+      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-600 font-display text-lg font-bold text-white">II</span>
+      <h2 class="font-display text-2xl font-extrabold text-slate-900 sm:text-3xl">Multiplication et division de nombres en écriture fractionnaire</h2>
+    </div>
+
+    <!-- 1. Multiplication -->
+    <h3 class="mt-9 font-display text-lg font-bold text-slate-800">1. Multiplication</h3>
+    <div class="mt-3 rounded-2xl border-l-4 border-violet-400 bg-violet-50 p-5">
+      <span class="text-xs font-bold uppercase tracking-wide text-violet-500">Propriété 3</span>
+      <p class="mt-2 leading-relaxed text-slate-700">
+        Soient <span class="frac">‎<span class="num">a</span><span class="den">b</span></span> et <span class="frac">‎<span class="num">c</span><span class="den">d</span></span> deux nombres en écriture fractionnaire (<em>b</em> ≠ 0 et <em>d</em> ≠ 0).
+      </p>
+      <div class="mt-4 eq-row justify-center rounded-xl bg-white p-3 text-lg font-semibold text-violet-800 ring-1 ring-violet-100 sm:max-w-sm sm:mx-auto">
+        <span class="frac">‎<span class="num">a</span><span class="den">b</span></span><span>×</span><span class="frac">‎<span class="num">c</span><span class="den">d</span></span><span>=</span><span class="frac">‎<span class="num">a×c</span><span class="den">b×d</span></span>
+      </div>
+    </div>
+
+    <p class="mt-4 text-sm font-semibold text-slate-500">Exemples :</p>
+    <div class="mt-2 grid gap-3 sm:grid-cols-2">
+      <div class="card-row eq-row text-base">
+        <span class="frac">‎<span class="num">5</span><span class="den">7</span></span><span>×</span><span class="frac">‎<span class="num">3</span><span class="den">2</span></span><span>=</span><span class="frac">‎<span class="num">5×3</span><span class="den">7×2</span></span><span>=</span><span class="font-bold text-indigo-700"><span class="frac">‎<span class="num">15</span><span class="den">14</span></span></span>
+      </div>
+      <div class="card-row eq-row text-base">
+        <span class="frac">‎<span class="num">11</span><span class="den">2</span></span><span>×</span><span class="frac">‎<span class="num">3</span><span class="den">2</span></span><span>=</span><span class="frac">‎<span class="num">11×3</span><span class="den">2×2</span></span><span>=</span><span class="font-bold text-indigo-700"><span class="frac">‎<span class="num">33</span><span class="den">4</span></span></span>
+      </div>
+      <div class="card-row eq-row text-base">
+        7<span>×</span><span class="frac">‎<span class="num">2</span><span class="den">3</span></span><span>=</span><span class="frac">‎<span class="num">7×2</span><span class="den">3</span></span><span>=</span><span class="font-bold text-indigo-700"><span class="frac">‎<span class="num">14</span><span class="den">3</span></span></span>
+      </div>
+      <div class="card-row eq-row text-base">
+        <span class="frac">‎<span class="num">5</span><span class="den">7</span></span><span>×</span>2,6<span>=</span><span class="frac">‎<span class="num">5×2,6</span><span class="den">7</span></span><span>=</span><span class="font-bold text-indigo-700"><span class="frac">‎<span class="num">13</span><span class="den">7</span></span></span>
+      </div>
+    </div>
+
+    <!-- 2. Division -->
+    <h3 class="mt-10 font-display text-lg font-bold text-slate-800">2. Division</h3>
+
+    <h4 class="mt-5 font-display font-semibold text-slate-800">a) L'inverse d'un nombre en écriture fractionnaire non nul</h4>
+    <div class="mt-3 rounded-2xl border-l-4 border-violet-400 bg-violet-50 p-5">
+      <span class="text-xs font-bold uppercase tracking-wide text-violet-500">Règle</span>
+      <p class="mt-2 leading-relaxed text-slate-700">
+        Soient <em>a</em> et <span class="frac">‎<span class="num">b</span><span class="den">c</span></span> deux nombres en écriture fractionnaire non nuls.
+      </p>
+      <div class="mt-4 grid gap-3 sm:grid-cols-2">
+        <div class="eq-row justify-center rounded-xl bg-white p-3 text-base font-semibold text-violet-800 ring-1 ring-violet-100">
+          L'inverse de <em>a</em> est <span class="frac">‎<span class="num">1</span><span class="den">a</span></span>
+        </div>
+        <div class="eq-row justify-center rounded-xl bg-white p-3 text-base font-semibold text-violet-800 ring-1 ring-violet-100">
+          L'inverse de <span class="frac">‎<span class="num">b</span><span class="den">c</span></span> est <span class="frac">‎<span class="num">c</span><span class="den">b</span></span>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-4 text-sm font-semibold text-slate-500">Exemples :</p>
+    <div class="mt-2 grid gap-3 sm:grid-cols-2">
+      <div class="card-row text-base text-slate-700">L'inverse de 2,5 est <span class="frac">‎<span class="num">1</span><span class="den">2,5</span></span></div>
+      <div class="card-row text-base text-slate-700">L'inverse de <span class="frac">‎<span class="num">7</span><span class="den">11</span></span> est <span class="frac">‎<span class="num">11</span><span class="den">7</span></span></div>
+      <div class="card-row text-base text-slate-700">L'inverse de <span class="frac">‎<span class="num">1</span><span class="den">9</span></span> est 9</div>
+      <div class="card-row text-base text-slate-700">L'inverse de <span class="frac">‎<span class="num">3</span><span class="den">1,5</span></span> est <span class="frac">‎<span class="num">1,5</span><span class="den">3</span></span></div>
+    </div>
+
+    <h4 class="mt-8 font-display font-semibold text-slate-800">b) La division</h4>
+    <div class="mt-3 rounded-2xl border-l-4 border-violet-400 bg-violet-50 p-5">
+      <span class="text-xs font-bold uppercase tracking-wide text-violet-500">Propriété 4</span>
+      <p class="mt-2 leading-relaxed text-slate-700">
+        Pour faire la division d'un nombre en écriture fractionnaire par un nombre en écriture fractionnaire non nul,
+        on multiplie le premier nombre par l'inverse du deuxième.
+      </p>
+    </div>
+
+    <p class="mt-4 text-sm font-semibold text-slate-500">Exemples :</p>
+    <div class="mt-2 grid gap-3 sm:grid-cols-3">
+      <div class="card-row eq-row text-base">
+        <span class="frac">‎<span class="num">3</span><span class="den">5</span></span><span>÷</span>7<span>=</span><span class="frac">‎<span class="num">3</span><span class="den">5</span></span><span>×</span><span class="frac">‎<span class="num">1</span><span class="den">7</span></span><span>=</span><span class="font-bold text-indigo-700"><span class="frac">‎<span class="num">3</span><span class="den">35</span></span></span>
+      </div>
+      <div class="card-row eq-row text-base">
+        <span class="frac">‎<span class="num">7</span><span class="den">5</span></span><span>÷</span><span class="frac">‎<span class="num">2</span><span class="den">3</span></span><span>=</span><span class="frac">‎<span class="num">7</span><span class="den">5</span></span><span>×</span><span class="frac">‎<span class="num">3</span><span class="den">2</span></span><span>=</span><span class="font-bold text-indigo-700"><span class="frac">‎<span class="num">21</span><span class="den">10</span></span></span>
+      </div>
+      <div class="card-row eq-row text-base">
+        <span class="frac frac-lg">‎<span class="num"><span class="frac">‎<span class="num">2</span><span class="den">7</span></span></span><span class="den"><span class="frac">‎<span class="num">5</span><span class="den">3</span></span></span></span>
+        <span>=</span><span class="frac">‎<span class="num">2</span><span class="den">7</span></span><span>×</span><span class="frac">‎<span class="num">3</span><span class="den">5</span></span><span>=</span><span class="font-bold text-indigo-700"><span class="frac">‎<span class="num">6</span><span class="den">35</span></span></span>
+      </div>
+    </div>
+
+    <a href="#sommaire" class="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-800">
+      <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18"/></svg>
+      Retour au sommaire
+    </a>
+  </div>
+</section>
+
+<!-- ===================== SECTION III : LES METHODES ===================== -->
+<section id="section-3" class="anchor-offset border-t border-slate-200 py-14">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+
+    <div class="flex items-center gap-3">
+      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-600 font-display text-lg font-bold text-white">III</span>
+      <h2 class="font-display text-2xl font-extrabold text-slate-900 sm:text-3xl">Les méthodes : simplifier avant de calculer</h2>
+    </div>
+
+    <!-- 1. Addition et soustraction -->
+    <h3 class="mt-9 font-display text-lg font-bold text-slate-800">1. Addition et soustraction — simplification verticale</h3>
+    <div class="mt-3 rounded-2xl border-l-4 border-amber-400 bg-amber-50 p-5 text-sm leading-relaxed text-slate-700 sm:text-base">
+      <p>Avant de faire l'addition ou la soustraction de deux nombres en écriture fractionnaire, il faut d'abord les simplifier lorsque c'est possible.</p>
+      <p class="mt-2">Dans une addition ou une soustraction, la simplification se fait <strong>verticalement</strong> : on simplifie chaque fraction séparément (numérateur et dénominateur d'une même fraction).</p>
+    </div>
+
+    <div class="mt-4 grid gap-4 lg:grid-cols-2">
+      <div class="rounded-xl bg-slate-50 p-4 font-mono text-sm leading-loose text-slate-700 sm:text-base">
+        <div class="eq-row"><span class="frac">‎<span class="num">15</span><span class="den">10</span></span><span>+</span><span class="frac">‎<span class="num">18</span><span class="den">9</span></span><span>=</span><span class="frac">‎<span class="num">15÷5</span><span class="den">10÷5</span></span><span>+</span><span class="frac">‎<span class="num">18÷9</span><span class="den">9÷9</span></span></div>
+        <div class="eq-row">= <span class="frac">‎<span class="num">3</span><span class="den">2</span></span><span>+</span><span class="frac">‎<span class="num">2</span><span class="den">1</span></span></div>
+        <div class="eq-row">= <span class="frac">‎<span class="num">3</span><span class="den">2</span></span><span>+</span><span class="frac">‎<span class="num">4</span><span class="den">2</span></span></div>
+        <div class="eq-row">= <span class="font-bold text-indigo-700"><span class="frac">‎<span class="num">7</span><span class="den">2</span></span></span></div>
+      </div>
+      <div class="rounded-xl bg-slate-50 p-4 font-mono text-sm leading-loose text-slate-700 sm:text-base">
+        <div class="eq-row"><span class="frac">‎<span class="num">11</span><span class="den">3</span></span><span>−</span><span class="frac">‎<span class="num">18</span><span class="den">24</span></span><span>=</span><span class="frac">‎<span class="num">11</span><span class="den">3</span></span><span>−</span><span class="frac">‎<span class="num">18÷6</span><span class="den">24÷6</span></span></div>
+        <div class="eq-row">= <span class="frac">‎<span class="num">11</span><span class="den">3</span></span><span>−</span><span class="frac">‎<span class="num">3</span><span class="den">4</span></span></div>
+        <div class="eq-row">= <span class="frac">‎<span class="num">44</span><span class="den">12</span></span><span>−</span><span class="frac">‎<span class="num">9</span><span class="den">12</span></span></div>
+        <div class="eq-row">= <span class="font-bold text-indigo-700"><span class="frac">‎<span class="num">35</span><span class="den">12</span></span></span></div>
+      </div>
+    </div>
+
+    <!-- 2. Multiplication -->
+    <h3 class="mt-10 font-display text-lg font-bold text-slate-800">2. Multiplication — simplification verticale ou diagonale</h3>
+    <div class="mt-3 rounded-2xl border-l-4 border-amber-400 bg-amber-50 p-5 text-sm leading-relaxed text-slate-700 sm:text-base">
+      <p>Avant de faire la multiplication de deux nombres en écriture fractionnaire, il faut d'abord les simplifier lorsque c'est possible.</p>
+      <p class="mt-2">Dans une multiplication, la simplification se fait <strong>verticalement</strong> (numérateur et dénominateur d'une même fraction) <strong>ou diagonalement</strong> (numérateur d'une fraction avec dénominateur de l'autre).</p>
+    </div>
+
+    <div class="mt-4 grid gap-4 lg:grid-cols-2">
+      <div class="rounded-xl bg-slate-50 p-4">
+        <span class="mb-2 inline-block rounded-full bg-slate-200 px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-500">Verticalement</span>
+        <div class="font-mono text-sm leading-loose text-slate-700 sm:text-base">
+          <div class="eq-row"><span class="frac">‎<span class="num">14</span><span class="den">8</span></span><span>×</span><span class="frac">‎<span class="num">9</span><span class="den">15</span></span><span>=</span><span class="frac">‎<span class="num">14÷2</span><span class="den">8÷2</span></span><span>×</span><span class="frac">‎<span class="num">9÷3</span><span class="den">15÷3</span></span></div>
+          <div class="eq-row">= <span class="frac">‎<span class="num">7</span><span class="den">4</span></span><span>×</span><span class="frac">‎<span class="num">3</span><span class="den">5</span></span></div>
+          <div class="eq-row">= <span class="font-bold text-indigo-700"><span class="frac">‎<span class="num">21</span><span class="den">20</span></span></span></div>
+        </div>
+      </div>
+      <div class="rounded-xl bg-slate-50 p-4">
+        <span class="mb-2 inline-block rounded-full bg-slate-200 px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-500">Diagonalement</span>
+        <div class="font-mono text-sm leading-loose text-slate-700 sm:text-base">
+          <div class="eq-row"><span class="frac">‎<span class="num">16</span><span class="den">27</span></span><span>×</span><span class="frac">‎<span class="num">9</span><span class="den">20</span></span><span>=</span><span class="frac">‎<span class="num">16÷4</span><span class="den">27÷9</span></span><span>×</span><span class="frac">‎<span class="num">9÷9</span><span class="den">20÷4</span></span></div>
+          <div class="eq-row">= <span class="frac">‎<span class="num">4</span><span class="den">3</span></span><span>×</span><span class="frac">‎<span class="num">1</span><span class="den">5</span></span></div>
+          <div class="eq-row">= <span class="font-bold text-indigo-700"><span class="frac">‎<span class="num">4</span><span class="den">15</span></span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 rounded-xl border-l-4 border-blue-400 bg-blue-50 p-4 text-sm text-slate-700 sm:p-5 sm:text-base">
+      <strong>Astuce pour les exercices :</strong> simplifie toujours <em>avant</em> de multiplier les numérateurs entre eux et les dénominateurs entre eux — les nombres restent petits et le calcul est plus rapide et plus sûr (voir l'Exercice 3 ci-dessous).
+    </div>
+
+    <a href="#sommaire" class="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-800">
+      <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18"/></svg>
+      Retour au sommaire
+    </a>
+  </div>
+</section>
+
+<!-- ===================== EXERCICES ===================== -->
+<section id="exercices" class="anchor-offset border-t border-slate-200 bg-gradient-to-b from-slate-100 to-slate-50 py-14">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+
+    <div class="overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600 to-violet-600 shadow-xl">
+      <div class="grid gap-6 p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div>
+          <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wide text-white">
+            4 Exercices
+          </span>
+          <h2 class="mt-3 font-display text-2xl font-extrabold text-white sm:text-3xl">34 exercices corrigés</h2>
+          <p class="mt-2 max-w-2xl text-indigo-100">
+            Cherche chaque calcul sur ton cahier, puis clique sur le bouton « Voir la correction » pour vérifier ta réponse étape par étape.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1400&q=80"
+         alt="Illustration : cahiers et matériel de travail (image d'illustration)"
+         class="mt-6 h-40 w-full rounded-2xl object-cover shadow-md sm:h-48">
+
+    <!-- Series sub-nav -->
+    <div class="mt-8 flex flex-wrap gap-2">
+      <a href="#ex-serie-1" class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-600 ring-1 ring-slate-200 hover:text-indigo-700 hover:ring-indigo-300">Exercice 1</a>
+      <a href="#ex-serie-2" class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-600 ring-1 ring-slate-200 hover:text-indigo-700 hover:ring-indigo-300">Exercice 2</a>
+      <a href="#ex-serie-3" class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-600 ring-1 ring-slate-200 hover:text-indigo-700 hover:ring-indigo-300">Exercice 3</a>
+      <a href="#ex-serie-4" class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-600 ring-1 ring-slate-200 hover:text-indigo-700 hover:ring-indigo-300">Exercice 4</a>
+    </div>
+
+    <div class="mt-8 mb-5 flex items-center gap-3">
+      <span class="h-px flex-1 bg-slate-300"></span>
+      <span class="rounded-full bg-slate-200 px-4 py-1 text-xs font-bold uppercase tracking-wide text-slate-500">Les exercices d'application</span>
+      <span class="h-px flex-1 bg-slate-300"></span>
+    </div>
+
+      <div id="ex-serie-1" class="anchor-offset mb-14">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-indigo-700">Exercice 1</span>
+              <span class="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-500">Même dénominateur</span>
+            </div>
+            <h3 class="mt-2 font-display text-lg font-bold text-slate-900">Exercice 1 — Additionner et soustraire (même dénominateur)</h3>
+            <p class="mt-1 text-sm text-slate-600">Calculer :</p>
+          </div>
+          <button type="button" data-toggle-serie="1" data-state="closed" class="master-toggle shrink-0 self-start rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 sm:self-auto">
+            <span>Afficher toutes les corrections</span>
+          </button>
+        </div>
+
+        <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">A =</span>
+              <span class="frac">‎<span class="num">5</span><span class="den">3</span></span> + <span class="frac">‎<span class="num">2</span><span class="den">3</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="1">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>A = <span class="frac">‎<span class="num">5+2</span><span class="den">3</span></span> <span class="font-sans text-xs text-slate-400">— même dénominateur : on additionne les numérateurs</span></p>
+              <p class="font-display font-bold text-emerald-700">A = <span class="frac">‎<span class="num">7</span><span class="den">3</span></span></p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">B =</span>
+              <span class="frac">‎<span class="num">3</span><span class="den">7</span></span> + <span class="frac">‎<span class="num">5</span><span class="den">7</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="1">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>B = <span class="frac">‎<span class="num">3+5</span><span class="den">7</span></span></p>
+              <p class="font-display font-bold text-emerald-700">B = <span class="frac">‎<span class="num">8</span><span class="den">7</span></span></p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">C =</span>
+              <span class="frac">‎<span class="num">1</span><span class="den">4</span></span> + <span class="frac">‎<span class="num">11</span><span class="den">4</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="1">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>C = <span class="frac">‎<span class="num">1+11</span><span class="den">4</span></span> = <span class="frac">‎<span class="num">12</span><span class="den">4</span></span></p>
+              <p class="font-display font-bold text-emerald-700">C = 3</p>
+              <p class="mt-2 text-xs text-slate-500">12 et 4 sont divisibles par 4 : la fraction se simplifie en un nombre entier.</p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">D =</span>
+              <span class="frac">‎<span class="num">13</span><span class="den">5</span></span> + <span class="frac">‎<span class="num">4</span><span class="den">5</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="1">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>D = <span class="frac">‎<span class="num">13+4</span><span class="den">5</span></span></p>
+              <p class="font-display font-bold text-emerald-700">D = <span class="frac">‎<span class="num">17</span><span class="den">5</span></span></p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">E =</span>
+              <span class="frac">‎<span class="num">9</span><span class="den">4</span></span> − <span class="frac">‎<span class="num">5</span><span class="den">4</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="1">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>E = <span class="frac">‎<span class="num">9−5</span><span class="den">4</span></span> = <span class="frac">‎<span class="num">4</span><span class="den">4</span></span></p>
+              <p class="font-display font-bold text-emerald-700">E = 1</p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">F =</span>
+              <span class="frac">‎<span class="num">27</span><span class="den">13</span></span> − <span class="frac">‎<span class="num">4</span><span class="den">13</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="1">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>F = <span class="frac">‎<span class="num">27−4</span><span class="den">13</span></span></p>
+              <p class="font-display font-bold text-emerald-700">F = <span class="frac">‎<span class="num">23</span><span class="den">13</span></span></p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">G =</span>
+              <span class="frac">‎<span class="num">15</span><span class="den">11</span></span> − <span class="frac">‎<span class="num">4</span><span class="den">11</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="1">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>G = <span class="frac">‎<span class="num">15−4</span><span class="den">11</span></span> = <span class="frac">‎<span class="num">11</span><span class="den">11</span></span></p>
+              <p class="font-display font-bold text-emerald-700">G = 1</p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">H =</span>
+              <span class="frac">‎<span class="num">7</span><span class="den">12</span></span> − <span class="frac">‎<span class="num">3</span><span class="den">12</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="1">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>H = <span class="frac">‎<span class="num">7−3</span><span class="den">12</span></span> = <span class="frac">‎<span class="num">4</span><span class="den">12</span></span></p>
+              <p class="font-display font-bold text-emerald-700">H = <span class="frac">‎<span class="num">1</span><span class="den">3</span></span></p>
+              <p class="mt-2 text-xs text-slate-500">4 et 12 sont divisibles par 4 : on simplifie.</p>
+            </div>
+          </details>
+        </article>
+        </div>
+      </div>
+
+      <div id="ex-serie-2" class="anchor-offset mb-14">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-indigo-700">Exercice 2</span>
+              <span class="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-500">Dénominateurs différents</span>
+            </div>
+            <h3 class="mt-2 font-display text-lg font-bold text-slate-900">Exercice 2 — Additionner et soustraire (dénominateurs différents)</h3>
+            <p class="mt-1 text-sm text-slate-600">Calculer :</p>
+          </div>
+          <button type="button" data-toggle-serie="2" data-state="closed" class="master-toggle shrink-0 self-start rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 sm:self-auto">
+            <span>Afficher toutes les corrections</span>
+          </button>
+        </div>
+
+        <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">A =</span>
+              <span class="frac">‎<span class="num">6</span><span class="den">5</span></span> + <span class="frac">‎<span class="num">3</span><span class="den">10</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="2">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>A = <span class="frac">‎<span class="num">6×2</span><span class="den">5×2</span></span> + <span class="frac">‎<span class="num">3</span><span class="den">10</span></span> <span class="font-sans text-xs text-slate-400">— on réduit au dénominateur commun 10</span></p>
+              <p>A = <span class="frac">‎<span class="num">12</span><span class="den">10</span></span> + <span class="frac">‎<span class="num">3</span><span class="den">10</span></span> = <span class="frac">‎<span class="num">15</span><span class="den">10</span></span></p>
+              <p class="font-display font-bold text-emerald-700">A = <span class="frac">‎<span class="num">3</span><span class="den">2</span></span></p>
+              <p class="mt-2 text-xs text-slate-500">15 et 10 sont divisibles par 5 : on simplifie.</p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">B =</span>
+              <span class="frac">‎<span class="num">8</span><span class="den">15</span></span> + <span class="frac">‎<span class="num">11</span><span class="den">5</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="2">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>B = <span class="frac">‎<span class="num">8</span><span class="den">15</span></span> + <span class="frac">‎<span class="num">11×3</span><span class="den">5×3</span></span> <span class="font-sans text-xs text-slate-400">— dénominateur commun 15</span></p>
+              <p>B = <span class="frac">‎<span class="num">8</span><span class="den">15</span></span> + <span class="frac">‎<span class="num">33</span><span class="den">15</span></span></p>
+              <p class="font-display font-bold text-emerald-700">B = <span class="frac">‎<span class="num">41</span><span class="den">15</span></span></p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">C =</span>
+              <span class="frac">‎<span class="num">3</span><span class="den">4</span></span> + <span class="frac">‎<span class="num">5</span><span class="den">2</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="2">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>C = <span class="frac">‎<span class="num">3</span><span class="den">4</span></span> + <span class="frac">‎<span class="num">5×2</span><span class="den">2×2</span></span> <span class="font-sans text-xs text-slate-400">— dénominateur commun 4</span></p>
+              <p>C = <span class="frac">‎<span class="num">3</span><span class="den">4</span></span> + <span class="frac">‎<span class="num">10</span><span class="den">4</span></span></p>
+              <p class="font-display font-bold text-emerald-700">C = <span class="frac">‎<span class="num">13</span><span class="den">4</span></span></p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">D =</span>
+              <span class="frac">‎<span class="num">2</span><span class="den">3</span></span> + <span class="frac">‎<span class="num">7</span><span class="den">5</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="2">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>D = <span class="frac">‎<span class="num">2×5</span><span class="den">3×5</span></span> + <span class="frac">‎<span class="num">7×3</span><span class="den">5×3</span></span> <span class="font-sans text-xs text-slate-400">— dénominateur commun 15</span></p>
+              <p>D = <span class="frac">‎<span class="num">10</span><span class="den">15</span></span> + <span class="frac">‎<span class="num">21</span><span class="den">15</span></span></p>
+              <p class="font-display font-bold text-emerald-700">D = <span class="frac">‎<span class="num">31</span><span class="den">15</span></span></p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">E =</span>
+              <span class="frac">‎<span class="num">16</span><span class="den">3</span></span> − <span class="frac">‎<span class="num">5</span><span class="den">6</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="2">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>E = <span class="frac">‎<span class="num">16×2</span><span class="den">3×2</span></span> − <span class="frac">‎<span class="num">5</span><span class="den">6</span></span> <span class="font-sans text-xs text-slate-400">— dénominateur commun 6</span></p>
+              <p>E = <span class="frac">‎<span class="num">32</span><span class="den">6</span></span> − <span class="frac">‎<span class="num">5</span><span class="den">6</span></span> = <span class="frac">‎<span class="num">27</span><span class="den">6</span></span></p>
+              <p class="font-display font-bold text-emerald-700">E = <span class="frac">‎<span class="num">9</span><span class="den">2</span></span></p>
+              <p class="mt-2 text-xs text-slate-500">27 et 6 sont divisibles par 3 : on simplifie.</p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">F =</span>
+              <span class="frac">‎<span class="num">15</span><span class="den">2</span></span> − <span class="frac">‎<span class="num">9</span><span class="den">8</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="2">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>F = <span class="frac">‎<span class="num">15×4</span><span class="den">2×4</span></span> − <span class="frac">‎<span class="num">9</span><span class="den">8</span></span> <span class="font-sans text-xs text-slate-400">— dénominateur commun 8</span></p>
+              <p>F = <span class="frac">‎<span class="num">60</span><span class="den">8</span></span> − <span class="frac">‎<span class="num">9</span><span class="den">8</span></span></p>
+              <p class="font-display font-bold text-emerald-700">F = <span class="frac">‎<span class="num">51</span><span class="den">8</span></span></p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">G =</span>
+              <span class="frac">‎<span class="num">5</span><span class="den">21</span></span> − <span class="frac">‎<span class="num">1</span><span class="den">7</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="2">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>G = <span class="frac">‎<span class="num">5</span><span class="den">21</span></span> − <span class="frac">‎<span class="num">1×3</span><span class="den">7×3</span></span> <span class="font-sans text-xs text-slate-400">— dénominateur commun 21</span></p>
+              <p>G = <span class="frac">‎<span class="num">5</span><span class="den">21</span></span> − <span class="frac">‎<span class="num">3</span><span class="den">21</span></span></p>
+              <p class="font-display font-bold text-emerald-700">G = <span class="frac">‎<span class="num">2</span><span class="den">21</span></span></p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">H =</span>
+              <span class="frac">‎<span class="num">7</span><span class="den">3</span></span> − <span class="frac">‎<span class="num">4</span><span class="den">5</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="2">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>H = <span class="frac">‎<span class="num">7×5</span><span class="den">3×5</span></span> − <span class="frac">‎<span class="num">4×3</span><span class="den">5×3</span></span> <span class="font-sans text-xs text-slate-400">— dénominateur commun 15</span></p>
+              <p>H = <span class="frac">‎<span class="num">35</span><span class="den">15</span></span> − <span class="frac">‎<span class="num">12</span><span class="den">15</span></span></p>
+              <p class="font-display font-bold text-emerald-700">H = <span class="frac">‎<span class="num">23</span><span class="den">15</span></span></p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">I =</span>
+              <span class="frac">‎<span class="num">1,3</span><span class="den">6</span></span> + <span class="frac">‎<span class="num">6</span><span class="den">0,4</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="2">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>I = <span class="frac">‎<span class="num">1,3</span><span class="den">6</span></span> + <span class="frac">‎<span class="num">6×10</span><span class="den">0,4×10</span></span> <span class="font-sans text-xs text-slate-400">— on rend le 2<sup>e</sup> dénominateur entier</span></p>
+              <p>I = <span class="frac">‎<span class="num">1,3</span><span class="den">6</span></span> + <span class="frac">‎<span class="num">60</span><span class="den">4</span></span> = <span class="frac">‎<span class="num">1,3</span><span class="den">6</span></span> + 15</p>
+              <p>I = <span class="frac">‎<span class="num">13</span><span class="den">60</span></span> + <span class="frac">‎<span class="num">900</span><span class="den">60</span></span> <span class="font-sans text-xs text-slate-400">— dénominateur commun 60</span></p>
+              <p class="font-display font-bold text-emerald-700">I = <span class="frac">‎<span class="num">913</span><span class="den">60</span></span></p>
+              <p class="mt-2 text-xs text-slate-500">soit environ 15,22.</p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">J =</span>
+              7 + <span class="frac">‎<span class="num">1</span><span class="den">4</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="2">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>J = <span class="frac">‎<span class="num">28</span><span class="den">4</span></span> + <span class="frac">‎<span class="num">1</span><span class="den">4</span></span> <span class="font-sans text-xs text-slate-400">— on écrit 7 sous forme fractionnaire</span></p>
+              <p class="font-display font-bold text-emerald-700">J = <span class="frac">‎<span class="num">29</span><span class="den">4</span></span></p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">K =</span>
+              <span class="frac">‎<span class="num">93</span><span class="den">10</span></span> − 7,2
+            </div>
+            <details class="corr mt-3" data-serie="2">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>K = <span class="frac">‎<span class="num">93</span><span class="den">10</span></span> − <span class="frac">‎<span class="num">72</span><span class="den">10</span></span> <span class="font-sans text-xs text-slate-400">— 7,2 = 72/10</span></p>
+              <p class="font-display font-bold text-emerald-700">K = <span class="frac">‎<span class="num">21</span><span class="den">10</span></span></p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">L =</span>
+              <span class="frac">‎<span class="num">1</span><span class="den">1,2</span></span> − <span class="frac">‎<span class="num">1</span><span class="den">2,4</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="2">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>L = <span class="frac">‎<span class="num">10</span><span class="den">12</span></span> − <span class="frac">‎<span class="num">10</span><span class="den">24</span></span> <span class="font-sans text-xs text-slate-400">— on rend les dénominateurs entiers</span></p>
+              <p>L = <span class="frac">‎<span class="num">5</span><span class="den">6</span></span> − <span class="frac">‎<span class="num">5</span><span class="den">12</span></span> = <span class="frac">‎<span class="num">10</span><span class="den">12</span></span> − <span class="frac">‎<span class="num">5</span><span class="den">12</span></span></p>
+              <p class="font-display font-bold text-emerald-700">L = <span class="frac">‎<span class="num">5</span><span class="den">12</span></span></p>
+            </div>
+          </details>
+        </article>
+        </div>
+      </div>
+
+      <div id="ex-serie-3" class="anchor-offset mb-14">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-indigo-700">Exercice 3</span>
+              <span class="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-500">Multiplier / diviser</span>
+            </div>
+            <h3 class="mt-2 font-display text-lg font-bold text-slate-900">Exercice 3 — Multiplier et diviser</h3>
+            <p class="mt-1 text-sm text-slate-600">Calculer et simplifier :</p>
+          </div>
+          <button type="button" data-toggle-serie="3" data-state="closed" class="master-toggle shrink-0 self-start rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 sm:self-auto">
+            <span>Afficher toutes les corrections</span>
+          </button>
+        </div>
+
+        <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">A =</span>
+              <span class="frac">‎<span class="num">13</span><span class="den">14</span></span> × <span class="frac">‎<span class="num">7</span><span class="den">26</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="3">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>A = <span class="frac">‎<span class="num">13</span><span class="den">26</span></span> × <span class="frac">‎<span class="num">7</span><span class="den">14</span></span> <span class="font-sans text-xs text-slate-400">— simplification diagonale : 13 avec 26, 7 avec 14</span></p>
+              <p>A = <span class="frac">‎<span class="num">1</span><span class="den">2</span></span> × <span class="frac">‎<span class="num">1</span><span class="den">2</span></span></p>
+              <p class="font-display font-bold text-emerald-700">A = <span class="frac">‎<span class="num">1</span><span class="den">4</span></span></p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">B =</span>
+              <span class="frac">‎<span class="num">25</span><span class="den">16</span></span> × <span class="frac">‎<span class="num">6</span><span class="den">5</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="3">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>B = <span class="frac">‎<span class="num">25</span><span class="den">5</span></span> × <span class="frac">‎<span class="num">6</span><span class="den">16</span></span> <span class="font-sans text-xs text-slate-400">— simplification diagonale : 25 avec 5, 6 avec 16</span></p>
+              <p>B = 5 × <span class="frac">‎<span class="num">3</span><span class="den">8</span></span></p>
+              <p class="font-display font-bold text-emerald-700">B = <span class="frac">‎<span class="num">15</span><span class="den">8</span></span></p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">C =</span>
+              3 × <span class="frac">‎<span class="num">5</span><span class="den">12</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="3">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>C = <span class="frac">‎<span class="num">3×5</span><span class="den">12</span></span> = <span class="frac">‎<span class="num">15</span><span class="den">12</span></span> <span class="font-sans text-xs text-slate-400">— 15 et 12 sont divisibles par 3</span></p>
+              <p class="font-display font-bold text-emerald-700">C = <span class="frac">‎<span class="num">5</span><span class="den">4</span></span></p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">D =</span>
+              <span class="frac">‎<span class="num">2021</span><span class="den">2020</span></span> × 2020
+            </div>
+            <details class="corr mt-3" data-serie="3">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>D = <span class="frac">‎<span class="num">2021×2020</span><span class="den">2020</span></span> <span class="font-sans text-xs text-slate-400">— le facteur 2020 se simplifie avec le dénominateur</span></p>
+              <p class="font-display font-bold text-emerald-700">D = 2021</p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">E =</span>
+              <span class="frac">‎<span class="num">9</span><span class="den">8</span></span> ÷ <span class="frac">‎<span class="num">3</span><span class="den">16</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="3">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>E = <span class="frac">‎<span class="num">9</span><span class="den">8</span></span> × <span class="frac">‎<span class="num">16</span><span class="den">3</span></span> <span class="font-sans text-xs text-slate-400">— on multiplie par l'inverse du diviseur</span></p>
+              <p>E = <span class="frac">‎<span class="num">9</span><span class="den">3</span></span> × <span class="frac">‎<span class="num">16</span><span class="den">8</span></span> <span class="font-sans text-xs text-slate-400">— simplification diagonale</span></p>
+              <p>E = 3 × 2</p>
+              <p class="font-display font-bold text-emerald-700">E = 6</p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">F =</span>
+              <span class="frac">‎<span class="num">25</span><span class="den">36</span></span> ÷ <span class="frac">‎<span class="num">15</span><span class="den">24</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="3">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>F = <span class="frac">‎<span class="num">25</span><span class="den">36</span></span> × <span class="frac">‎<span class="num">24</span><span class="den">15</span></span> <span class="font-sans text-xs text-slate-400">— on multiplie par l'inverse du diviseur</span></p>
+              <p>F = <span class="frac">‎<span class="num">25</span><span class="den">15</span></span> × <span class="frac">‎<span class="num">24</span><span class="den">36</span></span> = <span class="frac">‎<span class="num">5</span><span class="den">3</span></span> × <span class="frac">‎<span class="num">2</span><span class="den">3</span></span></p>
+              <p class="font-display font-bold text-emerald-700">F = <span class="frac">‎<span class="num">10</span><span class="den">9</span></span></p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">G =</span>
+              198 ÷ <span class="frac">‎<span class="num">132</span><span class="den">72</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="3">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>G = 198 × <span class="frac">‎<span class="num">72</span><span class="den">132</span></span> <span class="font-sans text-xs text-slate-400">— on multiplie par l'inverse du diviseur</span></p>
+              <p>G = <span class="frac">‎<span class="num">198</span><span class="den">132</span></span> × 72 = <span class="frac">‎<span class="num">3</span><span class="den">2</span></span> × 72</p>
+              <p class="font-display font-bold text-emerald-700">G = 108</p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">H =</span>
+              <span class="frac">‎<span class="num">3</span><span class="den">2</span></span> ÷ 2022
+            </div>
+            <details class="corr mt-3" data-serie="3">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>H = <span class="frac">‎<span class="num">3</span><span class="den">2</span></span> × <span class="frac">‎<span class="num">1</span><span class="den">2022</span></span> <span class="font-sans text-xs text-slate-400">— l'inverse de 2022 est 1/2022</span></p>
+              <p>H = <span class="frac">‎<span class="num">3</span><span class="den">4044</span></span></p>
+              <p class="font-display font-bold text-emerald-700">H = <span class="frac">‎<span class="num">1</span><span class="den">1348</span></span></p>
+              <p class="mt-2 text-xs text-slate-500">3 et 4044 sont divisibles par 3.</p>
+            </div>
+          </details>
+        </article>
+        </div>
+      </div>
+
+      <div id="ex-serie-4" class="anchor-offset mb-14">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-indigo-700">Exercice 4</span>
+              <span class="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-500">Calculs combinés</span>
+            </div>
+            <h3 class="mt-2 font-display text-lg font-bold text-slate-900">Exercice 4 — Calculs combinés</h3>
+            <p class="mt-1 text-sm text-slate-600">Calculer :</p>
+          </div>
+          <button type="button" data-toggle-serie="4" data-state="closed" class="master-toggle shrink-0 self-start rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700 sm:self-auto">
+            <span>Afficher toutes les corrections</span>
+          </button>
+        </div>
+
+        <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">A =</span>
+              <span class="frac">‎<span class="num">1</span><span class="den">2</span></span> + <span class="frac">‎<span class="num">4</span><span class="den">3</span></span> + <span class="frac">‎<span class="num">2</span><span class="den">5</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="4">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>A = <span class="frac">‎<span class="num">15</span><span class="den">30</span></span> + <span class="frac">‎<span class="num">40</span><span class="den">30</span></span> + <span class="frac">‎<span class="num">12</span><span class="den">30</span></span> <span class="font-sans text-xs text-slate-400">— dénominateur commun 30</span></p>
+              <p class="font-display font-bold text-emerald-700">A = <span class="frac">‎<span class="num">67</span><span class="den">30</span></span></p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">B =</span>
+              <span class="frac">‎<span class="num">1</span><span class="den">2</span></span> + <span class="frac">‎<span class="num">4</span><span class="den">3</span></span> − <span class="frac">‎<span class="num">2</span><span class="den">5</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="4">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>B = <span class="frac">‎<span class="num">15</span><span class="den">30</span></span> + <span class="frac">‎<span class="num">40</span><span class="den">30</span></span> − <span class="frac">‎<span class="num">12</span><span class="den">30</span></span> <span class="font-sans text-xs text-slate-400">— dénominateur commun 30</span></p>
+              <p class="font-display font-bold text-emerald-700">B = <span class="frac">‎<span class="num">43</span><span class="den">30</span></span></p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">C =</span>
+              <span class="frac">‎<span class="num">1</span><span class="den">2</span></span> × <span class="frac">‎<span class="num">6</span><span class="den">14</span></span> × <span class="frac">‎<span class="num">28</span><span class="den">3</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="4">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>C = <span class="frac">‎<span class="num">1×6×28</span><span class="den">2×14×3</span></span> <span class="font-sans text-xs text-slate-400">— produit des numérateurs sur produit des dénominateurs</span></p>
+              <p>C = <span class="frac">‎<span class="num">168</span><span class="den">84</span></span></p>
+              <p class="font-display font-bold text-emerald-700">C = 2</p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">D =</span>
+              <span class="frac">‎<span class="num">3</span><span class="den">2</span></span> − <span class="frac">‎<span class="num">3</span><span class="den">2</span></span> × <span class="frac">‎<span class="num">5</span><span class="den">7</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="4">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>D = <span class="frac">‎<span class="num">3</span><span class="den">2</span></span> − <span class="frac">‎<span class="num">15</span><span class="den">14</span></span> <span class="font-sans text-xs text-slate-400">— la multiplication d'abord</span></p>
+              <p>D = <span class="frac">‎<span class="num">21</span><span class="den">14</span></span> − <span class="frac">‎<span class="num">15</span><span class="den">14</span></span></p>
+              <p class="font-display font-bold text-emerald-700">D = <span class="frac">‎<span class="num">3</span><span class="den">7</span></span></p>
+              <p class="mt-2 text-xs text-slate-500">6/14 se simplifie en 3/7.</p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">E =</span>
+              5 + <span class="frac">‎<span class="num">3</span><span class="den">2</span></span> × <span class="frac">‎<span class="num">5</span><span class="den">3</span></span> − <span class="frac">‎<span class="num">4</span><span class="den">3</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="4">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>E = 5 + <span class="frac">‎<span class="num">5</span><span class="den">2</span></span> − <span class="frac">‎<span class="num">4</span><span class="den">3</span></span> <span class="font-sans text-xs text-slate-400">— la multiplication d'abord : 3/2 × 5/3 = 5/2</span></p>
+              <p>E = <span class="frac">‎<span class="num">30</span><span class="den">6</span></span> + <span class="frac">‎<span class="num">15</span><span class="den">6</span></span> − <span class="frac">‎<span class="num">8</span><span class="den">6</span></span> <span class="font-sans text-xs text-slate-400">— dénominateur commun 6</span></p>
+              <p class="font-display font-bold text-emerald-700">E = <span class="frac">‎<span class="num">37</span><span class="den">6</span></span></p>
+            </div>
+          </details>
+        </article>
+
+          <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+            <div class="eq-row text-sm sm:text-base font-semibold text-slate-800">
+              <span class="font-display font-bold text-indigo-600">F =</span>
+              8 × (<span class="frac">‎<span class="num">4</span><span class="den">5</span></span> − <span class="frac">‎<span class="num">3</span><span class="den">4</span></span>) + <span class="frac">‎<span class="num">5</span><span class="den">6</span></span> × <span class="frac">‎<span class="num">5</span><span class="den">3</span></span>
+            </div>
+            <details class="corr mt-3" data-serie="4">
+              <summary class="inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100 sm:text-sm">
+                <svg viewBox="0 0 20 20" class="chevron h-3.5 w-3.5" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                <span class="label-closed">Voir la correction</span><span class="label-open">Masquer</span>
+              </summary>
+              <div class="corr-panel mt-3 space-y-1.5 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-slate-700 sm:p-4">
+              <p>F = 8 × <span class="frac">‎<span class="num">1</span><span class="den">20</span></span> + <span class="frac">‎<span class="num">25</span><span class="den">18</span></span> <span class="font-sans text-xs text-slate-400">— parenthèse d'abord : 4/5 − 3/4 = 16/20 − 15/20 = 1/20</span></p>
+              <p>F = <span class="frac">‎<span class="num">2</span><span class="den">5</span></span> + <span class="frac">‎<span class="num">25</span><span class="den">18</span></span> <span class="font-sans text-xs text-slate-400">— 8 × 1/20 = 8/20 = 2/5</span></p>
+              <p>F = <span class="frac">‎<span class="num">36</span><span class="den">90</span></span> + <span class="frac">‎<span class="num">125</span><span class="den">90</span></span> <span class="font-sans text-xs text-slate-400">— dénominateur commun 90</span></p>
+              <p class="font-display font-bold text-emerald-700">F = <span class="frac">‎<span class="num">161</span><span class="den">90</span></span></p>
+            </div>
+          </details>
+        </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="border-t border-slate-200 bg-slate-900 text-slate-300">
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="grid gap-8 sm:grid-cols-2">
+      <div>
+        <a href="/" class="flex items-center gap-2.5">
+          <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+          <span class="font-display font-bold text-white leading-tight">
+            <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+          </span>
+        </a>
+        <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+        <p class="mt-3 text-sm leading-relaxed text-slate-400">
+          Fiche de cours et exercices corrigés — Mathématiques, 1ʳᵉ Année Collège, chapitre N3.
+        </p>
+      </div>
+      <div>
+        <p class="font-display text-sm font-bold text-white">Navigation</p>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li><a href="#accueil" class="hover:text-white">Accueil</a></li>
+          <li><a href="#sommaire" class="hover:text-white">Sommaire du cours</a></li>
+          <li><a href="#exercices" class="hover:text-white">Exercices corrigés</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-10 border-t border-slate-800 pt-6 text-center text-xs text-slate-500">
+      Page réalisée à partir du cours « Les opérations sur les nombres en écriture fractionnaire » — usage pédagogique.
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" type="button" aria-label="Retour en haut" class="fixed bottom-6 right-6 z-40 hidden h-11 w-11 items-center justify-center rounded-full bg-indigo-600 text-white shadow-lg hover:bg-indigo-700">
+  <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18"/></svg>
+</button>
+
+<script>
+  // Mobile menu toggle
+  var menuBtn = document.getElementById('menu-btn');
+  var mobileMenu = document.getElementById('mobile-menu');
+  var iconOpen = document.getElementById('icon-open');
+  var iconClose = document.getElementById('icon-close');
+  menuBtn.addEventListener('click', function () {
+    var isHidden = mobileMenu.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', String(!isHidden));
+    iconOpen.classList.toggle('hidden', !isHidden);
+    iconClose.classList.toggle('hidden', isHidden);
+  });
+  mobileMenu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      mobileMenu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  // Per-series "show/hide all corrections" buttons
+  document.querySelectorAll('[data-toggle-serie]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var serie = btn.getAttribute('data-toggle-serie');
+      var open = btn.getAttribute('data-state') !== 'open';
+      document.querySelectorAll('details.corr[data-serie="' + serie + '"]').forEach(function (d) { d.open = open; });
+      btn.setAttribute('data-state', open ? 'open' : 'closed');
+      btn.querySelector('span').textContent = open ? 'Masquer toutes les corrections' : 'Afficher toutes les corrections';
+    });
+  });
+
+  // Back-to-top button
+  var backBtn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 500) {
+      backBtn.classList.remove('hidden');
+      backBtn.classList.add('flex');
+    } else {
+      backBtn.classList.add('hidden');
+      backBtn.classList.remove('flex');
+    }
+  });
+  backBtn.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>

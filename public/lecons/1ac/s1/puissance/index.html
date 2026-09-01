@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function () {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', dark);
+  })();
+</script>
+<title>Les Puissances — Cours &amp; Exercices corrigés | 1AC</title>
+<meta name="description" content="Cours détaillé sur les puissances (définitions, signe, puissances de 10, propriétés) et 5 exercices corrigés en détail (calculs, équations d'exposants, écritures littérales, démonstrations) — 1ère année collège, semestre 1.">
+<meta name="theme-color" content="#4f46e5">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%234f46e5'/%3E%3Ctext x='24' y='72' font-family='Arial,sans-serif' font-size='58' font-weight='800' fill='white'%3Ex%3C/text%3E%3Ctext x='66' y='40' font-family='Arial,sans-serif' font-size='32' font-weight='800' fill='%23fbbf24'%3En%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=STIX+Two+Text:ital@0;1&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          display: ['Lexend', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          math: ['STIX Two Text', 'Cambria', 'Georgia', 'serif'],
+        },
+        colors: {
+          indigo: {
+            50: '#eef3fb', 100: '#dbe7f6', 200: '#b8cfec', 300: '#8fb0da',
+            400: '#6089bd', 500: '#3f6a9c', 600: '#2c5089', 700: '#1c3a63',
+            800: '#12294c', 900: '#0b1f3a', 950: '#071528',
+          },
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 112px; }
+  body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+  .font-display { font-family: 'Lexend', ui-sans-serif, system-ui, sans-serif; }
+
+  /* Italic serif variables (a, b, c, n...) — authentic textbook feel */
+  .var { font-family: 'STIX Two Text', Cambria, Georgia, serif; font-style: italic; }
+
+  /* Fraction component */
+  .frac { display: inline-flex; flex-direction: column; text-align: center; vertical-align: middle; margin: 0 .22em; line-height: 1.15; font-variant-numeric: tabular-nums; }
+  .frac .num, .frac .den { display: block; padding: 0 .35em; }
+  .frac .num { border-bottom: 2px solid currentColor; padding-bottom: 1px; }
+  .frac .den { padding-top: 1px; }
+  .frac-sm { font-size: .82em; }
+
+  .expr { font-variant-numeric: tabular-nums; }
+  .expr sup { font-weight: 700; }
+
+  .scroll-mt-28 { scroll-margin-top: 7rem; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+  .correction-panel:not(.hidden) { animation: fadeIn .35s ease; }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #f1f5f9; }
+  ::-webkit-scrollbar-thumb { background: #c7d2fe; border-radius: 9999px; }
+
+  /* ===== Mode nuit (retrofit générique) ===== */
+  .dark body { background-color: #071528; }
+  .dark .bg-slate-50 { background-color: #071528; }
+  .dark div.bg-white, .dark article.bg-white, .dark section.bg-white, .dark li.bg-white, .dark p.bg-white, .dark span.bg-white { background-color: #0b1f3a; }
+  .dark .bg-slate-100 { background-color: #12294c; }
+  .dark .text-slate-900 { color: #f1f5f9; }
+  .dark .text-slate-800 { color: #e2e8f0; }
+  .dark .text-slate-700 { color: #cbd5e1; }
+  .dark .text-slate-600 { color: #a7b6cf; }
+  .dark .text-slate-500 { color: #93a4c3; }
+  .dark .text-slate-400 { color: #7c8db0; }
+  .dark .text-slate-300 { color: #cbd5e1; }
+  .dark .border-slate-100, .dark .border-slate-200 { border-color: #1c3a63; }
+  .dark .bg-emerald-50 { background-color: #0d2818; }
+  .dark .border-emerald-200, .dark .ring-emerald-100 { border-color: #1e5631; }
+  .dark .text-emerald-700, .dark .text-emerald-800 { color: #6ee7a3; }
+  .dark .bg-rose-100 { background-color: #3a0d18; }
+  .dark .text-rose-600 { color: #fb7185; }
+  .dark .bg-amber-50 { background-color: #3a2a0a; }
+  .dark .border-amber-200, .dark .ring-amber-200 { border-color: #92400e; }
+  .dark .text-amber-900 { color: #fde68a; }
+  .dark .text-amber-700 { color: #fbbf24; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased transition-colors">
+
+<a href="#contenu" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow-lg">Aller au contenu</a>
+
+<!-- ===================== HEADER ===================== -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b1f3ad9] backdrop-blur border-b border-slate-200 dark:border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#accueil" class="flex items-center gap-2 font-display font-bold text-lg text-indigo-700 dark:text-white">
+        <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-9 w-9 shrink-0 rounded-full">
+        <span class="hidden xs:inline sm:inline">Puissances</span>
+      </a>
+      <nav aria-label="Navigation principale" class="hidden md:flex items-center gap-1 text-sm font-medium">
+        <a href="/" class="nav-link px-3 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white transition">← Portail</a>
+        <a href="#cours" class="nav-link px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-white/5 hover:text-indigo-700 dark:hover:text-white transition">Cours détaillé</a>
+        <a href="#exercices" class="nav-link ml-2 px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition">Exercices corrigés</a>
+        <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="ml-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-amber-400 transition-colors">
+          <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+          <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+      </nav>
+      <button onclick="toggleThemeMode()" aria-label="Basculer le mode jour/nuit" class="md:hidden mr-1 w-9 h-9 flex items-center justify-center rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+        <svg class="w-[18px] h-[18px] hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg>
+        <svg class="w-[18px] h-[18px] dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+      <button id="menuBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu" class="md:hidden flex h-10 w-10 items-center justify-center rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5">
+        <svg id="menuIconOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75Zm0 5A.75.75 0 0 1 2.75 9h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 9.75Zm0 5a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd"/></svg>
+        <svg id="menuIconClose" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z"/></svg>
+      </button>
+    </div>
+    <nav id="mobileMenu" aria-label="Navigation mobile" class="hidden md:hidden pb-4 flex flex-col gap-1 text-sm font-medium">
+      <a href="/" class="nav-link px-3 py-2.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-white/5">← Portail</a>
+      <a href="#cours" class="nav-link px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-white/5">Cours détaillé</a>
+      <a href="#exercices" class="nav-link px-3 py-2.5 rounded-lg bg-indigo-600 text-white text-center">Exercices corrigés</a>
+    </nav>
+  </div>
+  <!-- Sommaire pills -->
+  <nav aria-label="Sommaire" class="border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-indigo-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto">
+      <ul class="flex gap-2 py-3 text-xs sm:text-sm font-medium whitespace-nowrap">
+        <li><a href="#cours" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">Cours détaillé</a></li>
+        <li><a href="#exercice1" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">Exercice 1</a></li>
+        <li><a href="#exercice2" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">Exercice 2</a></li>
+        <li><a href="#exercice3" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">Exercice 3</a></li>
+        <li><a href="#exercice4" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">Exercice 4</a></li>
+        <li><a href="#exercice5" class="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-indigo-900 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-700 px-3.5 py-1.5 hover:ring-indigo-300 hover:text-indigo-700 dark:hover:text-white transition">Exercice 5</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main id="contenu">
+
+  <!-- ===================== HERO ===================== -->
+  <section id="accueil" aria-label="Présentation" class="relative overflow-hidden bg-gradient-to-br from-indigo-950 via-indigo-800 to-violet-600 text-white scroll-mt-28">
+    <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1920&q=80" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-20 mix-blend-overlay" />
+    <div class="absolute inset-0 opacity-[0.15] [background-image:radial-gradient(white_1px,transparent_1px)] [background-size:22px_22px]" aria-hidden="true"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <p class="inline-block rounded-full bg-white/10 px-4 py-1 text-xs sm:text-sm font-semibold tracking-wide uppercase mb-4 ring-1 ring-white/25">1ʳᵉ Année Collège · Semestre 1</p>
+      <h1 class="font-display text-3xl sm:text-5xl font-extrabold leading-tight max-w-3xl">Les Puissances</h1>
+      <p class="mt-4 max-w-2xl text-indigo-100 text-base sm:text-lg">Calculer, simplifier et démontrer à l'aide des règles des puissances — le cours détaillé, puis 5 exercices d'application corrigés pas à pas.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#exercice1" class="rounded-xl bg-white text-indigo-700 px-5 py-3 font-semibold shadow hover:bg-indigo-50 transition">Commencer les exercices</a>
+        <a href="#cours" class="rounded-xl bg-white/10 ring-1 ring-white/30 px-5 py-3 font-semibold hover:bg-white/20 transition">Revoir le cours</a>
+      </div>
+      <dl class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-2xl">
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-indigo-200">Cours</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">2 parties</dd>
+        </div>
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-indigo-200">Entraînement</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">5 Exercices</dd>
+        </div>
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-indigo-200">Questions</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">30 au total</dd>
+        </div>
+        <div class="rounded-xl bg-white/10 ring-1 ring-white/15 px-4 py-3">
+          <dt class="text-xs text-indigo-200">Corrections</dt>
+          <dd class="font-display text-xl sm:text-2xl font-bold">pas à pas</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+
+  <!-- ===================== COURS DÉTAILLÉ ===================== -->
+  <section id="cours" aria-labelledby="cours-heading" class="scroll-mt-28 py-16 sm:py-24 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-12">
+        <span class="text-indigo-600 dark:text-indigo-300 font-semibold text-sm uppercase tracking-wide">Partie I</span>
+        <h2 id="cours-heading" class="font-display text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Cours détaillé</h2>
+        <p class="mt-3 text-slate-600">Définitions, propriétés et exemples résolus pas à pas — pour comprendre chaque règle avant de l'appliquer dans les exercices.</p>
+      </div>
+
+      <!-- I. Puissance d'un nombre relatif -->
+      <div class="mb-16">
+        <h3 class="font-display text-xl font-bold text-slate-900 mb-5 flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-bold shrink-0">I</span>
+          Puissance d'un nombre relatif
+        </h3>
+
+        <p class="font-semibold text-slate-700 mb-3">1. Définition</p>
+        <div class="rounded-2xl bg-indigo-50 dark:bg-indigo-950 ring-1 ring-indigo-100 dark:ring-indigo-800 p-5 sm:p-6 mb-5">
+          <p class="text-sm text-indigo-900 dark:text-indigo-100 mb-3">Soit <span class="var">a</span> un nombre relatif et <span class="var">n</span> un nombre entier naturel non nul.</p>
+          <p class="expr text-lg sm:text-xl text-indigo-700 font-bold text-center py-1">
+            <span class="var">a</span><sup>n</sup> = <span class="var">a</span> × <span class="var">a</span> × <span class="var">a</span> × ... × <span class="var">a</span>
+          </p>
+          <p class="text-center text-xs text-indigo-600 dark:text-indigo-300 font-sans mt-1"><span class="var">n</span> facteurs</p>
+        </div>
+
+        <ul class="grid sm:grid-cols-2 gap-3 mb-6 text-sm text-slate-700">
+          <li class="rounded-xl bg-slate-50 ring-1 ring-slate-200 p-4"><span class="var">a</span> est appelé la <strong>base</strong> de la puissance <span class="var">a</span><sup>n</sup>.</li>
+          <li class="rounded-xl bg-slate-50 ring-1 ring-slate-200 p-4"><span class="var">n</span> est appelé l'<strong>exposant</strong> de la puissance <span class="var">a</span><sup>n</sup>.</li>
+          <li class="rounded-xl bg-slate-50 ring-1 ring-slate-200 p-4 expr"><span class="var">a</span><sup>0</sup> = 1, avec <span class="var">a</span> ≠ 0.</li>
+          <li class="rounded-xl bg-slate-50 ring-1 ring-slate-200 p-4 expr"><span class="var">a</span><sup>1</sup> = <span class="var">a</span>.</li>
+          <li class="rounded-xl bg-rose-100 ring-1 ring-rose-100 text-rose-700 dark:text-rose-300 p-4 sm:col-span-2 expr font-semibold">0<sup>0</sup> n'existe pas.</li>
+        </ul>
+
+        <p class="text-xs font-bold uppercase tracking-wide text-slate-500 mb-2">Exemples</p>
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5 sm:p-6 grid sm:grid-cols-2 gap-x-6 gap-y-2 text-sm expr text-slate-800 mb-10">
+          <p>3<sup>5</sup> = 3 × 3 × 3 × 3 × 3</p>
+          <p>1,2<sup>3</sup> = 1,2 × 1,2 × 1,2</p>
+          <p>(−7)<sup>4</sup> = (−7) × (−7) × (−7) × (−7)</p>
+          <p>124<sup>0</sup> = 1</p>
+          <p>(−5547)<sup>0</sup> = 1</p>
+          <p>0<sup>2018</sup> = 0</p>
+        </div>
+
+        <p class="font-semibold text-slate-700 mb-3">2. Le signe d'une puissance à base négative</p>
+        <div class="rounded-2xl bg-amber-50 ring-1 ring-amber-200 p-5 sm:p-6 mb-5">
+          <p class="text-xs font-bold uppercase tracking-wide text-amber-700 mb-2">Propriété</p>
+          <p class="text-sm text-amber-900">Soient <span class="var">a</span> un nombre relatif et <span class="var">n</span> un nombre entier naturel non nul. Une puissance à base négative (−<span class="var">a</span>)<sup>n</sup> peut être :</p>
+          <ul class="mt-2 space-y-1 text-sm text-amber-900">
+            <li>1. <strong>positive</strong>, si et seulement si son exposant est <strong>pair</strong> ;</li>
+            <li>2. <strong>négative</strong>, si et seulement si son exposant est <strong>impair</strong>.</li>
+          </ul>
+        </div>
+
+        <p class="text-xs font-bold uppercase tracking-wide text-slate-500 mb-2">Exemples</p>
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5 sm:p-6 space-y-2 text-sm text-slate-700 expr mb-5">
+          <p>(−21,5)<sup>124</sup> est un nombre <strong class="text-emerald-700">positif</strong>, car 124 est pair.</p>
+          <p>(−225)<sup>217</sup> est un nombre <strong class="text-rose-600">négatif</strong>, car 217 est impair.</p>
+          <p>−12<sup>24</sup> est un nombre <strong class="text-rose-600">négatif</strong>, car c'est l'opposé de la puissance 12<sup>24</sup>.</p>
+          <p>−25<sup>11</sup> est un nombre <strong class="text-rose-600">négatif</strong>, car c'est l'opposé de la puissance 25<sup>11</sup>.</p>
+        </div>
+
+        <div class="rounded-2xl bg-indigo-50 dark:bg-indigo-950 ring-1 ring-indigo-100 dark:ring-indigo-800 p-5 sm:p-6 mb-10">
+          <p class="text-xs font-bold uppercase tracking-wide text-indigo-600 dark:text-indigo-300 mb-2">⚠ Attention à ne pas confondre (−<span class="var">a</span>)<sup>n</sup> et −<span class="var">a</span><sup>n</sup></p>
+          <p class="text-sm text-indigo-900 dark:text-indigo-100 expr">(−11,5)<sup>24</sup> ≠ −11,5<sup>24</sup>, car (−11,5)<sup>24</sup> &gt; 0 et −11,5<sup>24</sup> &lt; 0.</p>
+          <p class="text-sm text-indigo-900 dark:text-indigo-100 expr mt-1">(−45)<sup>11</sup> = −45<sup>11</sup>, car (−45)<sup>11</sup> &lt; 0 et −45<sup>11</sup> &lt; 0.</p>
+          <p class="mt-4 text-xs font-bold uppercase tracking-wide text-indigo-600 dark:text-indigo-300 mb-1">Applications</p>
+          <p class="text-sm text-indigo-900 dark:text-indigo-100 expr">(−3,5)² = + 3,5 × 3,5 = 12,25</p>
+          <p class="text-sm text-indigo-900 dark:text-indigo-100 expr">(−3)⁵ = − 3 × 3 × 3 × 3 × 3 = − 729</p>
+        </div>
+
+        <p class="font-semibold text-slate-700 mb-3">3. Puissances de 10</p>
+        <div class="rounded-2xl bg-indigo-50 dark:bg-indigo-950 ring-1 ring-indigo-100 dark:ring-indigo-800 p-5 sm:p-6 mb-3">
+          <p class="text-sm text-indigo-900 dark:text-indigo-100 mb-3">Soit <span class="var">n</span> un nombre entier naturel non nul.</p>
+          <p class="expr text-lg sm:text-xl text-indigo-700 font-bold text-center py-1">10<sup>n</sup> = 1 000...0</p>
+          <p class="text-center text-xs text-indigo-600 dark:text-indigo-300 font-sans mt-1"><span class="var">n</span> zéros</p>
+        </div>
+        <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5 sm:p-6 grid sm:grid-cols-3 gap-3 text-sm expr text-slate-800">
+          <p>10<sup>7</sup> = 10 000 000</p>
+          <p>10<sup>12</sup> = 1 000 000 000 000</p>
+          <p>10<sup>3</sup> = 1 000</p>
+        </div>
+      </div>
+
+      <!-- II. Propriétés des puissances -->
+      <div>
+        <h3 class="font-display text-xl font-bold text-slate-900 mb-5 flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-bold shrink-0">II</span>
+          Propriétés des puissances
+        </h3>
+
+        <div class="space-y-5">
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5 sm:p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="flex h-7 w-7 items-center justify-center rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold shrink-0">1</span>
+              <p class="font-semibold text-slate-900">Produit de deux puissances de même base</p>
+            </div>
+            <p class="text-sm text-slate-600 mb-3">Soient <span class="var">a</span> un nombre relatif et <span class="var">m</span>, <span class="var">n</span> deux nombres entiers naturels non nuls.</p>
+            <p class="expr text-center text-lg text-indigo-700 font-bold mb-3"><span class="var">a</span><sup>m</sup> × <span class="var">a</span><sup>n</sup> = <span class="var">a</span><sup>m+n</sup></p>
+            <div class="rounded-xl bg-slate-50 p-4 text-sm expr text-slate-700 grid sm:grid-cols-2 gap-2">
+              <p>2,5<sup>12</sup> × 2,5<sup>7</sup> = 2,5<sup>19</sup></p>
+              <p>(−3)<sup>27</sup> × (−3)<sup>11</sup> = (−3)<sup>38</sup></p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5 sm:p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="flex h-7 w-7 items-center justify-center rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold shrink-0">2</span>
+              <p class="font-semibold text-slate-900">Quotient de deux puissances de même base</p>
+            </div>
+            <p class="text-sm text-slate-600 mb-3">Soient <span class="var">a</span> un nombre relatif non nul et <span class="var">m</span>, <span class="var">n</span> deux nombres entiers naturels non nuls tels que <span class="var">m</span> &gt; <span class="var">n</span>.</p>
+            <p class="expr text-center text-lg text-indigo-700 font-bold mb-3 flex items-center justify-center gap-2"><span class="frac"><span class="num var">a<sup>m</sup></span><span class="den var">a<sup>n</sup></span></span> = <span class="var">a</span><sup>m−n</sup></p>
+            <div class="rounded-xl bg-slate-50 p-4 text-sm expr text-slate-700 grid sm:grid-cols-2 gap-2">
+              <p>11<sup>25</sup> ÷ 11<sup>11</sup> = 11<sup>14</sup></p>
+              <p>(−1,5)<sup>17</sup> ÷ (−1,5)<sup>10</sup> = (−1,5)<sup>7</sup></p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5 sm:p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="flex h-7 w-7 items-center justify-center rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold shrink-0">3</span>
+              <p class="font-semibold text-slate-900">Produit de deux puissances de même exposant</p>
+            </div>
+            <p class="text-sm text-slate-600 mb-3">Soient <span class="var">a</span> et <span class="var">b</span> deux nombres relatifs et <span class="var">m</span> un nombre entier naturel non nul.</p>
+            <p class="expr text-center text-lg text-indigo-700 font-bold mb-3"><span class="var">a</span><sup>m</sup> × <span class="var">b</span><sup>m</sup> = (<span class="var">a</span> × <span class="var">b</span>)<sup>m</sup></p>
+            <div class="rounded-xl bg-slate-50 p-4 text-sm expr text-slate-700 grid sm:grid-cols-3 gap-2">
+              <p>4<sup>7</sup> × 15<sup>7</sup> = 60<sup>7</sup></p>
+              <p>(−11)<sup>21</sup> × (−10)<sup>21</sup> = 110<sup>21</sup></p>
+              <p>17<sup>13</sup> × (−5)<sup>13</sup> = (−85)<sup>13</sup></p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5 sm:p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="flex h-7 w-7 items-center justify-center rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold shrink-0">4</span>
+              <p class="font-semibold text-slate-900">Quotient de deux puissances de même exposant</p>
+            </div>
+            <p class="text-sm text-slate-600 mb-3">Soient <span class="var">a</span> et <span class="var">b</span> deux nombres relatifs tels que <span class="var">b</span> ≠ 0, et <span class="var">m</span> un nombre entier naturel non nul.</p>
+            <p class="expr text-center text-lg text-indigo-700 font-bold mb-3 flex items-center justify-center gap-2"><span class="frac"><span class="num var">a<sup>m</sup></span><span class="den var">b<sup>m</sup></span></span> = (<span class="frac frac-sm"><span class="num var">a</span><span class="den var">b</span></span>)<sup>m</sup></p>
+            <div class="rounded-xl bg-slate-50 p-4 text-sm expr text-slate-700 grid sm:grid-cols-3 gap-2">
+              <p>25<sup>11</sup> ÷ 5<sup>11</sup> = 5<sup>11</sup></p>
+              <p>(−120)<sup>21</sup> ÷ (−12)<sup>21</sup> = 10<sup>21</sup></p>
+              <p>48<sup>23</sup> ÷ (−4)<sup>23</sup> = (−12)<sup>23</sup></p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5 sm:p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="flex h-7 w-7 items-center justify-center rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold shrink-0">5</span>
+              <p class="font-semibold text-slate-900">Puissance d'une puissance</p>
+            </div>
+            <p class="text-sm text-slate-600 mb-3">Soient <span class="var">a</span> un nombre relatif et <span class="var">m</span>, <span class="var">n</span> deux nombres entiers naturels non nuls.</p>
+            <p class="expr text-center text-lg text-indigo-700 font-bold mb-3">(<span class="var">a</span><sup>m</sup>)<sup>n</sup> = <span class="var">a</span><sup>m×n</sup></p>
+            <div class="rounded-xl bg-slate-50 p-4 text-sm expr text-slate-700 grid sm:grid-cols-3 gap-2">
+              <p>[(−12,5)<sup>7</sup>]<sup>11</sup> = (−12,5)<sup>77</sup></p>
+              <p>(23<sup>13</sup>)<sup>10</sup> = 23<sup>130</sup></p>
+              <p>[(11<sup>4</sup>)<sup>7</sup>]<sup>10</sup> = 11<sup>280</sup></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXERCICES ===================== -->
+  <section id="exercices" aria-labelledby="exercices-heading" class="scroll-mt-28 py-16 sm:py-24 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-6">
+        <span class="text-indigo-600 dark:text-indigo-300 font-semibold text-sm uppercase tracking-wide">Partie II</span>
+        <h2 id="exercices-heading" class="font-display text-2xl sm:text-3xl font-bold text-slate-900 mt-1">5 exercices corrigés</h2>
+        <p class="mt-3 text-slate-600">Cherche chaque exercice sur ton cahier, puis clique sur « Voir la correction » pour vérifier tes réponses.</p>
+      </div>
+
+      <div class="flex flex-wrap gap-2 mb-12">
+        <a href="#exercice1" class="rounded-full bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 px-4 py-2 text-sm font-semibold transition">Ex. 01</a>
+        <a href="#exercice2" class="rounded-full bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 px-4 py-2 text-sm font-semibold transition">Ex. 02</a>
+        <a href="#exercice3" class="rounded-full bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 px-4 py-2 text-sm font-semibold transition">Ex. 03</a>
+        <a href="#exercice4" class="rounded-full bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 px-4 py-2 text-sm font-semibold transition">Ex. 04</a>
+        <a href="#exercice5" class="rounded-full bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 px-4 py-2 text-sm font-semibold transition">Ex. 05</a>
+      </div>
+
+      <!-- ========== EXERCICE 1 ========== -->
+      <div id="exercice1" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-4">
+          <span class="inline-block rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 1</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Calculer · 11 expressions</span>
+        </div>
+
+        <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+          <div class="p-4 sm:p-6">
+            <p class="text-sm sm:text-base text-slate-700 mb-5">Calculer :</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+              <div class="rounded-xl ring-1 ring-slate-200 p-3 flex items-center gap-2"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">1</span><span class="expr text-sm sm:text-base">3<sup>2</sup> × 5<sup>2</sup></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-3 flex items-center gap-2"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">2</span><span class="expr text-sm sm:text-base">(−0,25)<sup>4</sup></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-3 flex items-center gap-2"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">3</span><span class="expr text-sm sm:text-base">[(−3,5)<sup>2</sup>]<sup>3</sup></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-3 flex items-center gap-2"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">4</span><span class="expr text-sm sm:text-base">[(−5)<sup>0</sup>]<sup>240</sup></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-3 flex items-center gap-2"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">5</span><span class="expr text-sm sm:text-base">−17<sup>3</sup></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-3 flex items-center gap-2"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">6</span><span class="expr text-sm sm:text-base">−2,6<sup>4</sup></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-3 flex items-center gap-2"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">7</span><span class="expr text-sm sm:text-base">−[(−5)<sup>2</sup>]<sup>2</sup></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-3 flex items-center gap-2"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">8</span><span class="expr text-sm sm:text-base">(−2254,326)<sup>1</sup></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-3 flex items-center gap-2"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">9</span><span class="expr text-sm sm:text-base">(−2,5<sup>2</sup>)<sup>3</sup></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-3 flex items-center gap-2"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">10</span><span class="expr text-sm sm:text-base">[−(−3,2)<sup>3</sup>]<sup>2</sup></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-3 flex items-center gap-2 col-span-2 sm:col-span-1"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">11</span><span class="expr text-sm sm:text-base">−(−(−(−2)<sup>2</sup>)<sup>2</sup>)<sup>2</sup></span></div>
+            </div>
+          </div>
+          <div class="flex justify-end px-4 sm:px-6 pb-4">
+            <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex1" data-ex="1" data-state="hidden" onclick="toggleCorrection(this)">
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+              <span>Voir la correction</span>
+            </button>
+          </div>
+          <div id="c-ex1" data-ex="1" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 text-sm">
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3"><span class="font-bold text-emerald-700">1.</span> <span class="expr">3<sup>2</sup>×5<sup>2</sup> = 9×25 = <strong>225</strong></span></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3"><span class="font-bold text-emerald-700">2.</span> <span class="expr">0,25<sup>4</sup> = <strong>0,00390625</strong></span></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3"><span class="font-bold text-emerald-700">3.</span> <span class="expr">(−3,5)<sup>6</sup> = <strong>1838,265625</strong></span></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3"><span class="font-bold text-emerald-700">4.</span> <span class="expr">1<sup>240</sup> = <strong>1</strong></span></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3"><span class="font-bold text-emerald-700">5.</span> <span class="expr">−17<sup>3</sup> = <strong>−4913</strong></span></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3"><span class="font-bold text-emerald-700">6.</span> <span class="expr">−2,6<sup>4</sup> = <strong>−45,6976</strong></span></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3"><span class="font-bold text-emerald-700">7.</span> <span class="expr">−[25]<sup>2</sup> = <strong>−625</strong></span></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3"><span class="font-bold text-emerald-700">8.</span> <span class="expr"><strong>−2254,326</strong></span></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3"><span class="font-bold text-emerald-700">9.</span> <span class="expr">(−6,25)<sup>3</sup> = <strong>−244,140625</strong></span></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3"><span class="font-bold text-emerald-700">10.</span> <span class="expr">[32,768]<sup>2</sup> = <strong>1073,741824</strong></span></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 col-span-2 sm:col-span-3 lg:col-span-4">
+                <span class="font-bold text-emerald-700">11.</span> <span class="expr">−(−(−(−2)<sup>2</sup>)<sup>2</sup>)<sup>2</sup></span> — on travaille de l'intérieur vers l'extérieur :
+                <div class="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-slate-700 expr">
+                  <span>(−2)<sup>2</sup>=4</span><span>→</span><span>−4</span><span>→</span><span>(−4)<sup>2</sup>=16</span><span>→</span><span>−16</span><span>→</span><span>(−16)<sup>2</sup>=256</span><span>→</span><span class="font-bold text-emerald-700">−256</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ========== EXERCICE 2 ========== -->
+      <div id="exercice2" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-4">
+          <span class="inline-block rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 2</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Remplace <span class="var">n</span> par le numéro approprié</span>
+        </div>
+
+        <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+          <div class="p-4 sm:p-6">
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="rounded-xl ring-1 ring-slate-200 p-4 flex items-center gap-3"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">1</span><span class="expr text-base sm:text-lg">(7<sup>2</sup>)<sup class="var">n</sup> = 7<sup>12</sup></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-4 flex items-center gap-3"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">2</span><span class="expr text-base sm:text-lg">(−5)<sup class="var">n</sup> × (−5)<sup>3</sup> = (−5)<sup>11</sup></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-4 flex items-center gap-3"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">3</span><span class="expr text-base sm:text-lg">(−11)<sup>5</sup> × [(−11)<sup>2</sup>]<sup class="var">n</sup> = (−11)<sup>5</sup> × (−11)<sup>6</sup></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-4 flex items-center gap-3"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">4</span><span class="expr text-base sm:text-lg flex items-center gap-2">(2,5)<sup>4−<span class="var">n</span></sup> = <span class="frac frac-sm"><span class="num">2,5<sup>4</sup></span><span class="den">2,5</span></span></span></div>
+            </div>
+          </div>
+          <div class="flex justify-end px-4 sm:px-6 pb-4">
+            <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex2" data-ex="2" data-state="hidden" onclick="toggleCorrection(this)">
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+              <span>Voir la correction</span>
+            </button>
+          </div>
+          <div id="c-ex2" data-ex="2" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6">
+            <div class="grid sm:grid-cols-2 gap-3 text-sm">
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 expr"><span class="font-bold text-emerald-700">1.</span> 7<sup>2<span class="var">n</span></sup>=7<sup>12</sup> ⟹ 2<span class="var">n</span>=12 ⟹ <strong class="var">n</strong><strong>=6</strong></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 expr"><span class="font-bold text-emerald-700">2.</span> <span class="var">n</span>+3=11 ⟹ <strong class="var">n</strong><strong>=8</strong></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 expr"><span class="font-bold text-emerald-700">3.</span> 5+2<span class="var">n</span>=11 ⟹ 2<span class="var">n</span>=6 ⟹ <strong class="var">n</strong><strong>=3</strong></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 expr"><span class="font-bold text-emerald-700">4.</span> 2,5<sup>4</sup>÷2,5=2,5<sup>3</sup> donc 4−<span class="var">n</span>=3 ⟹ <strong class="var">n</strong><strong>=1</strong></div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ========== EXERCICE 3 ========== -->
+      <div id="exercice3" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-4">
+          <span class="inline-block rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 3</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Écris sous la forme d'une puissance</span>
+        </div>
+
+        <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+          <div class="p-4 sm:p-6 space-y-3">
+
+            <div class="rounded-xl ring-1 ring-slate-200 p-4 flex items-start gap-3">
+              <span class="shrink-0 flex h-7 w-7 items-center justify-center rounded-full bg-rose-100 text-rose-600 text-sm font-bold var">A</span>
+              <span class="expr text-base sm:text-lg pt-0.5"><span class="var">a</span><sup>2</sup> × <span class="var">b</span> × <span class="var">a</span><sup>3</sup> × <span class="var">b</span><sup>4</sup></span>
+            </div>
+            <div class="rounded-xl ring-1 ring-slate-200 p-4 flex items-start gap-3">
+              <span class="shrink-0 flex h-7 w-7 items-center justify-center rounded-full bg-rose-100 text-rose-600 text-sm font-bold var">B</span>
+              <span class="expr text-base sm:text-lg pt-0.5">(<span class="var">a</span><sup>2</sup>)<sup>3</sup> × <span class="var">b</span><sup>2</sup> × (<span class="var">a</span>×<span class="var">b</span>)<sup>3</sup> × (<span class="var">b</span><sup>2</sup>)<sup>2</sup></span>
+            </div>
+            <div class="rounded-xl ring-1 ring-slate-200 p-4 flex items-start gap-3">
+              <span class="shrink-0 flex h-7 w-7 items-center justify-center rounded-full bg-rose-100 text-rose-600 text-sm font-bold var">C</span>
+              <span class="expr text-base sm:text-lg pt-0.5 flex items-center gap-2"><span class="frac"><span class="num"><span class="var">a</span><sup>2</sup>×<span class="var">b</span><sup>3</sup>×<span class="var">a</span></span><span class="den">(<span class="var">a</span>×<span class="var">b</span>)<sup>3</sup></span></span></span>
+            </div>
+            <div class="rounded-xl ring-1 ring-slate-200 p-4 flex items-start gap-3">
+              <span class="shrink-0 flex h-7 w-7 items-center justify-center rounded-full bg-rose-100 text-rose-600 text-sm font-bold var">D</span>
+              <span class="expr text-base sm:text-lg pt-0.5 flex flex-wrap items-center gap-2">
+                <span class="frac"><span class="num">(<span class="var">a</span><sup>2</sup>)<sup>3</sup></span><span class="den">(<span class="var">b</span><sup>3</sup>)<sup>2</sup></span></span>
+                <span>×</span>
+                <span class="frac"><span class="num"><span class="var">a</span><sup>4</sup>×(<span class="var">a</span><sup>2</sup>)<sup>2</sup></span><span class="den"><span class="var">b</span><sup>2</sup>×(<span class="var">b</span><sup>3</sup>)<sup>2</sup></span></span>
+              </span>
+            </div>
+            <div class="rounded-xl ring-1 ring-slate-200 p-4 flex items-start gap-3">
+              <span class="shrink-0 flex h-7 w-7 items-center justify-center rounded-full bg-rose-100 text-rose-600 text-sm font-bold var">E</span>
+              <span class="expr text-base sm:text-lg pt-0.5 flex flex-wrap items-center gap-2">
+                <span><span class="var">a</span><sup>2</sup> × (<span class="var">a</span>×<span class="var">a</span><sup>3</sup>×<span class="var">a</span><sup>4</sup>)<sup>5</sup> ×</span>
+                <span class="frac"><span class="num">1</span><span class="den">(<span class="var">b</span><sup>7</sup>)<sup>6</sup></span></span>
+              </span>
+            </div>
+          </div>
+          <div class="flex justify-end px-4 sm:px-6 pb-4">
+            <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex3" data-ex="3" data-state="hidden" onclick="toggleCorrection(this)">
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+              <span>Voir la correction</span>
+            </button>
+          </div>
+          <div id="c-ex3" data-ex="3" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6 space-y-3 text-sm">
+            <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 expr"><span class="font-bold text-rose-600 var">A</span> = <span class="var">a</span><sup>2+3</sup>×<span class="var">b</span><sup>1+4</sup> = <strong><span class="var">a</span><sup>5</sup>×<span class="var">b</span><sup>5</sup></strong></div>
+            <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 expr"><span class="font-bold text-rose-600 var">B</span> = <span class="var">a</span><sup>6</sup>×<span class="var">b</span><sup>2</sup>×<span class="var">a</span><sup>3</sup><span class="var">b</span><sup>3</sup>×<span class="var">b</span><sup>4</sup> = <strong><span class="var">a</span><sup>9</sup>×<span class="var">b</span><sup>9</sup></strong></div>
+            <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 expr flex flex-wrap items-center gap-2"><span class="font-bold text-rose-600 var">C</span> <span>= </span><span class="frac"><span class="num"><span class="var">a</span><sup>3</sup><span class="var">b</span><sup>3</sup></span><span class="den"><span class="var">a</span><sup>3</sup><span class="var">b</span><sup>3</sup></span></span><span>= <strong>1</strong></span></div>
+            <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 expr flex flex-wrap items-center gap-2"><span class="font-bold text-rose-600 var">D</span> <span>= </span><span class="frac"><span class="num"><span class="var">a</span><sup>6</sup></span><span class="den"><span class="var">b</span><sup>6</sup></span></span><span>×</span><span class="frac"><span class="num"><span class="var">a</span><sup>8</sup></span><span class="den"><span class="var">b</span><sup>8</sup></span></span><span>= <strong class="frac"><span class="num"><span class="var">a</span><sup>14</sup></span><span class="den"><span class="var">b</span><sup>14</sup></span></strong></span></div>
+            <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 expr flex flex-wrap items-center gap-2"><span class="font-bold text-rose-600 var">E</span> <span>= <span class="var">a</span><sup>2</sup>×<span class="var">a</span><sup>40</sup>×</span><span class="frac"><span class="num">1</span><span class="den"><span class="var">b</span><sup>42</sup></span></span><span>= <strong class="frac"><span class="num"><span class="var">a</span><sup>42</sup></span><span class="den"><span class="var">b</span><sup>42</sup></span></strong></span></div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ========== EXERCICE 4 ========== -->
+      <div id="exercice4" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-4">
+          <span class="inline-block rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 4</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Démontrer à partir d'une donnée</span>
+        </div>
+
+        <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+          <div class="p-4 sm:p-6">
+            <div class="rounded-2xl bg-indigo-50 dark:bg-indigo-950 ring-1 ring-indigo-100 dark:ring-indigo-800 p-5 mb-6 flex items-start gap-3">
+              <span class="shrink-0 rounded-full bg-indigo-600 text-white text-xs font-bold px-3 py-1.5">Donnée</span>
+              <p class="text-sm sm:text-base text-indigo-900 dark:text-indigo-100 pt-0.5 expr">On pose : <span class="var">a</span> × <span class="var">b</span> × <span class="var">c</span> = −1</p>
+            </div>
+            <p class="font-semibold text-slate-700 mb-3 text-sm sm:text-base">Montrons que :</p>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="rounded-xl ring-1 ring-slate-200 p-4 flex items-center gap-3"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">1</span><span class="expr text-base sm:text-lg"><span class="var">a</span><sup>2</sup> × <span class="var">b</span> × <span class="var">c</span> = −<span class="var">a</span></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-4 flex items-center gap-3"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">2</span><span class="expr text-base sm:text-lg"><span class="var">a</span><sup>2</sup> × <span class="var">b</span><sup>2</sup> × <span class="var">c</span><sup>2</sup> = 1</span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-4 flex items-center gap-3"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">3</span><span class="expr text-base sm:text-lg"><span class="var">a</span><sup>3</sup> × <span class="var">b</span> × <span class="var">c</span> = −<span class="var">a</span><sup>2</sup></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-4 flex items-center gap-3"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">4</span><span class="expr text-base sm:text-lg"><span class="var">a</span><sup>3</sup> × <span class="var">b</span><sup>3</sup> × <span class="var">c</span><sup>3</sup> = −1</span></div>
+            </div>
+          </div>
+          <div class="flex justify-end px-4 sm:px-6 pb-4">
+            <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex4" data-ex="4" data-state="hidden" onclick="toggleCorrection(this)">
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+              <span>Voir la correction</span>
+            </button>
+          </div>
+          <div id="c-ex4" data-ex="4" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6">
+            <p class="text-xs text-slate-500 mb-3">Méthode : on fait apparaître le produit <span class="var">a</span>×<span class="var">b</span>×<span class="var">c</span> (ou sa puissance) pour le remplacer par −1.</p>
+            <div class="grid sm:grid-cols-2 gap-3 text-sm">
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 expr"><span class="font-bold text-emerald-700">1.</span> <span class="var">a</span><sup>2</sup><span class="var">bc</span> = <span class="var">a</span>×(<span class="var">abc</span>) = <span class="var">a</span>×(−1) = <strong>−<span class="var">a</span></strong> ✓</div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 expr"><span class="font-bold text-emerald-700">2.</span> <span class="var">a</span><sup>2</sup><span class="var">b</span><sup>2</sup><span class="var">c</span><sup>2</sup> = (<span class="var">abc</span>)<sup>2</sup> = (−1)<sup>2</sup> = <strong>1</strong> ✓</div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 expr"><span class="font-bold text-emerald-700">3.</span> <span class="var">a</span><sup>3</sup><span class="var">bc</span> = <span class="var">a</span><sup>2</sup>×(<span class="var">abc</span>) = <span class="var">a</span><sup>2</sup>×(−1) = <strong>−<span class="var">a</span><sup>2</sup></strong> ✓</div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 expr"><span class="font-bold text-emerald-700">4.</span> <span class="var">a</span><sup>3</sup><span class="var">b</span><sup>3</sup><span class="var">c</span><sup>3</sup> = (<span class="var">abc</span>)<sup>3</sup> = (−1)<sup>3</sup> = <strong>−1</strong> ✓</div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ========== EXERCICE 5 ========== -->
+      <div id="exercice5" class="scroll-mt-28 mb-16">
+        <div class="flex items-center gap-2 flex-wrap mb-4">
+          <span class="inline-block rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 uppercase tracking-wide">Exercice 5</span>
+          <span class="inline-block rounded-full bg-slate-100 text-slate-500 text-xs font-medium px-3 py-1">Exprime sous forme d'une seule puissance</span>
+        </div>
+
+        <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm overflow-hidden">
+          <div class="p-4 sm:p-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <div class="rounded-xl ring-1 ring-slate-200 p-4 flex items-center gap-3"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">1</span><span class="expr text-base sm:text-lg">(10<sup>4</sup>)<sup>5</sup></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-4 flex items-center gap-3"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">2</span><span class="expr text-base sm:text-lg">2<sup>7</sup> × 5<sup>7</sup></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-4 flex items-center gap-3"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">3</span><span class="expr text-base sm:text-lg">(5<sup>2</sup>)<sup>4</sup> × 4<sup>8</sup> × 5<sup>3</sup></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-4 flex items-center gap-3"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">4</span><span class="expr text-base sm:text-lg">10<sup>8</sup> × 10<sup>6</sup></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-4 flex items-center gap-3"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">5</span><span class="expr text-base sm:text-lg flex items-center gap-2"><span class="frac"><span class="num">100000</span><span class="den">100</span></span></span></div>
+              <div class="rounded-xl ring-1 ring-slate-200 p-4 flex items-center gap-3"><span class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-xs font-bold">6</span><span class="expr text-base sm:text-lg flex items-center gap-2"><span class="frac"><span class="num">5<sup>12</sup> × 4<sup>12</sup></span><span class="den">2<sup>12</sup></span></span></span></div>
+            </div>
+          </div>
+          <div class="flex justify-end px-4 sm:px-6 pb-4">
+            <button class="correction-btn inline-flex items-center gap-1.5 shrink-0 rounded-lg bg-emerald-600 px-3 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-emerald-700 transition" data-target="c-ex5" data-ex="5" data-state="hidden" onclick="toggleCorrection(this)">
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3.5c-4.14 0-7.68 2.6-9.06 6.25a.75.75 0 0 0 0 .5C2.32 13.9 5.86 16.5 10 16.5s7.68-2.6 9.06-6.25a.75.75 0 0 0 0-.5C17.68 6.1 14.14 3.5 10 3.5Zm0 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5Z"/></svg>
+              <span>Voir la correction</span>
+            </button>
+          </div>
+          <div id="c-ex5" data-ex="5" class="correction-panel hidden border-t border-slate-100 bg-emerald-50/60 p-4 sm:p-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 expr"><span class="font-bold text-emerald-700">1.</span> 10<sup>4×5</sup> = <strong>10<sup>20</sup></strong></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 expr"><span class="font-bold text-emerald-700">2.</span> (2×5)<sup>7</sup> = <strong>10<sup>7</sup></strong></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 expr"><span class="font-bold text-emerald-700">3.</span> 5<sup>8</sup>×4<sup>8</sup>×5<sup>3</sup> = <strong>5<sup>11</sup>×4<sup>8</sup></strong></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 expr"><span class="font-bold text-emerald-700">4.</span> 10<sup>8+6</sup> = <strong>10<sup>14</sup></strong></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 expr flex flex-wrap items-center gap-2"><span class="font-bold text-emerald-700">5.</span> <span class="frac frac-sm"><span class="num">10<sup>5</sup></span><span class="den">10<sup>2</sup></span></span> = <strong>10<sup>3</sup></strong></div>
+              <div class="rounded-xl bg-white ring-1 ring-emerald-100 p-3 expr flex flex-wrap items-center gap-2"><span class="font-bold text-emerald-700">6.</span> <span class="frac frac-sm"><span class="num">20<sup>12</sup></span><span class="den">2<sup>12</sup></span></span> = <strong>10<sup>12</sup></strong></div>
+            </div>
+            <p class="mt-3 text-xs text-slate-500">Pour l'item 3, les exposants 8 et 3 (base 5) se cumulent, mais la base 4 reste distincte : le résultat le plus simplifié est un produit de deux puissances.</p>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-slate-900 text-slate-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+      <div>
+        <a href="/" class="flex items-center gap-2.5">
+          <img src="/logo/logo-elk.png" alt="Logo Prof. Lahbib Elkeantaoui" class="h-10 w-10 shrink-0 rounded-full">
+          <span class="font-display font-bold text-white leading-tight">
+            <span class="block text-base">Prof. Lahbib Elkeantaoui</span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-amber-400">Mathématiques</span>
+          </span>
+        </a>
+        <a href="/" class="mt-3 inline-block text-sm font-semibold text-amber-400 hover:text-amber-300">← Retour au portail</a>
+      </div>
+      <nav aria-label="Navigation du pied de page" class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+        <a href="#cours" class="hover:text-white transition">Cours détaillé</a>
+        <a href="#exercice1" class="hover:text-white transition">Exercice 1</a>
+        <a href="#exercice2" class="hover:text-white transition">Exercice 2</a>
+        <a href="#exercice3" class="hover:text-white transition">Exercice 3</a>
+        <a href="#exercice4" class="hover:text-white transition">Exercice 4</a>
+        <a href="#exercice5" class="hover:text-white transition">Exercice 5</a>
+      </nav>
+    </div>
+    <div class="mt-8 pt-6 border-t border-slate-800 text-xs text-slate-500">
+      Fiche d'exercices — Les puissances (calculs, exposants, écritures littérales, démonstrations) · Mathématiques, 1ʳᵉ année collège, semestre 1.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuIconOpen = document.getElementById('menuIconOpen');
+  const menuIconClose = document.getElementById('menuIconClose');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = !mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    menuIconOpen.classList.toggle('hidden');
+    menuIconClose.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', String(!isOpen));
+  });
+  document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+    menuIconOpen.classList.remove('hidden');
+    menuIconClose.classList.add('hidden');
+  }));
+
+  function toggleThemeMode() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  // Correction toggle
+  function toggleCorrection(btn) {
+    const target = document.getElementById(btn.dataset.target);
+    const isHidden = target.classList.contains('hidden');
+    target.classList.toggle('hidden');
+    btn.dataset.state = isHidden ? 'shown' : 'hidden';
+    btn.querySelector('span').textContent = isHidden ? 'Masquer la correction' : 'Voir la correction';
+    btn.classList.toggle('bg-emerald-600', !isHidden);
+    btn.classList.toggle('hover:bg-emerald-700', !isHidden);
+    btn.classList.toggle('bg-slate-500', isHidden);
+    btn.classList.toggle('hover:bg-slate-600', isHidden);
+    if (isHidden) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+</script>
+
+</body>
+</html>
