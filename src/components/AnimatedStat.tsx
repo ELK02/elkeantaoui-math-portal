@@ -48,7 +48,7 @@ export function AnimatedStat({
         {display}
         {suffix}
       </dd>
-      <p className="mt-1 text-xs text-navy-200 sm:text-sm">{label}</p>
+      <p className="mt-1 text-xs text-neutral-400 sm:text-sm">{label}</p>
     </div>
   );
 }

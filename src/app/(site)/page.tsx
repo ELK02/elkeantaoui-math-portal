@@ -31,10 +31,10 @@ const STEPS = [
 export default function Home() {
   return (
     <>
-      <section className="relative overflow-hidden bg-navy-900">
+      <section className="relative overflow-hidden bg-neutral-950">
         <div className="pointer-events-none absolute inset-0">
-          <div className="animate-aurora-1 absolute left-1/4 top-0 h-[28rem] w-[28rem] rounded-full bg-orange-500/20 blur-[100px]" />
-          <div className="animate-aurora-2 absolute right-1/4 bottom-0 h-[26rem] w-[26rem] rounded-full bg-navy-400/25 blur-[100px]" />
+          <div className="animate-aurora-1 absolute left-1/4 top-0 h-[28rem] w-[28rem] rounded-full bg-orange-500/15 blur-[100px]" />
+          <div className="animate-aurora-2 absolute right-1/4 bottom-0 h-[26rem] w-[26rem] rounded-full bg-neutral-500/10 blur-[100px]" />
         </div>
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.05]"
@@ -46,20 +46,12 @@ export default function Home() {
         />
 
         <div className="relative mx-auto max-w-3xl px-4 pb-16 pt-16 text-center sm:px-6 sm:pb-20 sm:pt-24 lg:px-8">
-          <div className="inline-flex items-center gap-2 rounded-full border border-green-400/30 bg-green-500/10 px-3 py-1">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-pulse-soft absolute inline-flex h-full w-full rounded-full bg-green-400" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
-            </span>
-            <span className="font-mono text-xs font-medium text-green-300">Contenu mis à jour pour 2025/2026</span>
-          </div>
-
-          <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="font-display text-4xl font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
             Des cours de maths <span className="text-orange-400">clairs</span>,
             illustrés et corrigés
           </h1>
 
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-navy-100 sm:text-lg">
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-neutral-400 sm:text-lg">
             Par le Prof. Lahbib Elkeantaoui. Résumés de cours, leçons détaillées avec
             exemples, et exercices avec correction pour les 3 années du Collège.
           </p>
@@ -67,7 +59,7 @@ export default function Home() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/college/3ac"
-              className="inline-flex items-center gap-2 rounded-md bg-white px-5 py-2.5 text-sm font-medium text-navy-900 transition-colors hover:bg-navy-100"
+              className="inline-flex items-center gap-2 rounded-md bg-white px-5 py-2.5 text-sm font-medium text-neutral-950 transition-colors hover:bg-neutral-200"
             >
               Commencer maintenant <ArrowRight className="h-4 w-4" />
             </Link>
@@ -80,7 +72,7 @@ export default function Home() {
           </div>
 
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
-            <span className="text-xs text-navy-300">Accès rapide :</span>
+            <span className="text-xs text-neutral-500">Accès rapide :</span>
             {LEVELS.map((level) => (
               <Link
                 key={level.id}
