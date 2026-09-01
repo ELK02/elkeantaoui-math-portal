@@ -37,13 +37,13 @@ export default function ExamensPage() {
 
   return (
     <>
-      <section className="border-b border-border bg-navy-900">
-        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
-          <p className="text-sm font-semibold text-orange-400">3ème Année Collège</p>
-          <h1 className="mt-2 font-display text-3xl font-extrabold text-white sm:text-4xl">
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+          <p className="font-mono text-xs font-medium uppercase tracking-wider text-foreground-muted">3ème Année Collège</p>
+          <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             Examens locaux &amp; régionaux
           </h1>
-          <p className="mt-3 max-w-2xl text-navy-100">
+          <p className="mt-3 max-w-2xl text-foreground-muted">
             Une sélection d&apos;examens blancs et d&apos;annales pour s&apos;entraîner dans
             les conditions du contrôle et de l&apos;examen régional.
           </p>
@@ -51,7 +51,7 @@ export default function ExamensPage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-        <h2 className="font-display text-xl font-bold text-foreground">Examens locaux</h2>
+        <h2 className="font-display text-xl font-semibold text-foreground">Examens locaux</h2>
         <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {localExams.map((exam) => (
             <a
@@ -59,19 +59,19 @@ export default function ExamensPage() {
               href={exam.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 rounded-2xl border border-border bg-surface p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-navy-500 hover:shadow-md"
+              className="flex items-center gap-3 rounded-lg border border-border bg-surface p-4 transition-colors hover:border-navy-400 dark:hover:border-navy-500"
             >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-green-100 text-green-700 dark:text-green-500">
-                <FileText className="h-5 w-5" />
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border text-green-700 dark:text-green-500">
+                <FileText className="h-4.5 w-4.5" />
               </span>
-              <span className="text-sm font-semibold text-foreground">{exam.label}</span>
+              <span className="text-sm font-medium text-foreground">{exam.label}</span>
             </a>
           ))}
         </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 lg:px-8">
-        <h2 className="font-display text-xl font-bold text-foreground">
+        <h2 className="font-display text-xl font-semibold text-foreground">
           Annales — Examen régional
         </h2>
         <p className="mt-1.5 text-sm text-foreground-muted">

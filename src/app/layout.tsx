@@ -1,19 +1,8 @@
 import type { Metadata } from "next";
-import { Outfit, Inter } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
-
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
 
 export const metadata: Metadata = {
   title: {
@@ -29,7 +18,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="fr"
       data-scroll-behavior="smooth"
-      className={`${outfit.variable} ${inter.variable} h-full antialiased`}
+      className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">

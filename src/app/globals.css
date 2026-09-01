@@ -75,8 +75,9 @@
   --color-orange-500: var(--orange-500);
   --color-orange-100: var(--orange-100);
 
-  --font-display: var(--font-outfit);
-  --font-sans: var(--font-inter);
+  --font-display: var(--font-geist-sans);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 body {
