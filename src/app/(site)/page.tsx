@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, GraduationCap, Moon, ShieldCheck } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BookOpenCheck, GraduationCap, ListChecks, Moon, ShieldCheck } from "lucide-react";
 import { LEVELS } from "@/data/chapters";
-import { HeroIllustration } from "@/components/HeroIllustration";
+import { AnimatedStat } from "@/components/AnimatedStat";
+import { DemoExercise } from "@/components/DemoExercise";
 
 const LYCEE_PREVIEW = [
   "Tronc Commun",
@@ -9,83 +10,129 @@ const LYCEE_PREVIEW = [
   "2ème Bac",
 ];
 
+const STEPS = [
+  {
+    icon: <GraduationCap className="h-5 w-5" />,
+    title: "Choisissez votre année",
+    text: "1ère, 2ème ou 3ème Année Collège, classé par semestre.",
+  },
+  {
+    icon: <BookOpenCheck className="h-5 w-5" />,
+    title: "Suivez le cours",
+    text: "Résumé, définitions et exemples résolus pas à pas pour chaque chapitre.",
+  },
+  {
+    icon: <ListChecks className="h-5 w-5" />,
+    title: "Entraînez-vous",
+    text: "Exercices avec correction détaillée, révélée en un clic quand vous êtes prêt.",
+  },
+];
+
 export default function Home() {
   return (
     <>
       <section className="relative overflow-hidden bg-navy-900">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="animate-aurora-1 absolute left-1/4 top-0 h-[28rem] w-[28rem] rounded-full bg-orange-500/20 blur-[100px]" />
+          <div className="animate-aurora-2 absolute right-1/4 bottom-0 h-[26rem] w-[26rem] rounded-full bg-navy-400/25 blur-[100px]" />
+        </div>
         <div
-          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          className="pointer-events-none absolute inset-0 opacity-[0.05]"
           style={{
             backgroundImage:
               "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
             backgroundSize: "32px 32px",
-            maskImage: "radial-gradient(ellipse 80% 60% at 30% 20%, black, transparent)",
           }}
         />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 pb-20 pt-14 sm:px-6 sm:pb-28 sm:pt-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
-          <div>
-            <h1 className="font-display text-4xl font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Des cours de maths <span className="text-orange-400">clairs</span>,
-              illustrés et corrigés
-            </h1>
 
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-navy-100 sm:text-lg">
-              Par le Prof. Lahbib Elkeantaoui. Résumés de cours, leçons détaillées avec
-              exemples, et exercices avec correction pour les 3 années du Collège.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/college/3ac"
-                className="inline-flex items-center gap-2 rounded-md bg-white px-5 py-2.5 text-sm font-medium text-navy-900 transition-colors hover:bg-navy-100"
-              >
-                Commencer maintenant <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="#niveaux"
-                className="inline-flex items-center gap-2 rounded-md border border-white/15 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/5"
-              >
-                Voir les niveaux
-              </Link>
-            </div>
-
-            <div className="mt-6 flex flex-wrap items-center gap-2">
-              <span className="text-xs text-navy-300">Accès rapide :</span>
-              {LEVELS.map((level) => (
-                <Link
-                  key={level.id}
-                  href={`/college/${level.id}`}
-                  className="rounded-md border border-white/15 px-2.5 py-1 font-mono text-xs font-medium text-white transition-colors hover:bg-white/10"
-                >
-                  {level.short}
-                </Link>
-              ))}
-            </div>
-
-            <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8">
-              <div>
-                <dt className="sr-only">Chapitres</dt>
-                <dd className="font-mono text-2xl font-semibold text-white sm:text-3xl">56</dd>
-                <p className="mt-1 text-xs text-navy-200 sm:text-sm">Chapitres</p>
-              </div>
-              <div>
-                <dt className="sr-only">Niveaux</dt>
-                <dd className="font-mono text-2xl font-semibold text-white sm:text-3xl">3</dd>
-                <p className="mt-1 text-xs text-navy-200 sm:text-sm">Années Collège</p>
-              </div>
-              <div>
-                <dt className="sr-only">Exercices</dt>
-                <dd className="font-mono text-2xl font-semibold text-white sm:text-3xl">100%</dd>
-                <p className="mt-1 text-xs text-navy-200 sm:text-sm">Corrigés</p>
-              </div>
-            </dl>
+        <div className="relative mx-auto max-w-3xl px-4 pb-16 pt-16 text-center sm:px-6 sm:pb-20 sm:pt-24 lg:px-8">
+          <div className="inline-flex items-center gap-2 rounded-full border border-green-400/30 bg-green-500/10 px-3 py-1">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-pulse-soft absolute inline-flex h-full w-full rounded-full bg-green-400" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
+            </span>
+            <span className="font-mono text-xs font-medium text-green-300">Contenu mis à jour pour 2025/2026</span>
           </div>
 
-          <HeroIllustration />
+          <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
+            Des cours de maths <span className="text-orange-400">clairs</span>,
+            illustrés et corrigés
+          </h1>
+
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-navy-100 sm:text-lg">
+            Par le Prof. Lahbib Elkeantaoui. Résumés de cours, leçons détaillées avec
+            exemples, et exercices avec correction pour les 3 années du Collège.
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href="/college/3ac"
+              className="inline-flex items-center gap-2 rounded-md bg-white px-5 py-2.5 text-sm font-medium text-navy-900 transition-colors hover:bg-navy-100"
+            >
+              Commencer maintenant <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="#exemple"
+              className="inline-flex items-center gap-2 rounded-md border border-white/15 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/5"
+            >
+              Voir un exemple
+            </Link>
+          </div>
+
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+            <span className="text-xs text-navy-300">Accès rapide :</span>
+            {LEVELS.map((level) => (
+              <Link
+                key={level.id}
+                href={`/college/${level.id}`}
+                className="rounded-md border border-white/15 px-2.5 py-1 font-mono text-xs font-medium text-white transition-colors hover:bg-white/10"
+              >
+                {level.short}
+              </Link>
+            ))}
+          </div>
+
+          <dl className="mx-auto mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8">
+            <AnimatedStat value={56} label="Chapitres" />
+            <AnimatedStat value={3} label="Années Collège" />
+            <AnimatedStat value={100} suffix="%" label="Corrigés" />
+          </dl>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
+      <section id="exemple" className="scroll-mt-16 border-b border-border bg-surface-muted/50 px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+            Essayez tout de suite
+          </h2>
+          <p className="mt-2 text-sm text-foreground-muted sm:text-base">
+            Un aperçu du type d&apos;exercice que vous retrouverez dans chaque leçon.
+          </p>
+        </div>
+        <div className="mx-auto mt-8 max-w-xl">
+          <DemoExercise />
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+        <h2 className="text-center font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+          Comment ça marche
+        </h2>
+        <div className="mt-10 grid gap-4 sm:grid-cols-3">
+          {STEPS.map((step, i) => (
+            <div key={step.title} className="relative rounded-lg border border-border bg-surface p-5">
+              <span className="font-mono text-xs text-foreground-muted">0{i + 1}</span>
+              <div className="mt-3 flex h-9 w-9 items-center justify-center rounded-md border border-border text-navy-700 dark:text-orange-400">
+                {step.icon}
+              </div>
+              <h3 className="mt-3 font-display text-sm font-semibold text-foreground">{step.title}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-foreground-muted">{step.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 lg:px-8">
         <div className="grid gap-4 sm:grid-cols-3">
           <Feature
             icon={<GraduationCap className="h-5 w-5" />}

@@ -100,3 +100,34 @@ html {
   background: var(--color-navy-500);
   border-radius: 9999px;
 }
+
+@keyframes aurora-drift-1 {
+  0%, 100% { transform: translate(-10%, -10%) scale(1); }
+  50% { transform: translate(5%, 8%) scale(1.15); }
+}
+@keyframes aurora-drift-2 {
+  0%, 100% { transform: translate(8%, 5%) scale(1); }
+  50% { transform: translate(-6%, -8%) scale(1.1); }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.animate-aurora-1 {
+  animation: aurora-drift-1 18s ease-in-out infinite;
+}
+.animate-aurora-2 {
+  animation: aurora-drift-2 22s ease-in-out infinite;
+}
+.animate-pulse-soft {
+  animation: pulse-soft 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-aurora-1,
+  .animate-aurora-2,
+  .animate-pulse-soft {
+    animation: none;
+  }
+}
