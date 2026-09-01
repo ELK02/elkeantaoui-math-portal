@@ -51,7 +51,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- KaTeX for math rendering -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<link rel="stylesheet" href="/vendor/katex/dist/katex.min.css">
 
 <!-- Component classes (Tailwind Play CDN @apply support) -->
 <style type="text/tailwindcss">
@@ -2107,8 +2107,8 @@
 </footer>
 
 <!-- KaTeX -->
-<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<script src="/vendor/katex/dist/katex.min.js"></script>
+<script src="/vendor/katex/dist/contrib/auto-render.min.js"></script>
 
 <script>
   function toggleThemeMode() {
@@ -2118,6 +2118,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     // Render math
+    if (window.renderMathInElement) {
     renderMathInElement(document.body, {
       delimiters: [
         {left: '\\(', right: '\\)', display: false},
@@ -2125,6 +2126,7 @@
       ],
       throwOnError: false
     });
+    }
 
     // Mobile menu toggle
     var menuBtn = document.getElementById('menu-btn');
