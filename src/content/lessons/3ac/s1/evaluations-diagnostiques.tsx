@@ -4,8 +4,6 @@ import {
   LessonHero,
   LessonSection,
   Math,
-  ExerciseGroup,
-  ExerciseCard,
   QcmSection,
   QcmQuestion,
   EvaluationScore,
@@ -42,7 +40,7 @@ function TypeChip({ children, tone = "neutral" }: { children: ReactNode; tone?: 
   );
 }
 
-/** Header row reused above grouped QCM blocks (mirrors ExerciseCard's own header style). */
+/** Header row shown above a group of related QcmQuestions. */
 function QuestionHeader({
   n,
   title,
@@ -62,20 +60,6 @@ function QuestionHeader({
       <p className="font-semibold text-foreground">{title}</p>
       <TypeChip>{type}</TypeChip>
       <TypeChip tone="points">{points}</TypeChip>
-    </div>
-  );
-}
-
-function FillCard({ children }: { children: ReactNode }) {
-  return (
-    <div className="rounded-xl border border-border bg-surface p-4 text-sm">{children}</div>
-  );
-}
-
-function AnswerCard({ n, children }: { n: number | string; children: ReactNode }) {
-  return (
-    <div className="rounded-lg border border-green-500/20 bg-surface p-4 text-sm">
-      <span className="font-bold text-green-700">{n}.</span> {children}
     </div>
   );
 }
@@ -127,12 +111,7 @@ export default function Lesson() {
       />
 
       <EvaluationScore maxScore={20}>
-      <ExerciseGroup
-        total={3}
-        celebrationTitle="Bravo, tous les champs à compléter sont vérifiés !"
-        celebrationSubtitle="Relis les questions à choix multiples ci-dessus si besoin."
-      >
-        <QcmSection total={30} doneMessage="Quiz terminé, toutes les questions à choix multiples sont répondues !">
+        <QcmSection total={37} doneMessage="Bravo, tu as répondu à toutes les questions ! Découvre ta note ci-dessous.">
           {/* ===================== 1. NOMBRES & FRACTIONS ===================== */}
           <LessonSection
             id="section-nombres"
@@ -376,32 +355,53 @@ export default function Lesson() {
                 </p>
               </div>
 
-              <ExerciseCard
-                id="7"
-                index={1}
-                points={1}
-                title="Question 7"
-                itemsLabel="À compléter · 1 pt"
-                items={
-                  <div>
-                    <p className="mb-4 text-sm text-foreground-muted">
-                      Encadrer chaque nombre décimal par deux entiers consécutifs :
-                    </p>
-                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-                      <FillCard><Math tex="\ ?\ < 212{,}5 <\ ?" /></FillCard>
-                      <FillCard><Math tex="\ ?\ < 302{,}38 <\ ?" /></FillCard>
-                      <FillCard><Math tex="\ ?\ < 5{,}24 <\ ?" /></FillCard>
-                    </div>
-                  </div>
-                }
-                correction={
-                  <div className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-3">
-                    <AnswerCard n={1}><Math tex="\mathbf{212} < 212{,}5 < \mathbf{213}" /></AnswerCard>
-                    <AnswerCard n={2}><Math tex="\mathbf{302} < 302{,}38 < \mathbf{303}" /></AnswerCard>
-                    <AnswerCard n={3}><Math tex="\mathbf{5} < 5{,}24 < \mathbf{6}" /></AnswerCard>
-                  </div>
-                }
-              />
+              <div>
+                <QuestionHeader n={7} title="Question 7" type="QCM" points="1 pt" />
+                <p className="mb-4 text-sm text-foreground-muted">
+                  Encadrer chaque nombre décimal par deux entiers consécutifs :
+                </p>
+                <div className="space-y-4">
+                  <QcmQuestion
+                    id="q7a"
+                    points={1 / 3}
+                    prompt={<Math tex="\ ?\ < 212{,}5 <\ ?" />}
+                    options={
+                      [
+                        { id: "1", content: <Math tex="212 < 212{,}5 < 213" />, correct: true },
+                        { id: "2", content: <Math tex="211 < 212{,}5 < 212" /> },
+                        { id: "3", content: <Math tex="212 < 212{,}5 < 214" /> },
+                        { id: "4", content: <Math tex="213 < 212{,}5 < 214" /> },
+                      ] satisfies QcmOption[]
+                    }
+                  />
+                  <QcmQuestion
+                    id="q7b"
+                    points={1 / 3}
+                    prompt={<Math tex="\ ?\ < 302{,}38 <\ ?" />}
+                    options={
+                      [
+                        { id: "1", content: <Math tex="302 < 302{,}38 < 303" />, correct: true },
+                        { id: "2", content: <Math tex="301 < 302{,}38 < 302" /> },
+                        { id: "3", content: <Math tex="300 < 302{,}38 < 301" /> },
+                        { id: "4", content: <Math tex="302 < 302{,}38 < 304" /> },
+                      ] satisfies QcmOption[]
+                    }
+                  />
+                  <QcmQuestion
+                    id="q7c"
+                    points={1 / 3}
+                    prompt={<Math tex="\ ?\ < 5{,}24 <\ ?" />}
+                    options={
+                      [
+                        { id: "1", content: <Math tex="5 < 5{,}24 < 6" />, correct: true },
+                        { id: "2", content: <Math tex="4 < 5{,}24 < 5" /> },
+                        { id: "3", content: <Math tex="5 < 5{,}24 < 7" /> },
+                        { id: "4", content: <Math tex="6 < 5{,}24 < 7" /> },
+                      ] satisfies QcmOption[]
+                    }
+                  />
+                </div>
+              </div>
             </div>
           </LessonSection>
 
@@ -463,61 +463,73 @@ export default function Lesson() {
             tone="muted"
             description="Retrouver le coefficient de proportionnalité et compléter les valeurs manquantes."
           >
-            <ExerciseCard
-              id="10"
-              index={2}
-              points={1.5}
-              title="Question 10"
-              itemsLabel="À compléter · 1,5 pt"
-              items={
-                <div>
-                  <p className="mb-4 text-sm text-foreground-muted">
-                    Compléter le tableau pour qu&apos;il représente une situation de proportionnalité :
-                  </p>
-                  <div className="overflow-x-auto">
-                    <table className="w-full min-w-[420px] border-collapse text-center">
-                      <tbody>
-                        <tr>
-                          <td className="border border-border bg-surface-muted p-3 font-semibold">2</td>
-                          <td className="border border-border bg-surface-muted p-3 font-semibold">3</td>
-                          <td className="border border-border bg-surface-muted p-3 font-semibold">?</td>
-                          <td className="border border-border bg-surface-muted p-3 font-semibold">0</td>
-                        </tr>
-                        <tr>
-                          <td className="border border-border p-3 font-semibold">8</td>
-                          <td className="border border-border p-3">?</td>
-                          <td className="border border-border p-3 font-semibold">16</td>
-                          <td className="border border-border p-3">?</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <p className="mt-3 text-xs text-foreground-muted">
-                    Indice : cherche d&apos;abord le coefficient de proportionnalité entre la 1ère et la 2ème ligne.
-                  </p>
-                </div>
-              }
-              correction={
-                <div className="overflow-x-auto text-sm">
-                  <table className="w-full min-w-[420px] border-collapse text-center">
-                    <tbody>
-                      <tr>
-                        <td className="border border-green-500/20 bg-surface p-3 font-semibold">2</td>
-                        <td className="border border-green-500/20 bg-surface p-3 font-semibold">3</td>
-                        <td className="border border-green-500/20 bg-surface p-3 font-bold text-green-700">4</td>
-                        <td className="border border-green-500/20 bg-surface p-3 font-semibold">0</td>
-                      </tr>
-                      <tr>
-                        <td className="border border-green-500/20 bg-surface p-3 font-semibold">8</td>
-                        <td className="border border-green-500/20 bg-surface p-3 font-bold text-green-700">12</td>
-                        <td className="border border-green-500/20 bg-surface p-3 font-semibold">16</td>
-                        <td className="border border-green-500/20 bg-surface p-3 font-bold text-green-700">0</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              }
-            />
+            <QuestionHeader n={10} title="Question 10" type="QCM" points="1,5 pt" />
+            <p className="mb-4 text-sm text-foreground-muted">
+              Ce tableau représente une situation de proportionnalité. Trouve les valeurs manquantes :
+            </p>
+            <div className="mb-5 overflow-x-auto">
+              <table className="w-full min-w-[420px] border-collapse text-center">
+                <tbody>
+                  <tr>
+                    <td className="border border-border bg-surface-muted p-3 font-semibold">2</td>
+                    <td className="border border-border bg-surface-muted p-3 font-semibold">3</td>
+                    <td className="border border-border bg-surface-muted p-3 font-semibold">?</td>
+                    <td className="border border-border bg-surface-muted p-3 font-semibold">0</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-border p-3 font-semibold">8</td>
+                    <td className="border border-border p-3">?</td>
+                    <td className="border border-border p-3 font-semibold">16</td>
+                    <td className="border border-border p-3">?</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="mb-4 text-xs text-foreground-muted">
+              Indice : cherche d&apos;abord le coefficient de proportionnalité entre la 1ère et la 2ème ligne
+              (<Math tex="8 \div 2 = 4" />).
+            </p>
+            <div className="space-y-4">
+              <QcmQuestion
+                id="q10a"
+                points={0.5}
+                prompt="La case manquante de la 1ère ligne (au-dessus de 16) vaut :"
+                options={
+                  [
+                    { id: "1", content: <Math tex="4" />, correct: true },
+                    { id: "2", content: <Math tex="2" /> },
+                    { id: "3", content: <Math tex="6" /> },
+                    { id: "4", content: <Math tex="8" /> },
+                  ] satisfies QcmOption[]
+                }
+              />
+              <QcmQuestion
+                id="q10b"
+                points={0.5}
+                prompt="La case manquante de la 2ème ligne (en face de 3) vaut :"
+                options={
+                  [
+                    { id: "1", content: <Math tex="12" />, correct: true },
+                    { id: "2", content: <Math tex="6" /> },
+                    { id: "3", content: <Math tex="9" /> },
+                    { id: "4", content: <Math tex="15" /> },
+                  ] satisfies QcmOption[]
+                }
+              />
+              <QcmQuestion
+                id="q10c"
+                points={0.5}
+                prompt="La case manquante de la 2ème ligne (en face de 0) vaut :"
+                options={
+                  [
+                    { id: "1", content: <Math tex="0" />, correct: true },
+                    { id: "2", content: <Math tex="4" /> },
+                    { id: "3", content: <Math tex="1" /> },
+                    { id: "4", content: <Math tex="-4" /> },
+                  ] satisfies QcmOption[]
+                }
+              />
+            </div>
           </LessonSection>
 
           {/* ===================== 5. GÉOMÉTRIE DU CERCLE ===================== */}
@@ -603,24 +615,38 @@ export default function Lesson() {
                 }
               />
 
-              <ExerciseCard
-                id="12"
-                index={3}
+              <QcmQuestion
+                id="q12"
                 points={0.5}
-                title="Question 12"
-                itemsLabel="À compléter · 0,5 pt"
-                items={
-                  <div>
-                    <p className="mb-4 text-sm text-foreground-muted">Compléter les étapes de calcul suivantes :</p>
-                    <div className="overflow-x-auto rounded-xl border border-border bg-surface p-4">
-                      <Math tex="\dfrac{-1}{10}-\dfrac{3}{30}=\dfrac{\,?\,}{30}-\dfrac{3}{30}=\dfrac{\,?-3\,}{30}=\dfrac{\,?\,}{30}" />
-                    </div>
-                  </div>
+                prompt={
+                  <>
+                    <span className="mb-1 block text-xs font-bold uppercase tracking-wide text-foreground-muted">
+                      Question 12 · QCM · 0,5 pt
+                    </span>
+                    Quelle suite complète correctement ce calcul ?{" "}
+                    <Math tex="\dfrac{-1}{10}-\dfrac{3}{30}=\dfrac{\,?\,}{30}-\dfrac{3}{30}=\dfrac{\,?-3\,}{30}=\dfrac{\,?\,}{30}" />
+                  </>
                 }
-                correction={
-                  <AnswerCard n="·">
-                    <Math tex="\dfrac{-1}{10}-\dfrac{3}{30}=\dfrac{\mathbf{-3}}{30}-\dfrac{3}{30}=\dfrac{\mathbf{-3}-3}{30}=\dfrac{\mathbf{-6}}{30}" />
-                  </AnswerCard>
+                options={
+                  [
+                    {
+                      id: "1",
+                      content: <Math tex="\dfrac{-1}{10}-\dfrac{3}{30}=\dfrac{-3}{30}-\dfrac{3}{30}=\dfrac{-3-3}{30}=\dfrac{-6}{30}" />,
+                      correct: true,
+                    },
+                    {
+                      id: "2",
+                      content: <Math tex="\dfrac{-1}{10}-\dfrac{3}{30}=\dfrac{-1}{30}-\dfrac{3}{30}=\dfrac{-1-3}{30}=\dfrac{-4}{30}" />,
+                    },
+                    {
+                      id: "3",
+                      content: <Math tex="\dfrac{-1}{10}-\dfrac{3}{30}=\dfrac{3}{30}-\dfrac{3}{30}=\dfrac{3-3}{30}=\dfrac{0}{30}" />,
+                    },
+                    {
+                      id: "4",
+                      content: <Math tex="\dfrac{-1}{10}-\dfrac{3}{30}=\dfrac{-3}{30}-\dfrac{3}{30}=\dfrac{-3-3}{30}=\dfrac{-9}{30}" />,
+                    },
+                  ] satisfies QcmOption[]
                 }
               />
 
@@ -861,7 +887,6 @@ export default function Lesson() {
             </div>
           </LessonSection>
         </QcmSection>
-      </ExerciseGroup>
       </EvaluationScore>
     </LessonShell>
   );
