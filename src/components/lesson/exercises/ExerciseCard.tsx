@@ -2,6 +2,7 @@
 
 import { useState, type ReactNode } from "react";
 import { useExerciseGroup } from "./ExerciseGroup";
+import { useEvaluationScore } from "../evaluation/EvaluationScore";
 
 export function ExerciseCard({
   id,
@@ -10,6 +11,7 @@ export function ExerciseCard({
   itemsLabel,
   items,
   correction,
+  points,
 }: {
   id: string;
   index: number;
@@ -17,14 +19,20 @@ export function ExerciseCard({
   itemsLabel?: string;
   items: ReactNode;
   correction: ReactNode;
+  /** When set (and wrapped in <EvaluationScore>), reports full credit once the correction is revealed. */
+  points?: number;
 }) {
   const [open, setOpen] = useState(false);
   const group = useExerciseGroup();
+  const score = useEvaluationScore();
 
   function toggle() {
     const next = !open;
     setOpen(next);
-    if (next) group?.markVerified(id);
+    if (next) {
+      group?.markVerified(id);
+      if (points !== undefined) score?.report(`ex-${id}`, points, points);
+    }
   }
 
   return (

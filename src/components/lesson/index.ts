@@ -11,4 +11,5 @@ export { ExerciseCard } from "./exercises/ExerciseCard";
 export { QcmSection } from "./qcm/QcmSection";
 export { QcmQuestion } from "./qcm/QcmQuestion";
 export type { QcmOption } from "./qcm/QcmQuestion";
+export { EvaluationScore, useEvaluationScore } from "./evaluation/EvaluationScore";
 export type { LessonMeta, LessonSection as LessonSectionMeta, LessonStat } from "./types";

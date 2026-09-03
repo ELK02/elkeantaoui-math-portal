@@ -8,6 +8,7 @@ import {
   ExerciseCard,
   QcmSection,
   QcmQuestion,
+  EvaluationScore,
   type LessonMeta,
   type QcmOption,
 } from "@/components/lesson";
@@ -125,12 +126,13 @@ export default function Lesson() {
         }
       />
 
+      <EvaluationScore maxScore={20}>
       <ExerciseGroup
-        total={6}
+        total={3}
         celebrationTitle="Bravo, tous les champs à compléter sont vérifiés !"
         celebrationSubtitle="Relis les questions à choix multiples ci-dessus si besoin."
       >
-        <QcmSection total={20} doneMessage="Quiz terminé, toutes les questions à choix multiples sont répondues !">
+        <QcmSection total={30} doneMessage="Quiz terminé, toutes les questions à choix multiples sont répondues !">
           {/* ===================== 1. NOMBRES & FRACTIONS ===================== */}
           <LessonSection
             id="section-nombres"
@@ -146,6 +148,7 @@ export default function Lesson() {
                 <div className="space-y-4">
                   <QcmQuestion
                     id="q1a"
+                    points={0.5}
                     prompt={<Math tex="\dfrac{-6}{5}+\dfrac{1}{10}=\ ?" />}
                     options={
                       [
@@ -159,6 +162,7 @@ export default function Lesson() {
                   />
                   <QcmQuestion
                     id="q1b"
+                    points={0.5}
                     prompt={<Math tex="\dfrac{3}{2}-\dfrac{7}{4}=\ ?" />}
                     options={
                       [
@@ -172,6 +176,7 @@ export default function Lesson() {
                   />
                   <QcmQuestion
                     id="q1c"
+                    points={0.5}
                     prompt={<Math tex="\dfrac{4}{7}+\dfrac{1}{7}\times 3=\ ?" />}
                     options={
                       [
@@ -188,6 +193,7 @@ export default function Lesson() {
 
               <QcmQuestion
                 id="q2"
+                points={0.5}
                 prompt={
                   <>
                     <span className="mb-1 block text-xs font-bold uppercase tracking-wide text-foreground-muted">
@@ -207,6 +213,7 @@ export default function Lesson() {
 
               <QcmQuestion
                 id="q3"
+                points={0.5}
                 prompt={
                   <>
                     <span className="mb-1 block text-xs font-bold uppercase tracking-wide text-foreground-muted">
@@ -224,35 +231,79 @@ export default function Lesson() {
                 }
               />
 
-              <ExerciseCard
-                id="4"
-                index={1}
-                title="Question 4"
-                itemsLabel="À compléter · 3 pts"
-                items={
-                  <div>
-                    <p className="mb-4 text-sm text-foreground-muted">
-                      Simplifier les rationnels suivants (fraction irréductible) :
-                    </p>
-                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                      <FillCard><Math tex="\dfrac{45}{18}=\ ?" /></FillCard>
-                      <FillCard><Math tex="\dfrac{40}{16}=\ ?" /></FillCard>
-                      <FillCard><Math tex="\dfrac{-36}{24}=\ ?" /></FillCard>
-                      <FillCard><Math tex="\dfrac{72}{90}=\ ?" /></FillCard>
-                      <FillCard><Math tex="\dfrac{112}{-48}=\ ?" /></FillCard>
-                    </div>
-                  </div>
-                }
-                correction={
-                  <div className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2 lg:grid-cols-3">
-                    <AnswerCard n={1}><Math tex="\dfrac{45}{18}=\mathbf{\dfrac{5}{2}}" /></AnswerCard>
-                    <AnswerCard n={2}><Math tex="\dfrac{40}{16}=\mathbf{\dfrac{5}{2}}" /></AnswerCard>
-                    <AnswerCard n={3}><Math tex="\dfrac{-36}{24}=\mathbf{\dfrac{-3}{2}}" /></AnswerCard>
-                    <AnswerCard n={4}><Math tex="\dfrac{72}{90}=\mathbf{\dfrac{4}{5}}" /></AnswerCard>
-                    <AnswerCard n={5}><Math tex="\dfrac{112}{-48}=\mathbf{\dfrac{-7}{3}}" /></AnswerCard>
-                  </div>
-                }
-              />
+              <div>
+                <QuestionHeader n={4} title="Question 4" type="QCM" points="3 pts" />
+                <p className="mb-4 text-sm text-foreground-muted">
+                  Simplifier les rationnels suivants (fraction irréductible) :
+                </p>
+                <div className="space-y-4">
+                  <QcmQuestion
+                    id="q4a"
+                    points={0.6}
+                    prompt={<Math tex="\dfrac{45}{18}=\ ?" />}
+                    options={
+                      [
+                        { id: "1", content: <Math tex="\frac{5}{2}" />, correct: true },
+                        { id: "2", content: <Math tex="\frac{15}{6}" /> },
+                        { id: "3", content: <Math tex="\frac{9}{2}" /> },
+                        { id: "4", content: <Math tex="\frac{5}{3}" /> },
+                      ] satisfies QcmOption[]
+                    }
+                  />
+                  <QcmQuestion
+                    id="q4b"
+                    points={0.6}
+                    prompt={<Math tex="\dfrac{40}{16}=\ ?" />}
+                    options={
+                      [
+                        { id: "1", content: <Math tex="\frac{5}{2}" />, correct: true },
+                        { id: "2", content: <Math tex="\frac{20}{8}" /> },
+                        { id: "3", content: <Math tex="\frac{8}{3}" /> },
+                        { id: "4", content: <Math tex="\frac{5}{4}" /> },
+                      ] satisfies QcmOption[]
+                    }
+                  />
+                  <QcmQuestion
+                    id="q4c"
+                    points={0.6}
+                    prompt={<Math tex="\dfrac{-36}{24}=\ ?" />}
+                    options={
+                      [
+                        { id: "1", content: <Math tex="\frac{-3}{2}" />, correct: true },
+                        { id: "2", content: <Math tex="\frac{-3}{4}" /> },
+                        { id: "3", content: <Math tex="\frac{3}{2}" /> },
+                        { id: "4", content: <Math tex="\frac{-6}{4}" /> },
+                      ] satisfies QcmOption[]
+                    }
+                  />
+                  <QcmQuestion
+                    id="q4d"
+                    points={0.6}
+                    prompt={<Math tex="\dfrac{72}{90}=\ ?" />}
+                    options={
+                      [
+                        { id: "1", content: <Math tex="\frac{4}{5}" />, correct: true },
+                        { id: "2", content: <Math tex="\frac{8}{9}" /> },
+                        { id: "3", content: <Math tex="\frac{4}{9}" /> },
+                        { id: "4", content: <Math tex="\frac{5}{4}" /> },
+                      ] satisfies QcmOption[]
+                    }
+                  />
+                  <QcmQuestion
+                    id="q4e"
+                    points={0.6}
+                    prompt={<Math tex="\dfrac{112}{-48}=\ ?" />}
+                    options={
+                      [
+                        { id: "1", content: <Math tex="\frac{-7}{3}" />, correct: true },
+                        { id: "2", content: <Math tex="\frac{7}{3}" /> },
+                        { id: "3", content: <Math tex="\frac{-7}{6}" /> },
+                        { id: "4", content: <Math tex="\frac{-14}{3}" /> },
+                      ] satisfies QcmOption[]
+                    }
+                  />
+                </div>
+              </div>
             </div>
           </LessonSection>
 
@@ -265,40 +316,70 @@ export default function Lesson() {
             description={<>Comparer des quotients avec <Math tex="<" />, <Math tex="=" />, <Math tex=">" />, puis encadrer des décimaux par deux entiers consécutifs.</>}
           >
             <div className="space-y-8">
-              <ExerciseCard
-                id="6"
-                index={2}
-                title="Question 6"
-                itemsLabel="À compléter · 2 pts"
-                items={
-                  <div>
-                    <p className="mb-4 text-sm text-foreground-muted">
-                      Comparer les expressions suivantes (<Math tex="<" />, <Math tex="=" /> ou <Math tex=">" />) :
-                    </p>
-                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                      <FillCard><Math tex="\dfrac{-1}{2}\ \square\ \dfrac{-3}{2}" /></FillCard>
-                      <FillCard><Math tex="\dfrac{5}{-3}\ \square\ \dfrac{5}{-9}" /></FillCard>
-                      <FillCard><Math tex="\dfrac{1}{4}\ \square\ \dfrac{2}{4}" /></FillCard>
-                      <FillCard><Math tex="\dfrac{-5}{3}\ \square\ \dfrac{3}{-5}" /></FillCard>
-                    </div>
-                    <p className="mt-3 text-xs text-foreground-muted">
-                      Exemple : <Math tex="\dfrac{7}{10} < \dfrac{8}{10}" />
-                    </p>
-                  </div>
-                }
-                correction={
-                  <div className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
-                    <AnswerCard n={1}><Math tex="\dfrac{-1}{2}\ \mathbf{>}\ \dfrac{-3}{2}" /></AnswerCard>
-                    <AnswerCard n={2}><Math tex="\dfrac{5}{-3}\ \mathbf{<}\ \dfrac{5}{-9}" /></AnswerCard>
-                    <AnswerCard n={3}><Math tex="\dfrac{1}{4}\ \mathbf{<}\ \dfrac{2}{4}" /></AnswerCard>
-                    <AnswerCard n={4}><Math tex="\dfrac{-5}{3}\ \mathbf{<}\ \dfrac{3}{-5}" /></AnswerCard>
-                  </div>
-                }
-              />
+              <div>
+                <QuestionHeader n={6} title="Question 6" type="QCM" points="2 pts" />
+                <p className="mb-4 text-sm text-foreground-muted">
+                  Comparer les expressions suivantes (<Math tex="<" />, <Math tex="=" /> ou <Math tex=">" />) :
+                </p>
+                <div className="space-y-4">
+                  <QcmQuestion
+                    id="q6a"
+                    points={0.5}
+                    prompt={<Math tex="\dfrac{-1}{2}\ \square\ \dfrac{-3}{2}" />}
+                    options={
+                      [
+                        { id: "1", content: <Math tex="<" /> },
+                        { id: "2", content: <Math tex="=" /> },
+                        { id: "3", content: <Math tex=">" />, correct: true },
+                      ] satisfies QcmOption[]
+                    }
+                  />
+                  <QcmQuestion
+                    id="q6b"
+                    points={0.5}
+                    prompt={<Math tex="\dfrac{5}{-3}\ \square\ \dfrac{5}{-9}" />}
+                    options={
+                      [
+                        { id: "1", content: <Math tex="<" />, correct: true },
+                        { id: "2", content: <Math tex="=" /> },
+                        { id: "3", content: <Math tex=">" /> },
+                      ] satisfies QcmOption[]
+                    }
+                  />
+                  <QcmQuestion
+                    id="q6c"
+                    points={0.5}
+                    prompt={<Math tex="\dfrac{1}{4}\ \square\ \dfrac{2}{4}" />}
+                    options={
+                      [
+                        { id: "1", content: <Math tex="<" />, correct: true },
+                        { id: "2", content: <Math tex="=" /> },
+                        { id: "3", content: <Math tex=">" /> },
+                      ] satisfies QcmOption[]
+                    }
+                  />
+                  <QcmQuestion
+                    id="q6d"
+                    points={0.5}
+                    prompt={<Math tex="\dfrac{-5}{3}\ \square\ \dfrac{3}{-5}" />}
+                    options={
+                      [
+                        { id: "1", content: <Math tex="<" />, correct: true },
+                        { id: "2", content: <Math tex="=" /> },
+                        { id: "3", content: <Math tex=">" /> },
+                      ] satisfies QcmOption[]
+                    }
+                  />
+                </div>
+                <p className="mt-3 text-xs text-foreground-muted">
+                  Exemple : <Math tex="\dfrac{7}{10} < \dfrac{8}{10}" />
+                </p>
+              </div>
 
               <ExerciseCard
                 id="7"
-                index={3}
+                index={1}
+                points={1}
                 title="Question 7"
                 itemsLabel="À compléter · 1 pt"
                 items={
@@ -335,6 +416,7 @@ export default function Lesson() {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <QcmQuestion
                 id="q8"
+                points={1}
                 prompt={
                   <>
                     <span className="mb-1 block text-xs font-bold uppercase tracking-wide text-foreground-muted">
@@ -353,6 +435,7 @@ export default function Lesson() {
               />
               <QcmQuestion
                 id="q9"
+                points={1}
                 prompt={
                   <>
                     <span className="mb-1 block text-xs font-bold uppercase tracking-wide text-foreground-muted">
@@ -382,7 +465,8 @@ export default function Lesson() {
           >
             <ExerciseCard
               id="10"
-              index={4}
+              index={2}
+              points={1.5}
               title="Question 10"
               itemsLabel="À compléter · 1,5 pt"
               items={
@@ -445,38 +529,49 @@ export default function Lesson() {
             description="Propriété du triangle rectangle inscrit dans un demi-cercle, puis les constructions du cercle circonscrit et du cercle inscrit à un triangle."
           >
             <div className="space-y-8">
-              <ExerciseCard
-                id="5"
-                index={5}
-                title="Question 5"
-                itemsLabel="À compléter · 1 pt"
-                items={
-                  <div>
-                    <p className="mb-4 text-sm text-foreground-muted">Compléter les propriétés suivantes :</p>
-                    <div className="space-y-3">
-                      <div className="rounded-xl border border-border p-4 text-sm">
-                        SI un triangle <Math tex="ABC" /> est rectangle en <Math tex="A" /> <strong>ALORS</strong>{" "}
-                        <Math tex="ABC" /> est inscrit dans un demi-cercle de diamètre <Math tex="[BC]" />.
-                      </div>
-                      <div className="rounded-xl border border-border p-4 text-sm">
-                        SI un triangle <Math tex="ABC" /> est rectangle en <Math tex="B" /> <strong>ALORS</strong>{" "}
-                        <span className="font-semibold text-indigo-600">?</span> est inscrit dans un demi-cercle de
-                        diamètre <span className="font-semibold text-indigo-600">[?]</span>.
-                      </div>
-                    </div>
-                  </div>
+              <div className="rounded-xl border border-border bg-surface-muted p-4 text-sm">
+                SI un triangle <Math tex="ABC" /> est rectangle en <Math tex="A" /> <strong>ALORS</strong>{" "}
+                <Math tex="ABC" /> est inscrit dans un demi-cercle de diamètre <Math tex="[BC]" />.
+              </div>
+
+              <QcmQuestion
+                id="q5"
+                points={1}
+                prompt={
+                  <>
+                    <span className="mb-1 block text-xs font-bold uppercase tracking-wide text-foreground-muted">
+                      Question 5 · QCM · 1 pt
+                    </span>
+                    Compléter : SI un triangle <Math tex="ABC" /> est rectangle en <Math tex="B" />{" "}
+                    <strong>ALORS</strong>…
+                  </>
                 }
-                correction={
-                  <AnswerCard n="·">
-                    SI un triangle <Math tex="ABC" /> est rectangle en <Math tex="B" /> <strong>ALORS</strong>{" "}
-                    <strong className="text-green-700">ABC</strong> est inscrit dans un demi-cercle de diamètre{" "}
-                    <strong className="text-green-700">[AC]</strong>.
-                  </AnswerCard>
+                options={
+                  [
+                    {
+                      id: "1",
+                      content: <><Math tex="ABC" /> est inscrit dans un demi-cercle de diamètre <Math tex="[AC]" />.</>,
+                      correct: true,
+                    },
+                    {
+                      id: "2",
+                      content: <><Math tex="ABC" /> est inscrit dans un demi-cercle de diamètre <Math tex="[AB]" />.</>,
+                    },
+                    {
+                      id: "3",
+                      content: <><Math tex="ABC" /> est inscrit dans un demi-cercle de diamètre <Math tex="[BC]" />.</>,
+                    },
+                    {
+                      id: "4",
+                      content: <><Math tex="ABC" /> est inscrit dans un cercle de centre <Math tex="B" />.</>,
+                    },
+                  ] satisfies QcmOption[]
                 }
               />
 
               <QcmQuestion
                 id="q11"
+                points={1.5}
                 prompt={
                   <>
                     <span className="mb-1 block text-xs font-bold uppercase tracking-wide text-foreground-muted">
@@ -510,7 +605,8 @@ export default function Lesson() {
 
               <ExerciseCard
                 id="12"
-                index={6}
+                index={3}
+                points={0.5}
                 title="Question 12"
                 itemsLabel="À compléter · 0,5 pt"
                 items={
@@ -530,6 +626,7 @@ export default function Lesson() {
 
               <QcmQuestion
                 id="q13"
+                points={1}
                 prompt={
                   <>
                     <span className="mb-1 block text-xs font-bold uppercase tracking-wide text-foreground-muted">
@@ -575,6 +672,7 @@ export default function Lesson() {
             <div className="space-y-3">
               <QcmQuestion
                 id="q14a"
+                points={1 / 3}
                 prompt="La symétrie par rapport à une droite s'appelle aussi :"
                 options={
                   [
@@ -586,6 +684,7 @@ export default function Lesson() {
               />
               <QcmQuestion
                 id="q14b"
+                points={1 / 3}
                 prompt="L'image d'un segment par rapport à une droite est :"
                 options={
                   [
@@ -597,6 +696,7 @@ export default function Lesson() {
               />
               <QcmQuestion
                 id="q14c"
+                points={1 / 3}
                 prompt="Un triangle isocèle possède :"
                 options={
                   [
@@ -608,6 +708,7 @@ export default function Lesson() {
               />
               <QcmQuestion
                 id="q14d"
+                points={1 / 3}
                 prompt={
                   <>
                     Si les points <Math tex="A" />, <Math tex="B" /> et <Math tex="C" /> sont alignés, alors leurs
@@ -624,6 +725,7 @@ export default function Lesson() {
               />
               <QcmQuestion
                 id="q14e"
+                points={1 / 3}
                 prompt={
                   <>
                     Soit <Math tex="H" /> le projeté orthogonal de <Math tex="M" /> sur une droite <Math tex="(d)" />.
@@ -640,6 +742,7 @@ export default function Lesson() {
               />
               <QcmQuestion
                 id="q14f"
+                points={1 / 3}
                 prompt="L'image d'un angle par une symétrie axiale est :"
                 options={
                   [
@@ -664,6 +767,7 @@ export default function Lesson() {
             <div className="space-y-3">
               <QcmQuestion
                 id="q15a"
+                points={0.4}
                 prompt={
                   <>
                     <Math tex="ABC" /> est un triangle. <Math tex="M" /> est le milieu de <Math tex="[AB]" /> et{" "}
@@ -680,6 +784,7 @@ export default function Lesson() {
               />
               <QcmQuestion
                 id="q15b"
+                points={0.4}
                 prompt="Les diagonales d'un rectangle sont :"
                 options={
                   [
@@ -691,6 +796,7 @@ export default function Lesson() {
               />
               <QcmQuestion
                 id="q15c"
+                points={0.4}
                 prompt={<><Math tex="ABCD" /> est un parallélogramme, alors :</>}
                 options={
                   [
@@ -702,6 +808,7 @@ export default function Lesson() {
               />
               <QcmQuestion
                 id="q15d"
+                points={0.4}
                 prompt={
                   <div className="space-y-3">
                     <p>
@@ -736,6 +843,7 @@ export default function Lesson() {
               />
               <QcmQuestion
                 id="q15e"
+                points={0.4}
                 prompt={
                   <>
                     Dans un triangle <Math tex="ABC" />, la droite qui passe par <Math tex="B" /> et par le milieu de{" "}
@@ -754,6 +862,7 @@ export default function Lesson() {
           </LessonSection>
         </QcmSection>
       </ExerciseGroup>
+      </EvaluationScore>
     </LessonShell>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState, type ReactNode } from "react";
 import { useQcmSection } from "./QcmSection";
+import { useEvaluationScore } from "../evaluation/EvaluationScore";
 
 export interface QcmOption {
   id: string;
@@ -13,18 +14,26 @@ export function QcmQuestion({
   id,
   prompt,
   options,
+  points,
 }: {
   id: string;
   prompt: ReactNode;
   options: QcmOption[];
+  /** When set (and wrapped in <EvaluationScore>), reports earned/max points on answer. */
+  points?: number;
 }) {
   const [selected, setSelected] = useState<string | null>(null);
   const section = useQcmSection();
+  const score = useEvaluationScore();
 
   function select(optionId: string) {
     if (selected) return;
     setSelected(optionId);
     section?.markAnswered(id);
+    if (points !== undefined) {
+      const opt = options.find((o) => o.id === optionId);
+      score?.report(id, opt?.correct ? points : 0, points);
+    }
   }
 
   return (
