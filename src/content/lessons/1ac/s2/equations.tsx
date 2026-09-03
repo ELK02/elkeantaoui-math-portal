@@ -404,19 +404,19 @@ export default function Lesson() {
               maintenant ?
             </p>
             <div className="space-y-3 text-sm">
-              <MethodStep n="1" title="Choix de l&apos;inconnue —">Soit x l&apos;âge d&apos;Amal maintenant.</MethodStep>
-              <MethodStep n="2" title="Mise en équation —">
+              <MethodStep n="1" title="Choix de l&apos;inconnue :">Soit x l&apos;âge d&apos;Amal maintenant.</MethodStep>
+              <MethodStep n="2" title="Mise en équation :">
                 L&apos;âge de Saïd est (x+2). Après 5 ans, Amal aura (x+5) et Saïd aura ((x+2)+5). Donc :{" "}
                 <span className="font-mono"><Math tex="(x+5) + ((x+2)+5) = 40" /></span>
               </MethodStep>
               <div className="rounded-lg border border-border bg-surface-muted p-3 font-mono text-xs text-foreground-muted">
-                <p className="mb-1 font-sans text-sm font-bold text-sky-600 dark:text-sky-400">3) Résolution —</p>
+                <p className="mb-1 font-sans text-sm font-bold text-sky-600 dark:text-sky-400">3) Résolution :</p>
                 <p><Math tex="x + 5 + x + 2 + 5 = 40" /></p>
                 <p><Math tex="2x = 40 - 5 - 2 - 5" /></p>
                 <p><Math tex="2x = 28 \implies x = 14" /></p>
               </div>
               <div className="rounded-lg border border-green-500/20 bg-green-100/50 p-3">
-                <strong className="text-green-700">4) Retour au problème —</strong> Amal a <strong>14 ans</strong> et Saïd a <strong>16 ans</strong>.
+                <strong className="text-green-700">4) Retour au problème :</strong> Amal a <strong>14 ans</strong> et Saïd a <strong>16 ans</strong>.
               </div>
             </div>
           </div>
@@ -428,19 +428,19 @@ export default function Lesson() {
               que les garçons représentent un tiers des filles ?
             </p>
             <div className="space-y-3 text-sm">
-              <MethodStep n="1" title="Choix de l&apos;inconnue —">Soit x le nombre de filles.</MethodStep>
-              <MethodStep n="2" title="Mise en équation —">
+              <MethodStep n="1" title="Choix de l&apos;inconnue :">Soit x le nombre de filles.</MethodStep>
+              <MethodStep n="2" title="Mise en équation :">
                 Le nombre de garçons est <span className="font-mono"><Math tex="\dfrac{1}{3}x" /></span>. Comme il y a 32 élèves :{" "}
                 <span className="font-mono"><Math tex="x + \dfrac{1}{3}x = 32" /></span>
               </MethodStep>
               <div className="rounded-lg border border-border bg-surface-muted p-3 font-mono text-xs text-foreground-muted">
-                <p className="mb-1 font-sans text-sm font-bold text-sky-600 dark:text-sky-400">3) Résolution —</p>
+                <p className="mb-1 font-sans text-sm font-bold text-sky-600 dark:text-sky-400">3) Résolution :</p>
                 <p><Math tex="\dfrac{3x}{3} + \dfrac{x}{3} = \dfrac{96}{3}" /></p>
                 <p><Math tex="3x + x = 96" /></p>
                 <p><Math tex="4x = 96 \implies x = 24" /></p>
               </div>
               <div className="rounded-lg border border-green-500/20 bg-green-100/50 p-3">
-                <strong className="text-green-700">4) Retour au problème —</strong> Il y a <strong>24 filles</strong> et <strong>8 garçons</strong>.
+                <strong className="text-green-700">4) Retour au problème :</strong> Il y a <strong>24 filles</strong> et <strong>8 garçons</strong>.
               </div>
             </div>
           </div>
@@ -526,15 +526,15 @@ export default function Lesson() {
             items={<p className="text-sm text-foreground-muted">Ahmed achète 3 livres et Karim en achète 4. Ensemble, ils ont dépensé 70 dh. Quel est le prix d&apos;un livre ?</p>}
             correction={
               <div className="space-y-2.5 text-sm">
-                <MethodStep n="1" title="Choix de l&apos;inconnue —">Soit x le prix d&apos;un livre, en dh.</MethodStep>
-                <MethodStep n="2" title="Mise en équation —">
+                <MethodStep n="1" title="Choix de l&apos;inconnue :">Soit x le prix d&apos;un livre, en dh.</MethodStep>
+                <MethodStep n="2" title="Mise en équation :">
                   Ahmed paie 3x et Karim paie 4x. Ensemble : <span className="font-mono"><Math tex="3x + 4x = 70" /></span>
                 </MethodStep>
-                <MethodStep n="3" title="Résolution —">
+                <MethodStep n="3" title="Résolution :">
                   <span className="font-mono"><Math tex="7x = 70 \implies x = 10" /></span>
                 </MethodStep>
                 <div className="rounded-lg border border-green-500/20 bg-green-100/50 p-3">
-                  <strong className="text-green-700">4) Retour au problème —</strong> le prix d&apos;un livre est <strong>10 dh</strong>.
+                  <strong className="text-green-700">4) Retour au problème :</strong> le prix d&apos;un livre est <strong>10 dh</strong>.
                 </div>
               </div>
             }
@@ -579,23 +579,23 @@ export default function Lesson() {
             }
             correction={
               <div className="space-y-2.5 text-sm">
-                <MethodStep n="1" title="Mise en équation —">
+                <MethodStep n="1" title="Mise en équation :">
                   périmètre(ABC) = périmètre(rectangle) :{" "}
                   <span className="font-mono"><Math tex="4 + (x+1) + (3x-2) = 2\times[(2x-1) + (3x-5)]" /></span>
                 </MethodStep>
                 <div className="rounded-lg border border-border bg-surface-muted p-3 font-mono text-xs text-foreground-muted">
-                  <p className="mb-1 font-sans text-sm font-bold text-sky-600 dark:text-sky-400">2) Résolution —</p>
+                  <p className="mb-1 font-sans text-sm font-bold text-sky-600 dark:text-sky-400">2) Résolution :</p>
                   <p><Math tex="4x + 3 = 2(5x-6)" /></p>
                   <p><Math tex="4x + 3 = 10x - 12" /></p>
                   <p><Math tex="4x - 10x = -12 - 3" /></p>
                   <p><Math tex="-6x = -15 \implies x = 2{,}5" /></p>
                 </div>
-                <MethodStep n="3" title="Vérification —">
+                <MethodStep n="3" title="Vérification :">
                   périmètre triangle = 4 + 3,5 + 5,5 = <strong>13</strong> ; périmètre rectangle = 2×(4 + 2,5) = <strong>13</strong>. Les deux
                   périmètres sont bien égaux.
                 </MethodStep>
                 <div className="rounded-lg border border-green-500/20 bg-green-100/50 p-3">
-                  <strong className="text-green-700">4) Retour au problème —</strong> la valeur cherchée est <strong>x = 2,5</strong>.
+                  <strong className="text-green-700">4) Retour au problème :</strong> la valeur cherchée est <strong>x = 2,5</strong>.
                 </div>
               </div>
             }
@@ -608,15 +608,15 @@ export default function Lesson() {
             items={<p className="text-sm text-foreground-muted">Déterminer trois nombres consécutifs entiers naturels dont la somme est 309.</p>}
             correction={
               <div className="space-y-2.5 text-sm">
-                <MethodStep n="1" title="Choix de l&apos;inconnue —">Soit x le premier des trois nombres. Les nombres sont x, x+1 et x+2.</MethodStep>
-                <MethodStep n="2" title="Mise en équation —">
+                <MethodStep n="1" title="Choix de l&apos;inconnue :">Soit x le premier des trois nombres. Les nombres sont x, x+1 et x+2.</MethodStep>
+                <MethodStep n="2" title="Mise en équation :">
                   <span className="font-mono"><Math tex="x + (x+1) + (x+2) = 309" /></span>
                 </MethodStep>
-                <MethodStep n="3" title="Résolution —">
+                <MethodStep n="3" title="Résolution :">
                   <span className="font-mono"><Math tex="3x + 3 = 309 \implies 3x = 306 \implies x = 102" /></span>
                 </MethodStep>
                 <div className="rounded-lg border border-green-500/20 bg-green-100/50 p-3">
-                  <strong className="text-green-700">4) Retour au problème —</strong> les trois nombres sont <strong>102, 103 et 104</strong>.
+                  <strong className="text-green-700">4) Retour au problème :</strong> les trois nombres sont <strong>102, 103 et 104</strong>.
                 </div>
               </div>
             }
@@ -629,16 +629,16 @@ export default function Lesson() {
             items={<p className="text-sm text-foreground-muted">Safaa a 11 ans et son frère a 26 ans. Dans combien d&apos;années l&apos;âge du frère sera-t-il le double de celui de Safaa ?</p>}
             correction={
               <div className="space-y-2.5 text-sm">
-                <MethodStep n="1" title="Choix de l&apos;inconnue —">Soit x le nombre d&apos;années à attendre.</MethodStep>
-                <MethodStep n="2" title="Mise en équation —">
+                <MethodStep n="1" title="Choix de l&apos;inconnue :">Soit x le nombre d&apos;années à attendre.</MethodStep>
+                <MethodStep n="2" title="Mise en équation :">
                   Dans x années, Safaa aura (11+x) ans et son frère (26+x) ans :{" "}
                   <span className="font-mono"><Math tex="26 + x = 2(11 + x)" /></span>
                 </MethodStep>
-                <MethodStep n="3" title="Résolution —">
+                <MethodStep n="3" title="Résolution :">
                   <span className="font-mono"><Math tex="26 + x = 22 + 2x \implies 26 - 22 = 2x - x \implies x = 4" /></span>
                 </MethodStep>
                 <div className="rounded-lg border border-green-500/20 bg-green-100/50 p-3">
-                  <strong className="text-green-700">4) Retour au problème —</strong> dans <strong>4 ans</strong> (Safaa aura 15 ans, son frère 30
+                  <strong className="text-green-700">4) Retour au problème :</strong> dans <strong>4 ans</strong> (Safaa aura 15 ans, son frère 30
                   ans, soit bien le double).
                 </div>
               </div>
@@ -657,17 +657,17 @@ export default function Lesson() {
             }
             correction={
               <div className="space-y-2.5 text-sm">
-                <MethodStep n="1" title="Choix de l&apos;inconnue —">Soit x le nombre total d&apos;élèves.</MethodStep>
-                <MethodStep n="2" title="Mise en équation —">
+                <MethodStep n="1" title="Choix de l&apos;inconnue :">Soit x le nombre total d&apos;élèves.</MethodStep>
+                <MethodStep n="2" title="Mise en équation :">
                   <span className="font-mono"><Math tex="\dfrac{x}{2} + \dfrac{x}{4} + \dfrac{x}{7} + 3 = x" /></span>
                 </MethodStep>
                 <div className="rounded-lg border border-border bg-surface-muted p-3 font-mono text-xs text-foreground-muted">
-                  <p className="mb-1 font-sans text-sm font-bold text-sky-600 dark:text-sky-400">3) Résolution — (×28)</p>
+                  <p className="mb-1 font-sans text-sm font-bold text-sky-600 dark:text-sky-400">3) Résolution : (×28)</p>
                   <p><Math tex="14x + 7x + 4x + 84 = 28x" /></p>
                   <p><Math tex="25x + 84 = 28x \implies 84 = 3x \implies x = 28" /></p>
                 </div>
                 <div className="rounded-lg border border-green-500/20 bg-green-100/50 p-3">
-                  <strong className="text-green-700">4) Retour au problème —</strong> il y a <strong>28 élèves</strong> (14 en maths, 7 en histoire,
+                  <strong className="text-green-700">4) Retour au problème :</strong> il y a <strong>28 élèves</strong> (14 en maths, 7 en histoire,
                   4 en anglais, 3 en dessin).
                 </div>
               </div>
@@ -691,11 +691,11 @@ export default function Lesson() {
             }
             correction={
               <div className="space-y-2.5 text-sm">
-                <MethodStep n="1" title="Bonbons à la fraise —">
+                <MethodStep n="1" title="Bonbons à la fraise :">
                   <span className="font-mono"><Math tex="\dfrac{7}{12}\times 36 = 21" /></span> bonbons à la fraise. Il en reste{" "}
                   <span className="font-mono"><Math tex="36 - 21 = 15" /></span>.
                 </MethodStep>
-                <MethodStep n="2" title="Bonbons au caramel —">
+                <MethodStep n="2" title="Bonbons au caramel :">
                   <span className="font-mono"><Math tex="\dfrac{2}{3}\times 15 = 10" /></span> bonbons au caramel.
                 </MethodStep>
               </div>

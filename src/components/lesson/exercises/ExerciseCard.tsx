@@ -37,7 +37,7 @@ export function ExerciseCard({
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-neutral-950 text-xs font-bold text-white dark:bg-white dark:text-neutral-950">
             {index}
           </span>
-          <p className="font-semibold text-foreground">{title}</p>
+          <div className="font-semibold text-foreground">{title}</div>
           {itemsLabel ? (
             <span className="font-mono text-xs text-foreground-muted">{itemsLabel}</span>
           ) : null}

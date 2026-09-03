@@ -29,7 +29,7 @@ export function QcmQuestion({
 
   return (
     <div className="rounded-xl border border-border bg-surface p-5">
-      <p className="mb-3 font-medium text-foreground">{prompt}</p>
+      <div className="mb-3 font-medium text-foreground">{prompt}</div>
       <div className="grid gap-2 sm:grid-cols-2">
         {options.map((opt) => {
           const isSelected = selected === opt.id;

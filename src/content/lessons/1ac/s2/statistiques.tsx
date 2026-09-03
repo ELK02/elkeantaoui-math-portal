@@ -375,12 +375,12 @@ export default function Lesson() {
                 <div className="flex flex-col items-center gap-4 sm:flex-row">
                   <PieChart stops="#7c3aed 0% 50%, #0ea5e9 50% 74%, #22c55e 74% 84%, #f59e0b 84% 91%, #eab308 91% 98%, #ec4899 98% 100%" />
                   <ul className="space-y-1 text-sm text-foreground-muted">
-                    <li>Vigne <strong className="text-foreground">— 50 %</strong></li>
-                    <li>Blé <strong className="text-foreground">— 24 %</strong></li>
-                    <li>Fruitiers <strong className="text-foreground">— 10 %</strong></li>
-                    <li>Betteraves <strong className="text-foreground">— 7 %</strong></li>
-                    <li>Pommes de terre <strong className="text-foreground">— 7 %</strong></li>
-                    <li>Asperges <strong className="text-foreground">— 2 %</strong></li>
+                    <li>Vigne <strong className="text-foreground">: 50 %</strong></li>
+                    <li>Blé <strong className="text-foreground">: 24 %</strong></li>
+                    <li>Fruitiers <strong className="text-foreground">: 10 %</strong></li>
+                    <li>Betteraves <strong className="text-foreground">: 7 %</strong></li>
+                    <li>Pommes de terre <strong className="text-foreground">: 7 %</strong></li>
+                    <li>Asperges <strong className="text-foreground">: 2 %</strong></li>
                   </ul>
                 </div>
                 <p className="text-sm text-foreground-muted">a. Culture occupant la moitié des terres ? b. La moins répandue ? c. Le quart des terres ? d. Cultures de même surface ?</p>
@@ -1009,7 +1009,7 @@ export default function Lesson() {
           />
           <QcmQuestion
             id="qcm4"
-            prompt={<>Zoo — fréquences : reptiles 13 %, mammifères 60 %, poissons 9 %. <strong>La fréquence d&apos;oiseaux est…</strong></>}
+            prompt={<>Zoo, fréquences : reptiles 13 %, mammifères 60 %, poissons 9 %. <strong>La fréquence d&apos;oiseaux est…</strong></>}
             options={[
               { id: "r1", content: "R1 : 0,18", correct: true },
               { id: "r2", content: "R2 : 8 %", correct: false },
@@ -1109,7 +1109,7 @@ export default function Lesson() {
           </Accordion>
         </div>
 
-        <Callout variant="warning" title="🤝 Travailler en groupe — deux projets ouverts (sans correction type)">
+        <Callout variant="warning" title="🤝 Travailler en groupe : deux projets ouverts (sans correction type)">
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
               <p className="mb-1 font-bold">1. Menez l&apos;enquête…</p>
