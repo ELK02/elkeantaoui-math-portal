@@ -341,12 +341,12 @@ export default function Lesson() {
                   <line x1="80" y1="30" x2="290" y2="360" stroke="#0f172a" strokeWidth={1.6} />
                   <line x1="30" y1="120" x2="430" y2="178" stroke="#0f172a" strokeWidth={1.6} />
                   <line x1="105" y1="365" x2="405" y2="92" stroke="#0f172a" strokeWidth={1.6} />
-                  <Pt d="M96,51 L106,61 M96,61 L106,51" lx={76} ly={46} label="G" fs={16} />
-                  <Pt d="M46,124 L56,134 M46,134 L56,124" lx={26} ly={120} label="K" fs={16} />
-                  <Pt d="M406,164 L416,174 M406,174 L416,164" lx={418} ly={164} label="C" fs={16} />
+                  <Pt d="M96,58 L106,68 M96,68 L106,58" lx={76} ly={53} label="G" fs={16} />
+                  <Pt d="M46,118 L56,128 M46,128 L56,118" lx={26} ly={114} label="K" fs={16} />
+                  <Pt d="M406,170 L416,180 M406,180 L416,170" lx={418} ly={170} label="C" fs={16} />
                   <Pt d="M380,105 L390,115 M380,115 L390,105" lx={392} ly={102} label="B" fs={16} />
                   <Pt d="M122,340 L132,350 M122,350 L132,340" lx={103} ly={362} label="R" fs={16} />
-                  <Pt d="M257,327 L267,337 M257,337 L267,327" lx={266} ly={345} label="S" fs={16} />
+                  <Pt d="M257,311 L267,321 M257,321 L267,311" lx={266} ly={329} label="S" fs={16} />
                   <Lbl x={132} y={136} fs={16}>F</Lbl>
                   <Lbl x={338} y={153} fs={16}>O</Lbl>
                   <Lbl x={222} y={280} fs={16}>U</Lbl>
