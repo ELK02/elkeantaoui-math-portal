@@ -75,16 +75,17 @@ export default function Lesson() {
         visual={
           <div className="flex flex-col items-center gap-3">
             <svg viewBox="0 0 320 260" className="h-64 w-64">
+              {/* A(80,55) B(260,95) C(43.4,219.8) : angle en A recalculé exactement à 90° (AB·AC = 0) */}
               <circle cx="160" cy="130" r="105" fill="none" stroke="white" strokeWidth="2.5" opacity="0.85" />
-              <polygon points="80,55 260,95 105,222" fill="white" fillOpacity="0.08" stroke="white" strokeWidth="3" />
-              <path d="M80,55 L98,73 L118,64" fill="none" stroke="white" strokeWidth="2.5" />
+              <polygon points="80,55 260,95 43.4,219.8" fill="white" fillOpacity="0.08" stroke="white" strokeWidth="3" />
+              <path d="M99.5,59.3 L95.2,78.9 L75.7,74.5" fill="none" stroke="white" strokeWidth="2.5" />
               <circle cx="160" cy="130" r="4" fill="white" />
               <circle cx="80" cy="55" r="4.5" fill="white" />
               <circle cx="260" cy="95" r="4.5" fill="white" />
-              <circle cx="105" cy="222" r="4.5" fill="white" />
+              <circle cx="43.4" cy="219.8" r="4.5" fill="white" />
               <text x="65" y="48" fontSize="17" fontWeight="700" fill="white">A</text>
               <text x="272" y="90" fontSize="17" fontWeight="700" fill="white">B</text>
-              <text x="95" y="242" fontSize="17" fontWeight="700" fill="white">C</text>
+              <text x="33" y="240" fontSize="17" fontWeight="700" fill="white">C</text>
               <text x="163" y="150" fontSize="14" fontWeight="600" fill="white" opacity="0.9">O</text>
             </svg>
             <div className="rounded-xl bg-white px-4 py-3 text-neutral-900">
@@ -127,19 +128,21 @@ export default function Lesson() {
                 </PropBox>
               </div>
               <FigureBox>
-                <svg viewBox="0 0 300 240" className="w-full max-w-[260px]">
-                  <polygon points="150,30 270,190 40,170" fill="none" stroke="#334155" strokeWidth="2.5" />
-                  <path d="M150,30 L165,52 L143,58 Z" fill="none" stroke="#334155" strokeWidth="2" />
-                  <line x1="150" y1="30" x2="155" y2="180" stroke="#4f46e5" strokeWidth="2.5" />
-                  <circle cx="155" cy="180" r="3.5" fill="#4f46e5" />
+                <svg viewBox="-20 0 320 240" className="w-full max-w-[260px]">
+                  {/* A(150,30) B(270,190) C(7.6,136.8) : angle en A recalculé exactement à 90°.
+                      I(138.8,163.4) = vrai milieu de [BC]. */}
+                  <polygon points="150,30 270,190 7.6,136.8" fill="none" stroke="#334155" strokeWidth="2.5" />
+                  <path d="M163.2,47.6 L145.6,60.8 L132.4,43.2 Z" fill="none" stroke="#334155" strokeWidth="2" />
+                  <line x1="150" y1="30" x2="138.8" y2="163.4" stroke="#4f46e5" strokeWidth="2.5" />
+                  <circle cx="138.8" cy="163.4" r="3.5" fill="#4f46e5" />
                   <text x="150" y="20" textAnchor="middle" fontSize="16" fontWeight="600" fill="#0f172a">A</text>
-                  <text x="25" y="175" textAnchor="middle" fontSize="16" fontWeight="600" fill="#0f172a">C</text>
+                  <text x="-8" y="140" textAnchor="middle" fontSize="16" fontWeight="600" fill="#0f172a">C</text>
                   <text x="282" y="195" textAnchor="middle" fontSize="16" fontWeight="600" fill="#0f172a">B</text>
-                  <text x="155" y="200" textAnchor="middle" fontSize="15" fontWeight="600" fill="#4f46e5">I</text>
-                  <line x1="90" y1="175" x2="100" y2="173" stroke="#334155" strokeWidth="1.5" />
-                  <line x1="93" y1="180" x2="103" y2="178" stroke="#334155" strokeWidth="1.5" />
-                  <line x1="210" y1="181" x2="220" y2="184" stroke="#334155" strokeWidth="1.5" />
-                  <line x1="207" y1="186" x2="217" y2="189" stroke="#334155" strokeWidth="1.5" />
+                  <text x="128" y="183" textAnchor="middle" fontSize="15" fontWeight="600" fill="#4f46e5">I</text>
+                  <line x1="65.7" y1="150.1" x2="75.7" y2="148.1" stroke="#334155" strokeWidth="1.5" />
+                  <line x1="68.7" y1="155.1" x2="78.7" y2="153.1" stroke="#334155" strokeWidth="1.5" />
+                  <line x1="201.9" y1="172.7" x2="211.9" y2="175.7" stroke="#334155" strokeWidth="1.5" />
+                  <line x1="198.9" y1="177.7" x2="208.9" y2="180.7" stroke="#334155" strokeWidth="1.5" />
                 </svg>
               </FigureBox>
             </div>
@@ -171,13 +174,16 @@ export default function Lesson() {
               </div>
               <FigureBox>
                 <svg viewBox="0 0 260 260" className="w-full max-w-[240px]">
+                  {/* B et C sont diamétralement opposés sur le cercle (donc I=centre=vrai milieu de [BC]) et A
+                      est un troisième point du même cercle : l'angle en A vaut donc exactement 90° (angle
+                      inscrit dans un demi-cercle), sans avoir à le recalculer à part. */}
                   <circle cx="130" cy="130" r="95" fill="none" stroke="#4f46e5" strokeWidth="2" />
-                  <polygon points="90,45 214,150 42,140" fill="none" stroke="#334155" strokeWidth="2.5" />
-                  <path d="M90,45 L104,64 L82,71 Z" fill="none" stroke="#334155" strokeWidth="2" />
+                  <polygon points="113.5,36.4 224.6,138.3 35.4,121.7" fill="none" stroke="#334155" strokeWidth="2.5" />
+                  <path d="M126.8,48.6 L114.6,61.9 L101.3,49.7 Z" fill="none" stroke="#334155" strokeWidth="2" />
                   <circle cx="130" cy="130" r="3.5" fill="#4f46e5" />
-                  <text x="90" y="35" textAnchor="middle" fontSize="15" fontWeight="600" fill="#0f172a">A</text>
-                  <text x="27" y="140" textAnchor="middle" fontSize="15" fontWeight="600" fill="#0f172a">C</text>
-                  <text x="228" y="155" textAnchor="middle" fontSize="15" fontWeight="600" fill="#0f172a">B</text>
+                  <text x="113.5" y="26.4" textAnchor="middle" fontSize="15" fontWeight="600" fill="#0f172a">A</text>
+                  <text x="20" y="121.7" textAnchor="middle" fontSize="15" fontWeight="600" fill="#0f172a">C</text>
+                  <text x="239" y="138.3" textAnchor="middle" fontSize="15" fontWeight="600" fill="#0f172a">B</text>
                   <text x="130" y="150" textAnchor="middle" fontSize="14" fontWeight="600" fill="#4f46e5">I</text>
                 </svg>
               </FigureBox>
@@ -227,14 +233,16 @@ export default function Lesson() {
 
           <FigureBox>
             <svg viewBox="0 0 240 220" className="w-full max-w-[220px]">
-              <polygon points="120,30 210,190 30,190" fill="none" stroke="#334155" strokeWidth="2.5" />
-              <path d="M120,30 L133,50 L113,57 Z" fill="none" stroke="#334155" strokeWidth="2" />
-              <text x="120" y="20" textAnchor="middle" fontSize="15" fontWeight="600" fill="#0f172a">A</text>
-              <text x="18" y="205" textAnchor="middle" fontSize="15" fontWeight="600" fill="#0f172a">B</text>
-              <text x="222" y="205" textAnchor="middle" fontSize="15" fontWeight="600" fill="#0f172a">C</text>
-              <text x="65" y="105" textAnchor="middle" fontSize="13" fill="#4f46e5">8 cm</text>
-              <text x="180" y="105" textAnchor="middle" fontSize="13" fill="#4f46e5">6 cm</text>
-              <text x="120" y="212" textAnchor="middle" fontSize="13" fill="#ea580c">10 cm</text>
+              {/* Vrai triangle 8-6-10 : A(142.4,113.2) B(40,190) C(200,190), angle en A exactement 90°
+                  (AB=8, AC=6, BC=10 dans les bonnes proportions, pas juste étiquetés). */}
+              <polygon points="142.4,113.2 40,190 200,190" fill="none" stroke="#334155" strokeWidth="2.5" />
+              <path d="M128,124 L138.8,138.4 L153.2,127.6 Z" fill="none" stroke="#334155" strokeWidth="2" />
+              <text x="142.4" y="101.2" textAnchor="middle" fontSize="15" fontWeight="600" fill="#0f172a">A</text>
+              <text x="28" y="205" textAnchor="middle" fontSize="15" fontWeight="600" fill="#0f172a">B</text>
+              <text x="212" y="205" textAnchor="middle" fontSize="15" fontWeight="600" fill="#0f172a">C</text>
+              <text x="79.2" y="145.6" textAnchor="middle" fontSize="13" fill="#4f46e5">8 cm</text>
+              <text x="159.2" y="145.6" textAnchor="middle" fontSize="13" fill="#4f46e5">6 cm</text>
+              <text x="120" y="205" textAnchor="middle" fontSize="13" fill="#ea580c">10 cm</text>
             </svg>
           </FigureBox>
         </div>
@@ -273,14 +281,16 @@ export default function Lesson() {
 
           <FigureBox>
             <svg viewBox="0 0 240 220" className="w-full max-w-[220px]">
-              <polygon points="35,175 225,60 190,175" fill="none" stroke="#334155" strokeWidth="2.5" />
-              <path d="M190,175 L177,163 L165,175 Z" fill="none" stroke="#334155" strokeWidth="2" />
-              <path d="M62,170 A 30 30 0 0 1 55,150" fill="none" stroke="#f97316" strokeWidth="2" />
+              {/* Vrai triangle 3-4-5 : A(35,175) B(225,175) C(103.4,83.8), angle en C exactement 90°
+                  (CA=3, CB=4, AB=5 dans les bonnes proportions). */}
+              <polygon points="35,175 225,175 103.4,83.8" fill="none" stroke="#334155" strokeWidth="2.5" />
+              <path d="M92.6,98.2 L107,109 L117.8,94.6 Z" fill="none" stroke="#334155" strokeWidth="2" />
+              <path d="M65,175 A 30 30 0 0 0 53,151" fill="none" stroke="#f97316" strokeWidth="2" />
               <text x="25" y="190" textAnchor="middle" fontSize="15" fontWeight="600" fill="#0f172a">A</text>
-              <text x="232" y="60" textAnchor="middle" fontSize="15" fontWeight="600" fill="#0f172a">B</text>
-              <text x="198" y="195" textAnchor="middle" fontSize="15" fontWeight="600" fill="#0f172a">C</text>
-              <text x="115" y="108" textAnchor="middle" fontSize="12" fill="#4f46e5">Hypoténuse</text>
-              <text x="118" y="192" textAnchor="middle" fontSize="12" fill="#4f46e5">Côté adjacent</text>
+              <text x="232" y="190" textAnchor="middle" fontSize="15" fontWeight="600" fill="#0f172a">B</text>
+              <text x="103.4" y="72" textAnchor="middle" fontSize="15" fontWeight="600" fill="#0f172a">C</text>
+              <text x="130" y="192" textAnchor="middle" fontSize="12" fill="#4f46e5">Hypoténuse</text>
+              <text x="55" y="128" textAnchor="middle" fontSize="12" fill="#4f46e5">Côté adjacent</text>
             </svg>
           </FigureBox>
         </div>
@@ -311,16 +321,18 @@ export default function Lesson() {
                   <p><strong>c.</strong> Combien mesure le segment <Math tex="[AO]" /> ? Expliquer.</p>
                 </div>
                 <FigureBox>
-                  <svg viewBox="0 0 220 190" className="w-full max-w-[190px]">
-                    <polygon points="120,25 200,140 30,120" fill="none" stroke="#334155" strokeWidth="2.2" />
-                    <path d="M120,25 L133,44 L112,50 Z" fill="none" stroke="#334155" strokeWidth="1.8" />
-                    <line x1="120" y1="25" x2="115" y2="130" stroke="#4f46e5" strokeWidth="2" />
-                    <circle cx="115" cy="130" r="3" fill="#4f46e5" />
+                  <svg viewBox="-15 0 235 190" className="w-full max-w-[190px]">
+                    {/* A(120,25) B(200,140) C(12.6,99.7) : angle en A recalculé exactement à 90°.
+                        O(106.3,119.9) = vrai milieu de [BC]. */}
+                    <polygon points="120,25 200,140 12.6,99.7" fill="none" stroke="#334155" strokeWidth="2.2" />
+                    <path d="M129.1,38.1 L116,47.3 L106.9,34.1 Z" fill="none" stroke="#334155" strokeWidth="1.8" />
+                    <line x1="120" y1="25" x2="106.3" y2="119.9" stroke="#4f46e5" strokeWidth="2" />
+                    <circle cx="106.3" cy="119.9" r="3" fill="#4f46e5" />
                     <text x="120" y="15" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">A</text>
-                    <text x="18" y="128" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">C</text>
+                    <text x="0" y="99.7" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">C</text>
                     <text x="212" y="145" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">B</text>
-                    <text x="112" y="148" textAnchor="middle" fontSize="13" fontWeight="600" fill="#4f46e5">O</text>
-                    <text x="75" y="132" textAnchor="middle" fontSize="11" fill="#64748b">5 cm</text>
+                    <text x="98" y="138" textAnchor="middle" fontSize="13" fontWeight="600" fill="#4f46e5">O</text>
+                    <text x="66" y="112" textAnchor="middle" fontSize="11" fill="#64748b">5 cm</text>
                   </svg>
                 </FigureBox>
               </div>
@@ -490,19 +502,22 @@ export default function Lesson() {
             correction={
               <div className="space-y-4 text-sm">
                 <FigureBox>
-                  <svg viewBox="0 0 260 220" className="w-full max-w-[240px]">
+                  <svg viewBox="0 0 260 230" className="w-full max-w-[240px]">
+                    {/* A et B sont diamétralement opposés (donc O = vrai milieu de [AB]) ; M et N sont deux
+                        autres points du même cercle, donc les angles en M (AMB) et en N (ANB) valent chacun
+                        exactement 90° (angle inscrit dans un demi-cercle) sans avoir à les recalculer à part. */}
                     <circle cx="130" cy="110" r="95" fill="none" stroke="#4f46e5" strokeWidth="2" />
                     <circle cx="130" cy="110" r="2.5" fill="#4f46e5" />
                     <text x="130" y="100" textAnchor="middle" fontSize="12" fill="#4f46e5">O</text>
-                    <polygon points="60,60 190,70 90,205" fill="none" stroke="#334155" strokeWidth="2" />
-                    <path d="M90,190 L104,193 L107,179" fill="none" stroke="#334155" strokeWidth="1.8" />
-                    <circle cx="180" cy="150" r="2.5" fill="#16a34a" />
-                    <line x1="60" y1="60" x2="180" y2="150" stroke="#16a34a" strokeWidth="1.5" strokeDasharray="4 3" />
-                    <line x1="90" y1="205" x2="180" y2="150" stroke="#16a34a" strokeWidth="1.5" strokeDasharray="4 3" />
-                    <text x="50" y="55" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">A</text>
-                    <text x="200" y="68" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">M</text>
-                    <text x="85" y="220" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">B</text>
-                    <text x="192" y="150" textAnchor="middle" fontSize="14" fontWeight="600" fill="#16a34a">N</text>
+                    <polygon points="105.4,18.2 221.8,85.4 154.6,201.8" fill="none" stroke="#334155" strokeWidth="2" />
+                    <path d="M207.9,77.4 L199.9,91.3 L213.8,99.3" fill="none" stroke="#334155" strokeWidth="1.8" />
+                    <circle cx="219.3" cy="142.5" r="2.5" fill="#16a34a" />
+                    <line x1="105.4" y1="18.2" x2="219.3" y2="142.5" stroke="#16a34a" strokeWidth="1.5" strokeDasharray="4 3" />
+                    <line x1="154.6" y1="201.8" x2="219.3" y2="142.5" stroke="#16a34a" strokeWidth="1.5" strokeDasharray="4 3" />
+                    <text x="95" y="13" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">A</text>
+                    <text x="232" y="83" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">M</text>
+                    <text x="150" y="217" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">B</text>
+                    <text x="231" y="142.5" textAnchor="middle" fontSize="14" fontWeight="600" fill="#16a34a">N</text>
                   </svg>
                 </FigureBox>
                 <p>
