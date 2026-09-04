@@ -594,27 +594,30 @@ export default function Lesson() {
               dans cet ordre.
             </p>
             <DiagramPanel>
-              <svg viewBox="0 0 340 220" className="w-full max-w-xs">
-                <line x1="30" y1="70" x2="310" y2="80" stroke="#334155" strokeWidth="2" />
-                <line x1="20" y1="170" x2="300" y2="180" stroke="#334155" strokeWidth="2" />
-                <line x1="70" y1="30" x2="55" y2="175" stroke="#334155" strokeWidth="2" />
-                <line x1="260" y1="55" x2="230" y2="205" stroke="#334155" strokeWidth="2" />
+              <svg viewBox="0 0 410 270" className="w-full max-w-xs">
+                {/* True parallelogram: A(160,80) B(360,80) C(275,227) D(75,227) so AB=DC and AD=BC
+                    as vectors exactly; E is A plus 0.35·(A−D) along (DA), beyond A. Angle ABC is
+                    built to be exactly 60° and BCD exactly 120° (co-interior, sum 180°). */}
+                <line x1="130" y1="80" x2="390" y2="80" stroke="#334155" strokeWidth="2" />
+                <line x1="45" y1="227" x2="305" y2="227" stroke="#334155" strokeWidth="2" />
+                <line x1="62.5" y1="248.6" x2="202.3" y2="6.9" stroke="#334155" strokeWidth="2" />
+                <line x1="262.5" y1="248.6" x2="372.5" y2="58.4" stroke="#334155" strokeWidth="2" />
 
-                <circle cx="66" cy="73" r="2.8" fill="#1e293b" />
-                <text x="72" y="62" fontWeight="700" fontSize="14" fill="#1e293b">A</text>
-                <circle cx="252" cy="79" r="2.8" fill="#1e293b" />
-                <text x="258" y="68" fontWeight="700" fontSize="14" fill="#1e293b">B</text>
-                <circle cx="58" cy="164" r="2.8" fill="#1e293b" />
-                <text x="30" y="178" fontWeight="700" fontSize="14" fill="#1e293b">D</text>
-                <circle cx="234" cy="176" r="2.8" fill="#1e293b" />
-                <text x="240" y="196" fontWeight="700" fontSize="14" fill="#1e293b">C</text>
-                <circle cx="70" cy="32" r="2.8" fill="#1e293b" />
-                <text x="76" y="26" fontWeight="700" fontSize="14" fill="#1e293b">E</text>
+                <circle cx="160" cy="80" r="2.8" fill="#1e293b" />
+                <text x="150" y="66" fontWeight="700" fontSize="14" fill="#1e293b">A</text>
+                <circle cx="360" cy="80" r="2.8" fill="#1e293b" />
+                <text x="368" y="70" fontWeight="700" fontSize="14" fill="#1e293b">B</text>
+                <circle cx="75" cy="227" r="2.8" fill="#1e293b" />
+                <text x="46" y="243" fontWeight="700" fontSize="14" fill="#1e293b">D</text>
+                <circle cx="275" cy="227" r="2.8" fill="#1e293b" />
+                <text x="283" y="243" fontWeight="700" fontSize="14" fill="#1e293b">C</text>
+                <circle cx="189.8" cy="28.6" r="2.8" fill="#1e293b" />
+                <text x="197" y="20" fontWeight="700" fontSize="14" fill="#1e293b">E</text>
 
-                <path d="M 234 74 A 22 22 0 0 1 246 92" fill="none" stroke="#16a34a" strokeWidth="1.6" />
-                <text x="222" y="100" fontWeight="700" fontSize="12" fill="#16a34a">60°</text>
-                <path d="M 218 168 A 22 22 0 0 0 246 172" fill="none" stroke="#16a34a" strokeWidth="1.6" />
-                <text x="238" y="158" fontWeight="700" fontSize="12" fill="#16a34a">120°</text>
+                <path d="M 347 102.52 A 26 26 0 0 1 334 80" fill="none" stroke="#16a34a" strokeWidth="1.6" />
+                <text x="303" y="112" fontWeight="700" fontSize="12" fill="#16a34a">60°</text>
+                <path d="M 249 227 A 26 26 0 0 1 288 204.48" fill="none" stroke="#16a34a" strokeWidth="1.6" />
+                <text x="236" y="192" fontWeight="700" fontSize="12" fill="#16a34a">120°</text>
               </svg>
             </DiagramPanel>
             <p className="mt-3 text-xs text-foreground-muted">
