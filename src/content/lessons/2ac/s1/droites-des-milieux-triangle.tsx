@@ -687,20 +687,26 @@ export default function Lesson() {
                           <path d="M0,0 L10,5 L0,10 Z" fill="#4f46e5" />
                         </marker>
                       </defs>
-                      <line x1="150" y1="20" x2="60" y2="200" stroke="#4f46e5" strokeWidth="2" markerEnd="url(#arrIndigoDM)" markerStart="url(#arrIndigoDM)" />
-                      <line x1="130" y1="60" x2="230" y2="150" stroke="#4f46e5" strokeWidth="2" markerEnd="url(#arrIndigoDM)" markerStart="url(#arrIndigoDM)" />
-                      <line x1="103" y1="112" x2="188" y2="112" stroke="#059669" strokeWidth="2.5" />
-                      <circle cx="103" cy="112" r="4" fill="#059669" /><circle cx="188" cy="112" r="4" fill="#059669" />
-                      <circle cx="150" cy="20" r="3.5" fill="#0f172a" /><circle cx="60" cy="200" r="3.5" fill="#0f172a" /><circle cx="230" cy="150" r="3.5" fill="#0f172a" />
-                      <text x="152" y="14" fontSize="13" fontWeight="700" fill="#0f172a">M</text>
-                      <text x="40" y="212" fontSize="13" fontWeight="700" fill="#0f172a">A</text>
-                      <text x="236" y="150" fontSize="13" fontWeight="700" fill="#0f172a">N</text>
-                      <text x="84" y="106" fontSize="12" fontWeight="700" fill="#059669">B</text>
-                      <text x="194" y="106" fontSize="12" fontWeight="700" fill="#059669">C</text>
-                      <text x="98" y="60" fontSize="11" fill="#4f46e5">4,5</text>
-                      <text x="60" y="150" fontSize="11" fill="#0f172a">4</text>
-                      <text x="145" y="98" fontSize="11" fill="#059669">2</text>
-                      <text x="185" y="80" fontSize="11" fill="#0f172a">6</text>
+                      {/* A(70,205) M(47.4,77) N(167.5,65.7) : les deux sécantes partent bien de A (l'une
+                          n'était pas reliée au sommet dans l'ancienne figure). B et C sont exactement au
+                          tiers de [AM] et [AN] à partir de A, ce qui garantit (BC) ∥ (MN) par Thalès. Figure
+                          non à l'échelle des cm donnés : AM=4,5, AN=12 et MN=6 ne peuvent pas former un vrai
+                          triangle (AM+MN=10,5 < AN=12), donc l'énoncé est nécessairement schématique. */}
+                      <line x1="70" y1="205" x2="47.4" y2="77" stroke="#4f46e5" strokeWidth="2" markerEnd="url(#arrIndigoDM)" markerStart="url(#arrIndigoDM)" />
+                      <line x1="70" y1="205" x2="167.5" y2="65.7" stroke="#4f46e5" strokeWidth="2" markerEnd="url(#arrIndigoDM)" markerStart="url(#arrIndigoDM)" />
+                      <line x1="47.4" y1="77" x2="167.5" y2="65.7" stroke="#94a3b8" strokeWidth="1.3" strokeDasharray="3 3" />
+                      <line x1="62.5" y1="162.3" x2="102.5" y2="158.6" stroke="#059669" strokeWidth="2.5" />
+                      <circle cx="62.5" cy="162.3" r="4" fill="#059669" /><circle cx="102.5" cy="158.6" r="4" fill="#059669" />
+                      <circle cx="70" cy="205" r="3.5" fill="#0f172a" /><circle cx="47.4" cy="77" r="3.5" fill="#0f172a" /><circle cx="167.5" cy="65.7" r="3.5" fill="#0f172a" />
+                      <text x="30" y="72" fontSize="13" fontWeight="700" fill="#0f172a">M</text>
+                      <text x="50" y="220" fontSize="13" fontWeight="700" fill="#0f172a">A</text>
+                      <text x="173" y="63" fontSize="13" fontWeight="700" fill="#0f172a">N</text>
+                      <text x="42" y="157" fontSize="12" fontWeight="700" fill="#059669">B</text>
+                      <text x="109" y="153" fontSize="12" fontWeight="700" fill="#059669">C</text>
+                      <text x="34" y="147" fontSize="11" fill="#4f46e5">4,5</text>
+                      <text x="90" y="188" fontSize="11" fill="#4f46e5">4</text>
+                      <text x="72" y="150" fontSize="11" fill="#059669">2</text>
+                      <text x="98" y="56" fontSize="11" fill="#0f172a">6</text>
                     </svg>
                     <p className="mt-1 text-center text-xs text-foreground-muted">
                       <Math tex="AM = 4{,}5" /> · <Math tex="AC = 4" /> · <Math tex="BC = 2" /> · <Math tex="MN = 6" />
@@ -709,20 +715,24 @@ export default function Lesson() {
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
                     <p className="mb-2 font-semibold text-foreground">b. Calcule CT et AB.</p>
                     <svg viewBox="0 0 260 220" className="mx-auto h-auto w-full max-w-[240px]">
-                      <line x1="150" y1="20" x2="55" y2="150" stroke="#4f46e5" strokeWidth="2" markerEnd="url(#arrIndigoDM)" markerStart="url(#arrIndigoDM)" />
-                      <line x1="150" y1="20" x2="205" y2="200" stroke="#4f46e5" strokeWidth="2" markerEnd="url(#arrIndigoDM)" markerStart="url(#arrIndigoDM)" />
-                      <line x1="112" y1="94" x2="172" y2="122" stroke="#059669" strokeWidth="2.5" />
-                      <circle cx="112" cy="94" r="4" fill="#059669" /><circle cx="172" cy="122" r="4" fill="#059669" />
-                      <circle cx="150" cy="20" r="3.5" fill="#0f172a" /><circle cx="55" cy="150" r="3.5" fill="#0f172a" /><circle cx="205" cy="200" r="3.5" fill="#0f172a" />
-                      <text x="152" y="14" fontSize="13" fontWeight="700" fill="#0f172a">C</text>
-                      <text x="30" y="150" fontSize="13" fontWeight="700" fill="#0f172a">B</text>
-                      <text x="211" y="200" fontSize="13" fontWeight="700" fill="#0f172a">A</text>
-                      <text x="88" y="90" fontSize="12" fontWeight="700" fill="#059669">S</text>
-                      <text x="178" y="118" fontSize="12" fontWeight="700" fill="#059669">T</text>
-                      <text x="70" y="70" fontSize="11" fill="#4f46e5">13</text>
-                      <text x="176" y="80" fontSize="11" fill="#4f46e5">6,5</text>
-                      <text x="118" y="80" fontSize="11" fill="#059669">5</text>
-                      <text x="150" y="120" fontSize="11" fill="#059669">3</text>
+                      {/* C(130,25) B(99.5,151.4) A(145.2,88.2) : angle en C calculé exactement par la loi
+                          des cosinus à partir de CB=13, CA=6,5, BA=7,8 (≈27,13°), donc S et T tombent
+                          précisément sur les rayons (CB) et (CA) aux bonnes distances CS=5 et CT=2,5. */}
+                      <line x1="130" y1="25" x2="99.5" y2="151.4" stroke="#4f46e5" strokeWidth="2" markerEnd="url(#arrIndigoDM)" markerStart="url(#arrIndigoDM)" />
+                      <line x1="130" y1="25" x2="145.2" y2="88.2" stroke="#4f46e5" strokeWidth="2" markerEnd="url(#arrIndigoDM)" markerStart="url(#arrIndigoDM)" />
+                      <line x1="99.5" y1="151.4" x2="145.2" y2="88.2" stroke="#94a3b8" strokeWidth="1.3" strokeDasharray="3 3" />
+                      <line x1="118.3" y1="73.6" x2="135.9" y2="49.3" stroke="#059669" strokeWidth="2.5" />
+                      <circle cx="118.3" cy="73.6" r="4" fill="#059669" /><circle cx="135.9" cy="49.3" r="4" fill="#059669" />
+                      <circle cx="130" cy="25" r="3.5" fill="#0f172a" /><circle cx="99.5" cy="151.4" r="3.5" fill="#0f172a" /><circle cx="145.2" cy="88.2" r="3.5" fill="#0f172a" />
+                      <text x="132" y="19" fontSize="13" fontWeight="700" fill="#0f172a">C</text>
+                      <text x="74" y="155" fontSize="13" fontWeight="700" fill="#0f172a">B</text>
+                      <text x="151" y="92" fontSize="13" fontWeight="700" fill="#0f172a">A</text>
+                      <text x="92" y="69" fontSize="12" fontWeight="700" fill="#059669">S</text>
+                      <text x="142" y="45" fontSize="12" fontWeight="700" fill="#059669">T</text>
+                      <text x="92" y="80" fontSize="11" fill="#4f46e5">13</text>
+                      <text x="148" y="52" fontSize="11" fill="#4f46e5">6,5</text>
+                      <text x="106" y="42" fontSize="11" fill="#059669">5</text>
+                      <text x="118" y="68" fontSize="11" fill="#059669">3</text>
                     </svg>
                     <p className="mt-1 text-center text-xs text-foreground-muted">
                       <Math tex="CB = 13" /> · <Math tex="CS = 5" /> · <Math tex="ST = 3" /> · <Math tex="CA = 6{,}5" />
