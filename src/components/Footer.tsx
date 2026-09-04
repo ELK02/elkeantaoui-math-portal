@@ -38,6 +38,11 @@ export function Footer() {
           <ul className="mt-4 space-y-2 text-sm text-foreground-muted">
             <li>Prof. Lahbib Elkeantaoui</li>
             <li>Professeur de Mathématiques</li>
+            <li>
+              <a href="mailto:lahbibelk05@gmail.com" className="text-foreground-muted transition-colors hover:text-foreground">
+                lahbibelk05@gmail.com
+              </a>
+            </li>
             <li className="pt-2">
               <Link href="/lycee" className="text-foreground-muted transition-colors hover:text-foreground">
                 Cycle Lycée (bientôt disponible)
