@@ -265,23 +265,52 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <Accordion>
-                    <AccordionItem title="Voir la solution">
-                      <div className="space-y-2">
-                        <p>M&apos; est le milieu de [AC], donc (BM&apos;) est une médiane du triangle ABC.</p>
-                        <p>C est le symétrique de B par rapport à M, donc M est le milieu de [BC] : (AM) est donc aussi une médiane du triangle ABC.</p>
-                        <p>
-                          (AM) et (BM&apos;) se coupent en G, donc <strong>G est le centre de gravité du triangle ABC</strong>.
-                        </p>
-                        <p>
-                          Donc <Math tex="AG = \tfrac{2}{3}AM = \tfrac{2}{3}\times 6 = \tfrac{12}{3}" />, d&apos;où{" "}
-                          <strong className="text-green-700"><Math tex="AG = \mathbf{4\text{ cm}}" /></strong>.
-                        </p>
-                      </div>
-                    </AccordionItem>
-                  </Accordion>
+                  /* A(100,40) B(30,180) M(160,160, milieu de [BC]) C(290,140) M'(195,90, milieu de [AC])
+                     G(140,120) = centroïde de ABC, vérifié : G = A + 2/3(M−A) = B + 2/3(M'−B). */
+                  <svg viewBox="0 0 340 220" className="h-auto w-full max-w-[300px]">
+                    <polygon points="100,40 30,180 290,140" fill="none" stroke="#334155" strokeWidth="2" />
+                    <line x1="100" y1="40" x2="160" y2="160" stroke="#0ea5e9" strokeWidth="1.8" />
+                    <line x1="30" y1="180" x2="195" y2="90" stroke="#e11d48" strokeWidth="1.8" />
+
+                    {/* tick marks : M milieu de [BC] */}
+                    <line x1="94.2" y1="165.1" x2="95.8" y2="174.9" stroke="#334155" strokeWidth="1.4" />
+                    <line x1="224.2" y1="145.1" x2="225.8" y2="154.9" stroke="#334155" strokeWidth="1.4" />
+                    {/* tick marks : M' milieu de [AC] */}
+                    <line x1="145.2" y1="69.4" x2="149.8" y2="60.6" stroke="#334155" strokeWidth="1.4" />
+                    <line x1="240.2" y1="119.4" x2="244.8" y2="110.6" stroke="#334155" strokeWidth="1.4" />
+
+                    <circle cx="100" cy="40" r="2.8" fill="#0f172a" />
+                    <text x="90" y="30" fontSize="13" fontWeight="700" fill="#0f172a">A</text>
+                    <circle cx="30" cy="180" r="2.8" fill="#0f172a" />
+                    <text x="12" y="196" fontSize="13" fontWeight="700" fill="#0f172a">B</text>
+                    <circle cx="290" cy="140" r="2.8" fill="#0f172a" />
+                    <text x="296" y="136" fontSize="13" fontWeight="700" fill="#0f172a">C</text>
+                    <circle cx="160" cy="160" r="2.8" fill="#0ea5e9" />
+                    <text x="164" y="178" fontSize="12" fontWeight="700" fill="#0ea5e9">M</text>
+                    <circle cx="195" cy="90" r="2.8" fill="#e11d48" />
+                    <text x="200" y="80" fontSize="12" fontWeight="700" fill="#e11d48">M&apos;</text>
+                    <circle cx="140" cy="120" r="3.2" fill="#16a34a" />
+                    <text x="112" y="118" fontSize="13" fontWeight="700" fill="#16a34a">G</text>
+                  </svg>
                 }
               />
+              <div className="mt-4">
+                <Accordion>
+                  <AccordionItem title="Voir la solution">
+                    <div className="space-y-2">
+                      <p>M&apos; est le milieu de [AC], donc (BM&apos;) est une médiane du triangle ABC.</p>
+                      <p>C est le symétrique de B par rapport à M, donc M est le milieu de [BC] : (AM) est donc aussi une médiane du triangle ABC.</p>
+                      <p>
+                        (AM) et (BM&apos;) se coupent en G, donc <strong>G est le centre de gravité du triangle ABC</strong>.
+                      </p>
+                      <p>
+                        Donc <Math tex="AG = \tfrac{2}{3}AM = \tfrac{2}{3}\times 6 = \tfrac{12}{3}" />, d&apos;où{" "}
+                        <strong className="text-green-700"><Math tex="AG = \mathbf{4\text{ cm}}" /></strong>.
+                      </p>
+                    </div>
+                  </AccordionItem>
+                </Accordion>
+              </div>
             </>
           }
         >
