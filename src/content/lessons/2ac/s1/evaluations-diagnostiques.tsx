@@ -375,27 +375,37 @@ export default function Lesson() {
                   <Math tex="B" />. Associer chaque droite à son nom :
                 </p>
                 <DiagramPanel>
-                  <svg viewBox="0 0 400 260" className="w-full max-w-sm">
-                    <polygon points="80,220 330,220 200,40" fill="none" stroke="#334155" strokeWidth="2" />
-                    <circle cx="80" cy="220" r="3.2" fill="#1e293b" />
-                    <circle cx="330" cy="220" r="3.2" fill="#1e293b" />
-                    <circle cx="200" cy="40" r="3.2" fill="#1e293b" />
-                    <text x="62" y="236" fontWeight="700" fontSize="15" fill="#1e293b">A</text>
-                    <text x="336" y="236" fontWeight="700" fontSize="15" fill="#1e293b">C</text>
-                    <text x="200" y="28" textAnchor="middle" fontWeight="700" fontSize="15" fill="#1e293b">B</text>
+                  <svg viewBox="0 0 420 300" className="w-full max-w-sm">
+                    {/* Triangle ABC — A=(60,240) B=(150,60) C=(360,240), scalene on purpose so the
+                        médiatrice (foot 210), bissectrice (foot 186) and hauteur (foot 150) land on
+                        three clearly distinct points of [AC]. */}
+                    <polygon points="60,240 360,240 150,60" fill="none" stroke="#334155" strokeWidth="2" />
+                    <circle cx="60" cy="240" r="3.2" fill="#1e293b" />
+                    <circle cx="360" cy="240" r="3.2" fill="#1e293b" />
+                    <circle cx="150" cy="60" r="3.2" fill="#1e293b" />
+                    <text x="40" y="258" fontWeight="700" fontSize="15" fill="#1e293b">A</text>
+                    <text x="366" y="258" fontWeight="700" fontSize="15" fill="#1e293b">C</text>
+                    <text x="150" y="46" textAnchor="middle" fontWeight="700" fontSize="15" fill="#1e293b">B</text>
 
-                    <line x1="140" y1="130" x2="200" y2="315" stroke="#0ea5e9" strokeWidth="2" />
-                    <text x="140" y="122" fontWeight="700" fontSize="13" fill="#0ea5e9">(D)</text>
-                    <rect x="149" y="222" width="12" height="12" fill="none" stroke="#0ea5e9" strokeWidth="1.6" transform="rotate(-31 155 228)" />
+                    {/* (D) médiatrice de [AC] : perpendiculaire à AC, passe par son milieu (210,240) */}
+                    <line x1="210" y1="190" x2="210" y2="290" stroke="#0ea5e9" strokeWidth="2" />
+                    <text x="216" y="184" fontWeight="700" fontSize="13" fill="#0ea5e9">(D)</text>
+                    <rect x="210" y="228" width="12" height="12" fill="none" stroke="#0ea5e9" strokeWidth="1.6" />
+                    <line x1="135" y1="236" x2="135" y2="244" stroke="#334155" strokeWidth="1.6" />
+                    <line x1="285" y1="236" x2="285" y2="244" stroke="#334155" strokeWidth="1.6" />
 
-                    <line x1="200" y1="40" x2="150" y2="220" stroke="#16a34a" strokeWidth="2" />
-                    <text x="230" y="95" fontWeight="700" fontSize="13" fill="#16a34a">(Δ)</text>
-                    <path d="M 210 60 A 24 24 0 0 1 195 82" fill="none" stroke="#16a34a" strokeWidth="1.6" />
-                    <path d="M 195 82 A 24 24 0 0 1 188 105" fill="none" stroke="#16a34a" strokeWidth="1.6" />
+                    {/* (Δ) bissectrice de l'angle ABC : de B à (186,240), vérifié par le théorème de la bissectrice */}
+                    <line x1="150" y1="60" x2="186" y2="240" stroke="#16a34a" strokeWidth="2" />
+                    <text x="196" y="126" fontWeight="700" fontSize="13" fill="#16a34a">(Δ)</text>
+                    <path d="M 172.78 79.52 A 30 30 0 0 1 155.98 89.40" fill="none" stroke="#16a34a" strokeWidth="1.6" />
+                    <path d="M 155.98 89.40 A 30 30 0 0 1 136.58 86.83" fill="none" stroke="#16a34a" strokeWidth="1.6" />
+                    <line x1="163.16" y1="82.42" x2="167.2" y2="89.32" stroke="#16a34a" strokeWidth="1.6" />
+                    <line x1="146.57" y1="85.77" x2="145.51" y2="93.70" stroke="#16a34a" strokeWidth="1.6" />
 
-                    <line x1="200" y1="40" x2="200" y2="220" stroke="#e11d48" strokeWidth="2" />
-                    <text x="206" y="150" fontWeight="700" fontSize="13" fill="#e11d48">(L)</text>
-                    <rect x="188" y="208" width="12" height="12" fill="none" stroke="#e11d48" strokeWidth="1.6" />
+                    {/* (L) hauteur issue de B : perpendiculaire à AC, passe par B */}
+                    <line x1="150" y1="60" x2="150" y2="240" stroke="#e11d48" strokeWidth="2" />
+                    <text x="122" y="150" fontWeight="700" fontSize="13" fill="#e11d48">(L)</text>
+                    <rect x="150" y="228" width="12" height="12" fill="none" stroke="#e11d48" strokeWidth="1.6" />
                   </svg>
                 </DiagramPanel>
                 <div className="mt-5 space-y-4">
