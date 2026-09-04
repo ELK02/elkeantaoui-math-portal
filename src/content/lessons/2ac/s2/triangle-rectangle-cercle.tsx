@@ -429,7 +429,24 @@ export default function Lesson() {
               </div>
             }
             correction={
-              <div className="space-y-3 text-sm">
+              <div className="space-y-4 text-sm">
+                <FigureBox>
+                  {/* O(110,110) centre, I et J diamétralement opposés (rayon 80), K un autre point du même
+                      cercle : l'angle en K vaut donc exactement 90° (angle inscrit dans un demi-cercle). */}
+                  <svg viewBox="0 0 220 220" className="w-full max-w-[220px]">
+                    <circle cx="110" cy="110" r="80" fill="none" stroke="#4f46e5" strokeWidth="1.6" />
+                    <circle cx="110" cy="110" r="2.5" fill="#4f46e5" />
+                    <polygon points="34.8,82.6 185.2,137.4 96.1,188.8" fill="none" stroke="#334155" strokeWidth="2" />
+                    <path d="M88.1,174.9 L102,166.9 L110,180.8" fill="none" stroke="#334155" strokeWidth="1.6" />
+                    <circle cx="34.8" cy="82.6" r="2.8" fill="#0f172a" />
+                    <circle cx="185.2" cy="137.4" r="2.8" fill="#0f172a" />
+                    <circle cx="96.1" cy="188.8" r="2.8" fill="#0f172a" />
+                    <text x="20" y="72" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">I</text>
+                    <text x="196" y="147" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">J</text>
+                    <text x="86" y="202" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">K</text>
+                    <text x="110" y="100" textAnchor="middle" fontSize="12" fontWeight="600" fill="#4f46e5">O</text>
+                  </svg>
+                </FigureBox>
                 <p>
                   <strong>a.</strong> <Math tex="O" /> est placé au milieu de <Math tex="[IJ]" />. <Math tex="K" /> est
                   un point tel que <Math tex="OK = OJ" /> : il se trouve donc sur le cercle de centre <Math tex="O" />{" "}
@@ -471,7 +488,28 @@ export default function Lesson() {
               </div>
             }
             correction={
-              <div className="space-y-2 text-sm">
+              <div className="space-y-4 text-sm">
+                <FigureBox>
+                  {/* D(130,100) E(95,39.4) F(165,39.4) E'(165,160.6) : DE=DF=DE'=70 exactement, donc
+                      l'angle en F vaut exactement 90° (F sur le cercle de diamètre [EE']). */}
+                  <svg viewBox="0 0 260 200" className="w-full max-w-[240px]">
+                    <polygon points="95,39.4 165,39.4 130,100" fill="none" stroke="#334155" strokeWidth="2" />
+                    <line x1="130" y1="100" x2="165" y2="160.6" stroke="#334155" strokeWidth="2" strokeDasharray="4 3" />
+                    <line x1="95" y1="39.4" x2="165" y2="160.6" stroke="#16a34a" strokeWidth="2" />
+                    <path d="M149,39.4 L149,55.4 L165,55.4" fill="none" stroke="#334155" strokeWidth="1.6" />
+                    <line x1="106" y1="66" x2="114" y2="72" stroke="#4f46e5" strokeWidth="1.5" />
+                    <line x1="146" y1="66" x2="154" y2="72" stroke="#4f46e5" strokeWidth="1.5" />
+                    <line x1="141" y1="126" x2="149" y2="132" stroke="#4f46e5" strokeWidth="1.5" />
+                    <circle cx="95" cy="39.4" r="2.8" fill="#0f172a" />
+                    <circle cx="165" cy="39.4" r="2.8" fill="#0f172a" />
+                    <circle cx="130" cy="100" r="2.8" fill="#0f172a" />
+                    <circle cx="165" cy="160.6" r="2.8" fill="#16a34a" />
+                    <text x="82" y="35" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">E</text>
+                    <text x="176" y="35" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">F</text>
+                    <text x="130" y="90" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">D</text>
+                    <text x="180" y="165" textAnchor="middle" fontSize="14" fontWeight="600" fill="#16a34a">E&apos;</text>
+                  </svg>
+                </FigureBox>
                 <p>➜ <Math tex="E'" /> est le symétrique de <Math tex="E" /> par rapport à <Math tex="D" />, donc <Math tex="D" /> est le milieu de <Math tex="[EE']" />.</p>
                 <p>➜ <Math tex="DEF" /> est isocèle en <Math tex="D" />, donc <Math tex="DE = DF" />.</p>
                 <p>➜ <Math tex="D" /> est le milieu de <Math tex="[EE']" />, donc <Math tex="DE = DE'" />.</p>
@@ -582,6 +620,28 @@ export default function Lesson() {
                   isocèle en <Math tex="A" /> et ses angles <Math tex="\widehat{B}" /> et <Math tex="\widehat{C}" />{" "}
                   mesurent chacun 45°.
                 </p>
+                <FigureBox>
+                  {/* B(40,150) C(200,150) O(120,150) milieu de [BC], A(120,70) au sommet du cercle de diamètre
+                      [BC] : AB=AC=113,1 exactement et l'angle en A vaut exactement 90° (Thalès). */}
+                  <svg viewBox="0 0 240 200" className="w-full max-w-[240px]">
+                    <circle cx="120" cy="150" r="80" fill="none" stroke="#4f46e5" strokeWidth="1.6" />
+                    <line x1="120" y1="60" x2="120" y2="150" stroke="#94a3b8" strokeWidth="1.4" strokeDasharray="3 3" />
+                    <polygon points="120,70 40,150 200,150" fill="none" stroke="#334155" strokeWidth="2" />
+                    <path d="M107.3,82.7 L120,95.5 L132.7,82.7" fill="none" stroke="#334155" strokeWidth="1.6" />
+                    <path d="M52,138 A 20 20 0 0 1 65,150" fill="none" stroke="#f97316" strokeWidth="1.6" />
+                    <path d="M175,150 A 20 20 0 0 1 188,138" fill="none" stroke="#f97316" strokeWidth="1.6" />
+                    <circle cx="40" cy="150" r="2.8" fill="#0f172a" />
+                    <circle cx="200" cy="150" r="2.8" fill="#0f172a" />
+                    <circle cx="120" cy="70" r="2.8" fill="#0f172a" />
+                    <circle cx="120" cy="150" r="2.5" fill="#4f46e5" />
+                    <text x="27" y="163" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">B</text>
+                    <text x="213" y="163" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">C</text>
+                    <text x="120" y="58" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">A</text>
+                    <text x="120" y="140" textAnchor="middle" fontSize="12" fontWeight="600" fill="#4f46e5">O</text>
+                    <text x="70" y="130" textAnchor="middle" fontSize="11" fill="#f97316">45°</text>
+                    <text x="170" y="130" textAnchor="middle" fontSize="11" fill="#f97316">45°</text>
+                  </svg>
+                </FigureBox>
               </div>
             }
           />
@@ -624,6 +684,30 @@ export default function Lesson() {
                   par rapport à la droite <Math tex="(BC)" />. Il y a donc deux emplacements possibles pour{" "}
                   <Math tex="A" />, donnant deux triangles symétriques (donc superposables, isométriques).
                 </p>
+                <FigureBox>
+                  {/* B(50,120) C(200,120) : cercle de diamètre [BC] (indigo, rayon 75) et cercle de centre B
+                      rayon 4cm=100px (orange). Leurs deux points d'intersection A1(116.7,194.5) et
+                      A2(116.7,45.5) sont bien à AB=100px exactement et donnent chacun un angle de 90° en A. */}
+                  <svg viewBox="-60 0 280 240" className="w-full max-w-[260px]">
+                    <circle cx="125" cy="120" r="75" fill="none" stroke="#4f46e5" strokeWidth="1.6" />
+                    <circle cx="50" cy="120" r="100" fill="none" stroke="#f97316" strokeWidth="1.6" />
+                    <line x1="50" y1="120" x2="200" y2="120" stroke="#334155" strokeWidth="2" />
+                    <polygon points="50,120 200,120 116.7,45.5" fill="none" stroke="#334155" strokeWidth="1.6" strokeDasharray="4 3" />
+                    <polygon points="50,120 200,120 116.7,194.5" fill="none" stroke="#16a34a" strokeWidth="2" />
+                    <path d="M106,57.4 L118,68.1 L128.6,56.2" fill="none" stroke="#334155" strokeWidth="1.4" />
+                    <path d="M106,182.6 L118,171.9 L128.6,183.8" fill="none" stroke="#16a34a" strokeWidth="1.6" />
+                    <circle cx="50" cy="120" r="2.8" fill="#0f172a" />
+                    <circle cx="200" cy="120" r="2.8" fill="#0f172a" />
+                    <circle cx="125" cy="120" r="2.5" fill="#4f46e5" />
+                    <circle cx="116.7" cy="45.5" r="2.8" fill="#64748b" />
+                    <circle cx="116.7" cy="194.5" r="2.8" fill="#16a34a" />
+                    <text x="37" y="133" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">B</text>
+                    <text x="213" y="133" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">C</text>
+                    <text x="125" y="133" textAnchor="middle" fontSize="12" fontWeight="600" fill="#4f46e5">O</text>
+                    <text x="116.7" y="35" textAnchor="middle" fontSize="14" fontWeight="600" fill="#64748b">A₁</text>
+                    <text x="116.7" y="210" textAnchor="middle" fontSize="14" fontWeight="600" fill="#16a34a">A₂</text>
+                  </svg>
+                </FigureBox>
               </div>
             }
           />
