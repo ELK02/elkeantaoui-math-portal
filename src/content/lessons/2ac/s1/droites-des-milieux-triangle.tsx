@@ -171,10 +171,11 @@ export default function Lesson() {
               <line x1="105" y1="105" x2="205" y2="105" stroke="#4f46e5" strokeWidth="2.5" />
               <circle cx="60" cy="180" r="4" fill="#0f172a" /><circle cx="260" cy="180" r="4" fill="#0f172a" /><circle cx="150" cy="30" r="4" fill="#0f172a" />
               <circle cx="105" cy="105" r="4" fill="#4f46e5" /><circle cx="205" cy="105" r="4" fill="#4f46e5" />
-              <line x1="98" y1="98" x2="112" y2="112" stroke="#4f46e5" strokeWidth="1.6" />
-              <line x1="130" y1="65" x2="144" y2="79" stroke="#4f46e5" strokeWidth="1.6" />
-              <line x1="198" y1="98" x2="212" y2="112" stroke="#4f46e5" strokeWidth="1.6" />
-              <line x1="156" y1="65" x2="170" y2="79" stroke="#4f46e5" strokeWidth="1.6" />
+              {/* équidistance : ticks centrés sur les vrais milieux de [AK]/[KB] et [AJ]/[JC] */}
+              <line x1="120.5" y1="60.5" x2="134.5" y2="74.5" stroke="#4f46e5" strokeWidth="1.6" />
+              <line x1="75.5" y1="135.5" x2="89.5" y2="149.5" stroke="#4f46e5" strokeWidth="1.6" />
+              <line x1="170.5" y1="60.5" x2="184.5" y2="74.5" stroke="#4f46e5" strokeWidth="1.6" />
+              <line x1="225.5" y1="135.5" x2="239.5" y2="149.5" stroke="#4f46e5" strokeWidth="1.6" />
               <text x="40" y="198" fontSize="15" fontWeight="700" fill="#0f172a">B</text>
               <text x="266" y="198" fontSize="15" fontWeight="700" fill="#0f172a">C</text>
               <text x="156" y="24" fontSize="15" fontWeight="700" fill="#0f172a">A</text>
@@ -211,8 +212,9 @@ export default function Lesson() {
               <line x1="105" y1="105" x2="205" y2="105" stroke="#059669" strokeWidth="2.5" />
               <circle cx="60" cy="180" r="4" fill="#0f172a" /><circle cx="260" cy="180" r="4" fill="#0f172a" /><circle cx="150" cy="30" r="4" fill="#0f172a" />
               <circle cx="105" cy="105" r="4" fill="#059669" /><circle cx="205" cy="105" r="4" fill="#059669" />
-              <line x1="98" y1="98" x2="112" y2="112" stroke="#059669" strokeWidth="1.6" />
-              <line x1="130" y1="65" x2="144" y2="79" stroke="#059669" strokeWidth="1.6" />
+              {/* équidistance : ticks centrés sur les vrais milieux de [AK] et [KB] */}
+              <line x1="120.5" y1="60.5" x2="134.5" y2="74.5" stroke="#059669" strokeWidth="1.6" />
+              <line x1="75.5" y1="135.5" x2="89.5" y2="149.5" stroke="#059669" strokeWidth="1.6" />
               <text x="40" y="198" fontSize="15" fontWeight="700" fill="#0f172a">B</text>
               <text x="266" y="198" fontSize="15" fontWeight="700" fill="#0f172a">C</text>
               <text x="156" y="24" fontSize="15" fontWeight="700" fill="#0f172a">A</text>
@@ -404,14 +406,15 @@ export default function Lesson() {
                     <line x1="60" y1="170" x2="240" y2="170" stroke="#0f172a" strokeWidth="2" />
                     <line x1="60" y1="170" x2="130" y2="30" stroke="#0f172a" strokeWidth="2" />
                     <line x1="240" y1="170" x2="130" y2="30" stroke="#0f172a" strokeWidth="2" />
-                    <line x1="95" y1="100" x2="185" y2="100" stroke="#059669" strokeWidth="2.5" />
+                    {/* J = milieu de [BC] = (150,170), pas (185,100) : ce dernier était le milieu de [AC] */}
+                    <line x1="95" y1="100" x2="150" y2="170" stroke="#059669" strokeWidth="2.5" />
                     <circle cx="60" cy="170" r="4" fill="#0f172a" /><circle cx="240" cy="170" r="4" fill="#0f172a" /><circle cx="130" cy="30" r="4" fill="#0f172a" />
-                    <circle cx="95" cy="100" r="4" fill="#059669" /><circle cx="185" cy="100" r="4" fill="#059669" />
+                    <circle cx="95" cy="100" r="4" fill="#059669" /><circle cx="150" cy="170" r="4" fill="#059669" />
                     <text x="40" y="188" fontSize="14" fontWeight="700" fill="#0f172a">B</text>
                     <text x="246" y="188" fontSize="14" fontWeight="700" fill="#0f172a">C</text>
                     <text x="136" y="24" fontSize="14" fontWeight="700" fill="#0f172a">A</text>
                     <text x="68" y="94" fontSize="13" fontWeight="700" fill="#059669">I</text>
-                    <text x="192" y="94" fontSize="13" fontWeight="700" fill="#059669">J</text>
+                    <text x="156" y="192" fontSize="13" fontWeight="700" fill="#059669">J</text>
                   </svg>
                 }
               />
@@ -441,10 +444,14 @@ export default function Lesson() {
                     <line x1="95" y1="110" x2="180" y2="110" stroke="#4f46e5" strokeWidth="2.2" />
                     <circle cx="40" cy="190" r="4" fill="#0f172a" /><circle cx="210" cy="190" r="4" fill="#0f172a" /><circle cx="150" cy="30" r="4" fill="#0f172a" />
                     <circle cx="95" cy="110" r="4" fill="#4f46e5" /><circle cx="180" cy="110" r="4" fill="#4f46e5" />
-                    <line x1="88" y1="103" x2="102" y2="117" stroke="#4f46e5" strokeWidth="1.6" />
-                    <line x1="118" y1="60" x2="132" y2="74" stroke="#4f46e5" strokeWidth="1.6" />
-                    <line x1="177" y1="103" x2="187" y2="115" stroke="#4f46e5" strokeWidth="1.6" />
-                    <line x1="163" y1="60" x2="173" y2="72" stroke="#4f46e5" strokeWidth="1.6" />
+                    {/* M milieu de [KJ] : deux tirets sur [KM] et [MJ] */}
+                    <line x1="64.5" y1="139" x2="78.5" y2="153" stroke="#4f46e5" strokeWidth="1.6" />
+                    <line x1="56.5" y1="147" x2="70.5" y2="161" stroke="#4f46e5" strokeWidth="1.6" />
+                    <line x1="119.5" y1="59" x2="133.5" y2="73" stroke="#4f46e5" strokeWidth="1.6" />
+                    <line x1="111.5" y1="67" x2="125.5" y2="81" stroke="#4f46e5" strokeWidth="1.6" />
+                    {/* N milieu de [JL] : un tiret sur [JN] et [NL] */}
+                    <line x1="158" y1="63" x2="172" y2="77" stroke="#4f46e5" strokeWidth="1.6" />
+                    <line x1="188" y1="143" x2="202" y2="157" stroke="#4f46e5" strokeWidth="1.6" />
                     <text x="22" y="208" fontSize="14" fontWeight="700" fill="#0f172a">K</text>
                     <text x="216" y="208" fontSize="14" fontWeight="700" fill="#0f172a">L</text>
                     <text x="156" y="24" fontSize="14" fontWeight="700" fill="#0f172a">J</text>
@@ -588,12 +595,16 @@ export default function Lesson() {
                     <line x1="150" y1="180" x2="240" y2="40" stroke="#0f172a" strokeWidth="2" />
                     <circle cx="40" cy="40" r="4" fill="#0f172a" /><circle cx="240" cy="40" r="4" fill="#0f172a" />
                     <circle cx="150" cy="180" r="4" fill="#0f172a" />
-                    <circle cx="86" cy="110" r="4" fill="#4f46e5" /><circle cx="182" cy="110" r="4" fill="#4f46e5" />
+                    {/* K = vrai milieu de [MP] = (95,110), pas (86,110) ; H = vrai milieu de [MN] = (195,110) */}
+                    <circle cx="95" cy="110" r="4" fill="#4f46e5" /><circle cx="195" cy="110" r="4" fill="#4f46e5" />
+                    {/* codage : K milieu de [MP], un tiret sur [MK] et [KP] */}
+                    <line x1="115.5" y1="138" x2="129.5" y2="152" stroke="#4f46e5" strokeWidth="1.6" />
+                    <line x1="60.5" y1="68" x2="74.5" y2="82" stroke="#4f46e5" strokeWidth="1.6" />
                     <text x="24" y="34" fontSize="14" fontWeight="700" fill="#0f172a">P</text>
                     <text x="246" y="34" fontSize="14" fontWeight="700" fill="#0f172a">N</text>
                     <text x="156" y="196" fontSize="14" fontWeight="700" fill="#0f172a">M</text>
-                    <text x="66" y="102" fontSize="13" fontWeight="700" fill="#4f46e5">K</text>
-                    <text x="188" y="102" fontSize="13" fontWeight="700" fill="#4f46e5">H</text>
+                    <text x="75" y="102" fontSize="13" fontWeight="700" fill="#4f46e5">K</text>
+                    <text x="201" y="102" fontSize="13" fontWeight="700" fill="#4f46e5">H</text>
                   </svg>
                 }
               />
