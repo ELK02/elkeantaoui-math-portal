@@ -281,12 +281,37 @@ export default function Lesson() {
             index={2}
             title="Applique"
             items={
-              <p className="text-sm">
-                <Math tex="SABC" /> est un tétraèdre tel que <Math tex="(SA)\perp(AB)" /> et <Math tex="(SA)\perp(AC)" />,{" "}
-                <Math tex="(AB)" /> et <Math tex="(AC)" /> étant deux droites sécantes en <Math tex="A" /> et incluses
-                dans le plan <Math tex="(ABC)" />. Que peut-on dire de la droite <Math tex="(SA)" /> et du plan{" "}
-                <Math tex="(ABC)" /> ?
-              </p>
+              <>
+                <p className="text-sm">
+                  <Math tex="SABC" /> est un tétraèdre tel que <Math tex="(SA)\perp(AB)" /> et <Math tex="(SA)\perp(AC)" />,{" "}
+                  <Math tex="(AB)" /> et <Math tex="(AC)" /> étant deux droites sécantes en <Math tex="A" /> et incluses
+                  dans le plan <Math tex="(ABC)" />. Que peut-on dire de la droite <Math tex="(SA)" /> et du plan{" "}
+                  <Math tex="(ABC)" /> ?
+                </p>
+                <Graph className="mt-4" caption={<>Tétraèdre <Math tex="SABC" /> : <Math tex="(SA)\perp(AB)" /> et <Math tex="(SA)\perp(AC)" />, avec <Math tex="(AB),(AC)\subset(ABC)" /> sécantes en <Math tex="A" /></>}>
+                  <svg viewBox="0 0 260 200" className="mx-auto h-auto w-full">
+                    <rect width="260" height="200" fill="white" rx="12"/>
+                    <polygon points="20,180 200,180 250,70 70,70" fill="#c7d2fe" fillOpacity="0.35" stroke="#818cf8" strokeWidth="1.4"/>
+                    <text x="28" y="172" fontSize="13" fontStyle="italic" fill="#4338ca" fontWeight="700">(ABC)</text>
+                    <line x1="70" y1="152" x2="145" y2="95" stroke="#94a3b8" strokeWidth="1.8" strokeDasharray="4 3"/>
+                    <line x1="195" y1="168" x2="145" y2="95" stroke="#94a3b8" strokeWidth="1.8" strokeDasharray="4 3"/>
+                    <line x1="70" y1="25" x2="145" y2="95" stroke="#94a3b8" strokeWidth="1.6" strokeDasharray="3 3"/>
+                    <line x1="70" y1="152" x2="195" y2="168" stroke="#1e293b" strokeWidth="2"/>
+                    <line x1="70" y1="25" x2="195" y2="168" stroke="#1e293b" strokeWidth="2"/>
+                    <line x1="70" y1="25" x2="70" y2="152" stroke="#e11d48" strokeWidth="2.4"/>
+                    <rect x="70" y="137" width="13" height="13" fill="none" stroke="#e11d48" strokeWidth="1.6" transform="rotate(4 76.5 143.5)"/>
+                    <rect x="70" y="120" width="13" height="13" fill="none" stroke="#e11d48" strokeWidth="1.6" transform="rotate(-32 76.5 126.5)"/>
+                    <circle cx="70" cy="25" r="2.6" fill="#1e293b"/>
+                    <circle cx="70" cy="152" r="2.6" fill="#1e293b"/>
+                    <circle cx="195" cy="168" r="2.6" fill="#1e293b"/>
+                    <circle cx="145" cy="95" r="2.6" fill="#1e293b"/>
+                    <text x="56" y="18" fontSize="14" fontStyle="italic" fontWeight="700" fill="#e11d48">S</text>
+                    <text x="52" y="150" fontSize="14" fontStyle="italic" fontWeight="700" fill="#1e293b">A</text>
+                    <text x="201" y="182" fontSize="14" fontStyle="italic" fontWeight="700" fill="#1e293b">B</text>
+                    <text x="150" y="88" fontSize="14" fontStyle="italic" fontWeight="700" fill="#1e293b">C</text>
+                  </svg>
+                </Graph>
+              </>
             }
             correction={
               <div className="space-y-1 text-sm">
