@@ -8,9 +8,9 @@ import { ThemeToggle } from "./ThemeToggle";
 import { LEVELS } from "@/data/chapters";
 
 const LYCEE_MENUS = [
-  { label: "Tronc Commun", filieres: ["Science", "Technologie", "Lettres & Sciences Humaines"] },
-  { label: "1ère Bac", filieres: ["Sc. Expérimentales", "Sc. & Tech Électriques", "Sc. & Tech Mécaniques", "Sc. Mathématiques", "Sc. Économiques & Gestion", "Lettres & Sc. Humaines"] },
-  { label: "2ème Bac", filieres: ["Sc. Physiques", "SVT", "Sc. & Tech Électriques", "Sc. & Tech Mécaniques", "Sc. Math A", "Sc. Math B", "Sc. Économiques & Gestion", "Lettres & Sc. Humaines"] },
+  { label: "Tronc Commun · Sciences et Technologies", href: "/lycee/tronc-commun/sciences" },
+  { label: "1ère Bac" },
+  { label: "2ème Bac" },
 ];
 
 export function Navbar() {
@@ -50,14 +50,24 @@ export function Navbar() {
               Lycée <ChevronDown className="h-3.5 w-3.5" />
             </button>
             <div className="invisible absolute left-0 top-full w-60 translate-y-1 rounded-lg border border-border bg-surface p-1.5 opacity-0 shadow-lg transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-              {LYCEE_MENUS.map((menu) => (
-                <div key={menu.label} className="flex items-center justify-between rounded-md px-2.5 py-2 text-sm font-medium text-foreground-muted">
-                  {menu.label}
-                  <span className="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wide text-foreground-muted">
-                    Bientôt
-                  </span>
-                </div>
-              ))}
+              {LYCEE_MENUS.map((menu) =>
+                menu.href ? (
+                  <Link
+                    key={menu.label}
+                    href={menu.href}
+                    className="block rounded-md px-2.5 py-2 text-sm font-medium text-foreground transition-colors hover:bg-navy-900/[0.04] dark:hover:bg-white/[0.06]"
+                  >
+                    {menu.label}
+                  </Link>
+                ) : (
+                  <div key={menu.label} className="flex items-center justify-between rounded-md px-2.5 py-2 text-sm font-medium text-foreground-muted">
+                    {menu.label}
+                    <span className="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wide text-foreground-muted">
+                      Bientôt
+                    </span>
+                  </div>
+                )
+              )}
             </div>
           </div>
 
@@ -123,14 +133,25 @@ export function Navbar() {
           </button>
           {mobileLyceeOpen && (
             <div className="ml-3 space-y-0.5 border-l border-border pl-3">
-              {LYCEE_MENUS.map((menu) => (
-                <div key={menu.label} className="flex items-center justify-between rounded-md px-2.5 py-2 text-sm text-foreground-muted/70">
-                  {menu.label}
-                  <span className="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wide">
-                    Bientôt
-                  </span>
-                </div>
-              ))}
+              {LYCEE_MENUS.map((menu) =>
+                menu.href ? (
+                  <Link
+                    key={menu.label}
+                    href={menu.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="block rounded-md px-2.5 py-2 text-sm font-medium text-foreground hover:bg-navy-900/[0.04] dark:hover:bg-white/[0.06]"
+                  >
+                    {menu.label}
+                  </Link>
+                ) : (
+                  <div key={menu.label} className="flex items-center justify-between rounded-md px-2.5 py-2 text-sm text-foreground-muted/70">
+                    {menu.label}
+                    <span className="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wide">
+                      Bientôt
+                    </span>
+                  </div>
+                )
+              )}
             </div>
           )}
 
