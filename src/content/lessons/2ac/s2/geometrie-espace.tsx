@@ -112,17 +112,19 @@ export default function Lesson() {
         }
         visual={
           <div className="flex flex-col items-center gap-3">
-            <svg viewBox="0 0 320 260" className="h-56 w-72">
-              <polygon points="20,150 20,210 90,230 90,170" fill="white" fillOpacity="0.08" stroke="white" strokeWidth="2" />
-              <polygon points="20,150 55,130 125,150 90,170" fill="white" fillOpacity="0.16" stroke="white" strokeWidth="2" />
-              <polygon points="90,170 125,150 125,205 90,230" fill="white" fillOpacity="0.05" stroke="white" strokeWidth="2" />
-              <polygon points="180,60 260,110 220,235 140,215" fill="none" stroke="white" strokeWidth="2.2" strokeLinejoin="round" />
-              <line x1="180" y1="60" x2="180" y2="180" stroke="white" strokeWidth="1.4" strokeDasharray="4 3" opacity="0.8" />
-              <line x1="180" y1="60" x2="220" y2="235" stroke="white" strokeWidth="2.2" />
-              <ellipse cx="255" cy="215" rx="42" ry="14" fill="white" fillOpacity="0.08" stroke="white" strokeWidth="2" />
-              <line x1="255" y1="215" x2="255" y2="120" stroke="white" strokeWidth="1.4" strokeDasharray="4 3" opacity="0.8" />
-              <line x1="213" y1="215" x2="255" y2="120" stroke="white" strokeWidth="2.2" />
-              <line x1="297" y1="215" x2="255" y2="120" stroke="white" strokeWidth="2.2" />
+            <svg viewBox="0 0 350 260" className="h-56 w-72">
+              {/* Trois solides côte à côte sans chevauchement : cube x:10-115, pyramide x:125-245,
+                  cône x:255-339, avec 10px de marge entre chacun. */}
+              <polygon points="10,150 10,210 80,230 80,170" fill="white" fillOpacity="0.08" stroke="white" strokeWidth="2" />
+              <polygon points="10,150 45,130 115,150 80,170" fill="white" fillOpacity="0.16" stroke="white" strokeWidth="2" />
+              <polygon points="80,170 115,150 115,205 80,230" fill="white" fillOpacity="0.05" stroke="white" strokeWidth="2" />
+              <polygon points="165,60 245,110 205,235 125,215" fill="none" stroke="white" strokeWidth="2.2" strokeLinejoin="round" />
+              <line x1="165" y1="60" x2="165" y2="180" stroke="white" strokeWidth="1.4" strokeDasharray="4 3" opacity="0.8" />
+              <line x1="165" y1="60" x2="205" y2="235" stroke="white" strokeWidth="2.2" />
+              <ellipse cx="297" cy="215" rx="42" ry="14" fill="white" fillOpacity="0.08" stroke="white" strokeWidth="2" />
+              <line x1="297" y1="215" x2="297" y2="120" stroke="white" strokeWidth="1.4" strokeDasharray="4 3" opacity="0.8" />
+              <line x1="255" y1="215" x2="297" y2="120" stroke="white" strokeWidth="2.2" />
+              <line x1="339" y1="215" x2="297" y2="120" stroke="white" strokeWidth="2.2" />
             </svg>
             <div className="rounded-xl bg-white px-4 py-3 text-neutral-900">
               <p className="text-xs font-medium text-neutral-500">Volume d&apos;une pyramide</p>
