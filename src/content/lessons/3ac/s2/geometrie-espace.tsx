@@ -125,6 +125,17 @@ export default function Lesson() {
             <li>la droite <Math tex="(D)" /> est <strong>incluse</strong> dans le plan <Math tex="(P)" /> : <Math tex="(D)\subset(P)" /> ;</li>
             <li>ou bien il <strong>n&apos;existe aucun point commun</strong> entre <Math tex="(P)" /> et <Math tex="(D)" /> : <Math tex="(D)\cap(P)=\varnothing" />.</li>
           </ul>
+          <Graph className="mt-4" caption={<>Ici, <Math tex="(D)\cap(P)=\varnothing" /> : la droite <Math tex="(D)" /> ne coupe jamais le plan <Math tex="(P)" />, donc <Math tex="(D)\parallel(P)" /></>}>
+            <svg viewBox="0 0 260 210" className="mx-auto h-auto w-full">
+              <rect width="260" height="210" fill="white" rx="12"/>
+              <polygon points="30,180 200,180 250,60 80,60" fill="#c7d2fe" fillOpacity="0.35" stroke="#818cf8" strokeWidth="1.4"/>
+              <text x="38" y="172" fontSize="13" fontStyle="italic" fill="#4338ca" fontWeight="700">P</text>
+              <line x1="60" y1="20" x2="230" y2="20" stroke="#e11d48" strokeWidth="2.4"/>
+              <text x="236" y="24" fontSize="13" fontStyle="italic" fill="#e11d48" fontWeight="700">D</text>
+              <line x1="80" y1="60" x2="60" y2="20" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="3 3"/>
+              <line x1="250" y1="60" x2="230" y2="20" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="3 3"/>
+            </svg>
+          </Graph>
         </Callout>
 
         <p className="mt-6 mb-2 text-sm font-semibold text-foreground">2. Propriété</p>
