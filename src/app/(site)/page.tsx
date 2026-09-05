@@ -28,6 +28,11 @@ const STEPS = [
   },
 ];
 
+const TOTAL_CHAPTERS = LEVELS.reduce(
+  (n, level) => n + level.semesters.reduce((m, s) => m + s.chapters.length, 0),
+  0
+);
+
 export default function Home() {
   return (
     <>
@@ -77,7 +82,7 @@ export default function Home() {
           </div>
 
           <dl className="mx-auto mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8">
-            <AnimatedStat value={56} label="Chapitres" />
+            <AnimatedStat value={TOTAL_CHAPTERS} label="Chapitres" />
             <AnimatedStat value={3} label="Années Collège" />
             <AnimatedStat value={100} suffix="%" label="Corrigés" />
           </dl>
