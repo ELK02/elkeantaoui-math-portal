@@ -270,22 +270,41 @@ export default function Lesson() {
                 hauteur de la pyramide.
               </Box>
             </div>
-            <FigureBox>
-              <svg viewBox="0 0 220 220" className="w-full max-w-[210px]">
-                <polygon points="60,190 190,175 150,120 40,135" fill="#eef2ff" stroke="#4338ca" strokeWidth="2" opacity="0.9" />
-                <line x1="60" y1="190" x2="105" y2="40" stroke="#4338ca" strokeWidth="2.4" />
-                <line x1="190" y1="175" x2="105" y2="40" stroke="#4338ca" strokeWidth="2.4" />
-                <line x1="150" y1="120" x2="105" y2="40" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
-                <line x1="40" y1="135" x2="105" y2="40" stroke="#4338ca" strokeWidth="2.4" />
-                <line x1="105" y1="40" x2="105" y2="150" stroke="#f97316" strokeWidth="1.8" strokeDasharray="4 3" />
-                <text x="105" y="30" textAnchor="middle" fontSize="14" fontWeight="700" fill="#0f172a">S</text>
-                <text x="107" y="163" textAnchor="middle" fontSize="12" fontWeight="600" fill="#f97316">H</text>
-                <text x="30" y="145" textAnchor="middle" fontSize="12" fill="#334155">A</text>
-                <text x="198" y="180" textAnchor="middle" fontSize="12" fill="#334155">B</text>
-                <text x="55" y="205" textAnchor="middle" fontSize="12" fill="#334155">C</text>
-                <text x="160" y="112" textAnchor="middle" fontSize="12" fill="#334155">D</text>
-              </svg>
-            </FigureBox>
+            <div className="space-y-4">
+              <FigureBox>
+                <svg viewBox="0 0 220 220" className="w-full max-w-[210px]">
+                  <polygon points="60,190 190,175 150,120 40,135" fill="#eef2ff" stroke="#4338ca" strokeWidth="2" opacity="0.9" />
+                  <line x1="60" y1="190" x2="105" y2="40" stroke="#4338ca" strokeWidth="2.4" />
+                  <line x1="190" y1="175" x2="105" y2="40" stroke="#4338ca" strokeWidth="2.4" />
+                  <line x1="150" y1="120" x2="105" y2="40" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
+                  <line x1="40" y1="135" x2="105" y2="40" stroke="#4338ca" strokeWidth="2.4" />
+                  <line x1="105" y1="40" x2="105" y2="150" stroke="#f97316" strokeWidth="1.8" strokeDasharray="4 3" />
+                  <text x="105" y="30" textAnchor="middle" fontSize="14" fontWeight="700" fill="#0f172a">S</text>
+                  <text x="107" y="163" textAnchor="middle" fontSize="12" fontWeight="600" fill="#f97316">H</text>
+                  <text x="30" y="145" textAnchor="middle" fontSize="12" fill="#334155">A</text>
+                  <text x="198" y="180" textAnchor="middle" fontSize="12" fill="#334155">B</text>
+                  <text x="55" y="205" textAnchor="middle" fontSize="12" fill="#334155">C</text>
+                  <text x="160" y="112" textAnchor="middle" fontSize="12" fill="#334155">D</text>
+                </svg>
+              </FigureBox>
+              <FigureBox>
+                {/* Tétraèdre SABC : base ABC avant, C sommet arrière caché (seules arêtes dashed : AC, BC, SC). */}
+                <svg viewBox="0 0 170 165" className="w-full max-w-[170px]">
+                  <polygon points="30,140 140,140 85,95" fill="#dcfce7" fillOpacity="0.6" stroke="none" />
+                  <line x1="30" y1="140" x2="85" y2="95" stroke="#16a34a" strokeWidth="1.6" strokeDasharray="4 3" />
+                  <line x1="140" y1="140" x2="85" y2="95" stroke="#16a34a" strokeWidth="1.6" strokeDasharray="4 3" />
+                  <line x1="30" y1="140" x2="140" y2="140" stroke="#16a34a" strokeWidth="2.2" />
+                  <line x1="85" y1="25" x2="30" y2="140" stroke="#16a34a" strokeWidth="2.2" />
+                  <line x1="85" y1="25" x2="140" y2="140" stroke="#16a34a" strokeWidth="2.2" />
+                  <line x1="85" y1="25" x2="85" y2="95" stroke="#16a34a" strokeWidth="1.6" strokeDasharray="4 3" />
+                  <text x="85" y="15" textAnchor="middle" fontSize="14" fontWeight="700" fill="#0f172a">S</text>
+                  <text x="18" y="150" textAnchor="middle" fontSize="12" fill="#334155">A</text>
+                  <text x="150" y="150" textAnchor="middle" fontSize="12" fill="#334155">B</text>
+                  <text x="90" y="92" textAnchor="middle" fontSize="12" fill="#334155">C</text>
+                  <text x="85" y="160" textAnchor="middle" fontSize="12" fontWeight="600" fill="#16a34a">Tétraèdre SABC</text>
+                </svg>
+              </FigureBox>
+            </div>
           </div>
         </div>
 
