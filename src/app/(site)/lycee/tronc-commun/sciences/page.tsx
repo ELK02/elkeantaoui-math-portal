@@ -23,7 +23,7 @@ export default function TroncCommunSciencesPage() {
         Science et Technologies
       </h1>
       <p className="mt-3 max-w-2xl text-foreground-muted">
-        Le programme national de mathématiques du Tronc Commun, filière Science et Technologies : 15 chapitres
+        Le programme national de mathématiques du Tronc Commun, filière Science et Technologies : 16 chapitres
         répartis sur les deux semestres. Chaque chapitre sera publié avec son cours et ses exercices corrigés,
         au même format que le Collège.
       </p>
