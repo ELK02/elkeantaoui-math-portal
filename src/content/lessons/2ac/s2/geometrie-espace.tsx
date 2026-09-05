@@ -157,11 +157,21 @@ export default function Lesson() {
               </p>
             </div>
             <FigureBox>
-              <svg viewBox="0 0 260 220" className="w-full max-w-[230px]">
-                <polygon points="40,150 40,205 120,225 120,175" fill="#eef2ff" stroke="#4338ca" strokeWidth="2" />
-                <polygon points="40,150 90,120 175,140 120,175" fill="#c7d2fe" stroke="#4338ca" strokeWidth="2" />
-                <polygon points="120,175 175,140 175,195 120,225" fill="white" stroke="#4338ca" strokeWidth="2" />
-                <text x="90" y="60" textAnchor="middle" fontSize="13" fill="#334155">Prisme droit à base pentagonale</text>
+              {/* Perspective cavalière : face avant (pentagone, vraie grandeur) solide, face arrière décalée
+                  du même vecteur de profondeur (38,-22) sur toutes les arêtes, en pointillés là où elle est
+                  cachée derrière le solide (le seul sommet caché est le bas-gauche). */}
+              <svg viewBox="0 0 170 150" className="w-full max-w-[230px]">
+                <polygon points="68,98 68,53 100,33 132,53 132,98" fill="#c7d2fe" fillOpacity="0.5" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
+                <line x1="68" y1="98" x2="132" y2="98" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
+                <line x1="30" y1="120" x2="68" y2="98" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
+                <polygon points="30,120 30,75 62,55 94,75 94,120" fill="#eef2ff" stroke="#4338ca" strokeWidth="2.2" />
+                <line x1="30" y1="75" x2="68" y2="53" stroke="#4338ca" strokeWidth="2" />
+                <line x1="62" y1="55" x2="100" y2="33" stroke="#4338ca" strokeWidth="2" />
+                <line x1="94" y1="75" x2="132" y2="53" stroke="#4338ca" strokeWidth="2" />
+                <line x1="94" y1="120" x2="132" y2="98" stroke="#4338ca" strokeWidth="2" />
+                <text x="62" y="138" textAnchor="middle" fontSize="12" fontWeight="600" fill="#4338ca">base</text>
+                <text x="115" y="72" textAnchor="middle" fontSize="11" fill="#334155">face latérale</text>
+                <text x="85" y="10" textAnchor="middle" fontSize="12" fill="#334155">Prisme droit à base pentagonale</text>
               </svg>
             </FigureBox>
           </div>
@@ -169,7 +179,7 @@ export default function Lesson() {
 
         <div className="rounded-xl border border-border bg-surface p-5 sm:p-6">
           <p className="mb-4 text-sm font-bold text-brand-700">b) Aire latérale, aire totale, volume</p>
-          <div className="grid gap-8 lg:grid-cols-2">
+          <div className="grid gap-6 lg:grid-cols-3">
             <Box title="Formules" tone="prop">
               <div className="space-y-3">
                 <p>
@@ -199,6 +209,30 @@ export default function Lesson() {
               <p><Math tex="A_T = A_L + 2A_B = 16 + 2 \times (1 \times 3) = 16 + 6" /></p>
               <p className="font-semibold text-brand-700">Donc : <Math tex="A_T = 22\text{ cm}^2" /></p>
             </div>
+            <FigureBox>
+              {/* Pavé droit ABCDEFGH : face avant ABFE (vraie grandeur, AB=3 horizontal, AE=2 vertical),
+                  face arrière DCGH décalée du vecteur de profondeur (35,-20) représentant AD=1. Seul le
+                  sommet D (bas-gauche-arrière) est caché : ses 3 arêtes sont en pointillés. */}
+              <svg viewBox="0 0 190 155" className="w-full max-w-[210px]">
+                <polygon points="65,100 155,100 155,30 65,30" fill="#c7d2fe" fillOpacity="0.35" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
+                <line x1="30" y1="120" x2="65" y2="100" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
+                <polygon points="30,120 120,120 120,50 30,50" fill="#eef2ff" stroke="#4338ca" strokeWidth="2.2" />
+                <line x1="120" y1="120" x2="155" y2="100" stroke="#4338ca" strokeWidth="2" />
+                <line x1="30" y1="50" x2="65" y2="30" stroke="#4338ca" strokeWidth="2" />
+                <line x1="120" y1="50" x2="155" y2="30" stroke="#4338ca" strokeWidth="2" />
+                <text x="20" y="135" fontSize="12" fontWeight="600" fill="#334155">A</text>
+                <text x="128" y="135" fontSize="12" fontWeight="600" fill="#334155">B</text>
+                <text x="61" y="118" fontSize="12" fontWeight="600" fill="#334155">D</text>
+                <text x="165" y="110" fontSize="12" fontWeight="600" fill="#334155">C</text>
+                <text x="20" y="42" fontSize="12" fontWeight="600" fill="#334155">E</text>
+                <text x="128" y="42" fontSize="12" fontWeight="600" fill="#334155">F</text>
+                <text x="61" y="24" fontSize="12" fontWeight="600" fill="#334155">H</text>
+                <text x="165" y="26" fontSize="12" fontWeight="600" fill="#334155">G</text>
+                <text x="75" y="140" textAnchor="middle" fontSize="11" fill="#16a34a">3 cm</text>
+                <text x="14" y="88" textAnchor="middle" fontSize="11" fill="#16a34a">2 cm</text>
+                <text x="146" y="106" textAnchor="middle" fontSize="11" fill="#16a34a">1 cm</text>
+              </svg>
+            </FigureBox>
           </div>
         </div>
       </LessonSection>
@@ -249,6 +283,7 @@ export default function Lesson() {
                 <text x="30" y="145" textAnchor="middle" fontSize="12" fill="#334155">A</text>
                 <text x="198" y="180" textAnchor="middle" fontSize="12" fill="#334155">B</text>
                 <text x="55" y="205" textAnchor="middle" fontSize="12" fill="#334155">C</text>
+                <text x="160" y="112" textAnchor="middle" fontSize="12" fill="#334155">D</text>
               </svg>
             </FigureBox>
           </div>
@@ -256,7 +291,7 @@ export default function Lesson() {
 
         <div className="rounded-xl border border-border bg-surface p-5 sm:p-6">
           <p className="mb-4 text-sm font-bold text-brand-700">b) Aire latérale, aire totale, volume</p>
-          <div className="grid gap-8 lg:grid-cols-2">
+          <div className="grid gap-6 lg:grid-cols-3">
             <Box title="Formules" tone="prop">
               <div className="space-y-3">
                 <p><strong className="text-foreground">Aire latérale</strong> <Math tex="A_L" /> d&apos;une pyramide : somme des aires de ses faces latérales.</p>
@@ -281,6 +316,27 @@ export default function Lesson() {
               <p><Math tex="V = \dfrac13 \times 8 \times 123 = \dfrac{984}{3}" /></p>
               <p className="font-semibold text-brand-700">Donc : <Math tex="V = 328\text{ cm}^3" /></p>
             </div>
+            <FigureBox>
+              {/* Base ABCD (parallélogramme exact : D=A+profondeur, C=B+profondeur) et sommet S centré
+                  au-dessus du centre de la base. Seul le sommet D (arrière) est caché : arêtes en pointillés. */}
+              <svg viewBox="0 0 220 160" className="w-full max-w-[220px]">
+                <polygon points="40,140 140,140 175,120 75,120" fill="#eef2ff" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
+                <line x1="107.5" y1="40" x2="75" y2="120" stroke="#4338ca" strokeWidth="1.8" strokeDasharray="4 3" />
+                <line x1="107.5" y1="40" x2="40" y2="140" stroke="#4338ca" strokeWidth="2.2" />
+                <line x1="107.5" y1="40" x2="140" y2="140" stroke="#4338ca" strokeWidth="2.2" />
+                <line x1="107.5" y1="40" x2="175" y2="120" stroke="#4338ca" strokeWidth="2.2" />
+                <line x1="40" y1="140" x2="140" y2="140" stroke="#4338ca" strokeWidth="2.2" />
+                <line x1="140" y1="140" x2="175" y2="120" stroke="#4338ca" strokeWidth="2.2" />
+                <line x1="107.5" y1="40" x2="107.5" y2="130" stroke="#f97316" strokeWidth="1.8" strokeDasharray="4 3" />
+                <text x="107.5" y="30" textAnchor="middle" fontSize="14" fontWeight="700" fill="#0f172a">S</text>
+                <text x="28" y="152" fontSize="12" fontWeight="600" fill="#334155">A</text>
+                <text x="150" y="152" fontSize="12" fontWeight="600" fill="#334155">B</text>
+                <text x="61" y="114" fontSize="12" fontWeight="600" fill="#334155">D</text>
+                <text x="185" y="118" fontSize="12" fontWeight="600" fill="#334155">C</text>
+                <text x="90" y="132" textAnchor="middle" fontSize="11" fontWeight="600" fill="#4338ca">A_B</text>
+                <text x="122" y="88" textAnchor="middle" fontSize="12" fill="#f97316">h</text>
+              </svg>
+            </FigureBox>
           </div>
         </div>
       </LessonSection>
@@ -322,6 +378,7 @@ export default function Lesson() {
                 <text x="112" y="195" textAnchor="middle" fontSize="12" fontWeight="600" fill="#4338ca">O</text>
                 <text x="150" y="192" textAnchor="middle" fontSize="11" fill="#16a34a">rayon</text>
                 <text x="70" y="100" textAnchor="middle" fontSize="11" fill="#4338ca">génératrice</text>
+                <text x="122" y="105" textAnchor="middle" fontSize="12" fill="#f97316">h</text>
               </svg>
             </FigureBox>
           </div>
@@ -329,7 +386,7 @@ export default function Lesson() {
 
         <div className="rounded-xl border border-border bg-surface p-5 sm:p-6">
           <p className="mb-4 text-sm font-bold text-brand-700">b) Aire latérale, aire totale, volume</p>
-          <div className="grid gap-8 lg:grid-cols-2">
+          <div className="grid gap-6 lg:grid-cols-3">
             <Box title="Formules" tone="prop">
               <div className="space-y-3">
                 <p>
@@ -360,6 +417,20 @@ export default function Lesson() {
               <p><Math tex="V = \dfrac13 \times 5 \times 2 \times 2 \times \pi = 20 \times \dfrac{3{,}14}{3}" /></p>
               <p className="font-semibold text-brand-700">Donc : <Math tex="V = 20{,}93\text{ cm}^3" /></p>
             </div>
+            <FigureBox>
+              <svg viewBox="0 0 190 220" className="w-full max-w-[190px]">
+                <ellipse cx="90" cy="175" rx="65" ry="18" fill="#eef2ff" stroke="#4338ca" strokeWidth="2" />
+                <line x1="90" y1="25" x2="90" y2="175" stroke="#f97316" strokeWidth="1.8" strokeDasharray="4 3" />
+                <line x1="25" y1="175" x2="90" y2="25" stroke="#4338ca" strokeWidth="2.4" />
+                <line x1="155" y1="175" x2="90" y2="25" stroke="#4338ca" strokeWidth="2.4" />
+                <line x1="90" y1="175" x2="155" y2="175" stroke="#16a34a" strokeWidth="2" />
+                <text x="90" y="15" textAnchor="middle" fontSize="14" fontWeight="700" fill="#0f172a">S</text>
+                <text x="92" y="195" textAnchor="middle" fontSize="12" fontWeight="600" fill="#4338ca">O</text>
+                <text x="76" y="100" textAnchor="middle" fontSize="12" fill="#f97316">h</text>
+                <text x="122" y="175" textAnchor="middle" fontSize="12" fill="#16a34a">R</text>
+                <text x="55" y="95" textAnchor="middle" fontSize="12" fill="#4338ca">a</text>
+              </svg>
+            </FigureBox>
           </div>
         </div>
       </LessonSection>
@@ -405,6 +476,25 @@ export default function Lesson() {
             title="Volume de pyramides"
             items={
               <div>
+                <div className="mb-4 flex justify-center">
+                  <FigureBox>
+                    {/* Pyramide générique : base A_B (parallélogramme exact) et hauteur H, sans dimensions
+                        fixes puisque l'exercice porte sur 4 pyramides différentes (tableau). */}
+                    <svg viewBox="0 0 220 160" className="w-full max-w-[200px]">
+                      <polygon points="40,140 140,140 175,120 75,120" fill="#eef2ff" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
+                      <line x1="107.5" y1="40" x2="75" y2="120" stroke="#4338ca" strokeWidth="1.8" strokeDasharray="4 3" />
+                      <line x1="107.5" y1="40" x2="40" y2="140" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="107.5" y1="40" x2="140" y2="140" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="107.5" y1="40" x2="175" y2="120" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="40" y1="140" x2="140" y2="140" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="140" y1="140" x2="175" y2="120" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="107.5" y1="40" x2="107.5" y2="130" stroke="#f97316" strokeWidth="1.8" strokeDasharray="4 3" />
+                      <text x="107.5" y="30" textAnchor="middle" fontSize="14" fontWeight="700" fill="#0f172a">S</text>
+                      <text x="90" y="132" textAnchor="middle" fontSize="12" fontWeight="600" fill="#4338ca">A_B</text>
+                      <text x="122" y="88" textAnchor="middle" fontSize="12" fill="#f97316">H</text>
+                    </svg>
+                  </FigureBox>
+                </div>
                 <p className="mb-3 text-sm text-foreground-muted">
                   Calculer le volume des pyramides suivantes : <Math tex="V = A_B \times H / 3" />
                 </p>
@@ -443,6 +533,26 @@ export default function Lesson() {
             title="Pyramides à base triangulaire"
             items={
               <div>
+                <div className="mb-4 flex justify-center">
+                  <FigureBox>
+                    {/* Base triangulaire T1-T2-T3 : côté avant [T1T2]=b, hauteur du triangle tracée en
+                        pointillés gris jusqu'à son pied, hauteur de la pyramide H en pointillés oranges
+                        jusqu'au centroïde de la base. T3 (sommet arrière) est le seul sommet caché. */}
+                    <svg viewBox="0 0 200 160" className="w-full max-w-[190px]">
+                      <polygon points="40,140 140,140 90,108" fill="#eef2ff" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
+                      <line x1="90" y1="108" x2="90" y2="140" stroke="#64748b" strokeWidth="1.4" strokeDasharray="3 3" />
+                      <line x1="90" y1="40" x2="90" y2="129.3" stroke="#f97316" strokeWidth="1.8" strokeDasharray="4 3" />
+                      <line x1="90" y1="40" x2="40" y2="140" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="90" y1="40" x2="140" y2="140" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="90" y1="40" x2="90" y2="108" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
+                      <line x1="40" y1="140" x2="140" y2="140" stroke="#4338ca" strokeWidth="2.2" />
+                      <text x="90" y="30" textAnchor="middle" fontSize="14" fontWeight="700" fill="#0f172a">S</text>
+                      <text x="90" y="153" textAnchor="middle" fontSize="12" fill="#16a34a">b</text>
+                      <text x="80" y="126" textAnchor="middle" fontSize="11" fill="#64748b">h</text>
+                      <text x="102" y="85" textAnchor="middle" fontSize="12" fill="#f97316">H</text>
+                    </svg>
+                  </FigureBox>
+                </div>
                 <p className="mb-3 text-sm text-foreground-muted">
                   Calculer l&apos;aire de la base puis le volume des <strong className="text-foreground">pyramides à base triangulaire</strong> suivantes :
                 </p>
@@ -482,6 +592,20 @@ export default function Lesson() {
             title="Cônes de révolution"
             items={
               <div>
+                <div className="mb-4 flex justify-center">
+                  <FigureBox>
+                    <svg viewBox="0 0 190 200" className="w-full max-w-[180px]">
+                      <ellipse cx="90" cy="160" rx="60" ry="16" fill="#eef2ff" stroke="#4338ca" strokeWidth="2" />
+                      <line x1="90" y1="30" x2="90" y2="160" stroke="#f97316" strokeWidth="1.8" strokeDasharray="4 3" />
+                      <line x1="30" y1="160" x2="90" y2="30" stroke="#4338ca" strokeWidth="2.4" />
+                      <line x1="150" y1="160" x2="90" y2="30" stroke="#4338ca" strokeWidth="2.4" />
+                      <line x1="90" y1="160" x2="150" y2="160" stroke="#16a34a" strokeWidth="2" />
+                      <text x="90" y="20" textAnchor="middle" fontSize="14" fontWeight="700" fill="#0f172a">S</text>
+                      <text x="76" y="90" textAnchor="middle" fontSize="12" fill="#f97316">H</text>
+                      <text x="120" y="180" textAnchor="middle" fontSize="12" fill="#16a34a">R</text>
+                    </svg>
+                  </FigureBox>
+                </div>
                 <p className="mb-3 text-sm text-foreground-muted">
                   Calculer l&apos;aire de la base puis le volume des <strong className="text-foreground">cônes de révolution</strong> suivants (on arrondira au dixième) :
                 </p>
@@ -543,13 +667,19 @@ export default function Lesson() {
 
                   <div className="rounded-xl bg-surface-muted p-4 text-center">
                     <svg viewBox="0 0 160 150" className="mx-auto mb-2 w-full max-w-[150px]">
-                      <polygon points="45,120 120,128 100,105 30,100" fill="#eef2ff" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
-                      <line x1="80" y1="15" x2="45" y2="120" stroke="#4338ca" strokeWidth="2.2" />
-                      <line x1="80" y1="15" x2="120" y2="128" stroke="#4338ca" strokeWidth="2.2" />
-                      <line x1="80" y1="15" x2="100" y2="105" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
-                      <line x1="80" y1="15" x2="30" y2="100" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
-                      <text x="60" y="60" textAnchor="middle" fontSize="11" fill="#16a34a">8 cm</text>
-                      <text x="82" y="130" textAnchor="middle" fontSize="11" fill="#16a34a">1 cm</text>
+                      {/* Base ABCD exacte : D=A+profondeur, C=B+profondeur (vrai parallélogramme).
+                          D (arrière-gauche) est le seul sommet caché. */}
+                      <polygon points="35,120 115,120 130,105 50,105" fill="#eef2ff" stroke="none" />
+                      <line x1="50" y1="105" x2="130" y2="105" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
+                      <line x1="35" y1="120" x2="50" y2="105" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
+                      <line x1="35" y1="120" x2="115" y2="120" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="115" y1="120" x2="130" y2="105" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="82.5" y1="20" x2="35" y2="120" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="82.5" y1="20" x2="115" y2="120" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="82.5" y1="20" x2="130" y2="105" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="82.5" y1="20" x2="50" y2="105" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
+                      <text x="75" y="136" textAnchor="middle" fontSize="11" fill="#16a34a">8 cm</text>
+                      <text x="128" y="115" textAnchor="middle" fontSize="11" fill="#16a34a">1 cm</text>
                     </svg>
                     <p className="mb-1 text-xs text-foreground-muted">Pyramide, base 8 cm × 1 cm</p>
                     <p className="text-sm"><strong>a.</strong> Aire (base) = …… cm²</p>
@@ -558,13 +688,18 @@ export default function Lesson() {
 
                   <div className="rounded-xl bg-surface-muted p-4 text-center">
                     <svg viewBox="0 0 160 150" className="mx-auto mb-2 w-full max-w-[150px]">
-                      <polygon points="20,115 135,115 110,95 45,95" fill="#eef2ff" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
-                      <line x1="77" y1="15" x2="20" y2="115" stroke="#4338ca" strokeWidth="2.2" />
-                      <line x1="77" y1="15" x2="135" y2="115" stroke="#4338ca" strokeWidth="2.2" />
-                      <line x1="77" y1="15" x2="110" y2="95" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
-                      <line x1="77" y1="15" x2="45" y2="95" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
+                      {/* Base ABCD exacte : D=A+profondeur, C=B+profondeur (vrai parallélogramme) */}
+                      <polygon points="30,115 120,115 145,97 55,97" fill="#eef2ff" stroke="none" />
+                      <line x1="55" y1="97" x2="145" y2="97" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
+                      <line x1="30" y1="115" x2="55" y2="97" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
+                      <line x1="30" y1="115" x2="120" y2="115" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="120" y1="115" x2="145" y2="97" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="87.5" y1="20" x2="30" y2="115" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="87.5" y1="20" x2="120" y2="115" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="87.5" y1="20" x2="145" y2="97" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="87.5" y1="20" x2="55" y2="97" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
                       <text x="77" y="130" textAnchor="middle" fontSize="11" fill="#16a34a">6 cm</text>
-                      <text x="128" y="100" textAnchor="middle" fontSize="11" fill="#16a34a">2 cm</text>
+                      <text x="140" y="108" textAnchor="middle" fontSize="11" fill="#16a34a">2 cm</text>
                     </svg>
                     <p className="mb-1 text-xs text-foreground-muted">Pyramide, base 6 cm × 2 cm</p>
                     <p className="text-sm"><strong>a.</strong> Aire (base) = …… cm²</p>
@@ -573,13 +708,18 @@ export default function Lesson() {
 
                   <div className="rounded-xl bg-surface-muted p-4 text-center">
                     <svg viewBox="0 0 160 150" className="mx-auto mb-2 w-full max-w-[150px]">
-                      <polygon points="40,120 120,120 100,100 55,100" fill="#eef2ff" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
-                      <line x1="80" y1="15" x2="40" y2="120" stroke="#4338ca" strokeWidth="2.2" />
-                      <line x1="80" y1="15" x2="120" y2="120" stroke="#4338ca" strokeWidth="2.2" />
-                      <line x1="80" y1="15" x2="100" y2="100" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
-                      <line x1="80" y1="15" x2="55" y2="100" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
-                      <text x="80" y="133" textAnchor="middle" fontSize="11" fill="#16a34a">3 cm</text>
-                      <text x="40" y="105" textAnchor="middle" fontSize="11" fill="#16a34a">2,5 cm</text>
+                      {/* Base ABCD exacte : D=A+profondeur, C=B+profondeur (vrai parallélogramme) */}
+                      <polygon points="40,120 110,120 130,104 60,104" fill="#eef2ff" stroke="none" />
+                      <line x1="60" y1="104" x2="130" y2="104" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
+                      <line x1="40" y1="120" x2="60" y2="104" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
+                      <line x1="40" y1="120" x2="110" y2="120" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="110" y1="120" x2="130" y2="104" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="85" y1="20" x2="40" y2="120" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="85" y1="20" x2="110" y2="120" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="85" y1="20" x2="130" y2="104" stroke="#4338ca" strokeWidth="2.2" />
+                      <line x1="85" y1="20" x2="60" y2="104" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
+                      <text x="75" y="133" textAnchor="middle" fontSize="11" fill="#16a34a">3 cm</text>
+                      <text x="45" y="110" textAnchor="middle" fontSize="11" fill="#16a34a">2,5 cm</text>
                     </svg>
                     <p className="mb-1 text-xs text-foreground-muted">Pyramide, base 3 cm × 2,5 cm</p>
                     <p className="text-sm"><strong>a.</strong> Aire (base) = …… cm²</p>
