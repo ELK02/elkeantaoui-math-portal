@@ -118,9 +118,18 @@ export default function Lesson() {
               <polygon points="10,150 10,210 80,230 80,170" fill="white" fillOpacity="0.08" stroke="white" strokeWidth="2" />
               <polygon points="10,150 45,130 115,150 80,170" fill="white" fillOpacity="0.16" stroke="white" strokeWidth="2" />
               <polygon points="80,170 115,150 115,205 80,230" fill="white" fillOpacity="0.05" stroke="white" strokeWidth="2" />
-              <polygon points="165,60 245,110 205,235 125,215" fill="none" stroke="white" strokeWidth="2.2" strokeLinejoin="round" />
-              <line x1="165" y1="60" x2="165" y2="180" stroke="white" strokeWidth="1.4" strokeDasharray="4 3" opacity="0.8" />
-              <line x1="165" y1="60" x2="205" y2="235" stroke="white" strokeWidth="2.2" />
+              {/* Pyramide à base ABCD (135,215)(225,215)(245,200)(155,200) : D est le seul sommet caché
+                  (arrière-gauche), ses arêtes sont en pointillés, tout le reste est plein. */}
+              <polygon points="135,215 225,215 245,200 155,200" fill="white" fillOpacity="0.1" stroke="none" />
+              <line x1="155" y1="200" x2="245" y2="200" stroke="white" strokeWidth="1.4" strokeDasharray="4 3" opacity="0.8" />
+              <line x1="135" y1="215" x2="155" y2="200" stroke="white" strokeWidth="1.4" strokeDasharray="4 3" opacity="0.8" />
+              <line x1="135" y1="215" x2="225" y2="215" stroke="white" strokeWidth="2.2" />
+              <line x1="225" y1="215" x2="245" y2="200" stroke="white" strokeWidth="2.2" />
+              <line x1="190" y1="60" x2="135" y2="215" stroke="white" strokeWidth="2.2" />
+              <line x1="190" y1="60" x2="225" y2="215" stroke="white" strokeWidth="2.2" />
+              <line x1="190" y1="60" x2="245" y2="200" stroke="white" strokeWidth="2.2" />
+              <line x1="190" y1="60" x2="155" y2="200" stroke="white" strokeWidth="1.4" strokeDasharray="4 3" opacity="0.8" />
+              <line x1="190" y1="60" x2="190" y2="207.5" stroke="white" strokeWidth="1.4" strokeDasharray="4 3" opacity="0.6" />
               <ellipse cx="297" cy="215" rx="42" ry="14" fill="white" fillOpacity="0.08" stroke="white" strokeWidth="2" />
               <line x1="297" y1="215" x2="297" y2="120" stroke="white" strokeWidth="1.4" strokeDasharray="4 3" opacity="0.8" />
               <line x1="255" y1="215" x2="297" y2="120" stroke="white" strokeWidth="2.2" />
