@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Clock, ArrowLeft } from "lucide-react";
+import fs from "node:fs";
+import path from "node:path";
+import { Clock, ArrowLeft, ArrowUpRight } from "lucide-react";
 import { TRONC_COMMUN_SCIENCES } from "@/data/lycee";
 
 export const metadata: Metadata = { title: "Tronc Commun · Science et Technologies" };
+
+const CONTENT_ROOT = path.join(process.cwd(), "src/content/lessons/lycee/tc-sciences");
+
+function hasContent(semestre: string, slug: string) {
+  return fs.existsSync(path.join(CONTENT_ROOT, semestre, `${slug}.tsx`));
+}
 
 export default function TroncCommunSciencesPage() {
   return (
@@ -24,7 +32,7 @@ export default function TroncCommunSciencesPage() {
       </h1>
       <p className="mt-3 max-w-2xl text-foreground-muted">
         Le programme national de mathématiques du Tronc Commun, filière Science et Technologies : 16 chapitres
-        répartis sur les deux semestres. Chaque chapitre sera publié avec son cours et ses exercices corrigés,
+        répartis sur les deux semestres. Chaque chapitre est publié avec son cours et ses exercices corrigés,
         au même format que le Collège.
       </p>
 
@@ -38,25 +46,48 @@ export default function TroncCommunSciencesPage() {
               </span>
             </summary>
             <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              {semester.chapters.map((chapter) => (
-                <div
-                  key={chapter.slug}
-                  className="flex items-center gap-4 rounded-lg border border-dashed border-border bg-surface-muted/50 p-4"
-                >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border font-mono text-xs font-medium text-foreground-muted">
-                    {String(chapter.order).padStart(2, "0")}
-                  </span>
-                  <span className="flex-1">
-                    <span className="block text-[15px] font-medium leading-snug text-foreground">
-                      {chapter.title}
+              {semester.chapters.map((chapter) => {
+                const available = hasContent(semester.id, chapter.slug);
+                if (available) {
+                  return (
+                    <Link
+                      key={chapter.slug}
+                      href={`/lycee/tronc-commun/sciences/${semester.id}/${chapter.slug}`}
+                      className="group/card flex items-center gap-4 rounded-lg border border-border bg-surface p-4 transition-colors hover:border-navy-400 dark:hover:border-navy-500"
+                    >
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border font-mono text-xs font-medium text-foreground-muted">
+                        {String(chapter.order).padStart(2, "0")}
+                      </span>
+                      <span className="flex-1">
+                        <span className="block text-[15px] font-medium leading-snug text-foreground">
+                          {chapter.title}
+                        </span>
+                        <span className="mt-1 block text-xs text-foreground-muted">Cours &amp; exercices corrigés</span>
+                      </span>
+                      <ArrowUpRight className="h-4 w-4 shrink-0 text-foreground-muted transition-all group-hover/card:-translate-y-0.5 group-hover/card:translate-x-0.5 group-hover/card:text-navy-600 dark:group-hover/card:text-orange-400" />
+                    </Link>
+                  );
+                }
+                return (
+                  <div
+                    key={chapter.slug}
+                    className="flex items-center gap-4 rounded-lg border border-dashed border-border bg-surface-muted/50 p-4"
+                  >
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border font-mono text-xs font-medium text-foreground-muted">
+                      {String(chapter.order).padStart(2, "0")}
                     </span>
-                    <span className="mt-1 inline-flex items-center gap-1 text-xs text-foreground-muted">
-                      <Clock className="h-3 w-3" />
-                      Bientôt disponible
+                    <span className="flex-1">
+                      <span className="block text-[15px] font-medium leading-snug text-foreground">
+                        {chapter.title}
+                      </span>
+                      <span className="mt-1 inline-flex items-center gap-1 text-xs text-foreground-muted">
+                        <Clock className="h-3 w-3" />
+                        Bientôt disponible
+                      </span>
                     </span>
-                  </span>
-                </div>
-              ))}
+                  </div>
+                );
+              })}
             </div>
           </details>
         ))}
