@@ -167,10 +167,19 @@ export default function Lesson() {
         <CourseBlock numeral="II" title="L'égalité de deux vecteurs">
           <Callout variant="success" title="Définition">
             Deux vecteurs <Math tex="\overrightarrow{AB}" /> et <Math tex="\overrightarrow{CD}" /> sont{" "}
-            <strong>égaux</strong> s&apos;ils ont même direction, même sens et même norme. Si{" "}
-            <Math tex="\overrightarrow{AB}=\overrightarrow{CD}=\overrightarrow{EF}=\dots" />, on note ce vecteur commun{" "}
-            <Math tex="\vec u" /> ; les segments <Math tex="[AB]" />, <Math tex="[CD]" />, <Math tex="[EF]" /> en sont
-            des représentants. On a aussi <Math tex="\overrightarrow{AB}=\vec 0 \iff A=B" />.
+            <strong>égaux</strong> s&apos;ils ont même direction, même sens et même norme.
+          </Callout>
+          <Callout variant="warning" title="Remarque">
+            <ul className="list-disc space-y-1 pl-5">
+              <li>
+                Si <Math tex="\overrightarrow{AB}=\overrightarrow{CD}=\overrightarrow{EF}=\dots" />, on note ce
+                vecteur <Math tex="\vec u" /> ; <Math tex="\overrightarrow{AB}" />, <Math tex="\overrightarrow{CD}" />{" "}
+                et <Math tex="\overrightarrow{EF}" /> sont des représentants du même vecteur <Math tex="\vec u" />.
+              </li>
+              <li>
+                <Math tex="\overrightarrow{AB}=\vec 0" /> si et seulement si <Math tex="A=B" />.
+              </li>
+            </ul>
           </Callout>
           <Figure
             text={
