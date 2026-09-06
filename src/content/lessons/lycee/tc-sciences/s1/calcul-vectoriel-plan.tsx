@@ -476,16 +476,22 @@ export default function Lesson() {
               </>
             }
             svg={
-              <svg viewBox="0 0 240 260" className="h-auto w-full max-w-[240px] text-neutral-700">
+              <svg viewBox="0 0 240 240" className="h-auto w-full max-w-[240px] text-neutral-700">
                 <ArrowDefs id="v6" />
-                <line x1="60" y1="220" x2="60" y2="60" stroke="currentColor" strokeWidth="1.6" markerEnd="url(#v6)" />
-                <line x1="60" y1="220" x2="180" y2="220" stroke="currentColor" strokeWidth="1.6" markerEnd="url(#v6)" />
-                <line x1="180" y1="220" x2="90" y2="100" stroke="#e11d48" strokeWidth="1.8" strokeDasharray="0" />
-                <circle cx="60" cy="220" r="3" fill="currentColor" /><text x="42" y="238" fontSize="13" fontWeight="700">A</text>
-                <circle cx="180" cy="220" r="3" fill="currentColor" /><text x="184" y="238" fontSize="13" fontWeight="700">B</text>
-                <circle cx="60" cy="100" r="3" fill="#e11d48" /><text x="40" y="98" fontSize="13" fontWeight="700" fill="#e11d48">C</text>
-                <circle cx="60" cy="60" r="3" fill="currentColor" /><text x="40" y="56" fontSize="13" fontWeight="700">F</text>
-                <circle cx="90" cy="100" r="3" fill="#e11d48" /><text x="96" y="96" fontSize="13" fontWeight="700" fill="#e11d48">E</text>
+                <ArrowDefs id="v6red" color="#e11d48" />
+                {/* triangle ABC */}
+                <polygon points="30,210 210,210 75,75" fill="none" stroke="currentColor" strokeWidth="1.4" strokeOpacity="0.6" />
+                {/* construction : A, C, F alignés (AF = 4/3 AC) */}
+                <line x1="30" y1="210" x2="90" y2="30" stroke="currentColor" strokeWidth="1.3" strokeDasharray="4 3" markerEnd="url(#v6)" />
+                {/* construction : CE = 1/4 AB */}
+                <line x1="75" y1="75" x2="120" y2="75" stroke="currentColor" strokeWidth="1.3" strokeDasharray="4 3" markerEnd="url(#v6)" />
+                {/* la droite (FB), qui passe exactement par E : c'est ce qu'il faut montrer */}
+                <line x1="90" y1="30" x2="210" y2="210" stroke="#e11d48" strokeWidth="2" markerEnd="url(#v6red)" />
+                <circle cx="30" cy="210" r="3.2" fill="currentColor" /><text x="12" y="228" fontSize="14" fontWeight="700">A</text>
+                <circle cx="210" cy="210" r="3.2" fill="currentColor" /><text x="216" y="214" fontSize="14" fontWeight="700">B</text>
+                <circle cx="75" cy="75" r="3.2" fill="currentColor" /><text x="55" y="70" fontSize="14" fontWeight="700">C</text>
+                <circle cx="90" cy="30" r="3.2" fill="#e11d48" /><text x="96" y="24" fontSize="14" fontWeight="700" fill="#e11d48">F</text>
+                <circle cx="120" cy="75" r="3.2" fill="#e11d48" /><text x="126" y="70" fontSize="14" fontWeight="700" fill="#e11d48">E</text>
               </svg>
             }
           />
