@@ -849,24 +849,52 @@ export default function Lesson() {
               </>
             }
             correction={
-              <>
-                <p>
-                  <strong>3)</strong> <Math tex="\overrightarrow{CM}=\overrightarrow{AM}-\overrightarrow{AC}=\tfrac32\overrightarrow{AB}-\overrightarrow{AC}" />
-                  . Comme <Math tex="ABCD" /> est un parallélogramme, <Math tex="\overrightarrow{AD}=\overrightarrow{AC}-\overrightarrow{AB}" />
-                  , donc <Math tex="\overrightarrow{AN}=3\overrightarrow{AC}-3\overrightarrow{AB}" />, d&apos;où{" "}
-                  <Math tex="\overrightarrow{NM}=\overrightarrow{AM}-\overrightarrow{AN}=\tfrac32\overrightarrow{AB}-3\overrightarrow{AC}+3\overrightarrow{AB}=\tfrac92\overrightarrow{AB}-3\overrightarrow{AC}" />
-                  .
-                </p>
-                <p>
-                  <strong>4)</strong> On remarque que{" "}
-                  <Math tex="\overrightarrow{NM}=3\left(\tfrac32\overrightarrow{AB}-\overrightarrow{AC}\right)=3\overrightarrow{CM}" />
-                  . Donc <Math tex="\overrightarrow{NM}" /> et <Math tex="\overrightarrow{CM}" /> sont colinéaires :{" "}
-                  <strong className="text-green-700">
-                    <Math tex="M,N,C" /> sont alignés, donc <Math tex="(MN)\parallel(CM)" />
-                  </strong>
-                  .
-                </p>
-              </>
+              <Figure
+                text={
+                  <>
+                    <p>
+                      <strong>1) et 2)</strong> Voir la construction ci-contre : <Math tex="M" /> sur la demi-droite{" "}
+                      <Math tex="(AB)" /> au-delà de <Math tex="B" />, <Math tex="N" /> sur la demi-droite{" "}
+                      <Math tex="(AD)" /> au-delà de <Math tex="D" />.
+                    </p>
+                    <p>
+                      <strong>3)</strong> <Math tex="\overrightarrow{CM}=\overrightarrow{AM}-\overrightarrow{AC}=\tfrac32\overrightarrow{AB}-\overrightarrow{AC}" />
+                      . Comme <Math tex="ABCD" /> est un parallélogramme, <Math tex="\overrightarrow{AD}=\overrightarrow{AC}-\overrightarrow{AB}" />
+                      , donc <Math tex="\overrightarrow{AN}=3\overrightarrow{AC}-3\overrightarrow{AB}" />, d&apos;où{" "}
+                      <Math tex="\overrightarrow{NM}=\overrightarrow{AM}-\overrightarrow{AN}=\tfrac32\overrightarrow{AB}-3\overrightarrow{AC}+3\overrightarrow{AB}=\tfrac92\overrightarrow{AB}-3\overrightarrow{AC}" />
+                      .
+                    </p>
+                    <p>
+                      <strong>4)</strong> On remarque que{" "}
+                      <Math tex="\overrightarrow{NM}=3\left(\tfrac32\overrightarrow{AB}-\overrightarrow{AC}\right)=3\overrightarrow{CM}" />
+                      . Donc <Math tex="\overrightarrow{NM}" /> et <Math tex="\overrightarrow{CM}" /> sont colinéaires :{" "}
+                      <strong className="text-green-700">
+                        <Math tex="M,N,C" /> sont alignés, donc <Math tex="(MN)\parallel(CM)" />
+                      </strong>
+                      .
+                    </p>
+                  </>
+                }
+                svg={
+                  <svg viewBox="0 0 200 275" className="h-auto w-full max-w-[220px] text-neutral-700">
+                    <ArrowDefs id="ex8" />
+                    <ArrowDefs id="ex8red" color="#e11d48" />
+                    {/* parallélogramme ABCD */}
+                    <polygon points="25,250 125,250 150,175 50,175" fill="#4f46e5" fillOpacity="0.06" stroke="currentColor" strokeWidth="1.4" />
+                    {/* demi-droite (AB) prolongée jusqu'à M, D marqué, demi-droite (AD) prolongée jusqu'à N */}
+                    <line x1="25" y1="250" x2="175" y2="250" stroke="currentColor" strokeWidth="1.3" strokeDasharray="4 3" markerEnd="url(#ex8)" />
+                    <line x1="25" y1="250" x2="100" y2="25" stroke="currentColor" strokeWidth="1.3" strokeDasharray="4 3" markerEnd="url(#ex8)" />
+                    {/* M, N, C alignés : (MN) et (CM) sont la même droite */}
+                    <line x1="100" y1="25" x2="175" y2="250" stroke="#e11d48" strokeWidth="2" markerEnd="url(#ex8red)" />
+                    <circle cx="25" cy="250" r="3.2" fill="currentColor" /><text x="7" y="268" fontSize="14" fontWeight="700">A</text>
+                    <circle cx="125" cy="250" r="3.2" fill="currentColor" /><text x="131" y="268" fontSize="14" fontWeight="700">B</text>
+                    <circle cx="150" cy="175" r="3.2" fill="currentColor" /><text x="156" y="172" fontSize="14" fontWeight="700">C</text>
+                    <circle cx="50" cy="175" r="3.2" fill="currentColor" /><text x="26" y="172" fontSize="14" fontWeight="700">D</text>
+                    <circle cx="175" cy="250" r="3.2" fill="#e11d48" /><text x="181" y="254" fontSize="14" fontWeight="700" fill="#e11d48">M</text>
+                    <circle cx="100" cy="25" r="3.2" fill="#e11d48" /><text x="82" y="18" fontSize="14" fontWeight="700" fill="#e11d48">N</text>
+                  </svg>
+                }
+              />
             }
           />
 
