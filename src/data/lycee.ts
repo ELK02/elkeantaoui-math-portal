@@ -157,13 +157,12 @@ const DEUXIEME_BAC_SCIENCES_SEMESTERS: LyceeSemester[] = [
     id: "s1",
     label: "Semestre 1",
     chapters: [
-      { slug: "evaluations-diagnostiques", title: "Évaluation diagnostique", order: 1 },
-      { slug: "limites-continuite", title: "Limites et Continuité", order: 2 },
-      { slug: "derivabilite-etude-fonctions", title: "Dérivabilité et Étude des fonctions", order: 3 },
-      { slug: "suites-numeriques", title: "Suites numériques", order: 4 },
-      { slug: "fonctions-primitives", title: "Fonctions primitives", order: 5 },
-      { slug: "fonction-logarithme", title: "La fonction logarithme", order: 6 },
-      { slug: "nombres-complexes-1", title: "Les nombres complexes (Partie 1)", order: 7 },
+      { slug: "limites-continuite", title: "Limites et Continuité", order: 1 },
+      { slug: "derivabilite-etude-fonctions", title: "Dérivabilité et Étude des fonctions", order: 2 },
+      { slug: "suites-numeriques", title: "Suites numériques", order: 3 },
+      { slug: "fonctions-primitives", title: "Fonctions primitives", order: 4 },
+      { slug: "fonction-logarithme", title: "La fonction logarithme", order: 5 },
+      { slug: "nombres-complexes-1", title: "Les nombres complexes (Partie 1)", order: 6 },
     ],
   },
   {
@@ -186,15 +185,14 @@ const DEUXIEME_BAC_SM_SEMESTERS: LyceeSemester[] = [
     id: "s1",
     label: "Semestre 1",
     chapters: [
-      { slug: "evaluations-diagnostiques", title: "Évaluation diagnostique", order: 1 },
-      { slug: "limites-continuite", title: "Limites et Continuité", order: 2 },
-      { slug: "derivabilite-etude-fonctions", title: "Dérivabilité et Etude des fonctions", order: 3 },
-      { slug: "theoreme-accroissements-finis", title: "Théorème des Accroissements Finis (TAF)", order: 4 },
-      { slug: "suites-numeriques", title: "Suites numériques", order: 5 },
-      { slug: "fonction-logarithme", title: "La fonction logarithme", order: 6 },
-      { slug: "fonction-exponentielle", title: "La fonction Exponentielle", order: 7 },
-      { slug: "equations-differentielles", title: "Équations différentielles", order: 8 },
-      { slug: "nombres-complexes-1", title: "Nombres complexes (Partie 1)", order: 9 },
+      { slug: "limites-continuite", title: "Limites et Continuité", order: 1 },
+      { slug: "derivabilite-etude-fonctions", title: "Dérivabilité et Etude des fonctions", order: 2 },
+      { slug: "theoreme-accroissements-finis", title: "Théorème des Accroissements Finis (TAF)", order: 3 },
+      { slug: "suites-numeriques", title: "Suites numériques", order: 4 },
+      { slug: "fonction-logarithme", title: "La fonction logarithme", order: 5 },
+      { slug: "fonction-exponentielle", title: "La fonction Exponentielle", order: 6 },
+      { slug: "equations-differentielles", title: "Équations différentielles", order: 7 },
+      { slug: "nombres-complexes-1", title: "Nombres complexes (Partie 1)", order: 8 },
     ],
   },
   {
@@ -213,9 +211,8 @@ const DEUXIEME_BAC_SM_SEMESTERS: LyceeSemester[] = [
 
 /**
  * 2ème Année Baccalauréat : Sciences Physiques, SVT, Sciences et Technologies
- * Électriques et Sciences et Technologies Mécaniques (13 chapitres chacune), puis
- * Sciences Mathématiques A et B (15 chapitres chacune), toutes avec l'évaluation
- * diagnostique comme premier chapitre du semestre 1.
+ * Électriques et Sciences et Technologies Mécaniques (12 chapitres chacune), puis
+ * Sciences Mathématiques A et B (14 chapitres chacune).
  */
 export const DEUXIEME_BAC: { filieres: LyceeFiliere[] } = {
   filieres: [
