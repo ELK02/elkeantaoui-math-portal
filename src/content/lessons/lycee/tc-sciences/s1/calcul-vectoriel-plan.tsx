@@ -777,14 +777,33 @@ export default function Lesson() {
             id="7" index={7}
             title="Centre de gravité et milieu d'un côté"
             items={
-              <>
-                <p>
-                  <Math tex="ABC" /> un triangle et <Math tex="G" /> son centre de gravité (
-                  <Math tex="\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}=\vec 0" />), <Math tex="O" />{" "}
-                  le milieu de <Math tex="[BC]" />. Montrer que <Math tex="\overrightarrow{OA}=3\overrightarrow{OG}" />{" "}
-                  et <Math tex="-2\overrightarrow{GO}+\overrightarrow{GB}+\overrightarrow{GC}=\vec 0" />.
-                </p>
-              </>
+              <Figure
+                text={
+                  <p>
+                    <Math tex="ABC" /> un triangle et <Math tex="G" /> son centre de gravité (
+                    <Math tex="\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}=\vec 0" />), <Math tex="O" />{" "}
+                    le milieu de <Math tex="[BC]" />. Montrer que <Math tex="\overrightarrow{OA}=3\overrightarrow{OG}" />{" "}
+                    et <Math tex="-2\overrightarrow{GO}+\overrightarrow{GB}+\overrightarrow{GC}=\vec 0" />.
+                  </p>
+                }
+                svg={
+                  <svg viewBox="0 0 270 190" className="h-auto w-full max-w-[260px] text-neutral-700">
+                    <ArrowDefs id="ex7" />
+                    {/* triangle ABC */}
+                    <polygon points="150,30 30,150 240,150" fill="none" stroke="currentColor" strokeWidth="1.4" strokeOpacity="0.6" />
+                    {/* médiane (AO), G dessus au tiers depuis O */}
+                    <line x1="150" y1="30" x2="135" y2="150" stroke="currentColor" strokeWidth="1.4" markerEnd="url(#ex7)" />
+                    {/* O milieu de [BC] : petites marques de longueurs égales */}
+                    <line x1="78" y1="146" x2="82" y2="154" stroke="currentColor" strokeWidth="1.4" />
+                    <line x1="188" y1="146" x2="192" y2="154" stroke="currentColor" strokeWidth="1.4" />
+                    <circle cx="150" cy="30" r="3.2" fill="currentColor" /><text x="156" y="24" fontSize="14" fontWeight="700">A</text>
+                    <circle cx="30" cy="150" r="3.2" fill="currentColor" /><text x="10" y="168" fontSize="14" fontWeight="700">B</text>
+                    <circle cx="240" cy="150" r="3.2" fill="currentColor" /><text x="246" y="168" fontSize="14" fontWeight="700">C</text>
+                    <circle cx="135" cy="150" r="3.2" fill="currentColor" /><text x="120" y="170" fontSize="14" fontWeight="700">O</text>
+                    <circle cx="140" cy="110" r="3.6" fill="#e11d48" /><text x="146" y="106" fontSize="14" fontWeight="700" fill="#e11d48">G</text>
+                  </svg>
+                }
+              />
             }
             correction={
               <>
