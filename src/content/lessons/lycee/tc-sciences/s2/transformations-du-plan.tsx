@@ -313,7 +313,7 @@ export default function Lesson() {
             associe à tout point <Math tex="M" /> de <Math tex="(P)" /> le point <Math tex="M'" /> tel que{" "}
             <Math tex="\overrightarrow{MM'}=\vec u" />. On la note <Math tex="t_{\vec u}" />.
           </DefBox>
-          <FormulaBlock tex="t_{\vec u}(M)=M' \iff \overrightarrow{MM'}=\vec u" />
+          <FormulaBlock tex="\begin{gathered} t_{\vec u}(M)=M' \\ \iff \overrightarrow{MM'}=\vec u \end{gathered}" />
           <Callout variant="info" title="Remarques">
             <ul className="list-disc space-y-1 pl-5">
               <li>
@@ -353,7 +353,7 @@ export default function Lesson() {
             point <Math tex="M'" /> tel que <Math tex="\overrightarrow{\Omega M'}=k\,\overrightarrow{\Omega M}" />. On
             la note <Math tex="h(\Omega,k)" />.
           </DefBox>
-          <FormulaBlock tex="h(M)=M' \iff \overrightarrow{\Omega M'}=k\,\overrightarrow{\Omega M}" />
+          <FormulaBlock tex="\begin{gathered} h(M)=M' \\ \iff \overrightarrow{\Omega M'}=k\,\overrightarrow{\Omega M} \end{gathered}" />
           <Callout variant="info" title="Cas particuliers et remarques">
             <ul className="list-disc space-y-1 pl-5">
               <li>
