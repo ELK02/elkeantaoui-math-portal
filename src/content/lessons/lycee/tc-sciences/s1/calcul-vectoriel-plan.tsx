@@ -902,22 +902,46 @@ export default function Lesson() {
             id="9" index={9}
             title="Combinaison vectorielle nulle dans un parallélogramme"
             items={
-              <>
-                <p>
-                  <Math tex="ABCD" /> un parallélogramme, <Math tex="M,N" /> tels que{" "}
-                  <Math tex="\overrightarrow{DM}=\tfrac52\overrightarrow{DA}" /> et{" "}
-                  <Math tex="\overrightarrow{CN}=\tfrac23\overrightarrow{DC}" />.
-                </p>
-                <p>
-                  <strong>1)</strong> Montrer que <Math tex="\overrightarrow{BM}=\tfrac32\overrightarrow{DA}-\overrightarrow{AB}" />{" "}
-                  et <Math tex="\overrightarrow{BN}=\tfrac23\overrightarrow{DC}+\overrightarrow{BC}" />.
-                </p>
-                <p>
-                  <strong>2)</strong> Calculer <Math tex="\overrightarrow{BM}" /> et <Math tex="\overrightarrow{BN}" />{" "}
-                  en fonction de <Math tex="\overrightarrow{AB}" /> et <Math tex="\overrightarrow{BC}" />.
-                </p>
-                <p><strong>3)</strong> Montrer que <Math tex="2\overrightarrow{BM}+3\overrightarrow{BN}=\vec 0" />.</p>
-              </>
+              <Figure
+                text={
+                  <>
+                    <p>
+                      <Math tex="ABCD" /> un parallélogramme, <Math tex="M,N" /> tels que{" "}
+                      <Math tex="\overrightarrow{DM}=\tfrac52\overrightarrow{DA}" /> et{" "}
+                      <Math tex="\overrightarrow{CN}=\tfrac23\overrightarrow{DC}" />.
+                    </p>
+                    <p>
+                      <strong>1)</strong> Montrer que <Math tex="\overrightarrow{BM}=\tfrac32\overrightarrow{DA}-\overrightarrow{AB}" />{" "}
+                      et <Math tex="\overrightarrow{BN}=\tfrac23\overrightarrow{DC}+\overrightarrow{BC}" />.
+                    </p>
+                    <p>
+                      <strong>2)</strong> Calculer <Math tex="\overrightarrow{BM}" /> et <Math tex="\overrightarrow{BN}" />{" "}
+                      en fonction de <Math tex="\overrightarrow{AB}" /> et <Math tex="\overrightarrow{BC}" />.
+                    </p>
+                    <p><strong>3)</strong> Montrer que <Math tex="2\overrightarrow{BM}+3\overrightarrow{BN}=\vec 0" />.</p>
+                  </>
+                }
+                svg={
+                  <svg viewBox="0 0 235 200" className="h-auto w-full max-w-[260px] text-neutral-700">
+                    <ArrowDefs id="ex9" />
+                    <ArrowDefs id="ex9red" color="#e11d48" />
+                    {/* parallélogramme ABCD */}
+                    <polygon points="55,85 135,85 155,25 75,25" fill="#4f46e5" fillOpacity="0.06" stroke="currentColor" strokeWidth="1.4" />
+                    {/* D,A,M alignés (DM = 5/2 DA) */}
+                    <line x1="75" y1="25" x2="25" y2="175" stroke="currentColor" strokeWidth="1.3" strokeDasharray="4 3" markerEnd="url(#ex9)" />
+                    {/* D,C,N alignés (CN = 2/3 DC) */}
+                    <line x1="75" y1="25" x2="208.3" y2="25" stroke="currentColor" strokeWidth="1.3" strokeDasharray="4 3" markerEnd="url(#ex9)" />
+                    {/* 2BM+3BN=0 : M, B, N sont alignés */}
+                    <line x1="25" y1="175" x2="208.3" y2="25" stroke="#e11d48" strokeWidth="2" />
+                    <circle cx="55" cy="85" r="3.2" fill="currentColor" /><text x="37" y="103" fontSize="14" fontWeight="700">A</text>
+                    <circle cx="135" cy="85" r="3.2" fill="currentColor" /><text x="141" y="90" fontSize="14" fontWeight="700">B</text>
+                    <circle cx="155" cy="25" r="3.2" fill="currentColor" /><text x="161" y="22" fontSize="14" fontWeight="700">C</text>
+                    <circle cx="75" cy="25" r="3.2" fill="currentColor" /><text x="51" y="22" fontSize="14" fontWeight="700">D</text>
+                    <circle cx="25" cy="175" r="3.2" fill="#e11d48" /><text x="3" y="190" fontSize="14" fontWeight="700" fill="#e11d48">M</text>
+                    <circle cx="208.3" cy="25" r="3.2" fill="#e11d48" /><text x="212" y="18" fontSize="14" fontWeight="700" fill="#e11d48">N</text>
+                  </svg>
+                }
+              />
             }
             correction={
               <>
