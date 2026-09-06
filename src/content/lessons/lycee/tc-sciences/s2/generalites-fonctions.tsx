@@ -543,8 +543,8 @@ export default function Lesson() {
                 </>
               }
               svg={
-                <Grid viewBox="0 0 260 240" className="max-w-[280px]">
-                  <line x1="0" y1="210" x2="260" y2="210" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                <Grid viewBox="-10 0 270 240" className="max-w-[280px]">
+                  <line x1="-10" y1="210" x2="260" y2="210" stroke="currentColor" strokeWidth="1" opacity="0.3" />
                   <line x1="60" y1="0" x2="60" y2="240" stroke="currentColor" strokeWidth="1" opacity="0.3" />
                   <path d="M-7.6,34.2 L-5.2,46.7 L-2.7,58.7 L-0.3,70.3 L2.2,81.4 L4.6,92.0 L7.1,102.2 L9.5,111.9 L12.0,121.2 L14.4,130.0 L16.8,138.4 L19.3,146.2 L21.7,153.7 L24.2,160.6 L26.6,167.1 L29.1,173.2 L31.5,178.8 L33.9,183.9 L36.4,188.6 L38.8,192.8 L41.3,196.5 L43.7,199.8 L46.2,202.6 L48.6,205.0 L51.1,206.9 L53.5,208.4 L55.9,209.4 L58.4,209.9 L60.8,210.0 L63.3,209.6 L65.7,208.7 L68.2,207.4 L70.6,205.7 L73.1,203.4 L75.5,200.8 L77.9,197.6 L80.4,194.0 L82.8,190.0 L85.3,185.4 L87.7,180.5 L90.2,175.0 L92.6,169.1 L95.0,162.8 L97.5,155.9 L99.9,148.7 L102.4,140.9 L104.8,132.7 L107.3,124.1 L109.7,115.0 L112.2,105.4 L114.6,95.3"
                     fill="none" stroke="currentColor" strokeWidth="1.4" strokeDasharray="4 3" opacity="0.5" />
@@ -1235,12 +1235,12 @@ export default function Lesson() {
                 </p>
                 <p><strong>3)</strong> <Math tex="a=2>0" /> : f décroissante sur ]−∞,1], croissante sur [1,+∞[, minimum f(1)=−4.</p>
                 <Grid viewBox="0 0 260 240" className="max-w-[280px]">
-                  <line x1="0" y1="220" x2="260" y2="220" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                  <line x1="0" y1="146.7" x2="260" y2="146.7" stroke="currentColor" strokeWidth="1" opacity="0.3" />
                   <line x1="90" y1="0" x2="90" y2="240" stroke="currentColor" strokeWidth="1" opacity="0.3" />
-                  <path d="M48.4,96.2 L51.8,113.4 L55.2,129.6 L58.5,145.0 L61.9,159.5 L65.3,173.1 L68.7,185.9 L72.1,197.7 L75.4,208.7 L78.8,218.8 L82.2,228.1 L85.6,236.4 L89.0,243.9 L92.3,250.5 L95.7,256.2 L99.1,261.0 L102.5,265.0 L105.9,268.0 L109.2,270.2 L112.6,271.6 L116.0,272.0 L119.4,271.6 L122.8,270.2 L126.1,268.0 L129.5,265.0 L132.9,261.0 L136.3,256.2 L139.7,250.5 L143.0,243.9 L146.4,236.4 L149.8,228.1 L153.2,218.8 L156.6,208.7 L159.9,197.7 L163.3,185.9 L166.7,173.1 L170.1,159.5 L173.5,145.0 L176.8,129.6 L180.2,113.4 L183.6,96.2"
+                  <path d="M48.4,20.0 L51.8,37.5 L55.2,54.2 L58.5,70.0 L61.9,84.8 L65.3,98.7 L68.7,111.8 L72.1,123.9 L75.4,135.2 L78.8,145.6 L82.2,155.0 L85.6,163.6 L89.0,171.2 L92.3,178.0 L95.7,183.8 L99.1,188.8 L102.5,192.8 L105.9,195.9 L109.2,198.2 L112.6,199.6 L116.0,200.0 L119.4,199.6 L122.8,198.2 L126.1,195.9 L129.5,192.8 L132.9,188.8 L136.3,183.8 L139.7,177.9 L143.0,171.2 L146.4,163.5 L149.8,155.0 L153.2,145.5 L156.6,135.2 L159.9,124.0 L163.3,111.8 L166.7,98.8 L170.1,84.8 L173.5,69.9 L176.8,54.2 L180.2,37.5 L183.6,20.0"
                     fill="none" stroke="#0ea5e9" strokeWidth="2.4" />
-                  <circle cx="116" cy="272" r="3.5" fill="#e11d48" />
-                  <text x="120" y="272" fontSize="11" fontWeight="700" fill="#e11d48">S(1,−4)</text>
+                  <circle cx="116" cy="200" r="3.5" fill="#e11d48" />
+                  <text x="120" y="200" fontSize="11" fontWeight="700" fill="#e11d48">S(1,−4)</text>
                 </Grid>
               </div>
             }
@@ -1266,9 +1266,9 @@ export default function Lesson() {
                   <strong>2)</strong> <Math tex="-\tfrac12x^2+2x+1=-\tfrac12(x^2-4x)+1=-\tfrac12\left[(x-2)^2-4\right]+1=-\tfrac12(x-2)^2+3" />. Donc <strong className="text-green-700">α = 2, β = 3.</strong>
                 </p>
                 <p><strong>3)</strong> <Math tex="a=-\tfrac12<0" /> : g croissante sur ]−∞,2], décroissante sur [2,+∞[, maximum g(2)=3.</p>
-                <Grid viewBox="0 0 260 220" className="max-w-[280px]">
+                <Grid viewBox="0 0 260 230" className="max-w-[280px]">
                   <line x1="0" y1="190" x2="260" y2="190" stroke="currentColor" strokeWidth="1" opacity="0.3" />
-                  <line x1="60" y1="0" x2="60" y2="220" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                  <line x1="60" y1="0" x2="60" y2="230" stroke="currentColor" strokeWidth="1" opacity="0.3" />
                   <path d="M28.8,223.9 L33.0,215.9 L37.1,208.4 L41.3,201.2 L45.4,194.4 L49.6,188.1 L53.8,182.1 L57.9,176.6 L62.1,171.5 L66.2,166.8 L70.4,162.5 L74.6,158.6 L78.7,155.1 L82.9,152.0 L87.0,149.4 L91.2,147.1 L95.4,145.3 L99.5,143.8 L103.7,142.8 L107.8,142.2 L112.0,142.0 L116.2,142.2 L120.3,142.8 L124.5,143.8 L128.6,145.3 L132.8,147.1 L137.0,149.4 L141.1,152.0 L145.3,155.1 L149.4,158.6 L153.6,162.5 L157.8,166.8 L161.9,171.5 L166.1,176.6 L170.2,182.1 L174.4,188.1 L178.6,194.4 L182.7,201.2 L186.9,208.4 L191.0,215.9 L195.2,223.9"
                     fill="none" stroke="#0ea5e9" strokeWidth="2.4" />
                   <circle cx="112" cy="142" r="3.5" fill="#e11d48" />
@@ -1389,9 +1389,9 @@ export default function Lesson() {
                   Soit <Math tex="(C_f)" /> la courbe de <Math tex="f(x)=x^3-4x^2+3" /> et <Math tex="(D)" /> la
                   droite d&apos;équation <Math tex="y=-x-3" />.
                 </p>
-                <Grid viewBox="0 0 260 260" className="max-w-[300px]">
+                <Grid viewBox="0 0 260 275" className="max-w-[300px]">
                   <line x1="0" y1="230" x2="260" y2="230" stroke="currentColor" strokeWidth="1" opacity="0.3" />
-                  <line x1="90" y1="0" x2="90" y2="260" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                  <line x1="90" y1="0" x2="90" y2="275" stroke="currentColor" strokeWidth="1" opacity="0.3" />
                   <path d="M43.2,267.4 L46.5,249.9 L49.8,233.9 L53.1,219.6 L56.4,206.9 L59.7,195.6 L63.0,185.7 L66.3,177.2 L69.6,170.1 L72.9,164.1 L76.2,159.4 L79.5,155.7 L82.8,153.2 L86.1,151.6 L89.4,151.0 L92.7,151.3 L96.0,152.4 L99.3,154.2 L102.6,156.8 L105.9,160.0 L109.2,163.8 L112.5,168.1 L115.8,172.9 L119.1,178.1 L122.4,183.6 L125.7,189.5 L129.0,195.5 L132.3,201.7 L135.6,208.0 L138.9,214.4 L142.2,220.7 L145.5,227.0 L148.8,233.1 L152.1,239.0 L155.4,244.7 L158.7,250.0 L162.0,255.0"
                     fill="none" stroke="#0ea5e9" strokeWidth="2.4" />
                   <path d="M43.2,212.1 L200,236" fill="none" stroke="#e11d48" strokeWidth="2" strokeDasharray="5 3" />
