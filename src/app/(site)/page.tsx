@@ -1,13 +1,21 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, BookOpenCheck, GraduationCap, ListChecks, Moon, ShieldCheck } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BookOpenCheck, Clock, GraduationCap, ListChecks, Moon, ShieldCheck } from "lucide-react";
 import { LEVELS } from "@/data/chapters";
+import { TRONC_COMMUN_SCIENCES } from "@/data/lycee";
 import { AnimatedStat } from "@/components/AnimatedStat";
 import { DemoExercise } from "@/components/DemoExercise";
 
-const LYCEE_PREVIEW = [
-  "Tronc Commun",
-  "1ère Bac",
-  "2ème Bac",
+const LYCEE_IN_PROGRESS = [
+  {
+    short: "1BAC",
+    label: "1ère Bac",
+    description: "Toutes filières : Sc. Expérimentales, Sc. Mathématiques, Lettres & Sc. Humaines, et plus.",
+  },
+  {
+    short: "2BAC",
+    label: "2ème Bac",
+    description: "Toutes filières : Sc. Physiques, SVT, Sc. Math A/B, Lettres & Sc. Humaines, et plus.",
+  },
 ];
 
 const STEPS = [
@@ -30,6 +38,11 @@ const STEPS = [
 
 const TOTAL_CHAPTERS = LEVELS.reduce(
   (n, level) => n + level.semesters.reduce((m, s) => m + s.chapters.length, 0),
+  0
+);
+
+const TRONC_COMMUN_CHAPTERS = TRONC_COMMUN_SCIENCES.semesters.reduce(
+  (n, s) => n + s.chapters.length,
   0
 );
 
@@ -178,27 +191,46 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="rounded-lg border border-dashed border-border bg-surface-muted p-8 sm:p-10">
-          <span className="rounded border border-orange-600/20 bg-orange-100 px-2 py-1 font-mono text-xs font-medium uppercase tracking-wide text-orange-700 dark:border-orange-400/20 dark:bg-orange-950/40 dark:text-orange-400">
-            Bientôt disponible
-          </span>
-          <h2 className="mt-4 font-display text-2xl font-semibold text-foreground">
-            Cycle Lycée
-          </h2>
-          <p className="mt-2 max-w-2xl text-sm text-foreground-muted sm:text-base">
-            Tronc Commun, 1ère et 2ème Bac arrivent prochainement, toutes filières
-            confondues.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {LYCEE_PREVIEW.map((label) => (
-              <span
-                key={label}
-                className="rounded-md border border-border bg-surface px-3 py-1.5 text-xs font-medium text-foreground-muted"
-              >
-                {label}
+        <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+          Cycle Lycée
+        </h2>
+        <p className="mt-2 max-w-2xl text-sm text-foreground-muted sm:text-base">
+          Tronc Commun, 1ère et 2ème Bac, toutes filières confondues.
+        </p>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          <Link
+            href="/lycee/tronc-commun/sciences"
+            className="group relative overflow-hidden rounded-lg border border-border bg-surface p-6 transition-colors hover:border-navy-400 dark:hover:border-navy-500"
+          >
+            <span className="font-mono text-4xl font-semibold text-navy-900/10 dark:text-white/10">TC</span>
+            <h3 className="mt-2 font-display text-lg font-semibold text-foreground">Tronc Commun</h3>
+            <p className="mt-2 text-sm leading-relaxed text-foreground-muted">
+              Science et Technologies : nombres, vecteurs, trigonométrie, fonctions et géométrie. Lettres &amp;
+              Sciences Humaines bientôt.
+            </p>
+            <p className="mt-4 flex items-center gap-1.5 font-mono text-xs font-medium text-foreground-muted">
+              {TRONC_COMMUN_CHAPTERS} chapitres
+              <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-navy-600 dark:group-hover:text-orange-400" />
+            </p>
+          </Link>
+
+          {LYCEE_IN_PROGRESS.map((item) => (
+            <div
+              key={item.short}
+              className="relative overflow-hidden rounded-lg border border-dashed border-border bg-surface-muted/50 p-6"
+            >
+              <span className="font-mono text-4xl font-semibold text-navy-900/10 dark:text-white/10">
+                {item.short}
               </span>
-            ))}
-          </div>
+              <h3 className="mt-2 font-display text-lg font-semibold text-foreground">{item.label}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-foreground-muted">{item.description}</p>
+              <p className="mt-4 inline-flex items-center gap-1.5 font-mono text-xs font-medium text-orange-600 dark:text-orange-400">
+                <Clock className="h-3.5 w-3.5" />
+                En cours
+              </p>
+            </div>
+          ))}
         </div>
       </section>
     </>
