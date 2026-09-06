@@ -447,7 +447,7 @@ export default function Lesson() {
             repère <Math tex="(I;\overrightarrow{OJ})" /> porté par <Math tex="(\Delta)" />. On a :
           </div>
         </DefBox>
-        <FormulaBlock tex="\tan x=\dfrac{\sin x}{\cos x}\qquad\text{défini ssi } x\neq\dfrac{\pi}{2}+k\pi\ (k\in\mathbb{Z})" />
+        <FormulaBlock tex="\begin{gathered} \tan x=\dfrac{\sin x}{\cos x} \\ \text{défini ssi } x\neq\dfrac{\pi}{2}+k\pi\ (k\in\mathbb{Z}) \end{gathered}" />
 
         <p className="mt-8 mb-3 text-sm font-semibold text-foreground">Valeurs remarquables à connaître par cœur</p>
         <div className="overflow-x-auto rounded-xl border border-border">

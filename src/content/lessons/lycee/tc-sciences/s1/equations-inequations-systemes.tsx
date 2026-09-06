@@ -249,7 +249,7 @@ export default function Lesson() {
           <Callout variant="success" title="Propriété">
             Si <Math tex="ax^2+bx+c=0" /> admet deux racines <Math tex="x_1,x_2" /> (distinctes ou confondues) :
           </Callout>
-          <FormulaBlock tex="x_1+x_2=-\dfrac{b}{a} \qquad\qquad x_1x_2=\dfrac{c}{a}" />
+          <FormulaBlock tex="\begin{gathered} x_1+x_2=-\dfrac{b}{a} \\ x_1x_2=\dfrac{c}{a} \end{gathered}" />
           <Example title="Exemple résolu · vérification sur (E) : 2x² + 4x − 6 = 0">
             <p>
               <Math tex="x_1+x_2 = 1+(-3)=-2" />, et <Math tex="-\dfrac ba=-\dfrac42=-2" /> : ça correspond.
@@ -380,7 +380,7 @@ export default function Lesson() {
           <DefBox label="Définition · déterminants">
             Pour le système <Math tex="(S): \begin{cases}ax+by=c\\ a'x+b'y=c'\end{cases}" />, on définit :
           </DefBox>
-          <FormulaBlock tex="\Delta=\begin{vmatrix}a&b\\a'&b'\end{vmatrix}=ab'-a'b \quad,\quad \Delta_x=\begin{vmatrix}c&b\\c'&b'\end{vmatrix}=cb'-c'b \quad,\quad \Delta_y=\begin{vmatrix}a&c\\a'&c'\end{vmatrix}=ac'-a'c" />
+          <FormulaBlock tex="\begin{gathered} \Delta=\begin{vmatrix}a&b\\a'&b'\end{vmatrix}=ab'-a'b \\[6pt] \Delta_x=\begin{vmatrix}c&b\\c'&b'\end{vmatrix}=cb'-c'b \\[6pt] \Delta_y=\begin{vmatrix}a&c\\a'&c'\end{vmatrix}=ac'-a'c \end{gathered}" />
           <Callout variant="success" title="Propriété">
             <ul className="list-disc space-y-2 pl-5">
               <li>

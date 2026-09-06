@@ -148,7 +148,7 @@ export default function Lesson() {
               </svg>
             }
           />
-          <FormulaBlock tex="M'\in(\Delta) \qquad \text{et} \qquad (MM')\parallel(D)" caption="M′ est le point d'intersection de (Δ) avec la parallèle à (D) passant par M" />
+          <FormulaBlock tex="\begin{gathered} M'\in(\Delta) \\ \text{et} \\ (MM')\parallel(D) \end{gathered}" caption="M′ est le point d'intersection de (Δ) avec la parallèle à (D) passant par M" />
           <Callout variant="info" title="Cas particulier — la projection orthogonale">
             Si <Math tex="(D)\perp(\Delta)" />, le projeté <Math tex="M'" /> de <Math tex="M" /> sur{" "}
             <Math tex="(\Delta)" /> parallèlement à <Math tex="(D)" /> est appelé{" "}

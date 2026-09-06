@@ -343,7 +343,7 @@ export default function Lesson() {
             Soient <Math tex="a" /> et <Math tex="b" /> deux entiers naturels avec <Math tex="b>0" />. Il existe un
             unique couple d&apos;entiers naturels <Math tex="(q,r)" /> tels que :
           </DefBox>
-          <FormulaBlock tex="a = bq+r \qquad \text{avec} \qquad 0\le r < b" />
+          <FormulaBlock tex="\begin{gathered} a = bq+r \\ \text{avec}\ 0\le r < b \end{gathered}" />
           <p className="text-sm text-foreground">
             <Math tex="q" /> est le <strong>quotient</strong>, <Math tex="r" /> le <strong>reste</strong>,{" "}
             <Math tex="a" /> le <strong>dividende</strong> et <Math tex="b" /> le <strong>diviseur</strong>.

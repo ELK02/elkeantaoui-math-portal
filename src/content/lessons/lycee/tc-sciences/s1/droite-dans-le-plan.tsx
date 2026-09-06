@@ -466,7 +466,7 @@ export default function Lesson() {
             <Math tex="y" /> dans <Math tex="ax+by+c=0" /> pour obtenir l&apos;<strong>équation réduite</strong> :
           </p>
           <div className="mt-3">
-            <FormulaBlock tex="y=mx+p\qquad\text{avec } m=-\dfrac{a}{b}\ \text{et}\ p=-\dfrac{c}{b}" />
+            <FormulaBlock tex="\begin{gathered} y=mx+p \\ \text{avec } m=-\dfrac{a}{b}\ \text{et}\ p=-\dfrac{c}{b} \end{gathered}" />
           </div>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             <div className="rounded-lg border border-border p-4">

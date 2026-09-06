@@ -229,7 +229,7 @@ export default function Lesson() {
             (en général orthonormé). On appelle <strong>courbe représentative</strong> de <Math tex="f" />, notée{" "}
             <Math tex="(C_f)" />, l&apos;ensemble des points <Math tex="M(x,f(x))" /> où <Math tex="x\in D_f" />.
           </DefBox>
-          <FormulaBlock tex="M(x,y)\in(C_f) \iff x\in D_f \ \text{et}\ y=f(x)" caption="équation cartésienne de la courbe : y = f(x)" />
+          <FormulaBlock tex="\begin{gathered} M(x,y)\in(C_f) \\ \iff x\in D_f \ \text{et}\ y=f(x) \end{gathered}" caption="équation cartésienne de la courbe : y = f(x)" />
         </CourseBlock>
 
         <CourseBlock numeral="III" title="Égalité de deux fonctions">

@@ -242,7 +242,7 @@ export default function Lesson() {
             Soit <Math tex="P(x)" /> un polynôme de degré <Math tex="n" /> (<Math tex="n\in\mathbb{N}^*" />) et{" "}
             <Math tex="a\in\mathbb{R}" />. Il existe un unique polynôme <Math tex="Q(x)" /> tel que
           </Callout>
-          <FormulaBlock tex="P(x) = (x-a)\,Q(x) + P(a) \qquad \text{avec} \qquad \deg(Q)=n-1" />
+          <FormulaBlock tex="\begin{gathered} P(x) = (x-a)\,Q(x) + P(a) \\ \text{avec}\ \deg(Q)=n-1 \end{gathered}" />
           <p className="text-sm text-foreground">
             <Math tex="Q(x)" /> est le <strong>quotient</strong> et <Math tex="P(a)" /> le <strong>reste</strong> de
             la division euclidienne de <Math tex="P(x)" /> par <Math tex="x-a" />.

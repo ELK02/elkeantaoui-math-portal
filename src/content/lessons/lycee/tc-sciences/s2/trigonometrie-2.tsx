@@ -390,7 +390,7 @@ export default function Lesson() {
           </DefBox>
         </div>
         <div className="mt-3">
-          <FormulaBlock tex="\tan x=\tan\alpha \iff x=\alpha+k\pi\ \ (k\in\mathbb Z)" />
+          <FormulaBlock tex="\begin{gathered} \tan x=\tan\alpha \\ \iff x=\alpha+k\pi\ \ (k\in\mathbb Z) \end{gathered}" />
         </div>
 
         <div className="mt-6 rounded-xl border border-border bg-surface p-5 text-sm sm:p-6">

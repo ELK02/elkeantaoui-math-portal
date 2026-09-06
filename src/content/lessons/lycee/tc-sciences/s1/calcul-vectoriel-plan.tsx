@@ -402,7 +402,7 @@ export default function Lesson() {
             <Math tex="1\cdot\vec u=\vec u" />, <Math tex="(-1)\cdot\vec u=-\vec u" />. Si{" "}
             <Math tex="k\vec u=\vec 0" /> alors <Math tex="k=0" /> ou <Math tex="\vec u=\vec 0" />.
           </Callout>
-          <FormulaBlock tex="a(\vec u+\vec v)=a\vec u+a\vec v \qquad (a+b)\vec u=a\vec u+b\vec u \qquad a(b\vec u)=(ab)\vec u" />
+          <FormulaBlock tex="\begin{gathered} a(\vec u+\vec v)=a\vec u+a\vec v \\ (a+b)\vec u=a\vec u+b\vec u \\ a(b\vec u)=(ab)\vec u \end{gathered}" />
           <p className="text-sm text-foreground-muted">
             Conséquences : <Math tex="a(\vec u-\vec v)=a\vec u-a\vec v" /> et{" "}
             <Math tex="(a-b)\vec u=a\vec u-b\vec u" />, pour tous vecteurs <Math tex="\vec u,\vec v" /> et tous réels{" "}
