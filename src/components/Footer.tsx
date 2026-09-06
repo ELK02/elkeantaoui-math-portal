@@ -7,12 +7,12 @@ export function Footer() {
 
   return (
     <footer className="border-t border-border bg-surface">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3 lg:px-8">
-        <div>
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:grid-cols-2 sm:px-6 md:grid-cols-4 lg:px-8">
+        <div className="sm:col-span-2 md:col-span-1">
           <Logo size="md" />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-foreground-muted">
-            Cours de mathématiques clairs, illustrés et corrigés pour le Collège,
-            par le Prof. Lahbib Elkeantaoui.
+            Cours de mathématiques clairs, illustrés et corrigés pour le Collège
+            et le Lycée, par le Prof. Lahbib Elkeantaoui.
           </p>
         </div>
 
@@ -33,6 +33,28 @@ export function Footer() {
 
         <div>
           <h3 className="font-mono text-xs font-semibold uppercase tracking-wider text-foreground-muted">
+            Lycée
+          </h3>
+          <ul className="mt-4 space-y-2 text-sm">
+            <li>
+              <Link
+                href="/lycee/tronc-commun/sciences"
+                className="text-foreground-muted transition-colors hover:text-foreground"
+              >
+                Tronc Commun · Sciences
+              </Link>
+            </li>
+            <li className="text-foreground-muted/60">
+              1ère Bac <span className="font-mono text-[10px] uppercase tracking-wide">(en cours)</span>
+            </li>
+            <li className="text-foreground-muted/60">
+              2ème Bac <span className="font-mono text-[10px] uppercase tracking-wide">(en cours)</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="font-mono text-xs font-semibold uppercase tracking-wider text-foreground-muted">
             Contact
           </h3>
           <ul className="mt-4 space-y-2 text-sm text-foreground-muted">
@@ -42,11 +64,6 @@ export function Footer() {
               <a href="mailto:lahbibelk05@gmail.com" className="text-foreground-muted transition-colors hover:text-foreground">
                 lahbibelk05@gmail.com
               </a>
-            </li>
-            <li className="pt-2">
-              <Link href="/lycee" className="text-foreground-muted transition-colors hover:text-foreground">
-                Cycle Lycée (bientôt disponible)
-              </Link>
             </li>
           </ul>
         </div>
