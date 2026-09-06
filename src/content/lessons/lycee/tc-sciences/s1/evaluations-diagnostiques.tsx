@@ -162,8 +162,8 @@ export default function Lesson() {
                 ] satisfies QcmOption[]} />
               <QcmQuestion id="q12" points={pt} prompt={<><Math tex="(-4)^2" /> est égal à :</>}
                 options={[
-                  { id: "1", content: <Math tex="-4\times 4" />, correct: true },
-                  { id: "2", content: <Math tex="16" /> },
+                  { id: "1", content: <Math tex="-4\times 4" /> },
+                  { id: "2", content: <Math tex="16" />, correct: true },
                   { id: "3", content: <Math tex="-4\times 2" /> },
                 ] satisfies QcmOption[]} />
               <QcmQuestion id="q13" points={pt} prompt={<>Que vaut <Math tex="19^0" /> :</>}
