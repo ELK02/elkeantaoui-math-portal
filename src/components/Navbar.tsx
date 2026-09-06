@@ -17,9 +17,10 @@ const LYCEE_MENUS = [
 const DEFAULT_START_HREF = "/college/3ac";
 
 /** Sur une page d'un niveau (liste de chapitres ou leçon), "Commencer" doit pointer vers
- * les chapitres de ce niveau-là plutôt que vers un niveau fixe. Sur l'accueil ou ailleurs,
- * on garde le niveau par défaut. */
+ * les chapitres de ce niveau-là plutôt que vers un niveau fixe. Sur l'accueil, il doit
+ * plutôt amener à la section "Cycle Collège / Cycle Lycée" (#niveaux) de la page. */
 function getStartHref(pathname: string): string {
+  if (pathname === "/") return "/#niveaux";
   const college = pathname.match(/^\/college\/(1ac|2ac|3ac)(?:\/|$)/);
   if (college) return `/college/${college[1]}`;
   if (pathname.startsWith("/lycee/tronc-commun/sciences")) return "/lycee/tronc-commun/sciences";
