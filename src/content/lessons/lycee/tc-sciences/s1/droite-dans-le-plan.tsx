@@ -832,30 +832,55 @@ export default function Lesson() {
               </div>
             }
             correction={
-              <div className="space-y-2 text-sm">
-                <CorrectionCard n="1">
-                  Deux points entiers vérifiant l&apos;équation : <Math tex="(1,1)" /> (<Math tex="3-5+2=0" />) et{" "}
-                  <Math tex="(-4,-2)" /> (<Math tex="-12+10+2=0" />) — voir figure du cours ci-dessus.
-                </CorrectionCard>
-                <CorrectionCard n="2">
-                  <Math tex="3m^2-5m^2+2=0\Rightarrow-2m^2+2=0\Rightarrow m^2=1" />, d&apos;où{" "}
-                  <strong className="text-green-700"><Math tex="m=1" /> ou <Math tex="m=-1" /></strong>.
-                </CorrectionCard>
-                <CorrectionCard n="3">
-                  Même couple <Math tex="(a,b)=(3,-5)" /> : <Math tex="3(-2)-5(2)+c=0\Rightarrow c=16" />.{" "}
-                  <strong className="text-green-700"><Math tex="\mathcal D':3x-5y+16=0" /></strong>.
-                </CorrectionCard>
-                <CorrectionCard n="4">
-                  Coefficients échangés <Math tex="(5,3)" /> : <Math tex="5(-2)+3(2)+c=0\Rightarrow c=4" />.{" "}
-                  <strong className="text-green-700"><Math tex="\mathcal D'':5x+3y+4=0" /></strong>.
-                </CorrectionCard>
-                <CorrectionCard n="5">
-                  Directions <Math tex="(5,3)" /> et <Math tex="(-3,5)" /> non colinéaires : sécantes. De{" "}
-                  <Math tex="\mathcal D''" /> : <Math tex="y=\dfrac{-4-5x}3" />. Dans <Math tex="\mathcal D" /> :{" "}
-                  <Math tex="9x-5(-4-5x)+6=0\Rightarrow34x+26=0\Rightarrow x=-\dfrac{13}{17}" />, puis{" "}
-                  <Math tex="y=-\dfrac1{17}" />. <strong className="text-green-700">Point <Math tex="\left(-\dfrac{13}{17},-\dfrac1{17}\right)" /></strong>.
-                </CorrectionCard>
-              </div>
+              <Figure
+                text={
+                  <div className="space-y-2 text-sm">
+                    <CorrectionCard n="1">
+                      Deux points entiers vérifiant l&apos;équation : <Math tex="(1,1)" /> (<Math tex="3-5+2=0" />)
+                      et <Math tex="(-4,-2)" /> (<Math tex="-12+10+2=0" />) — voir figure ci-contre.
+                    </CorrectionCard>
+                    <CorrectionCard n="2">
+                      <Math tex="3m^2-5m^2+2=0\Rightarrow-2m^2+2=0\Rightarrow m^2=1" />, d&apos;où{" "}
+                      <strong className="text-green-700"><Math tex="m=1" /> ou <Math tex="m=-1" /></strong>
+                      {" "}(dans les deux cas <Math tex="A=(1,1)" />).
+                    </CorrectionCard>
+                    <CorrectionCard n="3">
+                      Même couple <Math tex="(a,b)=(3,-5)" /> : <Math tex="3(-2)-5(2)+c=0\Rightarrow c=16" />.{" "}
+                      <strong className="text-green-700"><Math tex="\mathcal D':3x-5y+16=0" /></strong>.
+                    </CorrectionCard>
+                    <CorrectionCard n="4">
+                      Coefficients échangés <Math tex="(5,3)" /> : <Math tex="5(-2)+3(2)+c=0\Rightarrow c=4" />.{" "}
+                      <strong className="text-green-700"><Math tex="\mathcal D'':5x+3y+4=0" /></strong>.
+                    </CorrectionCard>
+                    <CorrectionCard n="5">
+                      Directions <Math tex="(5,3)" /> et <Math tex="(-3,5)" /> non colinéaires : sécantes. De{" "}
+                      <Math tex="\mathcal D''" /> : <Math tex="y=\dfrac{-4-5x}3" />. Dans <Math tex="\mathcal D" /> :{" "}
+                      <Math tex="9x-5(-4-5x)+6=0\Rightarrow34x+26=0\Rightarrow x=-\dfrac{13}{17}" />, puis{" "}
+                      <Math tex="y=-\dfrac1{17}" />.{" "}
+                      <strong className="text-green-700">Point <Math tex="\left(-\dfrac{13}{17},-\dfrac1{17}\right)" /></strong>.
+                    </CorrectionCard>
+                  </div>
+                }
+                svg={
+                  <svg viewBox="0 0 260 220" className="h-auto w-full max-w-[280px] text-neutral-700">
+                    {/* (D) : 3x-5y+2=0 */}
+                    <line x1="25" y1="194.1" x2="210.7" y2="82.7" stroke="currentColor" strokeWidth="1.6" />
+                    <text x="214" y="82" fontSize="13" fontStyle="italic">(D)</text>
+                    {/* (D') : parallèle à (D) passant par B */}
+                    <line x1="25" y1="116.5" x2="177.4" y2="25" stroke="#0ea5e9" strokeWidth="1.6" />
+                    <text x="181" y="25" fontSize="13" fontStyle="italic" fill="#0ea5e9">(D&apos;)</text>
+                    {/* (D'') : orthogonale à (D) passant par B */}
+                    <line x1="77.7" y1="47.2" x2="166.4" y2="195" stroke="#e11d48" strokeWidth="1.6" />
+                    <text x="169" y="199" fontSize="13" fontStyle="italic" fill="#e11d48">(D&apos;&apos;)</text>
+                    {/* angle droit entre (D) et (D'') en leur intersection I */}
+                    <polyline points="119.3,124.1 124.6,116.9 132.4,122" fill="none" stroke="currentColor" strokeWidth="1.1" />
+                    <circle cx="177.4" cy="102.6" r="3.2" fill="currentColor" /><text x="183" y="99" fontSize="14" fontWeight="700">A</text>
+                    <circle cx="38.9" cy="185.8" r="3.2" fill="currentColor" /><text x="17" y="202" fontSize="14" fontWeight="700">(-4,-2)</text>
+                    <circle cx="94.3" cy="74.9" r="3.2" fill="#e11d48" /><text x="79" y="65" fontSize="14" fontWeight="700" fill="#e11d48">B</text>
+                    <circle cx="128.5" cy="132" r="3.2" fill="currentColor" /><text x="105" y="147" fontSize="14" fontWeight="700">I</text>
+                  </svg>
+                }
+              />
             }
           />
 
