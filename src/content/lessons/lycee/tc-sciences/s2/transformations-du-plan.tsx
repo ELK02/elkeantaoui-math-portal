@@ -231,7 +231,7 @@ export default function Lesson() {
             <strong>transformation</strong> du plan <Math tex="(P)" />, notée <Math tex="t" /> (ou <Math tex="h" />,{" "}
             <Math tex="S_{(D)}" />, <Math tex="S_O" />, <Math tex="r" />, …).
           </DefBox>
-          <FormulaBlock tex="t:(P)\to (P),\qquad M\mapsto t(M)=M'" />
+          <FormulaBlock tex="\begin{gathered} t:(P)\to (P) \\ M\mapsto t(M)=M' \end{gathered}" />
           <Callout variant="info" title="Vocabulaire">
             <p>
               On dit que <Math tex="t" /> transforme <Math tex="M" /> en <Math tex="M'" />, ou que <Math tex="M'" /> est
