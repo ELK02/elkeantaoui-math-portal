@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
@@ -33,6 +33,18 @@ export function Navbar() {
   const [mobileLyceeOpen, setMobileLyceeOpen] = useState(false);
   const pathname = usePathname();
   const startHref = getStartHref(pathname);
+
+  /** Next.js ne fait pas défiler la page vers un lien du type "/#niveaux" quand on est
+   * déjà sur "/" (seul le hash change) : on gère ce cas nous-mêmes. */
+  function handleStartClick(e: MouseEvent<HTMLAnchorElement>) {
+    if (pathname !== "/" || !startHref.includes("#")) return;
+    const id = startHref.split("#")[1];
+    const el = document.getElementById(id);
+    if (!el) return;
+    e.preventDefault();
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState(null, "", `/#${id}`);
+  }
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-surface/80 backdrop-blur-md">
@@ -89,6 +101,7 @@ export function Navbar() {
 
           <Link
             href={startHref}
+            onClick={handleStartClick}
             className="ml-3 rounded-md bg-navy-900 px-3.5 py-1.5 text-sm font-medium text-white transition-colors hover:bg-navy-800 dark:bg-white dark:text-navy-900 dark:hover:bg-navy-100"
           >
             Commencer →
@@ -173,7 +186,10 @@ export function Navbar() {
 
           <Link
             href={startHref}
-            onClick={() => setMobileOpen(false)}
+            onClick={(e) => {
+              handleStartClick(e);
+              setMobileOpen(false);
+            }}
             className="mt-2 block rounded-md bg-navy-900 px-3 py-2.5 text-center text-sm font-medium text-white dark:bg-white dark:text-navy-900"
           >
             Commencer →
