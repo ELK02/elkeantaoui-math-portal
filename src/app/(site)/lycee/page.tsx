@@ -19,12 +19,12 @@ const OTHER_MENUS = [
   {
     label: "2ème Bac",
     filieres: [
-      { label: "Sc. Physiques" },
-      { label: "SVT" },
-      { label: "Sc. & Tech Électriques" },
-      { label: "Sc. & Tech Mécaniques" },
-      { label: "Sc. Math A" },
-      { label: "Sc. Math B" },
+      { label: "Sc. Physiques", href: "/lycee/2eme-bac/sciences-physiques" },
+      { label: "SVT", href: "/lycee/2eme-bac/svt" },
+      { label: "Sc. & Tech Électriques", href: "/lycee/2eme-bac/sciences-tech-electriques" },
+      { label: "Sc. & Tech Mécaniques", href: "/lycee/2eme-bac/sciences-tech-mecaniques" },
+      { label: "Sc. Math A", href: "/lycee/2eme-bac/sciences-math-a" },
+      { label: "Sc. Math B", href: "/lycee/2eme-bac/sciences-math-b" },
       { label: "Sc. Économiques & Gestion" },
       { label: "Lettres & Sc. Humaines" },
     ],

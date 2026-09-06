@@ -147,3 +147,95 @@ export const PREMIERE_BAC: { filieres: LyceeFiliere[] } = {
     },
   ],
 };
+
+/**
+ * Sciences Physiques, SVT, Sciences et Technologies Électriques et Sciences et
+ * Technologies Mécaniques partagent le même programme de mathématiques en 2ème Bac.
+ */
+const DEUXIEME_BAC_SCIENCES_SEMESTERS: LyceeSemester[] = [
+  {
+    id: "s1",
+    label: "Semestre 1",
+    chapters: [
+      { slug: "evaluations-diagnostiques", title: "Évaluation diagnostique", order: 1 },
+      { slug: "limites-continuite", title: "Limites et Continuité", order: 2 },
+      { slug: "derivabilite-etude-fonctions", title: "Dérivabilité et Étude des fonctions", order: 3 },
+      { slug: "suites-numeriques", title: "Suites numériques", order: 4 },
+      { slug: "fonctions-primitives", title: "Fonctions primitives", order: 5 },
+      { slug: "fonction-logarithme", title: "La fonction logarithme", order: 6 },
+      { slug: "nombres-complexes-1", title: "Les nombres complexes (Partie 1)", order: 7 },
+    ],
+  },
+  {
+    id: "s2",
+    label: "Semestre 2",
+    chapters: [
+      { slug: "fonction-exponentielle", title: "La fonction Exponentielle", order: 1 },
+      { slug: "nombres-complexes-2", title: "Les nombres complexes (Partie 2)", order: 2 },
+      { slug: "calcul-integral", title: "Calcul intégral", order: 3 },
+      { slug: "equations-differentielles", title: "Équations différentielles", order: 4 },
+      { slug: "geometrie-espace", title: "Géométrie dans l'espace", order: 5 },
+      { slug: "denombrement-probabilites", title: "Dénombrement et probabilités", order: 6 },
+    ],
+  },
+];
+
+/** Sciences Mathématiques A et B partagent le même programme de mathématiques en 2ème Bac. */
+const DEUXIEME_BAC_SM_SEMESTERS: LyceeSemester[] = [
+  {
+    id: "s1",
+    label: "Semestre 1",
+    chapters: [
+      { slug: "evaluations-diagnostiques", title: "Évaluation diagnostique", order: 1 },
+      { slug: "limites-continuite", title: "Limites et Continuité", order: 2 },
+      { slug: "derivabilite-etude-fonctions", title: "Dérivabilité et Etude des fonctions", order: 3 },
+      { slug: "theoreme-accroissements-finis", title: "Théorème des Accroissements Finis (TAF)", order: 4 },
+      { slug: "suites-numeriques", title: "Suites numériques", order: 5 },
+      { slug: "fonction-logarithme", title: "La fonction logarithme", order: 6 },
+      { slug: "fonction-exponentielle", title: "La fonction Exponentielle", order: 7 },
+      { slug: "equations-differentielles", title: "Équations différentielles", order: 8 },
+      { slug: "nombres-complexes-1", title: "Nombres complexes (Partie 1)", order: 9 },
+    ],
+  },
+  {
+    id: "s2",
+    label: "Semestre 2",
+    chapters: [
+      { slug: "nombres-complexes-2", title: "Nombres complexes (Partie 2)", order: 1 },
+      { slug: "fonctions-primitives-calcul-integral", title: "Fonctions primitives et calcul intégral", order: 2 },
+      { slug: "arithmetique", title: "Arithmétique", order: 3 },
+      { slug: "structures-algebriques", title: "Structures algébriques", order: 4 },
+      { slug: "probabilites", title: "Probabilités", order: 5 },
+      { slug: "espaces-vectoriels", title: "Espaces vectoriels", order: 6 },
+    ],
+  },
+];
+
+/**
+ * 2ème Année Baccalauréat : Sciences Physiques, SVT, Sciences et Technologies
+ * Électriques et Sciences et Technologies Mécaniques (13 chapitres chacune), puis
+ * Sciences Mathématiques A et B (15 chapitres chacune), toutes avec l'évaluation
+ * diagnostique comme premier chapitre du semestre 1.
+ */
+export const DEUXIEME_BAC: { filieres: LyceeFiliere[] } = {
+  filieres: [
+    { slug: "sciences-physiques", label: "Sciences Physiques", semesters: DEUXIEME_BAC_SCIENCES_SEMESTERS },
+    {
+      slug: "svt",
+      label: "Sciences de la Vie et de la Terre",
+      semesters: DEUXIEME_BAC_SCIENCES_SEMESTERS,
+    },
+    {
+      slug: "sciences-tech-electriques",
+      label: "Sciences et Technologies Électriques",
+      semesters: DEUXIEME_BAC_SCIENCES_SEMESTERS,
+    },
+    {
+      slug: "sciences-tech-mecaniques",
+      label: "Sciences et Technologies Mécaniques",
+      semesters: DEUXIEME_BAC_SCIENCES_SEMESTERS,
+    },
+    { slug: "sciences-math-a", label: "Sciences Mathématiques A", semesters: DEUXIEME_BAC_SM_SEMESTERS },
+    { slug: "sciences-math-b", label: "Sciences Mathématiques B", semesters: DEUXIEME_BAC_SM_SEMESTERS },
+  ],
+};

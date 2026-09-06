@@ -16,6 +16,7 @@ const LYCEE_IN_PROGRESS = [
     short: "2BAC",
     label: "2ème Bac",
     description: "Toutes filières : Sc. Physiques, SVT, Sc. Math A/B, Lettres & Sc. Humaines, et plus.",
+    href: "/lycee/2eme-bac",
   },
 ];
 
