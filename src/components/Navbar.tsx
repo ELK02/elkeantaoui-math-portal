@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
@@ -13,10 +14,24 @@ const LYCEE_MENUS = [
   { label: "2ème Bac" },
 ];
 
+const DEFAULT_START_HREF = "/college/3ac";
+
+/** Sur une page d'un niveau (liste de chapitres ou leçon), "Commencer" doit pointer vers
+ * les chapitres de ce niveau-là plutôt que vers un niveau fixe. Sur l'accueil ou ailleurs,
+ * on garde le niveau par défaut. */
+function getStartHref(pathname: string): string {
+  const college = pathname.match(/^\/college\/(1ac|2ac|3ac)(?:\/|$)/);
+  if (college) return `/college/${college[1]}`;
+  if (pathname.startsWith("/lycee/tronc-commun/sciences")) return "/lycee/tronc-commun/sciences";
+  return DEFAULT_START_HREF;
+}
+
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileCollegeOpen, setMobileCollegeOpen] = useState(false);
   const [mobileLyceeOpen, setMobileLyceeOpen] = useState(false);
+  const pathname = usePathname();
+  const startHref = getStartHref(pathname);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-surface/80 backdrop-blur-md">
@@ -72,7 +87,7 @@ export function Navbar() {
           </div>
 
           <Link
-            href="/college/3ac"
+            href={startHref}
             className="ml-3 rounded-md bg-navy-900 px-3.5 py-1.5 text-sm font-medium text-white transition-colors hover:bg-navy-800 dark:bg-white dark:text-navy-900 dark:hover:bg-navy-100"
           >
             Commencer →
@@ -156,7 +171,7 @@ export function Navbar() {
           )}
 
           <Link
-            href="/college/3ac"
+            href={startHref}
             onClick={() => setMobileOpen(false)}
             className="mt-2 block rounded-md bg-navy-900 px-3 py-2.5 text-center text-sm font-medium text-white dark:bg-white dark:text-navy-900"
           >
