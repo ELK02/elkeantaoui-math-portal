@@ -434,25 +434,54 @@ export default function Lesson() {
           <ExerciseCard
             id="1" index={1} title="Un quadrilatère droit en D, médiatrice et parallélisme"
             items={
-              <div className="space-y-2 text-sm text-foreground">
-                <p>
-                  <Math tex="ABDC" /> un quadrilatère droit en <Math tex="D" />. <Math tex="I" /> et <Math tex="J" />{" "}
-                  sont les milieux respectifs de <Math tex="[AC]" /> et <Math tex="[BC]" />. La droite parallèle à{" "}
-                  <Math tex="(BD)" /> passant par <Math tex="J" /> coupe <Math tex="[DC]" /> en <Math tex="K" />.
-                </p>
-                <ol className="list-decimal space-y-1 pl-5">
-                  <li>
-                    Montrer que <Math tex="K" /> est le milieu de <Math tex="[CD]" />.
-                  </li>
-                  <li>
-                    Montrer que <Math tex="(KJ)" /> est la médiatrice de <Math tex="[CD]" />. En déduire la nature du
-                    triangle <Math tex="JDC" />.
-                  </li>
-                  <li>
-                    En déduire que <Math tex="(IK)" /> est parallèle à <Math tex="(AD)" />.
-                  </li>
-                </ol>
-              </div>
+              <Figure
+                text={
+                  <div className="space-y-2 text-sm text-foreground">
+                    <p>
+                      <Math tex="ABDC" /> un quadrilatère droit en <Math tex="D" />. <Math tex="I" /> et{" "}
+                      <Math tex="J" /> sont les milieux respectifs de <Math tex="[AC]" /> et <Math tex="[BC]" />. La
+                      droite parallèle à <Math tex="(BD)" /> passant par <Math tex="J" /> coupe <Math tex="[DC]" />{" "}
+                      en <Math tex="K" />.
+                    </p>
+                    <ol className="list-decimal space-y-1 pl-5">
+                      <li>
+                        Montrer que <Math tex="K" /> est le milieu de <Math tex="[CD]" />.
+                      </li>
+                      <li>
+                        Montrer que <Math tex="(KJ)" /> est la médiatrice de <Math tex="[CD]" />. En déduire la
+                        nature du triangle <Math tex="JDC" />.
+                      </li>
+                      <li>
+                        En déduire que <Math tex="(IK)" /> est parallèle à <Math tex="(AD)" />.
+                      </li>
+                    </ol>
+                  </div>
+                }
+                svg={
+                  <svg viewBox="0 0 220 220" className="h-auto w-full max-w-[240px] text-neutral-700">
+                    <ArrowDefs id="pex1" />
+                    <polygon points="25,25 195,195 81.7,195 81.7,110" fill="#4f46e5" fillOpacity="0.05" stroke="currentColor" strokeWidth="1.4" />
+                    {/* angle droit en D */}
+                    <polyline points="81.7,183 93.7,183 93.7,195" fill="none" stroke="currentColor" strokeWidth="1.2" />
+                    {/* AD, en pointillés, pour comparer avec (IK) */}
+                    <line x1="25" y1="25" x2="81.7" y2="195" stroke="currentColor" strokeWidth="1.1" strokeDasharray="4 3" strokeOpacity="0.55" />
+                    {/* (KJ), médiatrice de [CD] */}
+                    <line x1="81.7" y1="152.5" x2="138.3" y2="152.5" stroke="#0ea5e9" strokeWidth="2" />
+                    {/* (IK) parallèle à (AD) */}
+                    <line x1="53.3" y1="67.5" x2="81.7" y2="152.5" stroke="#e11d48" strokeWidth="2" />
+                    {/* petites marques de milieu sur [AC] en I et [BC] en J */}
+                    <line x1="49.5" y1="61.5" x2="57" y2="73.5" stroke="currentColor" strokeWidth="1.3" />
+                    <line x1="134.5" y1="146.5" x2="142" y2="158.5" stroke="currentColor" strokeWidth="1.3" />
+                    <circle cx="25" cy="25" r="3.2" fill="currentColor" /><text x="9" y="18" fontSize="14" fontWeight="700">A</text>
+                    <circle cx="195" cy="195" r="3.2" fill="currentColor" /><text x="199" y="212" fontSize="14" fontWeight="700">B</text>
+                    <circle cx="81.7" cy="195" r="3.2" fill="currentColor" /><text x="87" y="212" fontSize="14" fontWeight="700">D</text>
+                    <circle cx="81.7" cy="110" r="3.2" fill="currentColor" /><text x="87" y="107" fontSize="14" fontWeight="700">C</text>
+                    <circle cx="53.3" cy="67.5" r="3.2" fill="currentColor" /><text x="29" y="63" fontSize="14" fontWeight="700">I</text>
+                    <circle cx="138.3" cy="152.5" r="3.2" fill="#0ea5e9" /><text x="144" y="149" fontSize="14" fontWeight="700" fill="#0ea5e9">J</text>
+                    <circle cx="81.7" cy="152.5" r="3.2" fill="#e11d48" /><text x="60" y="150" fontSize="14" fontWeight="700" fill="#e11d48">K</text>
+                  </svg>
+                }
+              />
             }
             correction={
               <div className="space-y-2 text-sm text-foreground">
@@ -482,31 +511,53 @@ export default function Lesson() {
           <ExerciseCard
             id="2" index={2} title="Deux droites de projection, un même point E"
             items={
-              <div className="space-y-2 text-sm text-foreground">
-                <p>
-                  Soit <Math tex="ABC" /> un triangle et <Math tex="D,M,N" /> des points tels que{" "}
-                  <Math tex="\overrightarrow{DB}=-\tfrac23\overrightarrow{BC}" />,{" "}
-                  <Math tex="\overrightarrow{DM}=2\overrightarrow{DA}" />, et{" "}
-                  <Math tex="4\overrightarrow{BN}+3\overrightarrow{MB}=\vec 0" />.
-                </p>
-                <ol className="list-decimal space-y-1 pl-5">
-                  <li>Construire la figure.</li>
-                  <li>
-                    Montrer que <Math tex="\overrightarrow{MB}=\tfrac43\overrightarrow{AB}+\tfrac23\overrightarrow{AC}" />{" "}
-                    et <Math tex="\overrightarrow{NB}=\overrightarrow{AB}+\tfrac12\overrightarrow{AC}" />.
-                  </li>
-                  <li>
-                    Prouver que les points <Math tex="A,C,N" /> sont alignés.
-                  </li>
-                  <li>
-                    Soit <Math tex="E" /> un point de <Math tex="[AB]" />, différent de <Math tex="A" /> et de{" "}
-                    <Math tex="B" />. Le point <Math tex="I" /> est le projeté de <Math tex="E" /> sur{" "}
-                    <Math tex="(BD)" /> parallèlement à <Math tex="(AD)" />. Le point <Math tex="J" /> est le
-                    projeté de <Math tex="E" /> sur <Math tex="(BN)" /> parallèlement à <Math tex="(AN)" />. Prouver
-                    que les droites <Math tex="(IJ)" /> et <Math tex="(DN)" /> sont parallèles.
-                  </li>
-                </ol>
-              </div>
+              <Figure
+                text={
+                  <div className="space-y-2 text-sm text-foreground">
+                    <p>
+                      Soit <Math tex="ABC" /> un triangle et <Math tex="D,M,N" /> des points tels que{" "}
+                      <Math tex="\overrightarrow{DB}=-\tfrac23\overrightarrow{BC}" />,{" "}
+                      <Math tex="\overrightarrow{DM}=2\overrightarrow{DA}" />, et{" "}
+                      <Math tex="4\overrightarrow{BN}+3\overrightarrow{MB}=\vec 0" />.
+                    </p>
+                    <ol className="list-decimal space-y-1 pl-5">
+                      <li>Construire la figure.</li>
+                      <li>
+                        Montrer que <Math tex="\overrightarrow{MB}=\tfrac43\overrightarrow{AB}+\tfrac23\overrightarrow{AC}" />{" "}
+                        et <Math tex="\overrightarrow{NB}=\overrightarrow{AB}+\tfrac12\overrightarrow{AC}" />.
+                      </li>
+                      <li>
+                        Prouver que les points <Math tex="A,C,N" /> sont alignés.
+                      </li>
+                      <li>
+                        Soit <Math tex="E" /> un point de <Math tex="[AB]" />, différent de <Math tex="A" /> et de{" "}
+                        <Math tex="B" />. Le point <Math tex="I" /> est le projeté de <Math tex="E" /> sur{" "}
+                        <Math tex="(BD)" /> parallèlement à <Math tex="(AD)" />. Le point <Math tex="J" /> est le
+                        projeté de <Math tex="E" /> sur <Math tex="(BN)" /> parallèlement à <Math tex="(AN)" />.
+                        Prouver que les droites <Math tex="(IJ)" /> et <Math tex="(DN)" /> sont parallèles.
+                      </li>
+                    </ol>
+                  </div>
+                }
+                svg={
+                  <svg viewBox="0 0 240 208.3" className="h-auto w-full max-w-[260px] text-neutral-700">
+                    <ArrowDefs id="pex2" />
+                    <ArrowDefs id="pex2blue" color="#0ea5e9" />
+                    {/* triangle ABC, D sur [BC] */}
+                    <polygon points="88.3,120 215,120 120,25" fill="#4f46e5" fillOpacity="0.05" stroke="currentColor" strokeWidth="1.4" />
+                    {/* D, A, M alignés (A milieu de [DM]) */}
+                    <line x1="151.7" y1="56.7" x2="25" y2="183.3" stroke="currentColor" strokeWidth="1.2" strokeDasharray="4 3" strokeOpacity="0.6" markerEnd="url(#pex2)" />
+                    {/* A, C, N alignés : le résultat de la question 3 */}
+                    <line x1="72.5" y1="167.5" x2="120" y2="25" stroke="#0ea5e9" strokeWidth="2" markerEnd="url(#pex2blue)" />
+                    <circle cx="88.3" cy="120" r="3.2" fill="currentColor" /><text x="70" y="116" fontSize="14" fontWeight="700">A</text>
+                    <circle cx="215" cy="120" r="3.2" fill="currentColor" /><text x="221" y="124" fontSize="14" fontWeight="700">B</text>
+                    <circle cx="120" cy="25" r="3.2" fill="currentColor" /><text x="126" y="20" fontSize="14" fontWeight="700">C</text>
+                    <circle cx="151.7" cy="56.7" r="3.2" fill="currentColor" /><text x="157" y="52" fontSize="14" fontWeight="700">D</text>
+                    <circle cx="25" cy="183.3" r="3.2" fill="currentColor" /><text x="4" y="200" fontSize="14" fontWeight="700">M</text>
+                    <circle cx="72.5" cy="167.5" r="3.2" fill="#0ea5e9" /><text x="51" y="184" fontSize="14" fontWeight="700" fill="#0ea5e9">N</text>
+                  </svg>
+                }
+              />
             }
             correction={
               <div className="space-y-2 text-sm text-foreground">
@@ -555,16 +606,35 @@ export default function Lesson() {
           <ExerciseCard
             id="3" index={3} title="Triangle isocèle : la somme EM + MD est constante"
             items={
-              <div className="space-y-2 text-sm text-foreground">
-                <p>
-                  Soit <Math tex="ABC" /> un triangle isocèle en <Math tex="A" /> (<Math tex="AB=AC=a" />) et{" "}
-                  <Math tex="M" /> un point de <Math tex="[BC]" />, différent de <Math tex="B" /> et de{" "}
-                  <Math tex="C" />. Le point <Math tex="D" /> est le projeté de <Math tex="M" /> sur{" "}
-                  <Math tex="(AC)" /> parallèlement à <Math tex="(AB)" />. Le point <Math tex="E" /> est le projeté
-                  de <Math tex="M" /> sur <Math tex="(AB)" /> parallèlement à <Math tex="(AC)" />. Montrer que{" "}
-                  <Math tex="EM+MD=a" />.
-                </p>
-              </div>
+              <Figure
+                text={
+                  <div className="space-y-2 text-sm text-foreground">
+                    <p>
+                      Soit <Math tex="ABC" /> un triangle isocèle en <Math tex="A" /> (<Math tex="AB=AC=a" />) et{" "}
+                      <Math tex="M" /> un point de <Math tex="[BC]" />, différent de <Math tex="B" /> et de{" "}
+                      <Math tex="C" />. Le point <Math tex="D" /> est le projeté de <Math tex="M" /> sur{" "}
+                      <Math tex="(AC)" /> parallèlement à <Math tex="(AB)" />. Le point <Math tex="E" /> est le
+                      projeté de <Math tex="M" /> sur <Math tex="(AB)" /> parallèlement à <Math tex="(AC)" />.
+                      Montrer que <Math tex="EM+MD=a" />.
+                    </p>
+                  </div>
+                }
+                svg={
+                  <svg viewBox="0 0 240 176.7" className="h-auto w-full max-w-[260px] text-neutral-700">
+                    <ArrowDefs id="pex3" />
+                    {/* triangle isocèle ABC */}
+                    <polygon points="120,25 25,151.7 215,151.7" fill="none" stroke="currentColor" strokeWidth="1.4" />
+                    {/* parallélogramme AEMD */}
+                    <polygon points="120,25 63,101 101,151.7 158,75.7" fill="#0ea5e9" fillOpacity="0.1" stroke="#0ea5e9" strokeWidth="1.6" />
+                    <circle cx="120" cy="25" r="3.2" fill="currentColor" /><text x="126" y="20" fontSize="14" fontWeight="700">A</text>
+                    <circle cx="25" cy="151.7" r="3.2" fill="currentColor" /><text x="7" y="168" fontSize="14" fontWeight="700">B</text>
+                    <circle cx="215" cy="151.7" r="3.2" fill="currentColor" /><text x="221" y="168" fontSize="14" fontWeight="700">C</text>
+                    <circle cx="101" cy="151.7" r="3.2" fill="#e11d48" /><text x="95" y="168" fontSize="14" fontWeight="700" fill="#e11d48">M</text>
+                    <circle cx="158" cy="75.7" r="3.2" fill="#0ea5e9" /><text x="164" y="72" fontSize="14" fontWeight="700" fill="#0ea5e9">D</text>
+                    <circle cx="63" cy="101" r="3.2" fill="#0ea5e9" /><text x="39" y="98" fontSize="14" fontWeight="700" fill="#0ea5e9">E</text>
+                  </svg>
+                }
+              />
             }
             correction={
               <div className="space-y-2 text-sm text-foreground">
@@ -604,28 +674,57 @@ export default function Lesson() {
           <ExerciseCard
             id="4" index={4} title="Projections de M et N, et du milieu de [MN']"
             items={
-              <div className="space-y-2 text-sm text-foreground">
-                <p>
-                  Soit <Math tex="ABC" /> un triangle et <Math tex="M,N" /> deux points tels que{" "}
-                  <Math tex="\overrightarrow{AN}+2\overrightarrow{AB}=\vec0" /> et{" "}
-                  <Math tex="3\overrightarrow{AM}=\overrightarrow{AB}" />. Soient <Math tex="M'" /> et{" "}
-                  <Math tex="N'" /> leurs projections sur <Math tex="(AC)" /> parallèlement à <Math tex="(BC)" />.
-                </p>
-                <ol className="list-decimal space-y-1 pl-5">
-                  <li>
-                    Montrer que <Math tex="\overrightarrow{NN'}=-2\overrightarrow{BC}" /> et{" "}
-                    <Math tex="\overrightarrow{MM'}=\tfrac13\overrightarrow{BC}" />.
-                  </li>
-                  <li>
-                    Déterminer la projection de <Math tex="[MN']" /> sur <Math tex="(AC)" /> parallèlement à{" "}
-                    <Math tex="(BC)" />.
-                  </li>
-                  <li>
-                    Soit <Math tex="I" /> le milieu de <Math tex="[MN']" />. Déterminer la projection de{" "}
-                    <Math tex="I" /> sur <Math tex="(AC)" /> parallèlement à <Math tex="(BC)" />.
-                  </li>
-                </ol>
-              </div>
+              <Figure
+                text={
+                  <div className="space-y-2 text-sm text-foreground">
+                    <p>
+                      Soit <Math tex="ABC" /> un triangle et <Math tex="M,N" /> deux points tels que{" "}
+                      <Math tex="\overrightarrow{AN}+2\overrightarrow{AB}=\vec0" /> et{" "}
+                      <Math tex="3\overrightarrow{AM}=\overrightarrow{AB}" />. Soient <Math tex="M'" /> et{" "}
+                      <Math tex="N'" /> leurs projections sur <Math tex="(AC)" /> parallèlement à{" "}
+                      <Math tex="(BC)" />.
+                    </p>
+                    <ol className="list-decimal space-y-1 pl-5">
+                      <li>
+                        Montrer que <Math tex="\overrightarrow{NN'}=-2\overrightarrow{BC}" /> et{" "}
+                        <Math tex="\overrightarrow{MM'}=\tfrac13\overrightarrow{BC}" />.
+                      </li>
+                      <li>
+                        Déterminer la projection de <Math tex="[MN']" /> sur <Math tex="(AC)" /> parallèlement à{" "}
+                        <Math tex="(BC)" />.
+                      </li>
+                      <li>
+                        Soit <Math tex="I" /> le milieu de <Math tex="[MN']" />. Déterminer la projection de{" "}
+                        <Math tex="I" /> sur <Math tex="(AC)" /> parallèlement à <Math tex="(BC)" />.
+                      </li>
+                    </ol>
+                  </div>
+                }
+                svg={
+                  <svg viewBox="0 0 260 207.5" className="h-auto w-full max-w-[280px] text-neutral-700">
+                    <ArrowDefs id="pex4" />
+                    {/* triangle ABC */}
+                    <polygon points="165,77.5 235,77.5 182.5,25" fill="#4f46e5" fillOpacity="0.05" stroke="currentColor" strokeWidth="1.4" />
+                    {/* (AB), portant N, M, A, B */}
+                    <line x1="25" y1="77.5" x2="235" y2="77.5" stroke="currentColor" strokeWidth="1.3" />
+                    {/* (AC) prolongée, portant N', A, M', C */}
+                    <line x1="130" y1="182.5" x2="182.5" y2="25" stroke="currentColor" strokeWidth="1.3" />
+                    {/* projections, parallèles à (BC) */}
+                    <line x1="188.3" y1="77.5" x2="170.8" y2="60" stroke="#0ea5e9" strokeWidth="1.8" strokeDasharray="4 3" />
+                    <line x1="25" y1="77.5" x2="130" y2="182.5" stroke="#0ea5e9" strokeWidth="1.8" strokeDasharray="4 3" />
+                    <line x1="159.2" y1="130" x2="150.4" y2="121.2" stroke="#e11d48" strokeWidth="1.8" strokeDasharray="4 3" />
+                    <circle cx="165" cy="77.5" r="3.2" fill="currentColor" /><text x="147" y="73" fontSize="14" fontWeight="700">A</text>
+                    <circle cx="235" cy="77.5" r="3.2" fill="currentColor" /><text x="241" y="81" fontSize="14" fontWeight="700">B</text>
+                    <circle cx="182.5" cy="25" r="3.2" fill="currentColor" /><text x="188" y="20" fontSize="14" fontWeight="700">C</text>
+                    <circle cx="188.3" cy="77.5" r="3.2" fill="#0ea5e9" /><text x="194" y="81" fontSize="14" fontWeight="700" fill="#0ea5e9">M</text>
+                    <circle cx="25" cy="77.5" r="3.2" fill="#0ea5e9" /><text x="4" y="73" fontSize="14" fontWeight="700" fill="#0ea5e9">N</text>
+                    <circle cx="170.8" cy="60" r="3.2" fill="#0ea5e9" /><text x="176" y="56" fontSize="14" fontWeight="700" fill="#0ea5e9">M&apos;</text>
+                    <circle cx="130" cy="182.5" r="3.2" fill="#0ea5e9" /><text x="109" y="198" fontSize="14" fontWeight="700" fill="#0ea5e9">N&apos;</text>
+                    <circle cx="159.2" cy="130" r="3.2" fill="#e11d48" /><text x="137" y="134" fontSize="14" fontWeight="700" fill="#e11d48">I</text>
+                    <circle cx="150.4" cy="121.2" r="3.2" fill="#e11d48" /><text x="127" y="117" fontSize="14" fontWeight="700" fill="#e11d48">P</text>
+                  </svg>
+                }
+              />
             }
             correction={
               <div className="space-y-2 text-sm text-foreground">
@@ -678,28 +777,59 @@ export default function Lesson() {
           <ExerciseCard
             id="5" index={5} title="Construction : projeter, translater, comparer des longueurs"
             items={
-              <div className="space-y-2 text-sm text-foreground">
-                <p>
-                  <Math tex="(D)" /> et <Math tex="(\Delta)" /> deux droites sécantes ; <Math tex="A" /> et{" "}
-                  <Math tex="B" /> deux points distincts, n&apos;appartenant pas à <Math tex="(D)" />, tels que{" "}
-                  <Math tex="(AB)" /> ne soit parallèle ni à <Math tex="(D)" /> ni à <Math tex="(\Delta)" />.
-                </p>
-                <ol className="list-decimal space-y-1 pl-5">
-                  <li>
-                    Construire <Math tex="A'" /> et <Math tex="B'" />, projetés respectifs de <Math tex="A" /> et{" "}
-                    <Math tex="B" /> sur <Math tex="(D)" /> parallèlement à <Math tex="(\Delta)" />.
-                  </li>
-                  <li>
-                    Construire <Math tex="C" /> tel que <Math tex="\overrightarrow{AC}=\overrightarrow{A'B'}" />.
-                  </li>
-                  <li>
-                    Construire <Math tex="H" />, le projeté orthogonal de <Math tex="A" /> sur <Math tex="(BB')" />.
-                    Quel est le projeté du segment <Math tex="[AH]" /> sur <Math tex="(D)" /> parallèlement à{" "}
-                    <Math tex="(\Delta)" /> ? Déterminer un point <Math tex="E" /> tel que le segment{" "}
-                    <Math tex="[A'B']" /> soit le projeté de <Math tex="[AE]" />, avec <Math tex="AE>A'B'" />.
-                  </li>
-                </ol>
-              </div>
+              <Figure
+                text={
+                  <div className="space-y-2 text-sm text-foreground">
+                    <p>
+                      <Math tex="(D)" /> et <Math tex="(\Delta)" /> deux droites sécantes ; <Math tex="A" /> et{" "}
+                      <Math tex="B" /> deux points distincts, n&apos;appartenant pas à <Math tex="(D)" />, tels que{" "}
+                      <Math tex="(AB)" /> ne soit parallèle ni à <Math tex="(D)" /> ni à <Math tex="(\Delta)" />.
+                    </p>
+                    <ol className="list-decimal space-y-1 pl-5">
+                      <li>
+                        Construire <Math tex="A'" /> et <Math tex="B'" />, projetés respectifs de <Math tex="A" /> et{" "}
+                        <Math tex="B" /> sur <Math tex="(D)" /> parallèlement à <Math tex="(\Delta)" />.
+                      </li>
+                      <li>
+                        Construire <Math tex="C" /> tel que <Math tex="\overrightarrow{AC}=\overrightarrow{A'B'}" />.
+                      </li>
+                      <li>
+                        Construire <Math tex="H" />, le projeté orthogonal de <Math tex="A" /> sur{" "}
+                        <Math tex="(BB')" />. Quel est le projeté du segment <Math tex="[AH]" /> sur{" "}
+                        <Math tex="(D)" /> parallèlement à <Math tex="(\Delta)" /> ? Déterminer un point{" "}
+                        <Math tex="E" /> tel que le segment <Math tex="[A'B']" /> soit le projeté de{" "}
+                        <Math tex="[AE]" />, avec <Math tex="AE>A'B'" />.
+                      </li>
+                    </ol>
+                  </div>
+                }
+                svg={
+                  <svg viewBox="0 0 260 200" className="h-auto w-full max-w-[280px] text-neutral-700">
+                    <ArrowDefs id="pex5" />
+                    {/* (D) et (Delta), sécantes */}
+                    <line x1="25" y1="109" x2="235" y2="109" stroke="currentColor" strokeWidth="1.4" />
+                    <text x="238" y="113" fontSize="13" fontStyle="italic">(D)</text>
+                    <line x1="67" y1="130" x2="172" y2="25" stroke="currentColor" strokeWidth="1.4" />
+                    <text x="176" y="21" fontSize="13" fontStyle="italic">(Δ)</text>
+                    {/* projections parallèles à (Delta) : A->A', B->B' */}
+                    <line x1="109" y1="46" x2="46" y2="109" stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="4 3" />
+                    <line x1="193" y1="67" x2="151" y2="109" stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="4 3" />
+                    {/* (BB') prolongée jusqu'à E */}
+                    <line x1="151" y1="109" x2="235" y2="25" stroke="#e11d48" strokeWidth="1.6" />
+                    {/* AC = A'B' (translation) */}
+                    <line x1="109" y1="46" x2="214" y2="46" stroke="currentColor" strokeWidth="1.3" strokeDasharray="2 3" strokeOpacity="0.6" />
+                    {/* angle droit en H */}
+                    <polyline points="153.8,90.5 161,98 152.5,105.6" fill="none" stroke="currentColor" strokeWidth="1.1" />
+                    <circle cx="109" cy="46" r="3.2" fill="currentColor" /><text x="93" y="41" fontSize="14" fontWeight="700">A</text>
+                    <circle cx="193" cy="67" r="3.2" fill="currentColor" /><text x="199" y="63" fontSize="14" fontWeight="700">B</text>
+                    <circle cx="46" cy="109" r="3.2" fill="#0ea5e9" /><text x="25" y="125" fontSize="14" fontWeight="700" fill="#0ea5e9">A&apos;</text>
+                    <circle cx="151" cy="109" r="3.2" fill="#0ea5e9" /><text x="146" y="125" fontSize="14" fontWeight="700" fill="#0ea5e9">B&apos;</text>
+                    <circle cx="214" cy="46" r="3.2" fill="currentColor" /><text x="220" y="41" fontSize="14" fontWeight="700">C</text>
+                    <circle cx="161.5" cy="98.5" r="3.2" fill="currentColor" /><text x="164" y="93" fontSize="14" fontWeight="700">H</text>
+                    <circle cx="235" cy="25" r="3.2" fill="#e11d48" /><text x="239" y="20" fontSize="14" fontWeight="700" fill="#e11d48">E</text>
+                  </svg>
+                }
+              />
             }
             correction={
               <div className="space-y-2 text-sm text-foreground">
@@ -746,30 +876,58 @@ export default function Lesson() {
           <ExerciseCard
             id="6" index={6} title="Quatre points équidistants et deux droites parallèles"
             items={
-              <div className="space-y-2 text-sm text-foreground">
-                <p>
-                  Soient <Math tex="A,B,C,D" /> quatre points du plan tels que <Math tex="C" /> soit le milieu de{" "}
-                  <Math tex="[BD]" /> et <Math tex="B" /> le milieu de <Math tex="[AC]" />. Soit <Math tex="E" />{" "}
-                  un point tel que <Math tex="E\notin(AB)" />. La droite passant par <Math tex="D" /> et parallèle à{" "}
-                  <Math tex="(CE)" /> coupe <Math tex="(BE)" /> en <Math tex="B'" />. La droite passant par{" "}
-                  <Math tex="A" /> et parallèle à <Math tex="(BE)" /> coupe <Math tex="(CE)" /> en <Math tex="C'" />{" "}
-                  et coupe <Math tex="(DB')" /> en <Math tex="F" />.
-                </p>
-                <ol className="list-decimal space-y-1 pl-5">
-                  <li>
-                    Calculer <Math tex="\dfrac{DB'}{DF}" /> et <Math tex="\dfrac{FC'}{FA}" />.
-                  </li>
-                  <li>
-                    Montrer que <Math tex="(B'C')" /> et <Math tex="(AD)" /> sont parallèles.
-                  </li>
-                  <li>
-                    Déduire la valeur de <Math tex="\dfrac{C'B'}{AD}" />.
-                  </li>
-                  <li>
-                    Montrer que <Math tex="\dfrac{EB}{EC}=\dfrac{FA}{FD}" />.
-                  </li>
-                </ol>
-              </div>
+              <Figure
+                text={
+                  <div className="space-y-2 text-sm text-foreground">
+                    <p>
+                      Soient <Math tex="A,B,C,D" /> quatre points du plan tels que <Math tex="C" /> soit le milieu
+                      de <Math tex="[BD]" /> et <Math tex="B" /> le milieu de <Math tex="[AC]" />. Soit{" "}
+                      <Math tex="E" /> un point tel que <Math tex="E\notin(AB)" />. La droite passant par{" "}
+                      <Math tex="D" /> et parallèle à <Math tex="(CE)" /> coupe <Math tex="(BE)" /> en{" "}
+                      <Math tex="B'" />. La droite passant par <Math tex="A" /> et parallèle à <Math tex="(BE)" />{" "}
+                      coupe <Math tex="(CE)" /> en <Math tex="C'" /> et coupe <Math tex="(DB')" /> en{" "}
+                      <Math tex="F" />.
+                    </p>
+                    <ol className="list-decimal space-y-1 pl-5">
+                      <li>
+                        Calculer <Math tex="\dfrac{DB'}{DF}" /> et <Math tex="\dfrac{FC'}{FA}" />.
+                      </li>
+                      <li>
+                        Montrer que <Math tex="(B'C')" /> et <Math tex="(AD)" /> sont parallèles.
+                      </li>
+                      <li>
+                        Déduire la valeur de <Math tex="\dfrac{C'B'}{AD}" />.
+                      </li>
+                      <li>
+                        Montrer que <Math tex="\dfrac{EB}{EC}=\dfrac{FA}{FD}" />.
+                      </li>
+                    </ol>
+                  </div>
+                }
+                svg={
+                  <svg viewBox="0 0 177.5 220" className="h-auto w-full max-w-[210px] text-neutral-700">
+                    <ArrowDefs id="pex6" />
+                    {/* A,B,C,D régulièrement espacés */}
+                    <line x1="25" y1="195" x2="110" y2="195" stroke="currentColor" strokeWidth="1.5" />
+                    {/* (BE) prolongée en B' */}
+                    <line x1="53.3" y1="195" x2="138.3" y2="81.7" stroke="#0ea5e9" strokeWidth="1.8" />
+                    {/* (CE) prolongée en C' */}
+                    <line x1="81.7" y1="195" x2="110" y2="81.7" stroke="#0ea5e9" strokeWidth="1.8" />
+                    {/* (D,B',F) : parallèle à (CE) */}
+                    <line x1="110" y1="195" x2="152.5" y2="25" stroke="#e11d48" strokeWidth="1.8" />
+                    {/* (A,C',F) : parallèle à (BE) */}
+                    <line x1="25" y1="195" x2="152.5" y2="25" stroke="#e11d48" strokeWidth="1.8" />
+                    <circle cx="25" cy="195" r="3.2" fill="currentColor" /><text x="9" y="212" fontSize="14" fontWeight="700">A</text>
+                    <circle cx="53.3" cy="195" r="3.2" fill="currentColor" /><text x="49" y="212" fontSize="14" fontWeight="700">B</text>
+                    <circle cx="81.7" cy="195" r="3.2" fill="currentColor" /><text x="78" y="212" fontSize="14" fontWeight="700">C</text>
+                    <circle cx="110" cy="195" r="3.2" fill="currentColor" /><text x="116" y="199" fontSize="14" fontWeight="700">D</text>
+                    <circle cx="95.8" cy="138.3" r="3.2" fill="currentColor" /><text x="101" y="141" fontSize="14" fontWeight="700">E</text>
+                    <circle cx="138.3" cy="81.7" r="3.2" fill="#0ea5e9" /><text x="144" y="85" fontSize="14" fontWeight="700" fill="#0ea5e9">B&apos;</text>
+                    <circle cx="110" cy="81.7" r="3.2" fill="#0ea5e9" /><text x="88" y="78" fontSize="14" fontWeight="700" fill="#0ea5e9">C&apos;</text>
+                    <circle cx="152.5" cy="25" r="3.2" fill="#e11d48" /><text x="158" y="20" fontSize="14" fontWeight="700" fill="#e11d48">F</text>
+                  </svg>
+                }
+              />
             }
             correction={
               <div className="space-y-2 text-sm text-foreground">
@@ -831,22 +989,43 @@ export default function Lesson() {
           <ExerciseCard
             id="7" index={7} title="Trois points définis par des relations vectorielles, alignés"
             items={
-              <div className="space-y-2 text-sm text-foreground">
-                <p>
-                  Soit <Math tex="ABC" /> un triangle et <Math tex="E,F,G" /> des points tels que{" "}
-                  <Math tex="\overrightarrow{EB}=-2\overrightarrow{EC}" />,{" "}
-                  <Math tex="3\overrightarrow{FA}+2\overrightarrow{FC}=\vec0" />, et{" "}
-                  <Math tex="\overrightarrow{GB}=3\overrightarrow{GA}" />.
-                </p>
-                <ol className="list-decimal space-y-1 pl-5">
-                  <li>
-                    Construire les points <Math tex="E,F,G" />.
-                  </li>
-                  <li>
-                    En utilisant la projection, montrer que les points <Math tex="E,F,G" /> sont alignés.
-                  </li>
-                </ol>
-              </div>
+              <Figure
+                text={
+                  <div className="space-y-2 text-sm text-foreground">
+                    <p>
+                      Soit <Math tex="ABC" /> un triangle et <Math tex="E,F,G" /> des points tels que{" "}
+                      <Math tex="\overrightarrow{EB}=-2\overrightarrow{EC}" />,{" "}
+                      <Math tex="3\overrightarrow{FA}+2\overrightarrow{FC}=\vec0" />, et{" "}
+                      <Math tex="\overrightarrow{GB}=3\overrightarrow{GA}" />.
+                    </p>
+                    <ol className="list-decimal space-y-1 pl-5">
+                      <li>
+                        Construire les points <Math tex="E,F,G" />.
+                      </li>
+                      <li>
+                        En utilisant la projection, montrer que les points <Math tex="E,F,G" /> sont alignés.
+                      </li>
+                    </ol>
+                  </div>
+                }
+                svg={
+                  <svg viewBox="0 0 240 145" className="h-auto w-full max-w-[260px] text-neutral-700">
+                    <ArrowDefs id="pex7" />
+                    <ArrowDefs id="pex7red" color="#e11d48" />
+                    {/* triangle ABC, G sur (AB) prolongée, E sur [BC], F sur [AC] */}
+                    <polygon points="88.3,120 215,120 120,25" fill="#4f46e5" fillOpacity="0.05" stroke="currentColor" strokeWidth="1.4" />
+                    <line x1="25" y1="120" x2="88.3" y2="120" stroke="currentColor" strokeWidth="1.2" strokeDasharray="4 3" strokeOpacity="0.6" />
+                    {/* E, F, G alignés */}
+                    <line x1="25" y1="120" x2="151.7" y2="56.7" stroke="#e11d48" strokeWidth="2" markerEnd="url(#pex7red)" />
+                    <circle cx="88.3" cy="120" r="3.2" fill="currentColor" /><text x="70" y="116" fontSize="14" fontWeight="700">A</text>
+                    <circle cx="215" cy="120" r="3.2" fill="currentColor" /><text x="221" y="124" fontSize="14" fontWeight="700">B</text>
+                    <circle cx="120" cy="25" r="3.2" fill="currentColor" /><text x="126" y="20" fontSize="14" fontWeight="700">C</text>
+                    <circle cx="151.7" cy="56.7" r="3.2" fill="#e11d48" /><text x="157" y="52" fontSize="14" fontWeight="700" fill="#e11d48">E</text>
+                    <circle cx="101" cy="82" r="3.2" fill="#e11d48" /><text x="79" y="86" fontSize="14" fontWeight="700" fill="#e11d48">F</text>
+                    <circle cx="25" cy="120" r="3.2" fill="#e11d48" /><text x="4" y="116" fontSize="14" fontWeight="700" fill="#e11d48">G</text>
+                  </svg>
+                }
+              />
             }
             correction={
               <div className="space-y-2 text-sm text-foreground">
