@@ -10,8 +10,8 @@ const OTHER_MENUS = [
     filieres: [
       { label: "Sc. Expérimentales", href: "/lycee/1ere-bac/sciences-experimentales" },
       { label: "Sc. Mathématiques", href: "/lycee/1ere-bac/sciences-math" },
-      { label: "Sc. & Tech Électriques" },
-      { label: "Sc. & Tech Mécaniques" },
+      { label: "Sc. & Tech Électriques", href: "/lycee/1ere-bac/sciences-tech-electriques" },
+      { label: "Sc. & Tech Mécaniques", href: "/lycee/1ere-bac/sciences-tech-mecaniques" },
       { label: "Sc. Économiques & Gestion" },
       { label: "Lettres & Sc. Humaines" },
     ],

@@ -55,9 +55,42 @@ export const TRONC_COMMUN_SCIENCES: { semesters: LyceeSemester[] } = {
 };
 
 /**
- * 1ère Année Baccalauréat : filière Sciences Mathématiques (18 chapitres) et filière
- * Sciences Expérimentales (13 chapitres), chacune avec l'évaluation diagnostique comme
- * premier chapitre du semestre 1.
+ * Sciences Expérimentales, Sciences et Technologies Électriques et Sciences et
+ * Technologies Mécaniques partagent le même programme de mathématiques en 1ère Bac.
+ */
+const SCIENCES_EXPERIMENTALES_SEMESTERS: LyceeSemester[] = [
+  {
+    id: "s1",
+    label: "Semestre 1",
+    chapters: [
+      { slug: "evaluations-diagnostiques", title: "Évaluation diagnostique", order: 1 },
+      { slug: "logique-mathematique", title: "Logique mathématique", order: 2 },
+      { slug: "generalites-fonctions", title: "Généralités sur les fonctions", order: 3 },
+      { slug: "suites-numeriques", title: "Les suites numériques", order: 4 },
+      { slug: "barycentre-plan", title: "Barycentre dans le plan", order: 5 },
+      { slug: "produit-scalaire-applications", title: "Le produit scalaire et ses applications", order: 6 },
+      { slug: "calcul-trigonometrique", title: "Calcul trigonométrique", order: 7 },
+    ],
+  },
+  {
+    id: "s2",
+    label: "Semestre 2",
+    chapters: [
+      { slug: "rotation-plan", title: "Rotation dans le plan", order: 1 },
+      { slug: "limites-fonction", title: "Les limites d'une fonction", order: 2 },
+      { slug: "derivation", title: "La dérivation", order: 3 },
+      { slug: "etude-fonctions", title: "Étude des fonctions numériques", order: 4 },
+      { slug: "vecteurs-espace", title: "Vecteurs de l'espace", order: 5 },
+      { slug: "geometrie-analytique-espace", title: "Géométrie analytique de l'espace", order: 6 },
+    ],
+  },
+];
+
+/**
+ * 1ère Année Baccalauréat : Sciences Mathématiques (18 chapitres), puis Sciences
+ * Expérimentales, Sciences et Technologies Électriques et Sciences et Technologies
+ * Mécaniques (13 chapitres chacune, même programme), toutes avec l'évaluation
+ * diagnostique comme premier chapitre du semestre 1.
  */
 export const PREMIERE_BAC: { filieres: LyceeFiliere[] } = {
   filieres: [
@@ -100,33 +133,17 @@ export const PREMIERE_BAC: { filieres: LyceeFiliere[] } = {
     {
       slug: "sciences-experimentales",
       label: "Sciences Expérimentales",
-      semesters: [
-        {
-          id: "s1",
-          label: "Semestre 1",
-          chapters: [
-            { slug: "evaluations-diagnostiques", title: "Évaluation diagnostique", order: 1 },
-            { slug: "logique-mathematique", title: "Logique mathématique", order: 2 },
-            { slug: "generalites-fonctions", title: "Généralités sur les fonctions", order: 3 },
-            { slug: "suites-numeriques", title: "Les suites numériques", order: 4 },
-            { slug: "barycentre-plan", title: "Barycentre dans le plan", order: 5 },
-            { slug: "produit-scalaire-applications", title: "Le produit scalaire et ses applications", order: 6 },
-            { slug: "calcul-trigonometrique", title: "Calcul trigonométrique", order: 7 },
-          ],
-        },
-        {
-          id: "s2",
-          label: "Semestre 2",
-          chapters: [
-            { slug: "rotation-plan", title: "Rotation dans le plan", order: 1 },
-            { slug: "limites-fonction", title: "Les limites d'une fonction", order: 2 },
-            { slug: "derivation", title: "La dérivation", order: 3 },
-            { slug: "etude-fonctions", title: "Étude des fonctions numériques", order: 4 },
-            { slug: "vecteurs-espace", title: "Vecteurs de l'espace", order: 5 },
-            { slug: "geometrie-analytique-espace", title: "Géométrie analytique de l'espace", order: 6 },
-          ],
-        },
-      ],
+      semesters: SCIENCES_EXPERIMENTALES_SEMESTERS,
+    },
+    {
+      slug: "sciences-tech-electriques",
+      label: "Sciences et Technologies Électriques",
+      semesters: SCIENCES_EXPERIMENTALES_SEMESTERS,
+    },
+    {
+      slug: "sciences-tech-mecaniques",
+      label: "Sciences et Technologies Mécaniques",
+      semesters: SCIENCES_EXPERIMENTALES_SEMESTERS,
     },
   ],
 };
