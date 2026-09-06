@@ -36,7 +36,7 @@ const STEPS = [
   },
 ];
 
-const TOTAL_CHAPTERS = LEVELS.reduce(
+const COLLEGE_CHAPTERS = LEVELS.reduce(
   (n, level) => n + level.semesters.reduce((m, s) => m + s.chapters.length, 0),
   0
 );
@@ -45,6 +45,16 @@ const TRONC_COMMUN_CHAPTERS = TRONC_COMMUN_SCIENCES.semesters.reduce(
   (n, s) => n + s.chapters.length,
   0
 );
+
+/** Collège + Lycée : se met à jour tout seul dès qu'un chapitre est ajouté à l'une des
+ * deux sources de données (LEVELS ou TRONC_COMMUN_SCIENCES), aucune valeur codée en dur. */
+const TOTAL_CHAPTERS = COLLEGE_CHAPTERS + TRONC_COMMUN_CHAPTERS;
+
+const LYCEE_QUICK_ACCESS = [
+  { short: "TC", href: "/lycee/tronc-commun/sciences" },
+  { short: "1BAC", href: "/lycee" },
+  { short: "2BAC", href: "/lycee" },
+];
 
 export default function Home() {
   return (
@@ -63,7 +73,7 @@ export default function Home() {
 
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-neutral-400 sm:text-lg">
             Par le Prof. Lahbib Elkeantaoui. Résumés de cours, leçons détaillées avec
-            exemples, et exercices avec correction pour les 3 années du Collège.
+            exemples, et exercices avec correction pour le Collège et le Lycée.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -90,6 +100,16 @@ export default function Home() {
                 className="rounded-md border border-white/15 px-2.5 py-1 font-mono text-xs font-medium text-white transition-colors hover:bg-white/10"
               >
                 {level.short}
+              </Link>
+            ))}
+            <span className="mx-0.5 h-4 w-px bg-white/15" aria-hidden="true" />
+            {LYCEE_QUICK_ACCESS.map((item) => (
+              <Link
+                key={item.short}
+                href={item.href}
+                className="rounded-md border border-white/15 px-2.5 py-1 font-mono text-xs font-medium text-white transition-colors hover:bg-white/10"
+              >
+                {item.short}
               </Link>
             ))}
           </div>
