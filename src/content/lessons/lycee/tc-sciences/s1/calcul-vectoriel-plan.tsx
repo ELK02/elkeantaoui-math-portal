@@ -1046,24 +1046,53 @@ export default function Lesson() {
             id="11" index={11}
             title="Alignement et parallélisme, milieu d'un segment"
             items={
-              <>
-                <p>
-                  <Math tex="ABCD" /> un parallélogramme, <Math tex="M,N" /> tels que{" "}
-                  <Math tex="\overrightarrow{BM}=\tfrac12\overrightarrow{AB}" /> et{" "}
-                  <Math tex="\overrightarrow{AN}=3\overrightarrow{AD}" />.
-                </p>
-                <p>
-                  <strong>2)</strong> Montrer que <Math tex="\overrightarrow{CM}=\tfrac12\overrightarrow{AB}-\overrightarrow{BC}" />{" "}
-                  et <Math tex="\overrightarrow{CN}=2\overrightarrow{AD}-\overrightarrow{DC}" />.
-                </p>
-                <p><strong>3)</strong> Montrer que <Math tex="C,M,N" /> sont alignés.</p>
-                <p>
-                  <strong>4)</strong> <Math tex="E" /> milieu de <Math tex="[DN]" />, <Math tex="F" /> tel que{" "}
-                  <Math tex="\overrightarrow{AB}=\overrightarrow{BF}" />. Montrer que <Math tex="C" /> est le milieu
-                  de <Math tex="[EF]" />.
-                </p>
-                <p><strong>5)</strong> Montrer que <Math tex="(BD)\parallel(EF)" />.</p>
-              </>
+              <Figure
+                text={
+                  <>
+                    <p>
+                      <Math tex="ABCD" /> un parallélogramme, <Math tex="M,N" /> tels que{" "}
+                      <Math tex="\overrightarrow{BM}=\tfrac12\overrightarrow{AB}" /> et{" "}
+                      <Math tex="\overrightarrow{AN}=3\overrightarrow{AD}" />.
+                    </p>
+                    <p>
+                      <strong>2)</strong> Montrer que <Math tex="\overrightarrow{CM}=\tfrac12\overrightarrow{AB}-\overrightarrow{BC}" />{" "}
+                      et <Math tex="\overrightarrow{CN}=2\overrightarrow{AD}-\overrightarrow{DC}" />.
+                    </p>
+                    <p><strong>3)</strong> Montrer que <Math tex="C,M,N" /> sont alignés.</p>
+                    <p>
+                      <strong>4)</strong> <Math tex="E" /> milieu de <Math tex="[DN]" />, <Math tex="F" /> tel que{" "}
+                      <Math tex="\overrightarrow{AB}=\overrightarrow{BF}" />. Montrer que <Math tex="C" /> est le
+                      milieu de <Math tex="[EF]" />.
+                    </p>
+                    <p><strong>5)</strong> Montrer que <Math tex="(BD)\parallel(EF)" />.</p>
+                  </>
+                }
+                svg={
+                  <svg viewBox="0 0 210 230" className="h-auto w-full max-w-[260px] text-neutral-700">
+                    <ArrowDefs id="ex11" />
+                    <ArrowDefs id="ex11blue" color="#0ea5e9" />
+                    <ArrowDefs id="ex11red" color="#e11d48" />
+                    {/* parallélogramme ABCD */}
+                    <polygon points="25,205 105,205 125,145 45,145" fill="#4f46e5" fillOpacity="0.06" stroke="currentColor" strokeWidth="1.4" />
+                    {/* diagonale (BD), en pointillés : référence pour (EF) parallèle */}
+                    <line x1="105" y1="205" x2="45" y2="145" stroke="currentColor" strokeWidth="1.2" strokeDasharray="4 3" strokeOpacity="0.6" />
+                    {/* construction : D, N et le milieu E */}
+                    <line x1="45" y1="145" x2="85" y2="25" stroke="currentColor" strokeWidth="1.1" strokeDasharray="3 3" strokeOpacity="0.5" />
+                    {/* C, M, N alignés */}
+                    <line x1="85" y1="25" x2="145" y2="205" stroke="#0ea5e9" strokeWidth="2" markerEnd="url(#ex11blue)" />
+                    {/* (EF), parallèle à (BD), C milieu de [EF] */}
+                    <line x1="65" y1="85" x2="185" y2="205" stroke="#e11d48" strokeWidth="2" markerEnd="url(#ex11red)" />
+                    <circle cx="25" cy="205" r="3.2" fill="currentColor" /><text x="7" y="223" fontSize="14" fontWeight="700">A</text>
+                    <circle cx="105" cy="205" r="3.2" fill="currentColor" /><text x="111" y="223" fontSize="14" fontWeight="700">B</text>
+                    <circle cx="125" cy="145" r="4" fill="currentColor" /><text x="105" y="140" fontSize="14" fontWeight="700">C</text>
+                    <circle cx="45" cy="145" r="3.2" fill="currentColor" /><text x="21" y="140" fontSize="14" fontWeight="700">D</text>
+                    <circle cx="145" cy="205" r="3.2" fill="#0ea5e9" /><text x="151" y="223" fontSize="14" fontWeight="700" fill="#0ea5e9">M</text>
+                    <circle cx="85" cy="25" r="3.2" fill="#0ea5e9" /><text x="91" y="18" fontSize="14" fontWeight="700" fill="#0ea5e9">N</text>
+                    <circle cx="65" cy="85" r="3.2" fill="#e11d48" /><text x="41" y="80" fontSize="14" fontWeight="700" fill="#e11d48">E</text>
+                    <circle cx="185" cy="205" r="3.2" fill="#e11d48" /><text x="191" y="223" fontSize="14" fontWeight="700" fill="#e11d48">F</text>
+                  </svg>
+                }
+              />
             }
             correction={
               <>
