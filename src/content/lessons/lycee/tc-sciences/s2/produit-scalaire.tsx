@@ -161,7 +161,7 @@ export default function Lesson() {
                   Si <Math tex="\overrightarrow{AB}" /> et <Math tex="\overrightarrow{AH}" /> ont le{" "}
                   <strong>même sens</strong> :
                 </p>
-                <FormulaBlock tex="\vec u\cdot\vec v=\overrightarrow{AB}\cdot\overrightarrow{AC}=AB\times AH" />
+                <FormulaBlock tex="\begin{gathered} \vec u\cdot\vec v=\overrightarrow{AB}\cdot\overrightarrow{AC} \\ =AB\times AH \end{gathered}" />
               </>
             }
             svg={
@@ -184,7 +184,7 @@ export default function Lesson() {
                   Si <Math tex="\overrightarrow{AB}" /> et <Math tex="\overrightarrow{AH}" /> ont des{" "}
                   <strong>sens opposés</strong> :
                 </p>
-                <FormulaBlock tex="\vec u\cdot\vec v=\overrightarrow{AB}\cdot\overrightarrow{AC}=-AB\times AH" />
+                <FormulaBlock tex="\begin{gathered} \vec u\cdot\vec v=\overrightarrow{AB}\cdot\overrightarrow{AC} \\ =-AB\times AH \end{gathered}" />
               </>
             }
             reverse
@@ -208,7 +208,7 @@ export default function Lesson() {
               , appelé le <strong>carré scalaire</strong> de <Math tex="\vec u" /> (ou de <Math tex="\overrightarrow{AB}" />
               ) : c&apos;est toujours un nombre positif.
             </p>
-            <FormulaBlock tex="\vec u^{\,2}=\lVert\vec u\rVert^2 \qquad \overrightarrow{AB}^{\,2}=AB^2" />
+            <FormulaBlock tex="\begin{gathered} \vec u^{\,2}=\lVert\vec u\rVert^2 \\ \overrightarrow{AB}^{\,2}=AB^2 \end{gathered}" />
           </Callout>
         </CourseBlock>
       </LessonSection>
@@ -229,7 +229,7 @@ export default function Lesson() {
               <Math tex="\theta=(\widehat{\vec u,\vec v})=(\widehat{\overrightarrow{AB},\overrightarrow{AC}})" />
               . Alors :
             </p>
-            <FormulaBlock tex="\overrightarrow{AB}\cdot\overrightarrow{AC}=AB\times AC\times\cos\theta \qquad \text{soit} \qquad \vec u\cdot\vec v=\lVert\vec u\rVert\,\lVert\vec v\rVert\cos\theta" />
+            <FormulaBlock tex="\begin{gathered} \overrightarrow{AB}\cdot\overrightarrow{AC}=AB\times AC\times\cos\theta \\ \text{soit} \\ \vec u\cdot\vec v=\lVert\vec u\rVert\,\lVert\vec v\rVert\cos\theta \end{gathered}" />
           </Callout>
           <p className="text-sm text-foreground-muted">
             <strong>Idée de la démonstration.</strong> Dans le triangle rectangle <Math tex="AHC" />, on a{" "}
@@ -293,7 +293,7 @@ export default function Lesson() {
               Soient <Math tex="\vec u,\vec v,\vec w" /> trois vecteurs du plan et <Math tex="k\in\mathbb R" />.
             </p>
             <p className="mb-1 font-semibold text-foreground">1. Linéarité (et symétrie) :</p>
-            <FormulaBlock tex="(\vec u+\vec v)\cdot\vec w=\vec u\cdot\vec w+\vec v\cdot\vec w \qquad \vec w\cdot(\vec u+\vec v)=\vec w\cdot\vec u+\vec w\cdot\vec v \qquad (k\vec u)\cdot\vec v=\vec u\cdot(k\vec v)=k(\vec u\cdot\vec v)" />
+            <FormulaBlock tex="\begin{gathered} (\vec u+\vec v)\cdot\vec w=\vec u\cdot\vec w+\vec v\cdot\vec w \\ \vec w\cdot(\vec u+\vec v)=\vec w\cdot\vec u+\vec w\cdot\vec v \\ (k\vec u)\cdot\vec v=\vec u\cdot(k\vec v)=k(\vec u\cdot\vec v) \end{gathered}" />
             <p className="mt-3">
               <strong className="text-foreground">2. Positivité :</strong> <Math tex="\vec u^{\,2}\geq 0" />.
             </p>
@@ -385,7 +385,7 @@ export default function Lesson() {
               Dans tout triangle <Math tex="ABC" />, en posant <Math tex="AB=c" />, <Math tex="AC=b" />,{" "}
               <Math tex="BC=a" /> :
             </p>
-            <FormulaBlock tex="BC^2=BA^2+AC^2-2\,AB\times AC\times\cos\widehat A \qquad \text{soit} \qquad a^2=b^2+c^2-2bc\cos\widehat A" />
+            <FormulaBlock tex="\begin{gathered} BC^2=BA^2+AC^2-2\,AB\times AC\times\cos\widehat A \\ \text{soit} \\ a^2=b^2+c^2-2bc\cos\widehat A \end{gathered}" />
           </Callout>
           <p className="text-sm text-foreground-muted">
             <strong>Démonstration.</strong> <Math tex="\overrightarrow{BC}^{\,2}=(\overrightarrow{BA}+\overrightarrow{AC})^2=\overrightarrow{BA}^{\,2}+2\overrightarrow{BA}\cdot\overrightarrow{AC}+\overrightarrow{AC}^{\,2}" />
@@ -440,7 +440,7 @@ export default function Lesson() {
             <Math tex="\overrightarrow{MA}=\overrightarrow{MI}+\overrightarrow{IA}" /> et{" "}
             <Math tex="\overrightarrow{MB}=\overrightarrow{MI}+\overrightarrow{IB}" />, puis on développe :
           </p>
-          <FormulaBlock tex="MA^2+MB^2=2MI^2+2\overrightarrow{MI}\cdot(\overrightarrow{IA}+\overrightarrow{IB})+IA^2+IB^2" />
+          <FormulaBlock tex="\begin{gathered} MA^2+MB^2=2MI^2+2\overrightarrow{MI}\cdot(\overrightarrow{IA}+\overrightarrow{IB}) \\ +IA^2+IB^2 \end{gathered}" />
           <p className="text-sm text-foreground-muted">
             Or <Math tex="\overrightarrow{IA}+\overrightarrow{IB}=\vec 0" /> (<Math tex="I" /> est le milieu), et{" "}
             <Math tex="IA^2+IB^2=2\left(\dfrac{AB}2\right)^2=\dfrac12 AB^2" />, d&apos;où le résultat.
