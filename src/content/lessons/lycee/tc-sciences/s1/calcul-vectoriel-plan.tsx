@@ -302,20 +302,55 @@ export default function Lesson() {
 
         <div className="rounded-2xl border border-border bg-surface p-6 text-sm sm:p-8">
           <p className="mb-3 font-display font-bold text-foreground">Exemple résolu — parallélogramme</p>
-          <p className="mb-2">
-            <Math tex="ABC" /> un triangle non aligné. <Math tex="D" /> et <Math tex="E" /> vérifient{" "}
-            <Math tex="\overrightarrow{AD}=\overrightarrow{BC}" /> et <Math tex="\overrightarrow{AE}+\overrightarrow{AD}=\vec 0" />.
-            Quelle est la nature du quadrilatère <Math tex="EACB" /> ?
-          </p>
-          <p>
-            De <Math tex="\overrightarrow{AE}+\overrightarrow{AD}=\vec 0" /> on tire{" "}
-            <Math tex="\overrightarrow{AE}=-\overrightarrow{AD}" />. Or <Math tex="\overrightarrow{AD}=\overrightarrow{BC}" />
-            , donc <Math tex="\overrightarrow{BC}=-\overrightarrow{AE}=\overrightarrow{EA}" />. Ainsi{" "}
-            <strong className="text-green-700">
-              <Math tex="\overrightarrow{BC}=\overrightarrow{EA}" />
-            </strong>{" "}
-            : le quadrilatère <Math tex="EACB" /> est un parallélogramme.
-          </p>
+          <Figure
+            text={
+              <>
+                <p>
+                  <Math tex="ABC" /> un triangle non aligné. <Math tex="D" /> et <Math tex="E" /> vérifient{" "}
+                  <Math tex="\overrightarrow{AD}=\overrightarrow{BC}" /> et{" "}
+                  <Math tex="\overrightarrow{AE}+\overrightarrow{AD}=\vec 0" />. Quelle est la nature du quadrilatère{" "}
+                  <Math tex="EACB" /> ?
+                </p>
+                <p>
+                  De <Math tex="\overrightarrow{AE}+\overrightarrow{AD}=\vec 0" /> on tire{" "}
+                  <Math tex="\overrightarrow{AE}=-\overrightarrow{AD}" />. Or{" "}
+                  <Math tex="\overrightarrow{AD}=\overrightarrow{BC}" />, donc{" "}
+                  <Math tex="\overrightarrow{BC}=-\overrightarrow{AE}=\overrightarrow{EA}" />. Ainsi{" "}
+                  <strong className="text-green-700">
+                    <Math tex="\overrightarrow{BC}=\overrightarrow{EA}" />
+                  </strong>{" "}
+                  : le quadrilatère <Math tex="EACB" /> est un parallélogramme.
+                </p>
+              </>
+            }
+            svg={
+              <svg viewBox="0 0 320 300" className="h-auto w-full max-w-[280px] text-neutral-700">
+                <ArrowDefs id="v7" />
+                <ArrowDefs id="v7blue" color="#0ea5e9" />
+                {/* quadrilatère EACB, la réponse */}
+                <polygon points="230,270 130,150 190,30 290,150" fill="#4f46e5" fillOpacity="0.07" stroke="none" />
+                <polyline
+                  points="230,270 130,150 190,30 290,150 230,270"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.2"
+                  strokeOpacity="0.5"
+                />
+                {/* diagonale AB, 3e côté du triangle ABC */}
+                <line x1="130" y1="150" x2="290" y2="150" stroke="currentColor" strokeWidth="1.2" strokeDasharray="4 3" strokeOpacity="0.6" />
+                {/* construction : A -> D, tel que AD = BC */}
+                <line x1="130" y1="150" x2="30" y2="30" stroke="#0ea5e9" strokeWidth="1.4" strokeDasharray="4 3" markerEnd="url(#v7blue)" />
+                {/* les deux vecteurs égaux : E->A et B->C */}
+                <line x1="230" y1="270" x2="130" y2="150" stroke="#0ea5e9" strokeWidth="2.2" markerEnd="url(#v7blue)" />
+                <line x1="290" y1="150" x2="190" y2="30" stroke="#0ea5e9" strokeWidth="2.2" markerEnd="url(#v7blue)" />
+                <circle cx="130" cy="150" r="3.2" fill="currentColor" /><text x="112" y="170" fontSize="14" fontWeight="700">A</text>
+                <circle cx="290" cy="150" r="3.2" fill="currentColor" /><text x="296" y="154" fontSize="14" fontWeight="700">B</text>
+                <circle cx="190" cy="30" r="3.2" fill="currentColor" /><text x="196" y="24" fontSize="14" fontWeight="700">C</text>
+                <circle cx="30" cy="30" r="3.2" fill="#0ea5e9" /><text x="6" y="24" fontSize="14" fontWeight="700" fill="#0ea5e9">D</text>
+                <circle cx="230" cy="270" r="3.2" fill="#0ea5e9" /><text x="236" y="288" fontSize="14" fontWeight="700" fill="#0ea5e9">E</text>
+              </svg>
+            }
+          />
         </div>
       </LessonSection>
 
