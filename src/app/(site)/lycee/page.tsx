@@ -8,25 +8,25 @@ const OTHER_MENUS = [
   {
     label: "1ère Bac",
     filieres: [
-      "Sc. Expérimentales",
-      "Sc. & Tech Électriques",
-      "Sc. & Tech Mécaniques",
-      "Sc. Mathématiques",
-      "Sc. Économiques & Gestion",
-      "Lettres & Sc. Humaines",
+      { label: "Sc. Expérimentales", href: "/lycee/1ere-bac/sciences-experimentales" },
+      { label: "Sc. Mathématiques", href: "/lycee/1ere-bac/sciences-math" },
+      { label: "Sc. & Tech Électriques" },
+      { label: "Sc. & Tech Mécaniques" },
+      { label: "Sc. Économiques & Gestion" },
+      { label: "Lettres & Sc. Humaines" },
     ],
   },
   {
     label: "2ème Bac",
     filieres: [
-      "Sc. Physiques",
-      "SVT",
-      "Sc. & Tech Électriques",
-      "Sc. & Tech Mécaniques",
-      "Sc. Math A",
-      "Sc. Math B",
-      "Sc. Économiques & Gestion",
-      "Lettres & Sc. Humaines",
+      { label: "Sc. Physiques" },
+      { label: "SVT" },
+      { label: "Sc. & Tech Électriques" },
+      { label: "Sc. & Tech Mécaniques" },
+      { label: "Sc. Math A" },
+      { label: "Sc. Math B" },
+      { label: "Sc. Économiques & Gestion" },
+      { label: "Lettres & Sc. Humaines" },
     ],
   },
 ];
@@ -70,12 +70,26 @@ export default function LyceePage() {
         </div>
 
         {OTHER_MENUS.map((menu) => (
-          <div key={menu.label} className="rounded-lg border border-border bg-surface p-6 opacity-70">
+          <div key={menu.label} className="rounded-lg border border-border bg-surface p-6">
             <h2 className="font-display text-lg font-semibold text-foreground">{menu.label}</h2>
-            <ul className="mt-3 space-y-1.5 text-sm text-foreground-muted">
-              {menu.filieres.map((f) => (
-                <li key={f}>· {f}</li>
-              ))}
+            <ul className="mt-3 space-y-1.5 text-sm">
+              {menu.filieres.map((f) =>
+                f.href ? (
+                  <li key={f.label}>
+                    <Link
+                      href={f.href}
+                      className="group inline-flex items-center gap-1.5 font-medium text-foreground transition-colors hover:text-navy-600 dark:hover:text-orange-400"
+                    >
+                      {f.label}
+                      <ArrowUpRight className="h-3.5 w-3.5 text-foreground-muted transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-navy-600 dark:group-hover:text-orange-400" />
+                    </Link>
+                  </li>
+                ) : (
+                  <li key={f.label} className="text-foreground-muted">
+                    · {f.label}
+                  </li>
+                )
+              )}
             </ul>
           </div>
         ))}

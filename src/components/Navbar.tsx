@@ -10,7 +10,7 @@ import { LEVELS } from "@/data/chapters";
 
 const LYCEE_MENUS = [
   { label: "Tronc Commun · Sciences et Technologies", href: "/lycee/tronc-commun/sciences" },
-  { label: "1ère Bac" },
+  { label: "1ère Bac", href: "/lycee/1ere-bac" },
   { label: "2ème Bac" },
 ];
 
@@ -24,6 +24,9 @@ function getStartHref(pathname: string): string {
   const college = pathname.match(/^\/college\/(1ac|2ac|3ac)(?:\/|$)/);
   if (college) return `/college/${college[1]}`;
   if (pathname.startsWith("/lycee/tronc-commun/sciences")) return "/lycee/tronc-commun/sciences";
+  const premiereBac = pathname.match(/^\/lycee\/1ere-bac\/([^/]+)/);
+  if (premiereBac) return `/lycee/1ere-bac/${premiereBac[1]}`;
+  if (pathname.startsWith("/lycee/1ere-bac")) return "/lycee/1ere-bac";
   return DEFAULT_START_HREF;
 }
 

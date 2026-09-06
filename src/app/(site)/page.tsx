@@ -10,6 +10,7 @@ const LYCEE_IN_PROGRESS = [
     short: "1BAC",
     label: "1ère Bac",
     description: "Toutes filières : Sc. Expérimentales, Sc. Mathématiques, Lettres & Sc. Humaines, et plus.",
+    href: "/lycee/1ere-bac",
   },
   {
     short: "2BAC",
@@ -235,22 +236,40 @@ export default function Home() {
             </p>
           </Link>
 
-          {LYCEE_IN_PROGRESS.map((item) => (
-            <div
-              key={item.short}
-              className="relative overflow-hidden rounded-lg border border-dashed border-border bg-surface-muted/50 p-6"
-            >
-              <span className="font-mono text-4xl font-semibold text-navy-900/10 dark:text-white/10">
-                {item.short}
-              </span>
-              <h3 className="mt-2 font-display text-lg font-semibold text-foreground">{item.label}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-foreground-muted">{item.description}</p>
-              <p className="mt-4 inline-flex items-center gap-1.5 font-mono text-xs font-medium text-orange-600 dark:text-orange-400">
-                <Clock className="h-3.5 w-3.5" />
-                En cours
-              </p>
-            </div>
-          ))}
+          {LYCEE_IN_PROGRESS.map((item) => {
+            const content = (
+              <>
+                <span className="font-mono text-4xl font-semibold text-navy-900/10 dark:text-white/10">
+                  {item.short}
+                </span>
+                <h3 className="mt-2 font-display text-lg font-semibold text-foreground">{item.label}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-foreground-muted">{item.description}</p>
+                <p className="mt-4 inline-flex items-center gap-1.5 font-mono text-xs font-medium text-orange-600 dark:text-orange-400">
+                  <Clock className="h-3.5 w-3.5" />
+                  En cours
+                </p>
+              </>
+            );
+            if (item.href) {
+              return (
+                <Link
+                  key={item.short}
+                  href={item.href}
+                  className="relative overflow-hidden rounded-lg border border-dashed border-border bg-surface-muted/50 p-6 transition-colors hover:border-navy-400 dark:hover:border-navy-500"
+                >
+                  {content}
+                </Link>
+              );
+            }
+            return (
+              <div
+                key={item.short}
+                className="relative overflow-hidden rounded-lg border border-dashed border-border bg-surface-muted/50 p-6"
+              >
+                {content}
+              </div>
+            );
+          })}
         </div>
       </section>
     </>
