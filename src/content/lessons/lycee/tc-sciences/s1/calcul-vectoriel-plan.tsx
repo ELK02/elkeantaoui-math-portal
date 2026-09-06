@@ -707,14 +707,35 @@ export default function Lesson() {
             id="5" index={5}
             title="Alignement et milieu dans un parallélogramme"
             items={
-              <>
-                <p>
-                  <Math tex="ABCD" /> est un parallélogramme, <Math tex="M" /> le point du plan tel que{" "}
-                  <Math tex="\overrightarrow{AM}=\overrightarrow{AB}+2\overrightarrow{AD}" />.
-                </p>
-                <p><strong>1)</strong> Montrer que <Math tex="B,C,M" /> sont alignés.</p>
-                <p><strong>2)</strong> En déduire que <Math tex="C" /> est le milieu de <Math tex="[BM]" />.</p>
-              </>
+              <Figure
+                text={
+                  <>
+                    <p>
+                      <Math tex="ABCD" /> est un parallélogramme, <Math tex="M" /> le point du plan tel que{" "}
+                      <Math tex="\overrightarrow{AM}=\overrightarrow{AB}+2\overrightarrow{AD}" />.
+                    </p>
+                    <p><strong>1)</strong> Montrer que <Math tex="B,C,M" /> sont alignés.</p>
+                    <p><strong>2)</strong> En déduire que <Math tex="C" /> est le milieu de <Math tex="[BM]" />.</p>
+                  </>
+                }
+                svg={
+                  <svg viewBox="0 0 230 230" className="h-auto w-full max-w-[230px] text-neutral-700">
+                    <ArrowDefs id="ex5" />
+                    <ArrowDefs id="ex5red" color="#e11d48" />
+                    {/* parallélogramme ABCD */}
+                    <polygon points="25,205 145,205 175,115 55,115" fill="#4f46e5" fillOpacity="0.06" stroke="currentColor" strokeWidth="1.4" />
+                    {/* construction : A -> M (AM = AB + 2AD) */}
+                    <line x1="25" y1="205" x2="205" y2="25" stroke="currentColor" strokeWidth="1.2" strokeDasharray="4 3" strokeOpacity="0.6" markerEnd="url(#ex5)" />
+                    {/* B, C, M alignés : une seule droite, C tombe exactement dessus */}
+                    <line x1="145" y1="205" x2="205" y2="25" stroke="#e11d48" strokeWidth="2" markerEnd="url(#ex5red)" />
+                    <circle cx="25" cy="205" r="3.2" fill="currentColor" /><text x="7" y="223" fontSize="14" fontWeight="700">A</text>
+                    <circle cx="145" cy="205" r="3.2" fill="currentColor" /><text x="151" y="223" fontSize="14" fontWeight="700">B</text>
+                    <circle cx="175" cy="115" r="3.2" fill="#e11d48" /><text x="181" y="112" fontSize="14" fontWeight="700" fill="#e11d48">C</text>
+                    <circle cx="55" cy="115" r="3.2" fill="currentColor" /><text x="30" y="112" fontSize="14" fontWeight="700">D</text>
+                    <circle cx="205" cy="25" r="3.2" fill="#e11d48" /><text x="211" y="20" fontSize="14" fontWeight="700" fill="#e11d48">M</text>
+                  </svg>
+                }
+              />
             }
             correction={
               <>
