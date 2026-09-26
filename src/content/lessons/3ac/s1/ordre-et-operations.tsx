@@ -252,7 +252,7 @@ export default function Lesson() {
         </Rule>
 
         <Callout variant="info" title="Remarque">
-          Ces six propriétés restent vraies avec les symboles strictes <Math tex="\gt" /> et <Math tex="\lt" />.
+          Ces six propriétés restent vraies avec les symboles stricts <Math tex="\gt" /> et <Math tex="\lt" />.
         </Callout>
       </LessonSection>
 

@@ -201,14 +201,14 @@ export default function Lesson() {
       {/* ===================== III. SIMPLIFICATION ===================== */}
       <LessonSection
         id="section-3"
-        kicker="03 · Diviser par le PGDC"
+        kicker="03 · Diviser par le PGCD"
         title="Simplification d'une fraction"
         tone="light"
         description="On rend une fraction plus simple sans changer sa valeur."
       >
         <Callout variant="warning" title="Règle">
           Pour simplifier une fraction, on divise son numérateur et son dénominateur par leur{" "}
-          <strong>plus grand diviseur commun</strong> (PGDC).
+          <strong>plus grand commun diviseur</strong> (PGCD).
         </Callout>
         <div className="mt-4 grid gap-3 text-center sm:grid-cols-3">
           <p className="rounded-lg border border-border p-4 text-base"><Math tex="\dfrac{15}{20} = \dfrac{15\div5}{20\div5} = \dfrac{3}{4}" /></p>
@@ -220,19 +220,19 @@ export default function Lesson() {
       {/* ===================== IV. RÉDUIRE AU MÊME DÉNOMINATEUR ===================== */}
       <LessonSection
         id="section-4"
-        kicker="04 · Chercher le PPMC"
+        kicker="04 · Chercher le PPCM"
         title="Réduire au même dénominateur"
         tone="muted"
-        description="On cherche le plus petit multiple commun (PPMC) des dénominateurs."
+        description="On cherche le plus petit commun multiple (PPCM) des dénominateurs."
       >
         <Callout variant="warning" title="Règle">
-          Pour réduire des fractions au même dénominateur, on cherche le <strong>plus petit multiple commun</strong>{" "}
-          (PPMC) de leurs dénominateurs.
+          Pour réduire des fractions au même dénominateur, on cherche le <strong>plus petit commun multiple</strong>{" "}
+          (PPCM) de leurs dénominateurs.
         </Callout>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           <div className="rounded-xl border border-border p-4 text-sm">
             <p className="text-foreground-muted">
-              Réduisons <Math tex="\dfrac{3}{8}" /> et <Math tex="\dfrac{11}{12}" /> <span className="text-xs">(PPMC(8,12) = 24)</span>
+              Réduisons <Math tex="\dfrac{3}{8}" /> et <Math tex="\dfrac{11}{12}" /> <span className="text-xs">(PPCM(8,12) = 24)</span>
             </p>
             <div className="mt-2 space-y-1 text-base">
               <p><Math tex="\dfrac{3}{8} = \dfrac{3\times3}{8\times3} = \dfrac{9}{24}" /></p>
@@ -251,7 +251,7 @@ export default function Lesson() {
           <div className="rounded-xl border border-border p-4 text-sm">
             <p className="text-foreground-muted">
               Réduisons <Math tex="\dfrac{7}{5}" />, <Math tex="\dfrac{13}{15}" /> et <Math tex="\dfrac{5}{9}" />{" "}
-              <span className="text-xs">(PPMC(5,15,9) = 45)</span>
+              <span className="text-xs">(PPCM(5,15,9) = 45)</span>
             </p>
             <div className="mt-2 space-y-1 text-base">
               <p><Math tex="\dfrac{7}{5} = \dfrac{7\times9}{5\times9} = \dfrac{63}{45}" /></p>

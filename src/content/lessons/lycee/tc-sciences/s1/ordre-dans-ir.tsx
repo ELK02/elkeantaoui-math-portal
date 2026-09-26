@@ -1265,7 +1265,7 @@ export default function Lesson() {
                   <Math tex="3-y \in \left]2,\dfrac52\right[" />.
                 </p>
                 <p>
-                  Le produit de deux quantités positives <Math tex="(2-x)" /> et <Math tex="(3-y)" /> se encadre en
+                  Le produit de deux quantités positives <Math tex="(2-x)" /> et <Math tex="(3-y)" /> s&apos;encadre en
                   multipliant les bornes : <Math tex="(2-x)(3-y) \in \left]1\times2,\ \dfrac32\times\dfrac52\right[ = \left]2,\dfrac{15}{4}\right[" />
                   .
                 </p>

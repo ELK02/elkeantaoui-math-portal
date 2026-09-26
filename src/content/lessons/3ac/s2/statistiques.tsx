@@ -94,7 +94,7 @@ export default function Lesson() {
       >
         <Callout variant="info" title="Exemple 1 · fil rouge">
           <p>
-            Le tableau suivant présente les notes obtenues par des élèves d&apos;une classe de <Math tex="3APIC" /> :
+            Le tableau suivant présente les notes obtenues par des élèves d&apos;une classe de <Math tex="3AC" /> :
           </p>
           <div className="mt-3 overflow-x-auto">
             <table className="w-full min-w-[280px] border-collapse text-center text-sm">

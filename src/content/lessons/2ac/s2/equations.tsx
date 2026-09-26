@@ -145,7 +145,7 @@ export default function Lesson() {
             <div>
               <p className="mb-2 font-semibold text-foreground">Résoudre <Math tex="2x-1=1" /></p>
               <p>On a <Math tex="2x-1=1" /> signifie que <Math tex="2x=1+1" /></p>
-              <p>c&apos;est à dire <Math tex="2x=2" /> alors <Math tex="x=\dfrac{2}{2}" /></p>
+              <p>c&apos;est-à-dire <Math tex="2x=2" /> alors <Math tex="x=\dfrac{2}{2}" /></p>
               <p>d&apos;où <Math tex="x=\mathbf{1}" />, la solution de cette équation.</p>
             </div>
             <div className="border-t border-border pt-4">
@@ -157,7 +157,7 @@ export default function Lesson() {
             <div className="border-t border-border pt-4">
               <p className="mb-2 font-semibold text-foreground">Résoudre <Math tex="2(n-1)=3+2n" /></p>
               <p>On a <Math tex="2(n-1)=3+2n" /> signifie que <Math tex="2n-2=3+2n" /></p>
-              <p>c&apos;est à dire <Math tex="2n-2n=3+2" /> alors <Math tex="0n=5" /></p>
+              <p>c&apos;est-à-dire <Math tex="2n-2n=3+2" /> alors <Math tex="0n=5" /></p>
               <p>donc cette équation <strong>n&apos;admet aucune solution</strong>.</p>
             </div>
           </div>
@@ -169,7 +169,7 @@ export default function Lesson() {
             <p>signifie que <Math tex="\dfrac{-2}{7}+\dfrac{14}{7}=\dfrac{63}{7}x" /></p>
             <p>signifie que <Math tex="\dfrac{-2+14}{7}=\dfrac{63}{7}x" /></p>
             <p>on obtient <Math tex="\dfrac{12}{7}=\dfrac{63x}{7}" /></p>
-            <p>c&apos;est à dire <Math tex="12=63x" /></p>
+            <p>c&apos;est-à-dire <Math tex="12=63x" /></p>
             <p>alors <Math tex="x=\dfrac{12}{63}" /></p>
             <p>d&apos;où <Math tex="x=\mathbf{\dfrac{4}{21}}" />, la solution de cette équation.</p>
           </div>
@@ -204,13 +204,13 @@ export default function Lesson() {
                 Résoudre <Math tex="\left(x-3\right)\left(x+\dfrac15\right)=0" />
               </p>
               <p>signifie que <Math tex="x-3=0" /> ou <Math tex="x+\dfrac15=0" /></p>
-              <p>c&apos;est à dire <Math tex="x=3" /> ou <Math tex="x=\dfrac{-1}{5}" /></p>
+              <p>c&apos;est-à-dire <Math tex="x=3" /> ou <Math tex="x=\dfrac{-1}{5}" /></p>
               <p>deux solutions : <Math tex="\mathbf{\dfrac{-1}{5}}" /> et <Math tex="\mathbf{3}" />.</p>
             </div>
             <div className="border-t border-border pt-3">
               <p className="mb-1 font-semibold text-foreground">Résoudre <Math tex="x(x-3)+(x-3)=0" /></p>
               <p>signifie que <Math tex="(x-3)(x+1)=0" /></p>
-              <p>c&apos;est à dire <Math tex="x-3=0" /> ou <Math tex="x+1=0" /></p>
+              <p>c&apos;est-à-dire <Math tex="x-3=0" /> ou <Math tex="x+1=0" /></p>
               <p>deux solutions : <Math tex="\mathbf{-1}" /> et <Math tex="\mathbf{3}" />.</p>
             </div>
           </div>
@@ -218,16 +218,16 @@ export default function Lesson() {
           <div className="space-y-4 rounded-xl border border-border p-5 text-sm">
             <div>
               <p className="mb-1 font-semibold text-foreground">Résoudre <Math tex="(m-0{,}1)^2=0" /></p>
-              <p>signifie que <Math tex="m-0{,}1=0" /> c&apos;est à dire <Math tex="m=\mathbf{0{,}1}" />.</p>
+              <p>signifie que <Math tex="m-0{,}1=0" /> c&apos;est-à-dire <Math tex="m=\mathbf{0{,}1}" />.</p>
             </div>
             <div className="border-t border-border pt-3">
               <p className="mb-1 font-semibold text-foreground">Résoudre <Math tex="x^2+6x+9=0" /></p>
               <p>signifie que <Math tex="x^2+2\times3\times x+3^2=0" /></p>
-              <p>c&apos;est à dire <Math tex="(x+3)^2=0" /> alors <Math tex="x+3=0" />, d&apos;où <Math tex="x=\mathbf{-3}" />.</p>
+              <p>c&apos;est-à-dire <Math tex="(x+3)^2=0" /> alors <Math tex="x+3=0" />, d&apos;où <Math tex="x=\mathbf{-3}" />.</p>
             </div>
             <div className="border-t border-border pt-3">
               <p className="mb-1 font-semibold text-foreground">Résoudre <Math tex="t^2-9=0" /></p>
-              <p>c&apos;est à dire <Math tex="t^2-3^2=0" />, on obtient <Math tex="(t-3)(t+3)=0" /></p>
+              <p>c&apos;est-à-dire <Math tex="t^2-3^2=0" />, on obtient <Math tex="(t-3)(t+3)=0" /></p>
               <p>alors <Math tex="t+3=0" /> ou <Math tex="t-3=0" />, deux solutions : <Math tex="\mathbf{-3}" /> et <Math tex="\mathbf{3}" />.</p>
             </div>
           </div>

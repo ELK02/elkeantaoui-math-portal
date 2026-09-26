@@ -181,7 +181,7 @@ export default function Lesson() {
               <p><Math tex="(a+b)(c+d) = a(c+d)+b(c+d)" /></p>
               <p><Math tex="= ac+ad+bc+bd" /></p>
             </div>
-            <p className="mt-4 font-semibold text-foreground">Exemple 1 · Développe et réduit</p>
+            <p className="mt-4 font-semibold text-foreground">Exemple 1 · Développe et réduis</p>
             <div className="mt-1 space-y-1 text-foreground-muted">
               <p><Math tex="A=(3x+1)(y+4)" /> · <Math tex="B=(3x+1)(y-4)" /></p>
               <p><Math tex="C=(3x-1)(y+4)" /> · <Math tex="D=(3x-1)(y-4)" /></p>
