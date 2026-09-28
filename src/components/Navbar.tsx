@@ -3,9 +3,10 @@
 import { useState, type MouseEvent } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, Search, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
+import { useSearchModal } from "./SearchModal";
 import { LEVELS } from "@/data/chapters";
 
 const LYCEE_MENUS = [
@@ -39,6 +40,7 @@ export function Navbar() {
   const [mobileLyceeOpen, setMobileLyceeOpen] = useState(false);
   const pathname = usePathname();
   const startHref = getStartHref(pathname);
+  const { open: openSearch } = useSearchModal();
 
   /** Next.js ne fait pas défiler la page vers un lien du type "/#niveaux" quand on est
    * déjà sur "/" (seul le hash change) : on gère ce cas nous-mêmes. */
@@ -105,10 +107,27 @@ export function Navbar() {
             </div>
           </div>
 
+          <Link href="/fiches" className="rounded-md px-3 py-1.5 text-sm font-medium text-foreground-muted transition-colors hover:bg-navy-900/[0.04] hover:text-foreground dark:hover:bg-white/[0.06]">
+            Fiches
+          </Link>
+          <Link href="/examens" className="rounded-md px-3 py-1.5 text-sm font-medium text-foreground-muted transition-colors hover:bg-navy-900/[0.04] hover:text-foreground dark:hover:bg-white/[0.06]">
+            Examens
+          </Link>
+
+          <button
+            type="button"
+            onClick={openSearch}
+            aria-label="Rechercher"
+            className="ml-1 flex items-center gap-1.5 rounded-md border border-border px-2.5 py-1.5 text-sm text-foreground-muted transition-colors hover:border-navy-400 hover:text-foreground dark:hover:border-navy-500"
+          >
+            <Search className="h-3.5 w-3.5" />
+            <span className="font-mono text-[11px]">Ctrl K</span>
+          </button>
+
           <Link
             href={startHref}
             onClick={handleStartClick}
-            className="ml-3 rounded-md bg-navy-900 px-3.5 py-1.5 text-sm font-medium text-white transition-colors hover:bg-navy-800 dark:bg-white dark:text-navy-900 dark:hover:bg-navy-100"
+            className="ml-2 rounded-md bg-navy-900 px-3.5 py-1.5 text-sm font-medium text-white transition-colors hover:bg-navy-800 dark:bg-white dark:text-navy-900 dark:hover:bg-navy-100"
           >
             Commencer →
           </Link>
@@ -118,6 +137,14 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-1 md:hidden">
+          <button
+            type="button"
+            onClick={openSearch}
+            aria-label="Rechercher"
+            className="rounded-md p-2 text-foreground"
+          >
+            <Search className="h-5 w-5" />
+          </button>
           <ThemeToggle />
           <button
             type="button"
@@ -189,6 +216,13 @@ export function Navbar() {
               )}
             </div>
           )}
+
+          <Link href="/fiches" onClick={() => setMobileOpen(false)} className="block rounded-md px-3 py-2.5 text-sm font-medium text-foreground hover:bg-navy-900/[0.04] dark:hover:bg-white/[0.06]">
+            Fiches
+          </Link>
+          <Link href="/examens" onClick={() => setMobileOpen(false)} className="block rounded-md px-3 py-2.5 text-sm font-medium text-foreground hover:bg-navy-900/[0.04] dark:hover:bg-white/[0.06]">
+            Examens
+          </Link>
 
           <Link
             href={startHref}

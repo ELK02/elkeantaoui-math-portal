@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getAllLessonParams, getChapter } from "@/data/chapters";
 import type { LessonMeta } from "@/components/lesson";
 import { PageShell } from "@/components/PageShell";
+import { MarkVisited } from "@/components/MarkVisited";
 
 export function generateStaticParams() {
   return getAllLessonParams();
@@ -44,6 +45,7 @@ export default async function LessonPage(
   const Lesson = mod.default;
   return (
     <PageShell>
+      <MarkVisited levelId={niveau} slug={slug} />
       <Lesson />
     </PageShell>
   );

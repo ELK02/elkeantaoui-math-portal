@@ -5,6 +5,7 @@ import path from "node:path";
 import { notFound } from "next/navigation";
 import { TRONC_COMMUN_SCIENCES } from "@/data/lycee";
 import type { LessonMeta } from "@/components/lesson";
+import { MarkVisited } from "@/components/MarkVisited";
 
 const CONTENT_ROOT = path.join(process.cwd(), "src/content/lessons/lycee/tc-sciences");
 
@@ -59,5 +60,10 @@ export default async function LyceeLessonPage(
     default: ComponentType;
   };
   const Lesson = mod.default;
-  return <Lesson />;
+  return (
+    <>
+      <MarkVisited levelId="tc" slug={slug} />
+      <Lesson />
+    </>
+  );
 }

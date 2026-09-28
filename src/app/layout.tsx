@@ -7,12 +7,23 @@ import "katex/dist/katex.min.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.profdemath.com"),
   title: {
     default: "Prof. Lahbib Elkeantaoui · Mathématiques",
-    template: "%s | Prof. Lahbib Elkeantaoui",
+    template: "%s | Profdemath.com",
   },
   description:
-    "Cours de mathématiques, résumés, exemples et exercices corrigés pour le Collège (1AC, 2AC, 3AC), par le Prof. Lahbib Elkeantaoui.",
+    "Cours de mathématiques Maroc pour le Collège (1AC, 2AC, 3AC) et le Lycée (Tronc Commun, 1 Bac, 2 Bac) : résumés de cours, exercices corrigés et fiches de révision, par le Prof. Lahbib Elkeantaoui.",
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "Profdemath.com",
+    title: "Prof. Lahbib Elkeantaoui · Mathématiques",
+    description:
+      "Cours de mathématiques Maroc pour le Collège et le Lycée : résumés de cours, exercices corrigés et fiches de révision.",
+    images: ["/logo/logo-elk.png"],
+  },
+  alternates: { canonical: "/" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

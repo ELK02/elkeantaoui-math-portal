@@ -1,77 +1,66 @@
 import Link from "next/link";
-import { LEVELS } from "@/data/chapters";
+import { Mail } from "lucide-react";
 import { Logo } from "./Logo";
+import { SOCIAL_LINKS } from "@/data/social";
+
+const LINKS = [
+  { href: "/#niveaux", label: "Cours" },
+  { href: "/#ressources", label: "Exercices" },
+  { href: "/fiches", label: "Fiches" },
+  { href: "/examens", label: "Examens" },
+  { href: "/a-propos", label: "À propos" },
+] as const;
+
+const SOCIAL_ROWS = [
+  { key: "whatsapp", label: "WhatsApp" },
+  { key: "instagram", label: "Instagram" },
+  { key: "youtube", label: "YouTube" },
+] as const;
 
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="border-t border-border bg-surface">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:grid-cols-2 sm:px-6 md:grid-cols-4 lg:px-8">
-        <div className="sm:col-span-2 md:col-span-1">
-          <Logo size="md" />
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-foreground-muted">
-            Cours de mathématiques clairs, illustrés et corrigés pour le Collège
-            et le Lycée, par le Prof. Lahbib Elkeantaoui.
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-8 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+        <div className="flex items-center gap-3">
+          <Logo size="sm" withName={false} />
+          <p className="max-w-[14rem] text-xs leading-snug text-foreground-muted">
+            Mathématiques • Collège &amp; Lycée
           </p>
         </div>
 
-        <div>
-          <h3 className="font-mono text-xs font-semibold uppercase tracking-wider text-foreground-muted">
-            Collège
-          </h3>
-          <ul className="mt-4 space-y-2 text-sm">
-            {LEVELS.map((level) => (
-              <li key={level.id}>
-                <Link href={`/college/${level.id}`} className="text-foreground-muted transition-colors hover:text-foreground">
-                  {level.full}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-foreground-muted">
+          {LINKS.map((link) => (
+            <Link key={link.href} href={link.href} className="transition-colors hover:text-foreground">
+              {link.label}
+            </Link>
+          ))}
+          {SOCIAL_ROWS.filter((row) => SOCIAL_LINKS[row.key]).map((row) => (
+            <a
+              key={row.key}
+              href={SOCIAL_LINKS[row.key] as string}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-foreground"
+            >
+              {row.label}
+            </a>
+          ))}
+        </nav>
 
-        <div>
-          <h3 className="font-mono text-xs font-semibold uppercase tracking-wider text-foreground-muted">
-            Lycée
-          </h3>
-          <ul className="mt-4 space-y-2 text-sm">
-            <li>
-              <Link
-                href="/lycee/tronc-commun/sciences"
-                className="text-foreground-muted transition-colors hover:text-foreground"
-              >
-                Tronc Commun · Sciences
-              </Link>
-            </li>
-            <li className="text-foreground-muted/60">
-              1ère Bac <span className="font-mono text-[10px] uppercase tracking-wide">(en cours)</span>
-            </li>
-            <li className="text-foreground-muted/60">
-              2ème Bac <span className="font-mono text-[10px] uppercase tracking-wide">(en cours)</span>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="font-mono text-xs font-semibold uppercase tracking-wider text-foreground-muted">
-            Contact
-          </h3>
-          <ul className="mt-4 space-y-2 text-sm text-foreground-muted">
-            <li>Prof. Lahbib Elkeantaoui</li>
-            <li>Professeur de Mathématiques</li>
-            <li>
-              <a href="mailto:lahbibelk05@gmail.com" className="text-foreground-muted transition-colors hover:text-foreground">
-                lahbibelk05@gmail.com
-              </a>
-            </li>
-          </ul>
-        </div>
+        <Link
+          href="/contact"
+          className="inline-flex items-center gap-2 rounded-md border border-border px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:border-navy-400 dark:hover:border-navy-500"
+        >
+          <Mail className="h-3.5 w-3.5" />
+          Me contacter
+        </Link>
       </div>
 
       <div className="border-t border-border">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-5 font-mono text-xs text-foreground-muted sm:flex-row sm:px-6 lg:px-8">
-          <p>© {year} Prof. Lahbib Elkeantaoui. Tous droits réservés.</p>
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-1 px-4 py-3 font-mono text-xs text-foreground-muted sm:flex-row sm:px-6 lg:px-8">
+          <p>© {year} Profdemath.com — Prof. Lahbib Elkeantaoui</p>
           <p>Site pédagogique</p>
         </div>
       </div>
