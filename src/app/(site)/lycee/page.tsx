@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Clock, ArrowUpRight } from "lucide-react";
 
-export const metadata: Metadata = { title: "Cycle Lycée" };
+export const metadata: Metadata = {
+  title: "Cycle Lycée",
+  description:
+    "Mathématiques Tronc Commun, 1ère Bac et 2ème Bac, toutes filières : cours, exercices corrigés et fiches de révision.",
+  alternates: { canonical: "/lycee" },
+};
 
 const OTHER_MENUS = [
   {

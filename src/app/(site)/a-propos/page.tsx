@@ -6,6 +6,7 @@ import { Logo } from "@/components/Logo";
 export const metadata: Metadata = {
   title: "À propos",
   description: "Prof. Lahbib Elkeantaoui, professeur de mathématiques pour le Collège et le Lycée au Maroc.",
+  alternates: { canonical: "/a-propos" },
 };
 
 export default function AProposPage() {
@@ -30,7 +31,7 @@ export default function AProposPage() {
           pensés pour que chaque élève puisse progresser à son rythme, du Collège jusqu&apos;au Baccalauréat.
         </p>
         <p className="font-mono text-sm text-foreground">
-          Prof : ELK.H — <a href="https://www.profdemath.com" className="hover:underline">www.profdemath.com</a>
+          Prof : ELK.H — <a href="https://profdemath.com" className="hover:underline">www.profdemath.com</a>
         </p>
       </div>
 

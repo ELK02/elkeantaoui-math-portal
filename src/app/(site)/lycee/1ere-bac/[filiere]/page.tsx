@@ -21,7 +21,12 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { filiere } = await props.params;
   const f = PREMIERE_BAC.filieres.find((x) => x.slug === filiere);
-  return { title: f ? `1ère Bac · ${f.label}` : "1ère Bac" };
+  if (!f) return { title: "1ère Bac" };
+  return {
+    title: `1ère Bac · ${f.label}`,
+    description: `Mathématiques 1ère Bac Maroc, filière ${f.label} : cours et exercices corrigés, classés par semestre.`,
+    alternates: { canonical: `/lycee/1ere-bac/${f.slug}` },
+  };
 }
 
 export default async function PremiereBacFilierePage(props: PageProps<"/lycee/1ere-bac/[filiere]">) {

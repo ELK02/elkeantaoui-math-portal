@@ -6,6 +6,7 @@ import { FICHES } from "@/data/fiches";
 export const metadata: Metadata = {
   title: "Fiches manuscrites",
   description: "Fiches de révision manuscrites, claires et colorées, pour réviser rapidement chaque chapitre.",
+  alternates: { canonical: "/fiches" },
 };
 
 export default function FichesPage() {

@@ -94,16 +94,16 @@ const JSON_LD = {
     {
       "@type": "EducationalOrganization",
       name: "Profdemath.com",
-      url: "https://www.profdemath.com",
+      url: "https://profdemath.com",
       description:
         "Cours de mathématiques pour le Collège et le Lycée au Maroc : résumés de cours, exercices corrigés et fiches de révision.",
-      logo: "https://www.profdemath.com/logo/logo-elk.png",
+      logo: "https://profdemath.com/logo/logo-elk.png",
     },
     {
       "@type": "Person",
       name: "Lahbib Elkeantaoui",
       jobTitle: "Professeur de mathématiques",
-      url: "https://www.profdemath.com/a-propos",
+      url: "https://profdemath.com/a-propos",
     },
   ],
 };

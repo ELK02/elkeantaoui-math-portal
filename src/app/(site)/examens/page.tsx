@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Examens",
   description:
     "Prépare ton examen régional ou national : sujets, corrections et séries de révision pour le Collège et le Lycée.",
+  alternates: { canonical: "/examens" },
 };
 
 const EXAM_CARDS = [

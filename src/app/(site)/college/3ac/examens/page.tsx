@@ -4,7 +4,12 @@ import type { Metadata } from "next";
 import { FileText } from "lucide-react";
 import { ExamGallery } from "@/components/ExamGallery";
 
-export const metadata: Metadata = { title: "Examens 3ème Année Collège" };
+export const metadata: Metadata = {
+  title: "Examens 3ème Année Collège",
+  description:
+    "Examen régional mathématiques 3AC Maroc : sujets locaux et régionaux corrigés, annales à télécharger pour réviser l'examen de fin de collège.",
+  alternates: { canonical: "/college/3ac/examens" },
+};
 
 function listLocalExams() {
   const dir = path.join(process.cwd(), "public", "examens", "3ac", "locale");

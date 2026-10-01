@@ -6,7 +6,12 @@ import { Clock, ArrowLeft, ArrowUpRight } from "lucide-react";
 import { TRONC_COMMUN_SCIENCES } from "@/data/lycee";
 import { WhatsAppLevelBanner } from "@/components/WhatsAppLevelBanner";
 
-export const metadata: Metadata = { title: "Tronc Commun · Science et Technologies" };
+export const metadata: Metadata = {
+  title: "Tronc Commun · Science et Technologies",
+  description:
+    "Mathématiques Tronc Commun Maroc, filière Science et Technologies : cours et exercices corrigés pour les 16 chapitres du programme national.",
+  alternates: { canonical: "/lycee/tronc-commun/sciences" },
+};
 
 const CONTENT_ROOT = path.join(process.cwd(), "src/content/lessons/lycee/tc-sciences");
 

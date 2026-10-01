@@ -6,6 +6,7 @@ import { SOCIAL_LINKS } from "@/data/social";
 export const metadata: Metadata = {
   title: "Contact",
   description: "Une question sur un cours ou un exercice ? Contactez le Prof. Lahbib Elkeantaoui.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {

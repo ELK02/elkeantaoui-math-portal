@@ -7,7 +7,7 @@ import "katex/dist/katex.min.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.profdemath.com"),
+  metadataBase: new URL("https://profdemath.com"),
   title: {
     default: "Prof. Lahbib Elkeantaoui · Mathématiques",
     template: "%s | Profdemath.com",
@@ -18,6 +18,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
     siteName: "Profdemath.com",
+    url: "/",
+    title: "Prof. Lahbib Elkeantaoui · Mathématiques",
+    description:
+      "Cours de mathématiques Maroc pour le Collège et le Lycée : résumés de cours, exercices corrigés et fiches de révision.",
+    images: ["/logo/logo-elk.png"],
+  },
+  twitter: {
+    card: "summary",
     title: "Prof. Lahbib Elkeantaoui · Mathématiques",
     description:
       "Cours de mathématiques Maroc pour le Collège et le Lycée : résumés de cours, exercices corrigés et fiches de révision.",

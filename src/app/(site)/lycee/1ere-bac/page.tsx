@@ -4,7 +4,12 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { PREMIERE_BAC } from "@/data/lycee";
 import { WhatsAppLevelBanner } from "@/components/WhatsAppLevelBanner";
 
-export const metadata: Metadata = { title: "1ère Année Bac" };
+export const metadata: Metadata = {
+  title: "1ère Année Bac",
+  description:
+    "Mathématiques 1ère Bac Maroc : Sciences Mathématiques, Sciences Expérimentales, Sciences et Technologies — cours et exercices corrigés par filière.",
+  alternates: { canonical: "/lycee/1ere-bac" },
+};
 
 export default function PremiereBacPage() {
   return (

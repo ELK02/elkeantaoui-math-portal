@@ -16,7 +16,12 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { niveau } = await props.params;
   const level = getLevel(niveau);
-  return { title: level ? level.full : "Niveau" };
+  if (!level) return { title: "Niveau" };
+  return {
+    title: level.full,
+    description: `Mathématiques ${level.short} Maroc : ${level.description} Cours et exercices corrigés, classés par semestre.`,
+    alternates: { canonical: `/college/${level.id}` },
+  };
 }
 
 export default async function NiveauPage(props: PageProps<"/college/[niveau]">) {

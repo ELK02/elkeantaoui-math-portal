@@ -21,7 +21,12 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { filiere } = await props.params;
   const f = DEUXIEME_BAC.filieres.find((x) => x.slug === filiere);
-  return { title: f ? `2ème Bac · ${f.label}` : "2ème Bac" };
+  if (!f) return { title: "2ème Bac" };
+  return {
+    title: `2ème Bac · ${f.label}`,
+    description: `Mathématiques 2ème Bac Maroc, filière ${f.label} : cours et exercices corrigés, classés par semestre.`,
+    alternates: { canonical: `/lycee/2eme-bac/${f.slug}` },
+  };
 }
 
 export default async function DeuxiemeBacFilierePage(props: PageProps<"/lycee/2eme-bac/[filiere]">) {

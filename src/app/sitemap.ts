@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { LEVELS, getAllLessonParams } from "@/data/chapters";
 import { TRONC_COMMUN_SCIENCES, PREMIERE_BAC, DEUXIEME_BAC } from "@/data/lycee";
 
-const BASE_URL = "https://www.profdemath.com";
+const BASE_URL = "https://profdemath.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
