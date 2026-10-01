@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, type MouseEvent } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, Search, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
@@ -15,44 +14,11 @@ const LYCEE_MENUS = [
   { label: "2ème Bac", href: "/lycee/2eme-bac" },
 ];
 
-const DEFAULT_START_HREF = "/college/3ac";
-
-/** Sur une page d'un niveau (liste de chapitres ou leçon), "Commencer" doit pointer vers
- * les chapitres de ce niveau-là plutôt que vers un niveau fixe. Sur l'accueil, il doit
- * plutôt amener à la section "Cycle Collège / Cycle Lycée" (#niveaux) de la page. */
-function getStartHref(pathname: string): string {
-  if (pathname === "/") return "/#niveaux";
-  const college = pathname.match(/^\/college\/(1ac|2ac|3ac)(?:\/|$)/);
-  if (college) return `/college/${college[1]}`;
-  if (pathname.startsWith("/lycee/tronc-commun/sciences")) return "/lycee/tronc-commun/sciences";
-  const premiereBac = pathname.match(/^\/lycee\/1ere-bac\/([^/]+)/);
-  if (premiereBac) return `/lycee/1ere-bac/${premiereBac[1]}`;
-  if (pathname.startsWith("/lycee/1ere-bac")) return "/lycee/1ere-bac";
-  const deuxiemeBac = pathname.match(/^\/lycee\/2eme-bac\/([^/]+)/);
-  if (deuxiemeBac) return `/lycee/2eme-bac/${deuxiemeBac[1]}`;
-  if (pathname.startsWith("/lycee/2eme-bac")) return "/lycee/2eme-bac";
-  return DEFAULT_START_HREF;
-}
-
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileCollegeOpen, setMobileCollegeOpen] = useState(false);
   const [mobileLyceeOpen, setMobileLyceeOpen] = useState(false);
-  const pathname = usePathname();
-  const startHref = getStartHref(pathname);
   const { open: openSearch } = useSearchModal();
-
-  /** Next.js ne fait pas défiler la page vers un lien du type "/#niveaux" quand on est
-   * déjà sur "/" (seul le hash change) : on gère ce cas nous-mêmes. */
-  function handleStartClick(e: MouseEvent<HTMLAnchorElement>) {
-    if (pathname !== "/" || !startHref.includes("#")) return;
-    const id = startHref.split("#")[1];
-    const el = document.getElementById(id);
-    if (!el) return;
-    e.preventDefault();
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-    window.history.replaceState(null, "", `/#${id}`);
-  }
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-surface/80 backdrop-blur-md">
@@ -125,11 +91,10 @@ export function Navbar() {
           </button>
 
           <Link
-            href={startHref}
-            onClick={handleStartClick}
+            href="/contact"
             className="ml-2 rounded-md bg-navy-900 px-3.5 py-1.5 text-sm font-medium text-white transition-colors hover:bg-navy-800 dark:bg-white dark:text-navy-900 dark:hover:bg-navy-100"
           >
-            Commencer →
+            Contact
           </Link>
           <div className="ml-1">
             <ThemeToggle />
@@ -225,14 +190,11 @@ export function Navbar() {
           </Link>
 
           <Link
-            href={startHref}
-            onClick={(e) => {
-              handleStartClick(e);
-              setMobileOpen(false);
-            }}
+            href="/contact"
+            onClick={() => setMobileOpen(false)}
             className="mt-2 block rounded-md bg-navy-900 px-3 py-2.5 text-center text-sm font-medium text-white dark:bg-white dark:text-navy-900"
           >
-            Commencer →
+            Contact
           </Link>
         </div>
       )}
