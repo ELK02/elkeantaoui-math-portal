@@ -10,6 +10,6 @@ export const SOCIAL_LINKS: {
   youtube: string | null;
 } = {
   whatsapp: null,
-  instagram: null,
+  instagram: "https://www.instagram.com/profdemathcom",
   youtube: null,
 };

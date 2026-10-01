@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { AtSign } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
+import { SOCIAL_LINKS } from "@/data/social";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -20,6 +22,21 @@ export default function ContactPage() {
       <div className="mt-8">
         <ContactForm />
       </div>
+
+      {SOCIAL_LINKS.instagram && (
+        <div className="mt-6 border-t border-border pt-6">
+          <p className="text-sm text-foreground-muted">Vous pouvez aussi me suivre sur Instagram :</p>
+          <a
+            href={SOCIAL_LINKS.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-navy-600 dark:hover:text-orange-400"
+          >
+            <AtSign className="h-4 w-4" />
+            profdemathcom
+          </a>
+        </div>
+      )}
     </section>
   );
 }

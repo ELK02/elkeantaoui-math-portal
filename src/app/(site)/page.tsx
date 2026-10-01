@@ -6,6 +6,7 @@ import {
   BookOpenCheck,
   CheckCircle2,
   Clock,
+  AtSign,
   GraduationCap,
   Landmark,
   ListChecks,
@@ -385,7 +386,7 @@ export default function Home() {
         <p className="mt-3 font-mono text-xs text-foreground-muted">
           Prof : ELK.H — www.profdemath.com
         </p>
-        <div className="mt-6 flex justify-center">
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-navy-400 dark:hover:border-navy-500"
@@ -393,6 +394,17 @@ export default function Home() {
             <Mail className="h-4 w-4" />
             Me contacter
           </Link>
+          {SOCIAL_LINKS.instagram && (
+            <a
+              href={SOCIAL_LINKS.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-navy-400 dark:hover:border-navy-500"
+            >
+              <AtSign className="h-4 w-4" />
+              Instagram
+            </a>
+          )}
         </div>
       </section>
     </>
