@@ -12,7 +12,6 @@ const LINKS = [
 ] as const;
 
 const SOCIAL_ROWS = [
-  { key: "whatsapp", label: "WhatsApp" },
   { key: "instagram", label: "Instagram" },
   { key: "youtube", label: "YouTube" },
 ] as const;

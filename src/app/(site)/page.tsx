@@ -25,6 +25,7 @@ import { SearchTriggerButton } from "@/components/SearchTriggerButton";
 import { Logo } from "@/components/Logo";
 import { SOCIAL_LINKS } from "@/data/social";
 import { FICHES } from "@/data/fiches";
+import { WHATSAPP_CHANNELS, WHATSAPP_LEVEL_LABELS } from "@/data/whatsapp";
 
 export const metadata: Metadata = {
   description:
@@ -82,6 +83,10 @@ const TOTAL_CHAPTERS =
   TC_CHAPTERS +
   PREMIERE_BAC_CHAPTERS +
   DEUXIEME_BAC_CHAPTERS;
+
+const ACTIVE_WHATSAPP_CHANNELS = Object.entries(WHATSAPP_CHANNELS).filter(
+  (entry): entry is [keyof typeof WHATSAPP_CHANNELS, string] => entry[1] !== null
+);
 
 const JSON_LD = {
   "@context": "https://schema.org",
@@ -354,22 +359,27 @@ export default function Home() {
 
       <ProgressTracker />
 
-      {SOCIAL_LINKS.whatsapp && (
+      {ACTIVE_WHATSAPP_CHANNELS.length > 0 && (
         <section className="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 lg:px-8">
           <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
             📱 Reçois les nouveaux cours et exercices
           </h2>
           <p className="mt-2 text-sm text-foreground-muted sm:text-base">
-            Rejoins le canal WhatsApp Profdemath et reçois les nouvelles ressources pédagogiques.
+            Rejoins le canal WhatsApp de ton niveau et reçois les nouvelles ressources pédagogiques.
           </p>
-          <a
-            href={SOCIAL_LINKS.whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-2 rounded-md bg-green-600 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-green-700"
-          >
-            💬 Rejoindre le canal WhatsApp
-          </a>
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+            {ACTIVE_WHATSAPP_CHANNELS.map(([levelId, link]) => (
+              <a
+                key={levelId}
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-md bg-green-600 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-green-700"
+              >
+                💬 {WHATSAPP_LEVEL_LABELS[levelId]}
+              </a>
+            ))}
+          </div>
         </section>
       )}
 

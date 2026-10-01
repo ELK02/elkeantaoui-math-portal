@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { FileDown } from "lucide-react";
 import { LEVELS, getLevel } from "@/data/chapters";
 import { ChapterCard } from "@/components/ChapterCard";
+import { WhatsAppLevelBanner } from "@/components/WhatsAppLevelBanner";
+import type { WhatsappLevelId } from "@/data/whatsapp";
 
 export function generateStaticParams() {
   return LEVELS.map((level) => ({ niveau: level.id }));
@@ -31,15 +33,18 @@ export default async function NiveauPage(props: PageProps<"/college/[niveau]">) 
             {level.full}
           </h1>
           <p className="mt-3 max-w-2xl text-foreground-muted">{level.description}</p>
-          {level.id === "3ac" && (
-            <Link
-              href="/college/3ac/examens"
-              className="mt-6 inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-navy-400 dark:hover:border-navy-500"
-            >
-              <FileDown className="h-4 w-4" />
-              Examens locaux &amp; régionaux
-            </Link>
-          )}
+          <div className="flex flex-wrap items-center gap-3">
+            {level.id === "3ac" && (
+              <Link
+                href="/college/3ac/examens"
+                className="mt-6 inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-navy-400 dark:hover:border-navy-500"
+              >
+                <FileDown className="h-4 w-4" />
+                Examens locaux &amp; régionaux
+              </Link>
+            )}
+            <WhatsAppLevelBanner levelId={level.id as WhatsappLevelId} />
+          </div>
         </div>
       </section>
 

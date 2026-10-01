@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { PREMIERE_BAC } from "@/data/lycee";
+import { WhatsAppLevelBanner } from "@/components/WhatsAppLevelBanner";
 
 export const metadata: Metadata = { title: "1ère Année Bac" };
 
@@ -21,9 +22,10 @@ export default function PremiereBacPage() {
         1ère Année Bac
       </h1>
       <p className="mt-3 max-w-2xl text-foreground-muted">
-        Choisissez votre filière pour accéder aux chapitres, classés par semestre. Cours et exercices en cours de
-        publication.
+        Choisissez votre filière pour accéder aux chapitres, classés par semestre, avec cours et exercices corrigés.
       </p>
+
+      <WhatsAppLevelBanner levelId="1bac" />
 
       <div className="mt-10 grid gap-4 sm:grid-cols-2">
         {PREMIERE_BAC.filieres.map((filiere) => {

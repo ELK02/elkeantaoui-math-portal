@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { Clock, ArrowLeft, ArrowUpRight } from "lucide-react";
 import { TRONC_COMMUN_SCIENCES } from "@/data/lycee";
+import { WhatsAppLevelBanner } from "@/components/WhatsAppLevelBanner";
 
 export const metadata: Metadata = { title: "Tronc Commun · Science et Technologies" };
 
@@ -35,6 +36,8 @@ export default function TroncCommunSciencesPage() {
         répartis sur les deux semestres. Chaque chapitre est publié avec son cours et ses exercices corrigés,
         au même format que le Collège.
       </p>
+
+      <WhatsAppLevelBanner levelId="tc" />
 
       <div className="mt-10 space-y-6">
         {TRONC_COMMUN_SCIENCES.semesters.map((semester) => (
