@@ -53,7 +53,7 @@ function NumberLine({
 }) {
   const y = height * 0.54;
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} className="mx-auto h-auto w-full max-w-xl">
+    <svg role="img" aria-label="Figure 1 — Droite graduée &amp; Repère dans le plan" viewBox={`0 0 ${width} ${height}`} className="mx-auto h-auto w-full max-w-xl">
       <defs>
         <marker id="arrow-line" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto">
           <path d="M0,0 L9,4.5 L0,9 Z" className="fill-foreground" />
@@ -169,7 +169,7 @@ export default function Lesson() {
 
         <div className="mt-4 rounded-2xl border border-border bg-surface p-5 md:p-7">
           <p className="mb-4 font-mono text-xs font-semibold text-sky-600 uppercase">Exemple</p>
-          <svg viewBox="0 0 560 170" className="mx-auto mb-5 h-auto w-full max-w-2xl">
+          <svg role="img" aria-label="Figure 2 — Droite graduée &amp; Repère dans le plan : points B, D, O, I, A, C, E ; -4, -3, -2, -1, 0, 1" viewBox="0 0 560 170" className="mx-auto mb-5 h-auto w-full max-w-2xl">
             <defs>
               <marker id="arrow-sky" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto">
                 <path d="M0,0 L9,4.5 L0,9 Z" className="fill-foreground" />
@@ -239,7 +239,7 @@ export default function Lesson() {
           <p className="mb-4 font-mono text-xs font-semibold text-cyan-600 uppercase">
             Exemple · A(+2) ; B(−3) et C(+4)
           </p>
-          <svg viewBox="0 0 500 190" className="mx-auto mb-5 h-auto w-full max-w-xl">
+          <svg role="img" aria-label="Figure 3 — Droite graduée &amp; Repère dans le plan : points B, A, C ; -3, -2, -1, 0, 1, 2" viewBox="0 0 500 190" className="mx-auto mb-5 h-auto w-full max-w-xl">
             <defs>
               <marker id="arrow-cyan" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto">
                 <path d="M0,0 L9,4.5 L0,9 Z" className="fill-foreground" />
@@ -299,7 +299,7 @@ export default function Lesson() {
         </Callout>
 
         <div className="mt-4 rounded-2xl border border-border bg-surface p-5 md:p-7">
-          <svg viewBox="0 0 480 300" className="mx-auto h-auto w-full max-w-lg">
+          <svg role="img" aria-label="Figure 4 — Droite graduée &amp; Repère dans le plan : point O ; x, y, l'origine du repère" viewBox="0 0 480 300" className="mx-auto h-auto w-full max-w-lg">
             <defs>
               <marker id="arrow-teal" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto">
                 <path d="M0,0 L9,4.5 L0,9 Z" className="fill-foreground" />
@@ -343,7 +343,7 @@ export default function Lesson() {
 
         <div className="mt-4 rounded-2xl border border-border bg-surface p-5 md:p-7">
           <p className="mb-4 font-mono text-xs font-semibold text-violet-600 uppercase">Exemple</p>
-          <svg viewBox="0 0 320 300" className="mx-auto mb-5 h-auto w-full max-w-sm">
+          <svg role="img" aria-label="Figure 5 — Droite graduée &amp; Repère dans le plan : points O, I, A, B, C, D, E, F, G ; 1" viewBox="0 0 320 300" className="mx-auto mb-5 h-auto w-full max-w-sm">
             <defs>
               <marker id="arrow-violet" markerWidth="8" markerHeight="8" refX="5.5" refY="4" orient="auto">
                 <path d="M0,0 L8,4 L0,8 Z" className="fill-foreground-muted" />

@@ -841,7 +841,7 @@ export default function Lesson() {
                       Sur la figure ci-contre, on sait que <Math tex="(DE)\,//\,(BC)" /> :
                     </p>
                     <DiagramPanel>
-                      <svg viewBox="0 0 240 220" className="w-44">
+                      <svg role="img" aria-label="Figure 1 — Évaluation Diagnostique : points A, D, E, B, C" viewBox="0 0 240 220" className="w-44">
                         <polygon points="120,20 40,190 200,190" fill="none" stroke="#334155" strokeWidth="2" />
                         <line x1="76" y1="105" x2="164" y2="105" stroke="#e11d48" strokeWidth="2.2" />
                         <line x1="40" y1="190" x2="200" y2="190" stroke="#e11d48" strokeWidth="2.2" />

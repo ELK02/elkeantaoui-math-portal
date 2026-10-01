@@ -109,7 +109,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 220 160" className="h-40 w-56 text-white">
+          <svg role="img" aria-label="Figure 1 — Le produit scalaire et ses applications" viewBox="0 0 220 160" className="h-40 w-56 text-white">
             <circle cx="120" cy="90" r="55" fill="none" stroke="white" strokeWidth="2" opacity="0.6" />
             <line x1="175" y1="30" x2="175" y2="150" stroke="white" strokeWidth="2" />
             <circle cx="175" cy="90" r="4" fill="white" />
@@ -186,7 +186,7 @@ export default function Lesson() {
             }
             svg={
               <FigureBox>
-                <svg viewBox="0 0 200 200" className="w-full max-w-[220px]">
+                <svg role="img" aria-label="Figure 2 — Le produit scalaire et ses applications : (D), n&amp;#8407;" viewBox="0 0 200 200" className="w-full max-w-[220px]">
                   <line x1="16" y1="106" x2="144" y2="74" stroke="#334155" strokeWidth="2" />
                   <line x1="40" y1="100" x2="58" y2="172" stroke="#f97316" strokeWidth="2.2" markerEnd="url(#arrN)" />
                   <defs>
@@ -286,7 +286,7 @@ export default function Lesson() {
             }
             svg={
               <FigureBox>
-                <svg viewBox="0 0 240 160" className="w-full max-w-[240px]">
+                <svg role="img" aria-label="Figure 3 — Le produit scalaire et ses applications : point T ; &amp;#937;, r" viewBox="0 0 240 160" className="w-full max-w-[240px]">
                   <circle cx="120" cy="90" r="60" fill="none" stroke="#334155" strokeWidth="2" />
                   <line x1="180" y1="20" x2="180" y2="160" stroke="#e11d48" strokeWidth="2.2" />
                   <line x1="120" y1="90" x2="180" y2="90" stroke="#0ea5e9" strokeWidth="1.4" strokeDasharray="3 3" />

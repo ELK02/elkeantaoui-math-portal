@@ -124,7 +124,7 @@ export default function Lesson() {
           numeral="I"
           title="Médiatrice d'un segment"
           visual={
-            <svg viewBox="0 0 320 200" className="h-auto w-full max-w-[320px]">
+            <svg role="img" aria-label="Figure 1 — La symétrie axiale : points A, B, M ; (Δ)" viewBox="0 0 320 200" className="h-auto w-full max-w-[320px]">
               <line x1="160" y1="15" x2="160" y2="190" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4" />
               <text x="168" y="28" fill="#e11d48" fontSize="14" fontWeight="600">(Δ)</text>
               <line x1="60" y1="150" x2="260" y2="150" stroke="#4f46e5" strokeWidth="2.5" />
@@ -160,7 +160,7 @@ export default function Lesson() {
           numeral="II"
           title="Symétrique d'un point"
           visual={
-            <svg viewBox="0 0 320 200" className="h-auto w-full max-w-[320px]">
+            <svg role="img" aria-label="Figure 2 — La symétrie axiale : points M, M' ; (Δ), A ∈ (Δ) : A' = A" viewBox="0 0 320 200" className="h-auto w-full max-w-[320px]">
               <line x1="160" y1="15" x2="160" y2="190" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4" />
               <text x="168" y="28" fill="#e11d48" fontSize="14" fontWeight="600">(Δ)</text>
               <line x1="230" y1="70" x2="90" y2="70" stroke="#64748b" strokeWidth="1.6" strokeDasharray="3 3" />
@@ -201,7 +201,7 @@ export default function Lesson() {
               Le symétrique du segment [AB] est le segment [A&apos;B&apos;], avec <Math tex="A'B' = AB" /> : la
               symétrie <em>conserve les longueurs</em>.
             </p>
-            <svg viewBox="0 0 320 200" className="mx-auto h-auto w-full max-w-[320px]">
+            <svg role="img" aria-label="Figure 3 — La symétrie axiale : points A, B, A', B' ; (Δ)" viewBox="0 0 320 200" className="mx-auto h-auto w-full max-w-[320px]">
               <line x1="160" y1="10" x2="160" y2="190" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4" />
               <text x="166" y="24" fill="#e11d48" fontSize="13" fontWeight="600">(Δ)</text>
               <line x1="210" y1="60" x2="250" y2="140" stroke="#4f46e5" strokeWidth="2.5" />
@@ -222,7 +222,7 @@ export default function Lesson() {
             <p className="mb-3 text-sm text-foreground-muted">
               Le symétrique de la droite (AB) par rapport à (Δ) est la droite (A&apos;B&apos;).
             </p>
-            <svg viewBox="0 0 320 200" className="mx-auto h-auto w-full max-w-[320px]">
+            <svg role="img" aria-label="Figure 4 — La symétrie axiale : points A, B, A', B' ; (Δ)" viewBox="0 0 320 200" className="mx-auto h-auto w-full max-w-[320px]">
               <defs>
                 <marker id="arrIndigoSA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                   <path d="M0,0 L10,5 L0,10 Z" fill="#4f46e5" />
@@ -249,7 +249,7 @@ export default function Lesson() {
             <p className="mb-3 text-sm text-foreground-muted">
               Le symétrique de la demi-droite [AB) par rapport à (Δ) est la demi-droite [A&apos;B&apos;).
             </p>
-            <svg viewBox="0 0 320 200" className="mx-auto h-auto w-full max-w-[320px]">
+            <svg role="img" aria-label="Figure 5 — La symétrie axiale : points A, B, A', B' ; (Δ)" viewBox="0 0 320 200" className="mx-auto h-auto w-full max-w-[320px]">
               <line x1="160" y1="10" x2="160" y2="190" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4" />
               <text x="166" y="24" fill="#e11d48" fontSize="13" fontWeight="600">(Δ)</text>
               <line x1="220" y1="55" x2="195" y2="150" stroke="#4f46e5" strokeWidth="2.5" markerEnd="url(#arrIndigoSA)" />
@@ -268,7 +268,7 @@ export default function Lesson() {
             <p className="mb-3 text-sm text-foreground-muted">
               Les symétriques de points alignés par rapport à une droite sont eux aussi alignés.
             </p>
-            <svg viewBox="0 0 320 200" className="mx-auto h-auto w-full max-w-[320px]">
+            <svg role="img" aria-label="Figure 6 — La symétrie axiale : points A, B, C, A', B', C' ; (Δ)" viewBox="0 0 320 200" className="mx-auto h-auto w-full max-w-[320px]">
               <line x1="160" y1="10" x2="160" y2="190" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4" />
               <text x="166" y="24" fill="#e11d48" fontSize="13" fontWeight="600">(Δ)</text>
               <line x1="220" y1="40" x2="270" y2="160" stroke="#4f46e5" strokeWidth="2.5" />
@@ -290,7 +290,7 @@ export default function Lesson() {
               Le symétrique de l&apos;angle AOB est l&apos;angle A&apos;O&apos;B&apos;, avec{" "}
               <Math tex="AOB = A'O'B'" /> : la symétrie <em>conserve la mesure des angles</em>.
             </p>
-            <svg viewBox="0 0 320 200" className="mx-auto h-auto w-full max-w-[320px]">
+            <svg role="img" aria-label="Figure 7 — La symétrie axiale : points O, A, B, O', A', B' ; (Δ)" viewBox="0 0 320 200" className="mx-auto h-auto w-full max-w-[320px]">
               <line x1="160" y1="10" x2="160" y2="190" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4" />
               <text x="166" y="24" fill="#e11d48" fontSize="13" fontWeight="600">(Δ)</text>
               <line x1="220" y1="140" x2="280" y2="60" stroke="#4f46e5" strokeWidth="2.5" />
@@ -312,7 +312,7 @@ export default function Lesson() {
             <p className="mb-3 text-sm text-foreground-muted">
               Le symétrique du cercle C(O ; r) est le cercle C&apos;(O&apos; ; r) : <strong>même rayon r</strong>.
             </p>
-            <svg viewBox="0 0 320 200" className="mx-auto h-auto w-full max-w-[320px]">
+            <svg role="img" aria-label="Figure 8 — La symétrie axiale : points O, O' ; (Δ), r" viewBox="0 0 320 200" className="mx-auto h-auto w-full max-w-[320px]">
               <line x1="160" y1="10" x2="160" y2="190" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4" />
               <text x="166" y="24" fill="#e11d48" fontSize="13" fontWeight="600">(Δ)</text>
               <circle cx="230" cy="100" r="35" fill="none" stroke="#4f46e5" strokeWidth="2.5" />
@@ -346,7 +346,7 @@ export default function Lesson() {
               <Figure
                 text={<p>M et N sont deux points du plan. Trace la droite (Δ) telle que M soit le symétrique de N par rapport à (Δ).</p>}
                 svg={
-                  <svg viewBox="0 0 320 200" className="h-auto w-full max-w-[300px]">
+                  <svg role="img" aria-label="Figure 9 — La symétrie axiale : points M, N" viewBox="0 0 320 200" className="h-auto w-full max-w-[300px]">
                     <line x1="90" y1="80" x2="230" y2="180" stroke="#94a3b8" strokeWidth="1.6" strokeDasharray="4 3" />
                     <circle cx="90" cy="80" r="4" fill="#0f172a" /><circle cx="230" cy="180" r="4" fill="#0f172a" />
                     <text x="70" y="72" fontSize="14" fontWeight="700" fill="#0f172a">M</text>
@@ -368,7 +368,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 320 260" className="h-auto w-full max-w-[300px]">
+                  <svg role="img" aria-label="Figure 10 — La symétrie axiale : points M, N, I ; (Δ)" viewBox="0 0 320 260" className="h-auto w-full max-w-[300px]">
                     <line x1="90" y1="80" x2="230" y2="180" stroke="#0f172a" strokeWidth="2" />
                     <line x1="96" y1="220" x2="224" y2="40" stroke="#e11d48" strokeWidth="2.5" strokeDasharray="6 4" />
                     <text x="200" y="55" fill="#e11d48" fontSize="14" fontWeight="600">(Δ)</text>
@@ -400,7 +400,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 200" className="h-auto w-full max-w-[300px]">
+                  <svg role="img" aria-label="Figure 11 — La symétrie axiale : points B, C, A" viewBox="0 0 300 200" className="h-auto w-full max-w-[300px]">
                     <line x1="30" y1="150" x2="270" y2="150" stroke="#0f172a" strokeWidth="2" />
                     <line x1="30" y1="150" x2="150" y2="50" stroke="#0f172a" strokeWidth="2" />
                     <line x1="270" y1="150" x2="150" y2="50" stroke="#0f172a" strokeWidth="2" />
@@ -422,7 +422,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 270" className="h-auto w-full max-w-[300px]">
+                  <svg role="img" aria-label="Figure 12 — La symétrie axiale : points B, C, A, H, A'" viewBox="0 0 300 270" className="h-auto w-full max-w-[300px]">
                     <line x1="30" y1="150" x2="270" y2="150" stroke="#0f172a" strokeWidth="2" />
                     <line x1="150" y1="50" x2="150" y2="250" stroke="#94a3b8" strokeWidth="1.6" strokeDasharray="4 3" />
                     <line x1="30" y1="150" x2="150" y2="50" stroke="#4f46e5" strokeWidth="2.5" />
@@ -459,7 +459,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 250" className="h-auto w-full max-w-[300px]">
+                  <svg role="img" aria-label="Figure 13 — La symétrie axiale : point A ; (Δ), (D)" viewBox="0 0 300 250" className="h-auto w-full max-w-[300px]">
                     <line x1="90" y1="20" x2="90" y2="230" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4" />
                     <line x1="210" y1="20" x2="210" y2="230" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4" />
                     <circle cx="150" cy="120" r="4" fill="#0f172a" />
@@ -480,7 +480,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 250" className="h-auto w-full max-w-[300px]">
+                  <svg role="img" aria-label="Figure 14 — La symétrie axiale : points A, M, N ; (Δ), (D)" viewBox="0 0 300 250" className="h-auto w-full max-w-[300px]">
                     <line x1="90" y1="20" x2="90" y2="230" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4" />
                     <line x1="210" y1="20" x2="210" y2="230" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4" />
                     <line x1="30" y1="120" x2="270" y2="120" stroke="#0f172a" strokeWidth="2" />
@@ -516,7 +516,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 260" className="h-auto w-full max-w-[300px]">
+                  <svg role="img" aria-label="Figure 15 — La symétrie axiale : points A, B, C, M ; (Δ)" viewBox="0 0 300 260" className="h-auto w-full max-w-[300px]">
                     <line x1="150" y1="50" x2="140" y2="205" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4" />
                     <line x1="150" y1="50" x2="50" y2="220" stroke="#0f172a" strokeWidth="2" />
                     <line x1="150" y1="50" x2="230" y2="190" stroke="#0f172a" strokeWidth="2" />
@@ -547,7 +547,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 320 260" className="h-auto w-full max-w-[300px]">
+                  <svg role="img" aria-label="Figure 16 — La symétrie axiale : points A, B, C, F, E" viewBox="0 0 320 260" className="h-auto w-full max-w-[300px]">
                     <line x1="150" y1="50" x2="140" y2="205" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4" />
                     <line x1="150" y1="50" x2="50" y2="220" stroke="#4f46e5" strokeWidth="2" />
                     <line x1="150" y1="50" x2="230" y2="190" stroke="#4f46e5" strokeWidth="2" />
@@ -583,7 +583,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 200" className="h-auto w-full max-w-[300px]">
+                  <svg role="img" aria-label="Figure 17 — La symétrie axiale : points A, B, C" viewBox="0 0 300 200" className="h-auto w-full max-w-[300px]">
                     <line x1="150" y1="180" x2="150" y2="60" stroke="#0f172a" strokeWidth="2" />
                     <line x1="150" y1="180" x2="270" y2="180" stroke="#0f172a" strokeWidth="2" />
                     <line x1="150" y1="60" x2="270" y2="180" stroke="#0f172a" strokeWidth="2" />
@@ -616,7 +616,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 340" className="h-auto w-full max-w-[300px]">
+                  <svg role="img" aria-label="Figure 18 — La symétrie axiale : points A, B, C, B' ; (AC)" viewBox="0 0 300 340" className="h-auto w-full max-w-[300px]">
                     <line x1="150" y1="300" x2="150" y2="60" stroke="#0f172a" strokeWidth="2" />
                     <line x1="150" y1="180" x2="270" y2="180" stroke="#e11d48" strokeWidth="2.5" />
                     <line x1="150" y1="60" x2="270" y2="180" stroke="#4f46e5" strokeWidth="2" />
@@ -650,7 +650,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 320 220" className="h-auto w-full max-w-[300px]">
+                  <svg role="img" aria-label="Figure 19 — La symétrie axiale : points A, B, E ; (Δ)" viewBox="0 0 320 220" className="h-auto w-full max-w-[300px]">
                     <line x1="200" y1="15" x2="200" y2="200" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4" />
                     <line x1="120" y1="60" x2="260" y2="150" stroke="#0f172a" strokeWidth="2" />
                     <circle cx="120" cy="60" r="4" fill="#0f172a" /><circle cx="260" cy="150" r="4" fill="#0f172a" /><circle cx="200" cy="111" r="3.5" fill="#334155" />
@@ -673,7 +673,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 320 220" className="h-auto w-full max-w-[300px]">
+                  <svg role="img" aria-label="Figure 20 — La symétrie axiale : points A, B, A', B', E" viewBox="0 0 320 220" className="h-auto w-full max-w-[300px]">
                     <line x1="200" y1="15" x2="200" y2="200" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4" />
                     <line x1="120" y1="60" x2="260" y2="150" stroke="#4f46e5" strokeWidth="2" />
                     <line x1="280" y1="60" x2="140" y2="150" stroke="#059669" strokeWidth="2" />
@@ -710,7 +710,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 250" className="h-auto w-full max-w-[300px]">
+                  <svg role="img" aria-label="Figure 21 — La symétrie axiale : points A, B, C, I" viewBox="0 0 300 250" className="h-auto w-full max-w-[300px]">
                     <line x1="150" y1="220" x2="150" y2="100" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4" />
                     <line x1="150" y1="220" x2="58" y2="89" stroke="#0f172a" strokeWidth="2" />
                     <line x1="150" y1="220" x2="230" y2="105" stroke="#0f172a" strokeWidth="2" />
@@ -749,7 +749,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 250" className="h-auto w-full max-w-[300px]">
+                  <svg role="img" aria-label="Figure 22 — La symétrie axiale : points A, B, C, I, E, F" viewBox="0 0 300 250" className="h-auto w-full max-w-[300px]">
                     <line x1="150" y1="220" x2="150" y2="100" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4" />
                     <line x1="150" y1="220" x2="58" y2="89" stroke="#4f46e5" strokeWidth="2" />
                     <line x1="150" y1="220" x2="230" y2="105" stroke="#4f46e5" strokeWidth="2" />
@@ -785,7 +785,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 320 260" className="h-auto w-full max-w-[300px]">
+                  <svg role="img" aria-label="Figure 23 — La symétrie axiale : points A, A', B ; (Δ)" viewBox="0 0 320 260" className="h-auto w-full max-w-[300px]">
                     <line x1="10" y1="150" x2="310" y2="150" stroke="#0f172a" strokeWidth="2" />
                     <line x1="90" y1="70" x2="90" y2="230" stroke="#94a3b8" strokeWidth="1.6" strokeDasharray="4 3" />
                     <path d="M90,138 L102,138 L102,150" fill="none" stroke="#334155" strokeWidth="1.6" />
@@ -817,7 +817,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 320 260" className="h-auto w-full max-w-[300px]">
+                  <svg role="img" aria-label="Figure 24 — La symétrie axiale : points A, A', B, K, M, B' ; (Δ)" viewBox="0 0 320 260" className="h-auto w-full max-w-[300px]">
                     <line x1="10" y1="150" x2="310" y2="150" stroke="#0f172a" strokeWidth="2" />
                     <line x1="90" y1="70" x2="90" y2="230" stroke="#94a3b8" strokeWidth="1.4" strokeDasharray="4 3" />
                     <path d="M90,138 L102,138 L102,150" fill="none" stroke="#334155" strokeWidth="1.6" />

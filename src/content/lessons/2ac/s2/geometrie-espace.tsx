@@ -112,7 +112,7 @@ export default function Lesson() {
         }
         visual={
           <div className="flex flex-col items-center gap-3">
-            <svg viewBox="0 0 350 260" className="h-56 w-72">
+            <svg role="img" aria-label="Figure 1 — Géométrie dans l'espace" viewBox="0 0 350 260" className="h-56 w-72">
               {/* Trois solides côte à côte sans chevauchement : cube x:10-115, pyramide x:125-245,
                   cône x:255-339, avec 10px de marge entre chacun. */}
               <polygon points="10,150 10,210 80,230 80,170" fill="white" fillOpacity="0.08" stroke="white" strokeWidth="2" />
@@ -171,7 +171,7 @@ export default function Lesson() {
               {/* Perspective cavalière : face avant (pentagone, vraie grandeur) solide, face arrière décalée
                   du même vecteur de profondeur (38,-22) sur toutes les arêtes, en pointillés là où elle est
                   cachée derrière le solide (le seul sommet caché est le bas-gauche). */}
-              <svg viewBox="0 0 170 150" className="w-full max-w-[230px]">
+              <svg role="img" aria-label="Figure 2 — Géométrie dans l'espace : base, face latérale, Prisme droit à base pentagonale" viewBox="0 0 170 150" className="w-full max-w-[230px]">
                 <polygon points="68,98 68,53 100,33 132,53 132,98" fill="#c7d2fe" fillOpacity="0.5" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
                 <line x1="68" y1="98" x2="132" y2="98" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
                 <line x1="30" y1="120" x2="68" y2="98" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
@@ -224,7 +224,7 @@ export default function Lesson() {
               {/* Pavé droit ABCDEFGH : face avant ABFE (vraie grandeur, AB=3 horizontal, AE=2 vertical),
                   face arrière DCGH décalée du vecteur de profondeur (35,-20) représentant AD=1. Seul le
                   sommet D (bas-gauche-arrière) est caché : ses 3 arêtes sont en pointillés. */}
-              <svg viewBox="0 0 190 155" className="w-full max-w-[210px]">
+              <svg role="img" aria-label="Figure 3 — Géométrie dans l'espace : points A, B, D, C, E, F, H, G ; 3 cm, 2 cm, 1 cm" viewBox="0 0 190 155" className="w-full max-w-[210px]">
                 <polygon points="65,100 155,100 155,30 65,30" fill="#c7d2fe" fillOpacity="0.35" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
                 <line x1="30" y1="120" x2="65" y2="100" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
                 <polygon points="30,120 120,120 120,50 30,50" fill="#eef2ff" stroke="#4338ca" strokeWidth="2.2" />
@@ -283,7 +283,7 @@ export default function Lesson() {
             </div>
             <div className="space-y-4">
               <FigureBox>
-                <svg viewBox="0 0 220 220" className="w-full max-w-[210px]">
+                <svg role="img" aria-label="Figure 4 — Géométrie dans l'espace : points S, H, A, B, C, D" viewBox="0 0 220 220" className="w-full max-w-[210px]">
                   <polygon points="60,190 190,175 150,120 40,135" fill="#eef2ff" stroke="#4338ca" strokeWidth="2" opacity="0.9" />
                   <line x1="60" y1="190" x2="105" y2="40" stroke="#4338ca" strokeWidth="2.4" />
                   <line x1="190" y1="175" x2="105" y2="40" stroke="#4338ca" strokeWidth="2.4" />
@@ -300,7 +300,7 @@ export default function Lesson() {
               </FigureBox>
               <FigureBox>
                 {/* Tétraèdre SABC : base ABC avant, C sommet arrière caché (seules arêtes dashed : AC, BC, SC). */}
-                <svg viewBox="0 0 170 165" className="w-full max-w-[170px]">
+                <svg role="img" aria-label="Figure 5 — Géométrie dans l'espace : points S, A, B, C ; Tétraèdre SABC" viewBox="0 0 170 165" className="w-full max-w-[170px]">
                   <polygon points="30,140 140,140 85,95" fill="#dcfce7" fillOpacity="0.6" stroke="none" />
                   <line x1="30" y1="140" x2="85" y2="95" stroke="#16a34a" strokeWidth="1.6" strokeDasharray="4 3" />
                   <line x1="140" y1="140" x2="85" y2="95" stroke="#16a34a" strokeWidth="1.6" strokeDasharray="4 3" />
@@ -349,7 +349,7 @@ export default function Lesson() {
             <FigureBox>
               {/* Base ABCD (parallélogramme exact : D=A+profondeur, C=B+profondeur) et sommet S centré
                   au-dessus du centre de la base. Seul le sommet D (arrière) est caché : arêtes en pointillés. */}
-              <svg viewBox="0 0 220 160" className="w-full max-w-[220px]">
+              <svg role="img" aria-label="Figure 6 — Géométrie dans l'espace : points S, A, B, D, C ; A_B, h" viewBox="0 0 220 160" className="w-full max-w-[220px]">
                 <polygon points="40,140 140,140 175,120 75,120" fill="#eef2ff" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
                 <line x1="107.5" y1="40" x2="75" y2="120" stroke="#4338ca" strokeWidth="1.8" strokeDasharray="4 3" />
                 <line x1="107.5" y1="40" x2="40" y2="140" stroke="#4338ca" strokeWidth="2.2" />
@@ -397,7 +397,7 @@ export default function Lesson() {
               </p>
             </div>
             <FigureBox>
-              <svg viewBox="0 0 220 220" className="w-full max-w-[210px]">
+              <svg role="img" aria-label="Figure 7 — Géométrie dans l'espace : points S, O ; rayon, génératrice, h" viewBox="0 0 220 220" className="w-full max-w-[210px]">
                 <ellipse cx="110" cy="175" rx="75" ry="22" fill="#eef2ff" stroke="#4338ca" strokeWidth="2" />
                 <line x1="35" y1="175" x2="185" y2="175" stroke="#4338ca" strokeWidth="1.4" strokeDasharray="3 3" opacity="0.6" />
                 <line x1="110" y1="175" x2="110" y2="35" stroke="#f97316" strokeWidth="1.8" strokeDasharray="4 3" />
@@ -448,7 +448,7 @@ export default function Lesson() {
               <p className="font-semibold text-brand-700">Donc : <Math tex="V = 20{,}93\text{ cm}^3" /></p>
             </div>
             <FigureBox>
-              <svg viewBox="0 0 190 220" className="w-full max-w-[190px]">
+              <svg role="img" aria-label="Figure 8 — Géométrie dans l'espace : points S, O, R ; h, a" viewBox="0 0 190 220" className="w-full max-w-[190px]">
                 <ellipse cx="90" cy="175" rx="65" ry="18" fill="#eef2ff" stroke="#4338ca" strokeWidth="2" />
                 <line x1="90" y1="25" x2="90" y2="175" stroke="#f97316" strokeWidth="1.8" strokeDasharray="4 3" />
                 <line x1="25" y1="175" x2="90" y2="25" stroke="#4338ca" strokeWidth="2.4" />
@@ -510,7 +510,7 @@ export default function Lesson() {
                   <FigureBox>
                     {/* Pyramide générique : base A_B (parallélogramme exact) et hauteur H, sans dimensions
                         fixes puisque l'exercice porte sur 4 pyramides différentes (tableau). */}
-                    <svg viewBox="0 0 220 160" className="w-full max-w-[200px]">
+                    <svg role="img" aria-label="Figure 9 — Géométrie dans l'espace : points S, H ; A_B" viewBox="0 0 220 160" className="w-full max-w-[200px]">
                       <polygon points="40,140 140,140 175,120 75,120" fill="#eef2ff" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
                       <line x1="107.5" y1="40" x2="75" y2="120" stroke="#4338ca" strokeWidth="1.8" strokeDasharray="4 3" />
                       <line x1="107.5" y1="40" x2="40" y2="140" stroke="#4338ca" strokeWidth="2.2" />
@@ -568,7 +568,7 @@ export default function Lesson() {
                     {/* Base triangulaire T1-T2-T3 : côté avant [T1T2]=b, hauteur du triangle tracée en
                         pointillés gris jusqu'à son pied, hauteur de la pyramide H en pointillés oranges
                         jusqu'au centroïde de la base. T3 (sommet arrière) est le seul sommet caché. */}
-                    <svg viewBox="0 0 200 160" className="w-full max-w-[190px]">
+                    <svg role="img" aria-label="Figure 10 — Géométrie dans l'espace : points S, H ; b, h" viewBox="0 0 200 160" className="w-full max-w-[190px]">
                       <polygon points="40,140 140,140 90,108" fill="#eef2ff" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
                       <line x1="90" y1="108" x2="90" y2="140" stroke="#64748b" strokeWidth="1.4" strokeDasharray="3 3" />
                       <line x1="90" y1="40" x2="90" y2="129.3" stroke="#f97316" strokeWidth="1.8" strokeDasharray="4 3" />
@@ -624,7 +624,7 @@ export default function Lesson() {
               <div>
                 <div className="mb-4 flex justify-center">
                   <FigureBox>
-                    <svg viewBox="0 0 190 200" className="w-full max-w-[180px]">
+                    <svg role="img" aria-label="Figure 11 — Géométrie dans l'espace : points S, H, R" viewBox="0 0 190 200" className="w-full max-w-[180px]">
                       <ellipse cx="90" cy="160" rx="60" ry="16" fill="#eef2ff" stroke="#4338ca" strokeWidth="2" />
                       <line x1="90" y1="30" x2="90" y2="160" stroke="#f97316" strokeWidth="1.8" strokeDasharray="4 3" />
                       <line x1="30" y1="160" x2="90" y2="30" stroke="#4338ca" strokeWidth="2.4" />
@@ -683,7 +683,7 @@ export default function Lesson() {
                 </p>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   <div className="rounded-xl bg-surface-muted p-4 text-center">
-                    <svg viewBox="0 0 160 150" className="mx-auto mb-2 w-full max-w-[150px]">
+                    <svg role="img" aria-label="Figure 12 — Géométrie dans l'espace : 3 cm" viewBox="0 0 160 150" className="mx-auto mb-2 w-full max-w-[150px]">
                       <ellipse cx="80" cy="115" rx="55" ry="16" fill="#eef2ff" stroke="#4338ca" strokeWidth="2" />
                       <line x1="25" y1="115" x2="135" y2="115" stroke="#4338ca" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.6" />
                       <line x1="25" y1="115" x2="80" y2="15" stroke="#4338ca" strokeWidth="2.2" />
@@ -696,7 +696,7 @@ export default function Lesson() {
                   </div>
 
                   <div className="rounded-xl bg-surface-muted p-4 text-center">
-                    <svg viewBox="0 0 160 150" className="mx-auto mb-2 w-full max-w-[150px]">
+                    <svg role="img" aria-label="Figure 13 — Géométrie dans l'espace : 8 cm, 1 cm" viewBox="0 0 160 150" className="mx-auto mb-2 w-full max-w-[150px]">
                       {/* Base ABCD exacte : D=A+profondeur, C=B+profondeur (vrai parallélogramme).
                           D (arrière-gauche) est le seul sommet caché. */}
                       <polygon points="35,120 115,120 130,105 50,105" fill="#eef2ff" stroke="none" />
@@ -717,7 +717,7 @@ export default function Lesson() {
                   </div>
 
                   <div className="rounded-xl bg-surface-muted p-4 text-center">
-                    <svg viewBox="0 0 160 150" className="mx-auto mb-2 w-full max-w-[150px]">
+                    <svg role="img" aria-label="Figure 14 — Géométrie dans l'espace : 6 cm, 2 cm" viewBox="0 0 160 150" className="mx-auto mb-2 w-full max-w-[150px]">
                       {/* Base ABCD exacte : D=A+profondeur, C=B+profondeur (vrai parallélogramme) */}
                       <polygon points="30,115 120,115 145,97 55,97" fill="#eef2ff" stroke="none" />
                       <line x1="55" y1="97" x2="145" y2="97" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
@@ -737,7 +737,7 @@ export default function Lesson() {
                   </div>
 
                   <div className="rounded-xl bg-surface-muted p-4 text-center">
-                    <svg viewBox="0 0 160 150" className="mx-auto mb-2 w-full max-w-[150px]">
+                    <svg role="img" aria-label="Figure 15 — Géométrie dans l'espace : 3 cm, 2,5 cm" viewBox="0 0 160 150" className="mx-auto mb-2 w-full max-w-[150px]">
                       {/* Base ABCD exacte : D=A+profondeur, C=B+profondeur (vrai parallélogramme) */}
                       <polygon points="40,120 110,120 130,104 60,104" fill="#eef2ff" stroke="none" />
                       <line x1="60" y1="104" x2="130" y2="104" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
@@ -757,7 +757,7 @@ export default function Lesson() {
                   </div>
 
                   <div className="rounded-xl bg-surface-muted p-4 text-center">
-                    <svg viewBox="0 0 160 150" className="mx-auto mb-2 w-full max-w-[150px]">
+                    <svg role="img" aria-label="Figure 16 — Géométrie dans l'espace : 1,5 cm" viewBox="0 0 160 150" className="mx-auto mb-2 w-full max-w-[150px]">
                       <ellipse cx="80" cy="120" rx="40" ry="13" fill="#eef2ff" stroke="#4338ca" strokeWidth="2" />
                       <line x1="40" y1="120" x2="120" y2="120" stroke="#4338ca" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.6" />
                       <line x1="40" y1="120" x2="80" y2="20" stroke="#4338ca" strokeWidth="2.2" />

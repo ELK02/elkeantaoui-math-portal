@@ -72,7 +72,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 220 180" className="h-56 w-56 text-white opacity-90">
+          <svg role="img" aria-label="Figure 1 — Inégalité triangulaire et médiatrice d'un segment" viewBox="0 0 220 180" className="h-56 w-56 text-white opacity-90">
             <polygon points="30,160 190,160 130,20" fill="none" stroke="currentColor" strokeWidth={2.5} />
             <line x1="130" y1="20" x2="130" y2="160" stroke="#818cf8" strokeWidth={2} strokeDasharray="5 4" />
           </svg>
@@ -97,7 +97,7 @@ export default function Lesson() {
             <p className="text-sm text-foreground-muted">
               Soient [AB] un segment et M un point tels que <span className="rounded border border-rose-500/30 bg-rose-100/60 px-2 py-0.5 font-mono font-semibold text-rose-700">M ∉ [AB]</span>.
             </p>
-            <svg viewBox="0 0 260 170" className="mx-auto mt-3 h-auto w-full max-w-sm">
+            <svg role="img" aria-label="Figure 2 — Inégalité triangulaire et médiatrice d'un segment : points A, B, M" viewBox="0 0 260 170" className="mx-auto mt-3 h-auto w-full max-w-sm">
               <g stroke="#0f172a" strokeWidth={1.5} strokeDasharray="4 3">
                 <line x1="110" y1="30" x2="40" y2="130" />
                 <line x1="110" y1="30" x2="220" y2="90" />
@@ -129,7 +129,7 @@ export default function Lesson() {
             <p className="text-sm text-foreground-muted">
               Soient [AB] un segment et M un point tels que <span className="rounded border border-rose-500/30 bg-rose-100/60 px-2 py-0.5 font-mono font-semibold text-rose-700">M ∈ [AB]</span>.
             </p>
-            <svg viewBox="0 0 260 110" className="mx-auto mt-3 h-auto w-full max-w-sm">
+            <svg role="img" aria-label="Figure 3 — Inégalité triangulaire et médiatrice d'un segment : points A, M, B" viewBox="0 0 260 110" className="mx-auto mt-3 h-auto w-full max-w-sm">
               <line x1="30" y1="80" x2="230" y2="30" stroke="#0f172a" strokeWidth={2} />
               <Pt d="M25,75 L35,85 M25,85 L35,75" lx={14} ly={72} label="A" />
               <Pt d="M135,47.5 L145,57.5 M135,57.5 L145,47.5" lx={130} ly={42} label="M" />
@@ -162,7 +162,7 @@ export default function Lesson() {
               <p>AC &lt; AB + BC</p>
               <p>BC &lt; AB + AC</p>
             </div>
-            <svg viewBox="0 0 260 200" className="mx-auto mt-4 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 4 — Inégalité triangulaire et médiatrice d'un segment : points A, B, C" viewBox="0 0 260 200" className="mx-auto mt-4 h-auto w-full max-w-xs">
               <polygon points="40,170 230,110 180,30" fill="none" stroke="#0f172a" strokeWidth={2} />
               <Pt d="M35,165 L45,175 M35,175 L45,165" lx={20} ly={185} label="A" />
               <Pt d="M225,105 L235,115 M225,115 L235,105" lx={237} ly={103} label="B" />
@@ -238,7 +238,7 @@ export default function Lesson() {
           <div className="rounded-2xl border border-border bg-surface p-5 sm:p-6">
             <h3 className="mb-3 font-display font-bold text-foreground">2. Exemple</h3>
             <p className="text-sm text-foreground-muted">Soit [AB] un segment. Traçons (Δ) la médiatrice du segment [AB].</p>
-            <svg viewBox="0 0 260 260" className="mx-auto mt-2 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 5 — Inégalité triangulaire et médiatrice d'un segment : points A, B ; (Δ)" viewBox="0 0 260 260" className="mx-auto mt-2 h-auto w-full max-w-xs">
               <line x1="108.3" y1="32.4" x2="151.7" y2="227.6" stroke="#0f172a" strokeWidth={2} />
               <line x1="40" y1="150" x2="220" y2="110" stroke="#0f172a" strokeWidth={2} />
               <path d="M127.4,118.3 L139.1,115.7 L141.7,127.4" fill="none" stroke="#0f172a" strokeWidth={1.2} />
@@ -262,7 +262,7 @@ export default function Lesson() {
           <div className="rounded-2xl border border-border bg-surface p-5 sm:p-6">
             <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-foreground-muted">Exemple</p>
             <p className="text-sm text-foreground-muted">Soient [AB] un segment et (Δ) sa médiatrice. Soit E un point tel que : E∈(Δ) et E∉[AB].</p>
-            <svg viewBox="0 0 260 260" className="mx-auto mt-3 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 6 — Inégalité triangulaire et médiatrice d'un segment : points A, B, E ; (Δ)" viewBox="0 0 260 260" className="mx-auto mt-3 h-auto w-full max-w-xs">
               <line x1="108.3" y1="32.4" x2="151.7" y2="227.6" stroke="#0f172a" strokeWidth={2} />
               <line x1="40" y1="150" x2="220" y2="110" stroke="#0f172a" strokeWidth={2} />
               <g stroke="#0f172a" strokeWidth={1.5} strokeDasharray="4 3">
@@ -300,7 +300,7 @@ export default function Lesson() {
               <p className="text-sm text-foreground-muted">
                 Soient [EF] un segment et (D) sa médiatrice. Soit M un point de (D) tel que : ME=4cm. Calculons MF.
               </p>
-              <svg viewBox="0 0 260 130" className="mx-auto mt-3 h-auto w-full max-w-xs">
+              <svg role="img" aria-label="Figure 7 — Inégalité triangulaire et médiatrice d'un segment : points E, F, M ; (D)" viewBox="0 0 260 130" className="mx-auto mt-3 h-auto w-full max-w-xs">
                 <line x1="150" y1="30" x2="150" y2="120" stroke="#0f172a" strokeWidth={2} />
                 <line x1="60" y1="90" x2="240" y2="90" stroke="#0f172a" strokeWidth={2} />
                 <path d="M150,79 L139,79 L139,90" fill="none" stroke="#0f172a" strokeWidth={1.1} />
@@ -330,7 +330,7 @@ export default function Lesson() {
           <div className="rounded-2xl border border-border bg-surface p-5 sm:p-6">
             <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-foreground-muted">Exemple</p>
             <p className="text-sm text-foreground-muted">Soient [AB] un segment et (Δ) sa médiatrice. Soit E un point tel que : EA=EB.</p>
-            <svg viewBox="0 0 260 260" className="mx-auto mt-3 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 8 — Inégalité triangulaire et médiatrice d'un segment : points A, B, E ; (Δ)" viewBox="0 0 260 260" className="mx-auto mt-3 h-auto w-full max-w-xs">
               <line x1="108.3" y1="32.4" x2="151.7" y2="227.6" stroke="#0f172a" strokeWidth={2} />
               <line x1="40" y1="150" x2="220" y2="110" stroke="#0f172a" strokeWidth={2} />
               <g stroke="#0f172a" strokeWidth={1.5} strokeDasharray="4 3">
@@ -364,7 +364,7 @@ export default function Lesson() {
               <p className="text-sm text-foreground-muted">
                 Soit (ζ) un cercle de centre O et de rayon r. Soient A et B deux points distincts du cercle (ζ). Montrons que O appartient à la médiatrice du segment [AB].
               </p>
-              <svg viewBox="0 0 260 220" className="mx-auto mt-3 h-auto w-full max-w-xs">
+              <svg role="img" aria-label="Figure 9 — Inégalité triangulaire et médiatrice d'un segment : points A, B, O ; (ζ), (Δ)" viewBox="0 0 260 220" className="mx-auto mt-3 h-auto w-full max-w-xs">
                 <circle cx="130" cy="110" r="80" fill="none" stroke="#0f172a" strokeWidth={2} />
                 <line x1="130" y1="20" x2="130" y2="200" stroke="#0f172a" strokeWidth={1.4} strokeDasharray="4 3" />
                 <line x1="54.8" y1="82.6" x2="205.2" y2="82.6" stroke="#0f172a" strokeWidth={2} />
@@ -452,7 +452,7 @@ export default function Lesson() {
                 </div>
                 <Callout variant="warning" title="Pourquoi OIJ est un cas particulier">
                   <div className="flex flex-col items-center gap-4 sm:flex-row">
-                    <svg viewBox="0 0 220 70" className="h-auto w-full max-w-[220px] shrink-0">
+                    <svg role="img" aria-label="Figure 10 — Inégalité triangulaire et médiatrice d'un segment : points O, J, I ; 4cm, 6cm" viewBox="0 0 220 70" className="h-auto w-full max-w-[220px] shrink-0">
                       <line x1="20" y1="35" x2="200" y2="35" stroke="#0f172a" strokeWidth={2} />
                       <Pt d="M15,30 L25,40 M15,40 L25,30" lx={10} ly={55} label="O" fs={15} />
                       <Pt d="M87,30 L97,40 M87,40 L97,30" lx={86} ly={55} label="J" fs={15} />
@@ -487,7 +487,7 @@ export default function Lesson() {
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="rounded-xl border border-green-500/20 bg-background p-4">
                   <p className="text-xs text-foreground-muted">Vérification : plus grand côté BC=7cm ; AB+AC=9cm&gt;7cm ✓ constructible.</p>
-                  <svg viewBox="0 0 320 240" className="mx-auto mt-2 h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
+                  <svg role="img" aria-label="Figure 11 — Inégalité triangulaire et médiatrice d'un segment : points A, B, C ; 6cm" viewBox="0 0 320 240" className="mx-auto mt-2 h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
                     <polygon points="54.4,198 278,198 42,86.9" fill="none" stroke="#0f172a" strokeWidth={2} />
                     <Pt d="M49.4,193 L59.4,203 M49.4,203 L59.4,193" lx={35} ly={214} label="A" fs={15} />
                     <Pt d="M273,193 L283,203 M273,203 L283,193" lx={285} ly={212} label="B" fs={15} />
@@ -498,7 +498,7 @@ export default function Lesson() {
                 </div>
                 <div className="rounded-xl border border-green-500/20 bg-background p-4">
                   <p className="text-xs text-foreground-muted">Vérification : plus grand côté EG=6cm ; EF+FG=7cm&gt;6cm ✓ constructible.</p>
-                  <svg viewBox="0 0 320 240" className="mx-auto mt-2 h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
+                  <svg role="img" aria-label="Figure 12 — Inégalité triangulaire et médiatrice d'un segment : points E, F, G ; 4cm" viewBox="0 0 320 240" className="mx-auto mt-2 h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
                     <polygon points="42,198 217.6,198 278,80.9" fill="none" stroke="#0f172a" strokeWidth={2} />
                     <Pt d="M37,193 L47,203 M37,203 L47,193" lx={22} ly={214} label="E" fs={15} />
                     <Pt d="M212.6,193 L222.6,203 M212.6,203 L222.6,193" lx={215} ly={214} label="F" fs={15} />
@@ -510,7 +510,7 @@ export default function Lesson() {
                 <div className="rounded-xl border border-rose-500/30 bg-rose-100/40 p-4">
                   <p className="text-sm">Isocèle en I signifie <strong>IG = IH = 3cm</strong>. Vérification : plus grand côté GH=7cm ; IG+IH = 3+3 = 6cm.</p>
                   <p className="mt-1 font-mono text-sm text-rose-700">6 &lt; 7 → l&apos;inégalité triangulaire n&apos;est pas respectée !</p>
-                  <svg viewBox="0 0 320 240" className="mx-auto mt-3 h-auto w-full max-w-xs rounded-lg border border-rose-500/20 bg-background">
+                  <svg role="img" aria-label="Figure 13 — Inégalité triangulaire et médiatrice d'un segment : points G, H ; Les arcs ne se touchent pas !" viewBox="0 0 320 240" className="mx-auto mt-3 h-auto w-full max-w-xs rounded-lg border border-rose-500/20 bg-background">
                     <line x1="42" y1="198" x2="278" y2="198" stroke="#0f172a" strokeWidth={2} />
                     <circle cx="42" cy="198" r="101.1" fill="none" stroke="#e11d48" strokeWidth={1.5} strokeDasharray="5 4" />
                     <circle cx="278" cy="198" r="101.1" fill="none" stroke="#e11d48" strokeWidth={1.5} strokeDasharray="5 4" />
@@ -523,7 +523,7 @@ export default function Lesson() {
                 </div>
                 <div className="rounded-xl border border-green-500/20 bg-background p-4">
                   <p className="text-xs text-foreground-muted">Équilatéral ⟹ AB=BC=CA=3cm. Toujours constructible (3&lt;3+3).</p>
-                  <svg viewBox="0 0 320 240" className="mx-auto mt-2 h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
+                  <svg role="img" aria-label="Figure 14 — Inégalité triangulaire et médiatrice d'un segment : points A, B, C" viewBox="0 0 320 240" className="mx-auto mt-2 h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
                     <polygon points="42,198 222.1,198 132.1,42" fill="none" stroke="#0f172a" strokeWidth={2} />
                     <g stroke="#0f172a" strokeWidth={1.3}>
                       <line x1="127.1" y1="120" x2="134.1" y2="120.8" />
@@ -537,7 +537,7 @@ export default function Lesson() {
                   <p className="mt-2 text-sm text-foreground-muted">Méthode : trace [AB]=3cm ; arcs de rayon 3cm centrés en A et en B ; leur intersection donne C.</p>
                 </div>
                 <div className="rounded-xl border border-green-500/20 bg-background p-4">
-                  <svg viewBox="0 0 320 240" className="mx-auto h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
+                  <svg role="img" aria-label="Figure 15 — Inégalité triangulaire et médiatrice d'un segment : points N, M, O ; 4cm, 3cm" viewBox="0 0 320 240" className="mx-auto h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
                     <polygon points="42,198 42,42 159,198" fill="none" stroke="#0f172a" strokeWidth={2} />
                     <rect x="42" y="186" width="12" height="12" fill="none" stroke="#0f172a" strokeWidth={1.3} />
                     <Pt d="M37,193 L47,203 M37,203 L47,193" lx={22} ly={214} label="N" fs={15} />
@@ -551,7 +551,7 @@ export default function Lesson() {
                 </div>
                 <div className="rounded-xl border border-green-500/20 bg-background p-4">
                   <p className="text-xs text-foreground-muted">PC est l&apos;hypoténuse (elle ne contient pas O). Pythagore : <Math tex="OP^2 = PC^2 - OC^2 = 25-9=16" /> ⟹ OP=4cm.</p>
-                  <svg viewBox="0 0 320 240" className="mx-auto mt-2 h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
+                  <svg role="img" aria-label="Figure 16 — Inégalité triangulaire et médiatrice d'un segment : points O, C, P ; 3cm, 5cm, 4cm" viewBox="0 0 320 240" className="mx-auto mt-2 h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
                     <polygon points="42,198 159,198 42,42" fill="none" stroke="#0f172a" strokeWidth={2} />
                     <line x1="159" y1="198" x2="42" y2="42" stroke="#0f172a" strokeWidth={2} />
                     <rect x="42" y="186" width="12" height="12" fill="none" stroke="#0f172a" strokeWidth={1.3} />
@@ -566,7 +566,7 @@ export default function Lesson() {
                 </div>
                 <div className="rounded-xl border border-green-500/20 bg-background p-4 sm:col-span-2">
                   <p className="text-sm text-foreground-muted">Équilatéral ⟹ les 3 côtés sont égaux. Un côté = 15cm ÷ 3 = <strong className="text-green-700">5cm</strong>.</p>
-                  <svg viewBox="0 0 320 240" className="mx-auto mt-2 h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
+                  <svg role="img" aria-label="Figure 17 — Inégalité triangulaire et médiatrice d'un segment : points A, B, C ; 5cm" viewBox="0 0 320 240" className="mx-auto mt-2 h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
                     <polygon points="42,198 222.1,198 132.1,42" fill="none" stroke="#0f172a" strokeWidth={2} />
                     <Pt d="M37,193 L47,203 M37,203 L47,193" lx={22} ly={214} label="A" fs={15} />
                     <Pt d="M217.1,193 L227.1,203 M217.1,203 L227.1,193" lx={220} ly={214} label="B" fs={15} />
@@ -599,7 +599,7 @@ export default function Lesson() {
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="rounded-xl border border-green-500/20 bg-background p-4">
                   <p className="text-sm text-foreground-muted">Construction « angle-côté-côté » : trace une demi-droite [Ax) et place B tel que AB=4cm ; au rapporteur, trace [Ay) formant 110° avec [Ax) ; place S sur [Ay) tel que AS=5cm ; relie B et S.</p>
-                  <svg viewBox="0 0 260 240" className="mx-auto mt-3 h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
+                  <svg role="img" aria-label="Figure 18 — Inégalité triangulaire et médiatrice d'un segment : points A, B, S, H ; 110°" viewBox="0 0 260 240" className="mx-auto mt-3 h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
                     <line x1="86.6" y1="164.5" x2="220" y2="164.5" stroke="#0f172a" strokeWidth={1.4} strokeDasharray="3 3" />
                     <line x1="86.6" y1="164.5" x2="190.9" y2="164.5" stroke="#0f172a" strokeWidth={2} />
                     <line x1="86.6" y1="164.5" x2="20" y2="164.5" stroke="#0f172a" strokeWidth={1.4} strokeDasharray="3 3" />
@@ -624,7 +624,7 @@ export default function Lesson() {
                   <Callout variant="warning" title="Remarque">
                     L&apos;énoncé ne précise pas le sommet de l&apos;angle droit. Comme AB et AC partent toutes les deux de A (même situation qu&apos;à l&apos;exercice 2, question 5), on construit avec <strong>l&apos;angle droit en A</strong>.
                   </Callout>
-                  <svg viewBox="0 0 320 240" className="mx-auto mt-3 h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
+                  <svg role="img" aria-label="Figure 19 — Inégalité triangulaire et médiatrice d'un segment : points A, B, C ; 4cm, 5cm" viewBox="0 0 320 240" className="mx-auto mt-3 h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
                     <polygon points="42,198 166.8,198 42,42" fill="none" stroke="#0f172a" strokeWidth={2} />
                     <rect x="42" y="186" width="12" height="12" fill="none" stroke="#0f172a" strokeWidth={1.3} />
                     <Pt d="M37,193 L47,203 M37,203 L47,193" lx={22} ly={214} label="A" fs={15} />
@@ -661,7 +661,7 @@ export default function Lesson() {
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="rounded-xl border border-green-500/20 bg-background p-4">
                   <p className="text-xs text-foreground-muted">Vérification : plus grand côté CR=6cm ; AC+AR=9cm&gt;6cm ✓ constructible.</p>
-                  <svg viewBox="0 0 320 240" className="mx-auto mt-2 h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
+                  <svg role="img" aria-label="Figure 20 — Inégalité triangulaire et médiatrice d'un segment : points A, C, R ; 4cm" viewBox="0 0 320 240" className="mx-auto mt-2 h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
                     <polygon points="42,198 238.5,198 61.7,42" fill="none" stroke="#0f172a" strokeWidth={2} />
                     <line x1="30.5" y1="139.2" x2="72.9" y2="100.8" stroke="#0f172a" strokeWidth={2} strokeDasharray="4 3" />
                     <g stroke="#0f172a" strokeWidth={1.3}>
@@ -680,7 +680,7 @@ export default function Lesson() {
                   <Callout variant="warning" title="Remarque clé">
                     La somme des angles d&apos;un triangle vaut 180°, donc l&apos;angle en T = 180°−50°−40° = <strong>90°</strong>. Le triangle TRI est rectangle en T !
                   </Callout>
-                  <svg viewBox="0 0 320 240" className="mx-auto mt-3 h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
+                  <svg role="img" aria-label="Figure 21 — Inégalité triangulaire et médiatrice d'un segment : points R, I, T, O′ ; 50°, 40°, cercle circonscrit" viewBox="0 0 320 240" className="mx-auto mt-3 h-auto w-full max-w-xs rounded-lg border border-green-500/20 bg-background">
                     <circle cx="160" cy="198" r="118" fill="none" stroke="#2563eb" strokeWidth={1.5} strokeDasharray="4 3" />
                     <polygon points="42,198 278,198 139.5,81.8" fill="none" stroke="#0f172a" strokeWidth={2} />
                     <path d="M75,198 A33,33 0 0,0 62,172" fill="none" stroke="#7c3aed" strokeWidth={1.3} />
@@ -723,7 +723,7 @@ export default function Lesson() {
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="rounded-xl border border-green-500/20 bg-background p-3">
                       <p className="mb-1 text-center text-xs font-semibold text-foreground-muted">Triangle ABC (acutangle)</p>
-                      <svg viewBox="0 0 320 260" className="mx-auto h-auto w-full">
+                      <svg role="img" aria-label="Figure 22 — Inégalité triangulaire et médiatrice d'un segment : points A, B, C, H, O" viewBox="0 0 320 260" className="mx-auto h-auto w-full">
                         <polygon points="42,218 253.2,218 112.4,42" fill="none" stroke="#0f172a" strokeWidth={2} />
                         <g stroke="#16a34a" strokeWidth={1.5}>
                           <line x1="147.6" y1="15" x2="147.6" y2="235" />
@@ -745,7 +745,7 @@ export default function Lesson() {
                     </div>
                     <div className="rounded-xl border border-green-500/20 bg-background p-3">
                       <p className="mb-1 text-center text-xs font-semibold text-foreground-muted">Triangle DEF (obtusangle en F)</p>
-                      <svg viewBox="0 0 320 300" className="mx-auto h-auto w-full">
+                      <svg role="img" aria-label="Figure 23 — Inégalité triangulaire et médiatrice d'un segment : points D, E, F, H, O" viewBox="0 0 320 300" className="mx-auto h-auto w-full">
                         <polygon points="42,215.9 278,215.9 244.3,165.3" fill="none" stroke="#0f172a" strokeWidth={2} />
                         <g stroke="#16a34a" strokeWidth={1.5}>
                           <line x1="160" y1="15" x2="160" y2="290" />
@@ -776,7 +776,7 @@ export default function Lesson() {
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="rounded-xl border border-green-500/20 bg-background p-3">
                       <p className="mb-1 text-center text-xs font-semibold text-foreground-muted">Triangle ABC (acutangle)</p>
-                      <svg viewBox="0 0 320 260" className="mx-auto h-auto w-full">
+                      <svg role="img" aria-label="Figure 24 — Inégalité triangulaire et médiatrice d'un segment : points A, B, C, I" viewBox="0 0 320 260" className="mx-auto h-auto w-full">
                         <circle cx="147.6" cy="158.2" r="121.4" fill="none" stroke="#2563eb" strokeWidth={1.4} strokeDasharray="4 3" />
                         <polygon points="42,218 253.2,218 112.4,42" fill="none" stroke="#0f172a" strokeWidth={2} />
                         <g stroke="#7c3aed" strokeWidth={1.5}>
@@ -793,7 +793,7 @@ export default function Lesson() {
                     </div>
                     <div className="rounded-xl border border-green-500/20 bg-background p-3">
                       <p className="mb-1 text-center text-xs font-semibold text-foreground-muted">Triangle DEF (obtusangle en F)</p>
-                      <svg viewBox="0 0 320 300" className="mx-auto h-auto w-full">
+                      <svg role="img" aria-label="Figure 25 — Inégalité triangulaire et médiatrice d'un segment : points D, E, F, I" viewBox="0 0 320 300" className="mx-auto h-auto w-full">
                         <circle cx="160" cy="258" r="125.3" fill="none" stroke="#2563eb" strokeWidth={1.4} strokeDasharray="4 3" />
                         <polygon points="42,215.9 278,215.9 244.3,165.3" fill="none" stroke="#0f172a" strokeWidth={2} />
                         <g stroke="#7c3aed" strokeWidth={1.5}>

@@ -50,7 +50,7 @@ export default function Lesson() {
   return (
     <LessonShell meta={meta}>
       {/* Shared arrowhead markers, referenced by id from every vector diagram below. */}
-      <svg width="0" height="0" className="absolute">
+      <svg role="img" aria-label="Figure 1 — Les Vecteurs et la Translation" width="0" height="0" className="absolute">
         <defs>
           <marker id="arr-indigo" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#4f46e5"/></marker>
           <marker id="arr-rose" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#e11d48"/></marker>
@@ -86,7 +86,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 220 180" className="h-48 w-56 sm:h-56 sm:w-64">
+          <svg role="img" aria-label="Figure 2 — Les Vecteurs et la Translation : points A, B" viewBox="0 0 220 180" className="h-48 w-56 sm:h-56 sm:w-64">
             <defs>
               <marker id="hero-arr" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
                 <path d="M0,0 L9,4.5 L0,9 Z" fill="#fb923c" />
@@ -123,7 +123,7 @@ export default function Lesson() {
         <p className="mt-6 mb-2 text-xs font-semibold uppercase text-foreground-muted">b) Exemple et caractéristiques</p>
         <div className="grid items-center gap-6 sm:grid-cols-2">
           <Graph>
-            <svg viewBox="0 0 320 130" className="mx-auto h-auto w-full max-w-sm">
+            <svg role="img" aria-label="Figure 3 — Les Vecteurs et la Translation : points A, B" viewBox="0 0 320 130" className="mx-auto h-auto w-full max-w-sm">
               <line x1="15" y1="105" x2="305" y2="18" stroke="#c7d2fe" strokeWidth="1.5" strokeDasharray="5 4"/>
               <line x1="45" y1="96" x2="235" y2="40" stroke="#4f46e5" strokeWidth="3" markerEnd="url(#arr-indigo)"/>
               <circle cx="45" cy="96" r="3.5" fill="#1e293b"/>
@@ -187,7 +187,7 @@ export default function Lesson() {
         </p>
         <div className="grid gap-4 sm:grid-cols-2">
           <Graph caption="Premier cas">
-            <svg viewBox="0 0 260 140" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 4 — Les Vecteurs et la Translation : points A, B, C, D" viewBox="0 0 260 140" className="mx-auto h-auto w-full max-w-xs">
               <line x1="10" y1="125" x2="160" y2="35" stroke="#cbd5e1" strokeWidth="1.3" strokeDasharray="4 3"/>
               <line x1="80" y1="90" x2="210" y2="12" stroke="#cbd5e1" strokeWidth="1.3" strokeDasharray="4 3"/>
               <line x1="25" y1="112" x2="120" y2="58" stroke="#e11d48" strokeWidth="3" markerEnd="url(#arr-rose)"/>
@@ -199,7 +199,7 @@ export default function Lesson() {
             </svg>
           </Graph>
           <Graph caption="Deuxième cas (points alignés)">
-            <svg viewBox="0 0 260 140" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 5 — Les Vecteurs et la Translation : points A, B, C, D" viewBox="0 0 260 140" className="mx-auto h-auto w-full max-w-xs">
               <line x1="10" y1="70" x2="250" y2="70" stroke="#cbd5e1" strokeWidth="1.3" strokeDasharray="4 3"/>
               <line x1="20" y1="70" x2="95" y2="70" stroke="#e11d48" strokeWidth="3" markerEnd="url(#arr-rose)"/>
               <line x1="115" y1="70" x2="230" y2="70" stroke="#e11d48" strokeWidth="3" markerEnd="url(#arr-rose)"/>
@@ -220,7 +220,7 @@ export default function Lesson() {
         </Callout>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           <Graph caption="Parallélogramme ABDC">
-            <svg viewBox="0 0 300 170" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 6 — Les Vecteurs et la Translation : points A, B, D, C" viewBox="0 0 300 170" className="mx-auto h-auto w-full max-w-xs">
               <line x1="60" y1="40" x2="220" y2="40" stroke="#4f46e5" strokeWidth="2.5" markerEnd="url(#arr-indigo)"/>
               <line x1="100" y1="140" x2="260" y2="140" stroke="#4f46e5" strokeWidth="2.5" markerEnd="url(#arr-indigo)"/>
               <line x1="60" y1="40" x2="100" y2="140" stroke="#94a3b8" strokeWidth="1.5" strokeDasharray="4 3"/>
@@ -233,7 +233,7 @@ export default function Lesson() {
             </svg>
           </Graph>
           <Graph caption="Parallélogramme aplati">
-            <svg viewBox="0 0 300 170" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 7 — Les Vecteurs et la Translation : points A, C, B, D" viewBox="0 0 300 170" className="mx-auto h-auto w-full max-w-xs">
               <line x1="20" y1="90" x2="280" y2="90" stroke="#cbd5e1" strokeWidth="1.3" strokeDasharray="4 3"/>
               <line x1="35" y1="90" x2="140" y2="90" stroke="#4f46e5" strokeWidth="3" markerEnd="url(#arr-indigo)"/>
               <line x1="165" y1="90" x2="265" y2="90" stroke="#4f46e5" strokeWidth="3" markerEnd="url(#arr-indigo)"/>
@@ -263,7 +263,7 @@ export default function Lesson() {
               <div className="space-y-2 text-sm">
                 <p>1) La figure : <Math tex="\overrightarrow{AE}=\overrightarrow{BC}" /> signifie que <Math tex="AECB" /> est un parallélogramme.</p>
                 <Graph>
-                  <svg viewBox="0 0 320 200" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 8 — Les Vecteurs et la Translation : points A, E, B, C" viewBox="0 0 320 200" className="mx-auto h-auto w-full max-w-xs">
                     <line x1="150" y1="30" x2="330" y2="30" stroke="#94a3b8" strokeWidth="1.3" strokeDasharray="4 3"/>
                     <polygon points="150,30 40,175 260,175 330,30" fill="none" stroke="#cbd5e1" strokeWidth="1"/>
                     <line x1="150" y1="30" x2="330" y2="30" stroke="#4f46e5" strokeWidth="2" markerEnd="url(#arr-indigo)"/>
@@ -303,7 +303,7 @@ export default function Lesson() {
           </p>
         </Callout>
         <Graph>
-          <svg viewBox="0 0 300 140" className="mx-auto h-auto w-full max-w-xs">
+          <svg role="img" aria-label="Figure 9 — Les Vecteurs et la Translation : points A, B, C" viewBox="0 0 300 140" className="mx-auto h-auto w-full max-w-xs">
             <line x1="30" y1="120" x2="150" y2="20" stroke="#4f46e5" strokeWidth="2.5" markerEnd="url(#arr-indigo)"/>
             <line x1="150" y1="20" x2="280" y2="70" stroke="#e11d48" strokeWidth="2.5" markerEnd="url(#arr-rose)"/>
             <line x1="30" y1="120" x2="280" y2="70" stroke="#059669" strokeWidth="2.5" strokeDasharray="6 3" markerEnd="url(#arr-emerald)"/>
@@ -337,7 +337,7 @@ export default function Lesson() {
         </Callout>
         <div className="grid items-center gap-6 sm:grid-cols-2">
           <Graph>
-            <svg viewBox="0 0 300 220" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 10 — Les Vecteurs et la Translation : points A, B, D, C" viewBox="0 0 300 220" className="mx-auto h-auto w-full max-w-xs">
               <polygon points="90,50 250,50 210,190 50,190" fill="none" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3 3"/>
               <line x1="90" y1="50" x2="250" y2="50" stroke="#4f46e5" strokeWidth="2.5" markerEnd="url(#arr-indigo)"/>
               <line x1="90" y1="50" x2="50" y2="190" stroke="#059669" strokeWidth="2.5" markerEnd="url(#arr-emerald)"/>
@@ -396,7 +396,7 @@ export default function Lesson() {
           </p>
         </Callout>
         <Graph>
-          <svg viewBox="0 0 300 60" className="mx-auto h-auto w-full max-w-xs">
+          <svg role="img" aria-label="Figure 11 — Les Vecteurs et la Translation : points A, E, B" viewBox="0 0 300 60" className="mx-auto h-auto w-full max-w-xs">
             <line x1="20" y1="30" x2="280" y2="30" stroke="#334155" strokeWidth="2" markerEnd="url(#arr-slate)"/>
             <circle cx="20" cy="30" r="3.5" fill="#1e293b"/><circle cx="150" cy="30" r="3.5" fill="#1e293b"/><circle cx="280" cy="30" r="3.5" fill="#1e293b"/>
             <line x1="78" y1="24" x2="86" y2="36" stroke="#1e293b" strokeWidth="1.5"/>
@@ -481,7 +481,7 @@ export default function Lesson() {
           </Example>
         </div>
         <Graph className="mt-4 max-w-sm">
-          <svg viewBox="0 0 360 240" className="mx-auto h-auto w-full">
+          <svg role="img" aria-label="Figure 12 — Les Vecteurs et la Translation : points A, B, C, F, E" viewBox="0 0 360 240" className="mx-auto h-auto w-full">
             <line x1="30" y1="220" x2="330" y2="30" stroke="#94a3b8" strokeWidth="1.3" strokeDasharray="4 3"/>
             <line x1="30" y1="220" x2="290" y2="80" stroke="#94a3b8" strokeWidth="1.3" strokeDasharray="4 3"/>
             <line x1="180" y1="30" x2="115" y2="150" stroke="#334155" strokeWidth="1.5"/>
@@ -572,7 +572,7 @@ export default function Lesson() {
         </p>
         <div className="grid items-center gap-6 sm:grid-cols-2">
           <Graph>
-            <svg viewBox="0 0 300 200" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 13 — Les Vecteurs et la Translation : points A, B, M, M'" viewBox="0 0 300 200" className="mx-auto h-auto w-full max-w-xs">
               <polygon points="90,50 260,50 250,160 80,160" fill="none" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3 3"/>
               <line x1="90" y1="50" x2="260" y2="50" stroke="#4f46e5" strokeWidth="2.5" markerEnd="url(#arr-indigo)"/>
               <line x1="80" y1="160" x2="250" y2="160" stroke="#059669" strokeWidth="2.5" markerEnd="url(#arr-emerald)"/>
@@ -712,7 +712,7 @@ export default function Lesson() {
               <div className="space-y-4 text-sm">
                 <div className="grid items-center gap-5 sm:grid-cols-2">
                   <Graph className="max-w-sm">
-                    <svg viewBox="0 0 420 380" className="mx-auto h-auto w-full">
+                    <svg role="img" aria-label="Figure 14 — Les Vecteurs et la Translation : points A, B, C, E, F, G" viewBox="0 0 420 380" className="mx-auto h-auto w-full">
                       <line x1="40" y1="330" x2="340" y2="300" stroke="#cbd5e1" strokeWidth="1.2" strokeDasharray="4 3"/>
                       <line x1="40" y1="330" x2="120" y2="110" stroke="#cbd5e1" strokeWidth="1.2" strokeDasharray="4 3"/>
                       <line x1="190" y1="315" x2="230" y2="205" stroke="#e2e8f0" strokeWidth="1.2" strokeDasharray="3 3"/>
@@ -784,7 +784,7 @@ export default function Lesson() {
                   <li>Construis <Math tex="M" /> tel que <Math tex="APMQ" /> soit un parallélogramme : alors <Math tex="\overrightarrow{AM}=\overrightarrow{AP}+\overrightarrow{AQ}=2\overrightarrow{AB}+\dfrac{3}{2}\overrightarrow{AC}" />.</li>
                 </ol>
                 <Graph className="max-w-sm">
-                  <svg viewBox="0 0 440 380" className="mx-auto h-auto w-full">
+                  <svg role="img" aria-label="Figure 15 — Les Vecteurs et la Translation : points A, B, C, P, Q, M" viewBox="0 0 440 380" className="mx-auto h-auto w-full">
                     <line x1="40" y1="330" x2="340" y2="300" stroke="#cbd5e1" strokeWidth="1.2" strokeDasharray="4 3"/>
                     <line x1="40" y1="330" x2="100" y2="165" stroke="#cbd5e1" strokeWidth="1.2" strokeDasharray="4 3"/>
                     <polygon points="40,330 190,316.5 80,231" fill="#eef2ff" stroke="#4f46e5" strokeWidth="1" opacity="0.4"/>
@@ -827,7 +827,7 @@ export default function Lesson() {
               <div className="space-y-3 text-sm">
                 <div className="grid items-center gap-5 sm:grid-cols-2">
                   <Graph className="max-w-sm">
-                    <svg viewBox="0 0 400 280" className="mx-auto h-auto w-full">
+                    <svg role="img" aria-label="Figure 16 — Les Vecteurs et la Translation : points A, B, C, D, E, F" viewBox="0 0 400 280" className="mx-auto h-auto w-full">
                       <polygon points="100,230 220,230 280,170 160,170" fill="#eef2ff" stroke="#4f46e5" strokeWidth="1.3" opacity="0.5"/>
                       <line x1="40" y1="170" x2="280" y2="170" stroke="#cbd5e1" strokeWidth="1.2" strokeDasharray="4 3"/>
                       <line x1="100" y1="230" x2="340" y2="230" stroke="#cbd5e1" strokeWidth="1.2" strokeDasharray="4 3"/>
@@ -944,7 +944,7 @@ export default function Lesson() {
               <div className="space-y-3 text-sm">
                 <div className="grid items-center gap-5 sm:grid-cols-2">
                   <Graph className="max-w-sm">
-                    <svg viewBox="0 0 440 360" className="mx-auto h-auto w-full">
+                    <svg role="img" aria-label="Figure 17 — Les Vecteurs et la Translation : points A, B, C, E, F" viewBox="0 0 440 360" className="mx-auto h-auto w-full">
                       <polygon points="107.5,195 40,330 220,316.5" fill="#eef2ff" stroke="#4f46e5" strokeWidth="1.3" opacity="0.5"/>
                       <line x1="40" y1="330" x2="107.5" y2="195" stroke="#1e293b" strokeWidth="1.5"/>
                       <line x1="40" y1="330" x2="220" y2="316.5" stroke="#1e293b" strokeWidth="1.5"/>
@@ -1003,7 +1003,7 @@ export default function Lesson() {
               <div className="space-y-3 text-sm">
                 <div className="grid items-center gap-5 sm:grid-cols-2">
                   <Graph className="max-w-sm">
-                    <svg viewBox="0 0 400 300" className="mx-auto h-auto w-full">
+                    <svg role="img" aria-label="Figure 18 — Les Vecteurs et la Translation : points A, B, C, D, E, N" viewBox="0 0 400 300" className="mx-auto h-auto w-full">
                       <polygon points="60,250 170,250 225,140 115,140" fill="#eef2ff" stroke="#4f46e5" strokeWidth="1.3" opacity="0.5"/>
                       <line x1="60" y1="250" x2="170" y2="250" stroke="#1e293b" strokeWidth="1.5"/>
                       <line x1="60" y1="250" x2="115" y2="140" stroke="#1e293b" strokeWidth="1.5"/>
@@ -1065,7 +1065,7 @@ export default function Lesson() {
               <div className="space-y-3 text-sm">
                 <div className="grid items-center gap-5 sm:grid-cols-2">
                   <Graph className="max-w-sm">
-                    <svg viewBox="0 0 380 300" className="mx-auto h-auto w-full">
+                    <svg role="img" aria-label="Figure 19 — Les Vecteurs et la Translation : points A, B, C, E, F, G" viewBox="0 0 380 300" className="mx-auto h-auto w-full">
                       <polygon points="55,275 55,140 235,275" fill="#eef2ff" stroke="#4f46e5" strokeWidth="1.3" opacity="0.5"/>
                       <path d="M55,255 L75,255 L75,275" fill="none" stroke="#4f46e5" strokeWidth="1.5"/>
                       <line x1="55" y1="275" x2="55" y2="140" stroke="#1e293b" strokeWidth="1.5"/>
@@ -1130,7 +1130,7 @@ export default function Lesson() {
               <div className="space-y-3 text-sm">
                 <div className="grid items-center gap-5 sm:grid-cols-2">
                   <Graph className="max-w-sm">
-                    <svg viewBox="0 0 400 380" className="mx-auto h-auto w-full">
+                    <svg role="img" aria-label="Figure 20 — Les Vecteurs et la Translation : points A, B, C, D" viewBox="0 0 400 380" className="mx-auto h-auto w-full">
                       <circle cx="140" cy="230" r="123" fill="none" stroke="#4f46e5" strokeWidth="2"/>
                       <circle cx="250" cy="230" r="123" fill="none" stroke="#e11d48" strokeWidth="2" strokeDasharray="6 4"/>
                       <polygon points="140,230 250,230 305,120 195,120" fill="#f8fafc" stroke="#1e293b" strokeWidth="1.3"/>

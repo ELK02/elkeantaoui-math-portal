@@ -551,7 +551,7 @@ export default function Lesson() {
                   horizontaux) aient le même périmètre.
                 </p>
                 <FigureBox>
-                  <svg viewBox="0 0 480 260" className="mx-auto h-auto w-full max-w-md">
+                  <svg role="img" aria-label="Figure 1 — Les Équations : points A, C, B, G, F, D, E ; 4, x+1, 3x-2, 2x-1, 3x-5" viewBox="0 0 480 260" className="mx-auto h-auto w-full max-w-md">
                     <polygon points="30,230 150,30 240,165" className="fill-indigo-50 stroke-indigo-600 dark:fill-indigo-950/30 dark:stroke-indigo-400" strokeWidth="2.5" />
                     <circle cx="30" cy="230" r="4.5" className="fill-indigo-600 dark:fill-indigo-400" />
                     <circle cx="150" cy="30" r="4.5" className="fill-indigo-600 dark:fill-indigo-400" />

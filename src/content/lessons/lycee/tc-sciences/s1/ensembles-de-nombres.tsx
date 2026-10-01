@@ -45,7 +45,7 @@ function SetsDiagram({ dark = false }: { dark?: boolean }) {
   const cx = 140;
   const cy = 110;
   return (
-    <svg viewBox="0 0 280 220" className="h-56 w-56 sm:h-72 sm:w-72">
+    <svg role="img" aria-label="Figure 1 — Les ensembles de nombres" viewBox="0 0 280 220" className="h-56 w-56 sm:h-72 sm:w-72">
       {boxes.map((b, i) => (
         <g key={b.label}>
           <rect

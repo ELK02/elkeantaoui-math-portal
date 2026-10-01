@@ -109,7 +109,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 200 200" className="h-40 w-40 sm:h-56 sm:w-56" fill="none">
+          <svg role="img" aria-label="Figure 1 — Prisme Droit &amp; Cylindre de Révolution" viewBox="0 0 200 200" className="h-40 w-40 sm:h-56 sm:w-56" fill="none">
             <ellipse cx="100" cy="55" rx="55" ry="20" stroke="white" strokeWidth="2.5" />
             <line x1="45" y1="55" x2="45" y2="150" stroke="white" strokeWidth="2.5" />
             <line x1="155" y1="55" x2="155" y2="150" stroke="white" strokeWidth="2.5" />
@@ -152,7 +152,7 @@ export default function Lesson() {
         <div className="mt-6 grid gap-6 md:grid-cols-2">
           <div className="rounded-2xl border border-border bg-surface p-5 md:p-6">
             <p className="mb-3 text-center text-xs font-bold text-indigo-500 uppercase">Prisme droit à base triangulaire</p>
-            <svg viewBox="0 0 170 190" className="mx-auto h-auto w-full max-w-[220px]">
+            <svg role="img" aria-label="Figure 2 — Prisme Droit &amp; Cylindre de Révolution : h" viewBox="0 0 170 190" className="mx-auto h-auto w-full max-w-[220px]">
               <polygon points="90,15 35,55 145,55" className="fill-indigo-100 stroke-indigo-500" strokeWidth="2" />
               <polygon points="90,125 35,165 145,165" className="fill-indigo-50 stroke-indigo-500" strokeWidth="2" fillOpacity="0.6" />
               <line x1="90" y1="15" x2="90" y2="125" className="stroke-indigo-500" strokeWidth="2" />
@@ -169,7 +169,7 @@ export default function Lesson() {
           </div>
           <div className="rounded-2xl border border-border bg-surface p-5 md:p-6">
             <p className="mb-3 text-center text-xs font-bold text-indigo-500 uppercase">Prisme droit à base pentagonale</p>
-            <svg viewBox="0 0 170 190" className="mx-auto h-auto w-full max-w-[220px]">
+            <svg role="img" aria-label="Figure 3 — Prisme Droit &amp; Cylindre de Révolution : h" viewBox="0 0 170 190" className="mx-auto h-auto w-full max-w-[220px]">
               <polygon points="90,16.1 132.8,29.2 116.5,50.3 63.5,50.3 47.2,29.2" className="fill-indigo-100 stroke-indigo-500" strokeWidth="2" />
               <polygon points="90,126.1 132.8,139.2 116.5,160.3 63.5,160.3 47.2,139.2" className="fill-indigo-50 stroke-indigo-500" strokeWidth="2" fillOpacity="0.6" />
               <line x1="90" y1="16.1" x2="90" y2="126.1" className="stroke-indigo-500" strokeWidth="2" />
@@ -198,7 +198,7 @@ export default function Lesson() {
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="text-center">
-              <svg viewBox="-10 -55 170 185" className="mx-auto h-auto w-full max-w-[220px]">
+              <svg role="img" aria-label="Figure 4 — Prisme Droit &amp; Cylindre de Révolution" viewBox="-10 -55 170 185" className="mx-auto h-auto w-full max-w-[220px]">
                 <polygon points="0,0 50,0 50,70 0,70" className="fill-indigo-50 stroke-indigo-500" strokeWidth="1.5" />
                 <polygon points="50,0 100,0 100,70 50,70" className="fill-white stroke-indigo-500" strokeWidth="1.5" />
                 <polygon points="100,0 150,0 150,70 100,70" className="fill-indigo-50 stroke-indigo-500" strokeWidth="1.5" />
@@ -208,7 +208,7 @@ export default function Lesson() {
               <p className="mt-1 text-xs text-foreground-muted italic">Patron d&apos;un prisme droit à base triangulaire</p>
             </div>
             <div className="text-center">
-              <svg viewBox="-15 -47 190 155" className="mx-auto h-auto w-full max-w-[240px]">
+              <svg role="img" aria-label="Figure 5 — Prisme Droit &amp; Cylindre de Révolution" viewBox="-15 -47 190 155" className="mx-auto h-auto w-full max-w-[240px]">
                 <g>
                   <polygon points="0,0 26,0 26,60 0,60" className="fill-white stroke-indigo-500" strokeWidth="1.2" />
                   <polygon points="26,0 52,0 52,60 26,60" className="fill-indigo-50 stroke-indigo-500" strokeWidth="1.2" />
@@ -243,7 +243,7 @@ export default function Lesson() {
           <FormulaBlock tex="\text{Aire latérale} = \text{Périmètre d'une base} \times \text{hauteur}" />
           <p className="mt-4 mb-3 text-xs font-bold text-violet-500 uppercase">Exemple</p>
           <div className="grid items-center gap-5 sm:grid-cols-2">
-            <svg viewBox="0 0 220 220" className="mx-auto h-auto w-full max-w-[220px]">
+            <svg role="img" aria-label="Figure 6 — Prisme Droit &amp; Cylindre de Révolution : points A, B, C, D, E, F ; 5 cm, 2 cm, 6 cm, 8 cm" viewBox="0 0 220 220" className="mx-auto h-auto w-full max-w-[220px]">
               <polygon points="30,80 95,20 160,65" className="fill-violet-100 stroke-violet-500" strokeWidth="2" />
               <polygon points="30,190 95,130 160,175" className="fill-violet-50 stroke-violet-500" strokeWidth="2" fillOpacity="0.6" />
               <line x1="30" y1="80" x2="30" y2="190" className="stroke-violet-500" strokeWidth="2" />
@@ -283,7 +283,7 @@ export default function Lesson() {
           <FormulaBlock tex="\text{Volume} = \text{Aire d'une base} \times \text{hauteur}" />
           <p className="mt-4 mb-3 text-xs font-bold text-violet-500 uppercase">Exemple</p>
           <div className="grid items-center gap-5 sm:grid-cols-2">
-            <svg viewBox="0 35 225 195" className="mx-auto h-auto w-full max-w-[220px]">
+            <svg role="img" aria-label="Figure 7 — Prisme Droit &amp; Cylindre de Révolution : points A, B, C, D, E, F ; 3 cm, 4 cm, 6 cm" viewBox="0 35 225 195" className="mx-auto h-auto w-full max-w-[220px]">
               <polygon points="95,195 185,195 95,105" className="fill-violet-50 stroke-violet-500" strokeWidth="1.5" fillOpacity="0.6" />
               <line x1="40" y1="150" x2="95" y2="195" className="stroke-violet-500" strokeWidth="1.5" />
               <line x1="130" y1="150" x2="185" y2="195" className="stroke-violet-500" strokeWidth="1.5" />
@@ -345,7 +345,7 @@ export default function Lesson() {
         <div className="mt-6 grid gap-6 md:grid-cols-2">
           <div className="flex flex-col items-center rounded-2xl border border-border bg-surface p-5 md:p-6">
             <p className="mb-3 text-xs font-bold text-sky-500 uppercase">Exemple</p>
-            <svg viewBox="0 0 220 220" className="h-auto w-full max-w-[200px]">
+            <svg role="img" aria-label="Figure 8 — Prisme Droit &amp; Cylindre de Révolution : points A, B ; h" viewBox="0 0 220 220" className="h-auto w-full max-w-[200px]">
               <ellipse cx="110" cy="55" rx="60" ry="22" className="fill-sky-100 stroke-sky-500" strokeWidth="2" />
               <line x1="50" y1="55" x2="50" y2="165" className="stroke-sky-500" strokeWidth="2" />
               <line x1="170" y1="55" x2="170" y2="165" className="stroke-sky-500" strokeWidth="2" />
@@ -366,7 +366,7 @@ export default function Lesson() {
               Formé de ses deux disques de base et d&apos;un <strong>rectangle</strong> dont les dimensions sont la{" "}
               <strong>hauteur</strong> du cylindre et le <strong>périmètre</strong> d&apos;un disque de base.
             </p>
-            <svg viewBox="0 0 220 240" className="mx-auto h-auto w-full max-w-[190px]">
+            <svg role="img" aria-label="Figure 9 — Prisme Droit &amp; Cylindre de Révolution : 2 cm, 12,56 cm, 5 cm" viewBox="0 0 220 240" className="mx-auto h-auto w-full max-w-[190px]">
               <ellipse cx="110" cy="35" rx="45" ry="18" className="fill-sky-50 stroke-sky-500" strokeWidth="1.5" />
               <text x="95" y="30" fontSize="10" className="fill-slate-500">2 cm</text>
               <rect x="30" y="60" width="160" height="70" className="fill-white stroke-sky-500" strokeWidth="1.5" />
@@ -478,7 +478,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-2.5">
                 <div className="flex flex-col items-center gap-4 rounded-lg border border-green-500/20 bg-surface p-3.5 sm:flex-row">
-                  <svg viewBox="0 0 150 190" className="h-auto w-full shrink-0 sm:w-32">
+                  <svg role="img" aria-label="Figure 10 — Prisme Droit &amp; Cylindre de Révolution : n côtés, 2n sommets" viewBox="0 0 150 190" className="h-auto w-full shrink-0 sm:w-32">
                     <polygon points="70,17.4 109.9,29.5 94.7,49.3 45.3,49.3 30.1,29.5" className="fill-amber-100 stroke-amber-500" strokeWidth="2" />
                     <polygon points="70,112.4 109.9,124.5 94.7,144.3 45.3,144.3 30.1,124.5" className="fill-amber-50 stroke-amber-500" strokeWidth="2" fillOpacity="0.6" />
                     <line x1="70" y1="17.4" x2="70" y2="112.4" className="stroke-amber-500" strokeWidth="2" />
@@ -534,7 +534,7 @@ export default function Lesson() {
               <div className="space-y-2.5">
                 <div className="flex flex-wrap justify-center gap-6 rounded-lg border border-green-500/20 bg-surface p-4">
                   <div className="text-center">
-                    <svg viewBox="-15 -30 130 130" className="mx-auto h-auto w-28">
+                    <svg role="img" aria-label="Figure 11 — Prisme Droit &amp; Cylindre de Révolution : points A, B, C, D, E, F, G, H" viewBox="-15 -30 130 130" className="mx-auto h-auto w-28">
                       <polygon points="0,0 70,0 70,80 0,80" className="fill-emerald-100 stroke-emerald-600" strokeWidth="2" />
                       <polygon points="30,-22 100,-22 100,58 30,58" className="fill-emerald-50 stroke-emerald-600" strokeWidth="2" fillOpacity="0.7" />
                       <line x1="0" y1="0" x2="30" y2="-22" className="stroke-emerald-600" strokeWidth="2" />
@@ -557,7 +557,7 @@ export default function Lesson() {
                     </p>
                   </div>
                   <div className="text-center">
-                    <svg viewBox="0 0 100 90" className="mx-auto h-auto w-24">
+                    <svg role="img" aria-label="Figure 12 — Prisme Droit &amp; Cylindre de Révolution : points A, B, C, D, E, F" viewBox="0 0 100 90" className="mx-auto h-auto w-24">
                       <polygon points="45,10 10,45 85,45" className="fill-emerald-100 stroke-emerald-600" strokeWidth="2" />
                       <polygon points="45,80 10,115 85,115" className="fill-emerald-50 stroke-emerald-600" strokeWidth="2" fillOpacity="0.6" transform="translate(0,-38)" />
                       <line x1="45" y1="10" x2="45" y2="42" className="stroke-emerald-600" strokeWidth="2" />
@@ -577,7 +577,7 @@ export default function Lesson() {
                     </p>
                   </div>
                   <div className="text-center">
-                    <svg viewBox="0 0 100 90" className="mx-auto h-auto w-24">
+                    <svg role="img" aria-label="Figure 13 — Prisme Droit &amp; Cylindre de Révolution : points D, E, F, A, C, B" viewBox="0 0 100 90" className="mx-auto h-auto w-24">
                       <polygon points="45,10 10,45 85,45" className="fill-emerald-100 stroke-emerald-600" strokeWidth="2" />
                       <polygon points="45,80 10,115 85,115" className="fill-emerald-50 stroke-emerald-600" strokeWidth="2" fillOpacity="0.6" transform="translate(0,-38)" />
                       <line x1="45" y1="10" x2="45" y2="42" className="stroke-emerald-600" strokeWidth="2" />
@@ -657,7 +657,7 @@ export default function Lesson() {
                   hauteur du cylindre.
                 </Step>
                 <Diagram>
-                  <svg viewBox="0 0 220 180" className="mx-auto h-auto w-full max-w-[220px]">
+                  <svg role="img" aria-label="Figure 14 — Prisme Droit &amp; Cylindre de Révolution : Périmètre du disque, h" viewBox="0 0 220 180" className="mx-auto h-auto w-full max-w-[220px]">
                     <ellipse cx="110" cy="30" rx="40" ry="16" className="fill-emerald-50 stroke-emerald-500" strokeWidth="1.5" />
                     <rect x="40" y="50" width="140" height="60" className="fill-white stroke-emerald-500" strokeWidth="1.5" />
                     <text x="75" y="85" fontSize="10" className="fill-emerald-700 font-semibold">Périmètre du disque</text>
@@ -738,7 +738,7 @@ export default function Lesson() {
                     égaux) :
                   </p>
                   <div className="flex justify-center rounded-xl border border-green-500/20 bg-surface-muted p-3">
-                    <svg viewBox="-72 -58 245 150" className="h-auto w-full max-w-[320px]">
+                    <svg role="img" aria-label="Figure 15 — Prisme Droit &amp; Cylindre de Révolution : points A, B, C ; 2,5 cm, 3 cm, 3,9 cm, h=2cm" viewBox="-72 -58 245 150" className="h-auto w-full max-w-[320px]">
                       <line x1="-14" y1="0" x2="-14" y2="32" className="stroke-slate-400" strokeWidth="1" />
                       <line x1="-18" y1="0" x2="-10" y2="0" className="stroke-slate-400" strokeWidth="1" />
                       <line x1="-18" y1="32" x2="-10" y2="32" className="stroke-slate-400" strokeWidth="1" />

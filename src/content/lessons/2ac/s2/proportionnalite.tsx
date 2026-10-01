@@ -192,7 +192,7 @@ export default function Lesson() {
               ["Grandeur 2", "4", "8", "10"],
             ]}
           />
-          <svg viewBox="0 0 380 260" className="h-auto w-full">
+          <svg role="img" aria-label="Figure 1 — Proportionnalité : (10,4), (20,8), (25,10), Grandeur 1, Grandeur 2, 0" viewBox="0 0 380 260" className="h-auto w-full">
             <line x1="40" y1="10" x2="40" y2="230" stroke="#94a3b8" strokeWidth="1.5" />
             <line x1="40" y1="230" x2="360" y2="230" stroke="#94a3b8" strokeWidth="1.5" />
             <g stroke="#e2e8f0" strokeWidth="1">
@@ -226,7 +226,7 @@ export default function Lesson() {
 
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           <Callout variant="success">
-            <svg viewBox="0 0 200 160" className="mb-3 h-auto w-full rounded-lg bg-surface">
+            <svg role="img" aria-label="Figure 2 — Proportionnalité : point O" viewBox="0 0 200 160" className="mb-3 h-auto w-full rounded-lg bg-surface">
               <line x1="25" y1="10" x2="25" y2="140" stroke="#94a3b8" strokeWidth="1.5" />
               <line x1="25" y1="140" x2="185" y2="140" stroke="#94a3b8" strokeWidth="1.5" />
               <line x1="25" y1="140" x2="175" y2="18" stroke="#10b981" strokeWidth="3" />
@@ -243,7 +243,7 @@ export default function Lesson() {
             </p>
           </Callout>
           <Callout variant="danger">
-            <svg viewBox="0 0 200 160" className="mb-3 h-auto w-full rounded-lg bg-surface">
+            <svg role="img" aria-label="Figure 3 — Proportionnalité : point O" viewBox="0 0 200 160" className="mb-3 h-auto w-full rounded-lg bg-surface">
               <line x1="25" y1="10" x2="25" y2="140" stroke="#94a3b8" strokeWidth="1.5" />
               <line x1="25" y1="140" x2="185" y2="140" stroke="#94a3b8" strokeWidth="1.5" />
               <line x1="45" y1="118" x2="175" y2="38" stroke="#f43f5e" strokeWidth="3" />

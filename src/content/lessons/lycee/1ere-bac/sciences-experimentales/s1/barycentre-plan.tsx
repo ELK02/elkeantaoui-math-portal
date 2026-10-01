@@ -109,7 +109,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 220 140" className="h-40 w-56 text-white">
+          <svg role="img" aria-label="Figure 1 — Barycentre dans le plan : points A, B, G" viewBox="0 0 220 140" className="h-40 w-56 text-white">
             <line x1="20" y1="90" x2="200" y2="90" stroke="white" strokeWidth="2" opacity="0.6" />
             <circle cx="20" cy="90" r="4" fill="white" />
             <circle cx="200" cy="90" r="4" fill="white" />
@@ -196,7 +196,7 @@ export default function Lesson() {
             }
             svg={
               <FigureBox>
-                <svg viewBox="0 0 240 120" className="w-full max-w-[260px]">
+                <svg role="img" aria-label="Figure 2 — Barycentre dans le plan : points A, B, G" viewBox="0 0 240 120" className="w-full max-w-[260px]">
                   <line x1="20" y1="90" x2="220" y2="90" stroke="#334155" strokeWidth="2" />
                   <circle cx="20" cy="90" r="3.5" fill="#1e293b" />
                   <circle cx="220" cy="90" r="3.5" fill="#1e293b" />
@@ -281,7 +281,7 @@ export default function Lesson() {
             }
             svg={
               <FigureBox>
-                <svg viewBox="0 0 260 190" className="w-full max-w-[260px]">
+                <svg role="img" aria-label="Figure 3 — Barycentre dans le plan : points A, B, C, A', G" viewBox="0 0 260 190" className="w-full max-w-[260px]">
                   <polygon points="120,20 20,170 230,170" fill="none" stroke="#334155" strokeWidth="2" />
                   <line x1="120" y1="20" x2="125" y2="170" stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="4 3" />
                   <line x1="20" y1="170" x2="175" y2="95" stroke="#0ea5e9" strokeWidth="1.6" strokeDasharray="4 3" />

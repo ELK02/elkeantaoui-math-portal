@@ -112,7 +112,7 @@ export default function Lesson() {
 
         <div className="mt-6 grid items-center gap-6 rounded-xl border border-border bg-surface p-5 sm:grid-cols-2 sm:p-6">
           <DiagramPanel>
-            <svg viewBox="0 0 300 300" className="w-full max-w-xs">
+            <svg role="img" aria-label="Figure 1 — Angles Inscrits et Angles au Centre : points O, A, B, C ; (ζ), arc BC" viewBox="0 0 300 300" className="w-full max-w-xs">
               <circle cx="150" cy="150" r="105" fill="none" stroke="#cbd5e1" strokeWidth="2" />
               <text x="228" y="65" fontSize="14" fill="#94a3b8" fontStyle="italic">(ζ)</text>
               <path d="M 114.1 248.7 A 105 105 0 0 0 253.4 168.2" fill="none" stroke="#0ea5e9" strokeWidth="5" strokeLinecap="round" />
@@ -150,7 +150,7 @@ export default function Lesson() {
           </p>
           <div className="grid items-center gap-6 rounded-xl border border-border bg-surface p-5 sm:grid-cols-2 sm:p-6">
             <DiagramPanel>
-              <svg viewBox="0 0 300 300" className="w-full max-w-xs">
+              <svg role="img" aria-label="Figure 2 — Angles Inscrits et Angles au Centre : points O, A, B, C ; (ζ), arc AB" viewBox="0 0 300 300" className="w-full max-w-xs">
                 <circle cx="150" cy="150" r="100" fill="none" stroke="#cbd5e1" strokeWidth="2" />
                 <text x="88" y="42" fontSize="14" fill="#94a3b8" fontStyle="italic">(ζ)</text>
                 <path d="M 250.0 150.0 A 100 100 0 0 1 56.0 184.2" fill="none" stroke="#0ea5e9" strokeWidth="5" strokeLinecap="round" />
@@ -199,7 +199,7 @@ export default function Lesson() {
 
         <div className="mt-6 grid items-center gap-6 rounded-xl border border-border bg-surface p-5 sm:grid-cols-2 sm:p-6">
           <DiagramPanel>
-            <svg viewBox="0 0 300 300" className="w-full max-w-xs">
+            <svg role="img" aria-label="Figure 3 — Angles Inscrits et Angles au Centre : points O, B, C ; (ζ), arc BC" viewBox="0 0 300 300" className="w-full max-w-xs">
               <circle cx="150" cy="150" r="105" fill="none" stroke="#cbd5e1" strokeWidth="2" />
               <text x="228" y="65" fontSize="14" fill="#94a3b8" fontStyle="italic">(ζ)</text>
               <path d="M 131.8 253.4 A 105 105 0 0 0 255.0 150.0" fill="none" stroke="#0ea5e9" strokeWidth="5" strokeLinecap="round" />
@@ -257,7 +257,7 @@ export default function Lesson() {
                       mesure de l&apos;angle <Math tex="\widehat{BDC}" />, en justifiant la réponse.
                     </p>
                     <DiagramPanel>
-                      <svg viewBox="0 0 300 300" className="w-full max-w-[260px]">
+                      <svg role="img" aria-label="Figure 4 — Angles Inscrits et Angles au Centre : points O, A, D, C, B ; (ζ), 60°, ?" viewBox="0 0 300 300" className="w-full max-w-[260px]">
                         <circle cx="150" cy="150" r="100" fill="none" stroke="#cbd5e1" strokeWidth="2" />
                         <text x="228" y="70" fontSize="14" fill="#94a3b8" fontStyle="italic">(ζ)</text>
                         <path d="M 73.4 214.3 A 100 100 0 0 0 244.0 184.2" fill="none" stroke="#0ea5e9" strokeWidth="4" strokeLinecap="round" />
@@ -323,7 +323,7 @@ export default function Lesson() {
                       mesure de l&apos;angle <Math tex="\widehat{BAC}" />, en justifiant la réponse.
                     </p>
                     <DiagramPanel>
-                      <svg viewBox="0 0 300 300" className="w-full max-w-[260px]">
+                      <svg role="img" aria-label="Figure 5 — Angles Inscrits et Angles au Centre : points A, B, C, O ; (ζ), 130°, ?" viewBox="0 0 300 300" className="w-full max-w-[260px]">
                         <circle cx="150" cy="150" r="100" fill="none" stroke="#cbd5e1" strokeWidth="2" />
                         <text x="228" y="70" fontSize="14" fill="#94a3b8" fontStyle="italic">(ζ)</text>
                         <path d="M 73.4 214.3 A 100 100 0 0 0 248.5 167.4" fill="none" stroke="#0ea5e9" strokeWidth="4" strokeLinecap="round" />
@@ -401,7 +401,7 @@ export default function Lesson() {
                   sont sur le cercle de centre <Math tex="O" />.
                 </p>
                 <DiagramPanel className="mb-4">
-                  <svg viewBox="0 0 300 300" className="w-full max-w-[220px]">
+                  <svg role="img" aria-label="Figure 6 — Angles Inscrits et Angles au Centre : points O, R, P, M" viewBox="0 0 300 300" className="w-full max-w-[220px]">
                     <circle cx="150" cy="150" r="100" fill="none" stroke="#cbd5e1" strokeWidth="2" />
                     <circle cx="150" cy="150" r="3.5" fill="#475569" />
                     <text x="158" y="146" fontSize="13" fill="#64748b">O</text>
@@ -439,7 +439,7 @@ export default function Lesson() {
               <div className="space-y-5 text-sm">
                 <div className="grid items-center gap-6 rounded-xl border border-green-500/20 bg-surface p-4 sm:grid-cols-2 sm:p-5">
                   <DiagramPanel>
-                    <svg viewBox="0 0 300 300" className="w-full max-w-[220px]">
+                    <svg role="img" aria-label="Figure 7 — Angles Inscrits et Angles au Centre : points O, R, P, M ; 65°, 32,5°, grand arc RM" viewBox="0 0 300 300" className="w-full max-w-[220px]">
                       <circle cx="150" cy="150" r="100" fill="none" stroke="#cbd5e1" strokeWidth="2" />
                       <line x1="150" y1="150" x2="141.3" y2="249.6" stroke="#94a3b8" strokeWidth="1.4" strokeDasharray="3 3" />
                       <path d="M 56.0 115.8 A 100 100 0 1 1 141.3 249.6" fill="none" stroke="#0ea5e9" strokeWidth="3.5" strokeDasharray="7 5" strokeLinecap="round" />
@@ -519,7 +519,7 @@ export default function Lesson() {
                   </li>
                 </ul>
                 <DiagramPanel className="mb-4">
-                  <svg viewBox="0 0 300 300" className="w-full max-w-[260px]">
+                  <svg role="img" aria-label="Figure 8 — Angles Inscrits et Angles au Centre : points I, G, P, D, E, F, M, N ; 120°" viewBox="0 0 300 300" className="w-full max-w-[260px]">
                     <circle cx="150" cy="150" r="105" fill="none" stroke="#cbd5e1" strokeWidth="2" />
                     <line x1="69.6" y1="217.5" x2="230.4" y2="82.5" stroke="#475569" strokeWidth="2" />
                     <line x1="69.6" y1="217.5" x2="131.8" y2="46.6" stroke="#94a3b8" strokeWidth="1.4" />
@@ -621,7 +621,7 @@ export default function Lesson() {
                   <Math tex="\widehat{HOG}=130°" /> et <Math tex="\widehat{EHF}=40°" />
                 </p>
                 <DiagramPanel className="mb-4">
-                  <svg viewBox="0 0 300 300" className="w-full max-w-[240px]">
+                  <svg role="img" aria-label="Figure 9 — Angles Inscrits et Angles au Centre : points O, H, E, F, G, I ; (ζ), 130°, 40°" viewBox="0 0 300 300" className="w-full max-w-[240px]">
                     <circle cx="150" cy="150" r="105" fill="none" stroke="#cbd5e1" strokeWidth="2" />
                     <text x="52" y="60" fontSize="14" fill="#94a3b8" fontStyle="italic">(ζ)</text>
                     <line x1="150" y1="150" x2="140.8" y2="45.4" stroke="#475569" strokeWidth="1.8" />

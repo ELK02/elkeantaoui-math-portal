@@ -157,7 +157,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 220 170" className="h-56 w-56 text-white sm:h-64 sm:w-64">
+          <svg role="img" aria-label="Figure 1 — Géométrie dans l'espace" viewBox="0 0 220 170" className="h-56 w-56 text-white sm:h-64 sm:w-64">
             {/* Cube en perspective cavalière, un seul sommet caché (arrière-bas-gauche). */}
             <polygon points="95,140 175,140 175,60 95,60" fill="white" fillOpacity="0.08" stroke="white" strokeWidth="1.4" strokeDasharray="4 3" />
             <line x1="30" y1="160" x2="95" y2="140" stroke="white" strokeWidth="1.4" strokeDasharray="4 3" />
@@ -232,7 +232,7 @@ export default function Lesson() {
                 </>
               }
               svg={
-                <svg viewBox="0 0 140 110" className="h-24 w-32">
+                <svg role="img" aria-label="Figure 2 — Géométrie dans l'espace : point I" viewBox="0 0 140 110" className="h-24 w-32">
                   <ArrowDefs id="ge1" />
                   <line x1="15" y1="90" x2="125" y2="30" stroke="#0ea5e9" strokeWidth="2" markerEnd="url(#ge1)" />
                   <line x1="15" y1="30" x2="125" y2="90" stroke="#e11d48" strokeWidth="2" markerEnd="url(#ge1)" />
@@ -249,7 +249,7 @@ export default function Lesson() {
                 </>
               }
               svg={
-                <svg viewBox="0 0 140 110" className="h-24 w-32">
+                <svg role="img" aria-label="Figure 3 — Géométrie dans l'espace" viewBox="0 0 140 110" className="h-24 w-32">
                   <ArrowDefs id="ge2" />
                   <line x1="15" y1="35" x2="125" y2="35" stroke="#0ea5e9" strokeWidth="2" markerEnd="url(#ge2)" />
                   <line x1="15" y1="80" x2="125" y2="80" stroke="#e11d48" strokeWidth="2" markerEnd="url(#ge2)" />
@@ -265,7 +265,7 @@ export default function Lesson() {
                 </>
               }
               svg={
-                <svg viewBox="0 0 140 110" className="h-24 w-32">
+                <svg role="img" aria-label="Figure 4 — Géométrie dans l'espace" viewBox="0 0 140 110" className="h-24 w-32">
                   <ArrowDefs id="ge3" />
                   <PlaneSVG points="10,80 70,95 130,60 70,45" fill="#94a3b8" />
                   <line x1="20" y1="30" x2="100" y2="10" stroke="#0ea5e9" strokeWidth="2" markerEnd="url(#ge3)" />
@@ -286,7 +286,7 @@ export default function Lesson() {
                 </>
               }
               svg={
-                <svg viewBox="0 0 140 110" className="h-24 w-32">
+                <svg role="img" aria-label="Figure 5 — Géométrie dans l'espace" viewBox="0 0 140 110" className="h-24 w-32">
                   <ArrowDefs id="ge4" />
                   <PlaneSVG points="10,80 70,95 130,60 70,45" fill="#0ea5e9" />
                   <line x1="25" y1="70" x2="115" y2="65" stroke="#e11d48" strokeWidth="2" markerEnd="url(#ge4)" />
@@ -301,7 +301,7 @@ export default function Lesson() {
                 </>
               }
               svg={
-                <svg viewBox="0 0 140 110" className="h-24 w-32">
+                <svg role="img" aria-label="Figure 6 — Géométrie dans l'espace" viewBox="0 0 140 110" className="h-24 w-32">
                   <ArrowDefs id="ge5" />
                   <PlaneSVG points="10,90 70,100 130,75 70,65" fill="#0ea5e9" />
                   <line x1="25" y1="40" x2="115" y2="30" stroke="#e11d48" strokeWidth="2" markerEnd="url(#ge5)" />
@@ -316,7 +316,7 @@ export default function Lesson() {
                 </>
               }
               svg={
-                <svg viewBox="0 0 140 110" className="h-24 w-32">
+                <svg role="img" aria-label="Figure 7 — Géométrie dans l'espace : point I" viewBox="0 0 140 110" className="h-24 w-32">
                   <ArrowDefs id="ge6" />
                   <PlaneSVG points="10,80 70,95 130,60 70,45" fill="#0ea5e9" />
                   <line x1="30" y1="20" x2="100" y2="100" stroke="#e11d48" strokeWidth="2" markerEnd="url(#ge6)" />
@@ -334,7 +334,7 @@ export default function Lesson() {
               title="Confondus"
               caption={<Math tex="\mathcal P=\mathcal P'" />}
               svg={
-                <svg viewBox="0 0 140 110" className="h-24 w-32">
+                <svg role="img" aria-label="Figure 8 — Géométrie dans l'espace" viewBox="0 0 140 110" className="h-24 w-32">
                   <PlaneSVG points="10,80 70,95 130,60 70,45" fill="#0ea5e9" />
                 </svg>
               }
@@ -343,7 +343,7 @@ export default function Lesson() {
               title="Strictement parallèles"
               caption={<Math tex="\mathcal P /\!/ \mathcal P'" />}
               svg={
-                <svg viewBox="0 0 140 110" className="h-24 w-32">
+                <svg role="img" aria-label="Figure 9 — Géométrie dans l'espace" viewBox="0 0 140 110" className="h-24 w-32">
                   <PlaneSVG points="10,45 70,58 130,28 70,15" fill="#0ea5e9" />
                   <PlaneSVG points="10,95 70,108 130,78 70,65" fill="#e11d48" />
                 </svg>
@@ -357,7 +357,7 @@ export default function Lesson() {
                 </>
               }
               svg={
-                <svg viewBox="0 0 140 110" className="h-24 w-32">
+                <svg role="img" aria-label="Figure 10 — Géométrie dans l'espace" viewBox="0 0 140 110" className="h-24 w-32">
                   <ArrowDefs id="ge7" />
                   <PlaneSVG points="15,30 125,30 105,90 -5,90" fill="#0ea5e9" />
                   <PlaneSVG points="70,10 135,55 70,100 5,55" fill="#e11d48" />
@@ -421,7 +421,7 @@ export default function Lesson() {
               </p>
             }
             svg={
-              <svg viewBox="0 0 200 140" className="h-auto w-full max-w-[220px] text-neutral-700">
+              <svg role="img" aria-label="Figure 11 — Géométrie dans l'espace : points P, D', D" viewBox="0 0 200 140" className="h-auto w-full max-w-[220px] text-neutral-700">
                 <ArrowDefs id="ge8" />
                 <PlaneSVG points="15,110 100,125 185,80 100,65" fill="#0ea5e9" label="P" labelPos={[95, 118]} />
                 <line x1="35" y1="95" x2="150" y2="90" stroke="#0ea5e9" strokeWidth="1.8" markerEnd="url(#ge8)" />
@@ -549,7 +549,7 @@ export default function Lesson() {
               </>
             }
             svg={
-              <svg viewBox="0 0 200 160" className="h-auto w-full max-w-[220px] text-neutral-700">
+              <svg role="img" aria-label="Figure 12 — Géométrie dans l'espace : points A, D" viewBox="0 0 200 160" className="h-auto w-full max-w-[220px] text-neutral-700">
                 <ArrowDefs id="ge9" />
                 <PlaneSVG points="20,120 100,135 180,90 100,75" fill="#0ea5e9" />
                 <line x1="35" y1="105" x2="130" y2="100" stroke="#0ea5e9" strokeWidth="1.6" markerEnd="url(#ge9)" />
@@ -682,7 +682,7 @@ export default function Lesson() {
                 }
                 svg={
                   <FigureBox>
-                    <svg viewBox="0 0 220 220" className="w-full max-w-[220px]">
+                    <svg role="img" aria-label="Figure 13 — Géométrie dans l'espace : points S, A, B, D, C" viewBox="0 0 220 220" className="w-full max-w-[220px]">
                       {/* Base ABCD (parallélogramme perspective, D caché) + S à l'aplomb de A. */}
                       <polygon points="40,190 140,190 175,150 75,150" fill="#eef2ff" fillOpacity="0.5" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
                       <line x1="75" y1="150" x2="175" y2="150" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
@@ -802,7 +802,7 @@ export default function Lesson() {
                 }
                 svg={
                   <FigureBox>
-                    <svg viewBox="0 0 210 170" className="w-full max-w-[210px]">
+                    <svg role="img" aria-label="Figure 14 — Géométrie dans l'espace : points A, B, D, C, E, F, H, G" viewBox="0 0 210 170" className="w-full max-w-[210px]">
                       {/* Pavé droit ABCDEFGH, un seul sommet caché (D, arrière-bas-gauche). */}
                       <polygon points="75,110 165,110 165,30 75,30" fill="#c7d2fe" fillOpacity="0.3" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
                       <line x1="35" y1="130" x2="75" y2="110" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
@@ -931,7 +931,7 @@ export default function Lesson() {
                 }
                 svg={
                   <FigureBox>
-                    <svg viewBox="0 0 220 200" className="w-full max-w-[220px]">
+                    <svg role="img" aria-label="Figure 15 — Géométrie dans l'espace : points S, K, A, B, D, C, H" viewBox="0 0 220 200" className="w-full max-w-[220px]">
                       {/* Base ABCD (parallélogramme perspective, D caché), H sur [AC] intérieur, K sur [SH]. */}
                       <polygon points="30,170 150,170 190,140 70,140" fill="#eef2ff" fillOpacity="0.5" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />
                       <line x1="70" y1="140" x2="190" y2="140" stroke="#4338ca" strokeWidth="1.6" strokeDasharray="4 3" />

@@ -106,7 +106,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 220 180" className="h-56 w-56 text-white opacity-90">
+          <svg role="img" aria-label="Figure 1 — Les angles : α" viewBox="0 0 220 180" className="h-56 w-56 text-white opacity-90">
             <path d="M30,150 L200,150" stroke="currentColor" strokeWidth={2.5} />
             <path d="M30,150 L150,30" stroke="currentColor" strokeWidth={2.5} />
             <path d="M62,150 A32,32 0 0 1 76,120" fill="none" stroke="#fb923c" strokeWidth={2.5} />
@@ -138,7 +138,7 @@ export default function Lesson() {
                 Deux angles sont <strong>complémentaires</strong> lorsque la somme de leurs mesures est égale à <strong>90°</strong>.
               </p>
             </div>
-            <svg viewBox="0 0 240 170" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 2 — Les angles : points O, A, B, C ; 35°, 55°" viewBox="0 0 240 170" className="mx-auto h-auto w-full max-w-xs">
               <path d="M40,150 L200,150" stroke="#0f172a" strokeWidth={2} />
               <path d="M40,150 L40,10" stroke="#0f172a" strokeWidth={2} />
               <path d="M40,150 L154.7,69.7" stroke="#0f172a" strokeWidth={2} />
@@ -166,7 +166,7 @@ export default function Lesson() {
                 Deux angles sont <strong>supplémentaires</strong> lorsque la somme de leurs mesures est égale à <strong>180°</strong>.
               </p>
             </div>
-            <svg viewBox="0 0 300 170" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 3 — Les angles : points Y, Z, O, X ; 70°, 110°" viewBox="0 0 300 170" className="mx-auto h-auto w-full max-w-xs">
               <path d="M20,150 L280,150" stroke="#0f172a" strokeWidth={2} />
               <path d="M150,150 L191,37.2" stroke="#0f172a" strokeWidth={2} />
               <path d="M163,114.3 A38,38 0 0 1 188,150" fill="none" stroke="#4338ca" strokeWidth={1.5} />
@@ -223,7 +223,7 @@ export default function Lesson() {
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           <div className="rounded-2xl border border-green-500/20 bg-surface p-5">
             <p className="mb-3 inline-flex items-center gap-1 rounded-full bg-green-100/60 px-2.5 py-1 text-xs font-bold text-green-700">✓ Adjacents</p>
-            <svg viewBox="0 0 160 130" className="mx-auto h-auto w-full max-w-[220px]">
+            <svg role="img" aria-label="Figure 4 — Les angles : point O" viewBox="0 0 160 130" className="mx-auto h-auto w-full max-w-[220px]">
               <path d="M20,110 L140,110" stroke="#0f172a" strokeWidth={1.6} />
               <path d="M20,110 L95,20" stroke="#0f172a" strokeWidth={1.6} />
               <path d="M20,110 L140,45" stroke="#0f172a" strokeWidth={1.6} />
@@ -235,7 +235,7 @@ export default function Lesson() {
           </div>
           <div className="rounded-2xl border border-rose-500/30 bg-surface p-5">
             <p className="mb-3 inline-flex items-center gap-1 rounded-full bg-rose-100/60 px-2.5 py-1 text-xs font-bold text-rose-600">✗ Sommets différents</p>
-            <svg viewBox="0 0 160 130" className="mx-auto h-auto w-full max-w-[220px]">
+            <svg role="img" aria-label="Figure 5 — Les angles : points M, N" viewBox="0 0 160 130" className="mx-auto h-auto w-full max-w-[220px]">
               <path d="M15,60 L60,15" stroke="#0f172a" strokeWidth={1.6} />
               <path d="M15,60 L75,60" stroke="#0f172a" strokeWidth={1.6} />
               <path d="M100,110 L150,70" stroke="#0f172a" strokeWidth={1.6} />
@@ -247,7 +247,7 @@ export default function Lesson() {
           </div>
           <div className="rounded-2xl border border-rose-500/30 bg-surface p-5">
             <p className="mb-3 inline-flex items-center gap-1 rounded-full bg-rose-100/60 px-2.5 py-1 text-xs font-bold text-rose-600">✗ Aucun côté commun</p>
-            <svg viewBox="0 0 160 130" className="mx-auto h-auto w-full max-w-[220px]">
+            <svg role="img" aria-label="Figure 6 — Les angles : point O" viewBox="0 0 160 130" className="mx-auto h-auto w-full max-w-[220px]">
               <path d="M20,110 L30,15" stroke="#0f172a" strokeWidth={1.6} />
               <path d="M20,110 L85,25" stroke="#0f172a" strokeWidth={1.6} />
               <path d="M20,110 L120,55" stroke="#0f172a" strokeWidth={1.6} />
@@ -260,7 +260,7 @@ export default function Lesson() {
           </div>
           <div className="rounded-2xl border border-rose-500/30 bg-surface p-5">
             <p className="mb-3 inline-flex items-center gap-1 rounded-full bg-rose-100/60 px-2.5 py-1 text-xs font-bold text-rose-600">✗ Angles superposés</p>
-            <svg viewBox="0 0 160 130" className="mx-auto h-auto w-full max-w-[220px]">
+            <svg role="img" aria-label="Figure 7 — Les angles : point O" viewBox="0 0 160 130" className="mx-auto h-auto w-full max-w-[220px]">
               <path d="M20,110 L145,110" stroke="#0f172a" strokeWidth={1.6} />
               <path d="M20,110 L40,15" stroke="#0f172a" strokeWidth={1.6} />
               <path d="M20,110 L110,30" stroke="#0f172a" strokeWidth={1.6} />
@@ -297,7 +297,7 @@ export default function Lesson() {
             </div>
           </div>
           <div className="rounded-2xl border border-border bg-surface p-5 sm:p-6">
-            <svg viewBox="0 0 260 220" className="mx-auto h-auto w-full max-w-sm">
+            <svg role="img" aria-label="Figure 8 — Les angles : point O ; x, y, z, t" viewBox="0 0 260 220" className="mx-auto h-auto w-full max-w-sm">
               <path d="M20,190 L240,50" stroke="#0f172a" strokeWidth={2} />
               <path d="M30,40 L230,180" stroke="#0f172a" strokeWidth={2} />
               <path d="M137.5,115.2 L118.9,127 A22,22 0 0 1 119.5,102.6 Z" fill="#4338ca" opacity={0.18} />
@@ -337,7 +337,7 @@ export default function Lesson() {
                 <p className="mb-4 text-sm text-foreground-muted">
                   Nomme les angles marqués ⓐ à ⓕ à l&apos;aide des points de la figure (le sommet s&apos;écrit toujours au milieu, par exemple GFK) :
                 </p>
-                <svg viewBox="0 0 460 380" className="mx-auto h-auto w-full max-w-lg rounded-xl border border-border bg-surface-muted">
+                <svg role="img" aria-label="Figure 9 — Les angles : points G, K, C, B, R, S, F, O, U ; e, b, a, d, c, f" viewBox="0 0 460 380" className="mx-auto h-auto w-full max-w-lg rounded-xl border border-border bg-surface-muted">
                   <line x1="80" y1="30" x2="290" y2="360" stroke="#0f172a" strokeWidth={1.6} />
                   <line x1="30" y1="120" x2="430" y2="178" stroke="#0f172a" strokeWidth={1.6} />
                   <line x1="105" y1="365" x2="405" y2="92" stroke="#0f172a" strokeWidth={1.6} />
@@ -392,7 +392,7 @@ export default function Lesson() {
                 id="2-1"
                 prompt={
                   <div>
-                    <svg viewBox="0 0 160 140" className="mx-auto h-auto w-full max-w-[200px]">
+                    <svg role="img" aria-label="Figure 10 — Les angles : point T ; r, s, u" viewBox="0 0 160 140" className="mx-auto h-auto w-full max-w-[200px]">
                       <path d="M25,110 L55,15 M25,110 L110,35 M25,110 L150,105" stroke="#0f172a" strokeWidth={1.6} />
                       <Pt d="M20,105 L30,115 M20,115 L30,105" lx={6} ly={128} label="T" fs={14} />
                       <Pt d="M50,10 L60,20 M50,20 L60,10" lx={58} ly={10} label="r" fs={14} />
@@ -411,7 +411,7 @@ export default function Lesson() {
                 id="2-2"
                 prompt={
                   <div>
-                    <svg viewBox="0 0 160 140" className="mx-auto h-auto w-full max-w-[200px]">
+                    <svg role="img" aria-label="Figure 11 — Les angles : points A, E, B, D, C" viewBox="0 0 160 140" className="mx-auto h-auto w-full max-w-[200px]">
                       <path d="M20,15 L20,75 L115,55 L70,110 L145,125" fill="none" stroke="#0f172a" strokeWidth={1.6} />
                       <Pt d="M15,10 L25,20 M15,20 L25,10" lx={6} ly={8} label="A" fs={14} />
                       <Pt d="M15,70 L25,80 M15,80 L25,70" lx={2} ly={88} label="E" fs={14} />
@@ -431,7 +431,7 @@ export default function Lesson() {
                 id="2-3"
                 prompt={
                   <div>
-                    <svg viewBox="0 0 160 150" className="mx-auto h-auto w-full max-w-[200px]">
+                    <svg role="img" aria-label="Figure 12 — Les angles : point G ; u, t, x, w" viewBox="0 0 160 150" className="mx-auto h-auto w-full max-w-[200px]">
                       <path d="M10,75 L150,75 M80,10 L80,140" stroke="#0f172a" strokeWidth={1.6} />
                       <Pt d="M5,70 L15,80 M5,80 L15,70" lx={0} ly={93} label="u" fs={14} />
                       <Pt d="M145,70 L155,80 M145,80 L155,70" lx={150} ly={93} label="t" fs={14} />
@@ -451,7 +451,7 @@ export default function Lesson() {
                 id="2-4"
                 prompt={
                   <div>
-                    <svg viewBox="0 0 160 150" className="mx-auto h-auto w-full max-w-[200px]">
+                    <svg role="img" aria-label="Figure 13 — Les angles : point U ; t, v, w, x" viewBox="0 0 160 150" className="mx-auto h-auto w-full max-w-[200px]">
                       <path d="M20,110 L25,15 M20,110 L115,55 M20,110 L145,95 M20,110 L100,135" stroke="#0f172a" strokeWidth={1.6} />
                       <Pt d="M15,105 L25,115 M15,115 L25,105" lx={4} ly={128} label="U" fs={14} />
                       <Pt d="M20,10 L30,20 M20,20 L30,10" lx={30} ly={10} label="t" fs={14} />
@@ -471,7 +471,7 @@ export default function Lesson() {
                 id="2-5"
                 prompt={
                   <div>
-                    <svg viewBox="0 0 160 150" className="mx-auto h-auto w-full max-w-[200px]">
+                    <svg role="img" aria-label="Figure 14 — Les angles : point U ; t, v, w, x" viewBox="0 0 160 150" className="mx-auto h-auto w-full max-w-[200px]">
                       <path d="M20,110 L25,15 M20,110 L115,55 M20,110 L145,95 M20,110 L100,135" stroke="#0f172a" strokeWidth={1.6} />
                       <Pt d="M15,105 L25,115 M15,115 L25,105" lx={4} ly={128} label="U" fs={14} />
                       <Pt d="M20,10 L30,20 M20,20 L30,10" lx={30} ly={10} label="t" fs={14} />
@@ -491,7 +491,7 @@ export default function Lesson() {
                 id="2-6"
                 prompt={
                   <div>
-                    <svg viewBox="0 0 180 150" className="mx-auto h-auto w-full max-w-[200px]">
+                    <svg role="img" aria-label="Figure 15 — Les angles : points T, R, S, U" viewBox="0 0 180 150" className="mx-auto h-auto w-full max-w-[200px]">
                       <path d="M55,15 L20,85 L140,85 L160,140" fill="none" stroke="#0f172a" strokeWidth={1.6} />
                       <Pt d="M50,10 L60,20 M50,20 L60,10" lx={58} ly={8} label="T" fs={14} />
                       <Pt d="M15,80 L25,90 M15,90 L25,80" lx={4} ly={80} label="R" fs={14} />
@@ -525,7 +525,7 @@ export default function Lesson() {
           {/* ===== Exercice 3 : quiz OUI/NON ===== */}
           <div id="exercice3" className="mb-6 scroll-mt-28 overflow-hidden rounded-2xl border border-border bg-surface p-5 sm:p-6">
             <QuizHeader n={3} title="Opposés par le sommet ? OUI ou NON" itemsLabel="4 paires" />
-            <svg viewBox="0 0 270 180" className="mx-auto mb-4 h-auto w-full max-w-md rounded-xl border border-border bg-surface-muted">
+            <svg role="img" aria-label="Figure 16 — Les angles : points G, H ; y, r, w, s, x, t" viewBox="0 0 270 180" className="mx-auto mb-4 h-auto w-full max-w-md rounded-xl border border-border bg-surface-muted">
               <line x1="20" y1="90" x2="250" y2="90" stroke="#0f172a" strokeWidth={1.6} />
               <line x1="45" y1="145" x2="135" y2="35" stroke="#0f172a" strokeWidth={1.6} />
               <line x1="160" y1="15" x2="200" y2="165" stroke="#0f172a" strokeWidth={1.6} />
@@ -566,7 +566,7 @@ export default function Lesson() {
                 <p className="mb-4 text-sm text-foreground-muted">
                   Les droites de la figure sont concourantes en F. Quel est le nom de l&apos;angle opposé par le sommet à chacun des angles suivants ?
                 </p>
-                <svg viewBox="0 0 300 300" className="mx-auto h-auto w-full max-w-sm rounded-xl border border-border bg-surface-muted">
+                <svg role="img" aria-label="Figure 17 — Les angles : point F ; x, r, s, t, w, y" viewBox="0 0 300 300" className="mx-auto h-auto w-full max-w-sm rounded-xl border border-border bg-surface-muted">
                   <line x1="130" y1="30" x2="170" y2="270" stroke="#0f172a" strokeWidth={1.6} />
                   <line x1="250" y1="80" x2="50" y2="220" stroke="#0f172a" strokeWidth={1.6} />
                   <line x1="270" y1="170" x2="30" y2="130" stroke="#0f172a" strokeWidth={1.6} />
@@ -610,7 +610,7 @@ export default function Lesson() {
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
                   <div className="rounded-xl border border-border p-3">
                     <p className="mb-1 text-center text-xs font-bold text-foreground-muted">a.</p>
-                    <svg viewBox="0 0 150 150" className="h-auto w-full">
+                    <svg role="img" aria-label="Figure 18 — Les angles : 45°" viewBox="0 0 150 150" className="h-auto w-full">
                       <path d="M25,130 L145,130 M25,130 L105,45 M25,130 L25,15" fill="none" stroke="#0f172a" strokeWidth={1.5} />
                       <text x="60" y="115" fontSize={12} fill="#4338ca" fontWeight={600}>45°</text>
                       <text x="45" y="70" fontSize={12} fill="#7c3aed" fontWeight={600}>45°</text>
@@ -618,7 +618,7 @@ export default function Lesson() {
                   </div>
                   <div className="rounded-xl border border-border p-3">
                     <p className="mb-1 text-center text-xs font-bold text-foreground-muted">b.</p>
-                    <svg viewBox="0 0 150 150" className="h-auto w-full">
+                    <svg role="img" aria-label="Figure 19 — Les angles : point A ; z, x, y" viewBox="0 0 150 150" className="h-auto w-full">
                       <path d="M10,110 L140,110 M90,110 L135,32" fill="none" stroke="#0f172a" strokeWidth={1.5} />
                       <Lbl x={0} y={125} fs={13}>z</Lbl>
                       <Lbl x={142} y={125} fs={13}>x</Lbl>
@@ -628,7 +628,7 @@ export default function Lesson() {
                   </div>
                   <div className="rounded-xl border border-border p-3">
                     <p className="mb-1 text-center text-xs font-bold text-foreground-muted">c.</p>
-                    <svg viewBox="0 0 150 150" className="h-auto w-full">
+                    <svg role="img" aria-label="Figure 20 — Les angles : point K ; f, e, g" viewBox="0 0 150 150" className="h-auto w-full">
                       <path d="M20,130 L20,20 M20,130 L140,130 M20,130 L90,60" fill="none" stroke="#0f172a" strokeWidth={1.5} />
                       <path d="M20,118 L32,118 L32,130" fill="none" stroke="#0f172a" strokeWidth={1.3} />
                       <Lbl x={10} y={15} fs={13}>f</Lbl>
@@ -641,7 +641,7 @@ export default function Lesson() {
                     <p className="mb-1 text-center text-xs font-bold text-foreground-muted">
                       d. <span className="font-mono normal-case">pŜn=90°</span>
                     </p>
-                    <svg viewBox="0 0 150 150" className="h-auto w-full">
+                    <svg role="img" aria-label="Figure 21 — Les angles : point S ; p, m, n" viewBox="0 0 150 150" className="h-auto w-full">
                       <path d="M30,130 L30,20 M30,130 L150,130 M30,130 L110,55" fill="none" stroke="#0f172a" strokeWidth={1.5} />
                       <path d="M30,118 L42,118 L42,130" fill="none" stroke="#0f172a" strokeWidth={1.3} />
                       <Lbl x={20} y={15} fs={13}>p</Lbl>
@@ -652,14 +652,14 @@ export default function Lesson() {
                   </div>
                   <div className="rounded-xl border border-border p-3">
                     <p className="mb-1 text-center text-xs font-bold text-foreground-muted">e.</p>
-                    <svg viewBox="0 0 150 150" className="h-auto w-full">
+                    <svg role="img" aria-label="Figure 22 — Les angles" viewBox="0 0 150 150" className="h-auto w-full">
                       <path d="M30,30 L30,120 L130,120" fill="none" stroke="#0f172a" strokeWidth={1.5} />
                       <path d="M30,105 L45,105 L45,120" fill="none" stroke="#0f172a" strokeWidth={1.3} />
                     </svg>
                   </div>
                   <div className="rounded-xl border border-border p-3">
                     <p className="mb-1 text-center text-xs font-bold text-foreground-muted">f.</p>
-                    <svg viewBox="0 0 150 150" className="h-auto w-full">
+                    <svg role="img" aria-label="Figure 23 — Les angles : point S ; r, t, u" viewBox="0 0 150 150" className="h-auto w-full">
                       <path d="M20,130 L20,20 M20,130 L110,65 M20,130 L145,130" fill="none" stroke="#0f172a" strokeWidth={1.5} />
                       <Lbl x={10} y={15} fs={13}>r</Lbl>
                       <Lbl x={115} y={58} fs={13}>t</Lbl>

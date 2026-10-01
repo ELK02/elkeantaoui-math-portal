@@ -74,7 +74,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 200 160" className="h-40 w-48 text-white/90">
+          <svg role="img" aria-label="Figure 1 — Triangles Semblables" viewBox="0 0 200 160" className="h-40 w-48 text-white/90">
             <polygon points="30,140 120,140 60,20" fill="none" stroke="currentColor" strokeWidth="3" />
             <polygon points="150,140 195,140 168,75" fill="none" stroke="#fb923c" strokeWidth="2.4" />
           </svg>
@@ -96,7 +96,7 @@ export default function Lesson() {
         </div>
 
         <div className="mt-6 grid items-center gap-6 rounded-xl border border-border bg-surface p-5 sm:grid-cols-2 sm:p-6">
-          <svg viewBox="0 0 460 220" className="mx-auto max-w-sm">
+          <svg role="img" aria-label="Figure 2 — Triangles Semblables : points A, B, C, X, Y, Z ; ①, ②, ③" viewBox="0 0 460 220" className="mx-auto max-w-sm">
             <polygon points="60,190 190,190 100,40" fill="none" stroke="#334155" strokeWidth="2.2" />
             <polygon points="300,190 400,190 355,90" fill="none" stroke="#334155" strokeWidth="2.2" />
             <circle cx="100" cy="40" r="9" fill="#4f46e5" /><text x="100" y="44" textAnchor="middle" fontSize="10" fontWeight="700" fill="white">①</text>
@@ -147,7 +147,7 @@ export default function Lesson() {
           items={
             <div className="text-sm">
               <div className="rounded-xl border border-border bg-surface-muted p-4">
-                <svg viewBox="0 0 420 190" className="mx-auto max-w-sm">
+                <svg role="img" aria-label="Figure 3 — Triangles Semblables : points C, F, A, R, D, U ; 25°, 75°, 80°" viewBox="0 0 420 190" className="mx-auto max-w-sm">
                   <polygon points="40,160 190,160 130,30" fill="none" stroke="#4f46e5" strokeWidth="2.4" />
                   <text x="130" y="20" textAnchor="middle" fontWeight="700" fontSize="16" fill="#1e293b">C</text>
                   <text x="26" y="178" textAnchor="middle" fontWeight="700" fontSize="16" fill="#1e293b">F</text>
@@ -196,7 +196,7 @@ export default function Lesson() {
         </div>
 
         <div className="mt-6 grid items-center gap-6 rounded-xl border border-border bg-surface p-5 sm:grid-cols-2 sm:p-6">
-          <svg viewBox="0 0 460 220" className="mx-auto max-w-sm">
+          <svg role="img" aria-label="Figure 4 — Triangles Semblables : points A, B, C, D, E, F" viewBox="0 0 460 220" className="mx-auto max-w-sm">
             <polygon points="50,190 220,190 110,30" fill="none" stroke="#334155" strokeWidth="1.6" />
             <line x1="50" y1="190" x2="220" y2="190" stroke="#94a3b8" strokeWidth="3" />
             <line x1="50" y1="190" x2="110" y2="30" stroke="#4f46e5" strokeWidth="3" />
@@ -232,7 +232,7 @@ export default function Lesson() {
           items={
             <div className="text-sm">
               <div className="rounded-xl border border-border bg-surface-muted p-4">
-                <svg viewBox="0 0 420 200" className="mx-auto max-w-sm">
+                <svg role="img" aria-label="Figure 5 — Triangles Semblables : points C, F, A, R, D, U ; 3 cm, 5 cm, 7 cm, 1,8 cm, 4,2 cm" viewBox="0 0 420 200" className="mx-auto max-w-sm">
                   <polygon points="40,170 200,170 90,30" fill="none" stroke="#4f46e5" strokeWidth="2.4" />
                   <text x="90" y="20" textAnchor="middle" fontWeight="700" fontSize="16" fill="#1e293b">C</text>
                   <text x="24" y="188" textAnchor="middle" fontWeight="700" fontSize="16" fill="#1e293b">F</text>
@@ -321,7 +321,7 @@ export default function Lesson() {
                   <Math tex="ABC" /> est un triangle équilatéral. <Math tex="M" />, <Math tex="N" />, <Math tex="P" /> sont des points de <Math tex="[BC]" />, <Math tex="[CA]" />, <Math tex="[AB]" /> tels que <Math tex="BM=CN=AP" />.
                 </p>
                 <div className="mt-4 rounded-xl border border-border bg-surface-muted p-4">
-                  <svg viewBox="0 0 300 240" className="mx-auto max-w-[240px]">
+                  <svg role="img" aria-label="Figure 6 — Triangles Semblables : points A, B, C, P, M, N" viewBox="0 0 300 240" className="mx-auto max-w-[240px]">
                     <polygon points="150,25 30,215 270,215" fill="none" stroke="#334155" strokeWidth="2" />
                     <polygon points="114,82 102,215 234,158" fill="none" stroke="#4f46e5" strokeWidth="2.2" />
                     <circle cx="150" cy="25" r="3.5" fill="#1e293b" />
@@ -373,7 +373,7 @@ export default function Lesson() {
                   <Math tex="ABCD" /> est un carré de centre <Math tex="O" />, <Math tex="M" /> un point de <Math tex="[AB]" />. On mène par <Math tex="B" /> la perpendiculaire à <Math tex="(CM)" /> qui coupe <Math tex="(AD)" /> en <Math tex="P" />.
                 </p>
                 <div className="mt-4 rounded-xl border border-border bg-surface-muted p-4">
-                  <svg viewBox="0 0 300 296" className="mx-auto max-w-[240px]">
+                  <svg role="img" aria-label="Figure 7 — Triangles Semblables : points D, C, B, A, O, M, P" viewBox="0 0 300 296" className="mx-auto max-w-[240px]">
                     <polygon points="40,40 260,40 260,260 40,260" fill="none" stroke="#334155" strokeWidth="2" />
                     <line x1="40" y1="260" x2="260" y2="40" stroke="#cbd5e1" strokeWidth="1.6" strokeDasharray="4,4" />
                     <line x1="40" y1="40" x2="260" y2="260" stroke="#cbd5e1" strokeWidth="1.6" strokeDasharray="4,4" />
@@ -441,7 +441,7 @@ export default function Lesson() {
                   <Math tex="ABC" /> est isocèle en <Math tex="A" />. La médiatrice de <Math tex="[AC]" /> coupe <Math tex="(BC)" /> en <Math tex="D" />. Le point <Math tex="E" /> de <Math tex="(AD)" /> est tel que <Math tex="AE=BD" />.
                 </p>
                 <div className="mt-4 rounded-xl border border-border bg-surface-muted p-4">
-                  <svg viewBox="0 0 420 300" className="mx-auto max-w-sm">
+                  <svg role="img" aria-label="Figure 8 — Triangles Semblables : points D, B, C, A, E" viewBox="0 0 420 300" className="mx-auto max-w-sm">
                     <line x1="30" y1="280" x2="400" y2="280" stroke="#334155" strokeWidth="2" />
                     <line x1="40" y1="280" x2="390" y2="15" stroke="#94a3b8" strokeWidth="1.8" />
                     <line x1="260" y1="110" x2="340" y2="280" stroke="#4f46e5" strokeWidth="2" />
@@ -497,7 +497,7 @@ export default function Lesson() {
                   <Math tex="ABCD" /> est un carré. Le cercle <Math tex="(\mathcal C)" /> de diamètre <Math tex="[AB]" /> et de centre <Math tex="O" /> est tangent à <Math tex="[AD]" /> et <Math tex="[BC]" /> (en <Math tex="A" /> et <Math tex="B" />). La tangente issue de <Math tex="D" /> touche <Math tex="(\mathcal C)" /> en <Math tex="M" /> et coupe <Math tex="(BC)" /> en <Math tex="R" />.
                 </p>
                 <div className="mt-4 rounded-xl border border-border bg-surface-muted p-4">
-                  <svg viewBox="0 0 340 280" className="mx-auto max-w-[260px]">
+                  <svg role="img" aria-label="Figure 9 — Triangles Semblables : points D, C, A, B, O, M, R" viewBox="0 0 340 280" className="mx-auto max-w-[260px]">
                     <path d="M 70 240 A 110 110 0 0 1 290 240" fill="none" stroke="#fcd34d" strokeWidth="2.4" />
                     <polygon points="70,20 290,20 290,240 70,240" fill="none" stroke="#334155" strokeWidth="2" />
                     <line x1="70" y1="20" x2="290" y2="185" stroke="#4f46e5" strokeWidth="2.2" />
@@ -549,7 +549,7 @@ export default function Lesson() {
             items={
               <div className="text-sm">
                 <div className="rounded-xl border border-border bg-surface-muted p-4">
-                  <svg viewBox="0 0 440 280" className="mx-auto max-w-sm">
+                  <svg role="img" aria-label="Figure 10 — Triangles Semblables : points A, B, D, C, E ; 28, 21, 72, 96" viewBox="0 0 440 280" className="mx-auto max-w-sm">
                     <line x1="125" y1="173" x2="358" y2="235" stroke="#334155" strokeWidth="2" />
                     <line x1="153" y1="223" x2="363" y2="38" stroke="#334155" strokeWidth="2" />
                     <line x1="153" y1="223" x2="358" y2="235" stroke="#94a3b8" strokeWidth="1.6" strokeDasharray="4,3" />

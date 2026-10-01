@@ -65,7 +65,7 @@ function Box({ title, tone, children }: { title: string; tone: keyof typeof BOX_
 function Figure({ caption, children }: { caption: string; children: ReactNode }) {
   return (
     <figure className="flex flex-col items-center gap-2 rounded-xl border border-border bg-surface-muted p-3">
-      <svg viewBox="0 0 160 120" className="h-28 w-full">
+      <svg role="img" aria-label="Figure 1 — Étude des fonctions numériques" viewBox="0 0 160 120" className="h-28 w-full">
         {children}
       </svg>
       <figcaption className="text-center text-xs text-foreground-subtle">{caption}</figcaption>

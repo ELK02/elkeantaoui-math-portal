@@ -69,7 +69,7 @@ function Legend({ color, children }: { color: string; children: ReactNode }) {
 /** Vocabulary diagram: right triangle CAB with two colored markers on its legs. */
 function VocabFigure({ leg1Color, marker1, marker1Color, marker3 }: { leg1Color: string; marker1: string; marker1Color: string; marker3?: boolean }) {
   return (
-    <svg viewBox="0 0 300 260" className="mx-auto max-w-xs">
+    <svg role="img" aria-label="Figure 1 — Triangle Rectangle et Trigonométrie : points C, A, B ; ②, ③" viewBox="0 0 300 260" className="mx-auto max-w-xs">
       <line x1="70" y1="210" x2="260" y2="210" stroke="#334155" strokeWidth="2.2" />
       <line x1="70" y1="210" x2="70" y2="30" stroke={leg1Color} strokeWidth="3" />
       <line x1="70" y1="30" x2="260" y2="210" stroke="#94a3b8" strokeWidth="2.4" />
@@ -252,7 +252,7 @@ export default function Lesson() {
               </ol>
               <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                 <div className="rounded-xl border border-border bg-surface-muted p-4">
-                  <svg viewBox="0 0 300 260" className="mx-auto max-w-[220px]">
+                  <svg role="img" aria-label="Figure 2 — Triangle Rectangle et Trigonométrie : points A, B, C ; 6 cm, 8 cm" viewBox="0 0 300 260" className="mx-auto max-w-[220px]">
                     <line x1="70" y1="60" x2="70" y2="220" stroke="#334155" strokeWidth="2.2" />
                     <line x1="70" y1="220" x2="270" y2="220" stroke="#334155" strokeWidth="2.2" />
                     <line x1="70" y1="60" x2="270" y2="220" stroke="#4f46e5" strokeWidth="2.6" />
@@ -427,7 +427,7 @@ export default function Lesson() {
             items={
               <div className="space-y-3 text-sm">
                 <div className="rounded-xl border border-border bg-surface-muted p-4">
-                  <svg viewBox="0 0 300 260" className="mx-auto max-w-[220px]">
+                  <svg role="img" aria-label="Figure 3 — Triangle Rectangle et Trigonométrie : points C, A, B" viewBox="0 0 300 260" className="mx-auto max-w-[220px]">
                     <line x1="70" y1="210" x2="260" y2="210" stroke="#334155" strokeWidth="2.2" />
                     <line x1="70" y1="210" x2="70" y2="30" stroke="#334155" strokeWidth="2.2" />
                     <line x1="70" y1="30" x2="260" y2="210" stroke="#4f46e5" strokeWidth="2.6" />
@@ -562,7 +562,7 @@ export default function Lesson() {
                 </p>
                 <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
-                    <svg viewBox="0 0 540 500" className="mx-auto max-w-sm">
+                    <svg role="img" aria-label="Figure 4 — Triangle Rectangle et Trigonométrie : points C, A, B, D, E ; x" viewBox="0 0 540 500" className="mx-auto max-w-sm">
                       <line x1="90" y1="70" x2="499" y2="462" stroke="#cbd5e1" strokeWidth="2" strokeDasharray="5,4" />
                       <line x1="90" y1="300" x2="330" y2="300" stroke="#334155" strokeWidth="2.2" />
                       <line x1="90" y1="300" x2="90" y2="70" stroke="#334155" strokeWidth="2.2" />
@@ -626,7 +626,7 @@ export default function Lesson() {
               <div className="text-sm">
                 <p className="text-foreground-muted">Déterminer la hauteur <Math tex="EC" /> (l&apos;arbre est planté au point <Math tex="E" />, à la verticale).</p>
                 <div className="mt-4 rounded-xl border border-border bg-surface-muted p-4">
-                  <svg viewBox="0 0 480 320" className="mx-auto max-w-md">
+                  <svg role="img" aria-label="Figure 5 — Triangle Rectangle et Trigonométrie : points B, A, E, C ; 30 m, 29°, 43°" viewBox="0 0 480 320" className="mx-auto max-w-md">
                     <line x1="40" y1="270" x2="440" y2="270" stroke="#334155" strokeWidth="2.2" />
                     <line x1="60" y1="270" x2="400" y2="60" stroke="#4f46e5" strokeWidth="2.2" />
                     <line x1="180" y1="270" x2="400" y2="60" stroke="#4f46e5" strokeWidth="2.2" />
@@ -676,7 +676,7 @@ export default function Lesson() {
                 </p>
                 <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
-                    <svg viewBox="0 0 460 260" className="mx-auto max-w-sm">
+                    <svg role="img" aria-label="Figure 6 — Triangle Rectangle et Trigonométrie : points C, D, B, A ; 4 cm, 6 cm, 60°" viewBox="0 0 460 260" className="mx-auto max-w-sm">
                       <line x1="60" y1="220" x2="420" y2="220" stroke="#334155" strokeWidth="2.2" />
                       <line x1="60" y1="220" x2="60" y2="40" stroke="#334155" strokeWidth="2.2" />
                       <line x1="60" y1="40" x2="180" y2="220" stroke="#4f46e5" strokeWidth="2.4" />

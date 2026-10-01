@@ -107,7 +107,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 200 160" className="h-40 w-56 text-white">
+          <svg role="img" aria-label="Figure 1 — Rotation dans le plan : point O" viewBox="0 0 200 160" className="h-40 w-56 text-white">
             <path d="M40,130 A70,70 0 0 1 150,60" fill="none" stroke="white" strokeWidth="2" strokeDasharray="4 3" />
             <line x1="60" y1="130" x2="40" y2="130" stroke="white" strokeWidth="2" markerEnd="url(#arrRot)" />
             <line x1="60" y1="130" x2="150" y2="60" stroke="white" strokeWidth="2" markerEnd="url(#arrRot)" />
@@ -144,7 +144,7 @@ export default function Lesson() {
             }
             svg={
               <FigureBox>
-                <svg viewBox="0 0 200 140" className="w-full max-w-[220px]">
+                <svg role="img" aria-label="Figure 2 — Rotation dans le plan : points O, M, M'" viewBox="0 0 200 140" className="w-full max-w-[220px]">
                   <path d="M150,120 A80,80 0 0 1 70,42" fill="none" stroke="#0ea5e9" strokeWidth="1.4" strokeDasharray="3 3" />
                   <line x1="30" y1="120" x2="150" y2="120" stroke="#334155" strokeWidth="2" markerEnd="url(#arrR1a)" />
                   <line x1="30" y1="120" x2="70" y2="42" stroke="#e11d48" strokeWidth="2" markerEnd="url(#arrR1b)" />

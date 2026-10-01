@@ -43,7 +43,7 @@ function Graph({ children, caption, className = "" }: { children: ReactNode; cap
 function FormulaIcon({ icon, name, rows }: { icon: ReactNode; name: string; rows: { label: string; tex: string; tone?: "neutral" | "accent" }[] }) {
   return (
     <div className="rounded-xl border border-border bg-surface p-4 text-center">
-      <svg viewBox="0 0 100 90" className="mx-auto h-16 w-16">
+      <svg role="img" aria-label="Figure 1 — La Géométrie dans l'Espace" viewBox="0 0 100 90" className="mx-auto h-16 w-16">
         {icon}
       </svg>
       <p className="mt-1 font-display text-sm font-bold text-foreground">{name}</p>
@@ -95,7 +95,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 200 200" className="h-56 w-56 sm:h-64 sm:w-64">
+          <svg role="img" aria-label="Figure 2 — La Géométrie dans l'Espace" viewBox="0 0 200 200" className="h-56 w-56 sm:h-64 sm:w-64">
             <polygon points="40,120 108,120 150,95 82,95" fill="none" stroke="#ffffff" strokeOpacity="0.85" strokeWidth="2" />
             <polygon points="40,120 108,120 108,175 40,175" fill="none" stroke="#ffffff" strokeOpacity="0.85" strokeWidth="2" />
             <polygon points="108,120 150,95 150,150 108,175" fill="#fb923c" fillOpacity="0.25" stroke="#fb923c" strokeWidth="2" />
@@ -126,7 +126,7 @@ export default function Lesson() {
             <li>ou bien il <strong>n&apos;existe aucun point commun</strong> entre <Math tex="(P)" /> et <Math tex="(D)" /> : <Math tex="(D)\cap(P)=\varnothing" />.</li>
           </ul>
           <Graph className="mt-4" caption={<>Ici, <Math tex="(D)\cap(P)=\varnothing" /> : la droite <Math tex="(D)" /> ne coupe jamais le plan <Math tex="(P)" />, donc <Math tex="(D)\parallel(P)" /></>}>
-            <svg viewBox="0 0 260 210" className="mx-auto h-auto w-full">
+            <svg role="img" aria-label="Figure 3 — La Géométrie dans l'Espace : points P, D" viewBox="0 0 260 210" className="mx-auto h-auto w-full">
               <rect width="260" height="210" fill="white" rx="12"/>
               <polygon points="30,180 200,180 250,60 80,60" fill="#c7d2fe" fillOpacity="0.35" stroke="#818cf8" strokeWidth="1.4"/>
               <text x="38" y="172" fontSize="13" fontStyle="italic" fill="#4338ca" fontWeight="700">P</text>
@@ -159,7 +159,7 @@ export default function Lesson() {
               </>
             }
           >
-            <svg viewBox="0 0 280 270" className="mx-auto h-auto w-full">
+            <svg role="img" aria-label="Figure 4 — La Géométrie dans l'Espace : points A, B, C, D, E, F, G, H" viewBox="0 0 280 270" className="mx-auto h-auto w-full">
               <rect width="280" height="270" fill="white" rx="12"/>
               <polygon points="196,166.8 231.1,146.5 231.1,229.7 196,250" fill="#f43f5e" fillOpacity="0.15" stroke="#f43f5e" strokeOpacity="0.45" strokeWidth="1"/>
               <line x1="75.1" y1="146.5" x2="75.1" y2="229.7" stroke="#94a3b8" strokeWidth="1.6" strokeDasharray="4 3"/>
@@ -227,7 +227,7 @@ export default function Lesson() {
             et incluses dans <Math tex="(P)" />.
           </p>
           <Graph className="mt-4" caption={<><Math tex="(\Delta)\perp(D)" /> et <Math tex="(\Delta)\perp(L)" />, avec <Math tex="(D),(L)\subset(P)" /> sécantes en <Math tex="A" /></>}>
-            <svg viewBox="0 0 260 220" className="mx-auto h-auto w-full">
+            <svg role="img" aria-label="Figure 5 — La Géométrie dans l'Espace : points P, D, L, A ; Δ" viewBox="0 0 260 220" className="mx-auto h-auto w-full">
               <rect width="260" height="220" fill="white" rx="12"/>
               <polygon points="20,170 190,170 240,40 70,40" fill="#c7d2fe" fillOpacity="0.35" stroke="#818cf8" strokeWidth="1.4"/>
               <text x="30" y="160" fontSize="13" fontStyle="italic" fill="#4338ca" fontWeight="700">P</text>
@@ -260,7 +260,7 @@ export default function Lesson() {
         </Callout>
         <FormulaBlock tex="(D)\perp(P) \quad\Longrightarrow\quad \forall\,(L)\subset(P), \;\; (D)\perp(L)" />
         <Graph className="mt-4" caption={<><Math tex="(\Delta)" /> est orthogonale à chacune des droites du plan (P) passant par A</>}>
-          <svg viewBox="0 0 280 220" className="mx-auto h-auto w-full max-w-xs">
+          <svg role="img" aria-label="Figure 6 — La Géométrie dans l'Espace : points P, A ; Δ" viewBox="0 0 280 220" className="mx-auto h-auto w-full max-w-xs">
             <rect width="280" height="220" fill="white" rx="12"/>
             <polygon points="30,170 200,170 250,40 80,40" fill="#c7d2fe" fillOpacity="0.35" stroke="#818cf8" strokeWidth="1.4"/>
             <text x="40" y="160" fontSize="13" fontStyle="italic" fill="#4338ca" fontWeight="700">P</text>
@@ -289,7 +289,7 @@ export default function Lesson() {
                   <Math tex="(ABC)" /> ?
                 </p>
                 <Graph className="mt-4" caption={<>Tétraèdre <Math tex="SABC" /> : <Math tex="(SA)\perp(AB)" /> et <Math tex="(SA)\perp(AC)" />, avec <Math tex="(AB),(AC)\subset(ABC)" /> sécantes en <Math tex="A" /></>}>
-                  <svg viewBox="0 0 260 200" className="mx-auto h-auto w-full">
+                  <svg role="img" aria-label="Figure 7 — La Géométrie dans l'Espace : points S, A, B, C ; (ABC)" viewBox="0 0 260 200" className="mx-auto h-auto w-full">
                     <rect width="260" height="200" fill="white" rx="12"/>
                     <polygon points="20,180 200,180 250,70 70,70" fill="#c7d2fe" fillOpacity="0.35" stroke="#818cf8" strokeWidth="1.4"/>
                     <text x="28" y="172" fontSize="13" fontStyle="italic" fill="#4338ca" fontWeight="700">(ABC)</text>
@@ -386,7 +386,7 @@ export default function Lesson() {
 
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           <div className="rounded-xl border border-border bg-surface p-4 text-center">
-            <svg viewBox="0 0 100 90" className="mx-auto h-16 w-16">
+            <svg role="img" aria-label="Figure 8 — La Géométrie dans l'Espace" viewBox="0 0 100 90" className="mx-auto h-16 w-16">
               <polygon points="25,44.2 58.8,44.2 76.4,34.1 42.6,34.1" fill="#0891b2" fillOpacity="0.18" stroke="#0891b2" strokeWidth="1.8"/>
               <polygon points="25,44.2 58.8,44.2 58.8,78 25,78" fill="#0891b2" fillOpacity="0.32" stroke="#0891b2" strokeWidth="1.8"/>
               <polygon points="58.8,44.2 76.4,34.1 76.4,67.9 58.8,78" fill="#0891b2" fillOpacity="0.45" stroke="#0891b2" strokeWidth="1.8"/>
@@ -400,7 +400,7 @@ export default function Lesson() {
             </div>
           </div>
           <div className="rounded-xl border border-border bg-surface p-4 text-center">
-            <svg viewBox="0 0 100 90" className="mx-auto h-16 w-16">
+            <svg role="img" aria-label="Figure 9 — La Géométrie dans l'Espace" viewBox="0 0 100 90" className="mx-auto h-16 w-16">
               <polygon points="16,51.2 71.2,51.2 84.9,43.3 29.7,43.3" fill="#0891b2" fillOpacity="0.18" stroke="#0891b2" strokeWidth="1.8"/>
               <polygon points="16,51.2 71.2,51.2 71.2,80 16,80" fill="#0891b2" fillOpacity="0.32" stroke="#0891b2" strokeWidth="1.8"/>
               <polygon points="71.2,51.2 84.9,43.3 84.9,72.1 71.2,80" fill="#0891b2" fillOpacity="0.45" stroke="#0891b2" strokeWidth="1.8"/>
@@ -414,7 +414,7 @@ export default function Lesson() {
             </div>
           </div>
           <div className="rounded-xl border border-border bg-surface p-4 text-center">
-            <svg viewBox="0 0 100 90" className="mx-auto h-16 w-16">
+            <svg role="img" aria-label="Figure 10 — La Géométrie dans l'Espace" viewBox="0 0 100 90" className="mx-auto h-16 w-16">
               <polygon points="18,80 54.4,80 36.2,46.2" fill="#0891b2" fillOpacity="0.22" stroke="#0891b2" strokeWidth="1.8"/>
               <polygon points="18,80 36.2,46.2 52.4,36.8 34.2,70.6" fill="#0891b2" fillOpacity="0.32" stroke="#0891b2" strokeWidth="1.8"/>
               <polygon points="54.4,80 36.2,46.2 52.4,36.8 70.6,70.6" fill="#0891b2" fillOpacity="0.45" stroke="#0891b2" strokeWidth="1.8"/>
@@ -426,7 +426,7 @@ export default function Lesson() {
             </div>
           </div>
           <div className="rounded-xl border border-border bg-surface p-4 text-center">
-            <svg viewBox="0 0 100 90" className="mx-auto h-16 w-16">
+            <svg role="img" aria-label="Figure 11 — La Géométrie dans l'Espace" viewBox="0 0 100 90" className="mx-auto h-16 w-16">
               <path d="M25,65 A25,10 0 0 0 75,65 L75,30 A25,10 0 0 1 25,30 Z" fill="#0891b2" fillOpacity="0.3"/>
               <line x1="25" y1="30" x2="25" y2="65" stroke="#0891b2" strokeWidth="1.8"/>
               <line x1="75" y1="30" x2="75" y2="65" stroke="#0891b2" strokeWidth="1.8"/>
@@ -439,7 +439,7 @@ export default function Lesson() {
             </div>
           </div>
           <div className="rounded-xl border border-border bg-surface p-4 text-center">
-            <svg viewBox="0 0 100 90" className="mx-auto h-16 w-16">
+            <svg role="img" aria-label="Figure 12 — La Géométrie dans l'Espace" viewBox="0 0 100 90" className="mx-auto h-16 w-16">
               <path d="M50,15 L75,60 A25,9 0 0 1 25,60 Z" fill="#0891b2" fillOpacity="0.28" stroke="#0891b2" strokeWidth="1.8" strokeLinejoin="round"/>
               <ellipse cx="50" cy="60" rx="25" ry="9" fill="#0891b2" fillOpacity="0.15" stroke="#0891b2" strokeWidth="1.8"/>
               <line x1="50" y1="15" x2="50" y2="60" stroke="#0891b2" strokeWidth="1.1" strokeDasharray="2 2"/>
@@ -450,7 +450,7 @@ export default function Lesson() {
             </div>
           </div>
           <div className="rounded-xl border border-border bg-surface p-4 text-center">
-            <svg viewBox="0 0 100 90" className="mx-auto h-16 w-16">
+            <svg role="img" aria-label="Figure 13 — La Géométrie dans l'Espace" viewBox="0 0 100 90" className="mx-auto h-16 w-16">
               <line x1="50" y1="28" x2="14" y2="52" stroke="#0891b2" strokeWidth="1.2" strokeDasharray="2 2"/>
               <line x1="50" y1="28" x2="86" y2="52" stroke="#0891b2" strokeWidth="1.2" strokeDasharray="2 2"/>
               <line x1="50" y1="12" x2="50" y2="28" stroke="#0891b2" strokeWidth="1.2" strokeDasharray="2 2"/>
@@ -489,7 +489,7 @@ export default function Lesson() {
         <p className="mt-6 mb-2 text-sm font-semibold text-foreground">2. Exemple</p>
         <p className="mb-3 text-sm text-foreground-muted">Deux solides A et B semblables.</p>
         <Graph className="max-w-md">
-          <svg viewBox="0 0 380 220" className="mx-auto h-auto w-full">
+          <svg role="img" aria-label="Figure 14 — La Géométrie dans l'Espace : points A, B ; × 1/4, × 4" viewBox="0 0 380 220" className="mx-auto h-auto w-full">
             <defs><marker id="arragr" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#7c3aed"/></marker></defs>
             <rect width="380" height="220" fill="white" rx="12"/>
             <polygon points="40,121.8 108.2,121.8 143.6,101.3 75.4,101.3" fill="#7c3aed" fillOpacity="0.16" stroke="#7c3aed" strokeWidth="1.8"/>
@@ -626,7 +626,7 @@ export default function Lesson() {
                   <Math tex="[SO]" /> mesure 6 cm.
                 </p>
                 <Graph className="mt-4">
-                  <svg viewBox="0 0 280 300" className="mx-auto h-auto w-full">
+                  <svg role="img" aria-label="Figure 15 — La Géométrie dans l'Espace : points A, B, C, D, O, S, O', A', B', C', D'" viewBox="0 0 280 300" className="mx-auto h-auto w-full">
                     <rect width="280" height="300" fill="white" rx="12"/>
                     <line x1="162.1" y1="84.6" x2="162.1" y2="252.6" stroke="#cbd5e1" strokeWidth="1.3" strokeDasharray="3 3"/>
                     <line x1="90" y1="270" x2="150.1" y2="235.3" stroke="#94a3b8" strokeWidth="1.6" strokeDasharray="4 3"/>
@@ -707,7 +707,7 @@ export default function Lesson() {
                   <Math tex="AD=4\text{ m}" />, <Math tex="AB=6\text{ m}" />.
                 </p>
                 <Graph className="mt-4">
-                  <svg viewBox="0 0 260 250" className="mx-auto h-auto w-full">
+                  <svg role="img" aria-label="Figure 16 — La Géométrie dans l'Espace : points A, B, C, D, E, F, G, H ; 6, 4, 3" viewBox="0 0 260 250" className="mx-auto h-auto w-full">
                     <rect width="260" height="250" fill="white" rx="12"/>
                     <line x1="40" y1="230" x2="73.6" y2="209" stroke="#94a3b8" strokeWidth="1.6" strokeDasharray="4 3"/>
                     <line x1="73.6" y1="209" x2="217.6" y2="209" stroke="#94a3b8" strokeWidth="1.6" strokeDasharray="4 3"/>
@@ -797,7 +797,7 @@ export default function Lesson() {
                   la pyramide <Math tex="SABCD" /> par le plan parallèle à la base et telle que <Math tex="SE=3\text{ cm}" />.
                 </p>
                 <Graph className="mt-4 max-w-md">
-                  <svg viewBox="0 0 440 300" className="mx-auto h-auto w-full">
+                  <svg role="img" aria-label="Figure 17 — La Géométrie dans l'Espace : points S, A, B, C, D, E, F, G, H" viewBox="0 0 440 300" className="mx-auto h-auto w-full">
                     <rect width="440" height="300" fill="white" rx="12"/>
                     <line x1="170" y1="280" x2="251.1" y2="236.9" stroke="#94a3b8" strokeWidth="1.6" strokeDasharray="4 3"/>
                     <line x1="251.1" y1="236.9" x2="404.1" y2="236.9" stroke="#94a3b8" strokeWidth="1.6" strokeDasharray="4 3"/>

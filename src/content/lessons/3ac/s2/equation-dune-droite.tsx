@@ -187,7 +187,7 @@ export default function Lesson() {
               Toute droite d&apos;équation réduite <Math tex="y=m" /> (<Math tex="m\neq0" />) est <strong>parallèle à l&apos;axe des abscisses</strong> et passe par le point <Math tex="(0\,;\,m)" />.
             </p>
             <div className="mt-4 rounded-xl bg-surface-muted p-4">
-              <svg viewBox="0 0 220 170" className="mx-auto h-auto w-full max-w-[220px]" xmlns="http://www.w3.org/2000/svg">
+              <svg role="img" aria-label="Figure 1 — L'équation d'une droite : points I, J, O ; x, y, m, y = m" viewBox="0 0 220 170" className="mx-auto h-auto w-full max-w-[220px]" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                   <marker id="figm-ax" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                     <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8" />
@@ -220,7 +220,7 @@ export default function Lesson() {
               Toute droite d&apos;équation réduite <Math tex="x=n" /> (<Math tex="n\neq0" />) est <strong>parallèle à l&apos;axe des ordonnées</strong> et passe par le point <Math tex="(n\,;\,0)" />.
             </p>
             <div className="mt-4 rounded-xl bg-surface-muted p-4">
-              <svg viewBox="0 0 220 170" className="mx-auto h-auto w-full max-w-[220px]" xmlns="http://www.w3.org/2000/svg">
+              <svg role="img" aria-label="Figure 2 — L'équation d'une droite : points I, J, O ; x, y, n, x = n" viewBox="0 0 220 170" className="mx-auto h-auto w-full max-w-[220px]" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                   <marker id="fign-ax" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                     <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8" />
@@ -312,7 +312,7 @@ export default function Lesson() {
               </p>
             </div>
             <div className="rounded-xl bg-surface-muted p-4">
-              <svg viewBox="0 0 216 318" className="mx-auto h-auto w-full" xmlns="http://www.w3.org/2000/svg">
+              <svg role="img" aria-label="Figure 3 — L'équation d'une droite : points O, A, B ; x, y, -2, -1, 1, 2" viewBox="0 0 216 318" className="mx-auto h-auto w-full" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                   <marker id="ar475569a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
                     <path d="M0,0 L10,5 L0,10 z" fill="#475569" />
@@ -605,7 +605,7 @@ export default function Lesson() {
                 <div>
                   <p className="font-semibold text-foreground">1. Tracé de (AB)</p>
                   <div className="mt-2 rounded-xl bg-surface p-4">
-                    <svg viewBox="0 0 284 420" className="mx-auto h-auto w-full max-w-[240px]" xmlns="http://www.w3.org/2000/svg">
+                    <svg role="img" aria-label="Figure 4 — L'équation d'une droite : points O, A, B ; x, y, -2, -1, 1, 2" viewBox="0 0 284 420" className="mx-auto h-auto w-full max-w-[240px]" xmlns="http://www.w3.org/2000/svg">
                       <defs>
                         <marker id="ar475569b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
                           <path d="M0,0 L10,5 L0,10 z" fill="#475569" />
@@ -953,7 +953,7 @@ export default function Lesson() {
                   </Worked>
                 </div>
                 <div className="flex flex-col items-center justify-center rounded-xl bg-surface p-4">
-                  <svg viewBox="0 0 284 352" className="mx-auto h-auto w-full max-w-[320px]" xmlns="http://www.w3.org/2000/svg">
+                  <svg role="img" aria-label="Figure 5 — L'équation d'une droite : points O, A, B, M, C ; x, y, -3, -2, -1, 1" viewBox="0 0 284 352" className="mx-auto h-auto w-full max-w-[320px]" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                       <marker id="ar475569c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
                         <path d="M0,0 L10,5 L0,10 z" fill="#475569" />

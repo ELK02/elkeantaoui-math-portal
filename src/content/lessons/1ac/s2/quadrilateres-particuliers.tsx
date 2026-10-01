@@ -89,7 +89,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 200 200" className="h-40 w-40 sm:h-56 sm:w-56" fill="none">
+          <svg role="img" aria-label="Figure 1 — Les Quadrilatères Particuliers" viewBox="0 0 200 200" className="h-40 w-40 sm:h-56 sm:w-56" fill="none">
             <rect x="30" y="30" width="140" height="140" rx="4" stroke="white" strokeWidth="3" />
             <line x1="30" y1="30" x2="170" y2="170" stroke="#fb923c" strokeWidth="2.5" strokeDasharray="6,5" />
             <line x1="170" y1="30" x2="30" y2="170" stroke="#fb923c" strokeWidth="2.5" strokeDasharray="6,5" />
@@ -118,7 +118,7 @@ export default function Lesson() {
             <p className="mb-4 text-sm text-foreground-muted">
               Soit <strong>ABCD</strong> un rectangle.
             </p>
-            <svg viewBox="0 0 340 220" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 2 — Les Quadrilatères Particuliers : points A, B, C, D" viewBox="0 0 340 220" className="mx-auto h-auto w-full max-w-xs">
               <rect x="70" y="50" width="200" height="120" className="fill-sky-50 stroke-sky-600" strokeWidth="2.5" />
               <path d="M70,66 L86,66 L86,50" className="stroke-slate-600" fill="none" strokeWidth="2" />
               <circle cx="70" cy="50" r="5" className="fill-sky-600" />
@@ -150,7 +150,7 @@ export default function Lesson() {
             Autrement dit : si <strong>ABCD</strong> est un rectangle, alors <Math tex="AC = BD" />.
           </p>
           <Diagram>
-            <svg viewBox="0 0 340 220" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 3 — Les Quadrilatères Particuliers : points A, B, C, D, O" viewBox="0 0 340 220" className="mx-auto h-auto w-full max-w-xs">
               <rect x="70" y="50" width="200" height="120" className="fill-sky-50 stroke-sky-600" strokeWidth="2.5" />
               <line x1="70" y1="50" x2="270" y2="170" className="stroke-rose-500" strokeWidth="1.75" strokeDasharray="5,4" />
               <line x1="270" y1="50" x2="70" y2="170" className="stroke-rose-500" strokeWidth="1.75" strokeDasharray="5,4" />
@@ -185,7 +185,7 @@ export default function Lesson() {
             <strong>centre de symétrie</strong> : son centre.
           </Statement>
           <Diagram>
-            <svg viewBox="0 0 340 220" className="mx-auto mt-4 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 4 — Les Quadrilatères Particuliers : points A, B, C, D" viewBox="0 0 340 220" className="mx-auto mt-4 h-auto w-full max-w-xs">
               <rect x="70" y="50" width="200" height="120" className="fill-sky-50 stroke-sky-600" strokeWidth="2.5" />
               <line x1="55" y1="110" x2="285" y2="110" className="stroke-rose-500" strokeWidth="1.75" strokeDasharray="6,4" />
               <line x1="170" y1="35" x2="170" y2="185" className="stroke-rose-500" strokeWidth="1.75" strokeDasharray="6,4" />
@@ -224,7 +224,7 @@ export default function Lesson() {
             <p className="mb-4 text-sm text-foreground-muted">
               Soit <strong>ABCD</strong> un losange. On a : <Math tex="AB = BC = CD = DA" />.
             </p>
-            <svg viewBox="0 0 320 240" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 5 — Les Quadrilatères Particuliers : points A, B, C, D" viewBox="0 0 320 240" className="mx-auto h-auto w-full max-w-xs">
               <polygon points="160,30 238,125 160,220 82,125" className="fill-rose-50 stroke-rose-600" strokeWidth="2.5" />
               <g className="stroke-slate-600" strokeWidth="2">
                 <line x1="195" y1="73.5" x2="203" y2="81.5" />
@@ -261,7 +261,7 @@ export default function Lesson() {
             Autrement dit : si <strong>ABCD</strong> est un losange, alors <Math tex="(AC) \perp (BD)" />.
           </p>
           <Diagram>
-            <svg viewBox="0 0 320 240" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 6 — Les Quadrilatères Particuliers : points A, B, C, D" viewBox="0 0 320 240" className="mx-auto h-auto w-full max-w-xs">
               <polygon points="160,30 238,125 160,220 82,125" className="fill-rose-50 stroke-rose-600" strokeWidth="2.5" />
               <line x1="160" y1="30" x2="160" y2="220" className="stroke-violet-500" strokeWidth="1.75" strokeDasharray="5,4" />
               <line x1="238" y1="125" x2="82" y2="125" className="stroke-violet-500" strokeWidth="1.75" strokeDasharray="5,4" />
@@ -295,7 +295,7 @@ export default function Lesson() {
             <strong>centre de symétrie</strong> : son centre.
           </Statement>
           <Diagram>
-            <svg viewBox="0 0 320 240" className="mx-auto mt-4 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 7 — Les Quadrilatères Particuliers : points A, B, C, D" viewBox="0 0 320 240" className="mx-auto mt-4 h-auto w-full max-w-xs">
               <polygon points="160,30 238,125 160,220 82,125" className="fill-rose-50 stroke-rose-600" strokeWidth="2.5" />
               <line x1="160" y1="12" x2="160" y2="238" className="stroke-violet-500" strokeWidth="1.75" strokeDasharray="6,4" />
               <line x1="255" y1="125" x2="65" y2="125" className="stroke-violet-500" strokeWidth="1.75" strokeDasharray="6,4" />
@@ -334,7 +334,7 @@ export default function Lesson() {
             <p className="mb-4 text-sm text-foreground-muted">
               Soit <strong>ABCD</strong> un carré.
             </p>
-            <svg viewBox="0 0 320 220" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 8 — Les Quadrilatères Particuliers : points A, B, C, D" viewBox="0 0 320 220" className="mx-auto h-auto w-full max-w-xs">
               <rect x="90" y="40" width="140" height="140" className="fill-violet-50 stroke-violet-600" strokeWidth="2.5" />
               <path d="M90,56 L106,56 L106,40" className="stroke-slate-600" fill="none" strokeWidth="2" />
               <g className="stroke-slate-600" strokeWidth="2">
@@ -368,7 +368,7 @@ export default function Lesson() {
           <p className="mb-3 text-xs font-bold text-foreground-muted uppercase">
             Carré = Rectangle <Math tex="\cap" /> Losange
           </p>
-          <svg viewBox="0 0 300 180" className="mx-auto h-auto w-full max-w-xs">
+          <svg role="img" aria-label="Figure 9 — Les Quadrilatères Particuliers : Rectangle, Losange, Carré" viewBox="0 0 300 180" className="mx-auto h-auto w-full max-w-xs">
             <circle cx="115" cy="90" r="75" className="fill-sky-200/50 stroke-sky-500" strokeWidth="2" />
             <circle cx="185" cy="90" r="75" className="fill-rose-200/50 stroke-rose-500" strokeWidth="2" />
             <text x="68" y="95" textAnchor="middle" fontSize="15" className="fill-sky-700 font-bold">Rectangle</text>
@@ -394,7 +394,7 @@ export default function Lesson() {
             <Math tex="AC = BD" />.
           </p>
           <Diagram>
-            <svg viewBox="0 0 320 220" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 10 — Les Quadrilatères Particuliers : points A, B, C, D" viewBox="0 0 320 220" className="mx-auto h-auto w-full max-w-xs">
               <rect x="90" y="40" width="140" height="140" className="fill-violet-50 stroke-violet-600" strokeWidth="2.5" />
               <line x1="90" y1="40" x2="230" y2="180" className="stroke-rose-500" strokeWidth="1.75" strokeDasharray="5,4" />
               <line x1="230" y1="40" x2="90" y2="180" className="stroke-rose-500" strokeWidth="1.75" strokeDasharray="5,4" />
@@ -428,7 +428,7 @@ export default function Lesson() {
             aussi un <strong>centre de symétrie</strong> : son centre.
           </Statement>
           <Diagram>
-            <svg viewBox="0 0 320 220" className="mx-auto mt-4 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 11 — Les Quadrilatères Particuliers : points A, B, C, D" viewBox="0 0 320 220" className="mx-auto mt-4 h-auto w-full max-w-xs">
               <rect x="90" y="40" width="140" height="140" className="fill-violet-50 stroke-violet-600" strokeWidth="2.5" />
               <line x1="79" y1="29" x2="241" y2="191" className="stroke-rose-500" strokeWidth="1.5" strokeDasharray="6,4" />
               <line x1="241" y1="29" x2="79" y2="191" className="stroke-rose-500" strokeWidth="1.5" strokeDasharray="6,4" />
@@ -570,7 +570,7 @@ export default function Lesson() {
                 </Step>
                 <div className="grid gap-4 pt-1 sm:grid-cols-3">
                   <Diagram caption="AC = 5 cm ; AÔB = 110°">
-                    <svg viewBox="0 0 200 150" className="mx-auto h-auto w-full max-w-[180px]">
+                    <svg role="img" aria-label="Figure 12 — Les Quadrilatères Particuliers : points A, B, C, D, O" viewBox="0 0 200 150" className="mx-auto h-auto w-full max-w-[180px]">
                       <rect x="35" y="30" width="130" height="85" className="fill-sky-50 stroke-sky-600" strokeWidth="2" />
                       <line x1="35" y1="30" x2="165" y2="115" className="stroke-rose-500" strokeWidth="1.5" strokeDasharray="4,3" />
                       <line x1="165" y1="30" x2="35" y2="115" className="stroke-rose-500" strokeWidth="1.5" strokeDasharray="4,3" />
@@ -587,7 +587,7 @@ export default function Lesson() {
                     </svg>
                   </Diagram>
                   <Diagram caption="MP = 4 cm ; NQ = 2 cm">
-                    <svg viewBox="0 0 200 170" className="mx-auto h-auto w-full max-w-[180px]">
+                    <svg role="img" aria-label="Figure 13 — Les Quadrilatères Particuliers : points M, N, P, Q" viewBox="0 0 200 170" className="mx-auto h-auto w-full max-w-[180px]">
                       <polygon points="100,15 165,85 100,155 35,85" className="fill-rose-50 stroke-rose-600" strokeWidth="2" />
                       <line x1="100" y1="15" x2="100" y2="155" className="stroke-violet-500" strokeWidth="1.5" strokeDasharray="4,3" />
                       <line x1="165" y1="85" x2="35" y2="85" className="stroke-violet-500" strokeWidth="1.5" strokeDasharray="4,3" />
@@ -602,7 +602,7 @@ export default function Lesson() {
                     </svg>
                   </Diagram>
                   <Diagram caption="EI = 4,5 cm">
-                    <svg viewBox="0 0 200 170" className="mx-auto h-auto w-full max-w-[180px]">
+                    <svg role="img" aria-label="Figure 14 — Les Quadrilatères Particuliers : points E, F, G, H, I" viewBox="0 0 200 170" className="mx-auto h-auto w-full max-w-[180px]">
                       <rect x="40" y="25" width="120" height="120" className="fill-violet-50 stroke-violet-600" strokeWidth="2" />
                       <line x1="40" y1="25" x2="160" y2="145" className="stroke-rose-500" strokeWidth="1.5" strokeDasharray="4,3" />
                       <line x1="160" y1="25" x2="40" y2="145" className="stroke-rose-500" strokeWidth="1.5" strokeDasharray="4,3" />
@@ -644,7 +644,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-3">
                 <Diagram>
-                  <svg viewBox="0 0 320 210" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 15 — Les Quadrilatères Particuliers : points A, B, C, D, E, F" viewBox="0 0 320 210" className="mx-auto h-auto w-full max-w-sm">
                     <polygon points="100,50 50,170 230,170 280,50" className="fill-sky-50 stroke-sky-600" strokeWidth="2.5" />
                     <line x1="100" y1="50" x2="100" y2="170" className="stroke-slate-500" strokeWidth="1.5" strokeDasharray="3,3" />
                     <path d="M100,158 L112,158 L112,170" className="stroke-slate-600" fill="none" strokeWidth="1.75" />
@@ -714,7 +714,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-3">
                 <Diagram>
-                  <svg viewBox="0 0 280 210" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 16 — Les Quadrilatères Particuliers : points A, B, C, D, M" viewBox="0 0 280 210" className="mx-auto h-auto w-full max-w-sm">
                     <rect x="80" y="20" width="120" height="160" className="fill-sky-50 stroke-sky-600" strokeWidth="2.5" />
                     <line x1="140" y1="5" x2="140" y2="195" className="stroke-slate-400" strokeWidth="1.5" strokeDasharray="4,4" />
                     <line x1="80" y1="20" x2="200" y2="180" className="stroke-rose-500" strokeWidth="1.5" strokeDasharray="4,3" />
@@ -777,7 +777,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-3">
                 <Diagram>
-                  <svg viewBox="0 0 260 230" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 17 — Les Quadrilatères Particuliers : points M, K, L, E, N" viewBox="0 0 260 230" className="mx-auto h-auto w-full max-w-sm">
                     <polygon points="130,50 230,130 130,210 30,130" className="fill-rose-50 stroke-rose-600" strokeWidth="2.5" />
                     <line x1="130" y1="50" x2="130" y2="210" className="stroke-slate-400" strokeWidth="1.25" strokeDasharray="4,3" />
                     <line x1="230" y1="130" x2="30" y2="130" className="stroke-slate-400" strokeWidth="1.25" strokeDasharray="4,3" />
@@ -847,7 +847,7 @@ export default function Lesson() {
               <div className="space-y-3">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <Diagram>
-                    <svg viewBox="0 0 240 240" className="mx-auto h-auto w-full max-w-[220px]">
+                    <svg role="img" aria-label="Figure 18 — Les Quadrilatères Particuliers : points A, D, C, B, O" viewBox="0 0 240 240" className="mx-auto h-auto w-full max-w-[220px]">
                       <rect x="60" y="12" width="120" height="208" className="fill-sky-50 stroke-sky-600" strokeWidth="2.5" />
                       <polygon points="120,116 60,220 180,220" className="fill-amber-100/50 stroke-amber-500" strokeWidth="1.75" />
                       <circle cx="60" cy="12" r="5" className="fill-sky-600" />
@@ -863,7 +863,7 @@ export default function Lesson() {
                     </svg>
                   </Diagram>
                   <Diagram>
-                    <svg viewBox="0 0 240 350" className="mx-auto h-auto w-full max-w-[220px]">
+                    <svg role="img" aria-label="Figure 19 — Les Quadrilatères Particuliers : points O, C, M, B, G" viewBox="0 0 240 350" className="mx-auto h-auto w-full max-w-[220px]">
                       <polygon points="120,116 180,220 120,324 60,220" className="fill-rose-50 stroke-rose-600" strokeWidth="2.5" />
                       <polygon points="120,116 60,220 180,220" className="fill-amber-100/50 stroke-amber-500" strokeWidth="1.75" />
                       <line x1="120" y1="116" x2="120" y2="324" className="stroke-slate-400" strokeWidth="1.25" strokeDasharray="4,3" />
@@ -926,7 +926,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-3">
                 <Diagram caption="Le carré AEFG (pointillé) est le symétrique du carré ABCD par rapport à A.">
-                  <svg viewBox="0 0 300 300" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 20 — Les Quadrilatères Particuliers : points A, B, C, D, E, F, G" viewBox="0 0 300 300" className="mx-auto h-auto w-full max-w-sm">
                     <rect x="160" y="80" width="80" height="80" className="fill-violet-50 stroke-violet-600" strokeWidth="2.5" />
                     <rect x="80" y="160" width="80" height="80" className="fill-violet-100/60 stroke-violet-500" strokeWidth="2" strokeDasharray="6,3" />
                     <circle cx="160" cy="160" r="5.5" className="fill-slate-800" />
@@ -988,7 +988,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-3">
                 <Diagram caption="En orangé : le losange AEBO. En vert : le losange OBFC.">
-                  <svg viewBox="0 0 320 195" className="mx-auto h-auto w-full max-w-md">
+                  <svg role="img" aria-label="Figure 21 — Les Quadrilatères Particuliers : points A, B, C, D, O, M, N, E, F" viewBox="0 0 320 195" className="mx-auto h-auto w-full max-w-md">
                     <rect x="15" y="60" width="180" height="110" className="fill-sky-50 stroke-sky-600" strokeWidth="2.5" />
                     <line x1="15" y1="60" x2="195" y2="170" className="stroke-slate-300" strokeWidth="1.25" strokeDasharray="4,3" />
                     <line x1="195" y1="60" x2="15" y2="170" className="stroke-slate-300" strokeWidth="1.25" strokeDasharray="4,3" />

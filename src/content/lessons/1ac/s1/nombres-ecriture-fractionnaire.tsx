@@ -484,7 +484,7 @@ export default function Lesson() {
             correction={
               <div className="rounded-lg border border-green-500/20 bg-surface p-4">
                 <div className="w-full overflow-x-auto">
-                  <svg viewBox="0 0 600 130" className="mx-auto h-32 w-full max-w-xl text-foreground-muted">
+                  <svg role="img" aria-label="Figure 1 — Nombres en écriture fractionnaire : points D, B, E, A, C ; 0, 1, 2, 1/9, 5/9, 8/9" viewBox="0 0 600 130" className="mx-auto h-32 w-full max-w-xl text-foreground-muted">
                     <line x1="30" y1="70" x2="590" y2="70" stroke="currentColor" strokeWidth="2" />
                     <polygon points="590,70 578,64 578,76" fill="currentColor" />
                     <line x1="30" y1="62" x2="30" y2="78" stroke="currentColor" strokeWidth="2" />

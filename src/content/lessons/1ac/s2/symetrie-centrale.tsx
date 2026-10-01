@@ -63,7 +63,7 @@ export default function Lesson() {
   return (
     <LessonShell meta={meta}>
       {/* Shared arrow marker for "symétrie de centre ..." diagrams */}
-      <svg width="0" height="0" className="absolute">
+      <svg role="img" aria-label="Figure 1 — La Symétrie Centrale" width="0" height="0" className="absolute">
         <defs>
           <marker id="arrow-gray-sym" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
             <path d="M0,0 L8,4 L0,8 Z" className="fill-neutral-400 dark:fill-neutral-500" />
@@ -97,7 +97,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 220 130" className="h-auto w-56">
+          <svg role="img" aria-label="Figure 2 — La Symétrie Centrale : points A, O, A'" viewBox="0 0 220 130" className="h-auto w-56">
             <line x1="30" y1="100" x2="190" y2="30" stroke="white" strokeOpacity="0.6" strokeWidth="2" />
             <circle cx="30" cy="100" r="5" fill="white" />
             <circle cx="110" cy="65" r="5" fill="#fb923c" />
@@ -124,7 +124,7 @@ export default function Lesson() {
               Soient <strong>A</strong> et <strong>O</strong> deux points distincts. Traçons <strong>A&apos;</strong> tel que{" "}
               <strong>O</strong> soit le milieu du segment [AA&apos;].
             </p>
-            <svg viewBox="0 0 400 220" className="mx-auto h-auto w-full max-w-sm">
+            <svg role="img" aria-label="Figure 3 — La Symétrie Centrale : points A, O, A'" viewBox="0 0 400 220" className="mx-auto h-auto w-full max-w-sm">
               <line x1="50" y1="180" x2="350" y2="40" className="stroke-slate-400 dark:stroke-slate-500" strokeWidth="2" />
               <line x1="121" y1="138" x2="129" y2="152" className="stroke-slate-500 dark:stroke-slate-400" strokeWidth="2" />
               <line x1="271" y1="68" x2="279" y2="82" className="stroke-slate-500 dark:stroke-slate-400" strokeWidth="2" />
@@ -146,7 +146,7 @@ export default function Lesson() {
             <p className="mb-4 text-sm text-foreground-muted">
               On considère la figure suivante, où <strong>O</strong> n&apos;est pas le milieu de [EE&apos;] :
             </p>
-            <svg viewBox="0 0 400 220" className="mx-auto h-auto w-full max-w-sm">
+            <svg role="img" aria-label="Figure 4 — La Symétrie Centrale : points E, O, E' ; milieu de [EE']" viewBox="0 0 400 220" className="mx-auto h-auto w-full max-w-sm">
               <line x1="50" y1="180" x2="350" y2="40" className="stroke-slate-400 dark:stroke-slate-500" strokeWidth="2" />
               <circle cx="200" cy="110" r="4" className="fill-none stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" strokeDasharray="3,3" />
               <text x="207" y="106" fontSize="11" className="fill-slate-400 dark:fill-slate-500 italic">milieu de [EE&apos;]</text>
@@ -199,7 +199,7 @@ export default function Lesson() {
             <p className="mb-4 text-sm text-foreground-muted">
               Si A&apos; et B&apos; sont les symétriques respectifs de A et B par rapport à un point E, alors A&apos;B&apos; = AB.
             </p>
-            <svg viewBox="0 0 520 140" className="mx-auto mb-4 h-auto w-full max-w-lg">
+            <svg role="img" aria-label="Figure 5 — La Symétrie Centrale : points A, B, A', B' ; AB = 5 cm, symétrie de centre E, A'B' = 5 cm" viewBox="0 0 520 140" className="mx-auto mb-4 h-auto w-full max-w-lg">
               <line x1="40" y1="70" x2="180" y2="70" className="stroke-indigo-600 dark:stroke-indigo-400" strokeWidth="3" />
               <circle cx="40" cy="70" r="5" className="fill-indigo-600 dark:fill-indigo-400" />
               <circle cx="180" cy="70" r="5" className="fill-indigo-600 dark:fill-indigo-400" />
@@ -229,7 +229,7 @@ export default function Lesson() {
                 </>
               }
               figure={
-                <svg viewBox="0 0 440 300" className="mx-auto h-auto w-full max-w-sm">
+                <svg role="img" aria-label="Figure 6 — La Symétrie Centrale : points A, B, C, E, F ; BC = 5 cm, EF = 5 cm" viewBox="0 0 440 300" className="mx-auto h-auto w-full max-w-sm">
                   <line x1="90" y1="130" x2="330" y2="250" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" strokeDasharray="4,4" />
                   <line x1="300" y1="110" x2="120" y2="270" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" strokeDasharray="4,4" />
                   <polygon points="210,190 90,130 300,110" className="fill-indigo-50 stroke-indigo-600 dark:fill-neutral-950/30 dark:stroke-indigo-400" strokeWidth="2.5" />
@@ -262,7 +262,7 @@ export default function Lesson() {
           <div className="rounded-2xl border border-border bg-surface p-5 md:p-7">
             <h3 className="mb-1 text-xl font-bold text-foreground">2. Conservation de l&apos;alignement des points</h3>
             <p className="mb-4 text-sm text-foreground-muted">Les symétriques de points alignés sont eux-mêmes alignés.</p>
-            <svg viewBox="0 0 560 130" className="mx-auto mb-4 h-auto w-full max-w-lg">
+            <svg role="img" aria-label="Figure 7 — La Symétrie Centrale : points A, B, C, D, A', B', C', D' ; symétrie de centre E, A, B, C, D alignés, A', B', C', D' alignés" viewBox="0 0 560 130" className="mx-auto mb-4 h-auto w-full max-w-lg">
               <line x1="20" y1="65" x2="200" y2="65" className="stroke-indigo-600 dark:stroke-indigo-400" strokeWidth="3" />
               <circle cx="20" cy="65" r="4.5" className="fill-indigo-600 dark:fill-indigo-400" />
               <circle cx="80" cy="65" r="4.5" className="fill-indigo-600 dark:fill-indigo-400" />
@@ -299,7 +299,7 @@ export default function Lesson() {
             <p className="mb-4 text-sm text-foreground-muted">
               Si A&apos;, O&apos; et B&apos; sont les symétriques respectifs de A, O et B par rapport à un point, alors A&apos;Ô&apos;B&apos; = AÔB.
             </p>
-            <svg viewBox="0 0 560 150" className="mx-auto mb-4 h-auto w-full max-w-lg">
+            <svg role="img" aria-label="Figure 8 — La Symétrie Centrale : points O, A, B, O', A', B' ; 60°, symétrie de centre E" viewBox="0 0 560 150" className="mx-auto mb-4 h-auto w-full max-w-lg">
               <g className="stroke-indigo-600 dark:stroke-indigo-400" strokeWidth="3">
                 <line x1="70" y1="110" x2="25" y2="35" />
                 <line x1="70" y1="110" x2="165" y2="75" />
@@ -337,7 +337,7 @@ export default function Lesson() {
                 </>
               }
               figure={
-                <svg viewBox="0 0 440 340" className="mx-auto h-auto w-full max-w-sm">
+                <svg role="img" aria-label="Figure 9 — La Symétrie Centrale : points O, B, A, C, A', B', C'" viewBox="0 0 440 340" className="mx-auto h-auto w-full max-w-sm">
                   <line x1="60" y1="230" x2="400" y2="150" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" strokeDasharray="4,4" />
                   <line x1="150" y1="230" x2="310" y2="150" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" strokeDasharray="4,4" />
                   <line x1="150" y1="80" x2="310" y2="300" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" strokeDasharray="4,4" />
@@ -386,7 +386,7 @@ export default function Lesson() {
           {/* Droite */}
           <div className="rounded-2xl border border-border bg-surface p-5 md:p-6">
             <h3 className="mb-3 text-lg font-bold text-foreground">1. Le symétrique d&apos;une droite</h3>
-            <svg viewBox="0 0 380 320" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 10 — La Symétrie Centrale : point O ; Cas 1 : O ∉ (D), (D), (D')" viewBox="0 0 380 320" className="mx-auto h-auto w-full max-w-xs">
               <text x="55" y="18" fontSize="12" className="fill-slate-500 dark:fill-slate-400 italic">Cas 1 : O ∉ (D)</text>
               <line x1="20" y1="78" x2="360" y2="112" className="stroke-indigo-600 dark:stroke-indigo-400" strokeWidth="2.5" />
               <line x1="20" y1="248" x2="360" y2="282" className="stroke-rose-600 dark:stroke-rose-400" strokeWidth="2.5" />
@@ -398,7 +398,7 @@ export default function Lesson() {
               <text x="22" y="268" fontSize="15" className="fill-rose-700 dark:fill-rose-300 font-bold">(D&apos;)</text>
             </svg>
             <p className="mb-3 text-center text-xs text-foreground-muted">strictement parallèle à (D)</p>
-            <svg viewBox="0 0 380 110" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 11 — La Symétrie Centrale : point O ; Cas 2 : O ∈ (D), (D) = (D')" viewBox="0 0 380 110" className="mx-auto h-auto w-full max-w-xs">
               <text x="55" y="14" fontSize="12" className="fill-slate-500 dark:fill-slate-400 italic">Cas 2 : O ∈ (D)</text>
               <line x1="20" y1="60" x2="360" y2="60" className="stroke-indigo-600 dark:stroke-indigo-400" strokeWidth="3" />
               <line x1="20" y1="64" x2="360" y2="64" className="stroke-rose-500 dark:stroke-rose-400" strokeWidth="1.5" strokeDasharray="6,4" opacity="0.85" />
@@ -416,7 +416,7 @@ export default function Lesson() {
           {/* Segment */}
           <div className="rounded-2xl border border-border bg-surface p-5 md:p-6">
             <h3 className="mb-3 text-lg font-bold text-foreground">2. Le symétrique d&apos;un segment</h3>
-            <svg viewBox="0 0 430 290" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 12 — La Symétrie Centrale : points A, B, O, A', B'" viewBox="0 0 430 290" className="mx-auto h-auto w-full max-w-xs">
               <line x1="60" y1="80" x2="180" y2="60" className="stroke-indigo-600 dark:stroke-indigo-400" strokeWidth="3" />
               <line x1="400" y1="240" x2="280" y2="260" className="stroke-rose-600 dark:stroke-rose-400" strokeWidth="3" />
               <line x1="60" y1="80" x2="400" y2="240" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" strokeDasharray="4,4" />
@@ -440,7 +440,7 @@ export default function Lesson() {
           {/* Angle */}
           <div className="rounded-2xl border border-border bg-surface p-5 md:p-6">
             <h3 className="mb-3 text-lg font-bold text-foreground">3. Le symétrique d&apos;un angle</h3>
-            <svg viewBox="0 0 450 260" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 13 — La Symétrie Centrale : points P, A, B, O, P', A', B'" viewBox="0 0 450 260" className="mx-auto h-auto w-full max-w-xs">
               <line x1="90" y1="200" x2="40" y2="120" className="stroke-indigo-600 dark:stroke-indigo-400" strokeWidth="2.5" />
               <line x1="90" y1="200" x2="200" y2="170" className="stroke-indigo-600 dark:stroke-indigo-400" strokeWidth="2.5" />
               <line x1="370" y1="80" x2="420" y2="160" className="stroke-rose-600 dark:stroke-rose-400" strokeWidth="2.5" />
@@ -469,7 +469,7 @@ export default function Lesson() {
           {/* Cercle */}
           <div className="rounded-2xl border border-border bg-surface p-5 md:p-6">
             <h3 className="mb-3 text-lg font-bold text-foreground">4. Le symétrique d&apos;un cercle</h3>
-            <svg viewBox="0 0 500 320" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 14 — La Symétrie Centrale : points A, E, A' ; (ζ), (ζ')" viewBox="0 0 500 320" className="mx-auto h-auto w-full max-w-xs">
               <circle cx="110" cy="140" r="70" className="fill-indigo-50 stroke-indigo-600 dark:fill-neutral-950/30 dark:stroke-indigo-400" strokeWidth="2.5" />
               <circle cx="410" cy="220" r="70" className="fill-rose-50 stroke-rose-600 dark:fill-rose-950/20 dark:stroke-rose-400" strokeWidth="2.5" />
               <line x1="110" y1="140" x2="410" y2="220" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" strokeDasharray="4,4" />
@@ -514,7 +514,7 @@ export default function Lesson() {
         <p className="mb-4 font-mono text-xs text-foreground-muted uppercase">2. Exemples</p>
         <div className="grid gap-4 sm:grid-cols-3">
           <div className="rounded-2xl border border-border bg-surface p-5 text-center">
-            <svg viewBox="0 0 160 60" className="mx-auto mb-3 h-auto w-full max-w-[160px]">
+            <svg role="img" aria-label="Figure 15 — La Symétrie Centrale : point O" viewBox="0 0 160 60" className="mx-auto mb-3 h-auto w-full max-w-[160px]">
               <line x1="15" y1="30" x2="145" y2="30" className="stroke-sky-600 dark:stroke-sky-400" strokeWidth="3" />
               <circle cx="80" cy="30" r="5" className="fill-slate-800 dark:fill-slate-200" />
               <text x="86" y="24" fontSize="13" className="fill-slate-700 dark:fill-slate-200 font-bold">O</text>
@@ -524,7 +524,7 @@ export default function Lesson() {
             </p>
           </div>
           <div className="rounded-2xl border border-border bg-surface p-5 text-center">
-            <svg viewBox="0 0 160 60" className="mx-auto mb-3 h-auto w-full max-w-[160px]">
+            <svg role="img" aria-label="Figure 16 — La Symétrie Centrale : point O" viewBox="0 0 160 60" className="mx-auto mb-3 h-auto w-full max-w-[160px]">
               <line x1="25" y1="30" x2="135" y2="30" className="stroke-sky-600 dark:stroke-sky-400" strokeWidth="3" />
               <circle cx="25" cy="30" r="4" className="fill-sky-600 dark:fill-sky-400" />
               <circle cx="135" cy="30" r="4" className="fill-sky-600 dark:fill-sky-400" />
@@ -534,7 +534,7 @@ export default function Lesson() {
             <p className="text-sm text-foreground-muted"><strong>Un segment :</strong> son centre de symétrie est <span className="font-semibold text-foreground">son milieu</span>.</p>
           </div>
           <div className="rounded-2xl border border-border bg-surface p-5 text-center">
-            <svg viewBox="0 0 160 100" className="mx-auto mb-3 h-auto w-full max-w-[160px]">
+            <svg role="img" aria-label="Figure 17 — La Symétrie Centrale : point O" viewBox="0 0 160 100" className="mx-auto mb-3 h-auto w-full max-w-[160px]">
               <circle cx="80" cy="50" r="35" className="fill-none stroke-sky-600 dark:stroke-sky-400" strokeWidth="3" />
               <circle cx="80" cy="50" r="5" className="fill-slate-800 dark:fill-slate-200" />
               <text x="86" y="44" fontSize="13" className="fill-slate-700 dark:fill-slate-200 font-bold">O</text>
@@ -570,7 +570,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-3">
                 <FigureBox>
-                  <svg viewBox="0 0 360 400" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 18 — La Symétrie Centrale : points A, B, C, I, M" viewBox="0 0 360 400" className="mx-auto h-auto w-full max-w-xs">
                     <line x1="150" y1="80" x2="190" y2="360" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" strokeDasharray="4,4" />
                     <polygon points="150,80 60,220 280,220" className="fill-indigo-50 stroke-indigo-600 dark:fill-neutral-950/30 dark:stroke-indigo-400" strokeWidth="2.5" />
                     <line x1="60" y1="220" x2="190" y2="360" className="stroke-rose-600 dark:stroke-rose-400" strokeWidth="2.5" />
@@ -618,7 +618,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-3">
                 <FigureBox caption="Figure, questions 1 à 3">
-                  <svg viewBox="0 0 620 440" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 19 — La Symétrie Centrale : points A, B, C, O, A', B', C'" viewBox="0 0 620 440" className="mx-auto h-auto w-full max-w-sm">
                     <line x1="70" y1="120" x2="570" y2="400" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" strokeDasharray="4,4" />
                     <line x1="150" y1="200" x2="490" y2="320" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" strokeDasharray="4,4" />
                     <line x1="260" y1="150" x2="380" y2="370" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" strokeDasharray="4,4" />
@@ -641,7 +641,7 @@ export default function Lesson() {
                   </svg>
                 </FigureBox>
                 <FigureBox caption="Figure, question 4">
-                  <svg viewBox="0 0 560 400" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 20 — La Symétrie Centrale : points A, C, O, A', C' ; 𝒞(A;4cm), (Γ)" viewBox="0 0 560 400" className="mx-auto h-auto w-full max-w-xs">
                     <circle cx="130" cy="180" r="90" className="fill-none stroke-indigo-600 dark:stroke-indigo-400" strokeWidth="2.5" />
                     <circle cx="450" cy="280" r="90" className="fill-none stroke-rose-600 dark:stroke-rose-400" strokeWidth="2.5" />
                     <line x1="130" y1="180" x2="450" y2="280" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" strokeDasharray="4,4" />
@@ -689,7 +689,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-3">
                 <FigureBox>
-                  <svg viewBox="0 0 360 300" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 21 — La Symétrie Centrale : points A, B, C, M, I, B', C'" viewBox="0 0 360 300" className="mx-auto h-auto w-full max-w-xs">
                     <line x1="75" y1="280" x2="275" y2="60" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" strokeDasharray="4,4" />
                     <line x1="315" y1="280" x2="35" y2="60" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" strokeDasharray="4,4" />
                     <polygon points="195,60 75,280 315,280" className="fill-indigo-50 stroke-indigo-600 dark:fill-neutral-950/30 dark:stroke-indigo-400" strokeWidth="2.5" />
@@ -734,7 +734,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-3">
                 <FigureBox>
-                  <svg viewBox="0 0 400 460" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 22 — La Symétrie Centrale : points A, B, O, M, N ; (D), (Δ), (Δ')" viewBox="0 0 400 460" className="mx-auto h-auto w-full max-w-sm">
                     <line x1="50" y1="300" x2="350" y2="300" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" strokeDasharray="3,4" />
                     <line x1="60" y1="440" x2="380" y2="120" className="stroke-indigo-600 dark:stroke-indigo-400" strokeWidth="2.5" />
                     <line x1="60" y1="260" x2="145" y2="430" className="stroke-violet-600 dark:stroke-violet-400" strokeWidth="2.5" />
@@ -788,7 +788,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-3">
                 <FigureBox caption="La droite (OO&apos;), en pointillés ambre, est la « droite médiane », à mi-distance entre (D) et (D&apos;).">
-                  <svg viewBox="0 0 420 340" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 23 — La Symétrie Centrale : points A, B, A', B', O, O' ; (D), (D')" viewBox="0 0 420 340" className="mx-auto h-auto w-full max-w-sm">
                     <line x1="20" y1="100" x2="400" y2="100" className="stroke-indigo-600 dark:stroke-indigo-400" strokeWidth="2.5" />
                     <line x1="20" y1="300" x2="400" y2="300" className="stroke-rose-600 dark:stroke-rose-400" strokeWidth="2.5" />
                     <line x1="20" y1="200" x2="400" y2="200" className="stroke-amber-500 dark:stroke-amber-400" strokeWidth="2" strokeDasharray="7,5" />
@@ -850,7 +850,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-3">
                 <FigureBox>
-                  <svg viewBox="0 0 440 440" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 24 — La Symétrie Centrale : points A, B, C, D, O, M, N" viewBox="0 0 440 440" className="mx-auto h-auto w-full max-w-sm">
                     <circle cx="220" cy="220" r="152" className="fill-none stroke-indigo-500 dark:stroke-indigo-400" strokeWidth="2" />
                     <circle cx="220" cy="220" r="92" className="fill-none stroke-violet-500 dark:stroke-violet-400" strokeWidth="2" />
                     <line x1="80" y1="160" x2="360" y2="280" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" strokeDasharray="3,4" />

@@ -99,7 +99,7 @@ function Plane({
   }
 
   return (
-    <svg viewBox={`0 0 ${w} ${h}`} className={`mx-auto h-auto w-full ${size}`}>
+    <svg role="img" aria-label="Figure 1 — La droite dans le plan : point O" viewBox={`0 0 ${w} ${h}`} className={`mx-auto h-auto w-full ${size}`}>
       {vLines}
       {hLines}
       {/* axes */}
@@ -862,7 +862,7 @@ export default function Lesson() {
                   </div>
                 }
                 svg={
-                  <svg viewBox="0 0 260 220" className="h-auto w-full max-w-[280px] text-neutral-700">
+                  <svg role="img" aria-label="Figure 2 — La droite dans le plan : points A, B, I ; (D), (D'), (D''), (-4,-2)" viewBox="0 0 260 220" className="h-auto w-full max-w-[280px] text-neutral-700">
                     {/* (D) : 3x-5y+2=0 */}
                     <line x1="25" y1="194.1" x2="210.7" y2="82.7" stroke="currentColor" strokeWidth="1.6" />
                     <text x="214" y="82" fontSize="13" fontStyle="italic">(D)</text>

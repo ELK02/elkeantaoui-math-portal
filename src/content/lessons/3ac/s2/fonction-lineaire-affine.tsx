@@ -176,7 +176,7 @@ export default function Lesson() {
           l&apos;origine <Math tex="O" />.
         </p>
         <Graph caption={<>La droite (D) passe par l&apos;origine O du repère (O,I,J)</>}>
-          <svg viewBox="0 0 260 260" className="mx-auto h-auto w-full max-w-xs">
+          <svg role="img" aria-label="Figure 1 — Fonction Linéaire &amp; Fonction Affine : points I, J, O ; (D)" viewBox="0 0 260 260" className="mx-auto h-auto w-full max-w-xs">
             <defs><marker id="arrg1" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#334155"/></marker></defs>
             <rect width="260" height="260" fill="white" rx="12"/>
             <line x1="24.0" y1="24" x2="24.0" y2="236" stroke="#e2e8f0" strokeWidth="1"/>
@@ -284,7 +284,7 @@ export default function Lesson() {
                   Donc <Math tex="(\Delta)=(OA)" />
                 </p>
                 <Graph>
-                  <svg viewBox="0 0 300 300" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 2 — Fonction Linéaire &amp; Fonction Affine : points I, J, O, A ; (Δ)" viewBox="0 0 300 300" className="mx-auto h-auto w-full max-w-xs">
                     <defs><marker id="arrg2" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#334155"/></marker></defs>
                     <rect width="300" height="300" fill="white" rx="12"/>
                     <line x1="28.0" y1="28" x2="28.0" y2="272" stroke="#e2e8f0" strokeWidth="1"/>
@@ -455,7 +455,7 @@ export default function Lesson() {
           Donc <Math tex="(D)=(AB)" />
         </p>
         <Graph className="mt-3">
-          <svg viewBox="0 0 300 300" className="mx-auto h-auto w-full max-w-xs">
+          <svg role="img" aria-label="Figure 3 — Fonction Linéaire &amp; Fonction Affine : points I, J, O, A, B ; (D)" viewBox="0 0 300 300" className="mx-auto h-auto w-full max-w-xs">
             <defs><marker id="arrg3" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#334155"/></marker></defs>
             <rect width="300" height="300" fill="white" rx="12"/>
             <line x1="28.0" y1="28" x2="28.0" y2="272" stroke="#e2e8f0" strokeWidth="1"/>
@@ -651,7 +651,7 @@ export default function Lesson() {
                 <div>
                   <p className="font-semibold">3) f linéaire donc (D) passe par O(0,0) et K(2,3) ; g affine donc (Δ) passe par A(0,6) et B(4,0).</p>
                   <Graph>
-                    <svg viewBox="0 0 320 320" className="mx-auto h-auto w-full max-w-xs">
+                    <svg role="img" aria-label="Figure 4 — Fonction Linéaire &amp; Fonction Affine : points I, J, O, K, A, B ; (D), (Δ)" viewBox="0 0 320 320" className="mx-auto h-auto w-full max-w-xs">
                       <defs><marker id="arrg4" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#334155"/></marker></defs>
                       <rect width="320" height="320" fill="white" rx="12"/>
                       <line x1="30.0" y1="30" x2="30.0" y2="290" stroke="#e2e8f0" strokeWidth="1"/>
@@ -722,7 +722,7 @@ export default function Lesson() {
                   </li>
                 </ol>
                 <Graph className="mt-4" caption="Lis les coordonnées de deux points de (D) sur la grille">
-                  <svg viewBox="0 0 300 300" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 5 — Fonction Linéaire &amp; Fonction Affine : points I, J, O ; (D)" viewBox="0 0 300 300" className="mx-auto h-auto w-full max-w-xs">
                     <defs><marker id="arrg5" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#334155"/></marker></defs>
                     <rect width="300" height="300" fill="white" rx="12"/>
                     <line x1="26.0" y1="26" x2="26.0" y2="274" stroke="#e2e8f0" strokeWidth="1"/>
@@ -770,7 +770,7 @@ export default function Lesson() {
                 <div>
                   <p className="font-semibold">1c) g linéaire donc (Δ) passe par l&apos;origine O et A(2,1) :</p>
                   <Graph className="max-w-[220px]">
-                    <svg viewBox="0 0 240 240" className="mx-auto h-auto w-full max-w-[200px]">
+                    <svg role="img" aria-label="Figure 6 — Fonction Linéaire &amp; Fonction Affine : points I, J, O, A ; (Δ)" viewBox="0 0 240 240" className="mx-auto h-auto w-full max-w-[200px]">
                       <defs><marker id="arrg6" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#334155"/></marker></defs>
                       <rect width="240" height="240" fill="white" rx="12"/>
                       <line x1="22.0" y1="22" x2="22.0" y2="218" stroke="#e2e8f0" strokeWidth="1"/>
@@ -845,7 +845,7 @@ export default function Lesson() {
                 <div>
                   <p className="font-semibold">3) f(2)=4 donc (Cf) passe par O(0,0) et A(2,4). g(0)=−1 et g(1)=3 donc (Cg) passe par B(0,−1) et C(1,3).</p>
                   <Graph>
-                    <svg viewBox="0 0 300 300" className="mx-auto h-auto w-full max-w-xs">
+                    <svg role="img" aria-label="Figure 7 — Fonction Linéaire &amp; Fonction Affine : points I, J, O, A, B, C ; (Cf), (Cg)" viewBox="0 0 300 300" className="mx-auto h-auto w-full max-w-xs">
                       <defs><marker id="arrg7" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#334155"/></marker></defs>
                       <rect width="300" height="300" fill="white" rx="12"/>
                       <line x1="26.0" y1="26" x2="26.0" y2="274" stroke="#e2e8f0" strokeWidth="1"/>
@@ -938,7 +938,7 @@ export default function Lesson() {
               <div className="text-sm">
                 <p>Le graphique ci-dessous représente deux fonctions <Math tex="f" /> et <Math tex="g" /> :</p>
                 <Graph className="mt-3" caption={<>Droite rouge : <Math tex="f" /> · Droite bleue : <Math tex="g" /></>}>
-                  <svg viewBox="0 0 320 320" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 8 — Fonction Linéaire &amp; Fonction Affine : points I, J, O ; f, g" viewBox="0 0 320 320" className="mx-auto h-auto w-full max-w-xs">
                     <defs><marker id="arrg8" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#334155"/></marker></defs>
                     <rect width="320" height="320" fill="white" rx="12"/>
                     <line x1="28.0" y1="28" x2="28.0" y2="292" stroke="#e2e8f0" strokeWidth="1"/>

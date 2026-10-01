@@ -88,7 +88,7 @@ export default function Lesson() {
         }
         visual={
           <div className="flex flex-col items-center gap-3">
-            <svg viewBox="0 0 240 160" className="h-48 w-60">
+            <svg role="img" aria-label="Figure 1 — Vecteurs et translation : points A, A' ; u" viewBox="0 0 240 160" className="h-48 w-60">
               <defs>
                 <marker id="heroArrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
                   <path d="M0,0 L6,3 L0,6 Z" fill="white" />
@@ -129,7 +129,7 @@ export default function Lesson() {
 
           <div className="grid items-center gap-6 sm:grid-cols-2">
             <FigureBox>
-              <svg viewBox="0 0 260 150" className="w-full text-neutral-700">
+              <svg role="img" aria-label="Figure 2 — Vecteurs et translation : Δ, d, d'" viewBox="0 0 260 150" className="w-full text-neutral-700">
                 <defs>
                   <marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
                     <path d="M0,0 L6,3 L0,6 Z" fill="currentColor" />
@@ -155,7 +155,7 @@ export default function Lesson() {
               Soit <Math tex="d" /> une droite donnée. On peut définir deux sens possibles sur cette droite.
             </p>
             <div className="mb-3 rounded-lg bg-surface p-3">
-              <svg viewBox="0 0 300 70" className="w-full text-neutral-700">
+              <svg role="img" aria-label="Figure 3 — Vecteurs et translation : points A, B ; d" viewBox="0 0 300 70" className="w-full text-neutral-700">
                 <defs>
                   <marker id="a2s" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
                     <path d="M0,0 L6,3 L0,6 Z" fill="currentColor" />
@@ -202,7 +202,7 @@ export default function Lesson() {
 
           <div className="grid items-center gap-6 sm:grid-cols-2">
             <FigureBox>
-              <svg viewBox="0 0 320 200" className="w-full text-neutral-700">
+              <svg role="img" aria-label="Figure 4 — Vecteurs et translation : points A, B, C, A', B', C' ; u" viewBox="0 0 320 200" className="w-full text-neutral-700">
                 <defs>
                   <marker id="a3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
                     <path d="M0,0 L6,3 L0,6 Z" fill="currentColor" />
@@ -247,7 +247,7 @@ export default function Lesson() {
 
           <div className="grid items-center gap-6 sm:grid-cols-2">
             <FigureBox>
-              <svg viewBox="0 0 260 180" className="w-full text-neutral-700">
+              <svg role="img" aria-label="Figure 5 — Vecteurs et translation : points A, B, C, D" viewBox="0 0 260 180" className="w-full text-neutral-700">
                 <defs>
                   <marker id="a4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
                     <path d="M0,0 L6,3 L0,6 Z" fill="currentColor" />
@@ -339,7 +339,7 @@ export default function Lesson() {
 
           <div className="grid items-center gap-6 sm:grid-cols-2">
             <FigureBox>
-              <svg viewBox="0 0 260 190" className="w-full text-neutral-700">
+              <svg role="img" aria-label="Figure 6 — Vecteurs et translation : points A, B, C ; u, v, w = u+v" viewBox="0 0 260 190" className="w-full text-neutral-700">
                 <defs>
                   <marker id="a5" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
                     <path d="M0,0 L6,3 L0,6 Z" fill="currentColor" />
@@ -384,7 +384,7 @@ export default function Lesson() {
               <Math tex="\overrightarrow{AD} = \overrightarrow{AB} + \overrightarrow{AC}" />
             </Box>
             <FigureBox>
-              <svg viewBox="0 0 260 190" className="w-full text-neutral-700">
+              <svg role="img" aria-label="Figure 7 — Vecteurs et translation : points A, B, D, C" viewBox="0 0 260 190" className="w-full text-neutral-700">
                 <defs>
                   <marker id="a6" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
                     <path d="M0,0 L6,3 L0,6 Z" fill="currentColor" />
@@ -449,7 +449,7 @@ export default function Lesson() {
           </Box>
           <div className="grid items-center gap-6 sm:grid-cols-2">
             <FigureBox>
-              <svg viewBox="0 0 260 180" className="w-full text-neutral-700">
+              <svg role="img" aria-label="Figure 8 — Vecteurs et translation : u, k·u (k>0), k·u (k<0)" viewBox="0 0 260 180" className="w-full text-neutral-700">
                 <defs>
                   <marker id="a7" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
                     <path d="M0,0 L6,3 L0,6 Z" fill="currentColor" />
@@ -551,7 +551,7 @@ export default function Lesson() {
       >
         <div className="mb-8 grid gap-4 sm:grid-cols-2">
           <FigureBox>
-            <svg viewBox="0 0 260 170" className="w-full text-neutral-700">
+            <svg role="img" aria-label="Figure 9 — Vecteurs et translation : points A, B, C, D, O" viewBox="0 0 260 170" className="w-full text-neutral-700">
               <defs>
                 <marker id="a8" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
                   <path d="M0,0 L6,3 L0,6 Z" fill="currentColor" />
@@ -569,7 +569,7 @@ export default function Lesson() {
             </svg>
           </FigureBox>
           <FigureBox>
-            <svg viewBox="0 0 260 170" className="w-full text-neutral-700">
+            <svg role="img" aria-label="Figure 10 — Vecteurs et translation : points A, B, C" viewBox="0 0 260 170" className="w-full text-neutral-700">
               <polygon points="40,150 220,140 120,25" fill="none" stroke="currentColor" strokeWidth="2" />
               <text x="18" y="165" fontSize="14" fill="currentColor">A</text>
               <text x="225" y="150" fontSize="14" fill="currentColor">B</text>

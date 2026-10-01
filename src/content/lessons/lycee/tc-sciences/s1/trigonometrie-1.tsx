@@ -64,7 +64,7 @@ function TrigCircle({
   const J = polar(cx, cy, r, globalThis.Math.PI / 2);
   const Jprime = polar(cx, cy, r, -globalThis.Math.PI / 2);
   return (
-    <svg viewBox="0 0 300 300" className={`mx-auto h-auto w-full ${size}`}>
+    <svg role="img" aria-label="Figure 1 — Trigonométrie 1 — Calcul trigonométrique : points O, I, I', J, J'" viewBox="0 0 300 300" className={`mx-auto h-auto w-full ${size}`}>
       <line x1={cx - r - 22} y1={cy} x2={cx + r + 22} y2={cy} stroke="#cbd5e1" strokeWidth="1.2" />
       <line x1={cx} y1={cy - r - 22} x2={cx} y2={cy + r + 22} stroke="#cbd5e1" strokeWidth="1.2" />
       <circle cx={cx} cy={cy} r={r} fill="none" stroke="#334155" strokeWidth="1.8" />
@@ -673,7 +673,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 320 240" className="h-auto w-full max-w-[260px]">
+                  <svg role="img" aria-label="Figure 2 — Trigonométrie 1 — Calcul trigonométrique : points B, C, A, I" viewBox="0 0 320 240" className="h-auto w-full max-w-[260px]">
                     <polygon points="40,190 240,190 190,103.4" fill="none" stroke="#334155" strokeWidth="2" />
                     <line x1="190" y1="103.4" x2="140" y2="190" stroke="#4f46e5" strokeWidth="1.8" />
                     <path d="M 66 190 A 26 26 0 0 1 71 175" fill="none" stroke="#0f172a" strokeWidth="1.4" markerEnd="url(#arrow1)" />

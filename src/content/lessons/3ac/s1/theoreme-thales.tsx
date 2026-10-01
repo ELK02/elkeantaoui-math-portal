@@ -65,7 +65,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 200 160" className="h-40 w-48 text-white/90">
+          <svg role="img" aria-label="Figure 1 — Le Théorème de Thalès" viewBox="0 0 200 160" className="h-40 w-48 text-white/90">
             <line x1="100" y1="10" x2="20" y2="150" stroke="currentColor" strokeWidth="2" />
             <line x1="100" y1="10" x2="180" y2="150" stroke="currentColor" strokeWidth="2" />
             <line x1="55" y1="85" x2="145" y2="85" stroke="#fb923c" strokeWidth="3" />
@@ -89,7 +89,7 @@ export default function Lesson() {
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
           <div className="rounded-xl border border-border bg-surface p-5">
             <p className="mb-3 text-center font-semibold text-foreground">Configuration « triangle »</p>
-            <svg viewBox="0 0 340 320" className="mx-auto">
+            <svg role="img" aria-label="Figure 2 — Le Théorème de Thalès : points A, B, C, M, N" viewBox="0 0 340 320" className="mx-auto">
               <line x1="160" y1="25" x2="30" y2="295" stroke="#94a3b8" strokeWidth="1.5" />
               <line x1="160" y1="25" x2="290" y2="295" stroke="#94a3b8" strokeWidth="1.5" />
               <line x1="95" y1="160" x2="225" y2="160" stroke="#4f46e5" strokeWidth="3" strokeLinecap="round" />
@@ -109,7 +109,7 @@ export default function Lesson() {
           </div>
           <div className="rounded-xl border border-border bg-surface p-5">
             <p className="mb-3 text-center font-semibold text-foreground">Configuration « papillon »</p>
-            <svg viewBox="0 0 320 320" className="mx-auto">
+            <svg role="img" aria-label="Figure 3 — Le Théorème de Thalès : points A, M, N, B, C" viewBox="0 0 320 320" className="mx-auto">
               <line x1="60" y1="60" x2="290" y2="290" stroke="#94a3b8" strokeWidth="1.5" />
               <line x1="260" y1="60" x2="30" y2="290" stroke="#94a3b8" strokeWidth="1.5" />
               <line x1="60" y1="60" x2="260" y2="60" stroke="#4f46e5" strokeWidth="3" strokeLinecap="round" />
@@ -175,7 +175,7 @@ export default function Lesson() {
               </p>
               <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                 <div className="rounded-xl border border-border bg-surface-muted p-4">
-                  <svg viewBox="0 0 340 300" className="mx-auto">
+                  <svg role="img" aria-label="Figure 4 — Le Théorème de Thalès : points E, A, B, D, C" viewBox="0 0 340 300" className="mx-auto">
                     <line x1="300" y1="40" x2="40" y2="260" stroke="#94a3b8" strokeWidth="1.5" />
                     <line x1="300" y1="40" x2="280" y2="260" stroke="#94a3b8" strokeWidth="1.5" />
                     <line x1="40" y1="260" x2="280" y2="260" stroke="#334155" strokeWidth="2" />
@@ -267,7 +267,7 @@ export default function Lesson() {
               </p>
               <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                 <div className="rounded-xl border border-border bg-surface-muted p-4">
-                  <svg viewBox="0 0 360 370" className="mx-auto">
+                  <svg role="img" aria-label="Figure 5 — Le Théorème de Thalès : points A, B, C, D, E" viewBox="0 0 360 370" className="mx-auto">
                     <line x1="200" y1="40" x2="60" y2="290" stroke="#334155" strokeWidth="2" />
                     <line x1="200" y1="40" x2="320" y2="340" stroke="#334155" strokeWidth="2" />
                     <line x1="60" y1="290" x2="320" y2="340" stroke="#334155" strokeWidth="2" />
@@ -327,7 +327,7 @@ export default function Lesson() {
                 </p>
                 <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
-                    <svg viewBox="0 0 340 320" className="mx-auto">
+                    <svg role="img" aria-label="Figure 6 — Le Théorème de Thalès : points O, A, B, C, D" viewBox="0 0 340 320" className="mx-auto">
                       <line x1="260" y1="70" x2="135" y2="182.5" stroke="#94a3b8" strokeWidth="1.5" />
                       <line x1="270" y1="260" x2="132.5" y2="135" stroke="#94a3b8" strokeWidth="1.5" />
                       <line x1="260" y1="70" x2="270" y2="260" stroke="#4f46e5" strokeWidth="3" strokeLinecap="round" />
@@ -380,7 +380,7 @@ export default function Lesson() {
                 <p className="text-foreground-muted">Figure tracée à main levée (on ne demande pas de la refaire).</p>
                 <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
-                    <svg viewBox="0 0 220 340" className="mx-auto">
+                    <svg role="img" aria-label="Figure 7 — Le Théorème de Thalès : points I, M, R, S, P, T, N" viewBox="0 0 220 340" className="mx-auto">
                       <line x1="50" y1="260" x2="173" y2="174.5" stroke="#94a3b8" strokeWidth="1.5" />
                       <line x1="50" y1="260" x2="119.3" y2="317.6" stroke="#94a3b8" strokeWidth="1.5" />
                       <line x1="148.4" y1="191.6" x2="96.2" y2="298.4" stroke="#334155" strokeWidth="2" />
@@ -446,7 +446,7 @@ export default function Lesson() {
                 </p>
                 <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
-                    <svg viewBox="0 0 340 310" className="mx-auto">
+                    <svg role="img" aria-label="Figure 8 — Le Théorème de Thalès : points A, B, C, E, D, F" viewBox="0 0 340 310" className="mx-auto">
                       <line x1="190" y1="40" x2="60" y2="290" stroke="#334155" strokeWidth="2" />
                       <line x1="190" y1="40" x2="320" y2="290" stroke="#334155" strokeWidth="2" />
                       <line x1="60" y1="290" x2="320" y2="290" stroke="#334155" strokeWidth="2" />
@@ -504,7 +504,7 @@ export default function Lesson() {
                 </p>
                 <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
-                    <svg viewBox="0 0 380 220" className="mx-auto">
+                    <svg role="img" aria-label="Figure 9 — Le Théorème de Thalès : points P, U, V, Q, R, S, T" viewBox="0 0 380 220" className="mx-auto">
                       <line x1="190" y1="20" x2="88" y2="190" stroke="#94a3b8" strokeWidth="1.5" />
                       <line x1="190" y1="20" x2="292" y2="190" stroke="#94a3b8" strokeWidth="1.5" />
                       <line x1="148" y1="90" x2="232" y2="90" stroke="#4f46e5" strokeWidth="3" strokeLinecap="round" />
@@ -556,7 +556,7 @@ export default function Lesson() {
                 </p>
                 <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
-                    <svg viewBox="0 0 400 220" className="mx-auto">
+                    <svg role="img" aria-label="Figure 10 — Le Théorème de Thalès : points A, B, C, D, M, N" viewBox="0 0 400 220" className="mx-auto">
                       <polygon points="116.8,50 360,50 360,147.28 40,178" fill="#c7d2fe" opacity="0.45" />
                       <rect x="40" y="50" width="320" height="128" fill="none" stroke="#334155" strokeWidth="2" />
                       <line x1="40" y1="50" x2="360" y2="178" stroke="#f59e0b" strokeWidth="2" strokeDasharray="5,4" />
@@ -614,7 +614,7 @@ export default function Lesson() {
                 </p>
                 <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
-                    <svg viewBox="0 0 400 290" className="mx-auto">
+                    <svg role="img" aria-label="Figure 11 — Le Théorème de Thalès : points E, A, B, D, C, M, N" viewBox="0 0 400 290" className="mx-auto">
                       <polygon points="100,105 380,105 340,260 60,260" fill="#eef2ff" stroke="#334155" strokeWidth="2" />
                       <line x1="113" y1="54" x2="60" y2="260" stroke="#334155" strokeWidth="2" />
                       <line x1="113" y1="54" x2="340" y2="260" stroke="#f59e0b" strokeWidth="2" strokeDasharray="5,4" />

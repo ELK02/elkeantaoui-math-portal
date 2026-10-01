@@ -75,7 +75,7 @@ function Figure({ text, svg, reverse = false }: { text: ReactNode; svg: ReactNod
 
 function Grid({ viewBox, children, className = "max-w-[240px]" }: { viewBox: string; children: ReactNode; className?: string }) {
   return (
-    <svg viewBox={viewBox} className={`h-auto w-full ${className} text-neutral-700`}>
+    <svg role="img" aria-label="Figure 1 — Généralités sur les fonctions" viewBox={viewBox} className={`h-auto w-full ${className} text-neutral-700`}>
       {children}
     </svg>
   );
@@ -139,7 +139,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 220 160" className="h-48 w-56 text-white">
+          <svg role="img" aria-label="Figure 2 — Généralités sur les fonctions" viewBox="0 0 220 160" className="h-48 w-56 text-white">
             <line x1="10" y1="140" x2="210" y2="140" stroke="white" strokeWidth="1.4" opacity="0.5" />
             <line x1="110" y1="20" x2="110" y2="150" stroke="white" strokeWidth="1.4" opacity="0.5" />
             <path

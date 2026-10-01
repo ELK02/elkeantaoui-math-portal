@@ -64,7 +64,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 200 160" className="h-40 w-48 text-white/90">
+          <svg role="img" aria-label="Figure 1 — Le Théorème de Pythagore" viewBox="0 0 200 160" className="h-40 w-48 text-white/90">
             <line x1="30" y1="20" x2="30" y2="140" stroke="currentColor" strokeWidth="2.5" />
             <line x1="30" y1="140" x2="170" y2="140" stroke="currentColor" strokeWidth="2.5" />
             <line x1="30" y1="20" x2="170" y2="140" stroke="#fb923c" strokeWidth="2.5" />
@@ -87,7 +87,7 @@ export default function Lesson() {
 
         <div className="mt-6 grid items-center gap-6 sm:grid-cols-2">
           <div className="rounded-xl border border-border bg-surface p-5">
-            <svg viewBox="0 0 340 300" className="mx-auto">
+            <svg role="img" aria-label="Figure 2 — Le Théorème de Pythagore : points B, A, C ; 3 cm, 4 cm, 5 cm" viewBox="0 0 340 300" className="mx-auto">
               <line x1="70" y1="60" x2="70" y2="250" stroke="#334155" strokeWidth="2.2" />
               <line x1="70" y1="250" x2="300" y2="250" stroke="#334155" strokeWidth="2.2" />
               <line x1="70" y1="60" x2="300" y2="250" stroke="#4f46e5" strokeWidth="2.6" />
@@ -127,7 +127,7 @@ export default function Lesson() {
         </PropertyBox>
 
         <div className="mt-6 rounded-xl border border-border bg-surface p-5 sm:p-6">
-          <svg viewBox="0 0 360 300" className="mx-auto max-w-sm">
+          <svg role="img" aria-label="Figure 3 — Le Théorème de Pythagore : points B, A, C ; Hypoténuse, côtés de l'angle droit" viewBox="0 0 360 300" className="mx-auto max-w-sm">
             <line x1="90" y1="50" x2="90" y2="240" stroke="#334155" strokeWidth="2.2" />
             <line x1="90" y1="240" x2="300" y2="240" stroke="#334155" strokeWidth="2.2" />
             <line x1="90" y1="50" x2="300" y2="240" stroke="#4f46e5" strokeWidth="2.6" />
@@ -162,7 +162,7 @@ export default function Lesson() {
               </p>
               <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                 <div className="rounded-xl border border-border bg-surface-muted p-4">
-                  <svg viewBox="0 0 380 280" className="mx-auto">
+                  <svg role="img" aria-label="Figure 4 — Le Théorème de Pythagore : points E, G, F ; 3 cm, 7 cm, ?" viewBox="0 0 380 280" className="mx-auto">
                     <line x1="80" y1="50" x2="80" y2="230" stroke="#334155" strokeWidth="2.2" />
                     <line x1="80" y1="230" x2="360" y2="230" stroke="#334155" strokeWidth="2.2" />
                     <line x1="80" y1="50" x2="360" y2="230" stroke="#4f46e5" strokeWidth="2.6" />
@@ -231,7 +231,7 @@ export default function Lesson() {
               </p>
               <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                 <div className="rounded-xl border border-border bg-surface-muted p-4">
-                  <svg viewBox="0 0 320 280" className="mx-auto">
+                  <svg role="img" aria-label="Figure 5 — Le Théorème de Pythagore : points A, C, B ; √3 cm, √5 cm, 2√2 cm" viewBox="0 0 320 280" className="mx-auto">
                     <line x1="70" y1="92" x2="70" y2="230" stroke="#334155" strokeWidth="2.2" />
                     <line x1="70" y1="230" x2="249" y2="230" stroke="#334155" strokeWidth="2.2" />
                     <line x1="70" y1="92" x2="249" y2="230" stroke="#4f46e5" strokeWidth="2.6" />
@@ -288,7 +288,7 @@ export default function Lesson() {
                 </p>
                 <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
-                    <svg viewBox="0 0 340 300" className="mx-auto">
+                    <svg role="img" aria-label="Figure 6 — Le Théorème de Pythagore : points A, B, C, H ; 10 cm, 8 cm, 2,5 cm" viewBox="0 0 340 300" className="mx-auto">
                       <line x1="60" y1="260" x2="312" y2="260" stroke="#334155" strokeWidth="2.2" />
                       <line x1="60" y1="260" x2="252" y2="116" stroke="#4f46e5" strokeWidth="2.6" />
                       <line x1="252" y1="116" x2="312" y2="260" stroke="#4f46e5" strokeWidth="2.6" />
@@ -354,7 +354,7 @@ export default function Lesson() {
                 <p className="text-foreground-muted">Un terrain de football rectangulaire mesure 95 m de longueur et 72 m de largeur.</p>
                 <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
-                    <svg viewBox="0 0 340 260" className="mx-auto">
+                    <svg role="img" aria-label="Figure 7 — Le Théorème de Pythagore : 95 m, 72 m, ?" viewBox="0 0 340 260" className="mx-auto">
                       <rect x="40" y="40" width="260" height="180" fill="none" stroke="#334155" strokeWidth="2.2" />
                       <line x1="40" y1="40" x2="300" y2="220" stroke="#4f46e5" strokeWidth="2.4" strokeDasharray="6,5" />
                       <circle cx="40" cy="40" r="4" fill="#1e293b" />
@@ -397,7 +397,7 @@ export default function Lesson() {
                 <p className="text-foreground-muted">Un foulard est un carré d&apos;étoffe de 60 cm de côté. Calculer la longueur d&apos;une diagonale (arrondir au dixième).</p>
                 <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
-                    <svg viewBox="0 0 300 260" className="mx-auto">
+                    <svg role="img" aria-label="Figure 8 — Le Théorème de Pythagore : 60 cm, ?" viewBox="0 0 300 260" className="mx-auto">
                       <rect x="70" y="40" width="180" height="180" fill="none" stroke="#334155" strokeWidth="2.2" />
                       <line x1="70" y1="40" x2="250" y2="220" stroke="#4f46e5" strokeWidth="2.4" strokeDasharray="6,5" />
                       <circle cx="70" cy="40" r="4" fill="#1e293b" />
@@ -435,7 +435,7 @@ export default function Lesson() {
                 <p className="text-foreground-muted"><Math tex="ABC" /> est isocèle en <Math tex="A" /> avec <Math tex="AB=AC=6" /> cm et <Math tex="BC=5" /> cm.</p>
                 <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
-                    <svg viewBox="0 0 340 270" className="mx-auto">
+                    <svg role="img" aria-label="Figure 9 — Le Théorème de Pythagore : points A, B, C, H ; 6 cm, 5 cm" viewBox="0 0 340 270" className="mx-auto">
                       <line x1="95" y1="230" x2="245" y2="230" stroke="#334155" strokeWidth="2.2" />
                       <line x1="95" y1="230" x2="170" y2="67" stroke="#4f46e5" strokeWidth="2.6" />
                       <line x1="245" y1="230" x2="170" y2="67" stroke="#4f46e5" strokeWidth="2.6" />
@@ -483,7 +483,7 @@ export default function Lesson() {
                 <p className="text-foreground-muted"><Math tex="IJK" /> est équilatéral de côté 4 cm. Calculer la longueur des médianes (arrondie au dixième).</p>
                 <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
-                    <svg viewBox="0 0 340 260" className="mx-auto">
+                    <svg role="img" aria-label="Figure 10 — Le Théorème de Pythagore : points I, J, K, M ; 4 cm, médiane" viewBox="0 0 340 260" className="mx-auto">
                       <line x1="80" y1="230" x2="300" y2="230" stroke="#334155" strokeWidth="2.2" />
                       <line x1="80" y1="230" x2="190" y2="40" stroke="#334155" strokeWidth="2.2" />
                       <line x1="300" y1="230" x2="190" y2="40" stroke="#334155" strokeWidth="2.2" />
@@ -525,7 +525,7 @@ export default function Lesson() {
                 <p className="text-foreground-muted"><Math tex="ABCD" /> est un losange de centre <Math tex="O" /> avec <Math tex="AC=20" /> cm et <Math tex="BD=48" /> cm.</p>
                 <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
-                    <svg viewBox="0 0 340 260" className="mx-auto">
+                    <svg role="img" aria-label="Figure 11 — Le Théorème de Pythagore : points A, B, C, D, O ; 20 cm, 48 cm" viewBox="0 0 340 260" className="mx-auto">
                       <line x1="190" y1="30" x2="310" y2="130" stroke="#4f46e5" strokeWidth="2.4" />
                       <line x1="310" y1="130" x2="190" y2="230" stroke="#4f46e5" strokeWidth="2.4" />
                       <line x1="190" y1="230" x2="70" y2="130" stroke="#4f46e5" strokeWidth="2.4" />
@@ -588,7 +588,7 @@ export default function Lesson() {
                 </p>
                 <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
-                    <svg viewBox="0 0 260 280" className="mx-auto">
+                    <svg role="img" aria-label="Figure 12 — Le Théorème de Pythagore : points A, B, C, D, I ; 3 cm, 1 cm, 10 cm" viewBox="0 0 260 280" className="mx-auto">
                       <rect x="90" y="30" width="70" height="220" fill="none" stroke="#334155" strokeWidth="2.2" />
                       <line x1="90" y1="30" x2="160" y2="52" stroke="#4f46e5" strokeWidth="2.2" />
                       <line x1="90" y1="250" x2="160" y2="52" stroke="#4f46e5" strokeWidth="2.2" />
@@ -649,7 +649,7 @@ export default function Lesson() {
                 <p className="text-foreground-muted"><Math tex="ABCDEFGH" /> est un pavé droit de longueur 4 cm, largeur 3 cm et hauteur 12 cm.</p>
                 <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
-                    <svg viewBox="0 -18 340 338" className="mx-auto">
+                    <svg role="img" aria-label="Figure 13 — Le Théorème de Pythagore : points A, D, B, C, E, H, F, G ; 4 cm, 3 cm, 12 cm" viewBox="0 -18 340 338" className="mx-auto">
                       <line x1="70" y1="60" x2="190" y2="60" stroke="#334155" strokeWidth="2" />
                       <line x1="70" y1="60" x2="70" y2="300" stroke="#334155" strokeWidth="2" />
                       <line x1="190" y1="60" x2="190" y2="300" stroke="#334155" strokeWidth="2" />
@@ -723,7 +723,7 @@ export default function Lesson() {
                 </p>
                 <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
-                    <svg viewBox="0 0 370 345" className="mx-auto">
+                    <svg role="img" aria-label="Figure 14 — Le Théorème de Pythagore : points D, O, B, A, C ; 25 cm, 26 cm, 6 cm, 8 cm" viewBox="0 0 370 345" className="mx-auto">
                       <line x1="215" y1="30" x2="215" y2="320" stroke="#334155" strokeWidth="2.2" />
                       <line x1="215" y1="30" x2="340" y2="150" stroke="#4f46e5" strokeWidth="2.4" />
                       <line x1="215" y1="320" x2="340" y2="150" stroke="#4f46e5" strokeWidth="2.4" />
@@ -790,7 +790,7 @@ export default function Lesson() {
                 </p>
                 <div className="mt-4 grid items-center gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
-                    <svg viewBox="0 0 340 300" className="mx-auto">
+                    <svg role="img" aria-label="Figure 15 — Le Théorème de Pythagore : points A, B, C, H" viewBox="0 0 340 300" className="mx-auto">
                       <line x1="60" y1="260" x2="312" y2="260" stroke="#334155" strokeWidth="2.2" />
                       <line x1="60" y1="260" x2="221" y2="139" stroke="#334155" strokeWidth="2.2" />
                       <line x1="221" y1="139" x2="312" y2="260" stroke="#334155" strokeWidth="2.2" />

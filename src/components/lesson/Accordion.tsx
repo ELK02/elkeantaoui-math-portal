@@ -16,6 +16,8 @@ export function AccordionItem({ title, children }: { title: ReactNode; children:
         <svg
           viewBox="0 0 20 20"
           fill="currentColor"
+          aria-hidden="true"
+          focusable="false"
           className={`h-4 w-4 shrink-0 text-foreground-muted transition-transform ${open ? "rotate-180" : ""}`}
         >
           <path

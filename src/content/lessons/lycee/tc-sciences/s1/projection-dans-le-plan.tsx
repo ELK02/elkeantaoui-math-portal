@@ -95,7 +95,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 260 260" className="h-56 w-56 text-white sm:h-72 sm:w-72">
+          <svg role="img" aria-label="Figure 1 — La projection dans le plan : points M, M' ; (Δ), (D)" viewBox="0 0 260 260" className="h-56 w-56 text-white sm:h-72 sm:w-72">
             <ArrowDefs id="heroProj" color="#fb923c" />
             <line x1="48" y1="248" x2="160" y2="24" stroke="currentColor" strokeWidth="2" opacity="0.85" />
             <line x1="34" y1="238.7" x2="216" y2="178" stroke="currentColor" strokeWidth="2" opacity="0.85" />
@@ -133,7 +133,7 @@ export default function Lesson() {
               </>
             }
             svg={
-              <svg viewBox="0 0 260 260" className="h-auto w-full max-w-[260px] text-neutral-700">
+              <svg role="img" aria-label="Figure 2 — La projection dans le plan : points M, M' ; (Δ), (D)" viewBox="0 0 260 260" className="h-auto w-full max-w-[260px] text-neutral-700">
                 <ArrowDefs id="p1" />
                 <line x1="34" y1="238.7" x2="216" y2="178" stroke="#0ea5e9" strokeWidth="2" />
                 <line x1="48" y1="248" x2="160" y2="24" stroke="currentColor" strokeWidth="2" />
@@ -153,7 +153,7 @@ export default function Lesson() {
             Si <Math tex="(D)\perp(\Delta)" />, le projeté <Math tex="M'" /> de <Math tex="M" /> sur{" "}
             <Math tex="(\Delta)" /> parallèlement à <Math tex="(D)" /> est appelé{" "}
             <strong>projection orthogonale</strong> de <Math tex="M" /> sur <Math tex="(\Delta)" />.
-            <svg viewBox="0 0 160 90" className="mx-auto mt-3 h-20 w-auto">
+            <svg role="img" aria-label="Figure 3 — La projection dans le plan : points A, A' ; (Δ)" viewBox="0 0 160 90" className="mx-auto mt-3 h-20 w-auto">
               <line x1="10" y1="70" x2="150" y2="70" stroke="currentColor" strokeWidth="1.6" />
               <line x1="90" y1="70" x2="90" y2="10" stroke="currentColor" strokeWidth="1.6" strokeDasharray="4 3" />
               <path d="M84,70 L84,64 L90,64" fill="none" stroke="currentColor" strokeWidth="1.2" />
@@ -249,7 +249,7 @@ export default function Lesson() {
                 </>
               }
               svg={
-                <svg viewBox="0 0 260 260" className="h-auto w-full max-w-[240px] text-neutral-700">
+                <svg role="img" aria-label="Figure 4 — La projection dans le plan : points A, B, C, I, J" viewBox="0 0 260 260" className="h-auto w-full max-w-[240px] text-neutral-700">
                   <polygon points="30,230 228,230 153.8,120.9" fill="#4f46e5" fillOpacity="0.05" />
                   <line x1="30" y1="230" x2="153.8" y2="120.9" stroke="currentColor" strokeWidth="1.6" />
                   <line x1="228" y1="230" x2="153.8" y2="120.9" stroke="currentColor" strokeWidth="1.6" />
@@ -310,7 +310,7 @@ export default function Lesson() {
               }
               reverse
               svg={
-                <svg viewBox="0 0 260 260" className="h-auto w-full max-w-[240px] text-neutral-700">
+                <svg role="img" aria-label="Figure 5 — La projection dans le plan : points A, D, E, B, C" viewBox="0 0 260 260" className="h-auto w-full max-w-[240px] text-neutral-700">
                   <polygon points="40,230 172,230 40,32" fill="#0ea5e9" fillOpacity="0.05" />
                   <line x1="40" y1="230" x2="172" y2="230" stroke="currentColor" strokeWidth="1.6" />
                   <line x1="40" y1="230" x2="40" y2="32" stroke="currentColor" strokeWidth="1.6" />
@@ -386,7 +386,7 @@ export default function Lesson() {
                 </>
               }
               svg={
-                <svg viewBox="0 0 260 260" className="h-auto w-full max-w-[240px] text-neutral-700">
+                <svg role="img" aria-label="Figure 6 — La projection dans le plan : points A, B, C, M, N" viewBox="0 0 260 260" className="h-auto w-full max-w-[240px] text-neutral-700">
                   <polygon points="40,230 220,230 100,80" fill="#22c55e" fillOpacity="0.05" />
                   <line x1="40" y1="230" x2="220" y2="230" stroke="currentColor" strokeWidth="1.6" />
                   <line x1="40" y1="230" x2="100" y2="80" stroke="currentColor" strokeWidth="1.6" />
@@ -458,7 +458,7 @@ export default function Lesson() {
                   </div>
                 }
                 svg={
-                  <svg viewBox="0 0 220 220" className="h-auto w-full max-w-[240px] text-neutral-700">
+                  <svg role="img" aria-label="Figure 7 — La projection dans le plan : points A, B, D, C, I, J, K" viewBox="0 0 220 220" className="h-auto w-full max-w-[240px] text-neutral-700">
                     <ArrowDefs id="pex1" />
                     <polygon points="25,25 195,195 81.7,195 81.7,110" fill="#4f46e5" fillOpacity="0.05" stroke="currentColor" strokeWidth="1.4" />
                     {/* angle droit en D */}
@@ -540,7 +540,7 @@ export default function Lesson() {
                   </div>
                 }
                 svg={
-                  <svg viewBox="0 0 240 208.3" className="h-auto w-full max-w-[260px] text-neutral-700">
+                  <svg role="img" aria-label="Figure 8 — La projection dans le plan : points A, B, C, D, M, N" viewBox="0 0 240 208.3" className="h-auto w-full max-w-[260px] text-neutral-700">
                     <ArrowDefs id="pex2" />
                     <ArrowDefs id="pex2blue" color="#0ea5e9" />
                     {/* triangle ABC, D sur [BC] */}
@@ -620,7 +620,7 @@ export default function Lesson() {
                   </div>
                 }
                 svg={
-                  <svg viewBox="0 0 240 176.7" className="h-auto w-full max-w-[260px] text-neutral-700">
+                  <svg role="img" aria-label="Figure 9 — La projection dans le plan : points A, B, C, M, D, E" viewBox="0 0 240 176.7" className="h-auto w-full max-w-[260px] text-neutral-700">
                     <ArrowDefs id="pex3" />
                     {/* triangle isocèle ABC */}
                     <polygon points="120,25 25,151.7 215,151.7" fill="none" stroke="currentColor" strokeWidth="1.4" />
@@ -701,7 +701,7 @@ export default function Lesson() {
                   </div>
                 }
                 svg={
-                  <svg viewBox="0 0 260 207.5" className="h-auto w-full max-w-[280px] text-neutral-700">
+                  <svg role="img" aria-label="Figure 10 — La projection dans le plan : points A, B, C, M, N, M', N', I, P" viewBox="0 0 260 207.5" className="h-auto w-full max-w-[280px] text-neutral-700">
                     <ArrowDefs id="pex4" />
                     {/* triangle ABC */}
                     <polygon points="165,77.5 235,77.5 182.5,25" fill="#4f46e5" fillOpacity="0.05" stroke="currentColor" strokeWidth="1.4" />
@@ -804,7 +804,7 @@ export default function Lesson() {
                   </div>
                 }
                 svg={
-                  <svg viewBox="0 0 260 200" className="h-auto w-full max-w-[280px] text-neutral-700">
+                  <svg role="img" aria-label="Figure 11 — La projection dans le plan : points A, B, A', B', C, H, E ; (D), (Δ)" viewBox="0 0 260 200" className="h-auto w-full max-w-[280px] text-neutral-700">
                     <ArrowDefs id="pex5" />
                     {/* (D) et (Delta), sécantes */}
                     <line x1="25" y1="109" x2="235" y2="109" stroke="currentColor" strokeWidth="1.4" />
@@ -905,7 +905,7 @@ export default function Lesson() {
                   </div>
                 }
                 svg={
-                  <svg viewBox="0 0 177.5 220" className="h-auto w-full max-w-[210px] text-neutral-700">
+                  <svg role="img" aria-label="Figure 12 — La projection dans le plan : points A, B, C, D, E, B', C', F" viewBox="0 0 177.5 220" className="h-auto w-full max-w-[210px] text-neutral-700">
                     <ArrowDefs id="pex6" />
                     {/* A,B,C,D régulièrement espacés */}
                     <line x1="25" y1="195" x2="110" y2="195" stroke="currentColor" strokeWidth="1.5" />
@@ -1009,7 +1009,7 @@ export default function Lesson() {
                   </div>
                 }
                 svg={
-                  <svg viewBox="0 0 240 145" className="h-auto w-full max-w-[260px] text-neutral-700">
+                  <svg role="img" aria-label="Figure 13 — La projection dans le plan : points A, B, C, E, F, G" viewBox="0 0 240 145" className="h-auto w-full max-w-[260px] text-neutral-700">
                     <ArrowDefs id="pex7" />
                     <ArrowDefs id="pex7red" color="#e11d48" />
                     {/* triangle ABC, G sur (AB) prolongée, E sur [BC], F sur [AC] */}

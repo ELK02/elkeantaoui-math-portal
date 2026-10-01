@@ -385,7 +385,7 @@ export default function Lesson() {
             itemsLabel="1 figure"
             items={
               <div className="flex flex-col items-center gap-6 rounded-xl border border-border p-5 sm:flex-row">
-                <svg viewBox="0 0 210 130" className="h-auto w-48 shrink-0 text-foreground">
+                <svg role="img" aria-label="Figure 1 — Évaluation diagnostique : points A, B, C, D ; 3 cm, 2 cm" viewBox="0 0 210 130" className="h-auto w-48 shrink-0 text-foreground">
                   <rect x="20" y="20" width="140" height="90" fill="none" stroke="currentColor" strokeWidth="2" />
                   <text x="12" y="16" fontSize="13" fontStyle="italic" fill="currentColor">A</text>
                   <text x="156" y="16" fontSize="13" fontStyle="italic" fill="currentColor">B</text>

@@ -107,7 +107,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 200 200" className="h-40 w-40 sm:h-56 sm:w-56" fill="none">
+          <svg role="img" aria-label="Figure 1 — Angles Alternes-Internes &amp; Correspondants" viewBox="0 0 200 200" className="h-40 w-40 sm:h-56 sm:w-56" fill="none">
             <line x1="20" y1="60" x2="180" y2="60" stroke="white" strokeWidth="3" />
             <line x1="20" y1="140" x2="180" y2="140" stroke="white" strokeWidth="3" />
             <line x1="65" y1="20" x2="135" y2="180" stroke="#fb923c" strokeWidth="2.5" />
@@ -132,7 +132,7 @@ export default function Lesson() {
           </p>
 
           <Diagram>
-            <svg viewBox="0 0 380 260" className="mx-auto h-auto w-full max-w-sm">
+            <svg role="img" aria-label="Figure 2 — Angles Alternes-Internes &amp; Correspondants : points E, F, G, H, A, B ; (Δ), (D), (D′)" viewBox="0 0 380 260" className="mx-auto h-auto w-full max-w-sm">
               <line x1="30" y1="80" x2="345" y2="80" className="stroke-teal-600" strokeWidth="2.25" />
               <line x1="30" y1="190" x2="345" y2="190" className="stroke-teal-600" strokeWidth="2.25" />
               <line x1="122" y1="20" x2="265" y2="245" className="stroke-slate-500" strokeWidth="2" />
@@ -193,7 +193,7 @@ export default function Lesson() {
               </>
             }
             diagram={
-              <svg viewBox="0 0 300 220" className="mx-auto h-auto w-full max-w-xs">
+              <svg role="img" aria-label="Figure 3 — Angles Alternes-Internes &amp; Correspondants : points A, B, C, E" viewBox="0 0 300 220" className="mx-auto h-auto w-full max-w-xs">
                 <polygon points="150,30 60,180 240,180" className="fill-teal-50 stroke-teal-600" strokeWidth="2.25" />
                 <line x1="240" y1="180" x2="276" y2="120" strokeDasharray="5,4" className="stroke-violet-500" strokeWidth="1.75" />
                 <g className="stroke-slate-600" strokeWidth="1.75">
@@ -250,7 +250,7 @@ export default function Lesson() {
             }
             question="Montrons que (AB) ∥ (CD)."
             diagram={
-              <svg viewBox="0 0 320 220" className="mx-auto h-auto w-full max-w-xs">
+              <svg role="img" aria-label="Figure 4 — Angles Alternes-Internes &amp; Correspondants : points A, B, C, D ; 50°" viewBox="0 0 320 220" className="mx-auto h-auto w-full max-w-xs">
                 <line x1="40" y1="40" x2="180" y2="60" className="stroke-teal-600" strokeWidth="2.25" />
                 <line x1="180" y1="60" x2="150" y2="170" className="stroke-slate-500" strokeWidth="2" />
                 <line x1="150" y1="170" x2="295" y2="190" className="stroke-teal-600" strokeWidth="2.25" />
@@ -307,7 +307,7 @@ export default function Lesson() {
           </p>
 
           <Diagram>
-            <svg viewBox="0 0 380 260" className="mx-auto h-auto w-full max-w-sm">
+            <svg role="img" aria-label="Figure 5 — Angles Alternes-Internes &amp; Correspondants : points M, N, E, F, G, H, A, B ; (D), (D′)" viewBox="0 0 380 260" className="mx-auto h-auto w-full max-w-sm">
               <line x1="30" y1="80" x2="345" y2="80" className="stroke-fuchsia-600" strokeWidth="2.25" />
               <line x1="30" y1="190" x2="345" y2="190" className="stroke-fuchsia-600" strokeWidth="2.25" />
               <line x1="122" y1="20" x2="265" y2="245" className="stroke-slate-500" strokeWidth="2" />
@@ -367,7 +367,7 @@ export default function Lesson() {
             }
             question="Montrons que le triangle CEF est rectangle en E."
             diagram={
-              <svg viewBox="0 0 300 220" className="mx-auto h-auto w-full max-w-xs">
+              <svg role="img" aria-label="Figure 6 — Angles Alternes-Internes &amp; Correspondants : points C, A, B, E, F" viewBox="0 0 300 220" className="mx-auto h-auto w-full max-w-xs">
                 <polygon points="70,30 70,180 260,180" className="fill-fuchsia-50 stroke-fuchsia-600" strokeWidth="2.25" />
                 <line x1="70" y1="110" x2="171.3" y2="110" strokeDasharray="5,4" className="stroke-violet-500" strokeWidth="1.75" />
                 <path d="M70,168 L82,168 L82,180" fill="none" className="stroke-slate-600" strokeWidth="1.75" />
@@ -421,7 +421,7 @@ export default function Lesson() {
             }
             question="Montrons que (EF) ∥ (BC)."
             diagram={
-              <svg viewBox="0 0 300 220" className="mx-auto h-auto w-full max-w-xs">
+              <svg role="img" aria-label="Figure 7 — Angles Alternes-Internes &amp; Correspondants : points A, B, C, E, F ; 60°" viewBox="0 0 300 220" className="mx-auto h-auto w-full max-w-xs">
                 <line x1="150" y1="30" x2="50" y2="190" className="stroke-slate-500" strokeWidth="2" />
                 <line x1="150" y1="30" x2="250" y2="190" className="stroke-slate-500" strokeWidth="2" />
                 <line x1="50" y1="190" x2="250" y2="190" className="stroke-fuchsia-600" strokeWidth="2.25" />
@@ -545,7 +545,7 @@ export default function Lesson() {
                   et <strong>(d₂)</strong> :
                 </p>
                 <Diagram>
-                  <svg viewBox="0 0 320 220" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 8 — Angles Alternes-Internes &amp; Correspondants : points A, B, O, C ; (d₁), (d₂), 60°, 30°" viewBox="0 0 320 220" className="mx-auto h-auto w-full max-w-xs">
                     <line x1="50" y1="50" x2="250" y2="50" className="stroke-teal-600" strokeWidth="2.25" />
                     <line x1="150" y1="50" x2="150" y2="180" className="stroke-slate-500" strokeWidth="2" />
                     <line x1="30" y1="180" x2="280" y2="180" className="stroke-teal-600" strokeWidth="2.25" />
@@ -609,7 +609,7 @@ export default function Lesson() {
                   <strong>M</strong> appartient à la demi-droite [CD) hors du segment [CD] (voir figure).
                 </p>
                 <Diagram>
-                  <svg viewBox="0 0 360 230" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 9 — Angles Alternes-Internes &amp; Correspondants : points A, B, D, C, M" viewBox="0 0 360 230" className="mx-auto h-auto w-full max-w-xs">
                     <line x1="50" y1="50" x2="280" y2="50" className="stroke-teal-600" strokeWidth="2.25" />
                     <line x1="90" y1="190" x2="340" y2="190" className="stroke-teal-600" strokeWidth="2.25" />
                     <line x1="70" y1="50" x2="150" y2="190" className="stroke-slate-500" strokeWidth="2" />
@@ -664,7 +664,7 @@ export default function Lesson() {
                   [AB].
                 </p>
                 <Diagram>
-                  <svg viewBox="0 0 320 260" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 10 — Angles Alternes-Internes &amp; Correspondants : points A, B, C, F, E" viewBox="0 0 320 260" className="mx-auto h-auto w-full max-w-xs">
                     <polygon points="175,83 90,230 260,230" className="fill-fuchsia-50 stroke-fuchsia-600" strokeWidth="2.25" />
                     <line x1="110" y1="83" x2="255" y2="83" className="stroke-teal-600" strokeWidth="2.25" />
                     <line x1="175" y1="83" x2="205" y2="31" className="stroke-slate-500" strokeWidth="2" />
@@ -728,7 +728,7 @@ export default function Lesson() {
                   adjacents, avec <Math tex="\widehat{BAE} = 50°" />.
                 </p>
                 <Diagram>
-                  <svg viewBox="0 0 320 220" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 11 — Angles Alternes-Internes &amp; Correspondants : points A, B, C, E ; 50°, 80°" viewBox="0 0 320 220" className="mx-auto h-auto w-full max-w-xs">
                     <polygon points="175,40 66,170 284,170" className="fill-teal-50 stroke-teal-600" strokeWidth="2.25" />
                     <line x1="175" y1="40" x2="45" y2="40" className="stroke-slate-500" strokeWidth="2" />
                     <circle cx="175" cy="40" r="5" className="fill-teal-600" />
@@ -784,7 +784,7 @@ export default function Lesson() {
                   parallèle à <strong>(BC)</strong>, avec F et E deux points de (D) de part et d&apos;autre de A.
                 </p>
                 <Diagram>
-                  <svg viewBox="0 0 340 240" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 12 — Angles Alternes-Internes &amp; Correspondants : points A, B, C, F, E ; (D)" viewBox="0 0 340 240" className="mx-auto h-auto w-full max-w-xs">
                     <line x1="40" y1="50" x2="310" y2="50" className="stroke-indigo-600" strokeWidth="2.25" />
                     <polygon points="175,50 80,210 270,210" className="fill-indigo-50 stroke-slate-600" strokeWidth="2.25" />
                     <circle cx="175" cy="50" r="5" className="fill-indigo-600" />
@@ -855,7 +855,7 @@ export default function Lesson() {
                   Soit la figure ci-dessous, avec les informations codées : <strong>(AB) ∥ (ED)</strong>.
                 </p>
                 <Diagram>
-                  <svg viewBox="0 0 320 200" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 13 — Angles Alternes-Internes &amp; Correspondants : points A, B, E, D, C ; 40°" viewBox="0 0 320 200" className="mx-auto h-auto w-full max-w-xs">
                     <line x1="150" y1="40" x2="280" y2="40" className="stroke-teal-600" strokeWidth="2.25" />
                     <line x1="150" y1="40" x2="150" y2="150" className="stroke-slate-500" strokeWidth="2" />
                     <line x1="40" y1="150" x2="150" y2="150" className="stroke-teal-600" strokeWidth="2.25" />

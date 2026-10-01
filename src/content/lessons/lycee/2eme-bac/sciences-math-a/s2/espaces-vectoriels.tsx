@@ -93,7 +93,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 240 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
+          <svg role="img" aria-label="Figure 1 — Espaces vectoriels : u⃗, v⃗, Vect(u⃗, v⃗)" viewBox="0 0 240 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
             <line x1="30" y1="170" x2="220" y2="170" stroke="white" strokeWidth="1.4" opacity="0.5" />
             <line x1="30" y1="170" x2="30" y2="20" stroke="white" strokeWidth="1.4" opacity="0.5" />
             <line x1="30" y1="170" x2="130" y2="60" stroke="#fb923c" strokeWidth="2.4" markerEnd="url(#evArrow)" />

@@ -64,7 +64,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 220 180" className="h-56 w-56 text-white opacity-90">
+          <svg role="img" aria-label="Figure 1 — Médiatrice, bissectrice et hauteur d'un triangle" viewBox="0 0 220 180" className="h-56 w-56 text-white opacity-90">
             <polygon points="110,20 30,160 190,160" fill="none" stroke="currentColor" strokeWidth={2.5} />
             <circle cx="110" cy="115" r="70" fill="none" stroke="#818cf8" strokeWidth={2} strokeDasharray="5 4" />
             <circle cx="110" cy="115" r="4" fill="#fb923c" />
@@ -95,7 +95,7 @@ export default function Lesson() {
             </Callout>
           </div>
           <figure className="rounded-2xl border border-border bg-surface-muted p-4 sm:p-6">
-            <svg viewBox="0 0 290 250" className="h-auto w-full">
+            <svg role="img" aria-label="Figure 2 — Médiatrice, bissectrice et hauteur d'un triangle : points A, B, C ; (Δ)" viewBox="0 0 290 250" className="h-auto w-full">
               <line x1="45" y1="205" x2="235" y2="205" stroke="#334155" strokeWidth={2.5} strokeLinecap="round" />
               <line x1="45" y1="205" x2="220" y2="55" stroke="#334155" strokeWidth={2.5} strokeLinecap="round" />
               <line x1="235" y1="205" x2="220" y2="55" stroke="#334155" strokeWidth={2.5} strokeLinecap="round" />
@@ -130,7 +130,7 @@ export default function Lesson() {
               </div>
             </div>
             <figure className="rounded-2xl border border-border bg-surface-muted p-4 sm:p-6">
-              <svg viewBox="0 0 300 270" className="h-auto w-full">
+              <svg role="img" aria-label="Figure 3 — Médiatrice, bissectrice et hauteur d'un triangle : points A, B, C, O" viewBox="0 0 300 270" className="h-auto w-full">
                 <circle cx="150" cy="135" r="95" fill="none" stroke="#f59e0b" strokeWidth={2.5} />
                 <polygon points="150,40 67.7,182.5 239.3,167.5" fill="none" stroke="#334155" strokeWidth={2.5} strokeLinejoin="round" />
                 <line x1="150" y1="135" x2="150" y2="40" stroke="#4f46e5" strokeWidth={2} strokeDasharray="5 4" />
@@ -172,7 +172,7 @@ export default function Lesson() {
             </Callout>
           </div>
           <figure className="rounded-2xl border border-border bg-surface-muted p-4 sm:p-6">
-            <svg viewBox="0 0 260 220" className="h-auto w-full">
+            <svg role="img" aria-label="Figure 4 — Médiatrice, bissectrice et hauteur d'un triangle : points A, B, C, E" viewBox="0 0 260 220" className="h-auto w-full">
               <line x1="45" y1="120" x2="220" y2="45" stroke="#334155" strokeWidth={2.5} strokeLinecap="round" />
               <line x1="45" y1="120" x2="220" y2="195" stroke="#334155" strokeWidth={2.5} strokeLinecap="round" />
               <line x1="220" y1="45" x2="220" y2="195" stroke="#334155" strokeWidth={2.5} strokeLinecap="round" />
@@ -206,7 +206,7 @@ export default function Lesson() {
               </div>
             </div>
             <figure className="rounded-2xl border border-border bg-surface-muted p-4 sm:p-6">
-              <svg viewBox="0 0 300 260" className="h-auto w-full">
+              <svg role="img" aria-label="Figure 5 — Médiatrice, bissectrice et hauteur d'un triangle : points A, B, C, O, E, F" viewBox="0 0 300 260" className="h-auto w-full">
                 <polygon points="150,35 45,220 255,220" fill="none" stroke="#334155" strokeWidth={2.5} strokeLinejoin="round" />
                 <circle cx="150" cy="159" r="61" fill="none" stroke="#f59e0b" strokeWidth={2.5} />
                 <line x1="150" y1="35" x2="150" y2="220" stroke="#4f46e5" strokeWidth={2} strokeDasharray="5 4" />
@@ -250,7 +250,7 @@ export default function Lesson() {
             </Callout>
           </div>
           <figure className="rounded-2xl border border-border bg-surface-muted p-4 sm:p-6">
-            <svg viewBox="0 0 300 240" className="h-auto w-full">
+            <svg role="img" aria-label="Figure 6 — Médiatrice, bissectrice et hauteur d'un triangle : points A, B, C, H" viewBox="0 0 300 240" className="h-auto w-full">
               <polygon points="170,40 50,210 260,210" fill="none" stroke="#334155" strokeWidth={2.5} strokeLinejoin="round" />
               <line x1="170" y1="40" x2="170" y2="210" stroke="#4f46e5" strokeWidth={2.5} />
               <path d="M162,210 L162,202 L170,202" fill="none" stroke="#4f46e5" strokeWidth={2} />
@@ -264,7 +264,7 @@ export default function Lesson() {
 
         <div className="mt-8 grid items-start gap-4 lg:grid-cols-2">
           <figure className="order-2 rounded-2xl border border-border bg-surface-muted p-4 sm:p-6 lg:order-1">
-            <svg viewBox="0 0 340 260" className="h-auto w-full">
+            <svg role="img" aria-label="Figure 7 — Médiatrice, bissectrice et hauteur d'un triangle : points A, B, C, H" viewBox="0 0 340 260" className="h-auto w-full">
               <polygon points="60,60 180,180 300,140" fill="none" stroke="#334155" strokeWidth={2.5} strokeLinejoin="round" />
               <line x1="300" y1="140" x2="108" y2="204" stroke="#334155" strokeWidth={2} strokeDasharray="6 5" />
               <line x1="60" y1="60" x2="108" y2="204" stroke="#4f46e5" strokeWidth={2.5} />
@@ -298,7 +298,7 @@ export default function Lesson() {
               </div>
             </div>
             <figure className="rounded-2xl border border-border bg-surface-muted p-4 sm:p-6">
-              <svg viewBox="0 0 300 240" className="h-auto w-full">
+              <svg role="img" aria-label="Figure 8 — Médiatrice, bissectrice et hauteur d'un triangle : points A, B, C, H, H', K" viewBox="0 0 300 240" className="h-auto w-full">
                 <polygon points="170,40 50,210 260,210" fill="none" stroke="#334155" strokeWidth={2.5} strokeLinejoin="round" />
                 <line x1="170" y1="40" x2="170" y2="210" stroke="#4f46e5" strokeWidth={2.2} />
                 <line x1="50" y1="210" x2="214.03" y2="123.16" stroke="#4f46e5" strokeWidth={2.2} />
@@ -322,7 +322,7 @@ export default function Lesson() {
               <p className="text-sm">Soit ABC un triangle tel que ∠ABC est un angle obtus. Traçons K l&apos;orthocentre du triangle ABC. On remarque que <strong>l&apos;orthocentre du triangle ABC se trouve à l&apos;extérieur du triangle ABC</strong>.</p>
             </div>
             <figure className="rounded-2xl border border-border bg-surface-muted p-4 sm:p-6">
-              <svg viewBox="0 0 360 330" className="h-auto w-full">
+              <svg role="img" aria-label="Figure 9 — Médiatrice, bissectrice et hauteur d'un triangle : points A, B, C, H, H', K" viewBox="0 0 360 330" className="h-auto w-full">
                 <polygon points="60,60 180,180 300,140" fill="none" stroke="#334155" strokeWidth={2.5} strokeLinejoin="round" />
                 <line x1="60" y1="60" x2="140" y2="300" stroke="#4f46e5" strokeWidth={2} strokeDasharray="6 5" />
                 <line x1="300" y1="140" x2="140" y2="300" stroke="#4f46e5" strokeWidth={2} strokeDasharray="6 5" />
@@ -368,7 +368,7 @@ export default function Lesson() {
                   <p className="mt-2 font-semibold">Où semble se trouver le centre de ce cercle ?</p>
                 </div>
                 <div className="rounded-xl border border-border bg-surface-muted p-4">
-                  <svg viewBox="0 0 300 240" className="h-auto w-full">
+                  <svg role="img" aria-label="Figure 10 — Médiatrice, bissectrice et hauteur d'un triangle : points P, O, U ; 3 cm, 4 cm, 5 cm" viewBox="0 0 300 240" className="h-auto w-full">
                     <polygon points="70,80 70,200 230,200" fill="none" stroke="#334155" strokeWidth={2.5} strokeLinejoin="round" />
                     <line x1="70" y1="80" x2="230" y2="200" stroke="#334155" strokeWidth={2.5} strokeLinecap="round" />
                     <path d="M78,200 L78,192 L70,192" fill="none" stroke="#334155" strokeWidth={2} />
@@ -387,7 +387,7 @@ export default function Lesson() {
                 </div>
                 <div className="grid items-center gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-green-500/20 bg-background p-4">
-                    <svg viewBox="0 0 300 240" className="h-auto w-full">
+                    <svg role="img" aria-label="Figure 11 — Médiatrice, bissectrice et hauteur d'un triangle : points P, O, U ; Ω" viewBox="0 0 300 240" className="h-auto w-full">
                       <circle cx="150" cy="140" r="100" fill="none" stroke="#f59e0b" strokeWidth={2.5} />
                       <polygon points="70,80 70,200 230,200" fill="none" stroke="#334155" strokeWidth={2.5} strokeLinejoin="round" />
                       <line x1="70" y1="80" x2="230" y2="200" stroke="#334155" strokeWidth={2.5} strokeLinecap="round" />
@@ -416,7 +416,7 @@ export default function Lesson() {
                   Le maire d&apos;un village veut construire une <strong>fontaine</strong> à égale distance des trois maisons A, B et C. Où doit-il la placer précisément ?
                 </p>
                 <div className="rounded-xl border border-border bg-surface-muted p-4">
-                  <svg viewBox="-10 -10 320 300" className="h-auto w-full">
+                  <svg role="img" aria-label="Figure 12 — Médiatrice, bissectrice et hauteur d'un triangle : points A, B, C" viewBox="-10 -10 320 300" className="h-auto w-full">
                     <g transform="translate(80,60)">
                       <polygon points="-16,10 -16,-6 0,-18 16,-6 16,10" fill="#e2e8f0" stroke="#334155" strokeWidth={2} />
                       <line x1="-16" y1="-6" x2="0" y2="-18" stroke="#334155" strokeWidth={2} />
@@ -442,7 +442,7 @@ export default function Lesson() {
             correction={
               <div className="grid items-center gap-4 sm:grid-cols-2">
                 <div className="rounded-xl border border-green-500/20 bg-background p-4">
-                  <svg viewBox="-10 -10 320 300" className="h-auto w-full">
+                  <svg role="img" aria-label="Figure 13 — Médiatrice, bissectrice et hauteur d'un triangle : points A, B, C ; Fontaine" viewBox="-10 -10 320 300" className="h-auto w-full">
                     <polygon points="80,60 60,220 260,150" fill="none" stroke="#cbd5e1" strokeWidth={2} strokeDasharray="4 4" />
                     <circle cx="147.6" cy="149.7" r="112.3" fill="none" stroke="#f59e0b" strokeWidth={2} />
                     <line x1="70" y1="140" x2="225.2" y2="159.4" stroke="#4f46e5" strokeWidth={1.8} strokeDasharray="5 4" />
@@ -470,7 +470,7 @@ export default function Lesson() {
             items={
               <div className="grid gap-4 lg:grid-cols-5">
                 <div className="lg:col-span-2 rounded-xl border border-border bg-surface-muted p-4">
-                  <svg viewBox="0 0 300 240" className="h-auto w-full">
+                  <svg role="img" aria-label="Figure 14 — Médiatrice, bissectrice et hauteur d'un triangle : points A, B, C, E, D, H" viewBox="0 0 300 240" className="h-auto w-full">
                     <polygon points="170,40 50,210 260,210" fill="none" stroke="#334155" strokeWidth={2.5} strokeLinejoin="round" />
                     <line x1="170" y1="40" x2="170" y2="210" stroke="#334155" strokeWidth={1.8} strokeDasharray="6 4" />
                     <line x1="50" y1="210" x2="214.03" y2="123.16" stroke="#334155" strokeWidth={1.8} strokeDasharray="6 4" />
@@ -564,7 +564,7 @@ export default function Lesson() {
                   <p className="mt-2 font-semibold">Trouver l&apos;emplacement K du trésor.</p>
                 </div>
                 <div className="rounded-xl border border-border bg-surface-muted p-4">
-                  <svg viewBox="0 -10 360 290" className="h-auto w-full">
+                  <svg role="img" aria-label="Figure 15 — Médiatrice, bissectrice et hauteur d'un triangle : points E, F, G" viewBox="0 -10 360 290" className="h-auto w-full">
                     <g transform="translate(70,190)"><ellipse cx="0" cy="0" rx="26" ry="11" fill="#fde68a" stroke="#b45309" strokeWidth={1.5} /><line x1="0" y1="0" x2="0" y2="-26" stroke="#166534" strokeWidth={3} /><path d="M0,-26 Q-14,-34 -20,-24 M0,-26 Q14,-34 20,-24 M0,-26 Q-4,-40 -14,-38 M0,-26 Q4,-40 14,-38" fill="none" stroke="#16a34a" strokeWidth={3} strokeLinecap="round" /></g>
                     <Lbl x={60} y={222}>E</Lbl>
                     <g transform="translate(180,50)"><ellipse cx="0" cy="0" rx="26" ry="11" fill="#fde68a" stroke="#b45309" strokeWidth={1.5} /><line x1="0" y1="0" x2="0" y2="-26" stroke="#166534" strokeWidth={3} /><path d="M0,-26 Q-14,-34 -20,-24 M0,-26 Q14,-34 20,-24 M0,-26 Q-4,-40 -14,-38 M0,-26 Q4,-40 14,-38" fill="none" stroke="#16a34a" strokeWidth={3} strokeLinecap="round" /></g>
@@ -578,7 +578,7 @@ export default function Lesson() {
             correction={
               <div className="grid items-center gap-4 sm:grid-cols-2">
                 <div className="rounded-xl border border-green-500/20 bg-background p-4">
-                  <svg viewBox="0 -10 360 290" className="h-auto w-full">
+                  <svg role="img" aria-label="Figure 16 — Médiatrice, bissectrice et hauteur d'un triangle : points E, F, G, K" viewBox="0 -10 360 290" className="h-auto w-full">
                     <polygon points="70,190 180,50 290,140" fill="none" stroke="#cbd5e1" strokeWidth={2} strokeDasharray="4 4" />
                     <circle cx="179.5" cy="162.8" r="112.8" fill="none" stroke="#f59e0b" strokeWidth={2} />
                     <line x1="125" y1="120" x2="234" y2="205.6" stroke="#4f46e5" strokeWidth={1.8} strokeDasharray="5 4" />
@@ -612,7 +612,7 @@ export default function Lesson() {
                   <li>Quelle est la nature du triangle KLM ? Justifier.</li>
                 </ol>
                 <div className="rounded-xl border border-border bg-surface-muted p-4 lg:col-span-2">
-                  <svg viewBox="0 0 290 260" className="h-auto w-full">
+                  <svg role="img" aria-label="Figure 17 — Médiatrice, bissectrice et hauteur d'un triangle : points I, J, K ; 6 cm, 4 cm, 8 cm" viewBox="0 0 290 260" className="h-auto w-full">
                     <polygon points="230,120 80,120 55,216.8" fill="none" stroke="#334155" strokeWidth={2.5} strokeLinejoin="round" />
                     <Dot cx={230} cy={120} /><Dot cx={80} cy={120} /><Dot cx={55} cy={216.8} />
                     <Lbl x={236} y={116} fs={16}>I</Lbl><Lbl x={60} y={112} fs={16}>J</Lbl><Lbl x={32} y={228} fs={16}>K</Lbl>
@@ -626,7 +626,7 @@ export default function Lesson() {
             correction={
               <div className="grid gap-4 lg:grid-cols-5">
                 <div className="rounded-xl border border-green-500/20 bg-background p-4 lg:col-span-2">
-                  <svg viewBox="0 0 290 260" className="h-auto w-full">
+                  <svg role="img" aria-label="Figure 18 — Médiatrice, bissectrice et hauteur d'un triangle : points I, J, K, L, M" viewBox="0 0 290 260" className="h-auto w-full">
                     <polygon points="230,120 80,120 55,216.8" fill="none" stroke="#334155" strokeWidth={2.5} strokeLinejoin="round" />
                     <polygon points="80,120 55,216.8 205,216.8 230,120" fill="none" stroke="#8b5cf6" strokeWidth={1.8} strokeDasharray="5 4" />
                     <line x1="230" y1="120" x2="55" y2="74.8" stroke="#4f46e5" strokeWidth={1.6} strokeDasharray="4 4" />
@@ -662,7 +662,7 @@ export default function Lesson() {
                   <li>Montrer que <strong>(AF) ⊥ (BC)</strong>.</li>
                 </ol>
                 <div className="rounded-xl border border-border bg-surface-muted p-4">
-                  <svg viewBox="0 0 300 240" className="h-auto w-full">
+                  <svg role="img" aria-label="Figure 19 — Médiatrice, bissectrice et hauteur d'un triangle : points A, B, C, D, E" viewBox="0 0 300 240" className="h-auto w-full">
                     <polygon points="40,220 260,220 190,40" fill="#fdf2f8" fillOpacity={0.5} stroke="#334155" strokeWidth={2.5} strokeLinejoin="round" />
                     <line x1="190" y1="40" x2="190" y2="220" stroke="#334155" strokeWidth={2} />
                     <line x1="260" y1="220" x2="130.16" y2="111.8" stroke="#334155" strokeWidth={2} />
@@ -680,7 +680,7 @@ export default function Lesson() {
             correction={
               <div className="grid items-center gap-4 sm:grid-cols-2">
                 <div className="rounded-xl border border-green-500/20 bg-background p-4">
-                  <svg viewBox="0 0 300 240" className="h-auto w-full">
+                  <svg role="img" aria-label="Figure 20 — Médiatrice, bissectrice et hauteur d'un triangle : points A, B, C, D, E, F" viewBox="0 0 300 240" className="h-auto w-full">
                     <polygon points="40,220 260,220 190,40" fill="#fdf2f8" fillOpacity={0.5} stroke="#334155" strokeWidth={2.5} strokeLinejoin="round" />
                     <line x1="190" y1="40" x2="190" y2="220" stroke="#334155" strokeWidth={2} />
                     <line x1="260" y1="220" x2="130.16" y2="111.8" stroke="#334155" strokeWidth={2} />
@@ -733,7 +733,7 @@ export default function Lesson() {
                   <p className="mb-3 font-bold text-green-700">a) Triangle ABC (AB = 6, AG = 4, CG = 4)</p>
                   <div className="grid items-center gap-4 sm:grid-cols-2">
                     <div className="rounded-xl border border-green-500/20 bg-background p-4">
-                      <svg viewBox="0 0 280 250" className="h-auto w-full">
+                      <svg role="img" aria-label="Figure 21 — Médiatrice, bissectrice et hauteur d'un triangle : points A, B, C, C', A', G" viewBox="0 0 280 250" className="h-auto w-full">
                         <polygon points="60,40 240,40 195,214.3" fill="none" stroke="#334155" strokeWidth={2.5} strokeLinejoin="round" />
                         <line x1="60" y1="40" x2="217.5" y2="127.15" stroke="#4f46e5" strokeWidth={1.8} strokeDasharray="5 4" />
                         <line x1="195" y1="214.3" x2="150" y2="40" stroke="#4f46e5" strokeWidth={1.8} strokeDasharray="5 4" />

@@ -91,7 +91,7 @@ function CourseCard({
 
 function SvgSymetrieAxiale() {
   return (
-    <svg viewBox="0 0 300 240" className="h-auto w-full max-w-[260px]">
+    <svg role="img" aria-label="Figure 1 — Transformations du plan : points M, M' ; (D)" viewBox="0 0 300 240" className="h-auto w-full max-w-[260px]">
       <line x1="48" y1="192" x2="216" y2="48" stroke="#e11d48" strokeWidth="2" />
       <text x="220" y="44" fontSize="13" fontWeight="700" fill="#e11d48">(D)</text>
       <line x1="79.2" y1="67.2" x2="176.1" y2="180.3" stroke="#334155" strokeWidth="1.6" strokeDasharray="4 3" />
@@ -107,7 +107,7 @@ function SvgSymetrieAxiale() {
 
 function SvgSymetrieCentrale() {
   return (
-    <svg viewBox="0 0 300 240" className="h-auto w-full max-w-[260px]">
+    <svg role="img" aria-label="Figure 2 — Transformations du plan : points I, M, M'" viewBox="0 0 300 240" className="h-auto w-full max-w-[260px]">
       <line x1="72" y1="60" x2="216" y2="180" stroke="#334155" strokeWidth="1.6" strokeDasharray="4 3" />
       <circle cx="144" cy="120" r="3.4" fill="#e11d48" />
       <text x="150" y="115" fontSize="13" fontWeight="700" fill="#e11d48">I</text>
@@ -121,7 +121,7 @@ function SvgSymetrieCentrale() {
 
 function SvgTranslation() {
   return (
-    <svg viewBox="0 0 300 240" className="h-auto w-full max-w-[260px]">
+    <svg role="img" aria-label="Figure 3 — Transformations du plan : points M, M' ; u" viewBox="0 0 300 240" className="h-auto w-full max-w-[260px]">
       <defs>
         <marker id="tr-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
           <path d="M0,0 L6,3 L0,6 Z" fill="currentColor" />
@@ -144,7 +144,7 @@ function SvgTranslation() {
 
 function SvgHomothetie() {
   return (
-    <svg viewBox="0 0 300 240" className="h-auto w-full max-w-[260px]">
+    <svg role="img" aria-label="Figure 4 — Transformations du plan : points M, M' ; Ω, k = 2" viewBox="0 0 300 240" className="h-auto w-full max-w-[260px]">
       <line x1="72" y1="168" x2="168" y2="120" stroke="#334155" strokeWidth="1.6" />
       <circle cx="72" cy="168" r="3.4" fill="#e11d48" />
       <text x="52" y="182" fontSize="13" fontWeight="700" fill="#e11d48">Ω</text>
@@ -186,7 +186,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 220 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
+          <svg role="img" aria-label="Figure 5 — Transformations du plan" viewBox="0 0 220 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
             <polygon points="60,150 60,90 110,90 110,150" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.85" />
             <polygon points="140,110 140,50 190,50 190,110" fill="none" stroke="#fb923c" strokeWidth="2.2" />
             <line x1="85" y1="90" x2="165" y2="50" stroke="#fb923c" strokeWidth="1.4" strokeDasharray="4 3" opacity="0.7" />
@@ -209,7 +209,7 @@ export default function Lesson() {
           numeral="I"
           title="Transformation du plan"
           visual={
-            <svg viewBox="0 0 300 240" className="h-auto w-full max-w-[280px]">
+            <svg role="img" aria-label="Figure 6 — Transformations du plan : point M ; M' = t(M)" viewBox="0 0 300 240" className="h-auto w-full max-w-[280px]">
               <line x1="30" y1="120" x2="270" y2="120" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" />
               <line x1="150" y1="20" x2="150" y2="220" stroke="#94a3b8" strokeWidth="1" strokeDasharray="3 3" />
               <circle cx="90" cy="150" r="3.2" fill="#0f172a" />
@@ -544,7 +544,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 220" className="h-auto w-full max-w-[280px]">
+                  <svg role="img" aria-label="Figure 7 — Transformations du plan : points A, B, C, D, O" viewBox="0 0 300 220" className="h-auto w-full max-w-[280px]">
                     <polygon points="56.7,110 136.7,163.3 216.7,110 136.7,56.7" fill="none" stroke="#334155" strokeWidth="2" />
                     <circle cx="56.7" cy="110" r="2.8" fill="#0f172a" /><text x="38" y="106" fontSize="13" fontWeight="700" fill="#0f172a">A</text>
                     <circle cx="136.7" cy="163.3" r="2.8" fill="#0f172a" /><text x="130" y="182" fontSize="13" fontWeight="700" fill="#0f172a">B</text>
@@ -569,7 +569,7 @@ export default function Lesson() {
                     </>
                   }
                   svg={
-                    <svg viewBox="0 0 300 220" className="h-auto w-full max-w-[280px]">
+                    <svg role="img" aria-label="Figure 8 — Transformations du plan : points A, B, C, D, O, I, J" viewBox="0 0 300 220" className="h-auto w-full max-w-[280px]">
                       <polygon points="56.7,110 136.7,163.3 216.7,110 136.7,56.7" fill="none" stroke="#334155" strokeWidth="2" />
                       <line x1="56.7" y1="110" x2="216.7" y2="110" stroke="#94a3b8" strokeWidth="1.4" strokeDasharray="4 3" />
                       <line x1="136.7" y1="56.7" x2="136.7" y2="163.3" stroke="#94a3b8" strokeWidth="1.4" strokeDasharray="4 3" />
@@ -779,7 +779,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 340 200" className="h-auto w-full max-w-[300px]">
+                  <svg role="img" aria-label="Figure 9 — Transformations du plan : points A, B, C, D" viewBox="0 0 340 200" className="h-auto w-full max-w-[300px]">
                     <polygon points="119.3,151.7 200.4,151.7 241,90.9 159.9,90.9" fill="none" stroke="#334155" strokeWidth="2" />
                     <circle cx="119.3" cy="151.7" r="2.8" fill="#0f172a" /><text x="105" y="168" fontSize="13" fontWeight="700" fill="#0f172a">A</text>
                     <circle cx="200.4" cy="151.7" r="2.8" fill="#0f172a" /><text x="206" y="168" fontSize="13" fontWeight="700" fill="#0f172a">B</text>
@@ -805,7 +805,7 @@ export default function Lesson() {
                     </>
                   }
                   svg={
-                    <svg viewBox="0 0 340 200" className="h-auto w-full max-w-[320px]">
+                    <svg role="img" aria-label="Figure 10 — Transformations du plan : points A, B, C, D, I, J, K" viewBox="0 0 340 200" className="h-auto w-full max-w-[320px]">
                       <polygon points="119.3,151.7 200.4,151.7 241,90.9 159.9,90.9" fill="none" stroke="#334155" strokeWidth="2" />
                       <line x1="119.3" y1="151.7" x2="214" y2="131.4" stroke="#4f46e5" strokeWidth="1.6" strokeDasharray="4 3" />
                       <line x1="200.4" y1="151.7" x2="295.1" y2="131.4" stroke="#059669" strokeWidth="1.6" strokeDasharray="4 3" />

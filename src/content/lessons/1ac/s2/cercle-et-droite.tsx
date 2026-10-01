@@ -84,7 +84,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 200 200" className="h-40 w-40 sm:h-56 sm:w-56" fill="none">
+          <svg role="img" aria-label="Figure 1 — Cercle et Droite" viewBox="0 0 200 200" className="h-40 w-40 sm:h-56 sm:w-56" fill="none">
             <circle cx="100" cy="100" r="70" stroke="white" strokeWidth="3" />
             <line x1="30" y1="100" x2="170" y2="100" stroke="white" strokeWidth="2" strokeDasharray="5,4" />
             <line x1="152" y1="47" x2="185" y2="80" stroke="#fb923c" strokeWidth="2.5" />
@@ -116,7 +116,7 @@ export default function Lesson() {
             <p className="mb-4 text-sm text-foreground-muted">
               Soit <Math tex="\mathcal{C}(O\,;3)" /> un cercle : l&apos;ensemble des points situés à 3 cm du point O.
             </p>
-            <svg viewBox="0 0 300 300" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 2 — Cercle et Droite : point O ; (C)" viewBox="0 0 300 300" className="mx-auto h-auto w-full max-w-xs">
               <circle cx="150" cy="150" r="115" className="fill-indigo-50 stroke-indigo-600" strokeWidth="2.5" />
               <circle cx="150" cy="150" r="3" className="fill-slate-800" />
               <text x="158" y="148" fontSize="16" className="fill-slate-700 font-bold">O</text>
@@ -132,7 +132,7 @@ export default function Lesson() {
           </p>
 
           <div className="grid items-center gap-6 md:grid-cols-2">
-            <svg viewBox="0 0 320 320" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 3 — Cercle et Droite : points E, F, A, B, O ; (C)" viewBox="0 0 320 320" className="mx-auto h-auto w-full max-w-xs">
               <circle cx="160" cy="160" r="120" className="fill-indigo-50 stroke-indigo-600" strokeWidth="2.5" />
               <path d="M51,109 A120,120 0 0,0 51,211" className="fill-none stroke-rose-500" strokeWidth="3.5" />
               <line x1="215" y1="50" x2="105" y2="270" className="stroke-slate-500" strokeWidth="1.75" />
@@ -257,7 +257,7 @@ export default function Lesson() {
               <Math tex="\mathcal{C}(O\,;r)" /> un cercle, A un point du cercle (C) et (D) la droite perpendiculaire
               à la droite (OA) en A.
             </p>
-            <svg viewBox="0 0 300 300" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 4 — Cercle et Droite : points O, A ; (D), (C)" viewBox="0 0 300 300" className="mx-auto h-auto w-full max-w-xs">
               <circle cx="140" cy="170" r="90" className="fill-indigo-50 stroke-indigo-600" strokeWidth="2.5" />
               <line x1="140" y1="170" x2="225" y2="139" className="stroke-slate-500" strokeWidth="1.75" strokeDasharray="4,3" />
               <line x1="187" y1="36" x2="262" y2="243" className="stroke-rose-500" strokeWidth="2.5" />
@@ -382,7 +382,7 @@ export default function Lesson() {
             items={
               <>
                 <Diagram>
-                  <svg viewBox="0 0 260 220" className="mx-auto h-auto w-full max-w-[220px]">
+                  <svg role="img" aria-label="Figure 5 — Cercle et Droite : points A, B, C, O" viewBox="0 0 260 220" className="mx-auto h-auto w-full max-w-[220px]">
                     <circle cx="130" cy="120" r="90" className="fill-indigo-50 stroke-indigo-600" strokeWidth="2.5" />
                     <line x1="55" y1="60" x2="205" y2="180" className="stroke-slate-500" strokeWidth="1.75" />
                     <line x1="130" y1="120" x2="90" y2="35" className="stroke-slate-500" strokeWidth="1.75" />
@@ -448,7 +448,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-2.5">
                 <Diagram>
-                  <svg viewBox="0 0 300 160" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 6 — Cercle et Droite : points O, O' ; 4 cm" viewBox="0 0 300 160" className="mx-auto h-auto w-full max-w-sm">
                     <circle cx="110" cy="80" r="70" className="fill-indigo-50/70 stroke-indigo-600" strokeWidth="2" />
                     <circle cx="180" cy="80" r="70" className="fill-violet-50/70 stroke-violet-600" strokeWidth="2" />
                     <line x1="110" y1="80" x2="180" y2="80" className="stroke-slate-500" strokeWidth="1.5" strokeDasharray="4,3" />
@@ -493,7 +493,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-2.5">
                 <Diagram>
-                  <svg viewBox="0 0 260 160" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 7 — Cercle et Droite : points A, B ; 5 cm, 2,5 cm" viewBox="0 0 260 160" className="mx-auto h-auto w-full max-w-xs">
                     <circle cx="130" cy="80" r="80" className="fill-indigo-50 stroke-indigo-600" strokeWidth="2.25" />
                     <line x1="50" y1="80" x2="210" y2="80" className="stroke-slate-500" strokeWidth="1.75" />
                     <line x1="130" y1="80" x2="210" y2="80" className="stroke-rose-500" strokeWidth="2.25" />
@@ -536,7 +536,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-2.5">
                 <Diagram>
-                  <svg viewBox="0 0 300 220" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 8 — Cercle et Droite : points A, B, D, O" viewBox="0 0 300 220" className="mx-auto h-auto w-full max-w-xs">
                     <circle cx="150" cy="110" r="80" className="fill-indigo-50 stroke-indigo-600" strokeWidth="2.25" />
                     <line x1="75" y1="83" x2="225" y2="137" className="stroke-slate-500" strokeWidth="1.5" />
                     <circle cx="238" cy="99" r="41" className="fill-none stroke-violet-500" strokeWidth="2" strokeDasharray="4,3" />
@@ -583,7 +583,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-2.5">
                 <Diagram>
-                  <svg viewBox="0 0 280 220" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 9 — Cercle et Droite : points A, B, C, D, O" viewBox="0 0 280 220" className="mx-auto h-auto w-full max-w-xs">
                     <circle cx="140" cy="110" r="95" className="fill-indigo-50 stroke-indigo-600" strokeWidth="2.25" />
                     <line x1="46" y1="127" x2="108" y2="199" className="stroke-rose-500" strokeWidth="2.25" />
                     <line x1="229" y1="143" x2="222" y2="63" className="stroke-rose-500" strokeWidth="2.25" />
@@ -634,7 +634,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-2.5">
                 <Diagram>
-                  <svg viewBox="0 0 280 200" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 10 — Cercle et Droite : points A, M, N, O" viewBox="0 0 280 200" className="mx-auto h-auto w-full max-w-xs">
                     <circle cx="140" cy="105" r="95" className="fill-indigo-50 stroke-indigo-600" strokeWidth="2.25" />
                     <line x1="140" y1="10" x2="79" y2="32" className="stroke-rose-500" strokeWidth="2.25" />
                     <line x1="140" y1="10" x2="201" y2="32" className="stroke-rose-500" strokeWidth="2.25" />
@@ -678,7 +678,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-2.5">
                 <Diagram>
-                  <svg viewBox="0 0 340 100" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 11 — Cercle et Droite : points A, B, M, N" viewBox="0 0 340 100" className="mx-auto h-auto w-full max-w-sm">
                     <circle cx="110" cy="50" r="66.7" className="fill-indigo-50/60 stroke-indigo-500" strokeWidth="1.75" />
                     <line x1="20" y1="50" x2="310" y2="50" className="stroke-slate-500" strokeWidth="1.75" />
                     <circle cx="110" cy="50" r="4" className="fill-slate-800" />
@@ -725,7 +725,7 @@ export default function Lesson() {
                   </p>
                 </div>
                 <Diagram>
-                  <svg viewBox="0 0 320 140" className="mx-auto mt-3 h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 12 — Cercle et Droite : points O, G, H, I, J" viewBox="0 0 320 140" className="mx-auto mt-3 h-auto w-full max-w-sm">
                     <circle cx="160" cy="70" r="100" className="fill-violet-50 stroke-violet-500" strokeWidth="2" />
                     <circle cx="160" cy="70" r="60" className="fill-indigo-50 stroke-indigo-600" strokeWidth="2.25" />
                     <line x1="60" y1="70" x2="260" y2="70" className="stroke-slate-500" strokeWidth="1.5" />
@@ -782,7 +782,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-2.5">
                 <Diagram>
-                  <svg viewBox="0 0 340 110" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 13 — Cercle et Droite : points S, T, U, V" viewBox="0 0 340 110" className="mx-auto h-auto w-full max-w-sm">
                     <circle cx="320" cy="55" r="140" className="fill-none stroke-violet-500" strokeWidth="1.5" strokeDasharray="4,3" />
                     <line x1="20" y1="55" x2="320" y2="55" className="stroke-slate-500" strokeWidth="1.75" />
                     <circle cx="20" cy="55" r="4" className="fill-slate-800" />
@@ -820,7 +820,7 @@ export default function Lesson() {
                   mesures 6 cm et 2 cm).
                 </p>
                 <Diagram caption="6 cm puis 2 cm le long de l'axe">
-                  <svg viewBox="0 0 300 140" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 14 — Cercle et Droite" viewBox="0 0 300 140" className="mx-auto h-auto w-full max-w-sm">
                     <circle cx="120" cy="70" r="65" className="fill-indigo-50/60 stroke-indigo-600" strokeWidth="2" />
                     <circle cx="205" cy="70" r="40" className="fill-violet-50/60 stroke-violet-600" strokeWidth="2" />
                     <line x1="55" y1="70" x2="245" y2="70" className="stroke-slate-400" strokeWidth="1.25" strokeDasharray="3,3" />
@@ -861,7 +861,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-2.5">
                 <Diagram caption="a. trois cercles tangents alignés sur un diamètre">
-                  <svg viewBox="0 0 280 180" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 15 — Cercle et Droite" viewBox="0 0 280 180" className="mx-auto h-auto w-full max-w-xs">
                     <circle cx="140" cy="90" r="80" className="fill-green-50 stroke-green-600" strokeWidth="2" />
                     <circle cx="80" cy="90" r="20" className="fill-white stroke-indigo-500" strokeWidth="1.75" />
                     <circle cx="120" cy="90" r="20" className="fill-white stroke-indigo-500" strokeWidth="1.75" />
@@ -902,7 +902,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-2.5">
                 <Diagram caption="a. rosace de cercles imbriqués · b. parapluie de demi-cercles">
-                  <svg viewBox="0 0 280 140" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 16 — Cercle et Droite" viewBox="0 0 280 140" className="mx-auto h-auto w-full max-w-sm">
                     <circle cx="70" cy="70" r="55" className="fill-none stroke-indigo-600" strokeWidth="2" />
                     <circle cx="70" cy="70" r="27.5" className="fill-none stroke-indigo-500" strokeWidth="1.5" />
                     <circle cx="42.5" cy="70" r="27.5" className="fill-none stroke-violet-500" strokeWidth="1.5" />
@@ -935,7 +935,7 @@ export default function Lesson() {
             items={
               <>
                 <Diagram>
-                  <svg viewBox="0 0 300 180" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 17 — Cercle et Droite : points A, B, M, O" viewBox="0 0 300 180" className="mx-auto h-auto w-full max-w-xs">
                     <circle cx="150" cy="100" r="75" className="fill-indigo-50 stroke-indigo-600" strokeWidth="2.25" />
                     <line x1="75" y1="100" x2="225" y2="100" className="stroke-slate-500" strokeWidth="1.5" />
                     <line x1="90" y1="45" x2="225" y2="100" className="stroke-slate-500" strokeWidth="1.5" />
@@ -998,18 +998,18 @@ export default function Lesson() {
               <div className="space-y-2">
                 <Diagram>
                   <div className="grid grid-cols-4 gap-2">
-                    <svg viewBox="0 0 100 90" className="h-auto w-full rounded-lg border border-border bg-surface">
+                    <svg role="img" aria-label="Figure 18 — Cercle et Droite : points C, D" viewBox="0 0 100 90" className="h-auto w-full rounded-lg border border-border bg-surface">
                       <line x1="15" y1="30" x2="80" y2="45" className="stroke-slate-700" strokeWidth="2" />
                       <text x="6" y="26" fontSize="12" className="fill-slate-700 font-bold">C</text>
                       <text x="83" y="41" fontSize="12" className="fill-slate-700 font-bold">D</text>
                     </svg>
-                    <svg viewBox="0 0 100 90" className="h-auto w-full rounded-lg border border-border bg-surface">
+                    <svg role="img" aria-label="Figure 19 — Cercle et Droite : points C, D ; ×E" viewBox="0 0 100 90" className="h-auto w-full rounded-lg border border-border bg-surface">
                       <line x1="15" y1="30" x2="80" y2="45" className="stroke-slate-700" strokeWidth="2" />
                       <text x="6" y="26" fontSize="12" className="fill-slate-700 font-bold">C</text>
                       <text x="83" y="41" fontSize="12" className="fill-slate-700 font-bold">D</text>
                       <text x="48" y="72" fontSize="12" className="fill-rose-600 font-bold">×E</text>
                     </svg>
-                    <svg viewBox="0 0 100 90" className="h-auto w-full rounded-lg border border-border bg-surface">
+                    <svg role="img" aria-label="Figure 20 — Cercle et Droite : points C, D, A ; ×E" viewBox="0 0 100 90" className="h-auto w-full rounded-lg border border-border bg-surface">
                       <line x1="15" y1="30" x2="80" y2="45" className="stroke-slate-700" strokeWidth="2" />
                       <text x="6" y="26" fontSize="12" className="fill-slate-700 font-bold">C</text>
                       <text x="83" y="41" fontSize="12" className="fill-slate-700 font-bold">D</text>
@@ -1017,7 +1017,7 @@ export default function Lesson() {
                       <text x="45" y="30" fontSize="12" className="fill-violet-700 font-bold">A</text>
                       <text x="48" y="72" fontSize="12" className="fill-rose-600 font-bold">×E</text>
                     </svg>
-                    <svg viewBox="0 0 100 90" className="h-auto w-full rounded-lg border border-border bg-surface">
+                    <svg role="img" aria-label="Figure 21 — Cercle et Droite : points C, D, A ; ×E" viewBox="0 0 100 90" className="h-auto w-full rounded-lg border border-border bg-surface">
                       <line x1="15" y1="30" x2="80" y2="45" className="stroke-slate-700" strokeWidth="2" />
                       <line x1="52" y1="38" x2="48" y2="60" className="stroke-violet-500" strokeWidth="1.75" />
                       <text x="6" y="26" fontSize="12" className="fill-slate-700 font-bold">C</text>
@@ -1067,7 +1067,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-2.5">
                 <Diagram>
-                  <svg viewBox="0 0 320 160" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 22 — Cercle et Droite : points A, B, O" viewBox="0 0 320 160" className="mx-auto h-auto w-full max-w-sm">
                     <circle cx="160" cy="90" r="120" className="fill-none stroke-indigo-600" strokeWidth="2.25" />
                     <circle cx="100" cy="90" r="60" className="fill-none stroke-violet-500" strokeWidth="1.75" />
                     <circle cx="220" cy="90" r="60" className="fill-none stroke-violet-500" strokeWidth="1.75" />
@@ -1113,7 +1113,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-2.5">
                 <Diagram>
-                  <svg viewBox="0 0 360 130" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 23 — Cercle et Droite : points A, B, C, D" viewBox="0 0 360 130" className="mx-auto h-auto w-full max-w-sm">
                     <circle cx="30" cy="90" r="100" className="fill-none stroke-violet-400" strokeWidth="1.5" strokeDasharray="4,3" />
                     <circle cx="330" cy="90" r="100" className="fill-none stroke-violet-400" strokeWidth="1.5" strokeDasharray="4,3" />
                     <path d="M130,90 A50,50 0 0,1 230,90" className="fill-none stroke-rose-500" strokeWidth="2.5" />
@@ -1157,7 +1157,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-2.5">
                 <Diagram caption="a. deux cercles sécants en R">
-                  <svg viewBox="0 0 260 200" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 24 — Cercle et Droite : points T, O, R" viewBox="0 0 260 200" className="mx-auto h-auto w-full max-w-xs">
                     <circle cx="190" cy="110" r="90" className="fill-indigo-50 stroke-indigo-600" strokeWidth="2.25" />
                     <circle cx="90" cy="110" r="45" className="fill-none stroke-violet-500" strokeWidth="2" />
                     <line x1="90" y1="110" x2="190" y2="110" className="stroke-slate-500" strokeWidth="1.5" strokeDasharray="4,3" />
@@ -1176,7 +1176,7 @@ export default function Lesson() {
                   droite (TO).
                 </Step>
                 <Diagram caption="b. B milieu de [AC], avec A, A' diamétralement opposés">
-                  <svg viewBox="0 0 320 190" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 25 — Cercle et Droite : points A, A', B, C, O" viewBox="0 0 320 190" className="mx-auto h-auto w-full max-w-xs">
                     <circle cx="110" cy="110" r="70" className="fill-indigo-50 stroke-indigo-600" strokeWidth="2.25" />
                     <line x1="44" y1="86" x2="176" y2="134" className="stroke-slate-500" strokeWidth="1.5" strokeDasharray="4,3" />
                     <line x1="44" y1="86" x2="297" y2="64" className="stroke-rose-500" strokeWidth="2" />

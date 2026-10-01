@@ -83,7 +83,7 @@ function Grid({
 }) {
   const [, , w, h] = viewBox.split(" ").map(Number);
   return (
-    <svg viewBox={viewBox} className={`h-auto w-full ${className} text-neutral-700`}>
+    <svg role="img" aria-label="Figure 1 — Généralités sur les fonctions" viewBox={viewBox} className={`h-auto w-full ${className} text-neutral-700`}>
       <rect x="0" y="0" width={w} height={h} fill="none" />
       {children}
     </svg>
@@ -157,7 +157,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 220 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
+          <svg role="img" aria-label="Figure 2 — Généralités sur les fonctions" viewBox="0 0 220 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
             <line x1="10" y1="170" x2="210" y2="170" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
             <line x1="30" y1="10" x2="30" y2="190" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
             <path

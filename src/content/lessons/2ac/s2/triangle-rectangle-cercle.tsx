@@ -74,7 +74,7 @@ export default function Lesson() {
         }
         visual={
           <div className="flex flex-col items-center gap-3">
-            <svg viewBox="0 0 320 260" className="h-64 w-64">
+            <svg role="img" aria-label="Figure 1 — Triangle rectangle et cercle : points A, B, C, O" viewBox="0 0 320 260" className="h-64 w-64">
               {/* A(80,55) B(260,95) C(43.4,219.8) : angle en A recalculé exactement à 90° (AB·AC = 0) */}
               <circle cx="160" cy="130" r="105" fill="none" stroke="white" strokeWidth="2.5" opacity="0.85" />
               <polygon points="80,55 260,95 43.4,219.8" fill="white" fillOpacity="0.08" stroke="white" strokeWidth="3" />
@@ -128,7 +128,7 @@ export default function Lesson() {
                 </PropBox>
               </div>
               <FigureBox>
-                <svg viewBox="-20 0 320 240" className="w-full max-w-[260px]">
+                <svg role="img" aria-label="Figure 2 — Triangle rectangle et cercle : points A, C, B, I" viewBox="-20 0 320 240" className="w-full max-w-[260px]">
                   {/* A(150,30) B(270,190) C(7.6,136.8) : angle en A recalculé exactement à 90°.
                       I(138.8,163.4) = vrai milieu de [BC]. */}
                   <polygon points="150,30 270,190 7.6,136.8" fill="none" stroke="#334155" strokeWidth="2.5" />
@@ -173,7 +173,7 @@ export default function Lesson() {
                 </PropBox>
               </div>
               <FigureBox>
-                <svg viewBox="0 0 260 260" className="w-full max-w-[240px]">
+                <svg role="img" aria-label="Figure 3 — Triangle rectangle et cercle : points A, C, B, I" viewBox="0 0 260 260" className="w-full max-w-[240px]">
                   {/* B et C sont diamétralement opposés sur le cercle (donc I=centre=vrai milieu de [BC]) et A
                       est un troisième point du même cercle : l'angle en A vaut donc exactement 90° (angle
                       inscrit dans un demi-cercle), sans avoir à le recalculer à part. */}
@@ -232,7 +232,7 @@ export default function Lesson() {
           </div>
 
           <FigureBox>
-            <svg viewBox="0 0 240 220" className="w-full max-w-[220px]">
+            <svg role="img" aria-label="Figure 4 — Triangle rectangle et cercle : points A, B, C ; 8 cm, 6 cm, 10 cm" viewBox="0 0 240 220" className="w-full max-w-[220px]">
               {/* Vrai triangle 8-6-10 : A(142.4,113.2) B(40,190) C(200,190), angle en A exactement 90°
                   (AB=8, AC=6, BC=10 dans les bonnes proportions, pas juste étiquetés). */}
               <polygon points="142.4,113.2 40,190 200,190" fill="none" stroke="#334155" strokeWidth="2.5" />
@@ -280,7 +280,7 @@ export default function Lesson() {
           </div>
 
           <FigureBox>
-            <svg viewBox="0 0 240 220" className="w-full max-w-[220px]">
+            <svg role="img" aria-label="Figure 5 — Triangle rectangle et cercle : points A, B, C ; Hypoténuse, Côté adjacent" viewBox="0 0 240 220" className="w-full max-w-[220px]">
               {/* Vrai triangle 3-4-5 : A(35,175) B(225,175) C(103.4,83.8), angle en C exactement 90°
                   (CA=3, CB=4, AB=5 dans les bonnes proportions). */}
               <polygon points="35,175 225,175 103.4,83.8" fill="none" stroke="#334155" strokeWidth="2.5" />
@@ -321,7 +321,7 @@ export default function Lesson() {
                   <p><strong>c.</strong> Combien mesure le segment <Math tex="[AO]" /> ? Expliquer.</p>
                 </div>
                 <FigureBox>
-                  <svg viewBox="-15 0 235 190" className="w-full max-w-[190px]">
+                  <svg role="img" aria-label="Figure 6 — Triangle rectangle et cercle : points A, C, B, O ; 5 cm" viewBox="-15 0 235 190" className="w-full max-w-[190px]">
                     {/* A(120,25) B(200,140) C(12.6,99.7) : angle en A recalculé exactement à 90°.
                         O(106.3,119.9) = vrai milieu de [BC]. */}
                     <polygon points="120,25 200,140 12.6,99.7" fill="none" stroke="#334155" strokeWidth="2.2" />
@@ -371,7 +371,7 @@ export default function Lesson() {
                   <p className="mt-2">Combien mesure l&apos;hypoténuse ? Expliquer.</p>
                 </div>
                 <FigureBox>
-                  <svg viewBox="0 0 220 160" className="w-full max-w-[190px]">
+                  <svg role="img" aria-label="Figure 7 — Triangle rectangle et cercle : points F, E, D, I ; 5 cm" viewBox="0 0 220 160" className="w-full max-w-[190px]">
                     <polygon points="30,20 30,140 200,140" fill="none" stroke="#334155" strokeWidth="2.2" />
                     <path d="M30,120 L50,120 L50,140" fill="none" stroke="#334155" strokeWidth="1.8" />
                     <line x1="30" y1="20" x2="115" y2="140" stroke="#4f46e5" strokeWidth="2" />
@@ -418,7 +418,7 @@ export default function Lesson() {
                   <p><strong>c.</strong> Citer la caractérisation d&apos;un triangle rectangle appliquée à cet énoncé.</p>
                 </div>
                 <FigureBox>
-                  <svg viewBox="0 0 220 120" className="w-full max-w-[190px]">
+                  <svg role="img" aria-label="Figure 8 — Triangle rectangle et cercle : points I, J" viewBox="0 0 220 120" className="w-full max-w-[190px]">
                     <line x1="20" y1="30" x2="200" y2="95" stroke="#334155" strokeWidth="2" />
                     <text x="12" y="25" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">I</text>
                     <text x="210" y="100" textAnchor="middle" fontSize="14" fontWeight="600" fill="#0f172a">J</text>
@@ -433,7 +433,7 @@ export default function Lesson() {
                 <FigureBox>
                   {/* O(110,110) centre, I et J diamétralement opposés (rayon 80), K un autre point du même
                       cercle : l'angle en K vaut donc exactement 90° (angle inscrit dans un demi-cercle). */}
-                  <svg viewBox="0 0 220 220" className="w-full max-w-[220px]">
+                  <svg role="img" aria-label="Figure 9 — Triangle rectangle et cercle : points I, J, K, O" viewBox="0 0 220 220" className="w-full max-w-[220px]">
                     <circle cx="110" cy="110" r="80" fill="none" stroke="#4f46e5" strokeWidth="1.6" />
                     <circle cx="110" cy="110" r="2.5" fill="#4f46e5" />
                     <polygon points="34.8,82.6 185.2,137.4 96.1,188.8" fill="none" stroke="#334155" strokeWidth="2" />
@@ -492,7 +492,7 @@ export default function Lesson() {
                 <FigureBox>
                   {/* D(130,100) E(95,39.4) F(165,39.4) E'(165,160.6) : DE=DF=DE'=70 exactement, donc
                       l'angle en F vaut exactement 90° (F sur le cercle de diamètre [EE']). */}
-                  <svg viewBox="0 0 260 200" className="w-full max-w-[240px]">
+                  <svg role="img" aria-label="Figure 10 — Triangle rectangle et cercle : points E, F, D, E'" viewBox="0 0 260 200" className="w-full max-w-[240px]">
                     <polygon points="95,39.4 165,39.4 130,100" fill="none" stroke="#334155" strokeWidth="2" />
                     <line x1="130" y1="100" x2="165" y2="160.6" stroke="#334155" strokeWidth="2" strokeDasharray="4 3" />
                     <line x1="95" y1="39.4" x2="165" y2="160.6" stroke="#16a34a" strokeWidth="2" />
@@ -540,7 +540,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-4 text-sm">
                 <FigureBox>
-                  <svg viewBox="0 0 260 230" className="w-full max-w-[240px]">
+                  <svg role="img" aria-label="Figure 11 — Triangle rectangle et cercle : points O, A, M, B, N" viewBox="0 0 260 230" className="w-full max-w-[240px]">
                     {/* A et B sont diamétralement opposés (donc O = vrai milieu de [AB]) ; M et N sont deux
                         autres points du même cercle, donc les angles en M (AMB) et en N (ANB) valent chacun
                         exactement 90° (angle inscrit dans un demi-cercle) sans avoir à les recalculer à part. */}
@@ -623,7 +623,7 @@ export default function Lesson() {
                 <FigureBox>
                   {/* B(40,150) C(200,150) O(120,150) milieu de [BC], A(120,70) au sommet du cercle de diamètre
                       [BC] : AB=AC=113,1 exactement et l'angle en A vaut exactement 90° (Thalès). */}
-                  <svg viewBox="0 0 240 200" className="w-full max-w-[240px]">
+                  <svg role="img" aria-label="Figure 12 — Triangle rectangle et cercle : points B, C, A, O ; 45°" viewBox="0 0 240 200" className="w-full max-w-[240px]">
                     <circle cx="120" cy="150" r="80" fill="none" stroke="#4f46e5" strokeWidth="1.6" />
                     <line x1="120" y1="60" x2="120" y2="150" stroke="#94a3b8" strokeWidth="1.4" strokeDasharray="3 3" />
                     <polygon points="120,70 40,150 200,150" fill="none" stroke="#334155" strokeWidth="2" />
@@ -688,7 +688,7 @@ export default function Lesson() {
                   {/* B(50,120) C(200,120) : cercle de diamètre [BC] (indigo, rayon 75) et cercle de centre B
                       rayon 4cm=100px (orange). Leurs deux points d'intersection A1(116.7,194.5) et
                       A2(116.7,45.5) sont bien à AB=100px exactement et donnent chacun un angle de 90° en A. */}
-                  <svg viewBox="-60 0 280 240" className="w-full max-w-[260px]">
+                  <svg role="img" aria-label="Figure 13 — Triangle rectangle et cercle : points B, C, O ; A₁, A₂" viewBox="-60 0 280 240" className="w-full max-w-[260px]">
                     <circle cx="125" cy="120" r="75" fill="none" stroke="#4f46e5" strokeWidth="1.6" />
                     <circle cx="50" cy="120" r="100" fill="none" stroke="#f97316" strokeWidth="1.6" />
                     <line x1="50" y1="120" x2="200" y2="120" stroke="#334155" strokeWidth="2" />

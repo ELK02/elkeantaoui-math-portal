@@ -375,7 +375,7 @@ export default function Lesson() {
                   <Math tex="B" />. Associer chaque droite à son nom :
                 </p>
                 <DiagramPanel>
-                  <svg viewBox="0 0 420 300" className="w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 1 — Évaluation Diagnostique : points A, C, B ; (D), (Δ), (L)" viewBox="0 0 420 300" className="w-full max-w-sm">
                     {/* Triangle ABC — A=(60,240) B=(150,60) C=(360,240), scalene on purpose so the
                         médiatrice (foot 210), bissectrice (foot 186) and hauteur (foot 150) land on
                         three clearly distinct points of [AC]. */}
@@ -529,7 +529,7 @@ export default function Lesson() {
               au cercle. On construit le symétrique de <Math tex="(C)" /> par rapport à <Math tex="O" />.
             </p>
             <DiagramPanel>
-              <svg viewBox="0 0 260 160" className="w-56">
+              <svg role="img" aria-label="Figure 2 — Évaluation Diagnostique : points A, O ; (C)" viewBox="0 0 260 160" className="w-56">
                 <circle cx="70" cy="90" r="45" fill="none" stroke="#334155" strokeWidth="2" />
                 <circle cx="70" cy="90" r="2.6" fill="#1e293b" />
                 <text x="55" y="94" fontWeight="700" fontSize="13" fill="#1e293b">A</text>
@@ -594,7 +594,7 @@ export default function Lesson() {
               dans cet ordre.
             </p>
             <DiagramPanel>
-              <svg viewBox="0 0 410 270" className="w-full max-w-xs">
+              <svg role="img" aria-label="Figure 3 — Évaluation Diagnostique : points A, B, D, C, E ; 60°, 120°" viewBox="0 0 410 270" className="w-full max-w-xs">
                 {/* True parallelogram: A(160,80) B(360,80) C(275,227) D(75,227) so AB=DC and AD=BC
                     as vectors exactly; E is A plus 0.35·(A−D) along (DA), beyond A. Angle ABC is
                     built to be exactly 60° and BCD exactly 120° (co-interior, sum 180°). */}
@@ -678,7 +678,7 @@ export default function Lesson() {
           >
             <p className="mb-4 text-sm text-foreground-muted">On considère le pavé droit suivant :</p>
             <DiagramPanel>
-              <svg viewBox="0 0 300 200" className="w-64">
+              <svg role="img" aria-label="Figure 4 — Évaluation Diagnostique : 5 cm, 3 cm, 2 cm" viewBox="0 0 300 200" className="w-64">
                 <polygon points="40,70 40,150 190,150 190,70" fill="none" stroke="#334155" strokeWidth="2" />
                 <polygon points="40,70 90,30 240,30 190,70" fill="none" stroke="#334155" strokeWidth="2" />
                 <polygon points="190,70 240,30 240,110 190,150" fill="none" stroke="#334155" strokeWidth="2" />

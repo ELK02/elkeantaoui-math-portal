@@ -192,7 +192,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 200 160" className="h-44 w-52 sm:h-52 sm:w-60">
+          <svg role="img" aria-label="Figure 1 — Statistiques" viewBox="0 0 200 160" className="h-44 w-52 sm:h-52 sm:w-60">
             <line x1="20" y1="10" x2="20" y2="140" stroke="#ffffff" strokeOpacity="0.35" strokeWidth="1.5" />
             <line x1="20" y1="140" x2="190" y2="140" stroke="#ffffff" strokeOpacity="0.35" strokeWidth="1.5" />
             <rect x="35" y="98" width="24" height="42" fill="#ffffff" fillOpacity="0.35" rx="2" />

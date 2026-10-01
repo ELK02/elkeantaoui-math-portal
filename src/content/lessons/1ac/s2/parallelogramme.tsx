@@ -81,7 +81,7 @@ function MemoCard({ icon, tone, title, span, children }: { icon: string; tone: s
 export default function Lesson() {
   return (
     <LessonShell meta={meta}>
-      <svg width="0" height="0" className="absolute">
+      <svg role="img" aria-label="Figure 1 — Le Parallélogramme" width="0" height="0" className="absolute">
         <defs>
           <marker id="arrow-gray-para" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
             <path d="M0,0 L8,4 L0,8 Z" className="fill-neutral-400 dark:fill-neutral-500" />
@@ -115,7 +115,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 220 150" className="h-auto w-56">
+          <svg role="img" aria-label="Figure 2 — Le Parallélogramme" viewBox="0 0 220 150" className="h-auto w-56">
             <polygon points="30,110 100,110 190,40 120,40" fill="none" stroke="white" strokeOpacity="0.7" strokeWidth="2.5" />
             <circle cx="30" cy="110" r="5" fill="white" />
             <circle cx="100" cy="110" r="5" fill="white" />
@@ -145,7 +145,7 @@ export default function Lesson() {
             <p className="mb-4 text-sm text-foreground-muted">
               Soit <strong>ABCD</strong> un parallélogramme : les droites (AB) et (DC) sont parallèles, tout comme les droites (AD) et (BC).
             </p>
-            <svg viewBox="0 0 320 210" className="mx-auto h-auto w-full max-w-sm">
+            <svg role="img" aria-label="Figure 3 — Le Parallélogramme : points A, B, C, D" viewBox="0 0 320 210" className="mx-auto h-auto w-full max-w-sm">
               <g className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" markerStart="url(#arrow-gray-para)" markerEnd="url(#arrow-gray-para)">
                 <line x1="68" y1="63" x2="292" y2="47" />
                 <line x1="18" y1="163" x2="242" y2="147" />
@@ -188,7 +188,7 @@ export default function Lesson() {
               <Statement>Dans un parallélogramme, les diagonales se coupent en leur milieu, appelé <strong>centre du parallélogramme</strong>.</Statement>
             </div>
             <p className="mb-3 text-sm text-foreground-muted">Exemple : soit <strong>ABCD</strong> un parallélogramme de centre <strong>O</strong>.</p>
-            <svg viewBox="0 0 340 220" className="mx-auto mb-6 h-auto w-full max-w-sm">
+            <svg role="img" aria-label="Figure 4 — Le Parallélogramme : points A, B, C, D, O" viewBox="0 0 340 220" className="mx-auto mb-6 h-auto w-full max-w-sm">
               <polygon points="90,50 290,50 250,190 50,190" className="fill-indigo-50 stroke-indigo-600 dark:fill-neutral-950/30 dark:stroke-indigo-400" strokeWidth="2.5" />
               <line x1="90" y1="50" x2="250" y2="190" className="stroke-rose-500 dark:stroke-rose-400" strokeWidth="1.75" strokeDasharray="5,4" />
               <line x1="290" y1="50" x2="50" y2="190" className="stroke-rose-500 dark:stroke-rose-400" strokeWidth="1.75" strokeDasharray="5,4" />
@@ -224,7 +224,7 @@ export default function Lesson() {
                 </>
               }
               figure={
-                <svg viewBox="0 0 300 250" className="mx-auto h-auto w-full max-w-xs">
+                <svg role="img" aria-label="Figure 5 — Le Parallélogramme : points A, B, C, E, F" viewBox="0 0 300 250" className="mx-auto h-auto w-full max-w-xs">
                   <line x1="80" y1="70" x2="220" y2="190" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" strokeDasharray="4,4" />
                   <line x1="210" y1="60" x2="90" y2="200" className="stroke-slate-300 dark:stroke-slate-600" strokeWidth="1.5" strokeDasharray="4,4" />
                   <polygon points="90,200 220,190 210,60 80,70" className="fill-indigo-50 stroke-indigo-600 dark:fill-neutral-950/30 dark:stroke-indigo-400" strokeWidth="2.5" />
@@ -261,7 +261,7 @@ export default function Lesson() {
               <Statement>Dans un parallélogramme, les côtés opposés sont <strong>isométriques (égaux)</strong>.</Statement>
             </div>
             <p className="mb-3 text-sm text-foreground-muted">Exemple : soit <strong>ABCD</strong> un parallélogramme.</p>
-            <svg viewBox="0 0 340 220" className="mx-auto mb-6 h-auto w-full max-w-sm">
+            <svg role="img" aria-label="Figure 6 — Le Parallélogramme : points A, B, C, D" viewBox="0 0 340 220" className="mx-auto mb-6 h-auto w-full max-w-sm">
               <polygon points="90,50 290,50 250,190 50,190" className="fill-indigo-50 stroke-indigo-600 dark:fill-neutral-950/30 dark:stroke-indigo-400" strokeWidth="2.5" />
               <g className="stroke-slate-600 dark:stroke-slate-300" strokeWidth="2">
                 <line x1="186" y1="46" x2="194" y2="54" />
@@ -293,7 +293,7 @@ export default function Lesson() {
               <ApplicationCard
                 statement={<>Soit <strong>ABCD</strong> un rectangle. 1) Tracer la figure. 2) Montrer que ABCD est un parallélogramme.</>}
                 figure={
-                  <svg viewBox="0 0 340 220" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 7 — Le Parallélogramme : points A, B, C, D" viewBox="0 0 340 220" className="mx-auto h-auto w-full max-w-xs">
                     <rect x="70" y="50" width="200" height="120" className="fill-indigo-50 stroke-indigo-600 dark:fill-neutral-950/30 dark:stroke-indigo-400" strokeWidth="2.5" />
                     <path d="M70,66 L86,66 L86,50" className="stroke-slate-600 dark:stroke-slate-300" fill="none" strokeWidth="2" />
                     <circle cx="70" cy="50" r="5" className="fill-indigo-600 dark:fill-indigo-400" />
@@ -332,7 +332,7 @@ export default function Lesson() {
                 </>
               }
               figure={
-                <svg viewBox="0 0 340 220" className="mx-auto h-auto w-full max-w-xs">
+                <svg role="img" aria-label="Figure 8 — Le Parallélogramme : points A, B, C, D" viewBox="0 0 340 220" className="mx-auto h-auto w-full max-w-xs">
                   <g className="stroke-slate-400 dark:stroke-slate-500" strokeWidth="1.5" markerEnd="url(#arrow-gray-para)">
                     <line x1="70" y1="60" x2="300" y2="60" />
                   </g>
@@ -371,7 +371,7 @@ export default function Lesson() {
               <Statement>Dans un parallélogramme, les angles opposés sont <strong>isométriques (égaux)</strong>.</Statement>
             </div>
             <p className="mb-3 text-sm text-foreground-muted">Exemple : soit <strong>ABCD</strong> un parallélogramme.</p>
-            <svg viewBox="0 0 340 220" className="mx-auto mb-4 h-auto w-full max-w-sm">
+            <svg role="img" aria-label="Figure 9 — Le Parallélogramme : points A, B, C, D" viewBox="0 0 340 220" className="mx-auto mb-4 h-auto w-full max-w-sm">
               <polygon points="90,50 290,50 250,190 50,190" className="fill-indigo-50 stroke-indigo-600 dark:fill-neutral-950/30 dark:stroke-indigo-400" strokeWidth="2.5" />
               <path d="M116,50 A26,26 0 0,1 82.86,75.0" className="fill-none stroke-rose-500 dark:stroke-rose-400" strokeWidth="2.5" />
               <path d="M257.14,165.0 A26,26 0 0,1 224,190" className="fill-none stroke-rose-500 dark:stroke-rose-400" strokeWidth="2.5" />
@@ -406,7 +406,7 @@ export default function Lesson() {
             </div>
             <p className="mb-3 text-sm text-foreground-muted">Exemple : soit <strong>ABCD</strong> un parallélogramme.</p>
             <div className="grid items-center gap-6 sm:grid-cols-2">
-              <svg viewBox="0 0 340 220" className="mx-auto h-auto w-full max-w-xs">
+              <svg role="img" aria-label="Figure 10 — Le Parallélogramme : points A, B, C, D" viewBox="0 0 340 220" className="mx-auto h-auto w-full max-w-xs">
                 <polygon points="90,50 290,50 250,190 50,190" className="fill-indigo-50 stroke-indigo-600 dark:fill-neutral-950/30 dark:stroke-indigo-400" strokeWidth="2.5" />
                 <path d="M116,50 A26,26 0 0,1 82.86,75.0" className="fill-none stroke-slate-500 dark:stroke-slate-400" strokeWidth="2" />
                 <path d="M264,50 A26,26 0 0,0 282.86,75.0" className="fill-none stroke-slate-500 dark:stroke-slate-400" strokeWidth="2" />
@@ -490,7 +490,7 @@ export default function Lesson() {
                 </p>
                 <p className="mb-4 text-sm font-semibold text-foreground">LM ; MN ; LK̂N ; KL̂M ; KN̂M</p>
                 <FigureBox>
-                  <svg viewBox="0 0 330 220" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 11 — Le Parallélogramme : points L, M, N, K ; 120°, 3 cm, 4 cm" viewBox="0 0 330 220" className="mx-auto h-auto w-full max-w-xs">
                     <polygon points="70,190 100,50 260,50 230,190" className="fill-indigo-50 stroke-indigo-600 dark:fill-neutral-950/30 dark:stroke-indigo-400" strokeWidth="2.5" />
                     <path d="M94.6,75.4 A26,26 0 0,1 126,50" className="fill-none stroke-rose-500 dark:stroke-rose-400" strokeWidth="2.25" />
                     <text x="103" y="76" fontSize="13" className="fill-rose-600 dark:fill-rose-400 font-bold">120°</text>
@@ -542,7 +542,7 @@ export default function Lesson() {
                   </li>
                 </ol>
                 <FigureBox caption="Figure de départ">
-                  <svg viewBox="0 0 300 220" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 12 — Le Parallélogramme : points A, B, C, I, J" viewBox="0 0 300 220" className="mx-auto h-auto w-full max-w-xs">
                     <polygon points="150,50 60,190 250,170" className="fill-indigo-50 stroke-indigo-600 dark:fill-neutral-950/30 dark:stroke-indigo-400" strokeWidth="2.5" />
                     <line x1="97" y1="113" x2="113" y2="127" className="stroke-slate-600 dark:stroke-slate-300" strokeWidth="2" />
                     <line x1="192" y1="103" x2="208" y2="117" className="stroke-slate-600 dark:stroke-slate-300" strokeWidth="2" />
@@ -564,7 +564,7 @@ export default function Lesson() {
               <div className="space-y-3">
                 <CorrectionCard n={1}>On place K sur la demi-droite [IJ) tel que JK = JI (J devient le milieu de [IK]).</CorrectionCard>
                 <FigureBox>
-                  <svg viewBox="0 0 340 220" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 13 — Le Parallélogramme : points A, B, C, I, K, J" viewBox="0 0 340 220" className="mx-auto h-auto w-full max-w-xs">
                     <polygon points="150,50 60,190 250,170" className="fill-indigo-50/50 stroke-slate-400 dark:fill-neutral-950/20 dark:stroke-slate-500" strokeWidth="1.5" strokeDasharray="4,4" />
                     <polygon points="150,50 295,100 250,170 105,120" className="fill-none stroke-indigo-600 dark:stroke-indigo-400" strokeWidth="2.5" />
                     <line x1="150" y1="50" x2="250" y2="170" className="stroke-rose-500 dark:stroke-rose-400" strokeWidth="1.5" strokeDasharray="5,3" />
@@ -604,7 +604,7 @@ export default function Lesson() {
                   milieu de <strong>[AE]</strong>.
                 </p>
                 <FigureBox>
-                  <svg viewBox="0 0 360 220" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 14 — Le Parallélogramme : points A, B, E, D, C" viewBox="0 0 360 220" className="mx-auto h-auto w-full max-w-sm">
                     <polygon points="70,70 180,70 220,170 110,170" className="fill-indigo-100/70 stroke-indigo-600 dark:fill-neutral-950/30 dark:stroke-indigo-400" strokeWidth="2.5" />
                     <polygon points="110,170 180,70 290,70 220,170" className="fill-rose-100/70 stroke-rose-500 dark:fill-rose-950/20 dark:stroke-rose-400" strokeWidth="2.5" />
                     <circle cx="70" cy="70" r="5" className="fill-indigo-600 dark:fill-indigo-400" />
@@ -640,7 +640,7 @@ export default function Lesson() {
               <div>
                 <p className="mb-4 text-sm text-foreground-muted">Calculer la mesure de chaque angle du parallélogramme <strong>ABCD</strong>. Justifier.</p>
                 <FigureBox>
-                  <svg viewBox="0 0 380 220" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 15 — Le Parallélogramme : points A, B, C, D, E ; 124°" viewBox="0 0 380 220" className="mx-auto h-auto w-full max-w-sm">
                     <polygon points="110,60 250,60 210,180 70,180" className="fill-indigo-50 stroke-indigo-600 dark:fill-neutral-950/30 dark:stroke-indigo-400" strokeWidth="2.5" />
                     <line x1="70" y1="180" x2="330" y2="180" className="stroke-slate-400 dark:stroke-slate-500" strokeWidth="1.5" markerEnd="url(#arrow-gray-para)" />
                     <path d="M218.2,155.3 A26,26 0 0,1 236,180" className="fill-none stroke-rose-500 dark:stroke-rose-400" strokeWidth="2.25" />
@@ -685,7 +685,7 @@ export default function Lesson() {
                 <CorrectionCard n={1}>Tracer [AB] = 5 cm ; en A, tracer une demi-droite formant 30° avec (AB) ; en B, tracer une demi-droite formant 50° avec (BA) du même côté ; leur point d&apos;intersection est C.</CorrectionCard>
                 <CorrectionCard n={2}>I est le milieu de [BC] (mesurer BC et reporter la moitié). K est placé sur la demi-droite [AI) tel que IK = IA.</CorrectionCard>
                 <FigureBox>
-                  <svg viewBox="0 0 320 290" className="mx-auto h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 16 — Le Parallélogramme : points A, B, K, C, I" viewBox="0 0 320 290" className="mx-auto h-auto w-full max-w-xs">
                     <polygon points="150,40 60,160 170,270 260,150" className="fill-indigo-50 stroke-indigo-600 dark:fill-neutral-950/30 dark:stroke-indigo-400" strokeWidth="2.5" />
                     <line x1="150" y1="40" x2="170" y2="270" className="stroke-rose-500 dark:stroke-rose-400" strokeWidth="1.5" strokeDasharray="5,3" />
                     <line x1="60" y1="160" x2="260" y2="150" className="stroke-rose-500 dark:stroke-rose-400" strokeWidth="1.5" strokeDasharray="5,3" />
@@ -740,7 +740,7 @@ export default function Lesson() {
                 <CorrectionCard n={2}>I = milieu de [AB], J = milieu de [BC] (mesurer et reporter la moitié).</CorrectionCard>
                 <CorrectionCard n={3}>E est placé tel que I soit le milieu de [DE]. F est placé tel que J soit le milieu de [DF].</CorrectionCard>
                 <FigureBox caption="En rose : AEBD. En bleu : DBFC. La ligne pointillée montre l'alignement A, B, F.">
-                  <svg viewBox="0 0 500 270" className="mx-auto h-auto w-full max-w-md">
+                  <svg role="img" aria-label="Figure 17 — Le Parallélogramme : points A, B, C, D, O, I, J, E, F" viewBox="0 0 500 270" className="mx-auto h-auto w-full max-w-md">
                     <polygon points="60,150 260,150 320,60 120,60" className="fill-indigo-50 stroke-indigo-600 dark:fill-neutral-950/30 dark:stroke-indigo-400" strokeWidth="2.5" />
                     <polygon points="60,150 200,240 260,150 120,60" className="fill-none stroke-rose-500 dark:stroke-rose-400" strokeWidth="2" />
                     <polygon points="120,60 260,150 460,150 320,60" className="fill-none stroke-sky-500 dark:stroke-sky-400" strokeWidth="2" />
@@ -795,7 +795,7 @@ export default function Lesson() {
                   <li>Démontre que les segments [AF] et [ED] se coupent en leur milieu.</li>
                 </ol>
                 <FigureBox>
-                  <svg viewBox="0 0 400 260" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 18 — Le Parallélogramme : points A, B, C, D, E, F" viewBox="0 0 400 260" className="mx-auto h-auto w-full max-w-sm">
                     <polygon points="90,60 230,60 200,180 60,180" className="fill-indigo-50 stroke-indigo-600 dark:fill-neutral-950/30 dark:stroke-indigo-400" strokeWidth="2.5" />
                     <polygon points="230,60 340,110 310,230 200,180" className="fill-rose-50 stroke-rose-500 dark:fill-rose-950/20 dark:stroke-rose-400" strokeWidth="2.5" />
                     <circle cx="90" cy="60" r="5" className="fill-indigo-600 dark:fill-indigo-400" />

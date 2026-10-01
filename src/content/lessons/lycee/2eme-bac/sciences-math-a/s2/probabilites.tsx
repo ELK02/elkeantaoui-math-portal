@@ -93,7 +93,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 240 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
+          <svg role="img" aria-label="Figure 1 — Probabilités : points A, B ; A∩B, P(A∪B)=P(A)+P(B)−P(A∩B)" viewBox="0 0 240 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
             <circle cx="90" cy="100" r="66" fill="none" stroke="white" strokeWidth="1.6" opacity="0.85" />
             <circle cx="150" cy="100" r="66" fill="none" stroke="#fb923c" strokeWidth="2" />
             <text x="52" y="60" fontSize="14" fontWeight="700" fill="white">A</text>

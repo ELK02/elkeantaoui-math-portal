@@ -84,7 +84,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 220 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
+          <svg role="img" aria-label="Figure 1 — Dérivabilité et Étude des fonctions" viewBox="0 0 220 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
             <line x1="10" y1="170" x2="210" y2="170" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
             <line x1="30" y1="10" x2="30" y2="190" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
             <path d="M40,160 C70,60 130,60 160,160" fill="none" stroke="#fb923c" strokeWidth="2.5" />

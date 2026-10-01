@@ -109,7 +109,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 220 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
+          <svg role="img" aria-label="Figure 1 — Les droites remarquables dans un triangle" viewBox="0 0 220 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
             <polygon points="110,20 20,170 200,150" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.85" />
             <line x1="110" y1="20" x2="110" y2="160" stroke="#fb923c" strokeWidth="2.5" />
             <line x1="20" y1="170" x2="155" y2="85" stroke="#fb923c" strokeWidth="2.5" opacity="0.55" />
@@ -133,7 +133,7 @@ export default function Lesson() {
           numeral="I"
           title="Médiatrice d'un triangle"
           visual={
-            <svg viewBox="0 0 250 230" className="h-auto w-full max-w-[280px]">
+            <svg role="img" aria-label="Figure 2 — Les droites remarquables dans un triangle : points O, A, B, C" viewBox="0 0 250 230" className="h-auto w-full max-w-[280px]">
               <circle cx="122.2" cy="120.1" r="88" fill="none" stroke="#4f46e5" strokeWidth="1.4" strokeDasharray="4 3" opacity="0.55" />
               <polygon points="120,32 40,152 208,140" fill="none" stroke="#334155" strokeWidth="2" />
               <line x1="21.8" y1="53.2" x2="138.2" y2="130.9" stroke="#e11d48" strokeWidth="1.8" />
@@ -169,7 +169,7 @@ export default function Lesson() {
           numeral="II"
           title="Bissectrice d'un triangle"
           visual={
-            <svg viewBox="0 0 250 230" className="h-auto w-full max-w-[280px]">
+            <svg role="img" aria-label="Figure 3 — Les droites remarquables dans un triangle : points I, A, B, C, E, F" viewBox="0 0 250 230" className="h-auto w-full max-w-[280px]">
               <circle cx="123.4" cy="103.4" r="42.5" fill="none" stroke="#4f46e5" strokeWidth="1.4" strokeDasharray="4 3" opacity="0.55" />
               <polygon points="120,32 40,152 208,140" fill="none" stroke="#334155" strokeWidth="2" />
               <line x1="120" y1="32" x2="125.4" y2="145.9" stroke="#e11d48" strokeWidth="1.8" />
@@ -201,7 +201,7 @@ export default function Lesson() {
           numeral="III"
           title="Hauteur d'un triangle"
           visual={
-            <svg viewBox="0 0 250 230" className="h-auto w-full max-w-[280px]">
+            <svg role="img" aria-label="Figure 4 — Les droites remarquables dans un triangle : points H, A, B, C" viewBox="0 0 250 230" className="h-auto w-full max-w-[280px]">
               <polygon points="120,32 40,152 208,140" fill="none" stroke="#334155" strokeWidth="2" />
               <line x1="120" y1="32" x2="131" y2="163" stroke="#e11d48" strokeWidth="1.8" />
               <line x1="40" y1="152" x2="155" y2="58" stroke="#059669" strokeWidth="1.8" />
@@ -237,7 +237,7 @@ export default function Lesson() {
           numeral="IV"
           title="Médiane d'un triangle"
           visual={
-            <svg viewBox="0 0 250 230" className="h-auto w-full max-w-[280px]">
+            <svg role="img" aria-label="Figure 5 — Les droites remarquables dans un triangle : points G, A, B, C, M" viewBox="0 0 250 230" className="h-auto w-full max-w-[280px]">
               <polygon points="120,32 40,152 208,140" fill="none" stroke="#334155" strokeWidth="2" />
               <line x1="120" y1="32" x2="124" y2="146" stroke="#e11d48" strokeWidth="1.8" />
               <line x1="40" y1="152" x2="164" y2="86" stroke="#059669" strokeWidth="1.8" />
@@ -267,7 +267,7 @@ export default function Lesson() {
                 svg={
                   /* A(100,40) B(30,180) M(160,160, milieu de [BC]) C(290,140) M'(195,90, milieu de [AC])
                      G(140,120) = centroïde de ABC, vérifié : G = A + 2/3(M−A) = B + 2/3(M'−B). */
-                  <svg viewBox="0 0 340 220" className="h-auto w-full max-w-[300px]">
+                  <svg role="img" aria-label="Figure 6 — Les droites remarquables dans un triangle : points A, B, C, M, M', G" viewBox="0 0 340 220" className="h-auto w-full max-w-[300px]">
                     <polygon points="100,40 30,180 290,140" fill="none" stroke="#334155" strokeWidth="2" />
                     <line x1="100" y1="40" x2="160" y2="160" stroke="#0ea5e9" strokeWidth="1.8" />
                     <line x1="30" y1="180" x2="195" y2="90" stroke="#e11d48" strokeWidth="1.8" />
@@ -405,7 +405,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 250 230" className="h-auto w-full max-w-[260px]">
+                  <svg role="img" aria-label="Figure 7 — Les droites remarquables dans un triangle : points A, B, C" viewBox="0 0 250 230" className="h-auto w-full max-w-[260px]">
                     <polygon points="120,32 40,152 208,140" fill="none" stroke="#334155" strokeWidth="2" />
                     <circle cx="120" cy="32" r="2.8" fill="#0f172a" /><text x="110" y="24" fontSize="13" fontWeight="700" fill="#0f172a">A</text>
                     <circle cx="40" cy="152" r="2.8" fill="#0f172a" /><text x="20" y="166" fontSize="13" fontWeight="700" fill="#0f172a">B</text>
@@ -433,7 +433,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 250 230" className="h-auto w-full max-w-[260px]">
+                  <svg role="img" aria-label="Figure 8 — Les droites remarquables dans un triangle : points H, M, A, B, C" viewBox="0 0 250 230" className="h-auto w-full max-w-[260px]">
                     <polygon points="120,32 40,152 208,140" fill="none" stroke="#334155" strokeWidth="2" />
                     <line x1="120" y1="32" x2="131" y2="163" stroke="#e11d48" strokeWidth="1.8" />
                     <line x1="40" y1="152" x2="155" y2="58" stroke="#059669" strokeWidth="1.8" />
@@ -478,7 +478,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 250 230" className="h-auto w-full max-w-[260px]">
+                  <svg role="img" aria-label="Figure 9 — Les droites remarquables dans un triangle : points A, B, C" viewBox="0 0 250 230" className="h-auto w-full max-w-[260px]">
                     <polygon points="120,32 40,152 208,140" fill="none" stroke="#334155" strokeWidth="2" />
                     <circle cx="120" cy="32" r="2.8" fill="#0f172a" /><text x="110" y="24" fontSize="13" fontWeight="700" fill="#0f172a">A</text>
                     <circle cx="40" cy="152" r="2.8" fill="#0f172a" /><text x="20" y="166" fontSize="13" fontWeight="700" fill="#0f172a">B</text>
@@ -504,7 +504,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 250 230" className="h-auto w-full max-w-[260px]">
+                  <svg role="img" aria-label="Figure 10 — Les droites remarquables dans un triangle : points O, A, B, C" viewBox="0 0 250 230" className="h-auto w-full max-w-[260px]">
                     <circle cx="122.2" cy="120.1" r="88" fill="none" stroke="#4f46e5" strokeWidth="1.4" strokeDasharray="4 3" opacity="0.55" />
                     <polygon points="120,32 40,152 208,140" fill="none" stroke="#334155" strokeWidth="2" />
                     <line x1="21.8" y1="53.2" x2="138.2" y2="130.9" stroke="#e11d48" strokeWidth="1.8" />
@@ -546,7 +546,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 260" className="h-auto w-full max-w-[280px]">
+                  <svg role="img" aria-label="Figure 11 — Les droites remarquables dans un triangle : points A, B, C, A'" viewBox="0 0 300 260" className="h-auto w-full max-w-[280px]">
                     <polygon points="150,30 40,190 260,170" fill="none" stroke="#334155" strokeWidth="2" />
                     <circle cx="150" cy="30" r="2.8" fill="#0f172a" /><text x="140" y="22" fontSize="13" fontWeight="700" fill="#0f172a">A</text>
                     <circle cx="40" cy="190" r="2.8" fill="#0f172a" /><text x="20" y="204" fontSize="13" fontWeight="700" fill="#0f172a">B</text>
@@ -571,7 +571,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 260" className="h-auto w-full max-w-[280px]">
+                  <svg role="img" aria-label="Figure 12 — Les droites remarquables dans un triangle : points A, B, C, A' ; (d₁), (AA'), (d₂)" viewBox="0 0 300 260" className="h-auto w-full max-w-[280px]">
                     <polygon points="150,30 40,190 260,170" fill="none" stroke="#334155" strokeWidth="2" />
                     <line x1="150" y1="30" x2="163.5" y2="178.8" stroke="#e11d48" strokeWidth="1.8" />
                     <line x1="143.7" y1="120.3" x2="156.3" y2="239.8" stroke="#059669" strokeWidth="1.8" />
@@ -617,7 +617,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 250 230" className="h-auto w-full max-w-[260px]">
+                  <svg role="img" aria-label="Figure 13 — Les droites remarquables dans un triangle : points A, B, C" viewBox="0 0 250 230" className="h-auto w-full max-w-[260px]">
                     <polygon points="120,32 40,152 208,140" fill="none" stroke="#334155" strokeWidth="2" />
                     <circle cx="120" cy="32" r="2.8" fill="#0f172a" /><text x="110" y="24" fontSize="13" fontWeight="700" fill="#0f172a">A</text>
                     <circle cx="40" cy="152" r="2.8" fill="#0f172a" /><text x="20" y="166" fontSize="13" fontWeight="700" fill="#0f172a">B</text>
@@ -645,7 +645,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 250 230" className="h-auto w-full max-w-[260px]">
+                  <svg role="img" aria-label="Figure 14 — Les droites remarquables dans un triangle : points O, G, H, I, A, B, C" viewBox="0 0 250 230" className="h-auto w-full max-w-[260px]">
                     <circle cx="122.2" cy="120.1" r="88" fill="none" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.5" />
                     <circle cx="123.4" cy="103.4" r="42.5" fill="none" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.5" />
                     <polygon points="120,32 40,152 208,140" fill="none" stroke="#334155" strokeWidth="2" />
@@ -684,7 +684,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 220" className="h-auto w-full max-w-[280px]">
+                  <svg role="img" aria-label="Figure 15 — Les droites remarquables dans un triangle : points L, A, C" viewBox="0 0 300 220" className="h-auto w-full max-w-[280px]">
                     <polygon points="150,30 70,190 230,190" fill="none" stroke="#334155" strokeWidth="2" />
                     <circle cx="150" cy="30" r="2.8" fill="#0f172a" /><text x="140" y="22" fontSize="13" fontWeight="700" fill="#0f172a">L</text>
                     <circle cx="70" cy="190" r="2.8" fill="#0f172a" /><text x="52" y="205" fontSize="13" fontWeight="700" fill="#0f172a">A</text>
@@ -712,7 +712,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 220" className="h-auto w-full max-w-[280px]">
+                  <svg role="img" aria-label="Figure 16 — Les droites remarquables dans un triangle : points U, A', C', L, A, C" viewBox="0 0 300 220" className="h-auto w-full max-w-[280px]">
                     <polygon points="150,30 70,190 230,190" fill="none" stroke="#334155" strokeWidth="2" />
                     <line x1="150" y1="30" x2="150" y2="190" stroke="#e11d48" strokeWidth="2" />
                     <line x1="70" y1="190" x2="190" y2="110" stroke="#4f46e5" strokeWidth="1.4" />
@@ -748,7 +748,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 260 210" className="h-auto w-full max-w-[260px]">
+                  <svg role="img" aria-label="Figure 17 — Les droites remarquables dans un triangle : points A, B, C, D" viewBox="0 0 260 210" className="h-auto w-full max-w-[260px]">
                     <polygon points="60,190 230,190 230,60 60,60" fill="none" stroke="#334155" strokeWidth="2" />
                     <line x1="60" y1="190" x2="230" y2="60" stroke="#94a3b8" strokeWidth="1.4" strokeDasharray="3 3" />
                     <circle cx="60" cy="190" r="2.8" fill="#0f172a" /><text x="46" y="204" fontSize="13" fontWeight="700" fill="#0f172a">A</text>
@@ -784,7 +784,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 260 260" className="h-auto w-full max-w-[260px]">
+                  <svg role="img" aria-label="Figure 18 — Les droites remarquables dans un triangle : points A, B, C, D, E, F" viewBox="0 0 260 260" className="h-auto w-full max-w-[260px]">
                     <polygon points="60,190 230,190 230,60 60,60" fill="none" stroke="#cbd5e1" strokeWidth="1.6" strokeDasharray="4 3" />
                     <line x1="60" y1="190" x2="230" y2="60" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="3 3" />
                     <line x1="60" y1="190" x2="230" y2="236" stroke="#4f46e5" strokeWidth="1.8" />
@@ -820,7 +820,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 250 230" className="h-auto w-full max-w-[260px]">
+                  <svg role="img" aria-label="Figure 19 — Les droites remarquables dans un triangle : points E, F, G" viewBox="0 0 250 230" className="h-auto w-full max-w-[260px]">
                     <polygon points="120,32 40,152 208,140" fill="none" stroke="#334155" strokeWidth="2" />
                     <circle cx="120" cy="32" r="2.8" fill="#0f172a" /><text x="110" y="24" fontSize="13" fontWeight="700" fill="#0f172a">E</text>
                     <circle cx="40" cy="152" r="2.8" fill="#0f172a" /><text x="20" y="166" fontSize="13" fontWeight="700" fill="#0f172a">F</text>
@@ -852,7 +852,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 250 230" className="h-auto w-full max-w-[260px]">
+                  <svg role="img" aria-label="Figure 20 — Les droites remarquables dans un triangle : points O, I, E, F, G" viewBox="0 0 250 230" className="h-auto w-full max-w-[260px]">
                     <polygon points="120,32 40,152 208,140" fill="none" stroke="#334155" strokeWidth="2" />
                     <line x1="21.8" y1="53.2" x2="138.2" y2="130.9" stroke="#e11d48" strokeWidth="1.6" />
                     <line x1="109.7" y1="130.2" x2="218.3" y2="41.8" stroke="#4f46e5" strokeWidth="1.6" />
@@ -893,7 +893,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 260" className="h-auto w-full max-w-[280px]">
+                  <svg role="img" aria-label="Figure 21 — Les droites remarquables dans un triangle : points A, B, C" viewBox="0 0 300 260" className="h-auto w-full max-w-[280px]">
                     <polygon points="37.5,59 90,150 240,150" fill="none" stroke="#334155" strokeWidth="2" />
                     <circle cx="37.5" cy="59" r="2.8" fill="#0f172a" /><text x="18" y="52" fontSize="13" fontWeight="700" fill="#0f172a">A</text>
                     <circle cx="90" cy="150" r="2.8" fill="#0f172a" /><text x="70" y="168" fontSize="13" fontWeight="700" fill="#0f172a">B</text>
@@ -916,7 +916,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 260" className="h-auto w-full max-w-[280px]">
+                  <svg role="img" aria-label="Figure 22 — Les droites remarquables dans un triangle : points A, B, C ; hauteur, médiatrice" viewBox="0 0 300 260" className="h-auto w-full max-w-[280px]">
                     <polygon points="37.5,59 90,150 240,150" fill="none" stroke="#334155" strokeWidth="2" />
                     <line x1="37.5" y1="44" x2="37.5" y2="160" stroke="#4f46e5" strokeWidth="1.8" />
                     <line x1="165" y1="55" x2="165" y2="245" stroke="#059669" strokeWidth="1.8" />
@@ -955,7 +955,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 210" className="h-auto w-full max-w-[280px]">
+                  <svg role="img" aria-label="Figure 23 — Les droites remarquables dans un triangle : points O, E, A, B, C, D" viewBox="0 0 300 210" className="h-auto w-full max-w-[280px]">
                     <polygon points="60,60 240,60 270,180 90,180" fill="none" stroke="#334155" strokeWidth="2" />
                     <line x1="60" y1="60" x2="270" y2="180" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="3 3" />
                     <line x1="240" y1="60" x2="90" y2="180" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="3 3" />
@@ -993,7 +993,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 210" className="h-auto w-full max-w-[280px]">
+                  <svg role="img" aria-label="Figure 24 — Les droites remarquables dans un triangle : points K, O, E, A, B, C, D" viewBox="0 0 300 210" className="h-auto w-full max-w-[280px]">
                     <polygon points="60,60 240,60 270,180 90,180" fill="none" stroke="#cbd5e1" strokeWidth="1.6" strokeDasharray="4 3" />
                     <line x1="270" y1="180" x2="150" y2="60" stroke="#e11d48" strokeWidth="1.6" />
                     <line x1="240" y1="60" x2="165" y2="120" stroke="#4f46e5" strokeWidth="1.6" />
@@ -1033,7 +1033,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 220" className="h-auto w-full max-w-[280px]">
+                  <svg role="img" aria-label="Figure 25 — Les droites remarquables dans un triangle : points I, E, D, A, B, C" viewBox="0 0 300 220" className="h-auto w-full max-w-[280px]">
                     <polygon points="150,40 50,200 270,200" fill="none" stroke="#334155" strokeWidth="2" />
                     <line x1="50" y1="200" x2="216" y2="128" stroke="#94a3b8" strokeWidth="1.4" strokeDasharray="3 3" />
                     <line x1="270" y1="200" x2="100" y2="120" stroke="#94a3b8" strokeWidth="1.4" strokeDasharray="3 3" />

@@ -196,7 +196,7 @@ export default function Lesson() {
           <p className="mt-6 font-mono text-xs font-semibold text-foreground-muted uppercase">** Exemples</p>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             <Fig>
-              <svg viewBox="0 0 200 120" className="mx-auto h-auto w-full max-w-xs">
+              <svg role="img" aria-label="Figure 1 — Géométrie du plan : points A, B" viewBox="0 0 200 120" className="mx-auto h-auto w-full max-w-xs">
                 <PointCross x={55} y={25} />
                 <FigLabel x={47} y={18}>A</FigLabel>
                 <PointCross x={135} y={80} />
@@ -205,7 +205,7 @@ export default function Lesson() {
               <FigCaption>Soient <em>A</em> et <em>B</em> deux points distincts. On écrit : <Notation>A ≠ B</Notation></FigCaption>
             </Fig>
             <Fig>
-              <svg viewBox="0 0 200 120" className="mx-auto h-auto w-full max-w-xs">
+              <svg role="img" aria-label="Figure 2 — Géométrie du plan : points A, B" viewBox="0 0 200 120" className="mx-auto h-auto w-full max-w-xs">
                 <PointCross x={95} y={55} />
                 <FigLabel x={80} y={48}>A</FigLabel>
                 <FigLabel x={107} y={80}>B</FigLabel>
@@ -227,7 +227,7 @@ export default function Lesson() {
               <li>Une droite peut porter un nom comme : <span className="italic">(D), (Δ), (D′), (Δ′), (L), (L′), ...</span></li>
             </ul>
             <p className="mt-5 font-mono text-xs font-semibold text-foreground-muted uppercase">** Exemple</p>
-            <svg viewBox="0 0 260 150" className="mx-auto mt-2 h-auto w-full max-w-sm">
+            <svg role="img" aria-label="Figure 3 — Géométrie du plan : (D), (Δ)" viewBox="0 0 260 150" className="mx-auto mt-2 h-auto w-full max-w-sm">
               <g stroke="#0f172a" strokeWidth={2}>
                 <line x1="40" y1="120" x2="150" y2="20" />
                 <line x1="170" y1="130" x2="230" y2="30" />
@@ -241,7 +241,7 @@ export default function Lesson() {
           <div className="rounded-2xl border border-border bg-surface-muted p-6 sm:p-8">
             <p className="mb-2 font-mono text-xs font-semibold text-foreground-muted uppercase">** Vocabulaire</p>
             <p className="mb-4 text-sm text-foreground-muted">On considère la figure ci-contre telle que : (D) une droite et A, B deux points distincts.</p>
-            <svg viewBox="0 0 300 140" className="mx-auto h-auto w-full max-w-sm">
+            <svg role="img" aria-label="Figure 4 — Géométrie du plan : points A, B ; (D)" viewBox="0 0 300 140" className="mx-auto h-auto w-full max-w-sm">
               <line x1="20" y1="110" x2="280" y2="40" stroke="#0f172a" strokeWidth={2} />
               <FigLabel x={262} y={30}>(D)</FigLabel>
               <PointCross x={158} y={66.5} />
@@ -262,7 +262,7 @@ export default function Lesson() {
           <PropCard index={1} title="Propriété 1">
             <Rule>Par deux points distincts passe <strong>une et une seule droite</strong>.</Rule>
             <p className="mt-4 text-xs font-semibold text-foreground-muted uppercase">Exemple</p>
-            <svg viewBox="0 0 260 120" className="mx-auto mt-1 h-auto w-full max-w-sm">
+            <svg role="img" aria-label="Figure 5 — Géométrie du plan : points A, B" viewBox="0 0 260 120" className="mx-auto mt-1 h-auto w-full max-w-sm">
               <line x1="212.8" y1="19.8" x2="67.2" y2="85.3" stroke="#0f172a" strokeWidth={2} />
               <PointCross x={185} y={25} />
               <FigLabel x={196} y={24}>A</FigLabel>
@@ -275,7 +275,7 @@ export default function Lesson() {
           <PropCard index={2} title="Propriété 2">
             <Rule>Par un point passe <strong>une infinité de droites</strong>.</Rule>
             <p className="mt-4 text-xs font-semibold text-foreground-muted uppercase">Exemple</p>
-            <svg viewBox="0 0 240 200" className="mx-auto mt-1 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 6 — Géométrie du plan : point A" viewBox="0 0 240 200" className="mx-auto mt-1 h-auto w-full max-w-xs">
               <g stroke="#0f172a" strokeWidth={1.5} opacity={0.85}>
                 <line x1="35.8" y1="88.2" x2="204.2" y2="111.8" />
                 <line x1="46.8" y1="56.9" x2="193.2" y2="143.1" />
@@ -299,7 +299,7 @@ export default function Lesson() {
             <DefBox><strong>Les points alignés</strong> sont des points qui appartiennent à une même droite.</DefBox>
           </div>
           <div className="rounded-2xl border border-border bg-surface-muted p-6">
-            <svg viewBox="0 0 260 100" className="mx-auto h-auto w-full max-w-sm">
+            <svg role="img" aria-label="Figure 7 — Géométrie du plan : points A, B, C" viewBox="0 0 260 100" className="mx-auto h-auto w-full max-w-sm">
               <line x1="5.8" y1="89.8" x2="244.2" y2="10.3" stroke="#0f172a" strokeWidth={2} />
               <PointCross x={15} y={80} /><FigLabel x={8} y={76}>A</FigLabel>
               <PointCross x={105} y={50} /><FigLabel x={108} y={45}>B</FigLabel>
@@ -308,7 +308,7 @@ export default function Lesson() {
             <p className="mt-1 text-center text-sm font-medium text-green-700">A, B et C sont des points alignés</p>
           </div>
           <div className="rounded-2xl border border-border bg-surface-muted p-6">
-            <svg viewBox="0 0 260 100" className="mx-auto h-auto w-full max-w-sm">
+            <svg role="img" aria-label="Figure 8 — Géométrie du plan : points E, F, G" viewBox="0 0 260 100" className="mx-auto h-auto w-full max-w-sm">
               <line x1="18.3" y1="72.5" x2="231.7" y2="27.5" stroke="#0f172a" strokeWidth={2} />
               <PointCross x={25} y={65} /><FigLabel x={18} y={62}>E</FigLabel>
               <PointCross x={215} y={25} /><FigLabel x={218} y={45}>F</FigLabel>
@@ -323,7 +323,7 @@ export default function Lesson() {
           <div className="rounded-2xl border border-border bg-surface p-6">
             <h4 className="mb-2 font-display font-bold text-foreground">Droites sécantes</h4>
             <div className="rounded-xl border-2 border-rose-200 bg-rose-50 p-3 text-sm text-rose-900">Deux droites sécantes sont deux droites qui n&apos;ont qu&apos;<strong>un seul point commun</strong>.</div>
-            <svg viewBox="0 0 260 140" className="mx-auto mt-4 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 9 — Géométrie du plan : point A ; (D), (Δ)" viewBox="0 0 260 140" className="mx-auto mt-4 h-auto w-full max-w-xs">
               <g stroke="#0f172a" strokeWidth={2}>
                 <line x1="40" y1="30" x2="220" y2="110" />
                 <line x1="40" y1="110" x2="220" y2="30" />
@@ -339,7 +339,7 @@ export default function Lesson() {
           <div className="rounded-2xl border border-border bg-surface p-6">
             <h4 className="mb-2 font-display font-bold text-foreground">Droites confondues</h4>
             <div className="rounded-xl border-2 border-rose-200 bg-rose-50 p-3 text-sm text-rose-900">Deux droites confondues sont deux droites qui ont <strong>plus d&apos;un point commun</strong>.</div>
-            <svg viewBox="0 0 260 140" className="mx-auto mt-4 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 10 — Géométrie du plan : (D), (Δ)" viewBox="0 0 260 140" className="mx-auto mt-4 h-auto w-full max-w-xs">
               <line x1="30" y1="110" x2="230" y2="30" stroke="#0f172a" strokeWidth={4} />
               <line x1="30" y1="115" x2="230" y2="35" stroke="#e11d48" strokeWidth={1.5} strokeDasharray="5 4" />
               <FigLabel x={205} y={60} fontSize={14}>(D)</FigLabel>
@@ -352,7 +352,7 @@ export default function Lesson() {
           <div className="rounded-2xl border border-border bg-surface p-6">
             <h4 className="mb-2 font-display font-bold text-foreground">Droites parallèles</h4>
             <div className="rounded-xl border-2 border-rose-200 bg-rose-50 p-3 text-sm text-rose-900">Deux droites parallèles sont deux droites <strong>non sécantes</strong> ou confondues.</div>
-            <svg viewBox="0 0 260 140" className="mx-auto mt-4 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 11 — Géométrie du plan : (D), (Δ)" viewBox="0 0 260 140" className="mx-auto mt-4 h-auto w-full max-w-xs">
               <g stroke="#0f172a" strokeWidth={2}>
                 <line x1="30" y1="120" x2="230" y2="50" />
                 <line x1="20.1" y1="91.7" x2="220.1" y2="21.7" />
@@ -367,7 +367,7 @@ export default function Lesson() {
         <div className="mb-10 grid gap-4 md:grid-cols-2">
           <div className="rounded-2xl border border-border bg-surface-muted p-6 sm:p-8">
             <div className="mb-4 rounded-xl border-2 border-rose-200 bg-rose-50 p-4 text-sm text-rose-900"><strong>Propriété :</strong> par un point donné passe une seule droite <strong>parallèle</strong> à une droite donnée.</div>
-            <svg viewBox="0 0 260 130" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 12 — Géométrie du plan : point M ; (D)" viewBox="0 0 260 130" className="mx-auto h-auto w-full max-w-xs">
               <line x1="30" y1="105" x2="230" y2="55" stroke="#0f172a" strokeWidth={2} />
               <FigLabel x={205} y={50} fontSize={14}>(D)</FigLabel>
               <line x1="36" y1="43.5" x2="196.1" y2="3.5" stroke="#0f172a" strokeWidth={2} />
@@ -377,7 +377,7 @@ export default function Lesson() {
           </div>
           <div className="rounded-2xl border border-border bg-surface-muted p-6 sm:p-8">
             <div className="mb-4 rounded-xl border-2 border-rose-200 bg-rose-50 p-4 text-sm text-rose-900"><strong>Propriété :</strong> par un point donné passe une seule droite <strong>perpendiculaire</strong> à une droite donnée.</div>
-            <svg viewBox="0 0 260 200" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 13 — Géométrie du plan : point M ; (D)" viewBox="0 0 260 200" className="mx-auto h-auto w-full max-w-xs">
               <line x1="30" y1="100" x2="230" y2="60" stroke="#0f172a" strokeWidth={2} />
               <FigLabel x={205} y={55} fontSize={14}>(D)</FigLabel>
               <line x1="77.1" y1="15.3" x2="112.4" y2="191.8" stroke="#0f172a" strokeWidth={2} />
@@ -392,7 +392,7 @@ export default function Lesson() {
           <div className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
             <h4 className="mb-2 font-display font-bold text-foreground">Droites perpendiculaires</h4>
             <div className="rounded-xl border-2 border-rose-200 bg-rose-50 p-3 text-sm text-rose-900">Deux droites perpendiculaires sont deux droites <strong>sécantes</strong> qui forment <strong>quatre angles droits</strong>.</div>
-            <svg viewBox="0 0 260 140" className="mx-auto mt-4 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 14 — Géométrie du plan : (D), (Δ)" viewBox="0 0 260 140" className="mx-auto mt-4 h-auto w-full max-w-xs">
               <g stroke="#0f172a" strokeWidth={2}>
                 <line x1="130" y1="20" x2="130" y2="120" />
                 <line x1="30" y1="70" x2="230" y2="70" />
@@ -407,7 +407,7 @@ export default function Lesson() {
           <div className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
             <h4 className="mb-2 font-display font-bold text-foreground">Projeté orthogonal &amp; distance</h4>
             <p className="text-sm text-foreground-muted">(D) une droite et E un point à l&apos;extérieur de (D). La perpendiculaire à (D) passant par E coupe (D) en H.</p>
-            <svg viewBox="0 0 320 230" className="mx-auto mt-3 h-auto w-full max-w-sm">
+            <svg role="img" aria-label="Figure 15 — Géométrie du plan : points E, H ; (D)" viewBox="0 0 320 230" className="mx-auto mt-3 h-auto w-full max-w-sm">
               <line x1="15.1" y1="216.3" x2="304.8" y2="191.1" stroke="#0f172a" strokeWidth={2} />
               <FigLabel x={280} y={185} fontSize={14}>(D)</FigLabel>
               <line x1="70" y1="60" x2="83.1" y2="210.4" stroke="#0f172a" strokeWidth={2} />
@@ -430,7 +430,7 @@ export default function Lesson() {
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           <PropCard index={1} title="Propriété 1">
             <Rule>Si deux droites sont parallèles, alors toute <strong>sécante</strong> à l&apos;une est sécante à l&apos;autre.</Rule>
-            <svg viewBox="0 0 260 190" className="mx-auto mt-3 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 16 — Géométrie du plan : (D), (Δ), (L)" viewBox="0 0 260 190" className="mx-auto mt-3 h-auto w-full max-w-xs">
               <g stroke="#0f172a" strokeWidth={2}>
                 <line x1="20" y1="110" x2="240" y2="80" />
                 <line x1="10.1" y1="166.4" x2="252.8" y2="133.2" />
@@ -445,7 +445,7 @@ export default function Lesson() {
 
           <PropCard index={2} title="Propriété 2">
             <Rule>Si deux droites sont parallèles, alors toute <strong>parallèle</strong> à l&apos;une est parallèle à l&apos;autre.</Rule>
-            <svg viewBox="0 0 260 190" className="mx-auto mt-3 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 17 — Géométrie du plan : (D), (Δ), (L)" viewBox="0 0 260 190" className="mx-auto mt-3 h-auto w-full max-w-xs">
               <g stroke="#0f172a" strokeWidth={2}>
                 <line x1="20" y1="115" x2="230" y2="85" />
                 <line x1="10.1" y1="161.4" x2="242.7" y2="128.2" />
@@ -460,7 +460,7 @@ export default function Lesson() {
 
           <PropCard index={3} title="Propriété 3">
             <Rule>Si deux droites sont parallèles, alors toute <strong>perpendiculaire</strong> à l&apos;une est perpendiculaire à l&apos;autre.</Rule>
-            <svg viewBox="0 0 260 210" className="mx-auto mt-3 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 18 — Géométrie du plan : (D), (Δ), (L)" viewBox="0 0 260 210" className="mx-auto mt-3 h-auto w-full max-w-xs">
               <g stroke="#0f172a" strokeWidth={2}>
                 <line x1="20" y1="110" x2="230" y2="85" />
                 <line x1="10.1" y1="156.2" x2="243.4" y2="128.4" />
@@ -476,7 +476,7 @@ export default function Lesson() {
 
           <PropCard index={4} title="Propriété 4">
             <Rule>Si deux droites sont perpendiculaires, alors toute <strong>perpendiculaire</strong> à l&apos;une est parallèle à l&apos;autre.</Rule>
-            <svg viewBox="0 0 260 240" className="mx-auto mt-3 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 19 — Géométrie du plan : (D), (Δ), (L)" viewBox="0 0 260 240" className="mx-auto mt-3 h-auto w-full max-w-xs">
               <g stroke="#0f172a" strokeWidth={2}>
                 <line x1="18.5" y1="135.6" x2="244.8" y2="72.3" />
                 <line x1="84.4" y1="18.5" x2="139.7" y2="215.9" />
@@ -492,7 +492,7 @@ export default function Lesson() {
 
           <PropCard index={5} title="Propriété 5">
             <Rule>Si deux droites sont perpendiculaires, alors toute <strong>parallèle</strong> à l&apos;une est perpendiculaire à l&apos;autre.</Rule>
-            <svg viewBox="0 0 300 210" className="mx-auto mt-3 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 20 — Géométrie du plan : (D), (Δ), (L)" viewBox="0 0 300 210" className="mx-auto mt-3 h-auto w-full max-w-xs">
               <g stroke="#0f172a" strokeWidth={2}>
                 <line x1="70.6" y1="104.9" x2="274.3" y2="53.9" />
                 <line x1="70.6" y1="22.4" x2="116.7" y2="206.7" />
@@ -524,7 +524,7 @@ export default function Lesson() {
               La demi-droite est une partie d&apos;une droite limitée d&apos;un côté par un point appelé <strong className="text-foreground">origine</strong> de la demi-droite, et illimitée de l&apos;autre côté.
             </p>
             <h3 className="mt-6 mb-3 font-display font-bold text-foreground">b) Exemple</h3>
-            <svg viewBox="0 0 260 140" className="mx-auto h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 21 — Géométrie du plan : points A, B" viewBox="0 0 260 140" className="mx-auto h-auto w-full max-w-xs">
               <line x1="40" y1="110" x2="224.5" y2="33.1" stroke="#0f172a" strokeWidth={2} />
               <PointCross x={35} y={105} /><FigLabel x={24} y={128}>A</FigLabel>
               <PointCross x={155} y={55} /><FigLabel x={167} y={53}>B</FigLabel>
@@ -544,7 +544,7 @@ export default function Lesson() {
               </ul>
             </DefBox>
             <p className="mt-4 font-mono text-xs font-semibold text-foreground-muted uppercase">Exemple</p>
-            <svg viewBox="0 0 320 190" className="mx-auto mt-1 h-auto w-full max-w-sm">
+            <svg role="img" aria-label="Figure 22 — Géométrie du plan : points C, A, B" viewBox="0 0 320 190" className="mx-auto mt-1 h-auto w-full max-w-sm">
               <line x1="25.8" y1="167.1" x2="294.2" y2="32.9" stroke="#0f172a" strokeWidth={2} />
               <PointCross x={39} y={153} /><FigLabel x={22} y={150}>C</FigLabel>
               <PointCross x={155} y={95} /><FigLabel x={167} y={93}>A</FigLabel>
@@ -562,7 +562,7 @@ export default function Lesson() {
             <h3 className="mb-3 font-display font-bold text-foreground">a) Définition</h3>
             <div className="rounded-xl border-2 border-rose-200 bg-rose-50 p-4 text-sm text-rose-900">Un segment est une partie d&apos;une droite limitée des deux côtés par deux points appelés <strong>extrémités</strong> du segment.</div>
             <h3 className="mt-4 mb-1 font-display font-bold text-foreground">b) Exemple</h3>
-            <svg viewBox="0 0 240 120" className="mx-auto mt-1 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 23 — Géométrie du plan : points A, B" viewBox="0 0 240 120" className="mx-auto mt-1 h-auto w-full max-w-xs">
               <line x1="40" y1="95" x2="220" y2="35" stroke="#0f172a" strokeWidth={2.5} />
               <PointCross x={35} y={90} /><FigLabel x={24} y={113}>A</FigLabel>
               <PointCross x={215} y={30} /><FigLabel x={222} y={24}>B</FigLabel>
@@ -575,7 +575,7 @@ export default function Lesson() {
             <h3 className="mb-3 font-display font-bold text-foreground">c) Longueur d&apos;un segment</h3>
             <div className="rounded-xl border-2 border-rose-200 bg-rose-50 p-4 text-sm text-rose-900">La longueur d&apos;un segment [AB], c&apos;est la <strong>distance</strong> entre ses extrémités A et B, notée <strong>AB</strong>.</div>
             <p className="mt-4 font-mono text-xs font-semibold text-foreground-muted uppercase">Exemple</p>
-            <svg viewBox="0 0 240 110" className="mx-auto mt-1 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 24 — Géométrie du plan : points A, B ; 5,5 cm" viewBox="0 0 240 110" className="mx-auto mt-1 h-auto w-full max-w-xs">
               <line x1="35" y1="55" x2="215" y2="55" stroke="#0f172a" strokeWidth={2.5} />
               <PointCross x={30} y={50} /><FigLabel x={26} y={42}>A</FigLabel>
               <PointCross x={210} y={50} /><FigLabel x={216} y={42}>B</FigLabel>
@@ -591,7 +591,7 @@ export default function Lesson() {
             <h3 className="mb-3 font-display font-bold text-foreground">d) Segments égaux (isométriques)</h3>
             <div className="rounded-xl border-2 border-rose-200 bg-rose-50 p-4 text-sm text-rose-900">Deux segments égaux (isométriques) sont deux segments de <strong>même longueur</strong>.</div>
             <p className="mt-4 font-mono text-xs font-semibold text-foreground-muted uppercase">Exemple</p>
-            <svg viewBox="0 0 260 150" className="mx-auto mt-1 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 25 — Géométrie du plan : points A, B, E, F" viewBox="0 0 260 150" className="mx-auto mt-1 h-auto w-full max-w-xs">
               <g stroke="#0f172a" strokeWidth={2.2}>
                 <line x1="30" y1="55" x2="190" y2="35" />
                 <line x1="55" y1="140" x2="220" y2="90" />
@@ -613,7 +613,7 @@ export default function Lesson() {
           <div className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
             <DefBox><strong>Le milieu</strong> d&apos;un segment est le point qui appartient au segment et qui est <strong>équidistant</strong> à ses extrémités.</DefBox>
             <p className="mt-4 font-mono text-xs font-semibold text-foreground-muted uppercase">Exemple</p>
-            <svg viewBox="0 0 260 110" className="mx-auto mt-1 h-auto w-full max-w-xs">
+            <svg role="img" aria-label="Figure 26 — Géométrie du plan : points A, E, B ; 3 cm" viewBox="0 0 260 110" className="mx-auto mt-1 h-auto w-full max-w-xs">
               <line x1="35" y1="90" x2="230" y2="40" stroke="#0f172a" strokeWidth={2.2} />
               <path d="M83,77 l6,7.5 M177,53 l6,7.5" stroke="#0f172a" strokeWidth={1.6} />
               <PointCross x={30} y={85} /><FigLabel x={20} y={80}>A</FigLabel>
@@ -638,7 +638,7 @@ export default function Lesson() {
             <div className="mt-5 rounded-xl bg-surface-muted p-4">
               <p className="mb-2 font-mono text-xs font-semibold text-foreground-muted uppercase">Application</p>
               <p className="text-sm text-foreground-muted">Soient E, F, G trois points tels que EF = 3,5 cm et F le milieu du segment [EG]. Calculer FG puis EG.</p>
-              <svg viewBox="0 0 260 60" className="mx-auto mt-3 h-auto w-full max-w-xs">
+              <svg role="img" aria-label="Figure 27 — Géométrie du plan : points E, F, G" viewBox="0 0 260 60" className="mx-auto mt-3 h-auto w-full max-w-xs">
                 <line x1="25" y1="30" x2="235" y2="30" stroke="#0f172a" strokeWidth={2} />
                 <path d="M83,25 l0,10 M177,25 l0,10" stroke="#0f172a" strokeWidth={1.6} />
                 <PointCross x={20} y={25} /><FigLabel x={15} y={20} fontSize={14}>E</FigLabel>
@@ -663,7 +663,7 @@ export default function Lesson() {
             <div className="rounded-xl bg-surface-muted p-4">
               <p className="mb-2 font-mono text-xs font-semibold text-foreground-muted uppercase">Application</p>
               <p className="text-sm text-foreground-muted">Soit (ζ) un cercle de centre O, de rayon r et de diamètre [AB]. Montrer que O est le milieu du segment [AB].</p>
-              <svg viewBox="0 0 220 190" className="mx-auto mt-3 h-auto w-full max-w-[220px]">
+              <svg role="img" aria-label="Figure 28 — Géométrie du plan : points A, O, B ; (ζ)" viewBox="0 0 220 190" className="mx-auto mt-3 h-auto w-full max-w-[220px]">
                 <circle cx="110" cy="95" r="80" fill="none" stroke="#0f172a" strokeWidth={2} />
                 <FigLabel x={30} y={18} fontSize={14}>(ζ)</FigLabel>
                 <line x1="30" y1="95" x2="190" y2="95" stroke="#0f172a" strokeWidth={1.6} />
@@ -691,7 +691,7 @@ export default function Lesson() {
             items={
               <div>
                 <Fig>
-                  <svg viewBox="0 0 380 280" className="mx-auto h-auto w-full max-w-md">
+                  <svg role="img" aria-label="Figure 29 — Géométrie du plan : points A, B, E, C, D" viewBox="0 0 380 280" className="mx-auto h-auto w-full max-w-md">
                     <PointCross x={165} y={65} /><FigLabel x={171} y={60} fontSize={16}>A</FigLabel>
                     <PointCross x={305} y={40} /><FigLabel x={317} y={38} fontSize={16}>B</FigLabel>
                     <PointCross x={45} y={125} /><FigLabel x={30} y={122} fontSize={16}>E</FigLabel>
@@ -711,7 +711,7 @@ export default function Lesson() {
             correction={
               <div>
                 <Fig>
-                  <svg viewBox="0 0 380 280" className="mx-auto h-auto w-full max-w-md">
+                  <svg role="img" aria-label="Figure 30 — Géométrie du plan : points A, B, E, C, D, M" viewBox="0 0 380 280" className="mx-auto h-auto w-full max-w-md">
                     <line x1="151" y1="53.7" x2="294" y2="176.3" stroke="#0f172a" strokeWidth={2} />
                     <line x1="310" y1="45" x2="275" y2="160" stroke="#0f172a" strokeWidth={2.5} />
                     <line x1="170" y1="70" x2="108.7" y2="261.7" stroke="#0d9488" strokeWidth={2} />
@@ -781,7 +781,7 @@ export default function Lesson() {
               <div className="space-y-4 text-sm text-foreground">
                 <div className="rounded-lg border border-green-500/20 bg-surface p-4">
                   <p>a) La <strong className="text-green-700">droite</strong> (D) coupe le <strong className="text-green-700">segment</strong> [IJ] au <strong className="text-green-700">point</strong> K mais ce n&apos;est pas le milieu du <strong className="text-green-700">segment</strong> [IJ].</p>
-                  <svg viewBox="0 0 260 190" className="mx-auto mt-3 h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 31 — Géométrie du plan : points I, J, K ; (D)" viewBox="0 0 260 190" className="mx-auto mt-3 h-auto w-full max-w-xs">
                     <line x1="40" y1="90" x2="220" y2="90" stroke="#0f172a" strokeWidth={2.2} />
                     <line x1="114.1" y1="6.2" x2="185.9" y2="173.8" stroke="#0d9488" strokeWidth={2} />
                     <PointCross x={35} y={85} /><FigLabel x={24} y={82}>I</FigLabel>
@@ -792,7 +792,7 @@ export default function Lesson() {
                 </div>
                 <div className="rounded-lg border border-green-500/20 bg-surface p-4">
                   <p>b) La <strong className="text-green-700">droite</strong> (D₁) coupe le <strong className="text-green-700">cercle</strong> (ζ) de centre O et de rayon 4cm en deux <strong className="text-green-700">points</strong> A et B mais le <strong className="text-green-700">segment</strong> [AB] n&apos;est pas un diamètre du cercle (ζ).</p>
-                  <svg viewBox="0 0 260 200" className="mx-auto mt-3 h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 32 — Géométrie du plan : points A, B, O ; (ζ), (D₁)" viewBox="0 0 260 200" className="mx-auto mt-3 h-auto w-full max-w-xs">
                     <circle cx="130" cy="100" r="70" fill="none" stroke="#0f172a" strokeWidth={2} />
                     <line x1="14.5" y1="56.2" x2="235.5" y2="88.8" stroke="#0d9488" strokeWidth={2} />
                     <PointCross x={65} y={59} /><FigLabel x={52} y={56}>A</FigLabel>
@@ -804,7 +804,7 @@ export default function Lesson() {
                 </div>
                 <div className="rounded-lg border border-green-500/20 bg-surface p-4">
                   <p>c) Le <strong className="text-green-700">point</strong> C appartient à la <strong className="text-green-700">demi-droite</strong> [BA) mais il n&apos;appartient pas au <strong className="text-green-700">segment</strong> [BA].</p>
-                  <svg viewBox="0 0 260 100" className="mx-auto mt-3 h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 33 — Géométrie du plan : points B, A, C" viewBox="0 0 260 100" className="mx-auto mt-3 h-auto w-full max-w-xs">
                     <line x1="200" y1="50" x2="20" y2="50" stroke="#0f172a" strokeWidth={2.2} />
                     <PointCross x={195} y={45} /><FigLabel x={200} y={70}>B</FigLabel>
                     <PointCross x={95} y={45} /><FigLabel x={98} y={70}>A</FigLabel>
@@ -813,7 +813,7 @@ export default function Lesson() {
                 </div>
                 <div className="rounded-lg border border-green-500/20 bg-surface p-4">
                   <p>d) Le <strong className="text-green-700">point</strong> A est le <strong className="text-green-700">point</strong> d&apos;intersection de la <strong className="text-green-700">droite</strong> (BC) et de la <strong className="text-green-700">droite</strong> (EF). Le <strong className="text-green-700">point</strong> E appartient au <strong className="text-green-700">segment</strong> [FA] mais le <strong className="text-green-700">point</strong> A n&apos;appartient pas au <strong className="text-green-700">segment</strong> [BC].</p>
-                  <svg viewBox="0 0 260 180" className="mx-auto mt-3 h-auto w-full max-w-xs">
+                  <svg role="img" aria-label="Figure 34 — Géométrie du plan : points F, E, A, B, C" viewBox="0 0 260 180" className="mx-auto mt-3 h-auto w-full max-w-xs">
                     <line x1="50" y1="150" x2="240" y2="150" stroke="#0f172a" strokeWidth={2.2} />
                     <line x1="40" y1="40" x2="70" y2="150" stroke="#0d9488" strokeWidth={2} />
                     <PointCross x={35} y={35} /><FigLabel x={20} y={33}>F</FigLabel>
@@ -842,7 +842,7 @@ export default function Lesson() {
             correction={
               <div>
                 <Fig>
-                  <svg viewBox="0 0 240 100" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 35 — Géométrie du plan : points A, M, C, B ; 2,5 cm, 3,5 cm" viewBox="0 0 240 100" className="mx-auto h-auto w-full max-w-sm">
                     <line x1="30" y1="70" x2="210" y2="70" stroke="#0f172a" strokeWidth={2.2} />
                     <PointCross x={25} y={65} /><FigLabel x={20} y={60}>A</FigLabel>
                     <PointCross x={100} y={65} /><FigLabel x={96} y={60}>M</FigLabel>
@@ -876,7 +876,7 @@ export default function Lesson() {
             correction={
               <div>
                 <Fig>
-                  <svg viewBox="0 0 320 190" className="mx-auto h-auto w-full max-w-sm">
+                  <svg role="img" aria-label="Figure 36 — Géométrie du plan : points A, M, B ; (D), 4 cm" viewBox="0 0 320 190" className="mx-auto h-auto w-full max-w-sm">
                     <line x1="30" y1="140" x2="260" y2="50" stroke="#0f172a" strokeWidth={2} />
                     <FigLabel x={34} y={155} fontSize={14}>(D)</FigLabel>
                     <line x1="202.5" y1="72.5" x2="295.5" y2="36.1" stroke="#16a34a" strokeWidth={2.4} />
@@ -898,7 +898,7 @@ export default function Lesson() {
             items={
               <div>
                 <Fig>
-                  <svg viewBox="0 0 460 250" className="mx-auto h-auto w-full max-w-lg">
+                  <svg role="img" aria-label="Figure 37 — Géométrie du plan : points A, B, C, O, D, E, M, F" viewBox="0 0 460 250" className="mx-auto h-auto w-full max-w-lg">
                     <line x1="30" y1="220" x2="420" y2="220" stroke="#0f172a" strokeWidth={2} />
                     <path d="M420,220 l-10,-5 l0,10 z" fill="#0f172a" />
                     <line x1="266" y1="40" x2="60" y2="220" stroke="#0f172a" strokeWidth={2} />
@@ -963,7 +963,7 @@ export default function Lesson() {
             items={
               <div>
                 <Fig>
-                  <svg viewBox="0 0 420 300" className="mx-auto h-auto w-full max-w-md">
+                  <svg role="img" aria-label="Figure 38 — Géométrie du plan : (d₁), (d₂), (d₃), (d₄), (d₅), (d₆)" viewBox="0 0 420 300" className="mx-auto h-auto w-full max-w-md">
                     <g stroke="#0f172a" strokeWidth={1.8}>
                       <line x1="71.1" y1="193.4" x2="228.9" y2="256.6" />
                       <line x1="78.5" y1="255.6" x2="134.2" y2="116.4" />
@@ -1020,7 +1020,7 @@ export default function Lesson() {
             items={
               <div>
                 <Fig>
-                  <svg viewBox="0 0 460 260" className="mx-auto h-auto w-full max-w-md">
+                  <svg role="img" aria-label="Figure 39 — Géométrie du plan : points A, B, C ; (d)" viewBox="0 0 460 260" className="mx-auto h-auto w-full max-w-md">
                     <line x1="40.1" y1="91.6" x2="449.9" y2="58.4" stroke="#0f172a" strokeWidth={2} />
                     <FigLabel x={30} y={105} fontSize={14}>(d)</FigLabel>
                     <PointCross x={145} y={35} /><FigLabel x={134} y={30}>A</FigLabel>
@@ -1040,7 +1040,7 @@ export default function Lesson() {
             correction={
               <div>
                 <Fig>
-                  <svg viewBox="0 0 460 260" className="mx-auto h-auto w-full max-w-md">
+                  <svg role="img" aria-label="Figure 40 — Géométrie du plan : points A, B, C ; (d₁),(d₂) teal · (d₃) rouge" viewBox="0 0 460 260" className="mx-auto h-auto w-full max-w-md">
                     <line x1="40.1" y1="91.6" x2="449.9" y2="58.4" stroke="#0f172a" strokeWidth={2} />
                     <line x1="148.8" y1="25" x2="166.2" y2="239.3" stroke="#0d9488" strokeWidth={2} />
                     <line x1="328.8" y1="10" x2="346.6" y2="229.3" stroke="#0d9488" strokeWidth={2} />
@@ -1069,7 +1069,7 @@ export default function Lesson() {
               <div>
                 <p className="mb-3 text-sm text-foreground-muted sm:text-base">Soit (D) une droite, E et F deux points n&apos;appartenant pas à la droite (D).</p>
                 <Fig>
-                  <svg viewBox="0 0 470 260" className="mx-auto h-auto w-full max-w-md">
+                  <svg role="img" aria-label="Figure 41 — Géométrie du plan : points E, F ; (D)" viewBox="0 0 470 260" className="mx-auto h-auto w-full max-w-md">
                     <line x1="25" y1="230.8" x2="445" y2="209.2" stroke="#0f172a" strokeWidth={2} />
                     <FigLabel x={20} y={245} fontSize={14}>(D)</FigLabel>
                     <PointCross x={145} y={55} /><FigLabel x={134} y={50}>E</FigLabel>
@@ -1086,7 +1086,7 @@ export default function Lesson() {
             correction={
               <div>
                 <Fig>
-                  <svg viewBox="0 0 470 260" className="mx-auto h-auto w-full max-w-md">
+                  <svg role="img" aria-label="Figure 42 — Géométrie du plan : points E, F, E′, F′" viewBox="0 0 470 260" className="mx-auto h-auto w-full max-w-md">
                     <line x1="25" y1="230.8" x2="445" y2="209.2" stroke="#0f172a" strokeWidth={2} />
                     <line x1="150" y1="60" x2="158.4" y2="223.9" stroke="#0d9488" strokeWidth={2} />
                     <line x1="330" y1="110" x2="335.4" y2="214.9" stroke="#e11d48" strokeWidth={2} />
@@ -1111,7 +1111,7 @@ export default function Lesson() {
               <div>
                 <p className="mb-3 text-sm text-foreground-muted sm:text-base">On considère la figure suivante :</p>
                 <Fig>
-                  <svg viewBox="0 0 500 260" className="mx-auto h-auto w-full max-w-md">
+                  <svg role="img" aria-label="Figure 43 — Géométrie du plan : points B, A, C ; (D)" viewBox="0 0 500 260" className="mx-auto h-auto w-full max-w-md">
                     <line x1="25.2" y1="232.1" x2="474.8" y2="167.9" stroke="#0f172a" strokeWidth={2} />
                     <FigLabel x={18} y={248} fontSize={14}>(D)</FigLabel>
                     <PointCross x={140} y={210} /><FigLabel x={150} y={238}>B</FigLabel>
@@ -1132,7 +1132,7 @@ export default function Lesson() {
             correction={
               <div>
                 <Fig>
-                  <svg viewBox="0 0 500 260" className="mx-auto h-auto w-full max-w-md">
+                  <svg role="img" aria-label="Figure 44 — Géométrie du plan : points B, A, C, E, F, M, N ; (D), (Δ), (K)" viewBox="0 0 500 260" className="mx-auto h-auto w-full max-w-md">
                     <line x1="25.2" y1="232.1" x2="474.8" y2="167.9" stroke="#0f172a" strokeWidth={2} />
                     <FigLabel x={18} y={248} fontSize={14}>(D)</FigLabel>
                     <line x1="264.8" y1="133.9" x2="328.1" y2="208.9" stroke="#0d9488" strokeWidth={2} />
@@ -1179,7 +1179,7 @@ export default function Lesson() {
             correction={
               <div>
                 <Fig>
-                  <svg viewBox="0 0 500 300" className="mx-auto h-auto w-full max-w-md">
+                  <svg role="img" aria-label="Figure 45 — Géométrie du plan : points A, B, C, H, E, K ; (D), (Δ), (AH) rouge · (EK) violet" viewBox="0 0 500 300" className="mx-auto h-auto w-full max-w-md">
                     <line x1="15" y1="81" x2="485" y2="49" stroke="#0f172a" strokeWidth={2} />
                     <FigLabel x={8} y={70} fontSize={14}>(D)</FigLabel>
                     <line x1="5" y1="239.5" x2="495" y2="255.5" stroke="#0f172a" strokeWidth={2} />
@@ -1227,7 +1227,7 @@ export default function Lesson() {
             correction={
               <div>
                 <Fig>
-                  <svg viewBox="-25 0 490 330" className="mx-auto h-auto w-full max-w-md">
+                  <svg role="img" aria-label="Figure 46 — Géométrie du plan : points A, B, C ; (D₁), (D₂), (D₃)" viewBox="-25 0 490 330" className="mx-auto h-auto w-full max-w-md">
                     <g stroke="#0f172a" strokeWidth={2}>
                       <line x1="150" y1="55" x2="55" y2="190" />
                       <line x1="150" y1="55" x2="387.2" y2="221.9" />

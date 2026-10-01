@@ -82,7 +82,7 @@ const VARIATION_POINTS = [
 function VariationTable() {
   return (
     <div className="mb-5 flex justify-center overflow-x-auto">
-      <svg viewBox="0 0 640 200" className="h-auto w-full max-w-[560px] text-foreground">
+      <svg role="img" aria-label="Figure 1 — Évaluation diagnostique : x, f(x)" viewBox="0 0 640 200" className="h-auto w-full max-w-[560px] text-foreground">
         <rect x={1} y={1} width={638} height={198} fill="none" stroke="currentColor" strokeWidth="1.6" />
         <line x1={90} y1={1} x2={90} y2={199} stroke="currentColor" strokeWidth="1.6" />
         <line x1={1} y1={64} x2={639} y2={64} stroke="currentColor" strokeWidth="1.6" />
@@ -584,7 +584,7 @@ export default function Lesson() {
             description="Le plan est orienté dans le sens direct. Retrouver, pour chaque point, la mesure principale de son abscisse curviligne."
           >
             <div className="mb-5 flex justify-center">
-              <svg viewBox="0 0 220 220" className="h-56 w-56 text-foreground">
+              <svg role="img" aria-label="Figure 2 — Évaluation diagnostique : point I" viewBox="0 0 220 220" className="h-56 w-56 text-foreground">
                 <circle cx="110" cy="110" r="88" fill="none" stroke="currentColor" strokeWidth="1.6" />
                 <line x1="22" y1="110" x2="198" y2="110" stroke="currentColor" strokeWidth="1" opacity="0.5" />
                 <line x1="110" y1="22" x2="110" y2="198" stroke="currentColor" strokeWidth="1" opacity="0.5" />
@@ -700,7 +700,7 @@ export default function Lesson() {
             description="La courbe (Cf) ci-dessous, dans un repère orthonormé (O,i,j), est la représentation d'une fonction f définie sur [−4,5]."
           >
             <div className="mb-5 flex justify-center overflow-x-auto">
-              <svg viewBox="0 0 300 260" className="h-auto w-full max-w-[360px] text-foreground">
+              <svg role="img" aria-label="Figure 3 — Évaluation diagnostique : point O ; x, y, (Cf), -4, -1, 1" viewBox="0 0 300 260" className="h-auto w-full max-w-[360px] text-foreground">
                 {Array.from({ length: 10 }, (_, i) => 44 + i * 24).map((x) => (
                   <line key={x} x1={x} y1="78" x2={x} y2="222" stroke="currentColor" strokeWidth="0.5" opacity="0.15" />
                 ))}

@@ -359,7 +359,7 @@ export default function Lesson() {
               des solutions est le demi-plan <strong>fermé</strong> de bord <Math tex="(D)" /> qui contient{" "}
               <Math tex="O" />.
             </p>
-            <svg viewBox="0 0 260 220" className="mx-auto h-auto w-full max-w-[300px] text-neutral-700">
+            <svg role="img" aria-label="Figure 1 — Équations, inéquations et systèmes : point O ; (0,2), (5,0), 2x+5y ≤ 10, (D)" viewBox="0 0 260 220" className="mx-auto h-auto w-full max-w-[300px] text-neutral-700">
               <polygon points="10,10 10,210 250,210" fill="#22c55e" fillOpacity="0.12" />
               <line x1="0" y1="210" x2="260" y2="210" stroke="currentColor" strokeWidth="1" opacity="0.4" />
               <line x1="10" y1="0" x2="10" y2="220" stroke="currentColor" strokeWidth="1" opacity="0.4" />

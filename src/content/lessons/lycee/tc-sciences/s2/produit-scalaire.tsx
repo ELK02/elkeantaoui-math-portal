@@ -105,7 +105,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 240 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
+          <svg role="img" aria-label="Figure 1 — Le produit scalaire : points A, B, C ; θ, u⃗ · v⃗ = ‖u⃗‖‖v⃗‖cos θ" viewBox="0 0 240 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
             <ArrowDefs id="heroArrow" color="#fb923c" />
             <line x1="30" y1="150" x2="180" y2="150" stroke="currentColor" strokeWidth="2" opacity="0.85" markerEnd="url(#heroArrow)" />
             <line x1="30" y1="150" x2="140" y2="50" stroke="#fb923c" strokeWidth="2.5" markerEnd="url(#heroArrow)" />
@@ -165,7 +165,7 @@ export default function Lesson() {
               </>
             }
             svg={
-              <svg viewBox="0 0 220 140" className="h-auto w-full max-w-[220px] text-neutral-700">
+              <svg role="img" aria-label="Figure 2 — Le produit scalaire : points A, B, C, H" viewBox="0 0 220 140" className="h-auto w-full max-w-[220px] text-neutral-700">
                 <line x1="20" y1="110" x2="190" y2="110" stroke="currentColor" strokeWidth="2" />
                 <line x1="20" y1="110" x2="120" y2="30" stroke="#0ea5e9" strokeWidth="2" />
                 <line x1="120" y1="30" x2="120" y2="110" stroke="#e11d48" strokeWidth="1.4" strokeDasharray="4 3" />
@@ -189,7 +189,7 @@ export default function Lesson() {
             }
             reverse
             svg={
-              <svg viewBox="0 0 220 140" className="h-auto w-full max-w-[220px] text-neutral-700">
+              <svg role="img" aria-label="Figure 3 — Le produit scalaire : points A, B, C, H" viewBox="0 0 220 140" className="h-auto w-full max-w-[220px] text-neutral-700">
                 <line x1="90" y1="110" x2="190" y2="110" stroke="currentColor" strokeWidth="2" />
                 <line x1="90" y1="110" x2="20" y2="30" stroke="#0ea5e9" strokeWidth="2" />
                 <line x1="20" y1="30" x2="20" y2="110" stroke="#e11d48" strokeWidth="1.4" strokeDasharray="4 3" />
@@ -266,7 +266,7 @@ export default function Lesson() {
               </>
             }
             svg={
-              <svg viewBox="0 0 180 180" className="h-auto w-full max-w-[180px] text-neutral-700">
+              <svg role="img" aria-label="Figure 4 — Le produit scalaire : u⃗, v⃗" viewBox="0 0 180 180" className="h-auto w-full max-w-[180px] text-neutral-700">
                 <ArrowDefs id="orth1" />
                 <line x1="90" y1="150" x2="170" y2="150" stroke="currentColor" strokeWidth="2" markerEnd="url(#orth1)" />
                 <line x1="90" y1="150" x2="90" y2="60" stroke="#0ea5e9" strokeWidth="2" markerEnd="url(#orth1)" />
@@ -357,7 +357,7 @@ export default function Lesson() {
               </>
             }
             svg={
-              <svg viewBox="0 0 220 160" className="h-auto w-full max-w-[240px] text-neutral-700">
+              <svg role="img" aria-label="Figure 5 — Le produit scalaire : points B, C, A, H" viewBox="0 0 220 160" className="h-auto w-full max-w-[240px] text-neutral-700">
                 {/* Triangle 3-4-5 exact : B=(0,0), C=(5,0), A=(1.8,2.4) mis à l'échelle ×32, H=(1.8,0). */}
                 <line x1="10" y1="130" x2="170" y2="130" stroke="currentColor" strokeWidth="2" />
                 <line x1="10" y1="130" x2="67.6" y2="53.2" stroke="currentColor" strokeWidth="2" />
@@ -412,7 +412,7 @@ export default function Lesson() {
             }
             reverse
             svg={
-              <svg viewBox="0 0 200 140" className="h-auto w-full max-w-[220px] text-neutral-700">
+              <svg role="img" aria-label="Figure 6 — Le produit scalaire : points B, C, A ; π/4" viewBox="0 0 200 140" className="h-auto w-full max-w-[220px] text-neutral-700">
                 {/* Triangle exact : B=(0,0), C=(5,0), A=(1,1), mis à l'échelle ×28, décalé. */}
                 <line x1="20" y1="110" x2="160" y2="110" stroke="currentColor" strokeWidth="2" />
                 <line x1="20" y1="110" x2="48" y2="82" stroke="currentColor" strokeWidth="2" />
@@ -536,7 +536,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 260 220" className="h-auto w-full max-w-[280px] text-neutral-700">
+                  <svg role="img" aria-label="Figure 7 — Le produit scalaire : points B, C, O, A, J, I" viewBox="0 0 260 220" className="h-auto w-full max-w-[280px] text-neutral-700">
                     {/* Coordonnées exactes (unité = 36px, origine décalée) :
                         B=(0,0)→(92,200)  C=(4,0)→(236,200)  O=(2,0)→(164,200)
                         A=(2,4)→(164,56)  J=(0,5)→(92,20)    I=(-2,1)→(20,164) */}
@@ -696,7 +696,7 @@ export default function Lesson() {
                   </p>
                 }
                 svg={
-                  <svg viewBox="0 0 200 200" className="h-auto w-full max-w-[200px] text-neutral-700">
+                  <svg role="img" aria-label="Figure 8 — Le produit scalaire : points A, B, C, D, I, J, K" viewBox="0 0 200 200" className="h-auto w-full max-w-[200px] text-neutral-700">
                     {/* Carré exact, côté a : A=(0,0) B=(a,0) C=(a,a) D=(0,a) I=(a/2,0) J=(0,a/2) K=(a/4,a/2). unité=40px, a=4. */}
                     <polygon points="20,180 180,180 180,20 20,20" fill="none" stroke="currentColor" strokeWidth="2" />
                     <line x1="20" y1="20" x2="100" y2="180" stroke="#0ea5e9" strokeWidth="1.8" />

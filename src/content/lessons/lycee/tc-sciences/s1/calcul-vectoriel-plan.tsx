@@ -103,7 +103,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 240 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
+          <svg role="img" aria-label="Figure 1 — Calcul vectoriel dans le plan : points A, B, C" viewBox="0 0 240 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
             <ArrowDefs id="heroArrow" color="#fb923c" />
             <line x1="30" y1="170" x2="120" y2="60" stroke="currentColor" strokeWidth="2" opacity="0.85" markerEnd="url(#heroArrow)" />
             <line x1="120" y1="60" x2="210" y2="110" stroke="currentColor" strokeWidth="2" opacity="0.85" markerEnd="url(#heroArrow)" />
@@ -145,7 +145,7 @@ export default function Lesson() {
               </>
             }
             svg={
-              <svg viewBox="0 0 240 200" className="h-auto w-full max-w-[260px] text-neutral-700">
+              <svg role="img" aria-label="Figure 2 — Calcul vectoriel dans le plan : points A, B ; direction, sens, norme" viewBox="0 0 240 200" className="h-auto w-full max-w-[260px] text-neutral-700">
                 <ArrowDefs id="v1" />
                 <line x1="50" y1="150" x2="210" y2="60" stroke="currentColor" strokeWidth="2" markerEnd="url(#v1)" />
                 <circle cx="50" cy="150" r="3" fill="currentColor" />
@@ -204,7 +204,7 @@ export default function Lesson() {
               </>
             }
             svg={
-              <svg viewBox="0 0 220 260" className="h-auto w-full max-w-[220px] text-neutral-700">
+              <svg role="img" aria-label="Figure 3 — Calcul vectoriel dans le plan : points A, B, C, D" viewBox="0 0 220 260" className="h-auto w-full max-w-[220px] text-neutral-700">
                 <ArrowDefs id="v2" />
                 <polygon points="60,180 150,80 180,120 90,220" fill="#4f46e5" fillOpacity="0.06" stroke="none" />
                 <line x1="60" y1="180" x2="150" y2="80" stroke="#0ea5e9" strokeWidth="2" markerEnd="url(#v2)" />
@@ -253,7 +253,7 @@ export default function Lesson() {
               </>
             }
             svg={
-              <svg viewBox="0 0 260 200" className="h-auto w-full max-w-[260px] text-neutral-700">
+              <svg role="img" aria-label="Figure 4 — Calcul vectoriel dans le plan : points A, B, C" viewBox="0 0 260 200" className="h-auto w-full max-w-[260px] text-neutral-700">
                 <ArrowDefs id="v3" />
                 <line x1="50" y1="190" x2="190" y2="70" stroke="currentColor" strokeWidth="1.8" markerEnd="url(#v3)" />
                 <line x1="190" y1="70" x2="260" y2="150" stroke="currentColor" strokeWidth="1.8" markerEnd="url(#v3)" />
@@ -280,7 +280,7 @@ export default function Lesson() {
             }
             reverse
             svg={
-              <svg viewBox="0 0 360 260" className="h-auto w-full max-w-[300px] text-neutral-700">
+              <svg role="img" aria-label="Figure 5 — Calcul vectoriel dans le plan : points A, B, C, D" viewBox="0 0 360 260" className="h-auto w-full max-w-[300px] text-neutral-700">
                 <ArrowDefs id="v4" />
                 <polygon points="70,240 240,160 320,10 150,90" fill="#0ea5e9" fillOpacity="0.06" stroke="none" />
                 <line x1="70" y1="240" x2="240" y2="160" stroke="#0ea5e9" strokeWidth="2" markerEnd="url(#v4)" />
@@ -324,7 +324,7 @@ export default function Lesson() {
               </>
             }
             svg={
-              <svg viewBox="0 0 320 300" className="h-auto w-full max-w-[280px] text-neutral-700">
+              <svg role="img" aria-label="Figure 6 — Calcul vectoriel dans le plan : points A, B, C, D, E" viewBox="0 0 320 300" className="h-auto w-full max-w-[280px] text-neutral-700">
                 <ArrowDefs id="v7" />
                 <ArrowDefs id="v7blue" color="#0ea5e9" />
                 {/* quadrilatère EACB, la réponse */}
@@ -387,7 +387,7 @@ export default function Lesson() {
               </>
             }
             svg={
-              <svg viewBox="0 0 360 200" className="h-auto w-full max-w-[320px] text-neutral-700">
+              <svg role="img" aria-label="Figure 7 — Calcul vectoriel dans le plan : u, 2u, −3u" viewBox="0 0 360 200" className="h-auto w-full max-w-[320px] text-neutral-700">
                 <ArrowDefs id="v5" />
                 <line x1="40" y1="60" x2="140" y2="60" stroke="currentColor" strokeWidth="2" markerEnd="url(#v5)" />
                 <text x="80" y="48" fontSize="13" fontStyle="italic">u</text>
@@ -476,7 +476,7 @@ export default function Lesson() {
               </>
             }
             svg={
-              <svg viewBox="0 0 240 240" className="h-auto w-full max-w-[240px] text-neutral-700">
+              <svg role="img" aria-label="Figure 8 — Calcul vectoriel dans le plan : points A, B, C, F, E" viewBox="0 0 240 240" className="h-auto w-full max-w-[240px] text-neutral-700">
                 <ArrowDefs id="v6" />
                 <ArrowDefs id="v6red" color="#e11d48" />
                 {/* triangle ABC */}
@@ -540,7 +540,7 @@ export default function Lesson() {
             }
             reverse
             svg={
-              <svg viewBox="0 0 340 230" className="h-auto w-full max-w-[300px] text-neutral-700">
+              <svg role="img" aria-label="Figure 9 — Calcul vectoriel dans le plan : points A, B, C, E, F" viewBox="0 0 340 230" className="h-auto w-full max-w-[300px] text-neutral-700">
                 <line x1="150" y1="200" x2="258" y2="200" stroke="currentColor" strokeWidth="1.6" />
                 <line x1="78" y1="110" x2="294" y2="110" stroke="#e11d48" strokeWidth="1.6" strokeDasharray="5 3" />
                 <line x1="150" y1="200" x2="186" y2="110" stroke="currentColor" strokeWidth="1.4" />
@@ -719,7 +719,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 230 230" className="h-auto w-full max-w-[230px] text-neutral-700">
+                  <svg role="img" aria-label="Figure 10 — Calcul vectoriel dans le plan : points A, B, C, D, M" viewBox="0 0 230 230" className="h-auto w-full max-w-[230px] text-neutral-700">
                     <ArrowDefs id="ex5" />
                     <ArrowDefs id="ex5red" color="#e11d48" />
                     {/* parallélogramme ABCD */}
@@ -787,7 +787,7 @@ export default function Lesson() {
                   </p>
                 }
                 svg={
-                  <svg viewBox="0 0 270 190" className="h-auto w-full max-w-[260px] text-neutral-700">
+                  <svg role="img" aria-label="Figure 11 — Calcul vectoriel dans le plan : points A, B, C, O, G" viewBox="0 0 270 190" className="h-auto w-full max-w-[260px] text-neutral-700">
                     <ArrowDefs id="ex7" />
                     {/* triangle ABC */}
                     <polygon points="150,30 30,150 240,150" fill="none" stroke="currentColor" strokeWidth="1.4" strokeOpacity="0.6" />
@@ -876,7 +876,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 200 275" className="h-auto w-full max-w-[220px] text-neutral-700">
+                  <svg role="img" aria-label="Figure 12 — Calcul vectoriel dans le plan : points A, B, C, D, M, N" viewBox="0 0 200 275" className="h-auto w-full max-w-[220px] text-neutral-700">
                     <ArrowDefs id="ex8" />
                     <ArrowDefs id="ex8red" color="#e11d48" />
                     {/* parallélogramme ABCD */}
@@ -922,7 +922,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 235 200" className="h-auto w-full max-w-[260px] text-neutral-700">
+                  <svg role="img" aria-label="Figure 13 — Calcul vectoriel dans le plan : points A, B, C, D, M, N" viewBox="0 0 235 200" className="h-auto w-full max-w-[260px] text-neutral-700">
                     <ArrowDefs id="ex9" />
                     <ArrowDefs id="ex9red" color="#e11d48" />
                     {/* parallélogramme ABCD */}
@@ -993,7 +993,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 280 280" className="h-auto w-full max-w-[240px] text-neutral-700">
+                  <svg role="img" aria-label="Figure 14 — Calcul vectoriel dans le plan : points A, B, C, J, I, M, N" viewBox="0 0 280 280" className="h-auto w-full max-w-[240px] text-neutral-700">
                     <polygon points="140,140 236,140 140,44" fill="#0ea5e9" fillOpacity="0.06" stroke="none" />
                     <line x1="140" y1="140" x2="236" y2="140" stroke="currentColor" strokeWidth="1.6" />
                     <line x1="140" y1="140" x2="140" y2="44" stroke="currentColor" strokeWidth="1.6" />
@@ -1068,7 +1068,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 210 230" className="h-auto w-full max-w-[260px] text-neutral-700">
+                  <svg role="img" aria-label="Figure 15 — Calcul vectoriel dans le plan : points A, B, C, D, M, N, E, F" viewBox="0 0 210 230" className="h-auto w-full max-w-[260px] text-neutral-700">
                     <ArrowDefs id="ex11" />
                     <ArrowDefs id="ex11blue" color="#0ea5e9" />
                     <ArrowDefs id="ex11red" color="#e11d48" />

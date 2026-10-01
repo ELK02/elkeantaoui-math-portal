@@ -73,7 +73,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 200 160" className="h-44 w-52 sm:h-52 sm:w-60">
+          <svg role="img" aria-label="Figure 1 — Les Statistiques" viewBox="0 0 200 160" className="h-44 w-52 sm:h-52 sm:w-60">
             <line x1="20" y1="10" x2="20" y2="140" stroke="#ffffff" strokeOpacity="0.35" strokeWidth="1.5" />
             <line x1="20" y1="140" x2="190" y2="140" stroke="#ffffff" strokeOpacity="0.35" strokeWidth="1.5" />
             <rect x="35" y="95" width="24" height="45" fill="#ffffff" fillOpacity="0.35" rx="2" />
@@ -461,7 +461,7 @@ export default function Lesson() {
                 <div>
                   <p className="font-semibold">2. Diagramme en bâtons</p>
                   <Chart>
-                    <svg viewBox="0 0 460 280" className="mx-auto h-auto w-full" xmlns="http://www.w3.org/2000/svg">
+                    <svg role="img" aria-label="Figure 2 — Les Statistiques : 0, 5, 10, 15, 1, 8" viewBox="0 0 460 280" className="mx-auto h-auto w-full" xmlns="http://www.w3.org/2000/svg">
                       <line x1="46" y1="20" x2="46" y2="234" stroke="#94a3b8" strokeWidth="1.5"/>
                       <line x1="46" y1="234" x2="440" y2="234" stroke="#94a3b8" strokeWidth="1.5"/>
                       <line x1="42" y1="234.0" x2="440" y2="234.0" stroke="#e2e8f0" strokeWidth="1"/>
@@ -588,7 +588,7 @@ export default function Lesson() {
                   <div>
                     <p className="font-semibold">4. Histogramme</p>
                     <Chart>
-                      <svg viewBox="0 0 520 280" className="mx-auto h-auto w-full" xmlns="http://www.w3.org/2000/svg">
+                      <svg role="img" aria-label="Figure 3 — Les Statistiques : 0, 3, 6, 9, 12, 2" viewBox="0 0 520 280" className="mx-auto h-auto w-full" xmlns="http://www.w3.org/2000/svg">
                         <line x1="50" y1="20" x2="50" y2="230" stroke="#94a3b8" strokeWidth="1.5"/>
                         <line x1="50" y1="230" x2="500" y2="230" stroke="#94a3b8" strokeWidth="1.5"/>
                         <line x1="46" y1="230.0" x2="500" y2="230.0" stroke="#e2e8f0" strokeWidth="1"/>
@@ -719,7 +719,7 @@ export default function Lesson() {
                     <p className="font-semibold">7. Diagramme demi-circulaire</p>
                     <p className="mt-1 text-xs text-foreground-muted">Angle = (effectif / 40) × 180°</p>
                     <Chart>
-                      <svg viewBox="0 0 480 250" className="mx-auto h-auto w-full" xmlns="http://www.w3.org/2000/svg">
+                      <svg role="img" aria-label="Figure 4 — Les Statistiques : 35%, 30%, 20%, 15%, 1 h · 14 (63°), 2 h · 12 (54°)" viewBox="0 0 480 250" className="mx-auto h-auto w-full" xmlns="http://www.w3.org/2000/svg">
                         <path d="M160.00,190.00 L30.00,190.00 A130,130 0 0,1 100.98,74.17 Z" fill="#7c3aed" stroke="white" strokeWidth="2"/>
                         <text x="88.0" y="145.8" fontSize="14" fontWeight="700" fill="white" textAnchor="middle" dominantBaseline="middle">35%</text>
                         <path d="M160.00,190.00 L100.98,74.17 A130,130 0 0,1 219.02,74.17 Z" fill="#0ea5e9" stroke="white" strokeWidth="2"/>
@@ -821,7 +821,7 @@ export default function Lesson() {
                   <div>
                     <p className="font-semibold">6. Histogramme</p>
                     <Chart>
-                      <svg viewBox="0 0 520 280" className="mx-auto h-auto w-full" xmlns="http://www.w3.org/2000/svg">
+                      <svg role="img" aria-label="Figure 5 — Les Statistiques : 0, 2, 4, 6, 8, 7" viewBox="0 0 520 280" className="mx-auto h-auto w-full" xmlns="http://www.w3.org/2000/svg">
                         <line x1="50" y1="20" x2="50" y2="230" stroke="#94a3b8" strokeWidth="1.5"/>
                         <line x1="50" y1="230" x2="500" y2="230" stroke="#94a3b8" strokeWidth="1.5"/>
                         <line x1="46" y1="230.0" x2="500" y2="230.0" stroke="#e2e8f0" strokeWidth="1"/>

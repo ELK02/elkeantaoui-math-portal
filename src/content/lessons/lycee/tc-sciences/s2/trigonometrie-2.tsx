@@ -68,7 +68,7 @@ function TrigCircle({
   const Jprime = polar(cx, cy, r, -globalThis.Math.PI / 2);
 
   return (
-    <svg viewBox="0 0 300 300" className={`mx-auto h-auto w-full ${size}`}>
+    <svg role="img" aria-label="Figure 1 — Trigonométrie 2 — Équations et inéquations trigonométriques : points O, I, I', J, J'" viewBox="0 0 300 300" className={`mx-auto h-auto w-full ${size}`}>
       <line x1={cx - r - 22} y1={cy} x2={cx + r + 22} y2={cy} stroke="#cbd5e1" strokeWidth="1.2" />
       <line x1={cx} y1={cy - r - 22} x2={cx} y2={cy + r + 22} stroke="#cbd5e1" strokeWidth="1.2" />
       <circle cx={cx} cy={cy} r={r} fill="none" stroke="#334155" strokeWidth="1.8" />

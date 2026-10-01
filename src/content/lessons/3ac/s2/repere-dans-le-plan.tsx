@@ -34,7 +34,7 @@ export const meta: LessonMeta = {
 /** Défs SVG partagées (flèches d'axes/vecteurs) réutilisées par tous les diagrammes ci-dessous. */
 function DiagramDefs() {
   return (
-    <svg width="0" height="0" className="absolute h-0 w-0 overflow-hidden">
+    <svg role="img" aria-label="Figure 1 — Repère dans le Plan" width="0" height="0" className="absolute h-0 w-0 overflow-hidden">
       <defs>
         <marker id="arr-blue" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
           <path d="M0,0 L9,4.5 L0,9 Z" fill="#2563eb" />
@@ -184,7 +184,7 @@ export default function Lesson() {
         />
 
         <div className="mt-5 grid items-center gap-6 sm:grid-cols-2">
-          <svg viewBox="0 0 318 318" className="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+          <svg role="img" aria-label="Figure 2 — Repère dans le Plan : points O, I, J ; x, y, -2, -1, 1, 2" viewBox="0 0 318 318" className="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
 <g stroke="#e2e8f0" strokeWidth="1">
 <line x1="40.0" y1="278.0" x2="40.0" y2="40.0"/>
 <line x1="74.0" y1="278.0" x2="74.0" y2="40.0"/>
@@ -288,7 +288,7 @@ export default function Lesson() {
           </p>
         </Box>
 
-        <svg viewBox="0 0 522 420" className="mx-auto mt-4 w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
+        <svg role="img" aria-label="Figure 3 — Repère dans le Plan : points O, A, B, C, D, E, F ; x, y, -6, -5, -4, -3" viewBox="0 0 522 420" className="mx-auto mt-4 w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
 <g stroke="#e2e8f0" strokeWidth="1">
 <line x1="40.0" y1="380.0" x2="40.0" y2="40.0"/>
 <line x1="74.0" y1="380.0" x2="74.0" y2="40.0"/>
@@ -406,7 +406,7 @@ export default function Lesson() {
             </p>
           </Box>
 
-          <svg viewBox="0 0 240 400" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
+          <svg role="img" aria-label="Figure 4 — Repère dans le Plan : points O, A, B, E ; x, y, -3, -2, -1, 1" viewBox="0 0 240 400" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
 <g stroke="#e2e8f0" strokeWidth="1">
 <line x1="40.0" y1="360.0" x2="40.0" y2="40.0"/>
 <line x1="60.0" y1="360.0" x2="60.0" y2="40.0"/>
@@ -543,7 +543,7 @@ export default function Lesson() {
 
         <Practice
           diagram={
-            <svg viewBox="0 0 284 420" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
+            <svg role="img" aria-label="Figure 5 — Repère dans le Plan : points O, A, B, C, E ; x, y, -2, -1, 1, 2" viewBox="0 0 284 420" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
 <g stroke="#e2e8f0" strokeWidth="1">
 <line x1="40.0" y1="380.0" x2="40.0" y2="40.0"/>
 <line x1="74.0" y1="380.0" x2="74.0" y2="40.0"/>
@@ -690,7 +690,7 @@ export default function Lesson() {
             </p>
           </Box>
 
-          <svg viewBox="0 0 318 250" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
+          <svg role="img" aria-label="Figure 6 — Repère dans le Plan : points O, A, B, C, D ; x, y, -3, -2, -1, 1" viewBox="0 0 318 250" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
 <g stroke="#e2e8f0" strokeWidth="1">
 <line x1="40.0" y1="210.0" x2="40.0" y2="40.0"/>
 <line x1="74.0" y1="210.0" x2="74.0" y2="40.0"/>
@@ -800,7 +800,7 @@ export default function Lesson() {
             </p>
           </Box>
 
-          <svg viewBox="0 0 318 318" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
+          <svg role="img" aria-label="Figure 7 — Repère dans le Plan : points O, A, B, E, F ; x, y, -2, -1, 1, 2" viewBox="0 0 318 318" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
 <g stroke="#e2e8f0" strokeWidth="1">
 <line x1="40.0" y1="278.0" x2="40.0" y2="40.0"/>
 <line x1="74.0" y1="278.0" x2="74.0" y2="40.0"/>
@@ -915,7 +915,7 @@ export default function Lesson() {
             </p>
           </Box>
 
-          <svg viewBox="0 0 386 284" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
+          <svg role="img" aria-label="Figure 8 — Repère dans le Plan : points O, A, B ; x, y, -2, -1, 1, 2" viewBox="0 0 386 284" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
 <g stroke="#e2e8f0" strokeWidth="1">
 <line x1="40.0" y1="244.0" x2="40.0" y2="40.0"/>
 <line x1="74.0" y1="244.0" x2="74.0" y2="40.0"/>
@@ -1059,7 +1059,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-3">
                 <div className="grid items-center gap-5 sm:grid-cols-2">
-                  <svg viewBox="0 0 318 250" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
+                  <svg role="img" aria-label="Figure 9 — Repère dans le Plan : points O, A, B, C, E, F, G ; x, y, -2, -1, 1, 2" viewBox="0 0 318 250" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
 <g stroke="#e2e8f0" strokeWidth="1">
 <line x1="40.0" y1="210.0" x2="40.0" y2="40.0"/>
 <line x1="74.0" y1="210.0" x2="74.0" y2="40.0"/>
@@ -1167,7 +1167,7 @@ export default function Lesson() {
             }
             correction={
               <div className="grid items-center gap-5 sm:grid-cols-2">
-                <svg viewBox="0 0 216 216" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
+                <svg role="img" aria-label="Figure 10 — Repère dans le Plan : points O, A, B, A' ; x, y, -2, -1, 1, 2" viewBox="0 0 216 216" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
 <g stroke="#e2e8f0" strokeWidth="1">
 <line x1="40.0" y1="176.0" x2="40.0" y2="40.0"/>
 <line x1="74.0" y1="176.0" x2="74.0" y2="40.0"/>
@@ -1260,7 +1260,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-3">
                 <div className="grid items-center gap-5 sm:grid-cols-2">
-                  <svg viewBox="0 0 216 284" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
+                  <svg role="img" aria-label="Figure 11 — Repère dans le Plan : points O, A, C, B, B' ; x, y, -1, 1, 2, 3" viewBox="0 0 216 284" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
 <g stroke="#e2e8f0" strokeWidth="1">
 <line x1="40.0" y1="244.0" x2="40.0" y2="40.0"/>
 <line x1="74.0" y1="244.0" x2="74.0" y2="40.0"/>
@@ -1373,7 +1373,7 @@ export default function Lesson() {
             }
             correction={
               <div className="space-y-3">
-                <svg viewBox="0 0 420 420" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
+                <svg role="img" aria-label="Figure 12 — Repère dans le Plan : points O, A, B, C, D, M ; x, y, -4, -3, -2, -1" viewBox="0 0 420 420" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
 <g stroke="#e2e8f0" strokeWidth="1">
 <line x1="40.0" y1="380.0" x2="40.0" y2="40.0"/>
 <line x1="74.0" y1="380.0" x2="74.0" y2="40.0"/>
@@ -1520,7 +1520,7 @@ export default function Lesson() {
             }
             correction={
               <div className="space-y-3">
-                <svg viewBox="0 0 420 386" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
+                <svg role="img" aria-label="Figure 13 — Repère dans le Plan : points O, A, B, C, D, M ; x, y, -4, -3, -2, -1" viewBox="0 0 420 386" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
 <g stroke="#e2e8f0" strokeWidth="1">
 <line x1="40.0" y1="346.0" x2="40.0" y2="40.0"/>
 <line x1="74.0" y1="346.0" x2="74.0" y2="40.0"/>
@@ -1660,7 +1660,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-3">
                 <div className="grid items-center gap-5 sm:grid-cols-2">
-                  <svg viewBox="0 0 386 318" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
+                  <svg role="img" aria-label="Figure 14 — Repère dans le Plan : points O, A, B, C, D, M ; x, y, -5, -4, -3, -2" viewBox="0 0 386 318" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
 <g stroke="#e2e8f0" strokeWidth="1">
 <line x1="40.0" y1="278.0" x2="40.0" y2="40.0"/>
 <line x1="74.0" y1="278.0" x2="74.0" y2="40.0"/>
@@ -1799,7 +1799,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-3">
                 <div className="grid items-center gap-5 sm:grid-cols-2">
-                  <svg viewBox="0 0 284 318" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
+                  <svg role="img" aria-label="Figure 15 — Repère dans le Plan : points O, A, B, C, I, J, G ; x, y, -3, -2, -1, 1" viewBox="0 0 284 318" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
 <g stroke="#e2e8f0" strokeWidth="1">
 <line x1="40.0" y1="278.0" x2="40.0" y2="40.0"/>
 <line x1="74.0" y1="278.0" x2="74.0" y2="40.0"/>
@@ -1939,7 +1939,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-3">
                 <div className="grid items-center gap-5 sm:grid-cols-2">
-                  <svg viewBox="0 0 284 284" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
+                  <svg role="img" aria-label="Figure 16 — Repère dans le Plan : points O, A, B, C, H ; x, y, -1, 1, 2, 3" viewBox="0 0 284 284" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
 <g stroke="#e2e8f0" strokeWidth="1">
 <line x1="40.0" y1="244.0" x2="40.0" y2="40.0"/>
 <line x1="74.0" y1="244.0" x2="74.0" y2="40.0"/>
@@ -2061,7 +2061,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-3">
                 <div className="grid items-center gap-5 sm:grid-cols-2">
-                  <svg viewBox="0 0 284 284" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
+                  <svg role="img" aria-label="Figure 17 — Repère dans le Plan : points O, A, B, C ; x, y, -1, 1, 2, 3" viewBox="0 0 284 284" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
 <g stroke="#e2e8f0" strokeWidth="1">
 <line x1="40.0" y1="244.0" x2="40.0" y2="40.0"/>
 <line x1="74.0" y1="244.0" x2="74.0" y2="40.0"/>
@@ -2178,7 +2178,7 @@ export default function Lesson() {
             }
             correction={
               <div className="grid items-center gap-5 sm:grid-cols-2">
-                <svg viewBox="0 0 250 284" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
+                <svg role="img" aria-label="Figure 18 — Repère dans le Plan : points O, A, B, C, K ; x, y, 1, 2, 3, 4" viewBox="0 0 250 284" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
 <g stroke="#e2e8f0" strokeWidth="1">
 <line x1="40.0" y1="244.0" x2="40.0" y2="40.0"/>
 <line x1="74.0" y1="244.0" x2="74.0" y2="40.0"/>
@@ -2272,7 +2272,7 @@ export default function Lesson() {
             correction={
               <div className="space-y-3">
                 <div className="grid items-center gap-5 sm:grid-cols-2">
-                  <svg viewBox="0 0 386 420" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
+                  <svg role="img" aria-label="Figure 19 — Repère dans le Plan : points O, A, B, C, L ; x, y, -7, -6, -5, -4" viewBox="0 0 386 420" className="mx-auto w-full max-w-md" xmlns="http://www.w3.org/2000/svg">
 <g stroke="#e2e8f0" strokeWidth="1">
 <line x1="40.0" y1="380.0" x2="40.0" y2="40.0"/>
 <line x1="74.0" y1="380.0" x2="74.0" y2="40.0"/>

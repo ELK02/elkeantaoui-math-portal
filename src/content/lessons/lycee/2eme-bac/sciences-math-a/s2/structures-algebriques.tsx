@@ -92,7 +92,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 240 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
+          <svg role="img" aria-label="Figure 1 — Structures algébriques : point E ; x, y, x∗y, E × E" viewBox="0 0 240 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
             <rect x="30" y="30" width="70" height="50" rx="6" fill="none" stroke="white" strokeWidth="1.6" opacity="0.85" />
             <rect x="30" y="110" width="70" height="50" rx="6" fill="none" stroke="white" strokeWidth="1.6" opacity="0.85" />
             <rect x="150" y="70" width="70" height="50" rx="6" fill="none" stroke="#fb923c" strokeWidth="2" />

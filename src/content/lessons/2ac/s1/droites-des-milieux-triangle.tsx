@@ -110,7 +110,7 @@ export default function Lesson() {
           </>
         }
         visual={
-          <svg viewBox="0 0 220 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
+          <svg role="img" aria-label="Figure 1 — Droites des milieux dans un triangle" viewBox="0 0 220 200" className="h-56 w-56 text-white sm:h-72 sm:w-72">
             <polygon points="110,20 20,170 200,150" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.85" />
             <line x1="65" y1="95" x2="155" y2="85" stroke="#fb923c" strokeWidth="3" />
             <circle cx="110" cy="20" r="4" fill="currentColor" />
@@ -164,7 +164,7 @@ export default function Lesson() {
           numeral={1}
           title="Théorème direct"
           visual={
-            <svg viewBox="0 0 320 220" className="h-auto w-full max-w-[300px]">
+            <svg role="img" aria-label="Figure 2 — Droites des milieux dans un triangle : points B, C, A, K, J" viewBox="0 0 320 220" className="h-auto w-full max-w-[300px]">
               <line x1="60" y1="180" x2="260" y2="180" stroke="#0f172a" strokeWidth="2" />
               <line x1="60" y1="180" x2="150" y2="30" stroke="#0f172a" strokeWidth="2" />
               <line x1="260" y1="180" x2="150" y2="30" stroke="#0f172a" strokeWidth="2" />
@@ -205,7 +205,7 @@ export default function Lesson() {
           numeral={2}
           title="Théorème réciproque"
           visual={
-            <svg viewBox="0 0 320 220" className="h-auto w-full max-w-[300px]">
+            <svg role="img" aria-label="Figure 3 — Droites des milieux dans un triangle : points B, C, A, K, J ; (KJ) ∥ (BC)" viewBox="0 0 320 220" className="h-auto w-full max-w-[300px]">
               <line x1="60" y1="180" x2="260" y2="180" stroke="#0f172a" strokeWidth="2" />
               <line x1="60" y1="180" x2="150" y2="30" stroke="#0f172a" strokeWidth="2" />
               <line x1="260" y1="180" x2="150" y2="30" stroke="#0f172a" strokeWidth="2" />
@@ -246,7 +246,7 @@ export default function Lesson() {
           numeral={3}
           title="Propriété de longueur"
           visual={
-            <svg viewBox="0 0 320 220" className="h-auto w-full max-w-[300px]">
+            <svg role="img" aria-label="Figure 4 — Droites des milieux dans un triangle : points B, C, A, I, J ; IJ = BC/2, BC" viewBox="0 0 320 220" className="h-auto w-full max-w-[300px]">
               <line x1="60" y1="180" x2="260" y2="180" stroke="#0f172a" strokeWidth="2" />
               <line x1="60" y1="180" x2="150" y2="30" stroke="#0f172a" strokeWidth="2" />
               <line x1="260" y1="180" x2="150" y2="30" stroke="#0f172a" strokeWidth="2" />
@@ -298,7 +298,7 @@ export default function Lesson() {
               Dans un triangle LFR, si M est un point de [LF], N un point de [LR] et si (MN) ∥ (FR), alors :
             </p>
             <FormulaBlock tex="\dfrac{LM}{LF} = \dfrac{LN}{LR} = \dfrac{MN}{FR}" />
-            <svg viewBox="0 0 300 200" className="mx-auto mt-4 h-auto w-full max-w-[280px]">
+            <svg role="img" aria-label="Figure 5 — Droites des milieux dans un triangle : points L, F, R, M, N" viewBox="0 0 300 200" className="mx-auto mt-4 h-auto w-full max-w-[280px]">
               <line x1="150" y1="20" x2="60" y2="180" stroke="#0f172a" strokeWidth="2" />
               <line x1="150" y1="20" x2="240" y2="180" stroke="#0f172a" strokeWidth="2" />
               <line x1="60" y1="180" x2="240" y2="180" stroke="#0f172a" strokeWidth="2" />
@@ -327,7 +327,7 @@ export default function Lesson() {
               <li>Tracer les parallèles à (5B) passant par les points 4, 3, 2 et 1.</li>
             </ol>
             <p className="mt-3 text-sm text-foreground-muted">➡ [AB] est ainsi divisé en 5 segments de même longueur.</p>
-            <svg viewBox="0 0 300 190" className="mx-auto mt-2 h-auto w-full max-w-[280px]">
+            <svg role="img" aria-label="Figure 6 — Droites des milieux dans un triangle : points A, B ; 5, 4, 3, 2, 1" viewBox="0 0 300 190" className="mx-auto mt-2 h-auto w-full max-w-[280px]">
               <line x1="40" y1="160" x2="260" y2="160" stroke="#0f172a" strokeWidth="2" />
               <line x1="40" y1="160" x2="140" y2="20" stroke="#334155" strokeWidth="1.6" />
               <circle cx="40" cy="160" r="3.5" fill="#0f172a" /><circle cx="260" cy="160" r="3.5" fill="#0f172a" />
@@ -377,7 +377,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 200" className="h-auto w-full max-w-[280px]">
+                  <svg role="img" aria-label="Figure 7 — Droites des milieux dans un triangle : points B, C, A" viewBox="0 0 300 200" className="h-auto w-full max-w-[280px]">
                     <line x1="60" y1="170" x2="240" y2="170" stroke="#0f172a" strokeWidth="2" />
                     <line x1="60" y1="170" x2="130" y2="30" stroke="#0f172a" strokeWidth="2" />
                     <line x1="240" y1="170" x2="130" y2="30" stroke="#0f172a" strokeWidth="2" />
@@ -402,7 +402,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 200" className="h-auto w-full max-w-[280px]">
+                  <svg role="img" aria-label="Figure 8 — Droites des milieux dans un triangle : points B, C, A, I, J" viewBox="0 0 300 200" className="h-auto w-full max-w-[280px]">
                     <line x1="60" y1="170" x2="240" y2="170" stroke="#0f172a" strokeWidth="2" />
                     <line x1="60" y1="170" x2="130" y2="30" stroke="#0f172a" strokeWidth="2" />
                     <line x1="240" y1="170" x2="130" y2="30" stroke="#0f172a" strokeWidth="2" />
@@ -437,7 +437,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 260 220" className="h-auto w-full max-w-[280px]">
+                  <svg role="img" aria-label="Figure 9 — Droites des milieux dans un triangle : points K, L, J, M, N" viewBox="0 0 260 220" className="h-auto w-full max-w-[280px]">
                     <line x1="40" y1="190" x2="210" y2="190" stroke="#0f172a" strokeWidth="2" />
                     <line x1="40" y1="190" x2="150" y2="30" stroke="#0f172a" strokeWidth="2" />
                     <line x1="210" y1="190" x2="150" y2="30" stroke="#0f172a" strokeWidth="2" />
@@ -505,7 +505,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 210" className="h-auto w-full max-w-[280px]">
+                  <svg role="img" aria-label="Figure 10 — Droites des milieux dans un triangle : points T, R, S, P, F" viewBox="0 0 300 210" className="h-auto w-full max-w-[280px]">
                     <line x1="150" y1="20" x2="60" y2="180" stroke="#0f172a" strokeWidth="2" />
                     <line x1="150" y1="20" x2="240" y2="180" stroke="#0f172a" strokeWidth="2" />
                     <line x1="60" y1="180" x2="240" y2="180" stroke="#0f172a" strokeWidth="2" />
@@ -556,7 +556,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 220" className="h-auto w-full max-w-[280px]">
+                  <svg role="img" aria-label="Figure 11 — Droites des milieux dans un triangle : points F, E, G, A, B" viewBox="0 0 300 220" className="h-auto w-full max-w-[280px]">
                     <line x1="60" y1="180" x2="60" y2="40" stroke="#0f172a" strokeWidth="2" />
                     <line x1="60" y1="180" x2="230" y2="180" stroke="#0f172a" strokeWidth="2" />
                     <line x1="60" y1="40" x2="230" y2="180" stroke="#0f172a" strokeWidth="2" />
@@ -588,7 +588,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 300 200" className="h-auto w-full max-w-[280px]">
+                  <svg role="img" aria-label="Figure 12 — Droites des milieux dans un triangle : points P, N, M, K, H" viewBox="0 0 300 200" className="h-auto w-full max-w-[280px]">
                     <line x1="40" y1="40" x2="240" y2="40" stroke="#059669" strokeWidth="2.5" />
                     <line x1="60" y1="110" x2="220" y2="110" stroke="#059669" strokeWidth="2.5" />
                     <line x1="150" y1="180" x2="40" y2="40" stroke="#0f172a" strokeWidth="2" />
@@ -681,7 +681,7 @@ export default function Lesson() {
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
                     <p className="mb-2 font-semibold text-foreground">a. Calcule AN et AB.</p>
-                    <svg viewBox="0 0 260 220" className="mx-auto h-auto w-full max-w-[240px]">
+                    <svg role="img" aria-label="Figure 13 — Droites des milieux dans un triangle : points M, A, N, B, C ; 4,5, 4, 2, 6" viewBox="0 0 260 220" className="mx-auto h-auto w-full max-w-[240px]">
                       <defs>
                         <marker id="arrIndigoDM" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                           <path d="M0,0 L10,5 L0,10 Z" fill="#4f46e5" />
@@ -714,7 +714,7 @@ export default function Lesson() {
                   </div>
                   <div className="rounded-xl border border-border bg-surface-muted p-4">
                     <p className="mb-2 font-semibold text-foreground">b. Calcule CT et AB.</p>
-                    <svg viewBox="0 0 260 220" className="mx-auto h-auto w-full max-w-[240px]">
+                    <svg role="img" aria-label="Figure 14 — Droites des milieux dans un triangle : points C, B, A, S, T ; 13, 6,5, 5, 3" viewBox="0 0 260 220" className="mx-auto h-auto w-full max-w-[240px]">
                       {/* C(130,25) B(99.5,151.4) A(145.2,88.2) : angle en C calculé exactement par la loi
                           des cosinus à partir de CB=13, CA=6,5, BA=7,8 (≈27,13°), donc S et T tombent
                           précisément sur les rayons (CB) et (CA) aux bonnes distances CS=5 et CT=2,5. */}
@@ -809,7 +809,7 @@ export default function Lesson() {
                   </>
                 }
                 svg={
-                  <svg viewBox="0 0 260 220" className="h-auto w-full max-w-[280px]">
+                  <svg role="img" aria-label="Figure 15 — Droites des milieux dans un triangle : points D, R, P, A, I, J, K" viewBox="0 0 260 220" className="h-auto w-full max-w-[280px]">
                     <line x1="40" y1="40" x2="220" y2="30" stroke="#0f172a" strokeWidth="2" />
                     <line x1="70" y1="190" x2="190" y2="170" stroke="#0f172a" strokeWidth="2" />
                     <line x1="40" y1="40" x2="70" y2="190" stroke="#0f172a" strokeWidth="2" />

@@ -182,7 +182,7 @@ export default function Lesson() {
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             <div className="rounded-xl border border-green-500/20 bg-green-100/60 p-4">
               <p className="mb-2 text-center font-mono text-xs font-semibold text-green-700 uppercase">Exemple</p>
-              <svg viewBox="0 0 220 200" className="mx-auto h-auto w-full max-w-[220px]">
+              <svg role="img" aria-label="Figure 1 — La Proportionnalité : 0" viewBox="0 0 220 200" className="mx-auto h-auto w-full max-w-[220px]">
                 <line x1="30" y1="170" x2="210" y2="170" className="stroke-foreground-muted" strokeWidth="1.5" />
                 <line x1="30" y1="170" x2="30" y2="10" className="stroke-foreground-muted" strokeWidth="1.5" />
                 <line x1="30" y1="170" x2="30" y2="130" strokeDasharray="3,3" className="stroke-border" />
@@ -205,7 +205,7 @@ export default function Lesson() {
             </div>
             <div className="rounded-xl border border-rose-500/30 bg-rose-100/60 p-4">
               <p className="mb-2 text-center font-mono text-xs font-semibold text-rose-700 uppercase">Contre-exemple</p>
-              <svg viewBox="0 0 220 200" className="mx-auto h-auto w-full max-w-[220px]">
+              <svg role="img" aria-label="Figure 2 — La Proportionnalité : 0" viewBox="0 0 220 200" className="mx-auto h-auto w-full max-w-[220px]">
                 <line x1="30" y1="170" x2="210" y2="170" className="stroke-foreground-muted" strokeWidth="1.5" />
                 <line x1="30" y1="170" x2="30" y2="10" className="stroke-foreground-muted" strokeWidth="1.5" />
                 <line x1="30" y1="130" x2="70" y2="130" strokeDasharray="3,3" className="stroke-border" />
@@ -410,7 +410,7 @@ export default function Lesson() {
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div className="rounded-xl border border-border p-3">
                     <p className="mb-2 text-center text-xs font-semibold text-foreground-muted">a-</p>
-                    <svg viewBox="0 0 200 160" className="mx-auto h-auto w-full max-w-[180px]">
+                    <svg role="img" aria-label="Figure 3 — La Proportionnalité : 0" viewBox="0 0 200 160" className="mx-auto h-auto w-full max-w-[180px]">
                       <line x1="25" y1="140" x2="185" y2="140" className="stroke-foreground-muted" strokeWidth="1.5" />
                       <line x1="25" y1="140" x2="25" y2="15" className="stroke-foreground-muted" strokeWidth="1.5" />
                       <line x1="25" y1="140" x2="170" y2="25" className="stroke-blue-600" strokeWidth="2.5" />
@@ -423,7 +423,7 @@ export default function Lesson() {
                   </div>
                   <div className="rounded-xl border border-border p-3">
                     <p className="mb-2 text-center text-xs font-semibold text-foreground-muted">b-</p>
-                    <svg viewBox="0 0 200 160" className="mx-auto h-auto w-full max-w-[180px]">
+                    <svg role="img" aria-label="Figure 4 — La Proportionnalité : 0" viewBox="0 0 200 160" className="mx-auto h-auto w-full max-w-[180px]">
                       <line x1="25" y1="140" x2="185" y2="140" className="stroke-foreground-muted" strokeWidth="1.5" />
                       <line x1="25" y1="140" x2="25" y2="15" className="stroke-foreground-muted" strokeWidth="1.5" />
                       <line x1="25" y1="110" x2="170" y2="30" className="stroke-rose-500" strokeWidth="2.5" />

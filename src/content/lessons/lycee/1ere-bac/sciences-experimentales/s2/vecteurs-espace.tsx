@@ -69,7 +69,7 @@ function CubeFigure() {
   const label = "fill-foreground text-[11px] font-semibold";
   return (
     <figure className="flex flex-col items-center gap-2 rounded-xl border border-border bg-surface-muted p-4">
-      <svg viewBox="0 0 220 180" className="h-48 w-full max-w-xs">
+      <svg role="img" aria-label="Figure 1 — Vecteurs de l'espace" viewBox="0 0 220 180" className="h-48 w-full max-w-xs">
         {/* hidden edges (through D) */}
         <line x1="40" y1="140" x2="75" y2="110" {...hidden} />
         <line x1="175" y1="110" x2="75" y2="110" {...hidden} />
