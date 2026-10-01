@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Clock, GraduationCap, ArrowUpRight } from "lucide-react";
+import { pageOpenGraph } from "@/lib/page-metadata";
+
+const TITLE = "Examens";
+const DESCRIPTION =
+  "Prépare ton examen régional ou national : sujets, corrections et séries de révision pour le Collège et le Lycée.";
 
 export const metadata: Metadata = {
-  title: "Examens",
-  description:
-    "Prépare ton examen régional ou national : sujets, corrections et séries de révision pour le Collège et le Lycée.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/examens" },
+  openGraph: pageOpenGraph(TITLE, DESCRIPTION, "/examens"),
 };
 
 const EXAM_CARDS = [

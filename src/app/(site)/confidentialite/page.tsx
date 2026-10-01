@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/page-metadata";
+
+const TITLE = "Politique de confidentialité";
+const DESCRIPTION = "Politique de confidentialité de Profdemath.com : données collectées, cookies et stockage local.";
 
 export const metadata: Metadata = {
-  title: "Politique de confidentialité",
-  description: "Politique de confidentialité de Profdemath.com : données collectées, cookies et stockage local.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/confidentialite" },
+  openGraph: pageOpenGraph(TITLE, DESCRIPTION, "/confidentialite"),
 };
 
 export default function ConfidentialitePage() {

@@ -22,14 +22,12 @@ export const metadata: Metadata = {
     title: "Prof. Lahbib Elkeantaoui · Mathématiques",
     description:
       "Cours de mathématiques Maroc pour le Collège et le Lycée : résumés de cours, exercices corrigés et fiches de révision.",
-    images: ["/logo/logo-elk.png"],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Prof. Lahbib Elkeantaoui · Mathématiques",
     description:
       "Cours de mathématiques Maroc pour le Collège et le Lycée : résumés de cours, exercices corrigés et fiches de révision.",
-    images: ["/logo/logo-elk.png"],
   },
   alternates: { canonical: "/" },
 };

@@ -3,12 +3,17 @@ import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { PREMIERE_BAC } from "@/data/lycee";
 import { WhatsAppLevelBanner } from "@/components/WhatsAppLevelBanner";
+import { pageOpenGraph } from "@/lib/page-metadata";
+
+const TITLE = "1ère Année Bac";
+const DESCRIPTION =
+  "Mathématiques 1ère Bac Maroc : Sciences Mathématiques, Sciences Expérimentales, Sciences et Technologies — cours et exercices corrigés par filière.";
 
 export const metadata: Metadata = {
-  title: "1ère Année Bac",
-  description:
-    "Mathématiques 1ère Bac Maroc : Sciences Mathématiques, Sciences Expérimentales, Sciences et Technologies — cours et exercices corrigés par filière.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/lycee/1ere-bac" },
+  openGraph: pageOpenGraph(TITLE, DESCRIPTION, "/lycee/1ere-bac"),
 };
 
 export default function PremiereBacPage() {

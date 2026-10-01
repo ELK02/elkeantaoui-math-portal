@@ -3,12 +3,17 @@ import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { DEUXIEME_BAC } from "@/data/lycee";
 import { WhatsAppLevelBanner } from "@/components/WhatsAppLevelBanner";
+import { pageOpenGraph } from "@/lib/page-metadata";
+
+const TITLE = "2ème Année Bac";
+const DESCRIPTION =
+  "Mathématiques 2ème Bac Maroc : Sciences Physiques, SVT, Sciences Math A/B, Sciences et Technologies — cours et exercices corrigés par filière, préparation à l'examen national.";
 
 export const metadata: Metadata = {
-  title: "2ème Année Bac",
-  description:
-    "Mathématiques 2ème Bac Maroc : Sciences Physiques, SVT, Sciences Math A/B, Sciences et Technologies — cours et exercices corrigés par filière, préparation à l'examen national.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/lycee/2eme-bac" },
+  openGraph: pageOpenGraph(TITLE, DESCRIPTION, "/lycee/2eme-bac"),
 };
 
 export default function DeuxiemeBacPage() {

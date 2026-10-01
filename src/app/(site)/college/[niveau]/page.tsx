@@ -6,6 +6,7 @@ import { LEVELS, getLevel } from "@/data/chapters";
 import { ChapterCard } from "@/components/ChapterCard";
 import { WhatsAppLevelBanner } from "@/components/WhatsAppLevelBanner";
 import type { WhatsappLevelId } from "@/data/whatsapp";
+import { pageOpenGraph } from "@/lib/page-metadata";
 
 export function generateStaticParams() {
   return LEVELS.map((level) => ({ niveau: level.id }));
@@ -17,10 +18,13 @@ export async function generateMetadata(
   const { niveau } = await props.params;
   const level = getLevel(niveau);
   if (!level) return { title: "Niveau" };
+  const description = `Mathématiques ${level.short} Maroc : ${level.description} Cours et exercices corrigés, classés par semestre.`;
+  const url = `/college/${level.id}`;
   return {
     title: level.full,
-    description: `Mathématiques ${level.short} Maroc : ${level.description} Cours et exercices corrigés, classés par semestre.`,
-    alternates: { canonical: `/college/${level.id}` },
+    description,
+    alternates: { canonical: url },
+    openGraph: pageOpenGraph(level.full, description, url),
   };
 }
 

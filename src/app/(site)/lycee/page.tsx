@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Clock, ArrowUpRight } from "lucide-react";
+import { pageOpenGraph } from "@/lib/page-metadata";
+
+const TITLE = "Cycle Lycée";
+const DESCRIPTION =
+  "Mathématiques Tronc Commun, 1ère Bac et 2ème Bac, toutes filières : cours, exercices corrigés et fiches de révision.";
 
 export const metadata: Metadata = {
-  title: "Cycle Lycée",
-  description:
-    "Mathématiques Tronc Commun, 1ère Bac et 2ème Bac, toutes filières : cours, exercices corrigés et fiches de révision.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/lycee" },
+  openGraph: pageOpenGraph(TITLE, DESCRIPTION, "/lycee"),
 };
 
 const OTHER_MENUS = [

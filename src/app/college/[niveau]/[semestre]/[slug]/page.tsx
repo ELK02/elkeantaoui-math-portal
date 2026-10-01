@@ -5,6 +5,7 @@ import { getAllLessonParams, getChapter } from "@/data/chapters";
 import type { LessonMeta } from "@/components/lesson";
 import { PageShell } from "@/components/PageShell";
 import { MarkVisited } from "@/components/MarkVisited";
+import { LessonJsonLd } from "@/components/LessonJsonLd";
 
 export function generateStaticParams() {
   return getAllLessonParams();
@@ -29,6 +30,7 @@ export async function generateMetadata(
       description: mod.meta.description,
       url,
       type: "article",
+      images: ["/opengraph-image"],
     },
   };
 }
@@ -41,10 +43,16 @@ export default async function LessonPage(
 
   const mod = (await import(`@/content/lessons/${niveau}/${semestre}/${slug}`)) as {
     default: ComponentType;
+    meta: LessonMeta;
   };
   const Lesson = mod.default;
   return (
     <PageShell>
+      <LessonJsonLd
+        title={mod.meta.title}
+        description={mod.meta.description}
+        url={`/college/${niveau}/${semestre}/${slug}`}
+      />
       <MarkVisited levelId={niveau} slug={slug} />
       <Lesson />
     </PageShell>

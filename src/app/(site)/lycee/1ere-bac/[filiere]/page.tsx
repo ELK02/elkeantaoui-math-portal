@@ -5,6 +5,7 @@ import path from "node:path";
 import { notFound } from "next/navigation";
 import { Clock, ArrowLeft, ArrowUpRight } from "lucide-react";
 import { PREMIERE_BAC } from "@/data/lycee";
+import { pageOpenGraph } from "@/lib/page-metadata";
 
 const CONTENT_ROOT = path.join(process.cwd(), "src/content/lessons/lycee/1ere-bac");
 
@@ -22,10 +23,14 @@ export async function generateMetadata(
   const { filiere } = await props.params;
   const f = PREMIERE_BAC.filieres.find((x) => x.slug === filiere);
   if (!f) return { title: "1ère Bac" };
+  const title = `1ère Bac · ${f.label}`;
+  const description = `Mathématiques 1ère Bac Maroc, filière ${f.label} : cours et exercices corrigés, classés par semestre.`;
+  const url = `/lycee/1ere-bac/${f.slug}`;
   return {
-    title: `1ère Bac · ${f.label}`,
-    description: `Mathématiques 1ère Bac Maroc, filière ${f.label} : cours et exercices corrigés, classés par semestre.`,
-    alternates: { canonical: `/lycee/1ere-bac/${f.slug}` },
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: pageOpenGraph(title, description, url),
   };
 }
 

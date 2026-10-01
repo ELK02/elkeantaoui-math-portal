@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { DEUXIEME_BAC } from "@/data/lycee";
 import type { LessonMeta } from "@/components/lesson";
 import { MarkVisited } from "@/components/MarkVisited";
+import { LessonJsonLd } from "@/components/LessonJsonLd";
 
 const CONTENT_ROOT = path.join(process.cwd(), "src/content/lessons/lycee/2eme-bac");
 
@@ -49,6 +50,7 @@ export async function generateMetadata(
       description: mod.meta.description,
       url,
       type: "article",
+      images: ["/opengraph-image"],
     },
   };
 }
@@ -61,10 +63,16 @@ export default async function DeuxiemeBacLessonPage(
 
   const mod = (await import(`@/content/lessons/lycee/2eme-bac/${filiere}/${semestre}/${slug}`)) as {
     default: ComponentType;
+    meta: LessonMeta;
   };
   const Lesson = mod.default;
   return (
     <>
+      <LessonJsonLd
+        title={mod.meta.title}
+        description={mod.meta.description}
+        url={`/lycee/2eme-bac/${filiere}/${semestre}/${slug}`}
+      />
       <MarkVisited levelId={`2bac-${filiere}`} slug={slug} />
       <Lesson />
     </>

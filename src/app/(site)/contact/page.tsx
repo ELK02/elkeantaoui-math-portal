@@ -2,11 +2,16 @@ import type { Metadata } from "next";
 import { AtSign } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 import { SOCIAL_LINKS } from "@/data/social";
+import { pageOpenGraph } from "@/lib/page-metadata";
+
+const TITLE = "Contact";
+const DESCRIPTION = "Une question sur un cours ou un exercice ? Contactez le Prof. Lahbib Elkeantaoui.";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Une question sur un cours ou un exercice ? Contactez le Prof. Lahbib Elkeantaoui.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/contact" },
+  openGraph: pageOpenGraph(TITLE, DESCRIPTION, "/contact"),
 };
 
 export default function ContactPage() {

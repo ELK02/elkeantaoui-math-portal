@@ -3,12 +3,17 @@ import path from "node:path";
 import type { Metadata } from "next";
 import { FileText } from "lucide-react";
 import { ExamGallery } from "@/components/ExamGallery";
+import { pageOpenGraph } from "@/lib/page-metadata";
+
+const TITLE = "Examens 3ème Année Collège";
+const DESCRIPTION =
+  "Examen régional mathématiques 3AC Maroc : sujets locaux et régionaux corrigés, annales à télécharger pour réviser l'examen de fin de collège.";
 
 export const metadata: Metadata = {
-  title: "Examens 3ème Année Collège",
-  description:
-    "Examen régional mathématiques 3AC Maroc : sujets locaux et régionaux corrigés, annales à télécharger pour réviser l'examen de fin de collège.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/college/3ac/examens" },
+  openGraph: pageOpenGraph(TITLE, DESCRIPTION, "/college/3ac/examens"),
 };
 
 function listLocalExams() {

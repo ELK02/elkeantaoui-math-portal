@@ -2,11 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Mail } from "lucide-react";
 import { Logo } from "@/components/Logo";
+import { pageOpenGraph } from "@/lib/page-metadata";
+
+const TITLE = "À propos";
+const DESCRIPTION = "Prof. Lahbib Elkeantaoui, professeur de mathématiques pour le Collège et le Lycée au Maroc.";
 
 export const metadata: Metadata = {
-  title: "À propos",
-  description: "Prof. Lahbib Elkeantaoui, professeur de mathématiques pour le Collège et le Lycée au Maroc.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/a-propos" },
+  openGraph: pageOpenGraph(TITLE, DESCRIPTION, "/a-propos"),
 };
 
 export default function AProposPage() {

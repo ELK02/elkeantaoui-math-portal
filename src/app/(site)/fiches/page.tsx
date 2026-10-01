@@ -2,11 +2,16 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { FileDown, NotebookPen } from "lucide-react";
 import { FICHES } from "@/data/fiches";
+import { pageOpenGraph } from "@/lib/page-metadata";
+
+const TITLE = "Fiches manuscrites";
+const DESCRIPTION = "Fiches de révision manuscrites, claires et colorées, pour réviser rapidement chaque chapitre.";
 
 export const metadata: Metadata = {
-  title: "Fiches manuscrites",
-  description: "Fiches de révision manuscrites, claires et colorées, pour réviser rapidement chaque chapitre.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/fiches" },
+  openGraph: pageOpenGraph(TITLE, DESCRIPTION, "/fiches"),
 };
 
 export default function FichesPage() {

@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/page-metadata";
+
+const TITLE = "Mentions légales";
+const DESCRIPTION = "Mentions légales du site Profdemath.com : éditeur, hébergement et propriété intellectuelle.";
 
 export const metadata: Metadata = {
-  title: "Mentions légales",
-  description: "Mentions légales du site Profdemath.com : éditeur, hébergement et propriété intellectuelle.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: "/mentions-legales" },
+  openGraph: pageOpenGraph(TITLE, DESCRIPTION, "/mentions-legales"),
 };
 
 export default function MentionsLegalesPage() {

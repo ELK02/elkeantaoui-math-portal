@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { TRONC_COMMUN_SCIENCES } from "@/data/lycee";
 import type { LessonMeta } from "@/components/lesson";
 import { MarkVisited } from "@/components/MarkVisited";
+import { LessonJsonLd } from "@/components/LessonJsonLd";
 
 const CONTENT_ROOT = path.join(process.cwd(), "src/content/lessons/lycee/tc-sciences");
 
@@ -46,6 +47,7 @@ export async function generateMetadata(
       description: mod.meta.description,
       url,
       type: "article",
+      images: ["/opengraph-image"],
     },
   };
 }
@@ -58,10 +60,16 @@ export default async function LyceeLessonPage(
 
   const mod = (await import(`@/content/lessons/lycee/tc-sciences/${semestre}/${slug}`)) as {
     default: ComponentType;
+    meta: LessonMeta;
   };
   const Lesson = mod.default;
   return (
     <>
+      <LessonJsonLd
+        title={mod.meta.title}
+        description={mod.meta.description}
+        url={`/lycee/tronc-commun/sciences/${semestre}/${slug}`}
+      />
       <MarkVisited levelId="tc" slug={slug} />
       <Lesson />
     </>
