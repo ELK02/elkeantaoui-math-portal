@@ -20,4 +20,7 @@ export const FICHES: FicheManuscrite[] = [];
 export const FICHES_WHATSAPP_CHANNELS: { level: string; url: string }[] = [
   { level: "1AC", url: "https://whatsapp.com/channel/0029Vb91nTw6GcG769CIF52R" },
   { level: "2AC", url: "https://whatsapp.com/channel/0029VbDoVclLNSZuwqW6YE2B" },
+  { level: "3AC", url: "https://whatsapp.com/channel/0029VbDOSehFCCoMnkeyXn0v" },
+  { level: "1BAC", url: "https://whatsapp.com/channel/0029VbDjkpp5fM5a1XB1Ii32" },
+  { level: "2BAC", url: "https://whatsapp.com/channel/0029Vb8Lvn6A89MksP1PIm45" },
 ];
