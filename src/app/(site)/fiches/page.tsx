@@ -83,9 +83,8 @@ export default async function FichesPage() {
       {FICHES.length === 0 ? (
         <div className="mt-10 flex flex-col items-center gap-3 rounded-lg border border-dashed border-border bg-surface-muted/50 px-6 py-16 text-center">
           <NotebookPen className="h-8 w-8 text-foreground-muted" />
-          <p className="font-display text-lg font-semibold text-foreground">Bientôt disponible</p>
-          <p className="max-w-sm text-sm text-foreground-muted">
-            Les premières fiches manuscrites arrivent bientôt. Revenez prochainement !
+          <p className="font-display text-lg font-semibold text-foreground">
+            Suivre les fiches manuscrites sur les chaînes WhatsApp
           </p>
         </div>
       ) : (
