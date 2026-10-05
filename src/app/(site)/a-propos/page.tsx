@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { Mail } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { pageOpenGraph } from "@/lib/page-metadata";

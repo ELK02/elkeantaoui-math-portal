@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { DEUXIEME_BAC } from "@/data/lycee";
 import { WhatsAppLevelBanner } from "@/components/WhatsAppLevelBanner";

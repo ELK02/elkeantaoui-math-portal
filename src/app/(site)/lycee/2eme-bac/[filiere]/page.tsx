@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import fs from "node:fs";
 import path from "node:path";
 import { notFound } from "next/navigation";

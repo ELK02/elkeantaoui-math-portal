@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { notFound } from "next/navigation";
 import { FileDown } from "lucide-react";
 import { LEVELS, getLevel } from "@/data/chapters";

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { LessonSubnav } from "./LessonSubnav";
 import type { LessonMeta } from "./types";
 

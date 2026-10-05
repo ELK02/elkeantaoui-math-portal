@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import type { LessonSection } from "./types";
 
 export function LessonSubnav({ sections }: { sections: LessonSection[] }) {

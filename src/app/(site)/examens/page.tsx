@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { Clock, GraduationCap, ArrowUpRight } from "lucide-react";
 import { pageOpenGraph } from "@/lib/page-metadata";
 

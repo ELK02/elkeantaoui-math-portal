@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ArrowUpRight, Clock, type LucideIcon } from "lucide-react";
 
 export function LevelCard({

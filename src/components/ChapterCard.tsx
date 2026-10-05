@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { ArrowUpRight } from "lucide-react";
 import type { Chapter } from "@/data/types";
 

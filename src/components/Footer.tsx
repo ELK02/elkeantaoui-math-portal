@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/AppLink";
 import { Mail } from "lucide-react";
 import { Logo } from "./Logo";
 import { SOCIAL_LINKS } from "@/data/social";
